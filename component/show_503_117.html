@@ -1,25 +1,25 @@
-
+﻿
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <HTML xmlns="http://www.w3.org/1999/xhtml">
 <HEAD>
-<TITLE>AsyncTask����Ҫע��ĵط�_Androidѧϰ�ֲ�</TITLE>
+<TITLE>AsyncTask几点要注意的地方_Android学习手册</TITLE>
 <META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
 <META name=GENERATOR content="MSHTML 8.00.6001.18702">
-<meta name="Description" content=Android���� Android��� Android�û����� Android�豸���� Android���ݴ洢 Android����Ӧ�� Android��Ϸ���� Android��ý�� AndroidԴ�뿪�� Android�߼����� Android������/>
-<meta name="Keywords" content="android ѧϰ�ֲ�">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
 
 </HEAD>
 <BODY id=homesecond class=serverscripting>
 <DIV id=wrapper>
-<DIV id=header><h1><a href="../index.html">Androidѧϰ�ֲ�</a></h1> 
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
 </DIV>
 
 <DIV id=navfirst>
-<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android����</A> </li><li class="navcurrentLink"><A href="index.html">Android���</A> </li><li ><A href="../userinterface/index.html">�û�����</A> </li><li ><A href="../device/index.html">�豸����</A> </li><li ><A href="../datastorage/index.html">���ݴ洢</A> </li><li ><A href="../network/index.html">����Ӧ��</A> </li><li ><A href="../game/index.html">��Ϸ����</A> </li><li ><A href="../multimedia/index.html">��ý��</A> </li><li ><A href="../source/index.html">Դ�뿪��</A> </li><li ><A href="../advance/index.html">�߼�����</A> </li><li ><A href="../interview/index.html">Android������</A> </li></UL></div>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li class="navcurrentLink"><A href="index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
 </DIV>
 <DIV id=navsecond>
 <DIV id=course>
-<div id="kcTitle">�� �� ��</div>
+<div id="kcTitle">课 程 表</div>
 
 
   <h2><A title="Activity" href="index_112.html">Activity</A></h2>
@@ -33,7 +33,7 @@
   <h2><A title="BroadcastReceiver" href="index_116.html">BroadcastReceiver</A></h2>
 
   <h2><A title="AsyncTask" href="index_117.html">AsyncTask</A></h2>
-<UL><li ><A title=Android ǳ̸AsyncTask href="show_501_117.html">Android ǳ̸AsyncTask</A> </li><li ><A title=AsyncTask��Android�е�ʵ�� href="show_502_117.html">AsyncTask��Android�е�ʵ��</A> </li><li class="currentLink"><A title=AsyncTask����Ҫע��ĵط� href="show_503_117.html">AsyncTask����Ҫע��ĵط�</A> </li><li ><A title=AsyncTask����Handler�������߳�UI��ʾ href="show_504_117.html">AsyncTask����Handler�������߳�UI��ʾ</A> </li><li ><A title=ʵ������Android�����ʵ��ͼƬ���첽���ع��� href="show_505_117.html">ʵ������Android�����ʵ��ͼƬ���첽���ع���</A> </li><li ><A title=һ���첽����AsyncTask������ href="show_506_117.html">һ���첽����AsyncTask������</A> </li></UL>
+<UL><li ><A title=Android 浅谈AsyncTask href="show_501_117.html">Android 浅谈AsyncTask</A> </li><li ><A title=AsyncTask在Android中的实现 href="show_502_117.html">AsyncTask在Android中的实现</A> </li><li class="currentLink"><A title=AsyncTask几点要注意的地方 href="show_503_117.html">AsyncTask几点要注意的地方</A> </li><li ><A title=AsyncTask代替Handler更改主线程UI显示 href="show_504_117.html">AsyncTask代替Handler更改主线程UI显示</A> </li><li ><A title=实例讲解Android中如何实现图片的异步加载功能 href="show_505_117.html">实例讲解Android中如何实现图片的异步加载功能</A> </li><li ><A title=一个异步任务AsyncTask的例子 href="show_506_117.html">一个异步任务AsyncTask的例子</A> </li></UL>
   <h2><A title="Handler" href="index_118.html">Handler</A></h2>
 
   <h2><A title="Thread" href="index_119.html">Thread</A></h2>
@@ -51,8 +51,8 @@
 <P><STRONG></STRONG></P></DIV>
 
 <DIV>
-<H2>AsyncTask����Ҫע��ĵط�</H2>
-<div style="line-height:20px; font-size:14px;"><p>����1��AsyncTask�Ƕ��߳���</p><p>���ǡ�</p><p>����2��AsyncTask��Handler��ȣ�˭����������</p><p>��ͨ����Դ�룬����AsyncTaskʵ���Ͼ���һ���̳߳أ������ϵ�˵����AsyncTask��handlerҪ����������Ȼ�ϲ�׼ȷ�ģ�ֻ������˵��AsyncTask�ڴ����ϱ�handlerҪ�������𣬶�ʵ����Ҫ��handler������Դ����ΪAsyncTask�ײ���һ���̳߳أ���Handler�������Ƿ�����һ����Ϣ���У����̶߳�û�п���</p><p>���ǣ�����첽����������ر��Ӵ�AsyncTask�����̳߳ؽṹ�����ƾ����ֳ����ˡ�</p><p>AsyncTask������</p><p>��ѡ������</p><p>1��doinbackground(params��) ��ִ̨�У��ȽϺ�ʱ�Ĳ��������Է������</p><p>ע�����ﲻ��ֱ�Ӳ���UI���˷����ں�̨�߳�ִ�У�����������Ҫ����</p><p>��ͨ����Ҫ�ϳ���ʱ�䡣��ִ�й����п��Ե���</p><p>Public progress(progress��)����������Ľ��ȡ�</p><p>2��onpostexecute(result)�൱��handler����UI�ķ�ʽ�����������ʹ����</p><p>doinbackground�õ��Ľ����������UI���˷��������߳�ִ�У�����ִ�еĽ����Ϊ�˷����Ĳ������ء�</p><p>��ѡ������</p><p>1��onprogressupdate(progress��) ����ʹ�ý����������û�����ȡ��˷��������߳�ִ�У��û���ʾ����ִ�еĽ��ȡ�</p><p>2��onpreExecute()  �����������û�����excuteʱ�Ľӿڣ�������ִ��֮ǰ��ʼ���ô˷�����������������ʾ���ȶԻ���</p><p>3��onCancelled()  �û�����ȡ��ʱ��Ҫ���Ĳ�����</p><p>AsyscTask���������ַ�������params,progress��result.1��  params��������ִ�е��������������http�����URL2��  progress��̨����ִ�еİٷֱ�3��  result��ִ̨���������շ��صĽ��������String����������Ҫ�õ���list��</p><p>ʹ��AsyncTask�࣬���ص�׼��</p><p>1��Task��ʵ��������UI thread�д�����</p><p>2��Execute����������UI thread�е��á�</p><p>3����Ҫ�ֶ��ĵ���onPfreexecute()��onPostExecute(result)Doinbackground(params��),onProgressupdate(progress��)�⼸��������</p><p>4��  ��taskֻ�ܱ�ִ��һ�Σ������ε���ʱ��������쳣��</p><p>AsyncTask���������ù��̶��Ǵ�execute������ʼ�ģ�һ�������߳��е���execute�������Ϳ���ͨ��onpreExecute����������һ��Ԥ����������������������￪ʼһ�����ȿ�ͬ��Ҳ����ͨ��onprogressupdate�������û�һ������������ʾ�������û����飻���ͨ��onpostexecute�������൱��handler����UI�ķ�ʽ�����������ʹ����doinbackground�õ��Ľ����������UI���˷��������߳�ִ�У�����ִ�еĽ����Ϊ�˷����Ĳ������ء�</p><p></p></div>
+<H2>AsyncTask几点要注意的地方</H2>
+<div style="line-height:20px; font-size:14px;"><p>问题1：AsyncTask是多线程吗？</p><p>答：是。</p><p>问题2：AsyncTask与Handler相比，谁更轻量级？</p><p>答：通过看源码，发现AsyncTask实际上就是一个线程池，而网上的说法是AsyncTask比handler要轻量级，显然上不准确的，只能这样说，AsyncTask在代码上比handler要轻量级别，而实际上要比handler更耗资源，因为AsyncTask底层是一个线程池！而Handler仅仅就是发送了一个消息队列，连线程都没有开。</p><p>但是，如果异步任务的数据特别庞大，AsyncTask这种线程池结构的优势就体现出来了。</p><p>AsyncTask方法：</p><p>必选方法：</p><p>1，doinbackground(params…) 后台执行，比较耗时的操作都可以放在这里。</p><p>注意这里不能直接操作UI。此方法在后台线程执行，完成任务的主要工作</p><p>，通常需要较长的时间。在执行过程中可以调用</p><p>Public progress(progress…)来更新任务的进度。</p><p>2，onpostexecute(result)相当于handler处理UI的方式，在这里可以使用在</p><p>doinbackground得到的结果处理操作UI。此方法在主线程执行，任务执行的结果作为此方法的参数返回。</p><p>可选方法：</p><p>1，onprogressupdate(progress…) 可以使用进度条增加用户体验度。此方法在主线程执行，用户显示任务执行的进度。</p><p>2，onpreExecute()  这里是最新用户调用excute时的接口，当任务执行之前开始调用此方法，可以在这里显示进度对话框。</p><p>3，onCancelled()  用户调用取消时，要做的操作。</p><p>AsyscTask定义了三种泛型类型params,progress和result.1，  params启动任务执行的输入参数，比如http请求的URL2，  progress后台任务执行的百分比3，  result后台执行任务最终返回的结果，比如String，比如我需要得到的list。</p><p>使用AsyncTask类，遵守的准则：</p><p>1，Task的实例必须在UI thread中创建。</p><p>2，Execute方法必须在UI thread中调用。</p><p>3，不要手动的调用onPfreexecute()，onPostExecute(result)Doinbackground(params…),onProgressupdate(progress…)这几个方法。</p><p>4，  该task只能被执行一次，否则多次调用时将会出现异常。</p><p>AsyncTask的整个调用过程都是从execute方法开始的，一旦在主线程中调用execute方法，就可以通过onpreExecute方法，这是一个预处理方法，比如可以在这里开始一个进度框，同样也可以通过onprogressupdate方法给用户一个进度条的显示，增加用户体验；最后通过onpostexecute方法，相当于handler处理UI的方式，在这里可以使用在doinbackground得到的结果处理操作UI。此方法在主线程执行，任务执行的结果作为此方法的参数返回。</p><p></p></div>
 
 </DIV></DIV>
 
