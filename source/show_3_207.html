@@ -1,0 +1,60 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android Launcher 分析（三）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li class="navcurrentLink"><A href="index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Launcher" href="index_207.html">Launcher</A></h2>
+<UL><li ><A title=Android Launcher 分析（一） href="show_1_207.html">Android Launcher 分析（一）</A> </li><li ><A title=Android Launcher 分析（二） href="show_2_207.html">Android Launcher 分析（二）</A> </li><li class="currentLink"><A title=Android Launcher 分析（三） href="show_3_207.html">Android Launcher 分析（三）</A> </li><li ><A title=Android 启动唯一的Launcher href="show_4_207.html">Android 启动唯一的Launcher</A> </li><li ><A title=Launcher之文件夹美化 href="show_5_207.html">Launcher之文件夹美化</A> </li><li ><A title=关于使用Eclipse调试Launcher的完美解决方法 href="show_6_207.html">关于使用Eclipse调试Launcher的完美解决方法</A> </li><li ><A title=提取Launcher中的WorkSapce，可以左右滑动切换屏幕页面的类 href="show_7_207.html">提取Launcher中的WorkSapce，可以左右滑动切换屏幕页面的类</A> </li><li ><A title=使用ViewPager实现高仿launcher拖动效果 href="show_8_207.html">使用ViewPager实现高仿launcher拖动效果</A> </li><li ><A title=Android 深入研究拖放功能Launcher（一） href="show_9_207.html">Android 深入研究拖放功能Launcher（一）</A> </li><li ><A title=Android 深入研究拖放功能Launcher（二） href="show_10_207.html">Android 深入研究拖放功能Launcher（二）</A> </li><li ><A title=Android 深入研究拖放功能Launcher（三） href="show_11_207.html">Android 深入研究拖放功能Launcher（三）</A> </li><li ><A title=Android 深入研究拖放功能Launcher（四） href="show_12_207.html">Android 深入研究拖放功能Launcher（四）</A> </li><li ><A title=Android 深入研究拖放功能Launcher（五） href="show_13_207.html">Android 深入研究拖放功能Launcher（五）</A> </li><li ><A title=Android 深入研究拖放功能Launcher（六） href="show_14_207.html">Android 深入研究拖放功能Launcher（六）</A> </li><li ><A title=Android 在launcher 2.1上实现2.2的屏幕标记 href="show_15_207.html">Android 在launcher 2.1上实现2.2的屏幕标记</A> </li></UL>
+  <h2><A title="电话系统RIL" href="index_208.html">电话系统RIL</A></h2>
+
+  <h2><A title="进程间通信" href="index_209.html">进程间通信</A></h2>
+
+  <h2><A title="内部sensor系统" href="index_210.html">内部sensor系统</A></h2>
+
+  <h2><A title="内部surface系统" href="index_211.html">内部surface系统</A></h2>
+
+  <h2><A title="启动流程" href="index_212.html">启动流程</A></h2>
+
+  <h2><A title="源码编译" href="index_213.html">源码编译</A></h2>
+
+  <h2><A title="状态栏" href="index_214.html">状态栏</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android Launcher 分析（三）</H2>
+<div style="line-height:20px; font-size:14px;"><p>方法onActivityResult()：完成在workspace上增加shortcut，appwidge和Livefolder；</p><p>方法onSaveInstantceState()和onRestoreInstanceState()：为了防止Sensor、Land和Port布局自动切换时数据被置空，通过onSaveInstanceState方法可以保存当前窗口的状态，在即将布局切换前将当前的Activity压入历史堆栈.如果我们的Activity在后台没有因为运行内存吃紧被清理，则切换时回触发onRestoreIntanceState()。</p><p>（2）WallpaperChooser：设置墙纸。</p><p>同理我们从onCreat()作为入口来分析这个活动的主要功能。</p><p><pre>public void onCreate(Bundle icicle) { </p><p>super.onCreate(icicle); </p><p>//设置允许改变的窗口状态，需在 setContentView 之前调用 </p><p>requestWindowFeature(Window.FEATURE_NO_TITLE); </p><p>/ /添加墙纸资源，将资源标识符加入到动态数组中 </p><p>findWallpapers(); </p><p>//显示墙纸设置屏幕的UI元素，Imageview,Gallery and Button(LinearLayout) </p><p>setContentView(R.layout.wallpaper_chooser); </p><p>//图片查看功能的实现 </p><p>mGallery = (Gallery) findViewById(R.id.gallery); </p><p>mGallery.setAdapter(new ImageAdapter(this)); </p><p>mGallery.setOnItemSelectedListener(this); </p><p>mGallery.setCallbackDuringFling(false); </p><p>//Button事件监听，点击选择setWallpaper(Resid) </p><p>findViewById(R.id.set).setOnClickListener(this); </p><p>mImageView = (ImageView) findViewById(R.id.wallpaper); </p><p>} </p><p>[code]</p><p>（3）default_searchable</p><p>对于home中任意的Acitivty，使能系统缺省Search模式，这样就可以使用android系统默认的search UI。</p><p>（4）InstallShortcutReceiver：</p><p>继承自BroadcastReceiver，重写onReceier()方法，对于发送来的Broadcast（这里指Intent）进行过滤（IntentFilt）并且响应（这里是InstallShortcut()）。</p><p>这里分析下onReceive()：</p><p><pre>&lt;!-- Enable system-default search mode for any activity in Home --&gt; </p><p>&lt;!-- Intent received used to install shortcuts from other applications --&gt; </p><p>public void onReceive(Context context, Intent data) { </p><p>//接受并过滤Intent </p><p>if (!ACTION_INSTALL_SHORTCUT.equals(data.getAction())) { </p><p>return; </p><p>} </p><p>//获取屏幕 </p><p>int screen = Launcher.getScreen(); </p><p>//安装快捷方式 </p><p>if (!installShortcut(context, data, screen)) { </p><p>//如果屏幕已满，搜寻其他屏幕 </p><p>for (int i = 0; i &lt; Launcher.SCREEN_COUNT; i++) { </p><p>if (i != screen && installShortcut(context, data, i)) break; </p><p>} </p><p>} </p><p>} </p><p>[code]</p><p>其中IntallShortcut()方法：首先，对传入的坐标进行判断（findEmptyCell()），如果是空白位置，则可以放置快捷方式；其次，缺省情况下，我们允许创建重复的快捷方式，具体创建过程（addShortcut()）就是把快捷方式的信息传入数据库（addItemToDatabase()）。</p><p>（5）UninstallShortcutReceiver：</p><p>同理，UninstallShortcutReceiver()继承自BroadcastReceiver()，实现onReceiver()方法。定义一个ContentResolver对象完成对数据库的访问和操作（通过URI定位），进而删除快捷方式。</p><p>（6）LauncherProvider：</p><p>继承自ContentProvider()，主要是建立一个数据库来存放HomeScreen中的数据信息，并通过内容提供者来实现其他应用对launcher中数据的访问和操作。</p><p>重写了ContentProvider()中的方法：</p><p><pre>getType()：返回数据类型.如果有自定义的全新类型，通过此方法完成数据的访问。</p><p>query()：查询数据.传入URI，返回一个Cursor对象，通过Cursor完成对数据库数据的遍历访问。</p><p>Insert()：插入一条数据。</p><p>bulkInsert()：大容量数据的插入。</p><p>delete()：删除一条数据。</p><p>update()：更改一条数据。</p><p>sendNotify()：发送通知。</p><p></pre></p><p>类DatabaseHelper继承自一个封装类SQLiteOpenHelper()，方便了数据库的管理和维护。</p><p>重写的方法：</p><p><pre>onCreate()：创建一个表。其中db.execSQL()方法执行一条SQL语句，通过一条字符串执行相关的操作。当然，对SQL基本语句应该了解。</p><p>onUpgrade()：升级数据库。</p><p></pre></p><p>对HomeScreen数据库操作的一些方法：</p><p><pre>addClockWidget()，addSearchWidget，addShortcut，addAppShortcut，loadFavorites()，launcherAppWidgetBinder()，convertWidget()，updateContactsShortcuts()，copyFromCursor()</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

@@ -1,0 +1,60 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 来说说Surface系统(三)_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li class="navcurrentLink"><A href="index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Launcher" href="index_207.html">Launcher</A></h2>
+
+  <h2><A title="电话系统RIL" href="index_208.html">电话系统RIL</A></h2>
+
+  <h2><A title="进程间通信" href="index_209.html">进程间通信</A></h2>
+
+  <h2><A title="内部sensor系统" href="index_210.html">内部sensor系统</A></h2>
+
+  <h2><A title="内部surface系统" href="index_211.html">内部surface系统</A></h2>
+<UL><li ><A title=Android 来说说Surface系统(一) href="show_401_211.html">Android 来说说Surface系统(一)</A> </li><li ><A title=Android 来说说Surface系统(二) href="show_402_211.html">Android 来说说Surface系统(二)</A> </li><li class="currentLink"><A title=Android 来说说Surface系统(三) href="show_403_211.html">Android 来说说Surface系统(三)</A> </li><li ><A title=Android 来说说Surface系统(四) href="show_404_211.html">Android 来说说Surface系统(四)</A> </li><li ><A title=SurfaceFlinger中的Layer,LayerDim,LayerBlur,LayerBuffer href="show_405_211.html">SurfaceFlinger中的Layer,LayerDim,LayerBlur,LayerBuffer</A> </li><li ><A title=SharedClient href="show_406_211.html">SharedClient</A> </li></UL>
+  <h2><A title="启动流程" href="index_212.html">启动流程</A></h2>
+
+  <h2><A title="源码编译" href="index_213.html">源码编译</A></h2>
+
+  <h2><A title="状态栏" href="index_214.html">状态栏</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 来说说Surface系统(三)</H2>
+<div style="line-height:20px; font-size:14px;"><p>我们赶紧转到WindowManagerService去看看吧。</p><p><pre><font class="keyword">public </font><font class="keyword">int </font>relayoutWindow(Session session, IWindow client, </p><p>WindowManager.LayoutParams attrs, <font class="keyword">int </font>requestedWidth, </font><font class="keyword">int </font>requestedHeight, </font><font class="keyword">int </font>viewVisibility, </font><font class="keyword">boolean </font>insetsPending, Rect outFrame, Rect outContentInsets, Rect outVisibleInsets, Configuration outConfig, Surface outSurface){ </p><p>	<font class="keyword">try </font>{ </p><p>		<font class="Comments">//其中win是我们最初创建的WindowState！ </font></p><p>		Surface surface = win.createSurfaceLocked();</p><p>		<font class="keyword">if </font>(surface != </font><font class="keyword">null</font>) { </p><p>			<font class="Comments">//先创建一个本地surface，然后把传入的参数outSurface copyFrom一下 </font></p><p>			outSurface.copyFrom(surface);</p><p>			</font>win.mReportDestroySurface = <font class="keyword">false</font>;</p><p>			</font>win.mSurfacePendingDestroy = <font class="keyword">false</font>;</p><p>		</font>} <font class="keyword">else </font>{ </p><p>			outSurface.release();</p><p>		} </p><p>	} </p><p>} </p><p>Surface createSurfaceLocked() { </p><p><font class="keyword">try </font>{ </p><p>	</font>mSurface = <font class="keyword">new </font>Surface(</p><p>	mSession.mSurfaceSession, mSession.mPid, mAttrs.getTitle().toString(), 0, w, h, mAttrs.format, flags);</p><p>} </p><p>Surface.openTransaction();</p><p></pre></p><p>这里使用了Surface的另外一个构造函数。</p><p><pre><font class="keyword">public </font>Surface(SurfaceSession s, </p><p><font class="keyword">int </font>pid, String name, </font><font class="keyword">int </font>display, </font><font class="keyword">int </font>w, </font><font class="keyword">int </font>h, </font><font class="keyword">int </font>format, </font><font class="keyword">int </font>flags) </p><p><font class="keyword">throws </font>OutOfResourcesException { </p><p>	</font>mCanvas = <font class="keyword">new </font>CompatibleCanvas();</p><p>	init(s,pid,name,display,w,h,format,flags); ----&gt;调用了native的init函数。</p><p>	mName = name;</p><p>} </p><p></pre></p><p>上面两个类的JNI实现都在framework/base/core/jni/android_view_Surface.cpp中。</p><p><pre><font class="keyword">public </font><font class="keyword">class </font>SurfaceSession { </p><p><font class="Comments">/** Create a new connection with the surface flinger. */</font></p><p><font class="keyword">public </font>SurfaceSession() { </p><p>	init();</p><p>}</p><p></pre></p><p>它的init函数对应为：</p><p><pre><font class="keyword">static </font><font class="keyword">void </font>SurfaceSession_init(JNIEnv* env, jobject clazz) </p><p>{ </p><p>	<font class="Comments">//SurfaceSession对应为SurfaceComposerClient </font></p><p>	</font>sp client = <font class="keyword">new </font>SurfaceComposerClient;</p><p>	client-&gt;incStrong(clazz);</p><p>	<font class="Comments">//Google常用做法，在JAVA对象中保存C++对象的指针。 </font></p><p>	</font>env-&gt;SetIntField(clazz, sso.client, (<font class="keyword">int</font>)client.get());</p><p>}</p><p></pre></p><p>Surface的init对应为：</p><p><pre>static<font class="keyword">void </font>Surface_init( </p><p>JNIEnv* env, jobject clazz, jobject session, j<font class="keyword">int </font>pid, jstring jname, j</font><font class="keyword">int </font>dpy, j</font><font class="keyword">int </font>w, j</font><font class="keyword">int </font>h, j</font><font class="keyword">int </font>format, j</font><font class="keyword">int </font>flags) { </p><p>SurfaceComposerClient* client = (SurfaceComposerClient*)env-&gt;GetIntField(session, sso.client); </p><p>sp surface; </p><p><font class="keyword">if </font>(jname == NULL) { </p><p>	<font class="Comments">//client是SurfaceComposerClient，返回的surface是一个SurfaceControl </font></p><p>	<font class="Comments">//真得很复杂! </font></p><p>	surface = client-&gt;createSurface(pid, dpy, w, h, format, flags);</p><p></font>} <font class="keyword">else </font>{ </p><p>	const jchar* str = env-&gt;GetStringCritical(jname, 0);</p><p>	const String8 name(str, env-&gt;GetStringLength(jname));</p><p>	env-&gt;ReleaseStringCritical(jname, str);</p><p>	surface = client-&gt;createSurface(pid, name, dpy, w, h, format, flags);</p><p>} </p><p><font class="Comments">//把surfaceControl信息设置到Surface对象中 </font></p><p>setSurfaceControl(env, clazz, surface); </p><p>}</p><p></pre></p><p>这里仅仅是surfaceControl的转移，但是并没有看到Surface相关的信息。那么Surface在哪里创建的呢?为了解释这个问题，我使用了终极武器，aidl。</p><p>1 终极武器AIDL</p><p>aidl可以把XXX.aidl文件转换成对应的java文件。我们刚才调用的是WindowSession的relayOut函数。如下：</p><p><pre>sWindowSession.relayout( </p><p>mWindow, params, (<font class="keyword">int</font>) (mView.mMeasuredWidth * appScale + 0.5f), (</font><font class="keyword">int</font>) (mView.mMeasuredHeight * appScale + 0.5f), viewVisibility, insetsPending, mWinFrame, mPendingContentInsets, mPendingVisibleInsets, mPendingConfiguration, mSurface);</p><p></pre></p><p>它的aidl文件在framework/base/core/java/android/view/IWindowSession.aidl中</p><p><pre><font class="keyword">interface </font>IWindowSession { </p><p><font class="keyword">int </font>add(IWindow window, in WindowManager.LayoutParams attrs, in </font><font class="keyword">int </font>viewVisibility, out Rect outContentInsets); </p><p><font class="keyword">void </font>remove(IWindow window); </p><p><font class="Comments">//注意喔，这个outSurface前面的是out，表示输出参数，这个类似于C++的引用。 </font></p><p><font class="keyword">int </font>relayout(IWindow window, in WindowManager.LayoutParams attrs, </font><font class="keyword">int </font>requestedWidth, </font><font class="keyword">int </font>requestedHeight, </font><font class="keyword">int </font>viewVisibility, </font><font class="keyword">boolean </font>insetsPending, out Rect outFrame, out Rect outContentInsets,out Rect outVisibleInsets, out Configuration outConfig, out Surface outSurface);</p><p></pre></p><p>刚才说了，JNI及其JAVA调用只是copyFrom了SurfaceControl对象到outSurface中，但是没看到哪里创建Surface。这其中的奥秘就在aidl文件编译后生成的java文件中。</p><p>你在命令行下可以输入：</p><p><pre>aidl -Id:\android-2.2-froyo-20100625-source\source\frameworks\base\core\java\ -Id:\android-2.2-froyo-20100625-source\source\frameworks\base\Graphics\java d:\android-2.2-froyo-20100625source\source\frameworks\base\core\java\android\view\IWindowSession.aidl test.java</p><p></pre></p><p>以生成test.java文件。-I参数指定include目录，例如aidl有些参数是在别的java文件中指定的，那么这个-I就需要把这些目录包含进来。</p><p>先看看ViewRoot这个客户端生成的代码是什么。</p><p><pre><font class="keyword">public </font><font class="keyword">int </font>relayout(android.view.IWindow window,</p><p>		</font>android.view.WindowManager.LayoutParams attrs, <font class="keyword">int </font>requestedWidth,</p><p>		<font class="keyword">int </font>requestedHeight, </font><font class="keyword">int </font>viewVisibility, </font><font class="keyword">boolean </font>insetsPending,</p><p>		android.graphics.Rect outFrame,</p><p>		android.graphics.Rect outContentInsets,</p><p>		android.graphics.Rect outVisibleInsets,</p><p>		android.content.res.Configuration outConfig,</p><p>		</font>android.view.Surface outSurface) <font class="keyword">throws </font>android.os.RemoteException {</p><p>	android.os.Parcel _data = android.os.Parcel.obtain();</p><p>	android.os.Parcel _reply = android.os.Parcel.obtain();</p><p>	<font class="keyword">int </font>_result;</p><p>	<font class="keyword">try </font>{</p><p>		_data.writeInterfaceToken(DESCRIPTOR);</p><p>		</font>_data.writeStrongBinder((((window != <font class="keyword">null</font>)) ? (window.asBinder())</p><p>				</font>: (<font class="keyword">null</font>)));</p><p>		<font class="keyword">if </font>((attrs != </font><font class="keyword">null</font>)) {</p><p>			_data.writeInt(1);</p><p>			attrs.writeToParcel(_data, 0);</p><p>		</font>} <font class="keyword">else </font>{</p><p>			_data.writeInt(0);</p><p>		}</p><p>		_data.writeInt(requestedWidth);</p><p>		_data.writeInt(requestedHeight);</p><p>		_data.writeInt(viewVisibility);</p><p>		_data.writeInt(((insetsPending) ? (1) : (0)));</p><p>		<font class="Comments">// 奇怪，outSurface的信息没有写到_data中。那.....</font></p><p>		mRemote.transact(Stub.TRANSACTION_relayout, _data, _reply, 0);</p><p>		_reply.readException();</p><p>		_result = _reply.readInt();</p><p>		<font class="keyword">if </font>((0 != _reply.readInt())) {</p><p>			outFrame.readFromParcel(_reply);</p><p>		}</p><p>		<font class="keyword">if </font>((0 != _reply.readInt())) {</p><p>			outSurface.readFromParcel(_reply); <font class="Comments">// 从Parcel中读取信息来填充outSurface</font></p><p>		}</p><p>	} finally {</p><p>		_reply.recycle();</p><p>		_data.recycle();</p><p>	}</p><p>	<font class="keyword">return </font>_result;</p><p>}</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Gridview控件自定义,canvas绘制view,gridview拖动时canvas重绘_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li class="navcurrentLink"><A href="index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Android多媒体功能" href="index_196.html">Android多媒体功能</A></h2>
+
+  <h2><A title="Android多媒体之2D" href="index_197.html">Android多媒体之2D</A></h2>
+
+  <h2><A title="Android多媒体之3D" href="index_198.html">Android多媒体之3D</A></h2>
+
+  <h2><A title="Android多媒体之Bitmap" href="index_199.html">Android多媒体之Bitmap</A></h2>
+
+  <h2><A title="Android多媒体之Canvas" href="index_200.html">Android多媒体之Canvas</A></h2>
+<UL><li ><A title=Android中的Canvas（一） href="show_401_200.html">Android中的Canvas（一）</A> </li><li ><A title=Android中的Canvas（二） href="show_402_200.html">Android中的Canvas（二）</A> </li><li ><A title=Canvas建立欢迎界面 href="show_403_200.html">Canvas建立欢迎界面</A> </li><li ><A title=Android Bitmap与Canvas href="show_405_200.html">Android Bitmap与Canvas</A> </li><li ><A title=Android Bitmap和Canvas实例（一） href="show_406_200.html">Android Bitmap和Canvas实例（一）</A> </li><li ><A title=Android Bitmap和Canvas实例（二） href="show_407_200.html">Android Bitmap和Canvas实例（二）</A> </li><li ><A title=canvas的save()和restore()用法 href="show_408_200.html">canvas的save()和restore()用法</A> </li><li ><A title=canvas 之save,与restore href="show_409_200.html">canvas 之save,与restore</A> </li><li class="currentLink"><A title=Gridview控件自定义,canvas绘制view,gridview拖动时canvas重绘 href="show_411_200.html">Gridview控件自定义,canvas绘制view,gridview拖动时canvas重绘</A> </li><li ><A title=Canvas、Matrix倒影实例教程 href="show_412_200.html">Canvas、Matrix倒影实例教程</A> </li></UL>
+  <h2><A title="Android多媒体之Drawable" href="index_201.html">Android多媒体之Drawable</A></h2>
+
+  <h2><A title="Android多媒体之gif" href="index_202.html">Android多媒体之gif</A></h2>
+
+  <h2><A title="Android多媒体之MediaStore" href="index_203.html">Android多媒体之MediaStore</A></h2>
+
+  <h2><A title="Android多媒体之动画" href="index_204.html">Android多媒体之动画</A></h2>
+
+  <h2><A title="Android多媒体之分辨率" href="index_205.html">Android多媒体之分辨率</A></h2>
+
+  <h2><A title="Android多媒体之分屏幕" href="index_206.html">Android多媒体之分屏幕</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Gridview控件自定义,canvas绘制view,gridview拖动时canvas重绘</H2>
+<div style="line-height:20px; font-size:14px;"><p>1.canvas使用本地drawable图片资源重绘的话，能够显示正确的图片，如下：</p><p><img src="../img/media_canvas/11_canvas.jpg"></p><p>2.canvas使用从网上下载下来的图片资源画图的话，图片都能显示但是覆盖掉了背景图，</p><p>如下面：</p><p>再进一步，滑动我的gridview，也就是实现了canvas重绘，当我返回再看这些图时，背景图显示出来了，但是</p><p>load的图又消失了！或者说，它们没有消失，但就是没有正常显示！</p><p><img src="../img/media_canvas/11_canvas2.jpg"></p><p>现贴出我的绘图代码：</p><p><pre><font class="keyword">public </font>Bitmap drawMyPic(Bitmap background, Bitmap front,String groupName)  </p><p>{  </p><p>	<font class="Comments">// 另外创建一张图片   </font></p><p>	Bitmap newb = itmap.createBitmap(background.getWidth(), background.getHeight(), Config.ARGB_8888);<font class="Comments">// 创建一个新的和background长度宽度一样的位图</font></p><p>	</font>Canvas canvas = <font class="keyword">new </font>Canvas(newb);</p><p>	</font>canvas.drawBitmap(background, 0, 0, <font class="keyword">null</font>);<font class="Comments">// 在 0，0坐标开始画入原图片background</font></p><p>	</font>canvas.drawBitmap(front, (background.getWidth() - front.getWidth()) / 2, (background.getHeight() - front.getHeight()) / 2, <font class="keyword">null</font>); <font class="Comments">// 涂鸦图片画到原图片中间位置</font></p><p>	canvas.save(Canvas.ALL_SAVE_FLAG);</p><p>	canvas.restore();</p><p>	front.recycle();</p><p>	</font>front = <font class="keyword">null</font>; <font class="Comments">//一定记得回收，不然以后会很占资源</font></p><p>	<font class="keyword">return </font>newb;  </p><p>}</p><p></pre></p><p>我的图片们是包裹在gridview之下的，朋友们有的说是当我的图片还没有down下来的时候，canvas已经开始画图了，但是我认为没有load下来的话，canvas没有资源是画不了的，而且本地图片的话大小刚好居中，不知道为什么同样大小的图片从网上load下来的话，canvas画的时候就会覆盖掉后面的背景图。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

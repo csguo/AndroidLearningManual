@@ -1,0 +1,64 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android WebView加载HTML表单并通过javascript提交（二）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li class="navcurrentLink"><A href="index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="3G" href="index_177.html">3G</A></h2>
+
+  <h2><A title="WIFI" href="index_178.html">WIFI</A></h2>
+
+  <h2><A title="蓝牙" href="index_179.html">蓝牙</A></h2>
+
+  <h2><A title="HTTP协议" href="index_180.html">HTTP协议</A></h2>
+
+  <h2><A title="Socket" href="index_181.html">Socket</A></h2>
+
+  <h2><A title="HTML与HTML5" href="index_182.html">HTML与HTML5</A></h2>
+
+  <h2><A title="JavaScript" href="index_183.html">JavaScript</A></h2>
+<UL><li ><A title=Android 浅谈webview中的Javascript href="show_601_183.html">Android 浅谈webview中的Javascript</A> </li><li ><A title=Android WebView使用Javascript详解 href="show_602_183.html">Android WebView使用Javascript详解</A> </li><li ><A title=Android WebView加载HTML表单并通过javascript提交（一） href="show_603_183.html">Android WebView加载HTML表单并通过javascript提交（一）</A> </li><li class="currentLink"><A title=Android WebView加载HTML表单并通过javascript提交（二） href="show_604_183.html">Android WebView加载HTML表单并通过javascript提交（二）</A> </li><li ><A title=Android WebView加载HTML表单并通过javascript提交（三） href="show_605_183.html">Android WebView加载HTML表单并通过javascript提交（三）</A> </li><li ><A title=Android与javascript交互调用 href="show_606_183.html">Android与javascript交互调用</A> </li><li ><A title=Android中WebView实现Javascript调用Java类方法 href="show_607_183.html">Android中WebView实现Javascript调用Java类方法</A> </li><li ><A title=Android中采用html页面布局以及调用JavaScript href="show_608_183.html">Android中采用html页面布局以及调用JavaScript</A> </li><li ><A title=JavaScript或PHP检测Android设备 href="show_609_183.html">JavaScript或PHP检测Android设备</A> </li></UL>
+  <h2><A title="Email" href="index_184.html">Email</A></h2>
+
+  <h2><A title="NFC" href="index_185.html">NFC</A></h2>
+
+  <h2><A title="Web Service" href="index_186.html">Web Service</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android WebView加载HTML表单并通过javascript提交（二）</H2>
+<div style="line-height:20px; font-size:14px;"><p>java代码：</p><p><pre><font class="keyword">new </font>AlertDialog.Builder(WebViewTest.</font><font class="keyword">this</font>) .setTitle(<font class="Fields">"提示信息"</font>) .setMessage(message) .setPositiveButton(</font><font class="Fields">"确定"</font>, </font><font class="keyword">new </font>DialogInterface.OnClickListener() { </p><p>	<font class="keyword">public </font><font class="keyword">void </font>onClick( DialogInterface dialoginterface, </font><font class="keyword">int </font>i) { </font>} </font>}).show(); </p><p>	<font class="keyword">return </font><font class="keyword">true</font>; </p><p>	} </p><p>	} </p><p>	<font class="keyword">private </font>String createWebForm(){ StringBuffer sb = </font><font class="keyword">new </font>StringBuffer(); </p><p>	</font>sb.append(<font class="Fields">"&lt; html&gt;"</font>).append(</font><font class="Fields">"&lt; head&gt;"</font>);</p><p>	</font>sb.append(<font class="Fields">"&lt; meta http-equiv=\"</font>Content-Type\</font><font class="Fields">" content=\"</font>text/html; charset=UTF-8\</font><font class="Fields">"/&gt;"</font>); sb.append(</font><font class="Fields">"&lt; title&gt;"</font>).append(</font><font class="Fields">"表单测试"</font>).append(</font><font class="Fields">"&lt; /title&gt;"</font>);</p><p>	</font>sb.append(<font class="Fields">"&lt; /head&gt;&lt; script language=\"</font>javascript\</font><font class="Fields">"&gt;"</font>);</p><p>	</font>sb.append(<font class="Fields">"function checkform(){var username=document.loginForm.username.value;"</font>); sb.append(</font><font class="Fields">"var password=document.loginForm.password.value;"</font>);</p><p>	</font>sb.append(<font class="Fields">"if(username==\"</font>\</font><font class="Fields">"){alert(\"</font>用户名不能为空!\</font><font class="Fields">");</p><p>	<font class="keyword">return </font><font class="keyword">false</font></p><p>	</font>;</font>}<font class="Fields">");</p><p>	</font>sb.append(<font class="Fields">"if(password==\"</font>\</font><font class="Fields">"){alert(\"</font>密码不能为空!\</font><font class="Fields">");</p><p>	<font class="keyword">return </font><font class="keyword">false</font>;</font>}<font class="Fields">"); </p><p>	<font class="Comments">//sb.append("return username + \":\" + password;"); </font></p><p>	</font>sb.append(<font class="Fields">"window.loginImpl.login(username, password)"</font>);</p><p>	</font>sb.append(<font class="Fields">"</font>}"</font>);</p><p>	</font>sb.append(<font class="Fields">"&lt; /script&gt;"</font>);</p><p>	</font>sb.append(<font class="Fields">"&lt; body&gt;"</font>);</p><p>	</font>sb.append(<font class="Fields">"&lt; form method=\"</font>post\</font><font class="Fields">" name=\"</font>loginForm\</font><font class="Fields">"&gt;"</font>);</p><p>	</font>sb.append(<font class="Fields">"&lt; table&gt;"</font>);</p><p>	</font>sb.append(<font class="Fields">"&lt; tr&gt;"</font>);</p><p>	</font>sb.append(<font class="Fields">"&lt; td align=\"</font>right\</font><font class="Fields">"&gt;"</font>).append(</font><font class="Fields">"用户名"</font>).append(</font><font class="Fields">"&lt; /td&gt;"</font>);</p><p>	</font>sb.append(<font class="Fields">"&lt; td"</font>).append(</font><font class="Fields">"&lt; input type=\"</font>text\</font><font class="Fields">" name=\"</font>username\</font><font class="Fields">"&gt;"</font>).append(</font><font class="Fields">"&lt; /td&gt;"</font>); sb.append(</font><font class="Fields">"&lt; /tr&gt;"</font>);</p><p>	</font>sb.append(<font class="Fields">"&lt; tr&gt;"</font>);</p><p>	</font>sb.append(<font class="Fields">"&lt; td align=\"</font>right\</font><font class="Fields">"&gt;"</font>).append(</font><font class="Fields">"密 码"</font>).append(</font><font class="Fields">"&lt; /td&gt;"</font>);</p><p>	</font>sb.append(<font class="Fields">"&lt; td"</font>).append(</font><font class="Fields">"&lt; input type=\"</font>password\</font><font class="Fields">" name=\"</font>password\</font><font class="Fields">"&gt;"</font>).append(</font><font class="Fields">"&lt; /td&gt;"</font>); sb.append(</font><font class="Fields">"&lt; /tr&gt;"</font>);</p><p>	</font>sb.append(<font class="Fields">"&lt; tr&gt;"</font>);</p><p>	</font>sb.append(<font class="Fields">"&lt; td align=\"</font>center\</font><font class="Fields">" colspan=\"</font>2\</font><font class="Fields">"&gt;"</font>);</p><p>	</font>sb.append(<font class="Fields">"&lt; input type=\"</font>submit\</font><font class="Fields">" value=\"</font>登录\</font><font class="Fields">" onclick=\"</font>checkform();\</font><font class="Fields">"&gt;"</font>);</p><p>	</font>sb.append(<font class="Fields">" &lt; input type=\"</font>reset\</font><font class="Fields">" value=\"</font>重置\</font><font class="Fields">"&gt;"</font>).append(</font><font class="Fields">"&lt; /td&gt;"</font>);</p><p>	</font>sb.append(<font class="Fields">"&lt;/tr&gt;"</font>); sb.append(</font><font class="Fields">"&lt; /table&gt;"</font>); sb.append(</font><font class="Fields">"&lt; /form&gt;"</font>);</p><p>	</font>sb.append(<font class="Fields">"&lt; /body&gt;"</font>);</p><p>	</font>sb.append(<font class="Fields">"&lt; /html&gt;"</font>);</p><p>	<font class="keyword">return </font>sb.toString(); </p><p>	} </p><p>} </p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

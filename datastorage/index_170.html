@@ -1,0 +1,111 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android学习手册_数据存储</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li class="navcurrentLink"><A href="index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">数据存储</div>
+
+  <h2 class="currentLink"><A title="ContentProvider" href="index_170.html">ContentProvider</A></h2>
+<UL><li class="currentLink"><A title=Android系统数据共享 href="show_1_170.html">Android系统数据共享</A> </li><li ><A title=Android 数据存储ContentProvider href="show_2_170.html">Android 数据存储ContentProvider</A> </li><li ><A title=Android Content Provider（一） href="show_3_170.html">Android Content Provider（一）</A> </li><li ><A title=Android Content Provider（二） href="show_4_170.html">Android Content Provider（二）</A> </li><li ><A title=Android Content Provider（三） href="show_5_170.html">Android Content Provider（三）</A> </li><li ><A title=Android 内容提供器Content Providers（一） href="show_6_170.html">Android 内容提供器Content Providers（一）</A> </li><li ><A title=Android 内容提供器Content Providers（二） href="show_7_170.html">Android 内容提供器Content Providers（二）</A> </li><li ><A title=Android 内容提供器Content Providers（三） href="show_8_170.html">Android 内容提供器Content Providers（三）</A> </li><li ><A title=Android中ContentProvider和ContentResolver使用入门 href="show_9_170.html">Android中ContentProvider和ContentResolver使用入门</A> </li><li ><A title=Android 应用程序之间数据共享—ContentProvider href="show_10_170.html">Android 应用程序之间数据共享—ContentProvider</A> </li><li ><A title=Android 使用ContentProvider共享数据 href="show_11_170.html">Android 使用ContentProvider共享数据</A> </li><li ><A title=Android中的ContentResolver应用 href="show_12_170.html">Android中的ContentResolver应用</A> </li></UL>
+  <h2 ><A title="Preferences" href="index_171.html">Preferences</A></h2>
+
+  <h2 ><A title="SQLite" href="index_172.html">SQLite</A></h2>
+
+  <h2 ><A title="SD卡" href="index_173.html">SD卡</A></h2>
+
+  <h2 ><A title="数据库" href="index_174.html">数据库</A></h2>
+
+  <h2 ><A title="URI" href="index_175.html">URI</A></h2>
+
+  <h2 ><A title="MediaStore" href="index_176.html">MediaStore</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1>ContentProvider</H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android系统数据共享</H2>
+<P>　　Content Provider作为Android应用程序中的四大组件之一，主要是为了实现在各应用程序之间数据共享，增强应用程序的复用，例如，在开发过程中，需要获取手机中的通讯录信息，这时完全不需要自己重新开发读取数据的整</P>
+<P><A title="Android系统数据共享" href="show_1_170.html">进入 Android系统数据共享</A> </P></DIV>
+
+<DIV>
+<H2>Android 数据存储ContentProvider</H2>
+<P>　　一、ContentProvider简介当应用继承ContentProvider类，并重写该类用于提供数据和存储数据的方法，就可以向其他应用共享其数据。虽然使用其他方法也可以对外共享数据，但数据访问方式会因数据存储的方式而不同，如：</P>
+<P><A title="Android 数据存储ContentProvider" href="show_2_170.html">进入 Android 数据存储ContentProvider</A> </P></DIV>
+
+<DIV>
+<H2>Android Content Provider（一）</H2>
+<P>　　我们大家都知道让自己的数据和其它应用程序共享有两种方式：创建自己的Content Provider (即继承自Content Provider的子类)或者是将自己的数据添加到已有的Content Provider中去，后者需要保证现有的Content Provide</P>
+<P><A title="Android Content Provider（一）" href="show_3_170.html">进入 Android Content Provider（一）</A> </P></DIV>
+
+<DIV>
+<H2>Android Content Provider（二）</H2>
+<P>　　然后我们需要来创建自己的 ContentProvider 类的 NotePadProvider,它包括了查询、添加、删除、更新等操作以及打开和创建数据库，代码如下： NotePadProvider 类[code=java]#[Keywords]import #java.util.HashMap;#[K</P>
+<P><A title="Android Content Provider（二）" href="show_4_170.html">进入 Android Content Provider（二）</A> </P></DIV>
+
+<DIV>
+<H2>Android Content Provider（三）</H2>
+<P>　　下面我们要来创建一个Activity类，首先向其中插入两个数据，然后通过Toast来显示数据库中的数据。 运行效果如下：[code=img]data_provider/05_datastore.jpg[/code][code=img]data_provider/05_datastore2.jpg[/code</P>
+<P><A title="Android Content Provider（三）" href="show_5_170.html">进入 Android Content Provider（三）</A> </P></DIV>
+
+<DIV>
+<H2>Android 内容提供器Content Providers（一）</H2>
+<P>　　内容提供器用来存放和获取数据并使这些数据可以被所有的应用程序访问。它们是应用程序之间共享数据的唯一方法；不存在所有Android软件包都能访问的公共储存区域。Android为常见数据类型（音频，视频，图像，个人联系</P>
+<P><A title="Android 内容提供器Content Providers（一）" href="show_6_170.html">进入 Android 内容提供器Content Providers（一）</A> </P></DIV>
+
+<DIV>
+<H2>Android 内容提供器Content Providers（二）</H2>
+<P>　　[color=blue]读取查询所获数据Reading retrieved data查询返回的游标对象可以用来访问结果记录集。如果你通过指定的一个ID来查询，这个集合将只有一个值。否则，它可以包含多个数值。（如果没有匹配结果，那还可能是</P>
+<P><A title="Android 内容提供器Content Providers（二）" href="show_7_170.html">进入 Android 内容提供器Content Providers（二）</A> </P></DIV>
+
+<DIV>
+<H2>Android 内容提供器Content Providers（三）</H2>
+<P>　　考虑到这一点，MediaStore内容提供器，这个用来分发图像，音频和视频数据的主内容提供器，利用了一个特殊的约定：用来获取关于这个二进制数据的元信息的query()或managedQuery()方法使用的URI，同样可以被openInputS</P>
+<P><A title="Android 内容提供器Content Providers（三）" href="show_8_170.html">进入 Android 内容提供器Content Providers（三）</A> </P></DIV>
+
+<DIV>
+<H2>Android中ContentProvider和ContentResolver使用入门</H2>
+<P>　　在Android中，我们的应用有的时候需要对外提供数据接口，可以有如下几种方法：1）AIDL 2）Broadcast 3）ContentProvider。使用AIDL需要我们编写AIDL接口以及实现，而且对方也要有相应的接口描述，有点麻烦；使用Broa</P>
+<P><A title="Android中ContentProvider和ContentResolver使用入门" href="show_9_170.html">进入 Android中ContentProvider和ContentResolver使用入门</A> </P></DIV>
+
+<DIV>
+<H2>Android 应用程序之间数据共享—ContentProvider</H2>
+<P>　　在Android应用程序之间数据共享—-ContentResolver中，已经说明了Android是如何实现应用程序之间数据共享的，并详细解析了如何获取其他应用程序共享的数据。ContentProviders存储和检索数据，通过它可以让所有的应用</P>
+<P><A title="Android 应用程序之间数据共享—ContentProvider" href="show_10_170.html">进入 Android 应用程序之间数据共享—ContentProvider</A> </P></DIV>
+
+<DIV>
+<H2>Android 使用ContentProvider共享数据</H2>
+<P>　　当应用继承ContentProvider类，并重写该类用于提供数据和存储数据的方法，就可以向其他应用共享其数据。虽然使用其他方法也可以对外共享数据，但数据访问方式会因数据存储的方式而不同，如：采用文件方式对外共享数</P>
+<P><A title="Android 使用ContentProvider共享数据" href="show_11_170.html">进入 Android 使用ContentProvider共享数据</A> </P></DIV>
+
+<DIV>
+<H2>Android中的ContentResolver应用</H2>
+<P>　　Android应用程序可以使用文件或SqlLite数据库来存储数据。Content Provider提供了一种多应用间数据共享的方式，比如：联系人信息可以被多个应用程序访问。Content Provider是个实现了一组用于提供其他应用程序存取数</P>
+<P><A title="Android中的ContentResolver应用" href="show_12_170.html">进入 Android中的ContentResolver应用</A> </P></DIV>
+
+</DIV>
+
+<DIV id=footer style="display:none">
+<P align="center"> 
+ 
+ 
+ 
+  </P>
+</DIV></DIV></BODY></HTML>
+

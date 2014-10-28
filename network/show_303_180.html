@@ -1,0 +1,64 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android通过https协议与服务器端进行通信_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li class="navcurrentLink"><A href="index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="3G" href="index_177.html">3G</A></h2>
+
+  <h2><A title="WIFI" href="index_178.html">WIFI</A></h2>
+
+  <h2><A title="蓝牙" href="index_179.html">蓝牙</A></h2>
+
+  <h2><A title="HTTP协议" href="index_180.html">HTTP协议</A></h2>
+<UL><li ><A title=网络开发必备的HTTP协议知识 href="show_301_180.html">网络开发必备的HTTP协议知识</A> </li><li ><A title=Android通过http协议数据交互 href="show_302_180.html">Android通过http协议数据交互</A> </li><li class="currentLink"><A title=Android通过https协议与服务器端进行通信 href="show_303_180.html">Android通过https协议与服务器端进行通信</A> </li><li ><A title=Android HTTP服务实例（一） href="show_304_180.html">Android HTTP服务实例（一）</A> </li><li ><A title=Android HTTP服务实例（二） href="show_305_180.html">Android HTTP服务实例（二）</A> </li><li ><A title=Android HTTP服务实例（三） href="show_306_180.html">Android HTTP服务实例（三）</A> </li><li ><A title=Android中HTTP通信和XML解析 href="show_307_180.html">Android中HTTP通信和XML解析</A> </li><li ><A title=关于HTTP协议中的KeepAlive属性 href="show_308_180.html">关于HTTP协议中的KeepAlive属性</A> </li><li ><A title=Android Http下载文件到手机内存与SDCard href="show_309_180.html">Android Http下载文件到手机内存与SDCard</A> </li><li ><A title=Android中发送Http请求实例（包括文件上传、servlet接收） href="show_310_180.html">Android中发送Http请求实例（包括文件上传、servlet接收）</A> </li><li ><A title=Android使用http协议上传文件 href="show_311_180.html">Android使用http协议上传文件</A> </li><li ><A title=关于Android Http访问,上传 href="show_312_180.html">关于Android Http访问,上传</A> </li><li ><A title=在Android中发送HTTP POST请求示范 href="show_313_180.html">在Android中发送HTTP POST请求示范</A> </li></UL>
+  <h2><A title="Socket" href="index_181.html">Socket</A></h2>
+
+  <h2><A title="HTML与HTML5" href="index_182.html">HTML与HTML5</A></h2>
+
+  <h2><A title="JavaScript" href="index_183.html">JavaScript</A></h2>
+
+  <h2><A title="Email" href="index_184.html">Email</A></h2>
+
+  <h2><A title="NFC" href="index_185.html">NFC</A></h2>
+
+  <h2><A title="Web Service" href="index_186.html">Web Service</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android通过https协议与服务器端进行通信</H2>
+<div style="line-height:20px; font-size:14px;"><p>Https与Http类似，只不过Https一般是通过post请求服务器，但是Https与http不同的是Https与服务器会话是处于连接状态。http则发送请求后连接就会断开。</p><p>发送post请求代码：</p><p><pre></font>String query = r4 + <font class="Fields">"&pass="</font> + r3; <font class="Comments">// 请求参数</font></p><p>byte[] entitydata = query.getBytes();<font class="Comments">// 得到实体数据</font></p><p></font>HttpsURLConnection urlCon = (<font class="keyword">new </font>URL(ticketurl)).openConnection();</p><p></font>urlCon.setRequestProperty(<font class="Fields">"Content-Type"</font>,</p><p>		<font class="Fields">"application/x-www-form-urlencoded;charset=UTF-8"</font>);</p><p></font>urlCon.setRequestProperty(<font class="Fields">"Content-Length"</font>,</p><p>		String.valueOf(entitydata.length));</p><p></font>((HttpsURLConnection) urlCon).setRequestMethod(<font class="Fields">"POST"</font>);</p><p></font>urlCon.setDoOutput(<font class="keyword">true</font>);</p><p></font>urlCon.setDoInput(<font class="keyword">true</font>);</p><p>urlCon.connect();</p><p><font class="Comments">// 把封装好的实体数据发送到输出流</font></p><p>OutputStream outStream = urlCon.getOutputStream();</p><p>outStream.write(entitydata);</p><p>outStream.flush();</p><p>outStream.close();</p><p><font class="Comments">// 服务器返回输入流并读写</font></p><p></font>BufferedReader in = <font class="keyword">new </font>BufferedReader(</font><font class="keyword">new </font>InputStreamReader(</p><p>		urlCon.getInputStream()));</p><p>String line;</p><p><font class="keyword">while </font>((line = in.readLine()) != </font><font class="keyword">null</font>) {</p><p>	<font class="keyword">return </font>line;</p><p>}</p><p>in.close();</p><p></pre></p><p>另外使用HttpsURLConnection时需要实现HostnameVerifier 和 X509TrustManager，这两个实现是必须的，要不会报安全验证异常。然后初始化X509TrustManager中的SSLContext，为javax.net.ssl.HttpsURLConnection设置默认的SocketFactory和HostnameVerifier。代码如下：</p><p><pre><font class="keyword">private </font>myX509TrustManager xtm = </font><font class="keyword">new </font>myX509TrustManager();</p><p><font class="keyword">private </font>myHostnameVerifier hnv = </font><font class="keyword">new </font>myHostnameVerifier();</p><p><font class="keyword">public </font>HttpsURLConnectionTest() {</p><p>	<font class="Comments">// 初始化X509TrustManager中的SSLContext</font></p><p>	</font>SSLContext sslContext = <font class="keyword">null</font>;</p><p>	<font class="keyword">try </font>{</p><p>		</font>sslContext = SSLContext.getInstance(<font class="Fields">"TLS"</font>);</p><p>		</font>X509TrustManager[] xtmArray = <font class="keyword">new </font>X509TrustManager[] { xtm </font>};</p><p>		</font>sslContext.init(<font class="keyword">null</font>, xtmArray, </font><font class="keyword">new </font>java.security.SecureRandom());</p><p>	</font>} <font class="keyword">catch </font>(GeneralSecurityException gse) {</p><p></p><p>	}</p><p>	<font class="Comments">// 为javax.net.ssl.HttpsURLConnection设置默认的SocketFactory和HostnameVerifier</font></p><p>	<font class="keyword">if </font>(sslContext != </font><font class="keyword">null</font>) {</p><p>		HttpsURLConnection.setDefaultSSLSocketFactory(sslContext</p><p>				.getSocketFactory());</p><p>	}</p><p>}</p><p>HttpsURLConnection.setDefaultHostnameVerifier(hnv);</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

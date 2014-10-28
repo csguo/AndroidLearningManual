@@ -1,0 +1,64 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android中的WIFI模块（二）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li class="navcurrentLink"><A href="index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="3G" href="index_177.html">3G</A></h2>
+
+  <h2><A title="WIFI" href="index_178.html">WIFI</A></h2>
+<UL><li ><A title=Android中的WIFI模块（一） href="show_101_178.html">Android中的WIFI模块（一）</A> </li><li class="currentLink"><A title=Android中的WIFI模块（二） href="show_102_178.html">Android中的WIFI模块（二）</A> </li><li ><A title=Android中的WIFI模块（三） href="show_103_178.html">Android中的WIFI模块（三）</A> </li><li ><A title=Android中的WIFI模块（四） href="show_104_178.html">Android中的WIFI模块（四）</A> </li><li ><A title=Android WIFI网络操作 href="show_105_178.html">Android WIFI网络操作</A> </li><li ><A title=Android中的Wifi介绍作 href="show_106_178.html">Android中的Wifi介绍作</A> </li><li ><A title=Android WIFI检测与设置 href="show_107_178.html">Android WIFI检测与设置</A> </li><li ><A title=Android 对Wifi进行操作 href="show_108_178.html">Android 对Wifi进行操作</A> </li><li ><A title=Android SDK 中Android.net.wifi简要分析 href="show_109_178.html">Android SDK 中Android.net.wifi简要分析</A> </li><li ><A title=Android WIFI的打开与关闭WifiManager对象的使用 href="show_110_178.html">Android WIFI的打开与关闭WifiManager对象的使用</A> </li><li ><A title=Android Wifi方法大全 href="show_111_178.html">Android Wifi方法大全</A> </li><li ><A title=Android 大家常用的WIFI href="show_112_178.html">Android 大家常用的WIFI</A> </li><li ><A title=Android 自带的wifi移植 href="show_113_178.html">Android 自带的wifi移植</A> </li><li ><A title=关于WIFI的开启关闭与连接热点 href="show_114_178.html">关于WIFI的开启关闭与连接热点</A> </li><li ><A title=GPS、WIFI、GPRS开关问题 href="show_115_178.html">GPS、WIFI、GPRS开关问题</A> </li><li ><A title=Android平台中Wifi的初始化 href="show_116_178.html">Android平台中Wifi的初始化</A> </li></UL>
+  <h2><A title="蓝牙" href="index_179.html">蓝牙</A></h2>
+
+  <h2><A title="HTTP协议" href="index_180.html">HTTP协议</A></h2>
+
+  <h2><A title="Socket" href="index_181.html">Socket</A></h2>
+
+  <h2><A title="HTML与HTML5" href="index_182.html">HTML与HTML5</A></h2>
+
+  <h2><A title="JavaScript" href="index_183.html">JavaScript</A></h2>
+
+  <h2><A title="Email" href="index_184.html">Email</A></h2>
+
+  <h2><A title="NFC" href="index_185.html">NFC</A></h2>
+
+  <h2><A title="Web Service" href="index_186.html">Web Service</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android中的WIFI模块（二）</H2>
+<div style="line-height:20px; font-size:14px;"><p>当使能成功后，会广播发送WIFI_STATE_CHANGED_ACTION这个Intent通知外界WIFI已经成功使能了。WifiEnabler创建的时候就会向Android注册接收WIFI_STATE_CHANGED_ACTION，因此它会收到该 Intent，从而开始扫描。</p><p><pre><font class="keyword">private </font><font class="keyword">void </font>handleWifiStateChanged(</font><font class="keyword">int </font>wifiState) {</p><p>	<font class="keyword">if </font>(wifiState == WIFI_STATE_ENABLED) {</p><p>		loadConfiguredAccessPoints();</p><p>		attemptScan();</p><p>	}</p><p>}</p><p></pre></p><p style="color:#3333FF;">2.查找 AP</p><p>扫描的入口函数是 WifiService 的 startScan，它其实也就是往 wpa_supplicant 发送 SCAN 命令。</p><p><pre><font class="keyword">static </font>j</font><font class="keyword">boolean </font>android_net_wifi_scanCommand(JNIEnv* env, jobject clazz)</p><p>{</p><p>	</font>j<font class="keyword">boolean </font>result;</p><p>	<font class="Comments">// Ignore any error from setting the scan mode.</font></p><p>	<font class="Comments">// The scan will still work.</font></p><p>	</font>(void)doBooleanCommand(<font class="Fields">"DRIVER SCAN-ACTIVE"</font>, </font><font class="Fields">"OK"</font>);</p><p>	</font>result = doBooleanCommand(<font class="Fields">"SCAN"</font>, </font><font class="Fields">"OK"</font>);</p><p>	</font>(void)doBooleanCommand(<font class="Fields">"DRIVER SCAN-PASSIVE"</font>, </font><font class="Fields">"OK"</font>);</p><p>	<font class="keyword">return </font>result;</p><p>}</p><p></pre></p><p>当wpa_supplicant处理完SCAN命令后，它会向控制通道发送事件通知扫描完成，从而wifi_wait_for_event 函数会接收到该事件，由此 WifiMonitor 中的 MonitorThread 会被执行来出来这个事件，</p><p><pre><font class="keyword">void </font>handleEvent(</font><font class="keyword">int </font>event, String remainder) {</p><p>	<font class="keyword">case </font>SCAN_RESULTS: </p><p>		mWifiStateTracker.notifyScanResultsAvailable();</p><p>		<font class="keyword">break</font>; 		</p><p>}</p><p></pre></p><p>WifiStateTracker 则接着广播发送 SCAN_RESULTS_AVAILABLE_ACTION 这个 Intent</p><p><pre><font class="keyword">case </font>EVENT_SCAN_RESULTS_AVAILABLE:</p><p>	</font>mContext.sendBroadcast(<font class="keyword">new </font></p><p>	Intent(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION));</p><p></pre></p><p>WifiLayer 注册了接收SCAN_RESULTS_AVAILABLE_ACTION这个Intent，所以它的相关处理函数handleScanResultsAvailable会被调用，在该函数中，先会去拿到 SCAN 的结果（最终是往wpa_supplicant 发送 SCAN_RESULT 命令并读取返回值来实现的），</p><p><pre>List&lt;ScanResult&gt; list = mWifiManager.getScanResults();</p><p></pre></p><p>对每一个扫描返回的 AP，WifiLayer 会调用 WifiSettings 的 onAccessPointSetChanged 函数，从而最终把该 AP 加到 GUI 显示列表中。</p><p><pre><font class="keyword">public </font><font class="keyword">void </font>onAccessPointSetChanged(AccessPointState ap, </font><font class="keyword">boolean </font>added) {</p><p>	AccessPointPreference pref = mAps.get(ap);</p><p>	<font class="keyword">if </font>(added) {</p><p>		<font class="keyword">if </font>(pref == </font><font class="keyword">null</font>) {</p><p>			</font>pref = <font class="keyword">new </font>AccessPointPreference(</font><font class="keyword">this</font>, ap);</p><p>			mAps.put(ap, pref);</p><p>		</font>} <font class="keyword">else </font>{</p><p>			</font>pref.setEnabled(<font class="keyword">true</font>);</p><p>		}</p><p>		mApCategory.addPreference(pref);</p><p>	}</p><p>}</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

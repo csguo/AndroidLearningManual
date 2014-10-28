@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android Drawable的使用_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li class="navcurrentLink"><A href="index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Android多媒体功能" href="index_196.html">Android多媒体功能</A></h2>
+
+  <h2><A title="Android多媒体之2D" href="index_197.html">Android多媒体之2D</A></h2>
+
+  <h2><A title="Android多媒体之3D" href="index_198.html">Android多媒体之3D</A></h2>
+
+  <h2><A title="Android多媒体之Bitmap" href="index_199.html">Android多媒体之Bitmap</A></h2>
+
+  <h2><A title="Android多媒体之Canvas" href="index_200.html">Android多媒体之Canvas</A></h2>
+
+  <h2><A title="Android多媒体之Drawable" href="index_201.html">Android多媒体之Drawable</A></h2>
+<UL><li ><A title=Android 解析Drawable（一） href="show_501_201.html">Android 解析Drawable（一）</A> </li><li ><A title=Android 解析Drawable（二） href="show_502_201.html">Android 解析Drawable（二）</A> </li><li class="currentLink"><A title=Android Drawable的使用 href="show_503_201.html">Android Drawable的使用</A> </li><li ><A title=Drawable、Bitmap、Canvas和Paint的区别 href="show_504_201.html">Drawable、Bitmap、Canvas和Paint的区别</A> </li><li ><A title=Bitmap和Drawable相互转换方法 href="show_505_201.html">Bitmap和Drawable相互转换方法</A> </li><li ><A title=Android Drawable叠加方法 href="show_506_201.html">Android Drawable叠加方法</A> </li><li ><A title=使用SQLite存储以及读取Drawable对象 href="show_508_201.html">使用SQLite存储以及读取Drawable对象</A> </li><li ><A title=drawable(hdpi,ldpi,mdpi)的区别 href="show_509_201.html">drawable(hdpi,ldpi,mdpi)的区别</A> </li><li ><A title=Android 通过图片名称获取drawable目录下的图片 href="show_511_201.html">Android 通过图片名称获取drawable目录下的图片</A> </li><li ><A title=更改手机窗口画面底色(drawable定义颜色常数的方法) href="show_512_201.html">更改手机窗口画面底色(drawable定义颜色常数的方法)</A> </li></UL>
+  <h2><A title="Android多媒体之gif" href="index_202.html">Android多媒体之gif</A></h2>
+
+  <h2><A title="Android多媒体之MediaStore" href="index_203.html">Android多媒体之MediaStore</A></h2>
+
+  <h2><A title="Android多媒体之动画" href="index_204.html">Android多媒体之动画</A></h2>
+
+  <h2><A title="Android多媒体之分辨率" href="index_205.html">Android多媒体之分辨率</A></h2>
+
+  <h2><A title="Android多媒体之分屏幕" href="index_206.html">Android多媒体之分屏幕</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android Drawable的使用</H2>
+<div style="line-height:20px; font-size:14px;"><p>最简单的使用Drawable资源的方法是，把图片放入Android工程的res\drawable目录下，编程环境会自动在R类里为此资源创建一个引用。</p><p><pre>&lt;?xml version=<font class="Fields">"1.0"</font> encoding=</font><font class="Fields">"utf-8"</font>?&gt;</p><p>&lt;LINEARLAYOUT xmlns:android=<font class="Fields">"http:<font class="Comments">//schemas.android.com/apk/res/android</font></p><p>    </font>android:layout_width=<font class="Fields">"fill_parent</p><p>    </font>android:layout_height=<font class="Fields">"fill_parent</p><p>    </font>android:orientation=<font class="Fields">"vertical"</font> &gt;</p><p>    &lt;TEXTVIEW</p><p>        </font>android:layout_width=<font class="Fields">"fill_parent</p><p>        </font>android:layout_height=<font class="Fields">"wrap_content</p><p>        </font>android:text=<font class="Fields">"Drawable的使用-设置壁纸</p><p>        </font>android:textsize=<font class="Fields">"20sp"</font> /&gt;</p><p>    &lt;BUTTON</p><p>        </font>android:id=<font class="Fields">"@+id/Button01</p><p>        </font>android:layout_width=<font class="Fields">"wrap_content</p><p>        </font>android:layout_height=<font class="Fields">"wrap_content</p><p>        </font>android:text=<font class="Fields">"查看图片A</p><p>        </font>android:textsize=<font class="Fields">"20sp"</font> &gt;</p><p>    &lt;/BUTTON&gt;</p><p>    &lt;BUTTON</p><p>        </font>android:id=<font class="Fields">"@+id/Button02</p><p>        </font>android:layout_width=<font class="Fields">"wrap_content</p><p>        </font>android:layout_height=<font class="Fields">"wrap_content</p><p>        </font>android:text=<font class="Fields">"查看图片B</p><p>        </font>android:textsize=<font class="Fields">"20sp"</font> &gt;</p><p>    &lt;/BUTTON&gt;</p><p>    &lt;BUTTON</p><p>        </font>android:id=<font class="Fields">"@+id/Button03</p><p>        </font>android:layout_width=<font class="Fields">"wrap_content</p><p>        </font>android:layout_height=<font class="Fields">"wrap_content</p><p>        </font>android:text=<font class="Fields">"设置图片A为壁纸</p><p>        </font>android:textsize=<font class="Fields">"20sp"</font> &gt;</p><p>    &lt;/BUTTON&gt;</p><p>    &lt;BUTTON</p><p>        </font>android:id=<font class="Fields">"@+id/Button04</p><p>        </font>android:layout_width=<font class="Fields">"wrap_content</p><p>        </font>android:layout_height=<font class="Fields">"wrap_content</p><p>        </font>android:text=<font class="Fields">"设置图片B为壁纸</p><p>        </font>android:textsize=<font class="Fields">"20sp"</font> &gt;</p><p>    &lt;/BUTTON&gt;</p><p>    &lt;BUTTON</p><p>        </font>android:id=<font class="Fields">"@+id/Button05</p><p>        </font>android:layout_width=<font class="Fields">"wrap_content</p><p>        </font>android:layout_height=<font class="Fields">"wrap_content</p><p>        </font>android:text=<font class="Fields">"恢复默认壁纸</p><p>        </font>android:textsize=<font class="Fields">"20sp"</font> &gt;</p><p>    &lt;/BUTTON&gt;</p><p>    &lt;IMAGEVIEW</p><p>        </font>android:id=<font class="Fields">"@+id/ImageView01</p><p>        </font>android:layout_width=<font class="Fields">"wrap_content</p><p>        </font>android:layout_height=<font class="Fields">"wrap_content"</font> &gt;</p><p>    &lt;/IMAGEVIEW&gt;</p><p>&lt;/LINEARLAYOUT&gt;</p><p></pre></p><p>代码如下：</p><p><pre><font class="keyword">import </font>java.io.IOException;</p><p><font class="keyword">import </font>android.app.Activity;</p><p><font class="keyword">import </font>android.graphics.BitmapFactory;</p><p><font class="keyword">import </font>android.graphics.drawable.Drawable;</p><p><font class="keyword">import </font>android.os.Bundle;</p><p><font class="keyword">import </font>android.view.View;</p><p><font class="keyword">import </font>android.view.View.OnClickListener;</p><p><font class="keyword">import </font>android.widget.Button;</p><p><font class="keyword">import </font>android.widget.ImageView;</p><p><font class="keyword">public </font><font class="keyword">class </font>MainDrawable </font><font class="keyword">extends </font>Activity {</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onCreate(Bundle savedInstanceState) {</p><p>		<font class="keyword">super</font>.onCreate(savedInstanceState);</p><p>		setContentView(R.layout.main);</p><p>		<font class="Comments">// 定义UI组件</font></p><p>		Button b1 = (Button) findViewById(R.id.Button01);</p><p>		Button b2 = (Button) findViewById(R.id.Button02);</p><p>		Button b3 = (Button) findViewById(R.id.Button03);</p><p>		Button b4 = (Button) findViewById(R.id.Button04);</p><p>		Button b5 = (Button) findViewById(R.id.Button05);</p><p>		<font class="keyword">final </font>ImageView iv = (ImageView) findViewById(R.id.ImageView01);</p><p>		<font class="Comments">// 定义按钮点击监听器</font></p><p>		</font>OnClickListener ocl = <font class="keyword">new </font>OnClickListener() {</p><p>			@Override</p><p>			<font class="keyword">public </font><font class="keyword">void </font>onClick(View v) {</p><p>				<font class="keyword">switch </font>(v.getId()) {</p><p>				<font class="keyword">case </font>R.id.Button01:</p><p>					<font class="Comments">// 给ImageView设置图片，从存储卡中获取图片为Drawable,然后把Drawable设置为ImageView的背景</font></p><p>					iv.setBackgroundDrawable(Drawable</p><p>							</font>.createFromPath(<font class="Fields">"/sdcard/a.jpg"</font>));</p><p>					<font class="keyword">break</font>;</p><p>				<font class="keyword">case </font>R.id.Button02:</p><p>					iv.setBackgroundDrawable(Drawable</p><p>							</font>.createFromPath(<font class="Fields">"/sdcard/b.jpg"</font>));</p><p>					<font class="keyword">break</font>;</p><p>				<font class="keyword">case </font>R.id.Button03:</p><p>					<font class="keyword">try </font>{</p><p>						<font class="Comments">// Activity的父类ContextWrapper有这个setWallpaper方法，当然使用此方法需要有android.permission.SET_WALLPAPER权限</font></p><p>						</font>setWallpaper(BitmapFactory.decodeFile(<font class="Fields">"/sdcard/a.jpg"</font>));</p><p>					</font>} <font class="keyword">catch </font>(IOException e1) {</p><p>						e1.printStackTrace();</p><p>					}</p><p>					<font class="keyword">break</font>;</p><p>				<font class="keyword">case </font>R.id.Button04:</p><p>					<font class="keyword">try </font>{</p><p>						</font>setWallpaper(BitmapFactory.decodeFile(<font class="Fields">"/sdcard/b.jpg"</font>));</p><p>					</font>} <font class="keyword">catch </font>(IOException e1) {</p><p>						e1.printStackTrace();</p><p>					}</p><p>					<font class="keyword">break</font>;</p><p>				<font class="keyword">case </font>R.id.Button05:</p><p>					<font class="keyword">try </font>{</p><p>						<font class="Comments">// Activity的父类ContextWrapper有这个clearWallpaper方法，作用是恢复默认壁纸，当然使用此方法需要有android.permission.SET_WALLPAPER权限</font></p><p>						clearWallpaper();</p><p>					</font>} <font class="keyword">catch </font>(IOException e) {</p><p>						e.printStackTrace();</p><p>					}</p><p>					<font class="keyword">break</font>;</p><p>				}</p><p>			}</p><p>		};</p><p>		<font class="Comments">// 给按钮们绑定点击监听器</font></p><p>		b1.setOnClickListener(ocl);</p><p>		b2.setOnClickListener(ocl);</p><p>		b3.setOnClickListener(ocl);</p><p>		b4.setOnClickListener(ocl);</p><p>		b5.setOnClickListener(ocl);</p><p>	}</p><p>}</p><p></pre></p><p>AndroidManifest.xml的内容如下（设置权限）：</p><p><pre>&lt;?xml version=<font class="Fields">"1.0"</font> encoding=</font><font class="Fields">"utf-8"</font>?&gt;</p><p>&lt;MANIFEST xmlns:android=<font class="Fields">"http:<font class="Comments">//schemas.android.com/apk/res/android</font></p><p>    </font>package=<font class="Fields">"android.basic.lesson23</p><p>    </font>android:versioncode=<font class="Fields">"1</p><p>    </font>android:versionname=<font class="Fields">"1.0"</font> &gt;</p><p>    &lt;APPLICATION</p><p>        </font>android:icon=<font class="Fields">"@drawable/icon</p><p>        </font>android:label=<font class="Fields">"@string/app_name"</font> &gt;</p><p>        &lt;ACTIVITY</p><p>            </font>android:name=<font class="Fields">".MainDrawable</p><p>            </font>android:label=<font class="Fields">"@string/app_name"</font> &gt;</p><p>            </font>&lt;INTENT filter=<font class="Fields">""</font> &gt;</p><p>                </font>&lt;ACTION android:name=<font class="Fields">"android.intent.action.MAIN"</font> /&gt;</p><p>                </font>&lt;CATEGORY android:name=<font class="Fields">"android.intent.category.LAUNCHER"</font> /&gt;</p><p>            &lt;/INTENT&gt;</p><p>        &lt;/ACTIVITY&gt;</p><p>    &lt;/APPLICATION&gt;</p><p>    &lt;USES</p><p>        sdk=""</p><p>        </font>android:minsdkversion=<font class="Fields">"8"</font> /&gt;</p><p>    &lt;USES</p><p>        </font>android:name=<font class="Fields">"android.permission.SET_WALLPAPER</p><p>        </font>permission=<font class="Fields">""</font> &gt;</p><p>    &lt;/USES&gt;</p><p>&lt;/MANIFEST&gt;</p><p></pre></p><p>效果图：</p><p>点击“查看图片A”按钮，ImageView载入图片A并显示出来</p><p><img src="../img/media_drawable/03_drawable.jpg"></p><p>点击”设置图片B为壁纸”按钮，可以看到图片B已经成为桌面壁纸</p><p><img src="../img/media_drawable/03_drawable2.jpg"></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

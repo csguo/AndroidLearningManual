@@ -1,0 +1,60 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 源码编译_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li class="navcurrentLink"><A href="index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Launcher" href="index_207.html">Launcher</A></h2>
+
+  <h2><A title="电话系统RIL" href="index_208.html">电话系统RIL</A></h2>
+
+  <h2><A title="进程间通信" href="index_209.html">进程间通信</A></h2>
+
+  <h2><A title="内部sensor系统" href="index_210.html">内部sensor系统</A></h2>
+
+  <h2><A title="内部surface系统" href="index_211.html">内部surface系统</A></h2>
+
+  <h2><A title="启动流程" href="index_212.html">启动流程</A></h2>
+
+  <h2><A title="源码编译" href="index_213.html">源码编译</A></h2>
+<UL><li ><A title=详解Android源码的编译 href="show_601_213.html">详解Android源码的编译</A> </li><li ><A title=windows下下载Android源码 href="show_602_213.html">windows下下载Android源码</A> </li><li class="currentLink"><A title=Android 源码编译 href="show_603_213.html">Android 源码编译</A> </li><li ><A title=Android2.3源码下载编译全过程 href="show_604_213.html">Android2.3源码下载编译全过程</A> </li><li ><A title=Android 编辑模块 href="show_605_213.html">Android 编辑模块</A> </li></UL>
+  <h2><A title="状态栏" href="index_214.html">状态栏</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 源码编译</H2>
+<div style="line-height:20px; font-size:14px;"><p style="color:#3333FF;">1. Windows下能编译Android源代码吗？</p><p>目前Android开发网正式Cygwin还无法在Windows下编译Android源代码，不过在Linux或Mac OS这些*nix系统下可以编译。</p><p style="color:#3333FF;">2. 编译Android源码的JDK版本问题</p><p>按照Google官方文档显示编译推荐在JDK 1.5来生成2.2或以前版本系统的ROM，这里推荐大家使用64位的Linux系统来编译Android源代码可以减少很多不必要的错误。同时从Android 2.3姜饼开始使用JDK6来编译源码，这点大家注意。</p><p style="color:#3333FF;">3. 真的想在Windows下编译源码怎么办？</p><p>你可以在Windows下安装虚拟机，这里推荐性能和稳定性较好的VMWare 7.x版本，安装完后不要忘记安装VMWare Tools.这里推荐虚拟机的配置为1.5GB的内存和至少10GB的剩余空间，这里都是Google官方的资料，当然你的PC RAM不是很大可以适当降低，不过会大大增加编译的时间。</p><p style="color:#3333FF;">4. 如何下载Android源码及配置编译环境</p><p>这里我们可以通过手动在/etc/apt/sources.list添加你的系统源，这里以ubuntu为例，修改需要root权限，当然Android123推荐直接使用命令行添加</p><p><pre>$sudo add-apt-repository "deb http：//archive.ubuntu.com/ubuntu dapper main multiverse"</p><p>$sudo add-apt-repository "deb http：//archive.ubuntu.com/ubuntu dapper-updates main multiverse"</p><p></pre></p><p>接下来需要更新源，执行下面的命令</p><p><pre>$sudo apt-get update</p><p></pre></p><p>接下来安装JDK5</p><p><pre>$sudo apt-get install sun-java5-jdk</p><p></pre></p><p>然后配置JDK5为默认的Java开发环境</p><p><pre>$sudo update-java-alternatives -s java-1.5.0-sun</p><p></pre></p><p>接下来下载安装相关的库文件，比如python、g++、git、zlib、curl等等，部分版本可能上面的这个源不存在，可以添加一些国内的源，经过Android123证实哈工大的源run.hit.edu.cn比较好.</p><p><pre>$ sudo apt-get install git-core gnupg flex bison gperf build-essential zip curl zlib1g-dev gcc-multilib g++-multilib libc6-dev-i386 lib32ncurses5-dev ia32-libs x11proto-core-dev libx11-dev lib32readline5-dev lib32z-dev</p><p></pre></p><p>然后配置环境变量</p><p><pre>$ mkdir ~/bin</p><p>$ PATH=~/bin：$PATH</p><p></pre></p><p>然后通过curl下载repo脚本</p><p><pre>$ curl http：//android.git.kernel.org/repo &gt; ~/bin/repo</p><p>$ chmod a+x ~/bin/repo</p><p>[/code</p><p>开始创建存放Android源码目录</p><p><pre>$ mkdir directory</p><p>$ cd directory</p><p></pre></p><p>开始初始化repo，如果我们下载1.5的源码，即cupcake，可以执行</p><p><pre>$ repo init -u git：//android.git.kernel.org/platform/manifest.git -b cupcake</p><p></pre></p><p>接下来会提示输入你的用户名和邮箱，如果你需要上传Android源码分支，这个邮箱必须填写gmail账户，然后开始同步源码，就是下载Android源码</p><p><pre>$ repo sync</p><p></pre></p><p>这里Android开发网通过分析repo脚本发现有个多线程参数，为-j</p><p>如果开启10个线程下载可以执行</p><p><pre>$ repo sync -j 10</p><p></pre></p><p>如：在修改了某一个模块以后，可以使用 $ mmm &lt;目录&gt; 来重新编译所有在&lt;目录&gt;中的所有模块，使用$ mm 编译当前目录中的所有模块。</p><p>编完之后，即修改了Android系统以后，可以使用 $ make snod 重新生成system.img</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

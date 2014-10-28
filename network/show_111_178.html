@@ -1,0 +1,64 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android Wifi方法大全_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li class="navcurrentLink"><A href="index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="3G" href="index_177.html">3G</A></h2>
+
+  <h2><A title="WIFI" href="index_178.html">WIFI</A></h2>
+<UL><li ><A title=Android中的WIFI模块（一） href="show_101_178.html">Android中的WIFI模块（一）</A> </li><li ><A title=Android中的WIFI模块（二） href="show_102_178.html">Android中的WIFI模块（二）</A> </li><li ><A title=Android中的WIFI模块（三） href="show_103_178.html">Android中的WIFI模块（三）</A> </li><li ><A title=Android中的WIFI模块（四） href="show_104_178.html">Android中的WIFI模块（四）</A> </li><li ><A title=Android WIFI网络操作 href="show_105_178.html">Android WIFI网络操作</A> </li><li ><A title=Android中的Wifi介绍作 href="show_106_178.html">Android中的Wifi介绍作</A> </li><li ><A title=Android WIFI检测与设置 href="show_107_178.html">Android WIFI检测与设置</A> </li><li ><A title=Android 对Wifi进行操作 href="show_108_178.html">Android 对Wifi进行操作</A> </li><li ><A title=Android SDK 中Android.net.wifi简要分析 href="show_109_178.html">Android SDK 中Android.net.wifi简要分析</A> </li><li ><A title=Android WIFI的打开与关闭WifiManager对象的使用 href="show_110_178.html">Android WIFI的打开与关闭WifiManager对象的使用</A> </li><li class="currentLink"><A title=Android Wifi方法大全 href="show_111_178.html">Android Wifi方法大全</A> </li><li ><A title=Android 大家常用的WIFI href="show_112_178.html">Android 大家常用的WIFI</A> </li><li ><A title=Android 自带的wifi移植 href="show_113_178.html">Android 自带的wifi移植</A> </li><li ><A title=关于WIFI的开启关闭与连接热点 href="show_114_178.html">关于WIFI的开启关闭与连接热点</A> </li><li ><A title=GPS、WIFI、GPRS开关问题 href="show_115_178.html">GPS、WIFI、GPRS开关问题</A> </li><li ><A title=Android平台中Wifi的初始化 href="show_116_178.html">Android平台中Wifi的初始化</A> </li></UL>
+  <h2><A title="蓝牙" href="index_179.html">蓝牙</A></h2>
+
+  <h2><A title="HTTP协议" href="index_180.html">HTTP协议</A></h2>
+
+  <h2><A title="Socket" href="index_181.html">Socket</A></h2>
+
+  <h2><A title="HTML与HTML5" href="index_182.html">HTML与HTML5</A></h2>
+
+  <h2><A title="JavaScript" href="index_183.html">JavaScript</A></h2>
+
+  <h2><A title="Email" href="index_184.html">Email</A></h2>
+
+  <h2><A title="NFC" href="index_185.html">NFC</A></h2>
+
+  <h2><A title="Web Service" href="index_186.html">Web Service</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android Wifi方法大全</H2>
+<div style="line-height:20px; font-size:14px;"><p>首先需要强调一点的是wifi只能在真机上测试！</p><p>在Android里，所有的wifi操作都在android.net.wifi包里，而常用的类也就只用几个，对于一般的开发人员来说，常用的操作也是有限的，不需要刻意的去记，用的时候现查就ok了，下面是《Android应用开发揭秘》里面关于wifi的范例，个人感觉还挺齐全，跟大家分享一下！</p><p><pre>  </p><p><font class="keyword">import </font>java.util.List;</p><p><font class="keyword">import </font>android.content.Context;</p><p><font class="keyword">import </font>android.net.wifi.ScanResult;</p><p><font class="keyword">import </font>android.net.wifi.WifiConfiguration;</p><p><font class="keyword">import </font>android.net.wifi.WifiInfo;</p><p><font class="keyword">import </font>android.net.wifi.WifiManager;</p><p><font class="keyword">import </font>android.net.wifi.WifiManager.WifiLock;</p><p><font class="keyword">public </font><font class="keyword">class </font>WifiAdmin {</p><p>	<font class="Comments">// 定义WifiManager对象</font></p><p>	<font class="keyword">private </font>WifiManager mWifiManager;</p><p>	<font class="Comments">// 定义WifiInfo对象</font></p><p>	<font class="keyword">private </font>WifiInfo mWifiInfo;</p><p>	<font class="Comments">// 扫描出的网络连接列表</font></p><p>	<font class="keyword">private </font>List&lt;ScanResult&gt; mWifiList;</p><p>	<font class="Comments">// 网络连接列表</font></p><p>	<font class="keyword">private </font>List&lt;WifiConfiguration&gt; mWifiConfiguration;</p><p>	<font class="Comments">// 定义一个WifiLock</font></p><p>	WifiLock mWifiLock;</p><p>	<font class="Comments">// 构造器</font></p><p>	<font class="keyword">public </font>WifiAdmin(Context context) {</p><p>		<font class="Comments">// 取得WifiManager对象</font></p><p>		mWifiManager = (WifiManager) context</p><p>				.getSystemService(Context.WIFI_SERVICE);</p><p>		<font class="Comments">// 取得WifiInfo对象</font></p><p>		mWifiInfo = mWifiManager.getConnectionInfo();</p><p>	}</p><p>	<font class="Comments">// 打开WIFI</font></p><p>	<font class="keyword">public </font><font class="keyword">void </font>OpenWifi() {</p><p>		<font class="keyword">if </font>(!mWifiManager.isWifiEnabled()) {</p><p>			</font>mWifiManager.setWifiEnabled(<font class="keyword">true</font>);</p><p>		}</p><p>	}</p><p>	<font class="Comments">// 关闭WIFI</font></p><p>	<font class="keyword">public </font><font class="keyword">void </font>CloseWifi() {</p><p>		<font class="keyword">if </font>(!mWifiManager.isWifiEnabled()) {</p><p>			</font>mWifiManager.setWifiEnabled(<font class="keyword">false</font>);</p><p>		}</p><p>	}</p><p>	<font class="Comments">// 锁定WifiLock</font></p><p>	<font class="keyword">public </font><font class="keyword">void </font>AcquireWifiLock() {</p><p>		mWifiLock.acquire();</p><p>	}</p><p>	<font class="Comments">// 解锁WifiLock</font></p><p>	<font class="keyword">public </font><font class="keyword">void </font>ReleaseWifiLock() {</p><p>		<font class="Comments">// 判断时候锁定</font></p><p>		<font class="keyword">if </font>(mWifiLock.isHeld()) {</p><p>			mWifiLock.acquire();</p><p>		}</p><p>	}</p><p>	<font class="Comments">// 创建一个WifiLock</font></p><p>	<font class="keyword">public </font><font class="keyword">void </font>CreatWifiLock() {</p><p>		</font>mWifiLock = mWifiManager.createWifiLock(<font class="Fields">"Test"</font>);</p><p>	}</p><p>	<font class="Comments">// 得到配置好的网络</font></p><p>	<font class="keyword">public </font>List&lt;WifiConfiguration&gt; GetConfiguration() {</p><p>		<font class="keyword">return </font>mWifiConfiguration;</p><p>	}</p><p>	<font class="Comments">// 指定配置好的网络进行连接</font></p><p>	<font class="keyword">public </font><font class="keyword">void </font>ConnectConfiguration(</font><font class="keyword">int </font>index) {</p><p>		<font class="Comments">// 索引大于配置好的网络索引返回</font></p><p>		<font class="keyword">if </font>(index &gt; mWifiConfiguration.size()) {</p><p>			<font class="keyword">return</font>;</font></p><p>		}</p><p>		<font class="Comments">// 连接配置好的指定ID的网络</font></p><p>		mWifiManager.enableNetwork(mWifiConfiguration.get(index).networkId,</p><p>				<font class="keyword">true</font>);</p><p>	}</p><p>	<font class="keyword">public </font><font class="keyword">void </font>StartScan() {</p><p>		mWifiManager.startScan();</p><p>		<font class="Comments">// 得到扫描结果</font></p><p>		mWifiList = mWifiManager.getScanResults();</p><p>		<font class="Comments">// 得到配置好的网络连接</font></p><p>		mWifiConfiguration = mWifiManager.getConfiguredNetworks();</p><p>	}</p><p>	<font class="Comments">// 得到网络列表</font></p><p>	<font class="keyword">public </font>List&lt;ScanResult&gt; GetWifiList() {</p><p>		<font class="keyword">return </font>mWifiList;</p><p>	}</p><p>	<font class="Comments">// 查看扫描结果</font></p><p>	<font class="keyword">public </font>StringBuilder LookUpScan() {</p><p>		</font>StringBuilder stringBuilder = <font class="keyword">new </font>StringBuilder();</p><p>		<font class="keyword">for </font>(</font><font class="keyword">int </font>i = 0; i &lt; mWifiList.size(); i++) {</p><p>			stringBuilder</p><p>					</font>.append(<font class="Fields">"Index_"</font> + <font class="keyword">new </font>Integer(i + 1).toString() + </font><font class="Fields">":"</font>);</p><p>			<font class="Comments">// 将ScanResult信息转换成一个字符串包</font></p><p>			<font class="Comments">// 其中把包括：BSSID、SSID、capabilities、frequency、level</font></p><p>			stringBuilder.append((mWifiList.get(i)).toString());</p><p>			</font>stringBuilder.append(<font class="Fields">"\n"</font>);</p><p>		}</p><p>		<font class="keyword">return </font>stringBuilder;</p><p>	}</p><p>	<font class="Comments">// 得到MAC地址</font></p><p>	<font class="keyword">public </font>String GetMacAddress() {</p><p>		<font class="keyword">return </font>(mWifiInfo == </font><font class="keyword">null</font>) ? <font class="Fields">"NULL"</font> : mWifiInfo.getMacAddress();</p><p>	}</p><p>	<font class="Comments">// 得到接入点的BSSID</font></p><p>	<font class="keyword">public </font>String GetBSSID() {</p><p>		<font class="keyword">return </font>(mWifiInfo == </font><font class="keyword">null</font>) ? <font class="Fields">"NULL"</font> : mWifiInfo.getBSSID();</p><p>	}</p><p>	<font class="Comments">// 得到IP地址</font></p><p>	<font class="keyword">public </font><font class="keyword">int </font>GetIPAddress() {</p><p>		<font class="keyword">return </font>(mWifiInfo == </font><font class="keyword">null</font>) ? 0 : mWifiInfo.getIpAddress();</p><p>	}</p><p>	<font class="Comments">// 得到连接的ID</font></p><p>	<font class="keyword">public </font><font class="keyword">int </font>GetNetworkId() {</p><p>		<font class="keyword">return </font>(mWifiInfo == </font><font class="keyword">null</font>) ? 0 : mWifiInfo.getNetworkId();</p><p>	}</p><p>	<font class="Comments">// 得到WifiInfo的所有信息包</font></p><p>	<font class="keyword">public </font>String GetWifiInfo() {</p><p>		<font class="keyword">return </font>(mWifiInfo == </font><font class="keyword">null</font>) ? <font class="Fields">"NULL"</font> : mWifiInfo.toString();</p><p>	}</p><p>	<font class="Comments">// 添加一个网络并连接</font></p><p>	<font class="keyword">public </font><font class="keyword">void </font>AddNetwork(WifiConfiguration wcg) {</p><p>		<font class="keyword">int </font>wcgID = mWifiManager.addNetwork(wcg);</p><p>		</font>mWifiManager.enableNetwork(wcgID, <font class="keyword">true</font>);</p><p>	}</p><p>	<font class="Comments">// 断开指定ID的网络</font></p><p>	<font class="keyword">public </font><font class="keyword">void </font>DisconnectWifi(</font><font class="keyword">int </font>netId) {</p><p>		mWifiManager.disableNetwork(netId);</p><p>		mWifiManager.disconnect();</p><p>	}</p><p>}</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

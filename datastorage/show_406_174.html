@@ -1,0 +1,58 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>创建数据库的时候就将数据库保存到SDcard_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li class="navcurrentLink"><A href="index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="ContentProvider" href="index_170.html">ContentProvider</A></h2>
+
+  <h2><A title="Preferences" href="index_171.html">Preferences</A></h2>
+
+  <h2><A title="SQLite" href="index_172.html">SQLite</A></h2>
+
+  <h2><A title="SD卡" href="index_173.html">SD卡</A></h2>
+
+  <h2><A title="数据库" href="index_174.html">数据库</A></h2>
+<UL><li ><A title=Android 数据存取之Databases href="show_401_174.html">Android 数据存取之Databases</A> </li><li ><A title=Android教程之SQlite数据库操作 href="show_402_174.html">Android教程之SQlite数据库操作</A> </li><li ><A title=Android 数据库一次创建多个表（一） href="show_403_174.html">Android 数据库一次创建多个表（一）</A> </li><li ><A title=Android 数据库一次创建多个表（二） href="show_404_174.html">Android 数据库一次创建多个表（二）</A> </li><li ><A title=Android 数据库经验总结 href="show_405_174.html">Android 数据库经验总结</A> </li><li class="currentLink"><A title=创建数据库的时候就将数据库保存到SDcard href="show_406_174.html">创建数据库的时候就将数据库保存到SDcard</A> </li><li ><A title=Android保存图片到数据库 href="show_407_174.html">Android保存图片到数据库</A> </li><li ><A title=Android中访问已有的SQLite数据库 href="show_408_174.html">Android中访问已有的SQLite数据库</A> </li><li ><A title=关于Android SQLite database存储到sdcard上的问题 href="show_409_174.html">关于Android SQLite database存储到sdcard上的问题</A> </li></UL>
+  <h2><A title="URI" href="index_175.html">URI</A></h2>
+
+  <h2><A title="MediaStore" href="index_176.html">MediaStore</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>创建数据库的时候就将数据库保存到SDcard</H2>
+<div style="line-height:20px; font-size:14px;"><p>我们知道数据库创建的时候默认保存到系统data/data/项目名下面了，有没有一种方法保存到自己指定的SDCard上的文件夹里面呢？答案是可以的。我们只需要找到SQLiteOpenHelper这个类，了解一下就不难发现其保存的路径是固定了的，那么我们只需要改动一下getWritableDatabase()，即写入的时候的路径：</p><p><pre><font class="keyword">public </font><font class="keyword">synchronized </font>SQLiteDatabase getWritableDatabase() {</p><p>	<font class="keyword">if </font>(mDatabase != </font><font class="keyword">null</font> && mDatabase.isOpen() && !mDatabase.isReadOnly()) {</p><p>		<font class="keyword">return </font>mDatabase; <font class="Comments">// The database is already open </font><font class="keyword">for </font>business</font></p><p>	}</p><p>	<font class="keyword">if </font>(mIsInitializing) {</p><p>		<font class="keyword">throw </font><font class="keyword">new </font>IllegalStateException(</p><p>				<font class="Fields">"getWritableDatabase called recursively"</font>);</p><p>	}</p><p>	<font class="Comments">// If we have a read-only database open, someone could be using it</font></p><p>	<font class="Comments">// (though they shouldn't), which would cause a lock to be held on</font></p><p>	<font class="Comments">// the file, and our attempts to open the database read-write would</font></p><p>	<font class="Comments">// fail waiting for the file lock. To prevent that, we acquire the</font></p><p>	<font class="Comments">// lock on the read-only database, which shuts out other users.</font></p><p>	<font class="keyword">boolean </font>success = </font><font class="keyword">false</font>;</p><p>	</font>SQLiteDatabase db = <font class="keyword">null</font>;</p><p>	<font class="keyword">if </font>(mDatabase != </font><font class="keyword">null</font>)</p><p>		mDatabase.lock();</p><p>	<font class="keyword">try </font>{</p><p>		</font>mIsInitializing = <font class="keyword">true</font>;</p><p>		<font class="keyword">if </font>(mName == </font><font class="keyword">null</font>) {</p><p>			</font>db = SQLiteDatabase.create(<font class="keyword">null</font>);</p><p>		</font>} <font class="keyword">else </font>{</p><p>			db = mContext.openOrCreateDatabase(mName, 0, mFactory);</p><p>		}</p><p>		<font class="keyword">int </font>version = db.getVersion();</p><p>		<font class="keyword">if </font>(version != mNewVersion) {</p><p>			db.beginTransaction();</p><p>			<font class="keyword">try </font>{</p><p>				<font class="keyword">if </font>(version == 0) {</p><p>					onCreate(db);</p><p>				</font>} <font class="keyword">else </font>{</p><p>					onUpgrade(db, version, mNewVersion);</p><p>				}</p><p>				db.setVersion(mNewVersion);</p><p>				db.setTransactionSuccessful();</p><p>			} finally {</p><p>				db.endTransaction();</p><p>			}</p><p>		}</p><p>		onOpen(db);</p><p>		</font>success = <font class="keyword">true</font>;</p><p>		<font class="keyword">return </font>db;</p><p>	} finally {</p><p>		</font>mIsInitializing = <font class="keyword">false</font>;</p><p>		<font class="keyword">if </font>(success) {</p><p>			<font class="keyword">if </font>(mDatabase != </font><font class="keyword">null</font>) {</p><p>				<font class="keyword">try </font>{</p><p>					mDatabase.close();</p><p>				</font>} <font class="keyword">catch </font>(Exception e) {</p><p>				}</p><p>				mDatabase.unlock();</p><p>			}</p><p>			mDatabase = db;</p><p>		</font>} <font class="keyword">else </font>{</p><p>			<font class="keyword">if </font>(mDatabase != </font><font class="keyword">null</font>)</p><p>				mDatabase.unlock();</p><p>			<font class="keyword">if </font>(db != </font><font class="keyword">null</font>)</p><p>				db.close();</p><p>		}</p><p>	}</p><p>}</p><p></pre></p><p>注意标志的红色的部分，这是创建数据库的地方，我们再看看openOrCreateDatabase()</p><p>这个方法，openOrCreateDatabase()这个方法存在于package android.content;下面的public abstract class Context{}类里面，</p><p>public abstract SQLiteDatabase openOrCreateDatabase(String name,int mode, CursorFactory factory);</p><p>我们发现在package android.database.sqlite;包下的public class SQLiteDatabase extends SQLiteClosable {}里面也有一个</p><p><pre><font class="keyword">public </font><font class="keyword">static </font>SQLiteDatabase openOrCreateDatabase(String path, CursorFactory factory) {</p><p>	<font class="keyword">return </font>openDatabase(path, factory, CREATE_IF_NECESSARY);</p><p>}</p><p></pre></p><p>相同的方法，只是参数不同，这个可以传一个路径进去，我们就调用这个方法。</p><p>然后我们还要有一个我们指定文件夹的路径的方法：</p><p><pre><font class="keyword">public </font>File getDatabasePath(String name) {</p><p>	</font>String EXTERN_PATH = <font class="keyword">null</font>;</p><p>	<font class="Comments">// 判断是否有SDcard</font></p><p>	<font class="keyword">if </font>(Environment.getExternalStorageState().equals(</p><p>			</font>Environment.MEDIA_MOUNTED) == <font class="keyword">true</font>) {</p><p>		<font class="Comments">// 判断是否存在指定的文件夹，如果没有就创建它</font></p><p>		EXTERN_PATH = android.os.Environment.getExternalStorageDirectory()</p><p>				</font>.getAbsolutePath() + <font class="Fields">"/database/"</font>;</p><p>		</font>File f = <font class="keyword">new </font>File(EXTERN_PATH);</p><p>		<font class="keyword">if </font>(!f.exists()) {</p><p>			f.mkdirs();</p><p>		}</p><p>	}</p><p>	<font class="keyword">return </font><font class="keyword">new </font>File(EXTERN_PATH + name);</p><p>}</p><p></pre></p><p>及对SDcard进行写和读的权限：</p><p><pre>&lt;!-- 在SDCard中创建于删除文件权限 --&gt;  </p><p>&lt;uses-permission android:name=<font class="Fields">"android.permission.MOUNT_UNMOUNT_FILESYSTEMS"</font> /&gt;  </p><p>&lt;!-- 往SDCard写入数据权限 --&gt;  </p><p>&lt;uses-permission android:name=<font class="Fields">"android.permission.WRITE_EXTERNAL_STORAGE"</font> /&gt; </p><p></pre></p><p>最后当我们创建数据库的时候直接继承我们自己定义的SDSQLiteOpenHelper()，不用系统自带SQLiteOpenHelper()即可。</p><p></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

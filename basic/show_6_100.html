@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android SDK 目录和作用详解_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li class="navcurrentLink"><A href="index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="开发基础" href="index_100.html">开发基础</A></h2>
+<UL><li ><A title=Android概述 href="show_1_100.html">Android概述</A> </li><li ><A title=Android架构 href="show_2_100.html">Android架构</A> </li><li ><A title=Linux简介 href="show_3_100.html">Linux简介</A> </li><li ><A title=Android中的库 href="show_4_100.html">Android中的库</A> </li><li ><A title=Android Apk文件结构简介 href="show_5_100.html">Android Apk文件结构简介</A> </li><li class="currentLink"><A title=Android SDK 目录和作用详解 href="show_6_100.html">Android SDK 目录和作用详解</A> </li><li ><A title=Android SDK中tools详解 href="show_7_100.html">Android SDK中tools详解</A> </li><li ><A title=Android 文件类型和MIME的匹配表 href="show_8_100.html">Android 文件类型和MIME的匹配表</A> </li><li ><A title=Android手机模式详解 href="show_9_100.html">Android手机模式详解</A> </li><li ><A title=Dalvik虚拟机简介 href="show_10_100.html">Dalvik虚拟机简介</A> </li></UL>
+  <h2><A title="开发环境搭建" href="index_101.html">开发环境搭建</A></h2>
+
+  <h2><A title="模拟器" href="index_102.html">模拟器</A></h2>
+
+  <h2><A title="Resource" href="index_103.html">Resource</A></h2>
+
+  <h2><A title="Manifest" href="index_104.html">Manifest</A></h2>
+
+  <h2><A title="ADB" href="index_105.html">ADB</A></h2>
+
+  <h2><A title="DDMS" href="index_106.html">DDMS</A></h2>
+
+  <h2><A title="Logcat(日志)" href="index_107.html">Logcat(日志)</A></h2>
+
+  <h2><A title="打包" href="index_108.html">打包</A></h2>
+
+  <h2><A title="文件处理" href="index_109.html">文件处理</A></h2>
+
+  <h2><A title="底层基础" href="index_111.html">底层基础</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android SDK 目录和作用详解</H2>
+<div style="line-height:20px; font-size:14px;"><p>1、add-ons</p><p>这里面保存着附加库，比如GoogleMaps，当然你如果安装了OphoneSDK，这里也会有一些类库在里面。</p><p>2、docs</p><p>这里面是Android SDKAPI参考文档，所有的API都可以在这里查到。</p><p>3、market_licensing</p><p>作为AndroidMarket版权保护组件，一般发布付费应用到电子市场可以用它来反盗版。</p><p>4、platforms</p><p>是每个平台的SDK真正的文件，里面会根据APILevel划分的SDK版本，这里就以Android2.2来说，进入后有一个android-8的文件夹，android-8进入后是Android2.2SDK的主要文件，其中ant为ant编译脚本，data保存着一些系统资源，images是模拟器映像文件，skins则是Android模拟器的皮肤，templates是工程创建的默认模板，android.jar则是该版本的主要framework文件，tools目录里面包含了重要的编译工具，比如aapt、aidl、逆向调试工具dexdump和编译脚本dx。</p><p>5、platform-tools</p><p>保存着一些通用工具，比如adb、和aapt、aidl、dx等文件，Android123提示，这里和platforms目录中tools文件夹有些重复，主要是从android2.3开始这些工具被划分为通用了。</p><p>6、samples是Android </p><p>SDK自带的默认示例工程，里面的apidemos强烈推荐初学者运行学习，对于SQLite数据库操作可以查看NotePad这个例子，对于游戏开发Snake、LunarLander都是不错的例子，对于Android主题开发Home则是android m5时代的主题设计原理。</p><p>7、tools</p><p>作为SDK根目录下的tools文件夹，这里包含了重要的工具，比如ddms用于启动Android调试工具，比如logcat、屏幕截图和文件管理器，而draw9patch则是绘制android平台的可缩放png图片的工具，sqlite3可以在PC上操作SQLite数据库，而monkeyrunner则是一个不错的压力测试应用，模拟用户随机按键，mksdcard则是模拟器SD映像的创建工具，emulator是Android SDK模拟器主程序，不过从android 1.5开始，需要输入合适的参数才能启动模拟器，traceview作为android平台上重要的调试工具。</p><p>8、usb_driver</p><p>顾名思义，保存着android平台google官方机型的驱动如nexusone、nexuss，同时也有一些老机型驱动的支持，比如说htcdream、htcmagic和motorola的droid。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

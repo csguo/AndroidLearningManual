@@ -1,0 +1,70 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 使用地图_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li class="navcurrentLink"><A href="index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="设备信息" href="index_157.html">设备信息</A></h2>
+
+  <h2><A title="摄像头" href="index_158.html">摄像头</A></h2>
+
+  <h2><A title="通讯录" href="index_159.html">通讯录</A></h2>
+
+  <h2><A title="电话" href="index_160.html">电话</A></h2>
+
+  <h2><A title="短信" href="index_161.html">短信</A></h2>
+
+  <h2><A title="传感器" href="index_162.html">传感器</A></h2>
+
+  <h2><A title="定位" href="index_163.html">定位</A></h2>
+<UL><li ><A title=Android 实现GPS定位（一） href="show_601_163.html">Android 实现GPS定位（一）</A> </li><li ><A title=Android 实现GPS定位（二） href="show_602_163.html">Android 实现GPS定位（二）</A> </li><li ><A title=Android GPS定位 href="show_603_163.html">Android GPS定位</A> </li><li ><A title=Android wifi实现定位（一） href="show_604_163.html">Android wifi实现定位（一）</A> </li><li ><A title=Android wifi实现定位（二） href="show_605_163.html">Android wifi实现定位（二）</A> </li><li ><A title=Android 基站定位源代码 href="show_606_163.html">Android 基站定位源代码</A> </li><li ><A title=Android GPS，WIFI，基站定位集合 href="show_607_163.html">Android GPS，WIFI，基站定位集合</A> </li><li class="currentLink"><A title=Android 使用地图 href="show_608_163.html">Android 使用地图</A> </li><li ><A title=Android 显示查询结果（一） href="show_609_163.html">Android 显示查询结果（一）</A> </li><li ><A title=Android 显示查询结果（二） href="show_610_163.html">Android 显示查询结果（二）</A> </li><li ><A title=Google地图经纬度转换成具体位置 href="show_611_163.html">Google地图经纬度转换成具体位置</A> </li></UL>
+  <h2><A title="视频系统" href="index_164.html">视频系统</A></h2>
+
+  <h2><A title="音频系统" href="index_165.html">音频系统</A></h2>
+
+  <h2><A title="铃声" href="index_166.html">铃声</A></h2>
+
+  <h2><A title="音量" href="index_167.html">音量</A></h2>
+
+  <h2><A title="录音" href="index_168.html">录音</A></h2>
+
+  <h2><A title="输入法" href="index_169.html">输入法</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 使用地图</H2>
+<div style="line-height:20px; font-size:14px;"><p>对"Where Am I"示例使用地图</p><p>在下面的例子中，"Where Am I"项目将再次被扩展。这次，通过把它转换为一个Map Activity，将可以对它添加地图功能。随着设备位置的改变，地图将会自动地把它的中心定位到新的位置。</p><p>(1) 首先，向应用程序的清单中加入访问Internet的uses-permission标签。同时还要在application标签中引入Android地图库。</p><p><pre>&lt;?xml version=<font class="Fields">"1.0"</font> encoding=</font><font class="Fields">"utf-8"</font>?&gt;</p><p>&lt;manifest xmlns:android=<font class="Fields">"http:<font class="Comments">//schemas.android.com/apk/res/android</font></p><p>    </font>package=<font class="Fields">"com.paad.whereami"</font> &gt;</p><p>    </font>&lt;application android:icon=<font class="Fields">"@drawable/icon"</font> &gt;</p><p>        &lt;activity</p><p>            </font>android:name=<font class="Fields">".WhereAmI</p><p>            </font>android:label=<font class="Fields">"@string/app_name"</font> &gt;</p><p>            &lt;intent-filter&gt;</p><p>                </font>&lt;action android:name=<font class="Fields">"android.intent.action.MAIN"</font> /&gt;</p><p>                </font>&lt;category android:name=<font class="Fields">"android.intent.category.LAUNCHER"</font> /&gt;</p><p>            &lt;/intent-filter&gt;</p><p>        &lt;/activity&gt;</p><p>        </font>&lt;uses-library android:name=<font class="Fields">"com.google.android.maps"</font> /&gt;</p><p>    &lt;/application&gt;</p><p>    </font>&lt;uses-permission android:name=<font class="Fields">"android.permission.INTERNET"</font> /&gt;</p><p>    </font>&lt;uses-permission android:name=<font class="Fields">"android.permission.ACCESS_FINE_LOCATION"</font> /&gt;</p><p>&lt;/manifest&gt;</p><p></pre></p><p>(2)改变WhereAmI的继承性，让它继承MapActivity，而不是Activity。还需要包含对isRouteDisplayed方法的重写。因为这个活动不会显示路径的方向，所以你可以返回false。</p><p><pre><font class="keyword">public </font><font class="keyword">class </font>WhereAmI </font><font class="keyword">extends </font>MapActivity { </p><p>	@Override</p><p>	<font class="keyword">protected </font><font class="keyword">boolean </font>isRouteDisplayed() { </p><p>		<font class="keyword">return </font><font class="keyword">false</font>; </p><p>	} </p><p>	[ ... existing Activity code ... ]</p><p>}</p><p></pre></p><p>(3)通过修改main.xml布局资源来包含一个使用完全限定的类名的MapView。一定要保证在com.android.MapView节点中包含一个android:apikey属性。如果有一个Android 地图API key，那么在这里使用它。</p><p><pre>&lt;?xml version=<font class="Fields">"1.0"</font> encoding=</font><font class="Fields">"utf-8"</font>?&gt;</p><p>&lt;LinearLayout xmlns:android=<font class="Fields">"http:<font class="Comments">//schemas.android.com/apk/res/android</font></p><p>    </font>android:layout_width=<font class="Fields">"fill_parent</p><p>    </font>android:layout_height=<font class="Fields">"fill_parent</p><p>    </font>android:orientation=<font class="Fields">"vertical"</font> &gt;</p><p>    &lt;TextView</p><p>        </font>android:id=<font class="Fields">"@+id/myLocationText</p><p>        </font>android:layout_width=<font class="Fields">"fill_parent</p><p>        </font>android:layout_height=<font class="Fields">"wrap_content</p><p>        </font>android:text=<font class="Fields">"@string/hello"</font> /&gt;</p><p>    &lt;com.google.android.maps.MapView</p><p>        </font>android:id=<font class="Fields">"@+id/myMapView</p><p>        </font>android:layout_width=<font class="Fields">"fill_parent</p><p>        </font>android:layout_height=<font class="Fields">"fill_parent</p><p>        </font>android:apiKey=<font class="Fields">"myMapKey</p><p>        </font>android:clickable=<font class="Fields">"<font class="keyword">true</font></p><p>        </font>android:enabled=<font class="Fields">"<font class="keyword">true</font>"</font> /&gt;</p><p>&lt;/LinearLayout&gt;</p><p></pre></p><p>(4) 现在运行这个应用程序应该显示原始的地理位置文本，它的下面会有一个MapView，如图</p><p><img src="../img/device_gps/08_gps.jpg"></p><p>(5) 配置Map View，并把对它的MapController的一个引用作为实例变量进行存储。然后设置Map View的显示选项来显示卫星和StreetView，并缩进到比较进的视角。</p><p><pre>MapController mapController;</p><p>@Override</p><p><font class="keyword">public </font><font class="keyword">void </font>onCreate(Bundle icicle) {</p><p>	<font class="keyword">super</font>.onCreate(icicle);</p><p>	setContentView(R.layout.main);</p><p>	<font class="Comments">// 获得对MapView的引用</font></p><p>	MapView myMapView = (MapView) findViewById(R.id.myMapView);</p><p>	<font class="Comments">// 获得MapView的控制器</font></p><p>	mapController = myMapView.getController();</p><p>	<font class="Comments">// 配置地图显示选项</font></p><p>	</font>myMapView.setSatellite(<font class="keyword">true</font>);</p><p>	</font>myMapView.setStreetView(<font class="keyword">true</font>);</p><p>	</font>myMapView.displayZoomControls(<font class="keyword">false</font>);</p><p>	<font class="Comments">// 放大</font></p><p>	mapController.setZoom(17);</p><p>	LocationManager locationManager;</p><p>	String context = Context.LOCATION_SERVICE;</p><p>	locationManager = (LocationManager) getSystemService(context);</p><p>	</font>Criteria criteria = <font class="keyword">new </font>Criteria();</p><p>	criteria.setAccuracy(Criteria.ACCURACY_FINE);</p><p>	</font>criteria.setAltitudeRequired(<font class="keyword">false</font>);</p><p>	</font>criteria.setBearingRequired(<font class="keyword">false</font>);</p><p>	</font>criteria.setCostAllowed(<font class="keyword">true</font>);</p><p>	criteria.setPowerRequirement(Criteria.POWER_LOW);</p><p>	</font>String provider = locationManager.getBestProvider(criteria, <font class="keyword">true</font>);</p><p>	Location location = locationManager.getLastKnownLocation(provider);</p><p>	updateWithNewLocation(location);</p><p>	locationManager.requestLocationUpdates(provider, 2000, 10,</p><p>			locationListener);</p><p>}</p><p></pre></p><p>(6) 最后一步是修改updateWithNewLocation方法从而使用Map Controller把地图的中心定位到当前的位置。</p><p><pre><font class="keyword">private </font><font class="keyword">void </font>updateWithNewLocation(Location location) { </p><p>	String latLongString;</p><p>	TextView myLocationText;</p><p>	myLocationText = (TextView)? ndViewById(R.id.myLocationText);</p><p>	</font>String addressString = <font class="Fields">"No address found"</font>;</p><p>	<font class="keyword">if </font>(location != </font><font class="keyword">null</font>) { </p><p>	<font class="Comments">// 更新地图位置 </font></p><p>	Double geoLat = location.getLatitude()*1E6;</p><p>	Double geoLng = location.getLongitude()*1E6;</p><p>	</font>GeoPo<font class="keyword">int </font>po</font><font class="keyword">int </font>= </font><font class="keyword">new </font>GeoPoint(geoLat.intValue(), geoLng.intValue());</p><p>	</font>mapController.animateTo(po<font class="keyword">int</font>);</p><p>	<font class="keyword">double </font>lat = location.getLatitude(); </p><p>	<font class="keyword">double </font>lng = location.getLongitude(); </p><p>	</font>latLongString = <font class="Fields">"Lat:"</font> + lat + </font><font class="Fields">"\nLong:"</font> + lng;</p><p>	<font class="keyword">double </font>latitude = location.getLatitude(); </p><p>	<font class="keyword">double </font>longitude = location.getLongitude(); </p><p>	</font>Geocoder gc = <font class="keyword">new </font>Geocoder(</font><font class="keyword">this</font>, Locale.getDefault());</p><p>	<font class="keyword">try </font>{ </p><p>		List&lt;Address&gt; addresses = gc.getFromLocation(latitude, longitude, 1);</p><p>		</font>StringBuilder sb = <font class="keyword">new </font>StringBuilder();</p><p>		<font class="keyword">if </font>(addresses.size() &gt; 0) { </p><p>		Address address = addresses.get(0);</p><p>		<font class="keyword">for </font>(</font><font class="keyword">int </font>i = 0; i &lt; address.getMaxAddressLineIndex(); i++) sb.append(address.getAddressLine(i)).append(<font class="Fields">"\n"</font>); </p><p>		</font>sb.append(address.getLocality()).append(<font class="Fields">"\n"</font>);</p><p>		</font>sb.append(address.getPostalCode()).append(<font class="Fields">"\n"</font>);</p><p>		sb.append(address.getCountryName());</p><p>		} </p><p>		addressString = sb.toString();</p><p>	</font>} <font class="keyword">catch </font>(IOException e) {</font>} </p><p>	</font>} <font class="keyword">else </font>{ </p><p>		</font>latLongString = <font class="Fields">"No location found"</font>;</p><p>	} </p><p>	</font>myLocationText.setText(<font class="Fields">"Your Current Position is:\n"</font> + latLongString + </font><font class="Fields">"\n"</font> + addressString);</p><p>}</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

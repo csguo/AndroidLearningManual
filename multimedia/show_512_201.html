@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>更改手机窗口画面底色(drawable定义颜色常数的方法)_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li class="navcurrentLink"><A href="index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Android多媒体功能" href="index_196.html">Android多媒体功能</A></h2>
+
+  <h2><A title="Android多媒体之2D" href="index_197.html">Android多媒体之2D</A></h2>
+
+  <h2><A title="Android多媒体之3D" href="index_198.html">Android多媒体之3D</A></h2>
+
+  <h2><A title="Android多媒体之Bitmap" href="index_199.html">Android多媒体之Bitmap</A></h2>
+
+  <h2><A title="Android多媒体之Canvas" href="index_200.html">Android多媒体之Canvas</A></h2>
+
+  <h2><A title="Android多媒体之Drawable" href="index_201.html">Android多媒体之Drawable</A></h2>
+<UL><li ><A title=Android 解析Drawable（一） href="show_501_201.html">Android 解析Drawable（一）</A> </li><li ><A title=Android 解析Drawable（二） href="show_502_201.html">Android 解析Drawable（二）</A> </li><li ><A title=Android Drawable的使用 href="show_503_201.html">Android Drawable的使用</A> </li><li ><A title=Drawable、Bitmap、Canvas和Paint的区别 href="show_504_201.html">Drawable、Bitmap、Canvas和Paint的区别</A> </li><li ><A title=Bitmap和Drawable相互转换方法 href="show_505_201.html">Bitmap和Drawable相互转换方法</A> </li><li ><A title=Android Drawable叠加方法 href="show_506_201.html">Android Drawable叠加方法</A> </li><li ><A title=使用SQLite存储以及读取Drawable对象 href="show_508_201.html">使用SQLite存储以及读取Drawable对象</A> </li><li ><A title=drawable(hdpi,ldpi,mdpi)的区别 href="show_509_201.html">drawable(hdpi,ldpi,mdpi)的区别</A> </li><li ><A title=Android 通过图片名称获取drawable目录下的图片 href="show_511_201.html">Android 通过图片名称获取drawable目录下的图片</A> </li><li class="currentLink"><A title=更改手机窗口画面底色(drawable定义颜色常数的方法) href="show_512_201.html">更改手机窗口画面底色(drawable定义颜色常数的方法)</A> </li></UL>
+  <h2><A title="Android多媒体之gif" href="index_202.html">Android多媒体之gif</A></h2>
+
+  <h2><A title="Android多媒体之MediaStore" href="index_203.html">Android多媒体之MediaStore</A></h2>
+
+  <h2><A title="Android多媒体之动画" href="index_204.html">Android多媒体之动画</A></h2>
+
+  <h2><A title="Android多媒体之分辨率" href="index_205.html">Android多媒体之分辨率</A></h2>
+
+  <h2><A title="Android多媒体之分屏幕" href="index_206.html">Android多媒体之分屏幕</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>更改手机窗口画面底色(drawable定义颜色常数的方法)</H2>
+<div style="line-height:20px; font-size:14px;"><p style="color:#3333FF;">范例说明</p><p>在之前的范例运行结果,窗口的底色一律是”深黑色“，这是由于深黑色是SDK默认的颜色，如果更改Activity里的窗口底色有许多方法，最简单的方法就是将颜色色码事先定义在drawable当中，当程序onCreate创建的同时，就可加载预先定义的画面颜色。</p><p>此范例程序的设计方式是在drawable里指定的Layout的背景(BackGround)为白色，但这里的“白色”(颜色色码为FFFFFFFF)是预先定义在drawable当中,当程序运行时,背景就会转变为白色。</p><p>这里指定Activity Layout背景颜色最简单的方法，在范例最后，则将示范如何创建色彩板(color table)，让Android手机程序可以像使用“常数”般直接取用,并反映在应用程序的运行阶段。</p><p style="color:#3333FF;">范例程序</p><p>res/values/strings.xml</p><p><pre>&lt;?xml version=<font class="Fields">"1.0"</font> encoding=</font><font class="Fields">"utf-8"</font>?&gt;</p><p>&lt;resources&gt;</p><p>    </font>&lt;string name=<font class="Fields">"hello"</font>&gt;Hello World, Demo03_02!&lt;/string&gt;</p><p>    </font>&lt;string name=<font class="Fields">"app_name"</font>&gt;Demo03_02&lt;/string&gt;</p><p>    </font>&lt;string name=<font class="Fields">"str_id"</font>&gt;帐号&lt;/string&gt;</p><p>    </font>&lt;string name=<font class="Fields">"str_pwd"</font>&gt;密码&lt;/string&gt;</p><p>&lt;/resources&gt;</p><p></pre></p><p>res/values/color.xml</p><p><pre>&lt;?xml version=<font class="Fields">"1.0"</font> encoding=</font><font class="Fields">"UTF-8"</font>?&gt;</p><p>&lt;resources&gt;</p><p>        </font>&lt;drawable name=<font class="Fields">"darkgray"</font>&gt;</font>808080FF&lt;/drawable&gt;</p><p>        </font>&lt;drawable name=<font class="Fields">"white"</font>&gt;</font>FFFFFFFF&lt;/drawable&gt;</p><p>&lt;/resources&gt;</p><p></pre></p><p>res/layout/main.xml</p><p>在页面布局上，使用了里那个个TextView对象，以及两个EditText对象，关键在于Android:background="@drawable/white"让程序背景变成了白色，而Android:textColor="@drawable/darkgray"将TextView里的文字颜色(textColor)设为灰色，当中"@drawable/white"及"@drawable/darkgray"的写法则是参考事先在drawable里定义好的颜色常数,你可以在res/values/color.xml里看见有关颜色定义的描述。</p><p><pre>&lt;?xml version=<font class="Fields">"1.0"</font> encoding=</font><font class="Fields">"utf-8"</font>?&gt;</p><p>&lt;AbsoluteLayout xmlns:android=<font class="Fields">"http:<font class="Comments">//schemas.android.com/apk/res/android</font></p><p>    </font>android:id=<font class="Fields">"@+id/widget35</p><p>    </font>android:layout_width=<font class="Fields">"fill_parent</p><p>    </font>android:layout_height=<font class="Fields">"fill_parent</p><p>    </font>android:background=<font class="Fields">"@drawable/white"</font> &gt;</p><p>    &lt;EditText</p><p>        </font>android:id=<font class="Fields">"@+id/widget31</p><p>        </font>android:layout_width=<font class="Fields">"120dip</p><p>        </font>android:layout_height=<font class="Fields">"wrap_content</p><p>        </font>android:layout_x=<font class="Fields">"114px</p><p>        </font>android:layout_y=<font class="Fields">"57px</p><p>        </font>android:textSize=<font class="Fields">"18sp"</font> &gt;</p><p>    &lt;/EditText&gt;</p><p>    &lt;TextView</p><p>        </font>android:id=<font class="Fields">"@+id/widget28</p><p>        </font>android:layout_width=<font class="Fields">"wrap_content</p><p>        </font>android:layout_height=<font class="Fields">"wrap_content</p><p>        </font>android:layout_x=<font class="Fields">"61px</p><p>        </font>android:layout_y=<font class="Fields">"69px</p><p>        </font>android:text=<font class="Fields">"@string/str_id</p><p>        </font>android:textColor=<font class="Fields">"@drawable/darkgray"</font> &gt;</p><p>    &lt;/TextView&gt;</p><p>    &lt;EditText</p><p>        </font>android:id=<font class="Fields">"@+id/widget30</p><p>        </font>android:layout_width=<font class="Fields">"120dip</p><p>        </font>android:layout_height=<font class="Fields">"wrap_content</p><p>        </font>android:layout_x=<font class="Fields">"112px</p><p>        </font>android:layout_y=<font class="Fields">"142px</p><p>        </font>android:password=<font class="Fields">"<font class="keyword">true</font></p><p>        </font>android:textSize=<font class="Fields">"18sp"</font> &gt;</p><p>    &lt;/EditText&gt;</p><p>    &lt;TextView</p><p>        </font>android:id=<font class="Fields">"@+id/widget29</p><p>        </font>android:layout_width=<font class="Fields">"wrap_content</p><p>        </font>android:layout_height=<font class="Fields">"wrap_content</p><p>        </font>android:layout_x=<font class="Fields">"61px</p><p>        </font>android:layout_y=<font class="Fields">"158px</p><p>        </font>android:text=<font class="Fields">"@string/str_pwd</p><p>        </font>android:textColor=<font class="Fields">"@drawable/darkgray"</font> &gt;</p><p>    &lt;/TextView&gt;</p><p>&lt;/AbsoluteLayout&gt;</p><p></pre></p><p style="color:#3333FF;">扩展学习</p><p>事先将定义好的颜色代码(color code)以drawable的名字(name)存放在resources当中,这是学习开发Android程序必须养成的好习惯,正如同字符串常数一样,颜色也是可以事先定义好的.在本范例中学会了使用drawable的resource的定义方法:</p><p><pre>&lt;drawable name=<font class="Fields">"color_name"</font>&gt;color_value&lt;/drawable&gt;</p><p></pre></p><p>定义好的drawable name常数,必须存放于res/value下面作为资源使用,但定义好的背景颜色并非只能当作是“默认”颜色来声明适用,在程序的事件里,也是可以通过程序来更改的,如以下程序所示:</p><p><pre>Resources resources = getBaseContext().getResourves();</p><p>Drawable HippoDrawable = resources.getDrawable(R.drawable.white);</p><p>TextView tv = (TextView)findViewById(R.id.text);</p><p>tv.setBackground(HippoDrawable);</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

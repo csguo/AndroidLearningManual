@@ -1,0 +1,111 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>解决ViewFlipper与ScrollView滑动响应事件拦截的问题（一）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li class="navcurrentLink"><A href="index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="用户界面之view(视图)" href="index_123.html">用户界面之view(视图)</A></h2>
+
+  <h2><A title="用户界面之Layout(布局)" href="index_124.html">用户界面之Layout(布局)</A></h2>
+
+  <h2><A title="用户界面之TextView(文本视图)" href="index_125.html">用户界面之TextView(文本视图)</A></h2>
+
+  <h2><A title="用户界面之EditText(编辑视图)" href="index_126.html">用户界面之EditText(编辑视图)</A></h2>
+
+  <h2><A title="用户界面之Button(按钮)" href="index_127.html">用户界面之Button(按钮)</A></h2>
+
+  <h2><A title="用户界面之Dialog(对话框)" href="index_128.html">用户界面之Dialog(对话框)</A></h2>
+
+  <h2><A title="用户界面之ListView(列表视图)" href="index_129.html">用户界面之ListView(列表视图)</A></h2>
+
+  <h2><A title="用户界面之Adapter(适配器)" href="index_130.html">用户界面之Adapter(适配器)</A></h2>
+
+  <h2><A title="用户界面之Menu(菜单)" href="index_131.html">用户界面之Menu(菜单)</A></h2>
+
+  <h2><A title="用户界面之Notification(通知栏)" href="index_132.html">用户界面之Notification(通知栏)</A></h2>
+
+  <h2><A title="NotificationImageView(图像视图)" href="index_133.html">NotificationImageView(图像视图)</A></h2>
+
+  <h2><A title="用户界面之GridView(格视图)" href="index_134.html">用户界面之GridView(格视图)</A></h2>
+
+  <h2><A title="用户界面之ProgressBar(进度条)" href="index_135.html">用户界面之ProgressBar(进度条)</A></h2>
+
+  <h2><A title="用户界面之Checkbox(复选框)" href="index_136.html">用户界面之Checkbox(复选框)</A></h2>
+
+  <h2><A title="用户界面之ScrollView(滚动视图)" href="index_137.html">用户界面之ScrollView(滚动视图)</A></h2>
+
+  <h2><A title="用户界面之Gallery(长廊视图)" href="index_138.html">用户界面之Gallery(长廊视图)</A></h2>
+
+  <h2><A title="用户界面之ActionBar(导航栏)" href="index_139.html">用户界面之ActionBar(导航栏)</A></h2>
+
+  <h2><A title="用户界面之PopupWindow(弹出窗口)" href="index_140.html">用户界面之PopupWindow(弹出窗口)</A></h2>
+
+  <h2><A title="用户界面之RatingBar(评分栏)" href="index_141.html">用户界面之RatingBar(评分栏)</A></h2>
+
+  <h2><A title="用户界面之Spinner" href="index_142.html">用户界面之Spinner</A></h2>
+
+  <h2><A title="用户界面之SeekBar(搜索bar)" href="index_143.html">用户界面之SeekBar(搜索bar)</A></h2>
+
+  <h2><A title="用户界面之TabHost(分割栏)" href="index_144.html">用户界面之TabHost(分割栏)</A></h2>
+
+  <h2><A title="用户界面之SlidingDrawer(抽屉)" href="index_145.html">用户界面之SlidingDrawer(抽屉)</A></h2>
+
+  <h2><A title="用户界面之ViewFlipper" href="index_146.html">用户界面之ViewFlipper</A></h2>
+<UL><li ><A title=Android ViewFlipper（一） href="show_2301_146.html">Android ViewFlipper（一）</A> </li><li ><A title=Android ViewFlipper（二） href="show_2302_146.html">Android ViewFlipper（二）</A> </li><li ><A title=ViewFlipper的使用 href="show_2303_146.html">ViewFlipper的使用</A> </li><li ><A title=ViewFlipper Animation使用 href="show_2304_146.html">ViewFlipper Animation使用</A> </li><li ><A title=ViewFlipper详细使用 href="show_2305_146.html">ViewFlipper详细使用</A> </li><li ><A title=Android ViewFlipper触摸动画 href="show_2306_146.html">Android ViewFlipper触摸动画</A> </li><li class="currentLink"><A title=解决ViewFlipper与ScrollView滑动响应事件拦截的问题（一） href="show_2307_146.html">解决ViewFlipper与ScrollView滑动响应事件拦截的问题（一）</A> </li><li ><A title=解决ViewFlipper与ScrollView滑动响应事件拦截的问题（二） href="show_2308_146.html">解决ViewFlipper与ScrollView滑动响应事件拦截的问题（二）</A> </li><li ><A title=Android实现渐显按钮的左右滑动效果 href="show_2309_146.html">Android实现渐显按钮的左右滑动效果</A> </li><li ><A title=ViewFlipper实现各种切换动画 href="show_2310_146.html">ViewFlipper实现各种切换动画</A> </li></UL>
+  <h2><A title="用户界面之SurfaceView" href="index_147.html">用户界面之SurfaceView</A></h2>
+
+  <h2><A title="用户界面之Splash" href="index_148.html">用户界面之Splash</A></h2>
+
+  <h2><A title="用户界面之Toast" href="index_149.html">用户界面之Toast</A></h2>
+
+  <h2><A title="用户界面之AlarmManager" href="index_150.html">用户界面之AlarmManager</A></h2>
+
+  <h2><A title="用户界面之Fragment" href="index_151.html">用户界面之Fragment</A></h2>
+
+  <h2><A title="用户界面之WebView(网络视图)" href="index_152.html">用户界面之WebView(网络视图)</A></h2>
+
+  <h2><A title="Android用户界面之Widget(小组件)" href="index_153.html">Android用户界面之Widget(小组件)</A></h2>
+
+  <h2><A title="Android用户界面之theme和style" href="index_154.html">Android用户界面之theme和style</A></h2>
+
+  <h2><A title="Android用户界面之多语言" href="index_155.html">Android用户界面之多语言</A></h2>
+
+  <h2><A title="Android用户界面之界面特效" href="index_156.html">Android用户界面之界面特效</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>解决ViewFlipper与ScrollView滑动响应事件拦截的问题（一）</H2>
+<div style="line-height:20px; font-size:14px;"><p>最近在做一个简单的展示界面时，遇到了一个比较棘手的问题。由于要展示多项内容，所以使用ViewFlipper作为水平滑动容器；而每项内容中由于许多文本较长，因此需要使用ScrollView作为垂直滑动容器。基本的界面布局大致如下：</p><p>外部文件common_list_view.xml：</p><p><pre>&lt;?xml version=<font class="Fields">"1.0"</font> encoding=</font><font class="Fields">"utf-8"</font>?&gt;</p><p>&lt;RelativeLayout xmlns:android=<font class="Fields">"http:<font class="Comments">//schemas.android.com/apk/res/android</font></p><p>    </font>android:id=<font class="Fields">"@+id/geyan_query_view_layout</p><p>    </font>android:layout_width=<font class="Fields">"fill_parent</p><p>    </font>android:layout_height=<font class="Fields">"fill_parent</p><p>    </font>android:background=<font class="Fields">"@drawable/mid_bg</p><p>    </font>android:orientation=<font class="Fields">"vertical"</font> &gt;</p><p>    &lt;LinearLayout</p><p>        </font>android:layout_width=<font class="Fields">"fill_parent</p><p>        </font>android:layout_height=<font class="Fields">"fill_parent</p><p>        </font>android:layout_gravity=<font class="Fields">"top</p><p>        </font>android:layout_marginTop=<font class="Fields">"43dip</p><p>        </font>android:gravity=<font class="Fields">"top</p><p>        </font>android:orientation=<font class="Fields">"vertical"</font> &gt;</p><p>        &lt;Gallery</p><p>            </font>android:id=<font class="Fields">"@+id/gallery_data</p><p>            </font>android:layout_width=<font class="Fields">"fill_parent</p><p>            </font>android:layout_height=<font class="Fields">"fill_parent</p><p>            </font>android:layout_gravity=<font class="Fields">"top</p><p>            </font>android:gravity=<font class="Fields">"top</p><p>            </font>android:paddingLeft=<font class="Fields">"6dip</p><p>            </font>android:paddingRight=<font class="Fields">"6dip</p><p>            </font>android:spacing=<font class="Fields">"60dip"</font> &gt;</p><p>        &lt;/Gallery&gt;</p><p>    &lt;/LinearLayout&gt;</p><p>    &lt;ImageView</p><p>        </font>android:id=<font class="Fields">"@+id/main_background</p><p>        </font>android:layout_width=<font class="Fields">"fill_parent</p><p>        </font>android:layout_height=<font class="Fields">"fill_parent"</font> /&gt;</p><p>    &lt;include</p><p>        </font>android:id=<font class="Fields">"@+id/title</p><p>        </font>layout=<font class="Fields">"@layout/common_title_view"</font> /&gt;</p><p>&lt;/RelativeLayout&gt; </p><p></pre></p><p>内部文件common_info_view.xml：</p><p><pre>&lt;?xml version=<font class="Fields">"1.0"</font> encoding=</font><font class="Fields">"utf-8"</font>?&gt;</p><p>&lt;LinearLayout xmlns:android=<font class="Fields">"http:<font class="Comments">//schemas.android.com/apk/res/android</font></p><p>    </font>android:id=<font class="Fields">"@+id/linear</p><p>    </font>android:layout_width=<font class="Fields">"fill_parent</p><p>    </font>android:layout_height=<font class="Fields">"fill_parent</p><p>    </font>android:orientation=<font class="Fields">"vertical"</font> &gt;</p><p>    &lt;TextView</p><p>        </font>android:id=<font class="Fields">"@+id/text_title</p><p>        </font>android:layout_width=<font class="Fields">"fill_parent</p><p>        </font>android:layout_height=<font class="Fields">"wrap_content</p><p>        </font>android:layout_marginTop=<font class="Fields">"5dip</p><p>        </font>android:gravity=<font class="Fields">"center</p><p>        </font>android:padding=<font class="Fields">"5dip</p><p>        </font>android:textColor=<font class="Fields">"</font>181712</p><p>        </font>android:textSize=<font class="Fields">"20sp</p><p>        </font>android:textStyle=<font class="Fields">"bold"</font> /&gt;</p><p>    &lt;ScrollView</p><p>        </font>android:id=<font class="Fields">"@+id/scroll</p><p>        </font>android:layout_width=<font class="Fields">"fill_parent</p><p>        </font>android:layout_height=<font class="Fields">"fill_parent</p><p>        </font>android:layout_marginBottom=<font class="Fields">"5dip</p><p>        </font>android:fadeScrollbars=<font class="Fields">"<font class="keyword">true</font>"</font> &gt;</p><p>        &lt;TextView</p><p>            </font>android:id=<font class="Fields">"@+id/text_detail</p><p>            </font>android:layout_width=<font class="Fields">"fill_parent</p><p>            </font>android:layout_height=<font class="Fields">"wrap_content</p><p>            </font>android:lineSpacingMultiplier=<font class="Fields">"1.3</p><p>            </font>android:singleLine=<font class="Fields">"<font class="keyword">false</font></p><p>            </font>android:textColor=<font class="Fields">"</font>181712</p><p>            </font>android:textSize=<font class="Fields">"18sp"</font> /&gt;</p><p>    &lt;/ScrollView&gt;</p><p>&lt;/LinearLayout&gt; </p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+  
+   </P>
+</DIV></BODY></HTML>
+

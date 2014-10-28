@@ -1,0 +1,58 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 程序反编译_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li class="navcurrentLink"><A href="index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Android基础之运行原理和机制" href="index_215.html">Android基础之运行原理和机制</A></h2>
+
+  <h2><A title="Android高级篇之Android优化" href="index_216.html">Android高级篇之Android优化</A></h2>
+
+  <h2><A title="Android高级篇之编译及反编译" href="index_217.html">Android高级篇之编译及反编译</A></h2>
+<UL><li class="currentLink"><A title=Android 程序反编译 href="show_201_217.html">Android 程序反编译</A> </li><li ><A title=Android反编译工具Apktool使用 href="show_202_217.html">Android反编译工具Apktool使用</A> </li><li ><A title=Android命令行编译方法,不用Eclipse IDE href="show_203_217.html">Android命令行编译方法,不用Eclipse IDE</A> </li><li ><A title=Android反编译小结 href="show_204_217.html">Android反编译小结</A> </li><li ><A title=反编译APK文件 href="show_205_217.html">反编译APK文件</A> </li><li ><A title=无需eclipse无需ant,直接在android源码中混淆编译 href="show_206_217.html">无需eclipse无需ant,直接在android源码中混淆编译</A> </li><li ><A title=apk反编译问题总结 href="show_207_217.html">apk反编译问题总结</A> </li><li ><A title=Android如何防止apk程序被反编译 href="show_208_217.html">Android如何防止apk程序被反编译</A> </li><li ><A title=Android反编译和防止反编译的方法 href="show_209_217.html">Android反编译和防止反编译的方法</A> </li><li ><A title=构建Android自动编译持续集成系统 href="show_210_217.html">构建Android自动编译持续集成系统</A> </li><li ><A title=跟我一起学【ANT build.xml】 href="show_211_217.html">跟我一起学【ANT build.xml】</A> </li><li ><A title=linux 下 使用shell 控制ant批量打包 href="show_212_217.html">linux 下 使用shell 控制ant批量打包</A> </li></UL>
+  <h2><A title="Android高级篇之加密解密" href="index_218.html">Android高级篇之加密解密</A></h2>
+
+  <h2><A title="Android高级篇之Android 安全" href="index_219.html">Android高级篇之Android 安全</A></h2>
+
+  <h2><A title="Android高级篇之算法" href="index_220.html">Android高级篇之算法</A></h2>
+
+  <h2><A title="Android高级篇之解锁教程" href="index_221.html">Android高级篇之解锁教程</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 程序反编译</H2>
+<div style="line-height:20px; font-size:14px;"><p style="color:#3333FF;">Apk文件的格式</p><p>Android application package文件。每个要安装到android平台的应用都要被编译打包为一个单独的文件，后缀名为.apk，其中包含了应用的二进制代码、资源、配置文件等。</p><p>apk文件实际是一个zip压缩包，可以通过解压缩工具解开。可以用zip解开*.apk文件，下面是一个helloword的apk示例文件。</p><p><pre>|– AndroidManifest.xml </p><p>|– META-INF </p><p>| |– CERT.RSA </p><p>| |– CERT.SF </p><p>| `– MANIFEST.MF </p><p>|– classes.dex </p><p>|– res </p><p>| |– drawable </p><p>| | `– icon.png </p><p>| `– layout </p><p>| `– main.xml </p><p>`– resources.arsc </p><p></pre></p><p>Manifest文件：AndroidManifest.xml是每个应用都必须定义和包含的，它描述了应用的名字、版本、权限、引用的库文件等等信息[ ， ]，如要把apk上传到Google Market上，也要对这个xml做一些配置。注意：在apk中的xml文件是经过压缩的，不可以直接打开。</p><p>Res文件：res文件夹下为所有的资源文件。</p><p>resources.arsc文件：为编译后的二进制资源文件，许多做汉化软件的人都是修改该文件内的资源以实现软件的汉化的。</p><p>META-INF目录：META-INF目录下存放的是签名信息，用来保证apk包的完整性和系统的安全。在eclipse编译生成一个api包时，会对所有要打包的文件做一个校验计算，并把计算结果放在META-INF目录下。而在OPhone平台上安装apk包时，应用管理器会按照同样的算法对包里的文件做校验，如果校验结果与META-INF下的内容不一致，系统就不会安装这个apk.这就保证了apk包里的文件不能被随意替换.比如拿到一个apk包后，如果想要替换里面的一幅图片，一段代码，或一段版权信息，想直接解压缩、替换再重新打包，基本是不可能的.如此一来就给病毒感染和恶意修改增加了难度，有助于保护系 统的安全。</p><p>classes.dex是java源码编译后生成的java字节码文件。但由于Android使用的dalvik虚拟机与标准的java虚拟机是不兼容的，dex文件与class文件相比，不论是文件结构还是opcode都不一样。</p><p>XML文件的反编译</p><p>在apk中的xml文件是经过压缩的，可以通过AXMLPrinter2工具解开，具体命令为：</p><p>java -jar AXMLPrinter2.jar AndroidManifest.xml</p><p>HelloAndroid程序中Manifest文件的实例：</p><p><pre>&lt;?xml version=<font class="Fields">"1.0"</font> encoding=</font><font class="Fields">"utf-8"</font>?&gt;</p><p>&lt;manifest xmlns:Android=<font class="Fields">"http:<font class="Comments">//schemas.android.com/apk/res/android</font></p><p>    </font>package=<font class="Fields">"name.feisky.Android.test</p><p>    </font>Android:versionCode=<font class="Fields">"1</p><p>    </font>Android:versionName=<font class="Fields">"1.0"</font> &gt;</p><p>    &lt;application</p><p>        </font>Android:icon=<font class="Fields">"@7F020000</p><p>        </font>Android:label=<font class="Fields">"@7F040001"</font> &gt;</p><p>        &lt;activity</p><p>            </font>Android:name=<font class="Fields">".HelloAndroid</p><p>            </font>Android:label=<font class="Fields">"@7F040001"</font> &gt;</p><p>            &lt;intent-filter&gt;</p><p>                </font>&lt;action Android:name=<font class="Fields">"android.intent.action.MAIN"</font> &gt;</p><p>                &lt;/action&gt;</p><p>                </font>&lt;category Android:name=<font class="Fields">"android.intent.category.LAUNCHER"</font> &gt;</p><p>                &lt;/category&gt;</p><p>            &lt;/intent-filter&gt;</p><p>        &lt;/activity&gt;</p><p>    &lt;/application&gt;</p><p>    </font>&lt;uses-sdk Android:minSdkVersion=<font class="Fields">"6"</font> &gt;</p><p>    &lt;/uses-sdk&gt;</p><p>&lt;/manifest&gt;</p><p></pre></p><p>而原文件为：  </p><p><pre>&lt;?xml version=<font class="Fields">"1.0"</font> encoding=</font><font class="Fields">"utf-8"</font>?&gt;</p><p>&lt;manifest xmlns:Android=<font class="Fields">"http:<font class="Comments">//schemas.android.com/apk/res/android</font></p><p>    </font>package=<font class="Fields">"name.feisky.Android.test</p><p>    </font>Android:versionCode=<font class="Fields">"1</p><p>    </font>Android:versionName=<font class="Fields">"1.0"</font> &gt;</p><p>    &lt;application</p><p>        </font>Android:icon=<font class="Fields">"@drawable/icon</p><p>        </font>android:label=<font class="Fields">"@string/app_name"</font> &gt;</p><p>        &lt;activity</p><p>            </font>Android:name=<font class="Fields">".HelloAndroid</p><p>            </font>Android:label=<font class="Fields">"@string/app_name"</font> &gt;</p><p>            &lt;intent-filter&gt;</p><p>                </font>&lt;action Android:name=<font class="Fields">"android.intent.action.MAIN"</font> /&gt;</p><p>                </font>&lt;category Android:name=<font class="Fields">"android.intent.category.LAUNCHER"</font> /&gt;</p><p>            &lt;/intent-filter&gt;</p><p>        &lt;/activity&gt;</p><p>    &lt;/application&gt;</p><p>    </font>&lt;uses-sdk Android:minSdkVersion=<font class="Fields">"6"</font> /&gt;</p><p>&lt;/manifest&gt;</p><p></pre></p><p style="color:#3333FF;">classes.dex文件反编译</p><p>classes.dex是java源码编译后生成的java字节码文件。但由于Android使用的dalvik虚拟机与标准的java虚拟机是不兼容的，dex文件与class文件相比，不论是文件结构还是opcode都不一样。目前常见的java反编译工具都不能处理dex文件。</p><p>Android模拟器中提供了一个dex文件的反编译工具，dexdump。用法为首先启动Android模拟器，把要查看的dex文件用adb push上传的模拟器中，然后通过adb shell登录，找到要查看的dex文件，执行dexdump xxx.dex。但是这样得到的结果，其可读性是极差的。下面介绍一个可读性比较好的工具。</p><p>工具准备：</p><p>1、把dex文件反编译为jar文件的工具。（dex2jar）</p><p>2、把jar反编译为java的工具。（JD-GUI）</p><p>反编译的步骤</p><p>1、从APK中提取classes.dex文件，对APK文件解压即可得到。将其放到dex2jar的目录下，打开cmd，运行dex2jar.bat classes.dex，生成classes.dex.dex2jar.jar。</p><p>2、运行JD-GUI工具，打开上面的jar文件，即可看到源代码。</p><p>HelloAndroid实例：</p><p><pre><font class="keyword">import </font>Android.app.Activity;</p><p><font class="keyword">import </font>Android.os.Bundle;</p><p><font class="keyword">public </font><font class="keyword">class </font>HelloAndroid </font><font class="keyword">extends </font>Activity {</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onCreate(Bundle paramBundle) {</p><p>		<font class="keyword">super</font>.onCreate(paramBundle);</p><p>		setContentView(2130903040);</p><p>	}</p><p>} </p><p></pre></p><p>其原程序为： </p><p><pre><font class="keyword">import </font>Android.app.Activity;</p><p><font class="keyword">import </font>Android.os.Bundle;</p><p><font class="keyword">public </font><font class="keyword">class </font>HelloAndroid </font><font class="keyword">extends </font>Activity {</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onCreate(Bundle savedInstanceState) {</p><p>		<font class="keyword">super</font>.onCreate(savedInstanceState);</p><p>		setContentView(R.layout.main);</p><p>	}</p><p>}</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

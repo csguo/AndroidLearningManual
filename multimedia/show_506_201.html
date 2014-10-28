@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android Drawable叠加方法_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li class="navcurrentLink"><A href="index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Android多媒体功能" href="index_196.html">Android多媒体功能</A></h2>
+
+  <h2><A title="Android多媒体之2D" href="index_197.html">Android多媒体之2D</A></h2>
+
+  <h2><A title="Android多媒体之3D" href="index_198.html">Android多媒体之3D</A></h2>
+
+  <h2><A title="Android多媒体之Bitmap" href="index_199.html">Android多媒体之Bitmap</A></h2>
+
+  <h2><A title="Android多媒体之Canvas" href="index_200.html">Android多媒体之Canvas</A></h2>
+
+  <h2><A title="Android多媒体之Drawable" href="index_201.html">Android多媒体之Drawable</A></h2>
+<UL><li ><A title=Android 解析Drawable（一） href="show_501_201.html">Android 解析Drawable（一）</A> </li><li ><A title=Android 解析Drawable（二） href="show_502_201.html">Android 解析Drawable（二）</A> </li><li ><A title=Android Drawable的使用 href="show_503_201.html">Android Drawable的使用</A> </li><li ><A title=Drawable、Bitmap、Canvas和Paint的区别 href="show_504_201.html">Drawable、Bitmap、Canvas和Paint的区别</A> </li><li ><A title=Bitmap和Drawable相互转换方法 href="show_505_201.html">Bitmap和Drawable相互转换方法</A> </li><li class="currentLink"><A title=Android Drawable叠加方法 href="show_506_201.html">Android Drawable叠加方法</A> </li><li ><A title=使用SQLite存储以及读取Drawable对象 href="show_508_201.html">使用SQLite存储以及读取Drawable对象</A> </li><li ><A title=drawable(hdpi,ldpi,mdpi)的区别 href="show_509_201.html">drawable(hdpi,ldpi,mdpi)的区别</A> </li><li ><A title=Android 通过图片名称获取drawable目录下的图片 href="show_511_201.html">Android 通过图片名称获取drawable目录下的图片</A> </li><li ><A title=更改手机窗口画面底色(drawable定义颜色常数的方法) href="show_512_201.html">更改手机窗口画面底色(drawable定义颜色常数的方法)</A> </li></UL>
+  <h2><A title="Android多媒体之gif" href="index_202.html">Android多媒体之gif</A></h2>
+
+  <h2><A title="Android多媒体之MediaStore" href="index_203.html">Android多媒体之MediaStore</A></h2>
+
+  <h2><A title="Android多媒体之动画" href="index_204.html">Android多媒体之动画</A></h2>
+
+  <h2><A title="Android多媒体之分辨率" href="index_205.html">Android多媒体之分辨率</A></h2>
+
+  <h2><A title="Android多媒体之分屏幕" href="index_206.html">Android多媒体之分屏幕</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android Drawable叠加方法</H2>
+<div style="line-height:20px; font-size:14px;"><p>大家可能知道Bitmap的叠加处理在Android平台中可以通过Canvas一层一层的画就行了，而Drawable中如何处理呢? 除了使用BitmapDrawable的getBitmap方法将Drawable转换为Bitmap外，今天我们就给大家说下好用简单的LayerDrawable类，LayerDrawable顾名思义就是层图形对象。下面直接用一个简单的代码表示:</p><p><pre>Bitmap bm = BitmapFactory.decodeResource(getResources(), R.drawable.cwj);</p><p>Drawable[] array = <font class="keyword">new </font>Drawable[3];</p><p>array[0] = <font class="keyword">new </font>PaintDrawable(Color.BLACK); <font class="Comments">// 黑色</font></p><p>array[1] = <font class="keyword">new </font>PaintDrawable(Color.WHITE); <font class="Comments">// 白色</font></p><p>array[2] = <font class="keyword">new </font>BitmapDrawable(bm); <font class="Comments">// 位图资源</font></p><p>LayerDrawable ld = <font class="keyword">new </font>LayerDrawable(array); <font class="Comments">// 参数为上面的Drawable数组</font></p><p>ld.setLayerInset(1, 1, 1, 1, 1); <font class="Comments">// 第一个参数1代表数组的第二个元素，为白色</font></p><p>ld.setLayerInset(2, 2, 2, 2, 2); <font class="Comments">// 第一个参数2代表数组的第三个元素，为位图资源</font></p><p>mImageView.setImageDrawable(ld);</p><p></pre></p><p>上面的方法中LayerDrawable是关键，EOE提示setLayerInset方法原型为public void setLayerInset (int index, int l, int t, int r, int b)其中第一个参数为层的索引号，后面的四个参数分别为left、top、right和bottom。对于简单的图片合成我们可以将第一和第二层的PaintDrawable换成BitmapDrawable即可实现简单的图片合成。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

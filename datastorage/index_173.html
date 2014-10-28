@@ -1,0 +1,121 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android学习手册_数据存储</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li class="navcurrentLink"><A href="index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">数据存储</div>
+
+  <h2 ><A title="ContentProvider" href="index_170.html">ContentProvider</A></h2>
+
+  <h2 ><A title="Preferences" href="index_171.html">Preferences</A></h2>
+
+  <h2 ><A title="SQLite" href="index_172.html">SQLite</A></h2>
+
+  <h2 class="currentLink"><A title="SD卡" href="index_173.html">SD卡</A></h2>
+<UL><li class="currentLink"><A title=Android SQLite的数据库文件存储在SD卡中（一） href="show_301_173.html">Android SQLite的数据库文件存储在SD卡中（一）</A> </li><li ><A title=Android SQLite的数据库文件存储在SD卡中（二） href="show_302_173.html">Android SQLite的数据库文件存储在SD卡中（二）</A> </li><li ><A title=Android 如何获取SDCard 内存（一） href="show_303_173.html">Android 如何获取SDCard 内存（一）</A> </li><li ><A title=Android 如何获取SDCard 内存（二） href="show_304_173.html">Android 如何获取SDCard 内存（二）</A> </li><li ><A title=Android SDCard的容量大小 href="show_305_173.html">Android SDCard的容量大小</A> </li><li ><A title=Android 查看SDCard还有多少存储空间 href="show_306_173.html">Android 查看SDCard还有多少存储空间</A> </li><li ><A title=Android获取外部和内部存储空间总大小和可用大小 href="show_307_173.html">Android获取外部和内部存储空间总大小和可用大小</A> </li><li ><A title=Android 读写SD卡的权限设置 href="show_308_173.html">Android 读写SD卡的权限设置</A> </li><li ><A title=Android 检测目录是否存在，不存在则创建 href="show_309_173.html">Android 检测目录是否存在，不存在则创建</A> </li><li ><A title=Android 在SD卡上保存图片 href="show_310_173.html">Android 在SD卡上保存图片</A> </li><li ><A title=Android Http下载文件到手机内存与SDCard href="show_311_173.html">Android Http下载文件到手机内存与SDCard</A> </li><li ><A title=Android 程序私有文件（TXT）操作类 href="show_312_173.html">Android 程序私有文件（TXT）操作类</A> </li><li ><A title=Android SD卡里的文件夹功能 href="show_313_173.html">Android SD卡里的文件夹功能</A> </li><li ><A title=Android从SD卡导入数据库.db文件至APK href="show_314_173.html">Android从SD卡导入数据库.db文件至APK</A> </li></UL>
+  <h2 ><A title="数据库" href="index_174.html">数据库</A></h2>
+
+  <h2 ><A title="URI" href="index_175.html">URI</A></h2>
+
+  <h2 ><A title="MediaStore" href="index_176.html">MediaStore</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1>SD卡</H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android SQLite的数据库文件存储在SD卡中（一）</H2>
+<P>　　SQLite的特性：[color=blue]轻量级使用 SQLite 只需要带一个动态库，就可以享受它的全部功能，而且那个动态库的尺寸想当小。[color=blue]独立性SQLite 数据库的核心引擎不需要依赖第三方软件，也不需要所谓的“安装</P>
+<P><A title="Android SQLite的数据库文件存储在SD卡中（一）" href="show_301_173.html">进入 Android SQLite的数据库文件存储在SD卡中（一）</A> </P></DIV>
+
+<DIV>
+<H2>Android SQLite的数据库文件存储在SD卡中（二）</H2>
+<P>　　一种存储默认系统路径/data-data-com.himi-databases下,另外一种则是保存在了/sdcard-himi下，生成数据库文件demo.db那么这里两种实现方式大概步骤和区别说下：如果我们使用默认系统路径存储数据库文件：第一步：新</P>
+<P><A title="Android SQLite的数据库文件存储在SD卡中（二）" href="show_302_173.html">进入 Android SQLite的数据库文件存储在SD卡中（二）</A> </P></DIV>
+
+<DIV>
+<H2>Android 如何获取SDCard 内存（一）</H2>
+<P>　　开始存储路径写死为：private String folder = &quot;&quot;/sdcard/DCIM/Camera/&quot;&quot;（SD卡上拍照程序的图片存储路径）; 后来发现这样写虽然一般不会出错，但不是很好，因为不同相机，可能路径会出问题。较</P>
+<P><A title="Android 如何获取SDCard 内存（一）" href="show_303_173.html">进入 Android 如何获取SDCard 内存（一）</A> </P></DIV>
+
+<DIV>
+<H2>Android 如何获取SDCard 内存（二）</H2>
+<P>　　[color=blue]2、讲述 StatFs 类 StatFs 一个模拟linux的df命令的一个类，获得SD卡和手机内存的使用情况 StatFs 常用方法: [code=java]getAvailableBlocks() 解释：返回 Int，获取当前可用的存储空间 getBlockCount()</P>
+<P><A title="Android 如何获取SDCard 内存（二）" href="show_304_173.html">进入 Android 如何获取SDCard 内存（二）</A> </P></DIV>
+
+<DIV>
+<H2>Android SDCard的容量大小</H2>
+<P>　　android.os.StatFs一个模拟linux的df命令的一个类,获得SD卡和手机内存的使用情况[code=java]java.lang.Object       android.os.StatFs[/code]构造方法:StatFs (String path)公用方法: [code=java]方法 : getAvailab</P>
+<P><A title="Android SDCard的容量大小" href="show_305_173.html">进入 Android SDCard的容量大小</A> </P></DIV>
+
+<DIV>
+<H2>Android 查看SDCard还有多少存储空间</H2>
+<P>　　如下图所示，通过progressBar来展示当前的sdcard容量。下面我们就来看看怎么样用代码来实现这个比较不错的小实例吧。其中重要的东西都有注释，希望对大家有帮助。[code=img]data_sdcard/06_sdcard.png[/code]代码如</P>
+<P><A title="Android 查看SDCard还有多少存储空间" href="show_306_173.html">进入 Android 查看SDCard还有多少存储空间</A> </P></DIV>
+
+<DIV>
+<H2>Android获取外部和内部存储空间总大小和可用大小</H2>
+<P>　　Android.os下的StatFs类主要用来获取文件系统的状态，能够获取sd卡的大小和剩余空间，获取系统内部空间也就是/system的大小和剩余空间等等。看</P>
+<P><A title="Android获取外部和内部存储空间总大小和可用大小" href="show_307_173.html">进入 Android获取外部和内部存储空间总大小和可用大小</A> </P></DIV>
+
+<DIV>
+<H2>Android 读写SD卡的权限设置</H2>
+<P>　　在Android中，要模拟SD卡，要首先使用adb的mksdcard命令来建立SD卡的镜像，如何建立，大家上网查一下吧，应该很容易找到，这里不说这个问题。但是在应用程序执行起来以后，我们可以看到sdcard的执行权限很有问题.懂L</P>
+<P><A title="Android 读写SD卡的权限设置" href="show_308_173.html">进入 Android 读写SD卡的权限设置</A> </P></DIV>
+
+<DIV>
+<H2>Android 检测目录是否存在，不存在则创建</H2>
+<P>　　通过这几天的学习，感觉学习是越来越轻松了，但是还是有许多东西，不会，今天在思考，如何把在目录中创建文件，并且能知道创建成功不成功，比如说我做了拍照程序，那么我得知道如何让他选择一个目录进行放置或者是设</P>
+<P><A title="Android 检测目录是否存在，不存在则创建" href="show_309_173.html">进入 Android 检测目录是否存在，不存在则创建</A> </P></DIV>
+
+<DIV>
+<H2>Android 在SD卡上保存图片</H2>
+<P>　　思路如下：首先判断SD卡是否插入--&gt;[code=java]#[Keywords]public #String getSDPath() {	#File SDdir = #[Keywords]null#;	#[Keywords]boolean #sdCardExist = Environment.getExternalStorageState().equals(		</P>
+<P><A title="Android 在SD卡上保存图片" href="show_310_173.html">进入 Android 在SD卡上保存图片</A> </P></DIV>
+
+<DIV>
+<H2>Android Http下载文件到手机内存与SDCard</H2>
+<P>　　Android网络应用的开发，http的下载是常用到的功能，因此开发了一个工具类供使用，提供了从网络上下载文件到手机内存和SDCard的功能。主要包括下载网络文件（包括文本文件和音频文件）存储到本地和下载文本文件获取</P>
+<P><A title="Android Http下载文件到手机内存与SDCard" href="show_311_173.html">进入 Android Http下载文件到手机内存与SDCard</A> </P></DIV>
+
+<DIV>
+<H2>Android 程序私有文件（TXT）操作类</H2>
+<P>　　程序私有文件顾名思义就是本程序可以访问，其他程序无权访问的一类文件。    众所周知Android有一套自己的安全模型，具体可参见Android开发文档。当应用程序(.apk)在安装时就会分配一个userid，当该应用要去访问其他</P>
+<P><A title="Android 程序私有文件（TXT）操作类" href="show_312_173.html">进入 Android 程序私有文件（TXT）操作类</A> </P></DIV>
+
+<DIV>
+<H2>Android SD卡里的文件夹功能</H2>
+<P>　　对于初次使用Android系统的新手来说，当打开SD开一看，里面那些林林总总的文件夹总会让自己不知所措，有些看文件夹名称，还能猜到点作用来，但是大部分的都不知道是做什么的。1、.android_secure 是官方app2sd的产物</P>
+<P><A title="Android SD卡里的文件夹功能" href="show_313_173.html">进入 Android SD卡里的文件夹功能</A> </P></DIV>
+
+<DIV>
+<H2>Android从SD卡导入数据库.db文件至APK</H2>
+<P>　　代码如下：[code=java]#[Keywords]private #[Keywords]class #ImportDatabaseTask #[Keywords]extends #AsyncTask {	#[Keywords]private #[Keywords]final #ProgressDialog dialog = #[Keywords]new #ProgressDialog</P>
+<P><A title="Android从SD卡导入数据库.db文件至APK" href="show_314_173.html">进入 Android从SD卡导入数据库.db文件至APK</A> </P></DIV>
+
+</DIV>
+
+<DIV id=footer style="display:none">
+<P align="center"> 
+ 
+ 
+ 
+  </P>
+</DIV></DIV></BODY></HTML>
+

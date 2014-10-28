@@ -1,0 +1,58 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Content Provider 基础之URI_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li class="navcurrentLink"><A href="index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="ContentProvider" href="index_170.html">ContentProvider</A></h2>
+
+  <h2><A title="Preferences" href="index_171.html">Preferences</A></h2>
+
+  <h2><A title="SQLite" href="index_172.html">SQLite</A></h2>
+
+  <h2><A title="SD卡" href="index_173.html">SD卡</A></h2>
+
+  <h2><A title="数据库" href="index_174.html">数据库</A></h2>
+
+  <h2><A title="URI" href="index_175.html">URI</A></h2>
+<UL><li class="currentLink"><A title=Content Provider 基础之URI href="show_501_175.html">Content Provider 基础之URI</A> </li><li ><A title=URIs的结构 href="show_502_175.html">URIs的结构</A> </li><li ><A title=用URIs读取数据 href="show_503_175.html">用URIs读取数据</A> </li><li ><A title=常用的Intent的URI及示例 href="show_504_175.html">常用的Intent的URI及示例</A> </li><li ><A title=SMS Media查询常用Uri href="show_505_175.html">SMS Media查询常用Uri</A> </li><li ><A title=Android：软件的安装和卸载源码解析 href="show_506_175.html">Android：软件的安装和卸载源码解析</A> </li><li ><A title=Android 获取一个apk的信息 href="show_507_175.html">Android 获取一个apk的信息</A> </li><li ><A title=Android 用APN来获取手机号 href="show_508_175.html">Android 用APN来获取手机号</A> </li></UL>
+  <h2><A title="MediaStore" href="index_176.html">MediaStore</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Content Provider 基础之URI</H2>
+<div style="line-height:20px; font-size:14px;"><p>Content Provider这个东西在Android平台上是最常用的共享数据的方法（似乎应用程序之间共享数据也只有这种方法吧，待求证）。虽然常用，但是这个东西要理解透彻还是要先掌握一些基础的。URI就是Content Provider（简称CP）的基础。我们要标识一个CP，就必须用URI这个东东。这就类似于我们要通过网址来标识某个特定网站，实际上网址URL本身就是一种URI。URI全称Uniform Resource Identifier, 它包括了URL和URN。而关于它们的详细解释，有心的朋友可以参考RFC3896：http://tools.ietf.org/html /rfc3986。URI不仅可以标识特定CP，还可以标识CP中特定的数据库表，就好像URL不仅可以标识特定网站，也可以标识这个网站某个特定网页一样。实际上在Android平台上URI的用途更广泛一些，它还用于Intent中data的标识。 </p><p>就Android平台而言，URI主要分三个部分：scheme, authority and path。其中authority又分为host和port。</p><p>格式如下： </p><p><pre>scheme://host:port/path </p><p></pre></p><p>举个实际的例子： </p><p><pre>content://com.example.project:200/folder/subfolder/etc </p><p>\---------/  \---------------------------/ \---/ \--------------------------/ </p><p>scheme                 host               port        path </p><p>                \--------------------------------/ </p><p>                          authority    </p><p></pre></p><p>现在大家应该知道data flag中那些属性的含义了吧，看下data flag </p><p><pre>&lt;data android:host="string" </p><p>      android:mimeType="string" </p><p>      android:path="string" </p><p>      android:pathPattern="string" </p><p>      android:pathPrefix="string" </p><p>      android:port="string" </p><p>      android:scheme="string" /&gt; </p><p></pre></p><p>但是我们在程序中一般是不直接用URI来标识CP的，是的，正如我们通常见到的用定义的常量来标识。例如standard CP中的Contacts，我们就用Contacts.People.CONTENT_URI来标识Contacts CP中People这个表。那么要标识某个具体的人怎么办呢？ 这就用到了ContentUris.withAppendedId() 和 Uri.withAppendedPath()。例如我们要表示content://contacts/people/20，那么我们就可以用如下语句： </p><p><pre>Uri uri = ContentUris.withAppendedId(People.CONTENT_URI, 20); </p><p></pre></p><p>或者 </p><p><pre>Uri uri = Uri.withAppendedPath(People.CONTENT_URI, "20");</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

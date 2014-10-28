@@ -1,0 +1,70 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android Camera 模块分析（四）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li class="navcurrentLink"><A href="index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="设备信息" href="index_157.html">设备信息</A></h2>
+
+  <h2><A title="摄像头" href="index_158.html">摄像头</A></h2>
+<UL><li ><A title=Android Camera 模块分析（一） href="show_101_158.html">Android Camera 模块分析（一）</A> </li><li ><A title=Android Camera 模块分析（二） href="show_102_158.html">Android Camera 模块分析（二）</A> </li><li ><A title=Android Camera 模块分析（三） href="show_103_158.html">Android Camera 模块分析（三）</A> </li><li class="currentLink"><A title=Android Camera 模块分析（四） href="show_104_158.html">Android Camera 模块分析（四）</A> </li><li ><A title=Android 浅谈相机研发（一） href="show_105_158.html">Android 浅谈相机研发（一）</A> </li><li ><A title=Android 浅谈相机研发（二） href="show_106_158.html">Android 浅谈相机研发（二）</A> </li><li ><A title=Android 浅谈相机研发（三） href="show_107_158.html">Android 浅谈相机研发（三）</A> </li><li ><A title=Android 浅谈相机研发（四） href="show_108_158.html">Android 浅谈相机研发（四）</A> </li><li ><A title=Android 浅谈相机研发（五） href="show_109_158.html">Android 浅谈相机研发（五）</A> </li><li ><A title=Android获取摄像头的详细介绍 href="show_110_158.html">Android获取摄像头的详细介绍</A> </li><li ><A title=开机启动摄像头的原理 href="show_111_158.html">开机启动摄像头的原理</A> </li></UL>
+  <h2><A title="通讯录" href="index_159.html">通讯录</A></h2>
+
+  <h2><A title="电话" href="index_160.html">电话</A></h2>
+
+  <h2><A title="短信" href="index_161.html">短信</A></h2>
+
+  <h2><A title="传感器" href="index_162.html">传感器</A></h2>
+
+  <h2><A title="定位" href="index_163.html">定位</A></h2>
+
+  <h2><A title="视频系统" href="index_164.html">视频系统</A></h2>
+
+  <h2><A title="音频系统" href="index_165.html">音频系统</A></h2>
+
+  <h2><A title="铃声" href="index_166.html">铃声</A></h2>
+
+  <h2><A title="音量" href="index_167.html">音量</A></h2>
+
+  <h2><A title="录音" href="index_168.html">录音</A></h2>
+
+  <h2><A title="输入法" href="index_169.html">输入法</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android Camera 模块分析（四）</H2>
+<div style="line-height:20px; font-size:14px;"><p>3.3 Camera本地库libui.so</p><p>frameworks/base/libs/ui/中的Camera.cpp文件用于实现Camera.h提供的接口，其中一个重要的片段如下所示：</p><p><pre>const sp&lt;ICameraService&gt;& Camera::getCameraService()</p><p>{</p><p>	Mutex::Autolock _l(mLock);</p><p>	<font class="keyword">if </font>(mCameraService.get() == 0) { </p><p>		sp&lt;IServiceManager&gt; sm = defaultServiceManager();</p><p>		sp&lt;IBinder&gt; binder;</p><p>		do {</p><p>			</font>binder = sm-&gt;getService(String16(<font class="Fields">"media.camera"</font>));</p><p>			<font class="keyword">if </font>(binder != 0) </p><p>			<font class="keyword">break</font>; </p><p>			</font>LOGW(<font class="Fields">"CameraService not published, waiting..."</font>);</p><p>			usleep(500000); <font class="Comments">// 0.5 s</font></p><p>		</font>} while(<font class="keyword">true</font>); </p><p>		<font class="keyword">if </font>(mDeathNotifier == NULL) { </p><p>			</font>mDeathNotifier = <font class="keyword">new </font>DeathNotifier();</p><p>		} </p><p>		binder-&gt;linkToDeath(mDeathNotifier);</p><p>		mCameraService = interface_cast&lt;ICameraService&gt;(binder);</p><p>	} </p><p>	</font>LOGE_IF(mCameraService==0, <font class="Fields">"no CameraService!?"</font>);</p><p>	<font class="keyword">return </font>mCameraService; </p><p>}</p><p></pre></p><p>其中最重要的一点是binder=sm-&gt;getService(String16("media.camera"));;这个调用用来得到一个名称为"media.camera"的服务，这个调用返回值的类型为IBinder，根据实现将其转换成类型ICameraService使用。</p><p>一个函数 connect的实现 如下所示：</p><p><pre>sp&lt;Camera&gt; Camera::connect()</p><p>{</p><p>	</font>sp&lt;Camera&gt; c = <font class="keyword">new </font>Camera();</p><p>	const sp&lt;ICameraService&gt;& cs = getCameraService();</p><p>	<font class="keyword">if </font>(cs != 0) { </p><p>		c-&gt;mCamera = cs-&gt;connect(c);</p><p>	} </p><p>	<font class="keyword">if </font>(c-&gt;mCamera != 0) { </p><p>		c-&gt;mCamera-&gt;asBinder()-&gt;linkToDeath(c);</p><p>		c-&gt;mStatus = NO_ERROR;</p><p>	} </p><p>	<font class="keyword">return </font>c; </p><p>}</p><p></pre></p><p>connect通过调用getCameraService得到一个 ICameraService，再通过 ICameraService的cs-&gt;connect（c）得到一个 ICamera类型的指针。 调用connect将得到一个 Camera的指针，正常情况下Camera的成员 mCamera已经初始化完成。</p><p>一个具体的函数startPreview 如下所示：</p><p><pre>status_t Camera::startPreview()</p><p>{</p><p>	<font class="keyword">return </font>mCamera-&gt;startPreview(); </p><p>}</p><p></pre></p><p>这些操作可以直接对 mCamera来进行，它是ICamera类型的指针。</p><p>其他一些函数的实现也与setDataSource类似。</p><p>libmedia。so中的其他一些文件与头文件的名称相同，它们是：</p><p><pre>frameworks/base/libs/ui/ICameraClient.cpp</p><p>frameworks/base/libs/ui/ICamera.cpp</p><p>frameworks/base/libs/ui/ICameraService.cpp </p><p></pre></p><p>在此处，BnCameraClient和BnCameraService类虽然实现了onTransact()函数，但是由于还有纯虚函数没有实现，因此这个类都是不能实例化的。</p><p>ICameraClient。cpp中的BnCameraClient在别的地方也没有实现；而ICameraService。cpp中的BnCameraService类在别的地方被继承并实现，继承者实现了Camera服务的具体功能。</p><p>3.4 Camera服务libcameraservice.so</p><p>frameworks/base/camera/libcameraservice/ 用于实现一个Camera的服务，这个服务是继承ICameraService的具体实现。</p><p>在这里的Android。mk文件中，使用宏USE_CAMERA_STUB决定是否使用真的Camera，如果宏为真，则使用CameraHardwareStub.cpp和FakeCamera.cpp构造一个假的Camera，如果为假则使用 CameraService.cpp构造一个实际上的Camera服务。</p><p>CameraService.cpp是继承BnCameraService 的实现，在这个类的内部又定义了类Client，CameraService::Client继承了BnCamera。在运作的过程中 CameraService::connect()函数用于得到一个CameraService::Client，在使用过程中，主要是通过调用这个类的接口来实现完成Camera的功能，由于CameraService::Client本身继承了BnCamera类，而BnCamera类是继承了 ICamera，因此这个类是可以被当成ICamera来使用的。</p><p>CameraService和CameraService：：Client两个类的结果如下所示：</p><p><pre><font class="keyword">class </font>CameraService : </font><font class="keyword">public </font>BnCameraService </p><p>{</p><p>	<font class="keyword">class </font>Client : </font><font class="keyword">public </font>BnCamera {</font>};</p><p>	wp&lt;Client&gt; mClient;</p><p>}</p><p></pre></p><p>在CameraService中的一个静态函数instantiate()用于初始化一个Camera服务，寒暑如下所示：</p><p><pre><font class="keyword">void </font>CameraService::instantiate() { </p><p>	</font>defaultServiceManager()-&gt;addService( String16(<font class="Fields">"media.camera"</font>), <font class="keyword">new </font>CameraService());</p><p>}</p><p></pre></p><p>事实上，CameraService：instantiate()这个函数注册了一个名称为"media。camera"的服务，这个服务和Camera.cpp中调用的名称相对应。</p><p>Camera整个运作机制是：在Camera。cpp中可以调用ICameraService的接口，这时实际上调用的是 BpCameraService，而BpCameraService又通过Binder机制和BnCameraService实现两个进程的通讯。而 BpCameraService的实现就是这里的CameraService。因此，Camera。cpp虽然是在另外一个进程中运行，但是调用 ICameraService的接口就像直接调用一样，从connect()中可以得到一个ICamera类型的指针，真个指针的实现实际上是 CameraService：Client。</p><p>而这些Camera功能的具体实现，就是CameraService：：Client所实现的了，其构造函数如下所示：</p><p><pre>CameraService::Client::Client(const sp&lt;CameraService&gt;& cameraService,</p><p>const sp&lt;ICameraClient&gt;& cameraClient) : mCameraService(cameraService), mCameraClient(cameraClient), mHardware(0)</p><p>{</p><p>	mHardware = openCameraHardware();</p><p>	</font>mHasFrameCallback = <font class="keyword">false</font>;</p><p>}</p><p></pre></p><p>构造函数中，调用openCameraHardware()得到一个CameraHardwareInterface类型的指针，并作为其成员mHardware。以后对实际的Camera的操作都通过对这个指针进行。这是一个简单的直接调用关系。</p><p>事实上，真正的Camera功能己通过实现CameraHardwareInterface类来完成。在这个库当中 CameraHardwareStub。h和CameraHardwareStub。cpp两个文件定义了一个桩模块的接口，在没有Camera硬件的情况下使用，例如在仿真器的情况下使用的文件就是CameraHardwareStub。cpp和它依赖的文件FakeCamera。cpp。</p><p>CameraHardwareStub类的结构如下所示：</p><p><pre><font class="keyword">class </font>CameraHardwareStub : </font><font class="keyword">public </font>CameraHardwareInterface {</p><p>	<font class="keyword">class </font>PreviewThread : </font><font class="keyword">public </font>Thread {</p><p>	};</p><p>};</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

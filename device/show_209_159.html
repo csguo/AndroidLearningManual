@@ -1,0 +1,70 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 用PhoneLookup读取电话号码_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li class="navcurrentLink"><A href="index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="设备信息" href="index_157.html">设备信息</A></h2>
+
+  <h2><A title="摄像头" href="index_158.html">摄像头</A></h2>
+
+  <h2><A title="通讯录" href="index_159.html">通讯录</A></h2>
+<UL><li ><A title=Android 通讯录选择联系人 href="show_201_159.html">Android 通讯录选择联系人</A> </li><li ><A title=Android 通讯录查询（一） href="show_202_159.html">Android 通讯录查询（一）</A> </li><li ><A title=Android 通讯录查询（二） href="show_203_159.html">Android 通讯录查询（二）</A> </li><li ><A title=Android 查询联系人信息 href="show_204_159.html">Android 查询联系人信息</A> </li><li ><A title=Android 获得联系人信息 href="show_205_159.html">Android 获得联系人信息</A> </li><li ><A title=Android 手机联系人操作 href="show_206_159.html">Android 手机联系人操作</A> </li><li ><A title=Android 删除联系人分组 href="show_207_159.html">Android 删除联系人分组</A> </li><li ><A title=详解Android中的通信录模型 href="show_208_159.html">详解Android中的通信录模型</A> </li><li class="currentLink"><A title=Android 用PhoneLookup读取电话号码 href="show_209_159.html">Android 用PhoneLookup读取电话号码</A> </li></UL>
+  <h2><A title="电话" href="index_160.html">电话</A></h2>
+
+  <h2><A title="短信" href="index_161.html">短信</A></h2>
+
+  <h2><A title="传感器" href="index_162.html">传感器</A></h2>
+
+  <h2><A title="定位" href="index_163.html">定位</A></h2>
+
+  <h2><A title="视频系统" href="index_164.html">视频系统</A></h2>
+
+  <h2><A title="音频系统" href="index_165.html">音频系统</A></h2>
+
+  <h2><A title="铃声" href="index_166.html">铃声</A></h2>
+
+  <h2><A title="音量" href="index_167.html">音量</A></h2>
+
+  <h2><A title="录音" href="index_168.html">录音</A></h2>
+
+  <h2><A title="输入法" href="index_169.html">输入法</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 用PhoneLookup读取电话号码</H2>
+<div style="line-height:20px; font-size:14px;"><p>读取Android系统的通讯录时一般会先读取联系人然后再读取其号码，嵌套循环读取。如果通讯录人数不多速度尚可，但是通讯录里有1-2百人恐怕就比较慢了，如果硬件再差点体验就更差了。可以使用</p><p>ContactsContract.CommonDataKinds.Phone.CONTENT_URI（对 应contacts2.db的数据视view_data_restricted）视图来读取避免嵌套读取，而对于 PhoneLookup.CONTENT_FILTER_URI确不能直接使用，这里分享一下小技巧。</p><p>一、PhoneLookup.CONTENT_FILTER_URI的一般用法</p><p><pre>Uri uri = Uri.withAppendedPath(PhoneLookup.CONTENT_FILTER_URI, Uri.encode(phoneNumber));</p><p>resolver.query(uri, <font class="keyword">new </font>String[]{PhoneLookup.DISPLAY_NAME,... </p><p></pre></p><p>API见这里。如果直接如下使用PhoneLookup.CONTENT_FILTER_URI会报IllegalArgument Exception错</p><p><pre>getContentResolver().query(PhoneLookup.CONTENT_FILTER_URI,... </p><p></pre></p><p>二、 技巧用法</p><p><pre>Cursor c = getContentResolver().query(Uri.withAppendedPath(</p><p>PhoneLookup.CONTENT_FILTER_URI, <font class="Fields">"*"</font>), <font class="keyword">new </font>String[] {</p><p>PhoneLookup._ID,</p><p>PhoneLookup.NUMBER,</p><p>PhoneLookup.DISPLAY_NAME,</p><p>PhoneLookup.TYPE, PhoneLookup.LABEL </font>}, <font class="keyword">null</font>, </font><font class="keyword">null</font>, sortOrder); </p><p></pre></p><p>关键是这个”*”，这样就能取到所有的号码以及相关的联系人的姓名以及其他相关字段，比通过联系人再查找其号码要方便很多。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

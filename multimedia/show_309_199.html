@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 避免bitmap内存限制_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li class="navcurrentLink"><A href="index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Android多媒体功能" href="index_196.html">Android多媒体功能</A></h2>
+
+  <h2><A title="Android多媒体之2D" href="index_197.html">Android多媒体之2D</A></h2>
+
+  <h2><A title="Android多媒体之3D" href="index_198.html">Android多媒体之3D</A></h2>
+
+  <h2><A title="Android多媒体之Bitmap" href="index_199.html">Android多媒体之Bitmap</A></h2>
+<UL><li ><A title=Android Bitmap类相关学习 href="show_302_199.html">Android Bitmap类相关学习</A> </li><li ><A title=Android里的BitMap（一） href="show_303_199.html">Android里的BitMap（一）</A> </li><li ><A title=Android里的BitMap（二） href="show_304_199.html">Android里的BitMap（二）</A> </li><li ><A title=Android里的BitMap（三） href="show_305_199.html">Android里的BitMap（三）</A> </li><li ><A title=Android里的BitMap（四） href="show_306_199.html">Android里的BitMap（四）</A> </li><li ><A title=Android bitmap内存溢出（一） href="show_307_199.html">Android bitmap内存溢出（一）</A> </li><li ><A title=Android bitmap内存溢出（二） href="show_308_199.html">Android bitmap内存溢出（二）</A> </li><li class="currentLink"><A title=Android 避免bitmap内存限制 href="show_309_199.html">Android 避免bitmap内存限制</A> </li><li ><A title=Bitmap导致的OOM终极解决方案 href="show_310_199.html">Bitmap导致的OOM终极解决方案</A> </li><li ><A title=Bitmap的用法（浅谈） href="show_311_199.html">Bitmap的用法（浅谈）</A> </li><li ><A title=Android 两种方法获取Bitmap href="show_312_199.html">Android 两种方法获取Bitmap</A> </li><li ><A title=Android整合两个Bitmap href="show_313_199.html">Android整合两个Bitmap</A> </li><li ><A title=通过纯RGB数据流生成Bitmap对象 href="show_314_199.html">通过纯RGB数据流生成Bitmap对象</A> </li><li ><A title=Bitmap总结 href="show_315_199.html">Bitmap总结</A> </li></UL>
+  <h2><A title="Android多媒体之Canvas" href="index_200.html">Android多媒体之Canvas</A></h2>
+
+  <h2><A title="Android多媒体之Drawable" href="index_201.html">Android多媒体之Drawable</A></h2>
+
+  <h2><A title="Android多媒体之gif" href="index_202.html">Android多媒体之gif</A></h2>
+
+  <h2><A title="Android多媒体之MediaStore" href="index_203.html">Android多媒体之MediaStore</A></h2>
+
+  <h2><A title="Android多媒体之动画" href="index_204.html">Android多媒体之动画</A></h2>
+
+  <h2><A title="Android多媒体之分辨率" href="index_205.html">Android多媒体之分辨率</A></h2>
+
+  <h2><A title="Android多媒体之分屏幕" href="index_206.html">Android多媒体之分屏幕</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 避免bitmap内存限制</H2>
+<div style="line-height:20px; font-size:14px;"><p>在编写Android程序的时候，我们总是难免会碰到OOM（OUT OF MEMORY）的错误，那么这个错误究竟是怎么来的呢，可以先看一下这篇文章ANDROID BITMAP内存限制OOM,OUT OF MEMORY。</p><p>这里，我使用Gallery来举例，在模拟器中，不会出现OOM错误，但是，一旦把程序运行到真机里，图片文件一多，必然会出现OOM,我们通过做一些额外的处理来避免。</p><p>1.创建一个图片缓存对象HashMap dataCache，integer对应Adapter中的位置position，我们只用缓存处在显示中的图片，对于之外的位置，如果dataCache中有对应的图片，我们需要进行回收内存。在这个例子中，Adapter对象的getView方法首先判断该位置是否有缓存的bitmap，如果没有，则解码图片（bitmapDecoder.getPhotoItem，BitmapDecoder类见后面）并返回bitmap对象，设置dataCache在该位置上的bitmap缓存以便之后使用；若是该位置存在缓存，则直接取出来使用，避免了再一次调用底层的解码图像需要的内存开销。有时为了提高Gallery的更新速度，我们还可以预存储一些位置上的bitmap，比如存储显示区域位置外向上3个向下3个位置的bitmap，这样上或下滚动 Gallery时可以加快getView的获取。</p><p><pre><font class="keyword">public </font>View getView(</font><font class="keyword">int </font>position, View convertView, ViewGroup parent) {</p><p>	<font class="keyword">if </font>(convertView == </font><font class="keyword">null</font>) {</p><p>		LayoutInflater inflater = LayoutInflater.from(context);</p><p>		</font>convertView = inflater.inflate(R.layout.photo_item, <font class="keyword">null</font>);</p><p>		</font>holder = <font class="keyword">new </font>ViewHolder();</p><p>		holder.photo = (ImageView) convertView</p><p>				.findViewById(R.id.photo_item_image);</p><p>		holder.photoTitle = (TextView) convertView</p><p>				.findViewById(R.id.photo_item_title);</p><p>		holder.photoDate = (TextView) convertView</p><p>				.findViewById(R.id.photo_item_date);</p><p>		convertView.setTag(holder);</p><p>	</font>} <font class="keyword">else </font>{</p><p>		holder = (ViewHolder) convertView.getTag();</p><p>	}</p><p>	cursor.moveToPosition(position);</p><p>	Bitmap current = dateCache.get(position);</p><p>	<font class="keyword">if </font>(current != </font><font class="keyword">null</font>) {<font class="Comments">// 如果缓存中已解码该图片，则直接返回缓存中的图片</font></p><p>		holder.photo.setImageBitmap(current);</p><p>	</font>} <font class="keyword">else </font>{</p><p>		current = bitmapDecoder.getPhotoItem(cursor.getString(1), 2);</p><p>		holder.photo.setImageBitmap(current);</p><p>		dateCache.put(position, current);</p><p>	}</p><p>	holder.photoTitle.setText(cursor.getString(2));</p><p>	holder.photoDate.setText(cursor.getString(4));</p><p>	<font class="keyword">return </font>convertView;</p><p>}</p><p><font class="keyword">import </font>java.io.FileNotFoundException;</p><p><font class="keyword">import </font>java.io.FileOutputStream;</p><p><font class="keyword">import </font>android.content.Context;</p><p><font class="keyword">import </font>android.graphics.Bitmap;</p><p><font class="keyword">import </font>android.graphics.BitmapFactory;</p><p><font class="keyword">import </font>android.graphics.Matrix;</p><p><font class="keyword">public </font><font class="keyword">class </font>BitmapDecoder {</p><p>	<font class="keyword">private </font><font class="keyword">static </font><font class="keyword">final </font>String TAG = <font class="Fields">"BitmapDecoder"</font>;</p><p>	<font class="keyword">private </font>Context context;</p><p>	<font class="keyword">public </font>BitmapDecoder(Context context) {</p><p>		<font class="keyword">this</font>.context = context;</p><p>	}</p><p>	<font class="keyword">public </font>Bitmap getPhotoItem(String filepath, </font><font class="keyword">int </font>size) {</p><p>		</font>BitmapFactory.Options options = <font class="keyword">new </font>BitmapFactory.Options();</p><p>		options.inSampleSize = size;</p><p>		Bitmap bitmap = BitmapFactory.decodeFile(filepath, options);</p><p>		</font>bitmap = Bitmap.createScaledBitmap(bitmap, 180, 251, <font class="keyword">true</font>);</p><p>		<font class="Comments">// 预先缩放，避免实时缩放，可以提高更新率</font></p><p>		<font class="keyword">return </font>bitmap;</p><p>	}</p><p>}</p><p></pre></p><p>2.由于Gallery控件的特点，总有一个item处于当前选择状态，我们利用此时进行dataCache中额外不用的bitmap的清理，来释放内存。</p><p><pre>@Override</p><p><font class="keyword">public </font><font class="keyword">void </font>onItemSelected(AdapterView&lt;?&gt; parent, View view, </font><font class="keyword">int </font>position,</p><p>		<font class="keyword">long </font>id) {</p><p>	releaseBitmap();</p><p>	</font>Log.v(TAG, <font class="Fields">"select id:"</font> + id);</p><p>}</p><p><font class="keyword">private </font><font class="keyword">void </font>releaseBitmap() {</p><p>	<font class="Comments">// 在这，我们分别预存储了第一个和最后一个可见位置之外的3个位置的bitmap</font></p><p>	<font class="Comments">// 即dataCache中始终只缓存了（M＝6＋Gallery当前可见view的个数）M个bitmap</font></p><p>	<font class="keyword">int </font>start = mGallery.getFirstVisiblePosition() - 3;</p><p>	<font class="keyword">int </font>end = mGallery.getLastVisiblePosition() + 3;</p><p>	</font>Log.v(TAG, <font class="Fields">"start:"</font> + start);</p><p>	</font>Log.v(TAG, <font class="Fields">"end:"</font> + end);</p><p>	<font class="Comments">// 释放position&lt;start之外的bitmap资源</font></p><p>	Bitmap delBitmap;</p><p>	<font class="keyword">for </font>(</font><font class="keyword">int </font>del = 0; del &lt; start; del++) {</p><p>		delBitmap = dateCache.get(del);</p><p>		<font class="keyword">if </font>(delBitmap != </font><font class="keyword">null</font>) {</p><p>			<font class="Comments">// 如果非空则表示有缓存的bitmap，需要清理</font></p><p>			</font>Log.v(TAG, <font class="Fields">"release position:"</font> + del);</p><p>			<font class="Comments">// 从缓存中移除该del-&gt;bitmap的映射</font></p><p>			dateCache.remove(del);</p><p>			delBitmap.recycle();</p><p>		}</p><p>	}</p><p>	freeBitmapFromIndex(end);</p><p>}</p><p><font class="Comments">/**</font></p><p> <font class="Comments">* 从某一位置开始释放bitmap资源</font></p><p> <font class="Comments">* @param index</font></p><p> <font class="Comments">*/</font></p><p><font class="keyword">private </font><font class="keyword">void </font>freeBitmapFromIndex(</font><font class="keyword">int </font>end) {</p><p>	<font class="Comments">// 释放之外的bitmap资源</font></p><p>	Bitmap delBitmap;</p><p>	<font class="keyword">for </font>(</font><font class="keyword">int </font>del = end + 1; del &lt; dateCache.size(); del++) {</p><p>		delBitmap = dateCache.get(del);</p><p>		<font class="keyword">if </font>(delBitmap != </font><font class="keyword">null</font>) {</p><p>			dateCache.remove(del);</p><p>			delBitmap.recycle();</p><p>			</font>Log.v(TAG, <font class="Fields">"release position:"</font> + del);</p><p>		}</p><p></p><p>	}</p><p>}</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

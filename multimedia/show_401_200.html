@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android中的Canvas（一）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li class="navcurrentLink"><A href="index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Android多媒体功能" href="index_196.html">Android多媒体功能</A></h2>
+
+  <h2><A title="Android多媒体之2D" href="index_197.html">Android多媒体之2D</A></h2>
+
+  <h2><A title="Android多媒体之3D" href="index_198.html">Android多媒体之3D</A></h2>
+
+  <h2><A title="Android多媒体之Bitmap" href="index_199.html">Android多媒体之Bitmap</A></h2>
+
+  <h2><A title="Android多媒体之Canvas" href="index_200.html">Android多媒体之Canvas</A></h2>
+<UL><li class="currentLink"><A title=Android中的Canvas（一） href="show_401_200.html">Android中的Canvas（一）</A> </li><li ><A title=Android中的Canvas（二） href="show_402_200.html">Android中的Canvas（二）</A> </li><li ><A title=Canvas建立欢迎界面 href="show_403_200.html">Canvas建立欢迎界面</A> </li><li ><A title=Android Bitmap与Canvas href="show_405_200.html">Android Bitmap与Canvas</A> </li><li ><A title=Android Bitmap和Canvas实例（一） href="show_406_200.html">Android Bitmap和Canvas实例（一）</A> </li><li ><A title=Android Bitmap和Canvas实例（二） href="show_407_200.html">Android Bitmap和Canvas实例（二）</A> </li><li ><A title=canvas的save()和restore()用法 href="show_408_200.html">canvas的save()和restore()用法</A> </li><li ><A title=canvas 之save,与restore href="show_409_200.html">canvas 之save,与restore</A> </li><li ><A title=Gridview控件自定义,canvas绘制view,gridview拖动时canvas重绘 href="show_411_200.html">Gridview控件自定义,canvas绘制view,gridview拖动时canvas重绘</A> </li><li ><A title=Canvas、Matrix倒影实例教程 href="show_412_200.html">Canvas、Matrix倒影实例教程</A> </li></UL>
+  <h2><A title="Android多媒体之Drawable" href="index_201.html">Android多媒体之Drawable</A></h2>
+
+  <h2><A title="Android多媒体之gif" href="index_202.html">Android多媒体之gif</A></h2>
+
+  <h2><A title="Android多媒体之MediaStore" href="index_203.html">Android多媒体之MediaStore</A></h2>
+
+  <h2><A title="Android多媒体之动画" href="index_204.html">Android多媒体之动画</A></h2>
+
+  <h2><A title="Android多媒体之分辨率" href="index_205.html">Android多媒体之分辨率</A></h2>
+
+  <h2><A title="Android多媒体之分屏幕" href="index_206.html">Android多媒体之分屏幕</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android中的Canvas（一）</H2>
+<div style="line-height:20px; font-size:14px;"><p>大家都知道在我们要显示一个自己定义的View有2中方法：</p><p>第一种：是直接new一个我们的View对象并且setContentView(myView); 假如我们自己定义的View对象叫myView。</p><p>其实我们在Activity里边就2行代码就搞定了。</p><p><pre>MyView myView = <font class="keyword">new </font>MyView(</font><font class="keyword">this</font>); </p><p>setContentView(myView); </p><p></pre></p><p>第二种方式就是 把它放到我们的布局文件中，例如这样</p><p><pre>&lt;android.demo.MyView </p><p>	</font>android:layout_width=<font class="Fields">"wrap_content"</font></p><p>	</font>android:layout_height=<font class="Fields">"wrap_content"</font></p><p>	/&gt;</p><p></pre></p><p>其中eoe.demo是我们的包名。 用这种方式 必须在我们自定义的View类也就是MyView里边 加上这样个构造方法</p><p><pre><font class="keyword">public </font>MyView(Context context, AttributeSet attributeSet){ </p><p>	<font class="keyword">super</font>(context, attributeSet); </p><p>} </p><p></pre></p><p>我们现在就来看看下面的一个实例，我们先来看看效果图：</p><p><img src="../img/media_canvas/01_canvas.jpg"></p><p><img src="../img/media_canvas/01_canvas2.jpg"></p><p>就是 一个图像旋转的例子，我们来看看代码吧：</p><p><pre><font class="keyword">import </font>android.app.Activity;</p><p><font class="keyword">import </font>android.os.Bundle;</p><p><font class="keyword">public </font><font class="keyword">class </font>testActivity </font><font class="keyword">extends </font>Activity {</p><p>	<font class="keyword">private </font>testView mTestview;</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onCreate(Bundle savedInstanceState) {</p><p>		<font class="keyword">super</font>.onCreate(savedInstanceState);</p><p>		setContentView(R.layout.main);</p><p>		mTestview = (testView) findViewById(R.id.testView);</p><p>		mTestview.initBitmap(320, 240, 0xcccccc);</p><p>	}</p><p>}</p><p></pre></p><p>布局文件 </p><p><pre>&lt;?xml version=<font class="Fields">"1.0"</font> encoding=</font><font class="Fields">"utf-8"</font>?&gt;</p><p>&lt;FrameLayout xmlns:android=<font class="Fields">"http:<font class="Comments">//schemas.android.com/apk/res/android</font></p><p>    </font>android:layout_width=<font class="Fields">"fill_parent</p><p>    </font>android:layout_height=<font class="Fields">"fill_parent"</font> &gt;</p><p>    &lt;testView</p><p>        </font>android:id=<font class="Fields">"@+id/testView</p><p>        </font>android:layout_width=<font class="Fields">"fill_parent</p><p>        </font>android:layout_height=<font class="Fields">"fill_parent</p><p>        </font>tileSize=<font class="Fields">"12"</font> /&gt;</p><p>&lt;/FrameLayout&gt;</p><p></pre></p><p>testView类 这个类就是我们自己定义的View类了 这里我们把它放在布局文件中加载进来 </p><p><pre><font class="keyword">import </font>android.content.Context;</p><p><font class="keyword">import </font>android.graphics.Bitmap;</p><p><font class="keyword">import </font>android.graphics.Canvas;</p><p><font class="keyword">import </font>android.graphics.Color;</p><p><font class="keyword">import </font>android.graphics.Matrix;</p><p><font class="keyword">import </font>android.graphics.Paint;</p><p><font class="keyword">import </font>android.graphics.Typeface;</p><p><font class="keyword">import </font>android.graphics.Bitmap.Config;</p><p><font class="keyword">import </font>android.util.AttributeSet;</p><p><font class="keyword">import </font>android.view.View;</p><p><font class="keyword">public </font><font class="keyword">class </font>testView </font><font class="keyword">extends </font>View {</p><p>	<font class="keyword">private </font>Bitmap mbmpTest = </font><font class="keyword">null</font>;</p><p>	<font class="keyword">private </font><font class="keyword">final </font>Pa</font><font class="keyword">int </font>mPa</font><font class="keyword">int </font>= </font><font class="keyword">new </font>Paint();</p><p>	<font class="keyword">private </font><font class="keyword">final </font>String mstrTitle = <font class="Fields">"感受Android带给我们的新体验"</font>;</p><p>	<font class="keyword">public </font>testView(Context context, AttributeSet attrs, </font><font class="keyword">int </font>defStyle) {</p><p>		<font class="keyword">super</font>(context, attrs, defStyle);</p><p>		mPaint.setColor(Color.GREEN);</p><p>	}</p><p>	<font class="keyword">public </font>testView(Context context, AttributeSet attrs) {</p><p>		<font class="keyword">super</font>(context, attrs);</p><p>		mPaint.setColor(Color.GREEN);</p><p>	}</p><p>	<font class="keyword">public </font><font class="keyword">boolean </font>initBitmap(</font><font class="keyword">int </font>w, </font><font class="keyword">int </font>h, </font><font class="keyword">int </font>c) {</p><p>		<font class="Comments">// 返回具有指定宽度和高度可变的位图,它的初始密度可以调用getDensity()</font></p><p>		mbmpTest = Bitmap.createBitmap(w, h, Config.ARGB_8888);</p><p>		<font class="Comments">// 把一个具有指定的位图绘制到画布上。位图必须是可变的。</font></p><p>		<font class="Comments">// 在画布最初的目标密度是与给定的位图的密度相同,返回一个具有指定位图的画布</font></p><p>		</font>Canvas canvas = <font class="keyword">new </font>Canvas(mbmpTest);</p><p>		<font class="Comments">// 设置画布的颜色</font></p><p>		canvas.drawColor(Color.WHITE);</p><p>		</font>Pa<font class="keyword">int </font>p = </font><font class="keyword">new </font>Paint();</p><p>		</font>String familyName = <font class="Fields">"宋体"</font>;</p><p>		Typeface font = Typeface.create(familyName, Typeface.BOLD);</p><p>		p.setColor(Color.RED);</p><p>		p.setTypeface(font);</p><p>		p.setTextSize(22);</p><p>		<font class="Comments">// 0,100指定文字的起始位置</font></p><p>		canvas.drawText(mstrTitle, 0, 100, p);</p><p>		<font class="keyword">return </font><font class="keyword">true</font>;</p><p>	}</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onDraw(Canvas canvas) {</p><p>		<font class="keyword">super</font>.onDraw(canvas);</p><p>		<font class="keyword">if </font>(mbmpTest != </font><font class="keyword">null</font>) {</p><p>			</font>Matrix matrix = <font class="keyword">new </font>Matrix();</p><p>			<font class="Comments">// matrix.postScale(0.5f, 0.5f);</font></p><p>			<font class="Comments">// 以 120，120这个点位圆心 旋转90度</font></p><p>			<font class="Comments">// matrix.setRotate(90,120,120);</font></p><p>			<font class="Comments">// 使用指定的矩阵绘制位图</font></p><p>			</font>canvas.drawBitmap(mbmpTest, matrix, mPa<font class="keyword">int</font>);</p><p>		}</p><p>	}</p><p>}</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

@@ -1,0 +1,58 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 用MD5加密算法加密密码（二）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li class="navcurrentLink"><A href="index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Android基础之运行原理和机制" href="index_215.html">Android基础之运行原理和机制</A></h2>
+
+  <h2><A title="Android高级篇之Android优化" href="index_216.html">Android高级篇之Android优化</A></h2>
+
+  <h2><A title="Android高级篇之编译及反编译" href="index_217.html">Android高级篇之编译及反编译</A></h2>
+
+  <h2><A title="Android高级篇之加密解密" href="index_218.html">Android高级篇之加密解密</A></h2>
+<UL><li ><A title=Android 加密解密 href="show_301_218.html">Android 加密解密</A> </li><li ><A title=Android 用MD5加密算法加密密码（一） href="show_302_218.html">Android 用MD5加密算法加密密码（一）</A> </li><li class="currentLink"><A title=Android 用MD5加密算法加密密码（二） href="show_303_218.html">Android 用MD5加密算法加密密码（二）</A> </li><li ><A title=Android下MD5加密 href="show_304_218.html">Android下MD5加密</A> </li><li ><A title=Android 获取自己程序APK包的MD5指纹 href="show_305_218.html">Android 获取自己程序APK包的MD5指纹</A> </li><li ><A title=Android客户端与服务器端通过DES加密认证 href="show_306_218.html">Android客户端与服务器端通过DES加密认证</A> </li><li ><A title=Java加密解密 href="show_307_218.html">Java加密解密</A> </li><li ><A title=给自己的网络数据加密 href="show_308_218.html">给自己的网络数据加密</A> </li></UL>
+  <h2><A title="Android高级篇之Android 安全" href="index_219.html">Android高级篇之Android 安全</A></h2>
+
+  <h2><A title="Android高级篇之算法" href="index_220.html">Android高级篇之算法</A></h2>
+
+  <h2><A title="Android高级篇之解锁教程" href="index_221.html">Android高级篇之解锁教程</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 用MD5加密算法加密密码（二）</H2>
+<div style="line-height:20px; font-size:14px;"><p>login.java</p><p><pre><font class="keyword">import </font>android.app.Activity;</p><p><font class="keyword">import </font>android.os.Bundle;</p><p><font class="keyword">public </font><font class="keyword">class </font>Login </font><font class="keyword">extends </font>Activity {</p><p>	@Override</p><p>	<font class="keyword">protected </font><font class="keyword">void </font>onCreate(Bundle savedInstanceState) {</p><p>		<font class="keyword">super</font>.onCreate(savedInstanceState);</p><p>		setContentView(R.layout.login);</p><p>	}</p><p>}</p><p></pre></p><p style="color:#3333FF;">MD5Demo.java</p><p><pre><font class="keyword">import </font>java.security.MessageDigest;</p><p><font class="keyword">import </font>android.app.Activity;</p><p><font class="keyword">import </font>android.content.Intent;</p><p><font class="keyword">import </font>android.content.SharedPreferences;</p><p><font class="keyword">import </font>android.os.Bundle;</p><p><font class="keyword">import </font>android.view.View;</p><p><font class="keyword">import </font>android.widget.Button;</p><p><font class="keyword">import </font>android.widget.EditText;</p><p><font class="keyword">import </font>android.widget.Toast;</p><p><font class="keyword">public </font><font class="keyword">class </font>MD5Demo </font><font class="keyword">extends </font>Activity {</p><p>	<font class="keyword">private </font>EditText username, password;</p><p>	<font class="keyword">private </font>Button savebtn, loginbtn;</p><p>	String user, pass;</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onCreate(Bundle savedInstanceState) {</p><p>		<font class="keyword">super</font>.onCreate(savedInstanceState);</p><p>		setContentView(R.layout.main);</p><p>		username = (EditText) findViewById(R.id.username);</p><p>		password = (EditText) findViewById(R.id.password);</p><p>		savebtn = (Button) findViewById(R.id.save);</p><p>		loginbtn = (Button) findViewById(R.id.login);</p><p>		</font>savebtn.setOnClickListener(<font class="keyword">new </font>Button.OnClickListener() {</p><p>			@Override</p><p>			<font class="keyword">public </font><font class="keyword">void </font>onClick(View v) {</p><p>				</font>SharedPreferences pre = getSharedPreferences(<font class="Fields">"loginvalue"</font>,</p><p>						MODE_WORLD_WRITEABLE);</p><p>				pass = MD5(password.getText().toString());</p><p>				user = username.getText().toString();</p><p>				<font class="keyword">if </font>(!pass.equals(<font class="Fields">""</font>) && !user.equals(</font><font class="Fields">""</font>)) {</p><p>					pre.edit()</p><p>							</font>.putString(<font class="Fields">"username"</font>,</p><p>									username.getText().toString())</p><p>							</font>.putString(<font class="Fields">"password"</font>, encryptmd5(pass)).commit();</p><p>					</font>Toast.makeText(getApplicationContext(), <font class="Fields">"保存成功!"</font>,</p><p>							Toast.LENGTH_SHORT).show();</p><p>				</font>} <font class="keyword">else </font>{</p><p>					</font>Toast.makeText(getApplicationContext(), <font class="Fields">"密码不能为空！"</font>,</p><p>							Toast.LENGTH_LONG).show();</p><p>				}</p><p>			}</p><p>		});</p><p>		</font>loginbtn.setOnClickListener(<font class="keyword">new </font>Button.OnClickListener() {</p><p>			@Override</p><p>			<font class="keyword">public </font><font class="keyword">void </font>onClick(View v) {</p><p>				</font>SharedPreferences sp = getSharedPreferences(<font class="Fields">"loginvalue"</font>,</p><p>						MODE_WORLD_READABLE);</p><p>				</font>String loginuser = sp.getString(<font class="Fields">"username"</font>, <font class="keyword">null</font>);</p><p>				</font>String loginpass = sp.getString(<font class="Fields">"password"</font>, <font class="keyword">null</font>);</p><p>				user = username.getText().toString();</p><p>				pass = password.getText().toString();</p><p>				String passmd5 = MD5(pass);</p><p>				String encryptmd5 = encryptmd5(passmd5);</p><p>				</font>System.<font class="Fields">out</font>.println(</font><font class="Fields">"username="</font> + loginuser</p><p>						</font>+ <font class="Fields">"-------------password="</font> + loginpass);</p><p>				</font>System.<font class="Fields">out</font>.println(</font><font class="Fields">"user=="</font> + user</p><p>						</font>+ <font class="Fields">"-------------encryptmd5=="</font> + encryptmd5);</p><p>				<font class="keyword">if </font>(!user.equals(<font class="Fields">""</font>) && !pass.equals(</font><font class="Fields">""</font>)) {</p><p>					<font class="keyword">if </font>(user.equals(loginuser) && encryptmd5.equals(loginpass)) {</p><p>						</font>Intent intent = <font class="keyword">new </font>Intent();</p><p>						</font>intent.setClass(MD5Demo.<font class="keyword">this</font>, Login.</font><font class="keyword">class</font>);</p><p>						</font>MD5Demo.<font class="keyword">this</font>.startActivity(intent);</p><p>						finish();</p><p>					</font>} <font class="keyword">else </font>{</p><p>						</font>Toast.makeText(getApplicationContext(), <font class="Fields">"密码是错误的！"</font>,</p><p>								Toast.LENGTH_LONG).show();</p><p>					}</p><p>				</font>} <font class="keyword">else </font>{</p><p>					</font>Toast.makeText(getApplicationContext(), <font class="Fields">"密码不能为空！"</font>,</p><p>							Toast.LENGTH_LONG).show();</p><p>				}</p><p>			}</p><p>		});</p><p>	}</p><p>	<font class="Comments">// MD5加密，32位</font></p><p>	<font class="keyword">public </font><font class="keyword">static </font>String MD5(String str) {</p><p>		</font>MessageDigest md5 = <font class="keyword">null</font>;</p><p>		<font class="keyword">try </font>{</p><p>			</font>md5 = MessageDigest.getInstance(<font class="Fields">"MD5"</font>);</p><p>		</font>} <font class="keyword">catch </font>(Exception e) {</p><p>			e.printStackTrace();</p><p>			<font class="keyword">return </font><font class="Fields">""</font>;</p><p>		}</p><p>		char[] charArray = str.toCharArray();</p><p>		</font>byte[] byteArray = <font class="keyword">new </font>byte[charArray.length];</p><p>		<font class="keyword">for </font>(</font><font class="keyword">int </font>i = 0; i &lt; charArray.length; i++) {</p><p>			byteArray[i] = (byte) charArray[i];</p><p>		}</p><p>		byte[] md5Bytes = md5.digest(byteArray);</p><p>		</font>StringBuffer hexValue = <font class="keyword">new </font>StringBuffer();</p><p>		<font class="keyword">for </font>(</font><font class="keyword">int </font>i = 0; i &lt; md5Bytes.length; i++) {</p><p>			<font class="keyword">int </font>val = ((</font><font class="keyword">int</font>) md5Bytes[i]) & 0xff;</p><p>			<font class="keyword">if </font>(val &lt; 16) {</p><p>				</font>hexValue.append(<font class="Fields">"0"</font>);</p><p>			}</p><p>			hexValue.append(Integer.toHexString(val));</p><p>		}</p><p>		<font class="keyword">return </font>hexValue.toString();</p><p>	}</p><p>	<font class="Comments">// 可逆的加密算法</font></p><p>	<font class="keyword">public </font><font class="keyword">static </font>String encryptmd5(String str) {</p><p>		char[] a = str.toCharArray();</p><p>		<font class="keyword">for </font>(</font><font class="keyword">int </font>i = 0; i &lt; a.length; i++) {</p><p>			</font>a[i] = (char) (a[i] ^ <font class="Fields">'l'</font>);</p><p>		}</p><p>		</font>String s = <font class="keyword">new </font>String(a);</p><p>		<font class="keyword">return </font>s;</p><p>	}</p><p>}</p><p></pre></p><p><img src="../img/adv_build/04_MD601.jpg"></p><p><img src="../img/adv_build/04_MD602.jpg"></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

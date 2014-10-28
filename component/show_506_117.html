@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>一个异步任务AsyncTask的例子_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li class="navcurrentLink"><A href="index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Activity" href="index_112.html">Activity</A></h2>
+
+  <h2><A title="Intent" href="index_113.html">Intent</A></h2>
+
+  <h2><A title="Service" href="index_114.html">Service</A></h2>
+
+  <h2><A title="Content Provider" href="index_115.html">Content Provider</A></h2>
+
+  <h2><A title="BroadcastReceiver" href="index_116.html">BroadcastReceiver</A></h2>
+
+  <h2><A title="AsyncTask" href="index_117.html">AsyncTask</A></h2>
+<UL><li ><A title=Android 浅谈AsyncTask href="show_501_117.html">Android 浅谈AsyncTask</A> </li><li ><A title=AsyncTask在Android中的实现 href="show_502_117.html">AsyncTask在Android中的实现</A> </li><li ><A title=AsyncTask几点要注意的地方 href="show_503_117.html">AsyncTask几点要注意的地方</A> </li><li ><A title=AsyncTask代替Handler更改主线程UI显示 href="show_504_117.html">AsyncTask代替Handler更改主线程UI显示</A> </li><li ><A title=实例讲解Android中如何实现图片的异步加载功能 href="show_505_117.html">实例讲解Android中如何实现图片的异步加载功能</A> </li><li class="currentLink"><A title=一个异步任务AsyncTask的例子 href="show_506_117.html">一个异步任务AsyncTask的例子</A> </li></UL>
+  <h2><A title="Handler" href="index_118.html">Handler</A></h2>
+
+  <h2><A title="Thread" href="index_119.html">Thread</A></h2>
+
+  <h2><A title="Permission" href="index_120.html">Permission</A></h2>
+
+  <h2><A title="AIDL" href="index_121.html">AIDL</A></h2>
+
+  <h2><A title="Json" href="index_122.html">Json</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>一个异步任务AsyncTask的例子</H2>
+<div style="line-height:20px; font-size:14px;"><p>直接看代码，注释很详细</p><p><pre><font class="keyword">import </font>android.app.Activity;</p><p><font class="keyword">import </font>android.os.AsyncTask;</p><p><font class="keyword">import </font>android.os.Bundle;</p><p><font class="keyword">import </font>android.os.Handler;</p><p><font class="keyword">import </font>android.os.Message;</p><p><font class="keyword">import </font>android.os.SystemClock;</p><p><font class="keyword">import </font>android.util.Log;</p><p><font class="keyword">import </font>android.widget.TextView;</p><p><font class="keyword">import </font>android.widget.Toast;</p><p><font class="Comments">/**</font></p><p> <font class="Comments">* 一个使用异步任务的例子。一般来说一个异步任务只执行一次，这个例子有点非主流，任务结束后会触发下一次任务执行。</font></p><p> <font class="Comments">* 由任务task在屏幕上打印数字，第一次任务执行由主Activity的onCreate触发，每次任务结束后</font></p><p> <font class="Comments">* 设定下一次触发的时间，共执行5次。对于任务来说doInBackground()接收任务的参数params，并执行产生数字的动作，每一个数字</font></p><p> <font class="Comments">* 产生后调用一次publishProgress()来更新UI，这个函数本身也是异步的只是用来发个消息调用完成后立即返回，</font></p><p> <font class="Comments">* 而产生数字的动作在继续进行。更新界面的操作在onProgressUpdate()中设定。 所有的on函数都由系统调用，不能用户调用。</font></p><p> <font class="Comments">* 代码中使用Handler是为了能触发任务执行，android规定这种异步任务每次执行完就结束，若要重新执行需要new一个新的。</font></p><p> <font class="Comments">* 异步任务只能在UI线程里面创建和执行</font></p><p> <font class="Comments">*/</font></p><p><font class="keyword">public </font><font class="keyword">class </font>testAsync </font><font class="keyword">extends </font>Activity {</p><p>	<font class="keyword">private </font><font class="keyword">final </font><font class="keyword">int </font>MSG_TIMER = 12;</p><p>	<font class="keyword">private </font>TextView vText = </font><font class="keyword">null</font>;</p><p>	@Override</p><p>	<font class="keyword">protected </font><font class="keyword">void </font>onCreate(Bundle savedInstanceState) {</p><p>		<font class="keyword">super</font>.onCreate(savedInstanceState);</p><p>		setContentView(R.layout.test);</p><p>		vText = (TextView) findViewById(R.id.TextView01);</p><p>		</font>vText.setText(<font class="Fields">"Num..."</font>);</p><p>		<font class="keyword">new </font>task().execute(<font class="Fields">"-&gt;"</font>);</p><p>	}</p><p>	<font class="Comments">// 接收任务task发来的消息，触发一个新的任务</font></p><p>	<font class="keyword">private </font><font class="keyword">final </font>Handler handler = </font><font class="keyword">new </font>Handler() {</p><p>		@Override</p><p>		<font class="keyword">public </font><font class="keyword">void </font>handleMessage(Message msg) {</p><p>			<font class="keyword">super</font>.handleMessage(msg);</p><p></p><p>			<font class="keyword">switch </font>(msg.what) {</p><p>			<font class="keyword">case </font>MSG_TIMER:</p><p>				<font class="keyword">new </font>task().execute(<font class="Fields">"-&gt;"</font>);</p><p>				<font class="keyword">break</font>;</p><p>			}</p><p>		}</p><p></p><p>	};</p><p>	<font class="Comments">// 任务执行次数</font></p><p>	<font class="keyword">private </font><font class="keyword">static </font><font class="keyword">int </font>times = 1;</p><p>	<font class="Comments">// AsyncTask&lt;&gt;的参数类型由用户设定，这里设为三个String</font></p><p>	<font class="Comments">// 第一个String代表输入到任务的参数类型，也即是doInBackground()的参数类型</font></p><p>	<font class="Comments">// 第二个String代表处理过程中的参数类型，也就是doInBackground()执行过程中的产出参数类型，通过publishProgress()发消息</font></p><p>	<font class="Comments">// 传递给onProgressUpdate()一般用来更新界面</font></p><p>	<font class="Comments">// 第三个String代表任务结束的产出类型，也就是doInBackground()的返回值类型，和onPostExecute()的参数类型</font></p><p>	<font class="keyword">private </font><font class="keyword">class </font>task </font><font class="keyword">extends </font>AsyncTask&lt;String, String, String&gt; {</p><p>		<font class="Comments">// 后台执行的耗时任务，接收参数并返回结果</font></p><p>		<font class="Comments">// 当onPostExecute()执行完，在后台线程中被系统调用</font></p><p>		@Override</p><p>		<font class="keyword">protected </font>String doInBackground(String... params) {</p><p>			<font class="Comments">// 在这里产生数据，送给onProgressUpdate以更新界面</font></p><p>			String pre = params[0];</p><p>			<font class="keyword">for </font>(</font><font class="keyword">int </font>i = 0; i &lt; 5; i++) {</p><p>				publishProgress(pre + i);</p><p>				<font class="Comments">// 这里是否需要停顿下</font></p><p>				SystemClock.sleep(1000);</p><p>			}</p><p>			<font class="keyword">return </font><font class="Fields">"任务结束"</font>;</p><p>		}</p><p>		<font class="Comments">// 任务执行结束后，在UI线程中被系统调用</font></p><p>		<font class="Comments">// 一般用来显示任务已经执行结束</font></p><p>		@Override</p><p>		<font class="keyword">protected </font><font class="keyword">void </font>onPostExecute(String result) {</p><p>			<font class="keyword">super</font>.onPostExecute(result);</p><p>			</font>Toast.makeText(testAsync.<font class="keyword">this</font>, result, Toast.LENGTH_SHORT).show();</p><p>			<font class="Comments">// 任务执行5次后推出</font></p><p>			<font class="keyword">if </font>(times &gt; 5) {</p><p>				<font class="keyword">return</font>;</font></p><p>			}</p><p>			<font class="Comments">// 设定下一次任务触发时间</font></p><p>			Message msg = Message.obtain();</p><p>			msg.what = MSG_TIMER;</p><p>			handler.sendMessageDelayed(msg, 10000L);</p><p>		}</p><p>		<font class="Comments">// 最先执行，在UI线程中被系统调用</font></p><p>		<font class="Comments">// 一般用来在UI中产生一个进度条</font></p><p>		@Override</p><p>		<font class="keyword">protected </font><font class="keyword">void </font>onPreExecute() {</p><p>			<font class="keyword">super</font>.onPreExecute();</p><p>			</font>Toast.makeText(testAsync.<font class="keyword">this</font>, <font class="Fields">"开始执行第"</font> + times + </font><font class="Fields">"次任务: "</font> + </font><font class="keyword">this</font>,</p><p>					Toast.LENGTH_SHORT).show();</p><p>			times++;</p><p>		}</p><p>		<font class="Comments">// 更新界面操作，在收到更新消息后，在UI线程中被系统调用</font></p><p>		@Override</p><p>		<font class="keyword">protected </font><font class="keyword">void </font>onProgressUpdate(String... values) {</p><p>			<font class="keyword">super</font>.onProgressUpdate(values);</p><p>			vText.append(values[0]);</p><p>		}</p><p>	}</p><p>}</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

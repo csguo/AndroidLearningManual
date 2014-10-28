@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android Service (二)_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li class="navcurrentLink"><A href="index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Activity" href="index_112.html">Activity</A></h2>
+
+  <h2><A title="Intent" href="index_113.html">Intent</A></h2>
+
+  <h2><A title="Service" href="index_114.html">Service</A></h2>
+<UL><li ><A title=Android Service (一) href="show_201_114.html">Android Service (一)</A> </li><li class="currentLink"><A title=Android Service (二) href="show_202_114.html">Android Service (二)</A> </li><li ><A title=Android Service生命周期 href="show_203_114.html">Android Service生命周期</A> </li><li ><A title=Android Service 生命期详解 href="show_204_114.html">Android Service 生命期详解</A> </li><li ><A title=Service的启动与运行 href="show_205_114.html">Service的启动与运行</A> </li><li ><A title=startservice和bindservice详解 href="show_206_114.html">startservice和bindservice详解</A> </li><li ><A title=Android Service 通信 href="show_207_114.html">Android Service 通信</A> </li><li ><A title=Service 与 Thread 的区分详解 href="show_208_114.html">Service 与 Thread 的区分详解</A> </li><li ><A title=判断一个指定的Service是否存在的方法 href="show_209_114.html">判断一个指定的Service是否存在的方法</A> </li><li ><A title=Android Service 代码实例 href="show_210_114.html">Android Service 代码实例</A> </li><li ><A title=Android Service 详解简单音乐播放器 href="show_211_114.html">Android Service 详解简单音乐播放器</A> </li></UL>
+  <h2><A title="Content Provider" href="index_115.html">Content Provider</A></h2>
+
+  <h2><A title="BroadcastReceiver" href="index_116.html">BroadcastReceiver</A></h2>
+
+  <h2><A title="AsyncTask" href="index_117.html">AsyncTask</A></h2>
+
+  <h2><A title="Handler" href="index_118.html">Handler</A></h2>
+
+  <h2><A title="Thread" href="index_119.html">Thread</A></h2>
+
+  <h2><A title="Permission" href="index_120.html">Permission</A></h2>
+
+  <h2><A title="AIDL" href="index_121.html">AIDL</A></h2>
+
+  <h2><A title="Json" href="index_122.html">Json</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android Service (二)</H2>
+<div style="line-height:20px; font-size:14px;"><p>java代码：</p><p><pre><font class="keyword">public </font><font class="keyword">class </font>CountService </font><font class="keyword">extends </font>Service {</p><p>	<font class="keyword">private </font><font class="keyword">boolean </font>threadDisable;</p><p>	<font class="keyword">private </font>String activityValue = </font><font class="keyword">null</font>;</p><p>	<font class="keyword">private </font><font class="keyword">int </font>count;</p><p>	@Override</p><p>	<font class="keyword">public </font>IBinder onBind(Intent intent) {</p><p>		</font>Log.v(<font class="Fields">"CountService"</font>, </font><font class="Fields">"on bind"</font>);</p><p>		<font class="keyword">return </font><font class="keyword">null</font>;</p><p>	}</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onCreate() {</p><p>		<font class="keyword">super</font>.onCreate();</p><p>		</font>Log.v(<font class="Fields">"CountService"</font>, </font><font class="Fields">"on create"</font>);</p><p>		<font class="keyword">new </font>Thread(</font><font class="keyword">new </font>Runnable() {</p><p>			@Override</p><p>			<font class="keyword">public </font><font class="keyword">void </font>run() {</p><p>				<font class="keyword">while </font>(!threadDisable) {</p><p>					<font class="keyword">try </font>{</p><p>						Thread.sleep(1000);</p><p>					</font>} <font class="keyword">catch </font>(InterruptedException e) {</p><p>					}</p><p>					count++;</p><p>					</font>Log.v(<font class="Fields">"CountService"</font>, </font><font class="Fields">"Count is "</font> + count);</p><p>				}</p><p>			}</p><p>		}).start();</p><p>	}</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onRebind(Intent intent) {</p><p>		<font class="Comments">// TODO Auto-generated method stub</font></p><p>		<font class="keyword">super</font>.onRebind(intent);</p><p>		</font>Log.v(<font class="Fields">"CountService"</font>, </font><font class="Fields">"on rebind"</font>);</p><p>	}</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onStart(Intent intent, </font><font class="keyword">int </font>startId) {</p><p>		<font class="Comments">// TODO Auto-generated method stub</font></p><p>		<font class="keyword">super</font>.onStart(intent, startId);</p><p>		</font>Log.v(<font class="Fields">"CountService"</font>, </font><font class="Fields">"on start"</font>);</p><p>		<font class="Comments">// 接收activity传递过来的值</font></p><p>		Bundle b = intent.getExtras();</p><p>		</font>activityValue = b.getString(<font class="Fields">"activity-to-service"</font>);</p><p>		</font>Log.v(<font class="Fields">"CountService"</font>, activityValue);</p><p>	}</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">boolean </font>onUnbind(Intent intent) {</p><p>		<font class="Comments">// TODO Auto-generated method stub</font></p><p>		</font>Log.v(<font class="Fields">"CountService"</font>, </font><font class="Fields">"on unbind"</font>);</p><p>		<font class="keyword">return </font><font class="keyword">super</font>.onUnbind(intent);</p><p>	}</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onDestroy() {</p><p>		<font class="keyword">super</font>.onDestroy();</p><p>		<font class="keyword">this</font>.threadDisable = </font><font class="keyword">true</font>;</p><p>		</font>Log.v(<font class="Fields">"CountService"</font>, </font><font class="Fields">"on destroy"</font>);</p><p>	}</p><p>	<font class="keyword">public </font><font class="keyword">int </font>getCount() {</p><p>		<font class="keyword">return </font>count;</p><p>	}</p><p>}</p><p></pre></p><p>context.bindService() </p><p><pre><font class="keyword">public </font><font class="keyword">interface </font>ICountService {</p><p>	<font class="keyword">public </font><font class="keyword">abstract </font><font class="keyword">int </font>getCount();</p><p>}</p><p></pre></p><p>java代码：</p><p><pre><font class="keyword">public </font><font class="keyword">class </font>BindCountService </font><font class="keyword">extends </font>Service {</p><p>	<font class="keyword">private </font><font class="keyword">int </font>count;</p><p>	<font class="keyword">private </font><font class="keyword">boolean </font>threadDisable;</p><p>	<font class="keyword">private </font>String activityValue = </font><font class="keyword">null</font>;</p><p>	@Override</p><p>	<font class="keyword">public </font>IBinder onBind(Intent intent) {</p><p>		</font>Log.v(<font class="Fields">"BindCountService"</font>, </font><font class="Fields">"on bind"</font>);</p><p>		<font class="Comments">// 接收activity传递过来的值</font></p><p>		Bundle b = intent.getExtras();</p><p>		</font>activityValue = b.getString(<font class="Fields">"activity-to-bindservice"</font>);</p><p>		</font>Log.v(<font class="Fields">"BindCountService"</font>, activityValue);</p><p>		<font class="keyword">return </font>serviceBinder;</p><p>	}</p><p>	<font class="keyword">private </font>ServiceBinder serviceBinder = </font><font class="keyword">new </font>ServiceBinder();</p><p>	<font class="keyword">public </font><font class="keyword">class </font>ServiceBinder </font><font class="keyword">extends </font>Binder </font><font class="keyword">implements </font>ICountService {</p><p>		@Override</p><p>		<font class="keyword">public </font><font class="keyword">int </font>getCount() {</p><p>			<font class="keyword">return </font>count;</p><p>		}</p><p>	}</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onCreate() {</p><p>		<font class="keyword">super</font>.onCreate();</p><p>		</font>Log.v(<font class="Fields">"BindCountService"</font>, </font><font class="Fields">"on create"</font>);</p><p>		<font class="keyword">new </font>Thread(</font><font class="keyword">new </font>Runnable() {</p><p>			@Override</p><p>			<font class="keyword">public </font><font class="keyword">void </font>run() {</p><p>				<font class="keyword">while </font>(!threadDisable) {</p><p>					<font class="keyword">try </font>{</p><p>						Thread.sleep(1000);</p><p>					</font>} <font class="keyword">catch </font>(InterruptedException e) {</p><p>					}</p><p>					count++;</p><p>					</font>Log.v(<font class="Fields">"BindCountService"</font>, </font><font class="Fields">"Count is "</font> + count);</p><p>				}</p><p>			}</p><p>		}).start();</p><p>	}</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onRebind(Intent intent) {</p><p>		<font class="Comments">// TODO Auto-generated method stub</font></p><p>		<font class="keyword">super</font>.onRebind(intent);</p><p>		</font>Log.v(<font class="Fields">"BindCountService"</font>, </font><font class="Fields">"on rebind"</font>);</p><p>	}</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onStart(Intent intent, </font><font class="keyword">int </font>startId) {</p><p>		<font class="Comments">// TODO Auto-generated method stub</font></p><p>		<font class="keyword">super</font>.onStart(intent, startId);</p><p>		</font>Log.v(<font class="Fields">"BindCountService"</font>, </font><font class="Fields">"on start"</font>);</p><p>	}</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">boolean </font>onUnbind(Intent intent) {</p><p>		<font class="Comments">// TODO Auto-generated method stub</font></p><p>		</font>Log.v(<font class="Fields">"BindCountService"</font>, </font><font class="Fields">"on unbind"</font>);</p><p>		<font class="keyword">return </font><font class="keyword">super</font>.onUnbind(intent);</p><p>	}</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onDestroy() {</p><p>		<font class="keyword">super</font>.onDestroy();</p><p>		<font class="keyword">this</font>.threadDisable = </font><font class="keyword">true</font>;</p><p>		</font>Log.v(<font class="Fields">"BindCountService"</font>, </font><font class="Fields">"on destroy"</font>);</p><p>	}</p><p>}</p><p></pre></p><p></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

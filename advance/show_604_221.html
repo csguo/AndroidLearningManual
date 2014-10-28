@@ -1,0 +1,58 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android屏幕锁定代码，同时分享基于Rexsee通过js快速实现_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li class="navcurrentLink"><A href="index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Android基础之运行原理和机制" href="index_215.html">Android基础之运行原理和机制</A></h2>
+
+  <h2><A title="Android高级篇之Android优化" href="index_216.html">Android高级篇之Android优化</A></h2>
+
+  <h2><A title="Android高级篇之编译及反编译" href="index_217.html">Android高级篇之编译及反编译</A></h2>
+
+  <h2><A title="Android高级篇之加密解密" href="index_218.html">Android高级篇之加密解密</A></h2>
+
+  <h2><A title="Android高级篇之Android 安全" href="index_219.html">Android高级篇之Android 安全</A></h2>
+
+  <h2><A title="Android高级篇之算法" href="index_220.html">Android高级篇之算法</A></h2>
+
+  <h2><A title="Android高级篇之解锁教程" href="index_221.html">Android高级篇之解锁教程</A></h2>
+<UL><li ><A title=Android 说说亮屏锁和键盘锁 href="show_601_221.html">Android 说说亮屏锁和键盘锁</A> </li><li ><A title=点亮屏幕和屏幕解锁 href="show_602_221.html">点亮屏幕和屏幕解锁</A> </li><li ><A title=特殊代码 href="show_603_221.html">特殊代码</A> </li><li class="currentLink"><A title=Android屏幕锁定代码，同时分享基于Rexsee通过js快速实现 href="show_604_221.html">Android屏幕锁定代码，同时分享基于Rexsee通过js快速实现</A> </li></UL>
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android屏幕锁定代码，同时分享基于Rexsee通过js快速实现</H2>
+<div style="line-height:20px; font-size:14px;"><p>Android锁屏时会先调用onPause()；解锁时调用onResume，读入保存的应用程序的资源。如果运行程序时已经锁屏，应用程序会先调用onCreate(),然后onResume(),再则onPause()。</p><p>取消锁屏：</p><p><pre>&lt;uses-permission android:name=<font class="Fields">"android.permission.DISABLE_KEYGUARD"</font>/&gt;</p><p>KeyguardManager mKeyGuardManager = (KeyguardManager)getSystemService(KEYGUARD_SERVICE);</p><p>KeyguardLock mLock = mKeyGuardManager.newKeyguardLock(<font class="Fields">"自己Activity名字"</font>);</p><p>mLock.disableKeyguard();</p><p></pre></p><p>也是相当的简单了，但基于Rexsee的API，可以通过一句话搞定。</p><p style="color:#3333FF;">1. 取消锁屏：</p><p><pre>window.setTimeout(<font class="Fields">'rexseeKeyguard.disable();alert(\'</font>自动解锁！\</font><font class="Fields">');'</font>,10000);</p><p></pre></p><p>alert('请按电源键关屏再开屏看到锁屏画面，10秒后自动解锁。')</p><p style="color:#3333FF;">2. 启动锁屏：rexseeKeyguard.reEnable();</p><p>如下是源码：</p><p><pre>/* </p><p> <font class="Comments">* Copyright (C) 2011 The Rexsee Open Source Project </font></p><p> <font class="Comments">* </font></p><p> <font class="Comments">* Licensed under the Rexsee License, Version 1.0 (the "License"); </font></p><p> <font class="Comments">* you may not use this file except in compliance with the License. </font></p><p> <font class="Comments">* You may obtain a copy of the License at </font></p><p> <font class="Comments">*      http://www.rexsee.com/CN/legal/license.html </font></p><p> <font class="Comments">* Unless required by applicable law or agreed to in writing, software </font></p><p> <font class="Comments">* distributed under the License is distributed on an "AS IS" BASIS, </font></p><p> <font class="Comments">* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. </font></p><p> <font class="Comments">* See the License for the specific language governing permissions and </font></p><p> <font class="Comments">* limitations under the License. </font></p><p> <font class="Comments">*/</font></p><p><font class="keyword">import </font>rexsee.core.browser.JavascriptInterface;</p><p><font class="keyword">import </font>rexsee.core.browser.RexseeBrowser;</p><p><font class="keyword">import </font>android.app.KeyguardManager;</p><p><font class="keyword">import </font>android.app.KeyguardManager.KeyguardLock;</p><p><font class="keyword">import </font>android.content.Context;</p><p><font class="keyword">public </font><font class="keyword">class </font>RexseeKeyguard </font><font class="keyword">implements </font>JavascriptInterface {</p><p>	<font class="keyword">private </font><font class="keyword">static </font><font class="keyword">final </font>String INTERFACE_NAME = <font class="Fields">"Keyguard"</font>;</p><p>	@Override</p><p>	<font class="keyword">public </font>String getInterfaceName() {</p><p>		<font class="keyword">return </font>mBrowser.application.resources.prefix + INTERFACE_NAME;</p><p>	}</p><p></p><p>	@Override</p><p>	<font class="keyword">public </font>JavascriptInterface getInheritInterface(RexseeBrowser childBrowser) {</p><p>		<font class="keyword">return </font><font class="keyword">this</font>;</p><p>	}</p><p>	@Override</p><p>	<font class="keyword">public </font>JavascriptInterface getNewInterface(RexseeBrowser childBrowser) {</p><p>		<font class="keyword">return </font><font class="keyword">new </font>RexseeKeyguard(childBrowser);</p><p>	}</p><p>	<font class="keyword">private </font><font class="keyword">final </font>Context mContext;</p><p>	<font class="keyword">private </font><font class="keyword">final </font>RexseeBrowser mBrowser;</p><p>	<font class="keyword">private </font>KeyguardLock mKeyguardLock = </font><font class="keyword">null</font>;</p><p>	<font class="keyword">public </font>RexseeKeyguard(RexseeBrowser browser) {</p><p>		mBrowser = browser;</p><p>		mContext = browser.getContext();</p><p>	}</p><p>	<font class="keyword">public </font>RexseeKeyguard(Context context) {</p><p>		</font>mBrowser = <font class="keyword">null</font>;</p><p>		mContext = context;</p><p>	}</p><p>	<font class="Comments">// JavaScript Interface</font></p><p>	<font class="keyword">public </font><font class="keyword">void </font>enable() {</p><p>		/*</p><p>		 <font class="Comments">* try { DevicePolicyManager dpm = (DevicePolicyManager)</font></p><p>		 <font class="Comments">* mContext.getSystemService(Context.DEVICE_POLICY_SERVICE);</font></p><p>		 <font class="Comments">* dpm.lockNow(); } catch (Exception e) {</font></p><p>		 <font class="Comments">* mBrowser.exception(getInterfaceName(), e); }</font></p><p>		 <font class="Comments">*/</font></p><p>	}</p><p>	<font class="keyword">public </font><font class="keyword">void </font>reEnable() {</p><p>		<font class="keyword">if </font>(mKeyguardLock != </font><font class="keyword">null</font>) {</p><p>			mKeyguardLock.reenableKeyguard();</p><p>			</font>mKeyguardLock = <font class="keyword">null</font>;</p><p>		}</p><p>	}</p><p>	<font class="keyword">public </font><font class="keyword">void </font>disable() {</p><p>		KeyguardManager keyguardManager = (KeyguardManager) mContext</p><p>				.getSystemService(Context.KEYGUARD_SERVICE);</p><p>		</font>mKeyguardLock = keyguardManager.newKeyguardLock(<font class="Fields">""</font>);</p><p>		mKeyguardLock.disableKeyguard();</p><p>	}</p><p>}  </p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

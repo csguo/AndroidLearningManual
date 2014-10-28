@@ -1,0 +1,83 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android学习手册_源码开发</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li class="navcurrentLink"><A href="index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">源码开发</div>
+
+  <h2 ><A title="Launcher" href="index_207.html">Launcher</A></h2>
+
+  <h2 ><A title="电话系统RIL" href="index_208.html">电话系统RIL</A></h2>
+
+  <h2 ><A title="进程间通信" href="index_209.html">进程间通信</A></h2>
+
+  <h2 class="currentLink"><A title="内部sensor系统" href="index_210.html">内部sensor系统</A></h2>
+<UL><li class="currentLink"><A title=Android 浅谈Sensor工作流程（一） href="show_301_210.html">Android 浅谈Sensor工作流程（一）</A> </li><li ><A title=Android 浅谈Sensor工作流程（二） href="show_302_210.html">Android 浅谈Sensor工作流程（二）</A> </li><li ><A title=Android 浅谈Sensor工作流程（三） href="show_303_210.html">Android 浅谈Sensor工作流程（三）</A> </li><li ><A title=Android 浅谈Sensor工作流程（四） href="show_304_210.html">Android 浅谈Sensor工作流程（四）</A> </li><li ><A title=Android 浅谈Sensor工作流程（五） href="show_305_210.html">Android 浅谈Sensor工作流程（五）</A> </li><li ><A title=Sensor传感器源码的阅读与应用开发简单实例 href="show_306_210.html">Sensor传感器源码的阅读与应用开发简单实例</A> </li></UL>
+  <h2 ><A title="内部surface系统" href="index_211.html">内部surface系统</A></h2>
+
+  <h2 ><A title="启动流程" href="index_212.html">启动流程</A></h2>
+
+  <h2 ><A title="源码编译" href="index_213.html">源码编译</A></h2>
+
+  <h2 ><A title="状态栏" href="index_214.html">状态栏</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1>内部sensor系统</H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 浅谈Sensor工作流程（一）</H2>
+<P>　　我们使用 sensor 接口一般只要注册一下 SensorListener 像下面这样ApiDemo:[code=java]mGraphView = #[Keywords]new #GraphView(#[Keywords]this#);mSensorManager.registerListener(mGraphView,....);[/code]这里的</P>
+<P><A title="Android 浅谈Sensor工作流程（一）" href="show_301_210.html">进入 Android 浅谈Sensor工作流程（一）</A> </P></DIV>
+
+<DIV>
+<H2>Android 浅谈Sensor工作流程（二）</H2>
+<P>　　代码最后是一些 native 方法:[code=java]#[Keywords]private #[Keywords]static #native #[Keywords]void #nativeClassInit();#[Comments]//SensorManager 构造函数里调用#[Keywords]private #[Keywords]static #nat</P>
+<P><A title="Android 浅谈Sensor工作流程（二）" href="show_302_210.html">进入 Android 浅谈Sensor工作流程（二）</A> </P></DIV>
+
+<DIV>
+<H2>Android 浅谈Sensor工作流程（三）</H2>
+<P>　　另外还有一些唤醒和设置延迟的动作[code=java]#[Keywords]if #(mListeners.size() == 0) {	#_sensors_control_wake();#}#[Keywords]if #(minDelay &gt;= 0) {	#_sensors_control_set_delay(minDelay);#}[/code]从上</P>
+<P><A title="Android 浅谈Sensor工作流程（三）" href="show_303_210.html">进入 Android 浅谈Sensor工作流程（三）</A> </P></DIV>
+
+<DIV>
+<H2>Android 浅谈Sensor工作流程（四）</H2>
+<P>　　我们还是接上一篇帖子，做一个小例子让大家来看看。[code=java]sensors_data_open(JNIEnv *env, j#[Keywords]class #clazz, jobject fdo){	#j#[Keywords]class #FileDescriptor = env-&gt;FindClass(#[Fields]&quot;</P>
+<P><A title="Android 浅谈Sensor工作流程（四）" href="show_304_210.html">进入 Android 浅谈Sensor工作流程（四）</A> </P></DIV>
+
+<DIV>
+<H2>Android 浅谈Sensor工作流程（五）</H2>
+<P>　　代码：[code=java]struct sensors_data_device_t {	#struct hw_device_t common;	#[Tags]/**	#[Tags]* Prepare to read sensor data.	#[Tags]*	#[Tags]* This routine does NOT take ownership of the fd	#[Tags]* a</P>
+<P><A title="Android 浅谈Sensor工作流程（五）" href="show_305_210.html">进入 Android 浅谈Sensor工作流程（五）</A> </P></DIV>
+
+<DIV>
+<H2>Sensor传感器源码的阅读与应用开发简单实例</H2>
+<P>　　由于公司最近准备推出一款MID电脑，自己想做一款传感器相关的应用内置MID，所以花了一下午时间看了下源码学习了下。其实源码中传感器内容并不多！但是却是相当强大（我阅读的是Android2.2的源码，以2.2为标准），最</P>
+<P><A title="Sensor传感器源码的阅读与应用开发简单实例" href="show_306_210.html">进入 Sensor传感器源码的阅读与应用开发简单实例</A> </P></DIV>
+
+</DIV>
+
+<DIV id=footer style="display:none">
+<P align="center"> 
+ 
+ 
+ 
+  </P>
+</DIV></DIV></BODY></HTML>
+

@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android Json 基础_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li class="navcurrentLink"><A href="index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Activity" href="index_112.html">Activity</A></h2>
+
+  <h2><A title="Intent" href="index_113.html">Intent</A></h2>
+
+  <h2><A title="Service" href="index_114.html">Service</A></h2>
+
+  <h2><A title="Content Provider" href="index_115.html">Content Provider</A></h2>
+
+  <h2><A title="BroadcastReceiver" href="index_116.html">BroadcastReceiver</A></h2>
+
+  <h2><A title="AsyncTask" href="index_117.html">AsyncTask</A></h2>
+
+  <h2><A title="Handler" href="index_118.html">Handler</A></h2>
+
+  <h2><A title="Thread" href="index_119.html">Thread</A></h2>
+
+  <h2><A title="Permission" href="index_120.html">Permission</A></h2>
+
+  <h2><A title="AIDL" href="index_121.html">AIDL</A></h2>
+
+  <h2><A title="Json" href="index_122.html">Json</A></h2>
+<UL><li class="currentLink"><A title=Android Json 基础 href="show_1001_122.html">Android Json 基础</A> </li><li ><A title=Json写入类-JsonWriter href="show_1002_122.html">Json写入类-JsonWriter</A> </li><li ><A title=Android Json解析示例代码 href="show_1003_122.html">Android Json解析示例代码</A> </li><li ><A title=Android Json href="show_1004_122.html">Android Json</A> </li></UL>
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android Json 基础</H2>
+<div style="line-height:20px; font-size:14px;"><p style="color:#3333FF;">1、JSON(JavaScript Object Notation) 定义：</p><p>一种轻量级的数据交换格式，具有良好的可读和便于快速编写的特性。业内主流技术为其提供了完整的解决方案（有点类似于正则表达式，获得了当今大部分语言的支持），从而可以在不同平台间进行数据交换。JSON采用兼容性很高的文本格式，同时也具备类似于C语言体系的行为。 – Json.org</p><p style="color:#3333FF;">2、JSON的结构：</p><p>(1) Name/Value Pairs（无序的）：类似所熟知的Keyed list、 Hash table、Disctionary和Associative array。在Android平台中同时存在另外一个类"Bundle"，某种程度上具有相似的行为。</p><p>(2) Array（有序的）：一组有序的数据列表。</p><p style="color:#3333FF;">对象</p><p>对象是一个无序的Name/Value Pairs集合。{ name:value, name:value, name:value ....  }</p><p>例子：{ "name":"小猪","age":20 }</p><p style="color:#3333FF;">Array</p><p>Array是值（value）的有序集合。[ value , value , value ...... ] 值（value）可以是双引号括起来的字符串（string）、数值(number)、true、false、 null、对象（object）或者数组（array）。这些结构可以嵌套。</p><p>字符串（string）是由双引号包围的任意数量Unicode字符的集合，使用反斜线转义。一个字符（character）即一个单独的字符串（character string）。 例如：\ + " \ / b f n r t u 进行转义。</p><p>例子1： Array里面包含对象(object)</p><p>[ {"id":1,"name":"小猪" ,"age”:22} , {"id":2,"name":"小猫","age”:23} ,  .......]</p><p>例子2：同样对象(object)中可以包含Array</p><p>（1）一个对象包含1个数组，2个子对象</p><p><pre>{<font class="Fields">"root"</font>:[{</font><font class="Fields">"id"</font>:</font><font class="Fields">"001"</font>,</font><font class="Fields">"name"</font>:</font><font class="Fields">"С??"</font></font>},{</font><font class="Fields">"id"</font>:</font><font class="Fields">"002"</font>,</font><font class="Fields">"name"</font>:</font><font class="Fields">"Сè"</font></font>},{</font><font class="Fields">"id"</font>:</font><font class="Fields">"003"</font>,</font><font class="Fields">"name"</font>:</font><font class="Fields">"С??"</font></font>}],</p><p><font class="Fields">"total"</font>:3,</p><p><font class="Fields">"success"</font>:<font class="keyword">true</font></p><p>}</p><p></pre></p><p>（2）也可以对象嵌套子对象，子对象再嵌套数组</p><p><pre>{<font class="Fields">"calendar"</font>: </p><p>    </font>{<font class="Fields">"calendarlist"</font>:</p><p>            [</p><p>            </font>{<font class="Fields">"id"</font>:</font><font class="Fields">"001"</font>,</font><font class="Fields">"name"</font>:</font><font class="Fields">"С??"</font></font>},</p><p>            </font>{<font class="Fields">"id"</font>:</font><font class="Fields">"002"</font>,</font><font class="Fields">"name"</font>:</font><font class="Fields">"Сè"</font></font>}</p><p>            ]</p><p>    } </p><p>}</p><p></pre></p><p>总之，格式多种多样，可以互相嵌套。</p><p>在Android中包含四个与JSON相关的类和一个Exceptions：</p><p><pre>JSONArray</p><p>JSONObject</p><p>JSONStringer</p><p>JSONTokener</p><p>JSONException</p><p></pre></p><p>（1）JSONObject:</p><p>这是系统中有关JSON定义的基本单元，其包含一对儿(Key/Value)数值。</p><p>它对外部(External：应用toString()方法输出的数值)调用的响应体现为一个标准的字符串（例如：{“JSON”:“Hello,World”}，最外被大括号包裹，其中的Key和Value被冒号”:”分隔）。其对于内部(Internal)行为的操作格式略微，例如：初始化一个JSONObject实例，引用内部的put()方法添加数值：new JSONObject().put(“JSON”, “Hello, World!”)，在Key和Value之间是以逗号”,”分隔。</p><p>Value的类型包括：Boolean、JSONArray、JSONObject、Number、String或者默认值JSONObject.NULL object。</p><p>有两个不同的取值方法：</p><p>get(): 在确定数值存在的条件下使用，否则当无法检索到相关Key时，将会抛出一个Exception信息。</p><p>opt(): 这个方法相对比较灵活，当无法获取所指定数值时，将会返回一个默认数值，并不会抛出异常。</p><p>（2）JSONArray:</p><p>它代表一组有序的数值。将其转换为String输出(toString)所表现的形式是用方括号包裹，数值以逗号”,”分隔（例如：[value1,value2,value3]，大家可以亲自利用简短的代码更加直观的了解其格式）。这个类的内部同样具有查询行为，get()和opt()两种方法都可以通过index索引返回指定的数值，put()方法用来添加或者替换数值。</p><p>同样这个类的value类型可以包括：Boolean、JSONArray、JSONObject、Number、String或者默认值JSONObject.NULL object。</p><p>（3）JSONStringer:</p><p>根据官方的解释，这个类可以帮助快速和便捷的创建JSONtext。其最大的优点在于可以减少由于格式的错误导致程序异常，引用这个类可以自动严格按照JSON语法规则（syntaxrules）创建JSON text。每个JSONStringer实体只能对应创建一个JSON text。</p><p>根据下边的实例来了解其它相关信息：</p><p><pre>String myString = <font class="keyword">new </font>JSONStringer().object().key(<font class="Fields">"name"</font>).value(</font><font class="Fields">"小猪"</font>).endObject().toString();</p><p></pre></p><p>结果是一组标准格式的JSON text：{"name" : "小猪"}</p><p>其中的.object()和.endObject()必须同时使用，是为了按照Object标准给数值添加边界。同样，针对数组也有一组标准的方法来生成边界.array()和.endArray()。</p><p>（4）JSONTokener:</p><p>这个是系统为JSONObject和JSONArray构造器解析JSON source string的类，它可以从source string中提取数值信息。</p><p>JSONException:是JSON.org类抛出的异常信息。</p><p>下面引用一个完整的应用实例：</p><p>应用JSONObject存储Map类型数值：</p><p><pre><font class="keyword">public </font><font class="keyword">static </font>JSONObject getJSON(Map map) {</p><p>	Iterator iter = map.entrySet().iterator();</p><p>	</font>JSONObject holder = <font class="keyword">new </font>JSONObject();</p><p>	<font class="keyword">while </font>(iter.hasNext()) {</p><p>		</font>Map.En<font class="keyword">try </font>pairs = (Map.Entry) iter.next();</p><p>		String key = (String) pairs.getKey();</p><p>		Map m = (Map) pairs.getValue();</p><p>		</font>JSONObject data = <font class="keyword">new </font>JSONObject();</p><p>		<font class="keyword">try </font>{</p><p>			Iterator iter2 = m.entrySet().iterator();</p><p>			<font class="keyword">while </font>(iter2.hasNext()) {</p><p>				</font>Map.En<font class="keyword">try </font>pairs2 = (Map.Entry) iter2.next();</p><p>				data.put((String) pairs2.getKey(),</p><p>						(String) pairs2.getValue());</p><p>			}</p><p>			holder.put(key, data);</p><p>		</font>} <font class="keyword">catch </font>(JSONException e) {</p><p>			</font>Log.e(<font class="Fields">"Transforming"</font>, </font><font class="Fields">"There was an error packaging JSON"</font>, e);</p><p>		}</p><p>	}</p><p>	<font class="keyword">return </font>holder;</p><p>}</p><p><font class="keyword">public </font><font class="keyword">static </font>JSONObject getJSON(Map map) {</p><p>	Iterator iter = map.entrySet().iterator();</p><p>	</font>JSONObject holder = <font class="keyword">new </font>JSONObject();</p><p>	<font class="keyword">while </font>(iter.hasNext()) {</p><p>		</font>Map.En<font class="keyword">try </font>pairs = (Map.Entry) iter.next();</p><p>		String key = (String) pairs.getKey();</p><p>		Map m = (Map) pairs.getValue();</p><p>		</font>JSONObject data = <font class="keyword">new </font>JSONObject();</p><p>		<font class="keyword">try </font>{</p><p>			Iterator iter2 = m.entrySet().iterator();</p><p>			<font class="keyword">while </font>(iter2.hasNext()) {</p><p>				</font>Map.En<font class="keyword">try </font>pairs2 = (Map.Entry) iter2.next();</p><p>				data.put((String) pairs2.getKey(),</p><p>						(String) pairs2.getValue());</p><p>			}</p><p>			holder.put(key, data);</p><p>		</font>} <font class="keyword">catch </font>(JSONException e) {</p><p>			</font>Log.e(<font class="Fields">"Transforming"</font>, </font><font class="Fields">"There was an error packaging JSON"</font>, e);</p><p>		}</p><p>	}</p><p>	<font class="keyword">return </font>holder;</p><p>}</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

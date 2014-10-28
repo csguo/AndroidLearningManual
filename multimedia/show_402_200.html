@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android中的Canvas（二）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li class="navcurrentLink"><A href="index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Android多媒体功能" href="index_196.html">Android多媒体功能</A></h2>
+
+  <h2><A title="Android多媒体之2D" href="index_197.html">Android多媒体之2D</A></h2>
+
+  <h2><A title="Android多媒体之3D" href="index_198.html">Android多媒体之3D</A></h2>
+
+  <h2><A title="Android多媒体之Bitmap" href="index_199.html">Android多媒体之Bitmap</A></h2>
+
+  <h2><A title="Android多媒体之Canvas" href="index_200.html">Android多媒体之Canvas</A></h2>
+<UL><li ><A title=Android中的Canvas（一） href="show_401_200.html">Android中的Canvas（一）</A> </li><li class="currentLink"><A title=Android中的Canvas（二） href="show_402_200.html">Android中的Canvas（二）</A> </li><li ><A title=Canvas建立欢迎界面 href="show_403_200.html">Canvas建立欢迎界面</A> </li><li ><A title=Android Bitmap与Canvas href="show_405_200.html">Android Bitmap与Canvas</A> </li><li ><A title=Android Bitmap和Canvas实例（一） href="show_406_200.html">Android Bitmap和Canvas实例（一）</A> </li><li ><A title=Android Bitmap和Canvas实例（二） href="show_407_200.html">Android Bitmap和Canvas实例（二）</A> </li><li ><A title=canvas的save()和restore()用法 href="show_408_200.html">canvas的save()和restore()用法</A> </li><li ><A title=canvas 之save,与restore href="show_409_200.html">canvas 之save,与restore</A> </li><li ><A title=Gridview控件自定义,canvas绘制view,gridview拖动时canvas重绘 href="show_411_200.html">Gridview控件自定义,canvas绘制view,gridview拖动时canvas重绘</A> </li><li ><A title=Canvas、Matrix倒影实例教程 href="show_412_200.html">Canvas、Matrix倒影实例教程</A> </li></UL>
+  <h2><A title="Android多媒体之Drawable" href="index_201.html">Android多媒体之Drawable</A></h2>
+
+  <h2><A title="Android多媒体之gif" href="index_202.html">Android多媒体之gif</A></h2>
+
+  <h2><A title="Android多媒体之MediaStore" href="index_203.html">Android多媒体之MediaStore</A></h2>
+
+  <h2><A title="Android多媒体之动画" href="index_204.html">Android多媒体之动画</A></h2>
+
+  <h2><A title="Android多媒体之分辨率" href="index_205.html">Android多媒体之分辨率</A></h2>
+
+  <h2><A title="Android多媒体之分屏幕" href="index_206.html">Android多媒体之分屏幕</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android中的Canvas（二）</H2>
+<div style="line-height:20px; font-size:14px;"><p>好了，我不知道大家看完这个例子有没有什么不明白的地方？或者哪里有疑问？为什么要这样？ 我就说说我的疑问吧，我看完这个例子就有很多问题。大家都注意到了 我们的testView里边有一个initBitmap方法 还有这么一句。</p><p><pre>canvas.drawText(mstrTitle, 0, 100, p); </p><p></pre></p><p>这个方法里边的代码，请大家一定要仔细看看，我看完之后的疑问就是我们在initBitmap方法里边不是都调用。</p><p><pre>canvas.drawText(mstrTitle, 0, 100, p); </p><p></pre></p><p>把文字画到屏幕上了吗为什么还要到onDraw里边在指定位图再画一次？刚开始晕的不行，我不知道这是为什么，在这里我就不贴代码了，其实大家可以试试的比如我自己定义一方法我把所有的画图操作都放到我自己定义的方法里边来，我在自己new一个Canvas对象并且调用它的drawBitmap 绘制位图 试试看。我就不用onDraw方法来画图。我也不用onDraw方法提供的 canvas对象。这里我就不演示了 大家 尽管自己疯狂的试试吧。 我想结果肯定是 不是异常，就是图画不出来前提是你得用自己new一个Canvas对象。就是你得用自己new 的Canvas对象去调用drawBitmap方法。 </p><p>那我为什么用自己定义的Canvas对象就不能画出图来呢？不知道我的意思表达清楚没有，这里我觉得一定得多试试了不然没体会的。其实大家可以多看看不管是我博客的例子还是网上的例子或者书上的例子，其实我也才学android不久你就会发现所有的画图不管是简单的花一些几何图像，长方形，圆形啊。还是一些图片的旋转缩放操作啊，我们应该注意到它们用的都是Draw方法提供的那个Canvas对象。像上边mo-android的那个例子它虽然new了一个Canvas但是最后还得去onDraw方法里边用onDraw方法提供的那个canvas对象调用drawBitmap方法来显示位图而这个位图恰恰是与刚才new 的那个Canvas对象关联的。这里先给大家看几个方法吧，就是觉得应该知道或者得注意一下。 </p><p><pre><font class="keyword">public </font>Canvas(Bitmap bitmap) </p><p></pre></p><p>构建一个具有指定位图绘制到画布上。位图必须是可变的。在画布最初的密度是与给定的位图的密度相同，这就是Canvas类的一个构造方法没什么，这里提示一下它需要的是一个 可变的位图。 下一个 </p><p><pre><font class="keyword">Public </font>void setBitmap(Bitmap bitmap) </p><p></pre></p><p>此方法说明：指定一个可变的位图绘制到画布，画图的密度匹配位图，这也是Canvas的一个方法 也是需要一个可变的位图。 </p><p><pre><font class="keyword">public final boolean </font>isMutable() </p><p></pre></p><p>Bitmap有这样一个方法来判断位图是否可变 如果可变返回值为true </p><p><pre>Bitmap bitmap = Bitmap.createBitmap(160, 250, Config.ARGB_8888);</p><p></pre></p><p>createBitmap是Bitmap类的一个静态方法 它返回的也是一个 可变的位图。我为什么这样说呢 ？</p><p>效果图：</p><p><img src="../img/media_canvas/02_canvas.jpg"></p><p>Bitmap的源码里有这样一个变量</p><p><pre><font class="keyword">private final boolean </font>mIsMutable; </p><p></pre></p><p>图中的mIsMutable  的值 为true 刚才上边已经说了Bitmap有一个isMutable方法可以判断一个位图是否为可变 值为true说明是可变的。 </p><p><pre><font class="keyword">private </font>Bitmap mBitmap; </p><p><font class="keyword">private </font>GL mGL; </p><p></pre></p><p>在android有这样一个概念就是native canvas这里就不翻译了。(比如什么母画布或者本地画布)我们的native canvas可以是屏面或者是GL或者图片画布。如果是屏面，我们的GL对象 mGL将是null, mBitmap可能会也可能不会。</p><p>目前(我们的默认构造方法创建一个画布，但是这个画布没有屏面) 也就是说如果你这样创建一个画布</p><p>Canvas canvas = new Canvas(); 这时候这个canvas对象将没有屏面也没有java-bitmap可以理解为java的位图。如果我们是以Gl为基础(native canvas)，然后mBitmap将是空的，mGl不能为空。因此这2个对象不可能都是非空的，因为这2个对象只要有一个不为空，另外的一个就得为空。但是有可能两个都为空。</p><p><img src="../img/media_canvas/02_canvas2.jpg"></p><p>最后我们来看看代码：</p><p><pre><font class="keyword">import </font>android.content.Context;</p><p><font class="keyword">import </font>android.graphics.Bitmap;</p><p><font class="keyword">import </font>android.graphics.Canvas;</p><p><font class="keyword">import </font>android.graphics.Paint;</p><p><font class="keyword">import </font>android.graphics.Bitmap.Config;</p><p><font class="keyword">import </font>android.graphics.drawable.BitmapDrawable;</p><p><font class="keyword">import </font>android.view.KeyEvent;</p><p><font class="keyword">import </font>android.view.MotionEvent;</p><p><font class="keyword">import </font>android.view.View;</p><p><font class="keyword">public </font><font class="keyword">class </font>GameView </font><font class="keyword">extends </font>View </font><font class="keyword">implements </font>Runnable {</p><p>	/* 声明Bitmap对象 */</p><p>	</font>Bitmap mBitQQ = <font class="keyword">null</font>;</p><p>	</font>Pa<font class="keyword">int </font>mPa</font><font class="keyword">int </font>= </font><font class="keyword">null</font>;</p><p>	/* 创建一个缓冲区 */</p><p>	</font>Bitmap mSCBitmap = <font class="keyword">null</font>;</p><p>	/* 创建Canvas对象 */</p><p>	</font>Canvas mCanvas = <font class="keyword">null</font>;</p><p>	<font class="keyword">public </font>GameView(Context context) {</p><p>		<font class="keyword">super</font>(context);</p><p>		/* 装载资源 */</p><p>		mBitQQ = ((BitmapDrawable) getResources().getDrawable(R.drawable.qq)).getBitmap();</p><p>		/* 创建屏幕大小的缓冲区 */</p><p>		mSCBitmap = Bitmap.createBitmap(320, 480, Config.ARGB_8888);</p><p>		/* 创建Canvas */</p><p>		</font>mCanvas = <font class="keyword">new </font>Canvas();</p><p>		/* 设置将内容绘制在mSCBitmap上 */</p><p>		mCanvas.setBitmap(mSCBitmap);</p><p>		</font>mPa<font class="keyword">int </font>= </font><font class="keyword">new </font>Paint();</p><p>		/* 将mBitQQ绘制到mSCBitmap上 */</p><p>		</font>mCanvas.drawBitmap(mBitQQ, 0, 0, mPa<font class="keyword">int</font>);</p><p>		/* 开启线程 */</p><p>		<font class="keyword">new </font>Thread(</font><font class="keyword">this</font>).start();</p><p>	}</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onDraw(Canvas canvas) {</p><p>		<font class="keyword">super</font>.onDraw(canvas);</p><p>		/* 将mSCBitmap显示到屏幕上 */</p><p>		</font>canvas.drawBitmap(mSCBitmap, 0, 0, mPa<font class="keyword">int</font>);</p><p>	}</p><p>	<font class="Comments">// 触笔事件</font></p><p>	<font class="keyword">public </font><font class="keyword">boolean </font>onTouchEvent(MotionEvent event) {</p><p>		<font class="keyword">return </font><font class="keyword">true</font>;</p><p>	}</p><p>	<font class="Comments">// 按键按下事件</font></p><p>	<font class="keyword">public </font><font class="keyword">boolean </font>onKeyDown(</font><font class="keyword">int </font>keyCode, KeyEvent event) {</p><p>		<font class="keyword">return </font><font class="keyword">true</font>;</p><p>	}</p><p>	<font class="Comments">// 按键弹起事件</font></p><p>	<font class="keyword">public </font><font class="keyword">boolean </font>onKeyUp(</font><font class="keyword">int </font>keyCode, KeyEvent event) {</p><p>		<font class="keyword">return </font><font class="keyword">false</font>;</p><p>	}</p><p>	<font class="keyword">public </font><font class="keyword">boolean </font>onKeyMultiple(</font><font class="keyword">int </font>keyCode, </font><font class="keyword">int </font>repeatCount, KeyEvent event) {</p><p>		<font class="keyword">return </font><font class="keyword">true</font>;</p><p>	}</p><p>	<font class="Comments">/**</font></p><p>	 <font class="Comments">* 线程处理</font></p><p>	 <font class="Comments">*/</font></p><p>	<font class="keyword">public </font><font class="keyword">void </font>run() {</p><p>		<font class="keyword">while </font>(!Thread.currentThread().isInterrupted()) {</p><p>			<font class="keyword">try </font>{</p><p>				Thread.sleep(100);</p><p>			</font>} <font class="keyword">catch </font>(InterruptedException e) {</p><p>				Thread.currentThread().interrupt();</p><p>			}</p><p>			<font class="Comments">// 使用postInvalidate可以直接在线程中更新界面</font></p><p>			postInvalidate();</p><p>		}</p><p>	}</p><p>}</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

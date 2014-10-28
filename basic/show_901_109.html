@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android私有文件夹文件的写入与读取_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li class="navcurrentLink"><A href="index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="开发基础" href="index_100.html">开发基础</A></h2>
+
+  <h2><A title="开发环境搭建" href="index_101.html">开发环境搭建</A></h2>
+
+  <h2><A title="模拟器" href="index_102.html">模拟器</A></h2>
+
+  <h2><A title="Resource" href="index_103.html">Resource</A></h2>
+
+  <h2><A title="Manifest" href="index_104.html">Manifest</A></h2>
+
+  <h2><A title="ADB" href="index_105.html">ADB</A></h2>
+
+  <h2><A title="DDMS" href="index_106.html">DDMS</A></h2>
+
+  <h2><A title="Logcat(日志)" href="index_107.html">Logcat(日志)</A></h2>
+
+  <h2><A title="打包" href="index_108.html">打包</A></h2>
+
+  <h2><A title="文件处理" href="index_109.html">文件处理</A></h2>
+<UL><li class="currentLink"><A title=Android私有文件夹文件的写入与读取 href="show_901_109.html">Android私有文件夹文件的写入与读取</A> </li><li ><A title=Android中asset文件夹和raw文件夹区别 href="show_902_109.html">Android中asset文件夹和raw文件夹区别</A> </li><li ><A title=文件创建 href="show_903_109.html">文件创建</A> </li><li ><A title=删除文件里的内容 href="show_904_109.html">删除文件里的内容</A> </li></UL>
+  <h2><A title="底层基础" href="index_111.html">底层基础</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android私有文件夹文件的写入与读取</H2>
+<div style="line-height:20px; font-size:14px;"><p>在介绍如何在Android平台下进行文件的读取之前，有必要了解Android平台下的数据存储规则。在其他的操作系统如Windows平台下，应用程序可以自由地或者在特定的访问权限基础上访问或修改其他应用程序名下的文件等资源，而在Android平台下，一个应用程序中所有的数据都是私有的。</p><p>当应用程序被安装到系统中后，其所在的包会有一个文件夹用于存放自己的数据，只有这个应用程序才有对这个文件夹的写入权限，这个私有的文件夹位于Android系统的/data/data/&lt;应用程序包名&gt;目录下，其他的应用程序都无法再这个文件夹中写入数据。除了存放私有的数据文件夹外，应用程序也具有SD卡的写入权限。</p><p>使用文件I/O方法可以直接往手机中存储数据，默认情况下这些文件不可以被其他的应用程序访问。Android平台支持java平台下的文件I/O操作，主要使用FileInputStream 和 FileOutputStream 这两个类来实现文件的存储与读取。获取这两个类对象的方式有两种。</p><p>一：第一种方式就是像Java平台下的实现方式一样通过构造器直接创建，如果需要向打开的文件末尾写入数据，可以通过使用构造器FileOutputStream(File file, boolean append)将 append设置为true来实现。不过需要注意的是采用这种方式获得FileOutputStream 对象时如果文件不存在或不可写入时，会抛出 FileNotFoundException 异常。</p><p>二：第二种获取 FileInputStream 和 FileOutputStream 对象的方式是调用 Context.openFileInput 和 Context.openFileOutput两个方法来创建。除了这两个方法外，Context对象还提供了其他几个用于对文件操作的方法。</p><p>下面通过一个小例子来说明Android平台下的文件I/O 操作方式，主要功能是在应用程序私有的数据文件夹下创建一个文件并读取其中的数据显示到屏幕的 TextView中,这个例子也比较简单只有一个类。</p><p>先看一下运行后的效果吧。</p><p><img src="../img/basic_file/01_file.jpg"></p><p><pre><font class="keyword">import </font>java.io.FileInputStream;</p><p><font class="keyword">import </font>java.io.FileOutputStream;</p><p><font class="keyword">import </font>org.apache.http.util.EncodingUtils;</p><p><font class="keyword">import </font>android.R;</p><p><font class="keyword">import </font>android.app.Activity;</p><p><font class="keyword">import </font>android.graphics.Color;</p><p><font class="keyword">import </font>android.os.Bundle;</p><p><font class="keyword">import </font>android.widget.TextView;</p><p><font class="keyword">public </font><font class="keyword">class </font>Activity01 </font><font class="keyword">extends </font>Activity {</p><p>	<font class="Comments">// 常量，为编码格式</font></p><p>	<font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font>String ENCODING = <font class="Fields">"UTF-8"</font>;</p><p>	<font class="Comments">// 定义文件的名称</font></p><p>	</font>String fileName = <font class="Fields">"test.txt"</font>;</p><p>	<font class="Comments">// 写入和读出的数据信息</font></p><p>	</font>String message = <font class="Fields">"欢迎大家来我们群里讨论问题"</font>;</p><p>	TextView textView;</p><p>	@Override</p><p>	<font class="keyword">protected </font><font class="keyword">void </font>onCreate(Bundle savedInstanceState) {</p><p>		<font class="keyword">super</font>.onCreate(savedInstanceState);</p><p>		setContentView(R.layout.main);</p><p>		writeFileData(fileName, message);</p><p>		String result = readFileData(fileName);</p><p>		textView = (TextView) findViewById(R.id.tv);</p><p>		textView.setTextColor(Color.GREEN);</p><p>		textView.setTextSize(20.0f);</p><p>		textView.setText(result);</p><p>	}</p><p>	<font class="Comments">// 向指定的文件中写入指定的数据</font></p><p>	<font class="keyword">public </font><font class="keyword">void </font>writeFileData(String filename, String message) {</p><p>		<font class="keyword">try </font>{</p><p>			FileOutputStream fout = openFileOutput(filename, MODE_PRIVATE);<font class="Comments">// 获得FileOutputStream</font></p><p>			<font class="Comments">// 将要写入的字符串转换为byte数组</font></p><p>			byte[] bytes = message.getBytes();</p><p>			fout.write(bytes);<font class="Comments">// 将byte数组写入文件</font></p><p>			fout.close();<font class="Comments">// 关闭文件输出流</font></p><p>		</font>} <font class="keyword">catch </font>(Exception e) {</p><p>			e.printStackTrace();</p><p>		}</p><p>	}</p><p>	<font class="Comments">// 打开指定文件，读取其数据，返回字符串对象</font></p><p>	<font class="keyword">public </font>String readFileData(String fileName) {</p><p>		</font>String result = <font class="Fields">""</font>;</p><p>		<font class="keyword">try </font>{</p><p>			FileInputStream fin = openFileInput(fileName);</p><p>			<font class="Comments">// 获取文件长度</font></p><p>			<font class="keyword">int </font>lenght = fin.available();</p><p>			</font>byte[] buffer = <font class="keyword">new </font>byte[lenght];</p><p>			fin.read(buffer);</p><p>			<font class="Comments">// 将byte数组转换成指定格式的字符串</font></p><p>			result = EncodingUtils.getString(buffer, ENCODING);</p><p>		</font>} <font class="keyword">catch </font>(Exception e) {</p><p>			e.printStackTrace();</p><p>		}</p><p>		<font class="keyword">return </font>result;</p><p>	}</p><p>}</p><p></pre></p><p>希望这个能对大家有点帮助。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

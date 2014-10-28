@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android里的BitMap（三）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li class="navcurrentLink"><A href="index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Android多媒体功能" href="index_196.html">Android多媒体功能</A></h2>
+
+  <h2><A title="Android多媒体之2D" href="index_197.html">Android多媒体之2D</A></h2>
+
+  <h2><A title="Android多媒体之3D" href="index_198.html">Android多媒体之3D</A></h2>
+
+  <h2><A title="Android多媒体之Bitmap" href="index_199.html">Android多媒体之Bitmap</A></h2>
+<UL><li ><A title=Android Bitmap类相关学习 href="show_302_199.html">Android Bitmap类相关学习</A> </li><li ><A title=Android里的BitMap（一） href="show_303_199.html">Android里的BitMap（一）</A> </li><li ><A title=Android里的BitMap（二） href="show_304_199.html">Android里的BitMap（二）</A> </li><li class="currentLink"><A title=Android里的BitMap（三） href="show_305_199.html">Android里的BitMap（三）</A> </li><li ><A title=Android里的BitMap（四） href="show_306_199.html">Android里的BitMap（四）</A> </li><li ><A title=Android bitmap内存溢出（一） href="show_307_199.html">Android bitmap内存溢出（一）</A> </li><li ><A title=Android bitmap内存溢出（二） href="show_308_199.html">Android bitmap内存溢出（二）</A> </li><li ><A title=Android 避免bitmap内存限制 href="show_309_199.html">Android 避免bitmap内存限制</A> </li><li ><A title=Bitmap导致的OOM终极解决方案 href="show_310_199.html">Bitmap导致的OOM终极解决方案</A> </li><li ><A title=Bitmap的用法（浅谈） href="show_311_199.html">Bitmap的用法（浅谈）</A> </li><li ><A title=Android 两种方法获取Bitmap href="show_312_199.html">Android 两种方法获取Bitmap</A> </li><li ><A title=Android整合两个Bitmap href="show_313_199.html">Android整合两个Bitmap</A> </li><li ><A title=通过纯RGB数据流生成Bitmap对象 href="show_314_199.html">通过纯RGB数据流生成Bitmap对象</A> </li><li ><A title=Bitmap总结 href="show_315_199.html">Bitmap总结</A> </li></UL>
+  <h2><A title="Android多媒体之Canvas" href="index_200.html">Android多媒体之Canvas</A></h2>
+
+  <h2><A title="Android多媒体之Drawable" href="index_201.html">Android多媒体之Drawable</A></h2>
+
+  <h2><A title="Android多媒体之gif" href="index_202.html">Android多媒体之gif</A></h2>
+
+  <h2><A title="Android多媒体之MediaStore" href="index_203.html">Android多媒体之MediaStore</A></h2>
+
+  <h2><A title="Android多媒体之动画" href="index_204.html">Android多媒体之动画</A></h2>
+
+  <h2><A title="Android多媒体之分辨率" href="index_205.html">Android多媒体之分辨率</A></h2>
+
+  <h2><A title="Android多媒体之分屏幕" href="index_206.html">Android多媒体之分屏幕</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android里的BitMap（三）</H2>
+<div style="line-height:20px; font-size:14px;"><p>2. 获取位图的信息</p><p>要获取位图信息，比如位图大小、像素、density、透明度、颜色格式等，获取得到Bitmap就迎刃而解了，这些信息在Bitmap的手册中，这里只是辅助说明以下2点：</p><p>*在Bitmap中对RGB颜色格式使用Bitmap.Config定义，仅包括ALPHA_8、ARGB_4444、ARGB_8888、RGB_565，缺少了一些其他的，比如说RGB_555，在开发中可能需要注意这个小问题；</p><p>*Bitmap还提供了compress()接口来压缩图片，不过AndroidSAK只支持PNG、JPG格式的压缩；其他格式的需要Android开发人员自己补充了。</p><p>3. 显示位图</p><p>显示位图可以使用核心类Canvas，通过Canvas类的drawBirmap()显示位图，或者借助于BitmapDrawable来将Bitmap绘制到Canvas。当然，也可以通过BitmapDrawable将位图显示到View中。</p><p>转换为BitmapDrawable对象显示位图</p><p><pre><font class="Comments">// 获取位图</font></p><p>Bitmap bmp=BitmapFactory.decodeResource(res, R.drawable.pic180);</p><p><font class="Comments">// 转换为BitmapDrawable对象</font></p><p>BitmapDrawable bmpDraw=<font class="keyword">new </font>BitmapDrawable(bmp);</p><p><font class="Comments">// 显示位图</font></p><p>ImageView iv2 = (ImageView)findViewById(R.id.ImageView02);</p><p>iv2.setImageDrawable(bmpDraw);</p><p></pre></p><p>使用Canvas类显示位图</p><p>这儿采用一个继承自View的子类Panel，在子类的OnDraw中显示</p><p><pre><font class="keyword">public </font><font class="keyword">class </font>MainActivity </font><font class="keyword">extends </font>Activity {</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onCreate(Bundle savedInstanceState) {</p><p>		<font class="keyword">super</font>.onCreate(savedInstanceState);</p><p>		</font>setContentView(<font class="keyword">new </font>Panel(</font><font class="keyword">this</font>));</p><p>	}</p><p>	<font class="keyword">class </font>Panel </font><font class="keyword">extends </font>View {</p><p>		<font class="keyword">public </font>Panel(Context context) {</p><p>			<font class="keyword">super</font>(context);</p><p>		}</p><p>		<font class="keyword">public </font><font class="keyword">void </font>onDraw(Canvas canvas) {</p><p>			Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.pic180);</p><p>			canvas.drawColor(Color.BLACK);</p><p>			</font>canvas.drawBitmap(bmp, 10, 10, <font class="keyword">null</font>);</p><p>		}</p><p>	}</p><p>}</p><p></pre></p><p>4. 位图缩放</p><p>（1）将一个位图按照需求重画一遍，画后的位图就是我们需要的了，与位图的显示几乎一样：drawBitmap(Bitmap bitmap, Rect src, Rect dst, Paint paint)。</p><p>（2）在原有位图的基础上，缩放原位图，创建一个新的位图：CreateBitmap(Bitmap source, int x, int y, int width, int height, Matrix m, boolean filter)</p><p>（3）借助Canvas的scale(float sx, float sy) （Preconcat the current matrix with the specified scale.），不过要注意此时整个画布都缩放了。</p><p>（4）借助Matrix：</p><p><pre>Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.pic180); </p><p>Matrix matrix=<font class="keyword">new </font>Matrix();</p><p>matrix.postScale(0.2f, 0.2f);</p><p>Bitmap dstbmp=Bitmap.createBitmap(bmp,0,0,bmp.getWidth(),</p><p>bmp.getHeight(),matrix,<font class="keyword">true</font>);</p><p>canvas.drawColor(Color.BLACK); </p><p>canvas.drawBitmap(dstbmp, 10, 10, <font class="keyword">null</font>);</p><p></pre></p><p>5. 位图旋转</p><p>同样，位图的旋转也可以借助Matrix或者Canvas来实现。</p><p><pre>Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.pic180); </p><p>Matrix matrix=<font class="keyword">new </font>Matrix();</p><p>matrix.postScale(0.8f, 0.8f);<font class="Comments">//缩放</font></p><p>matrix.postRotate(45);<font class="Comments">//旋转</font></p><p>Bitmap dstbmp=Bitmap.createBitmap(bmp,0,0,bmp.getWidth(),</p><p>bmp.getHeight(),matrix,<font class="keyword">true</font>);</p><p>canvas.drawColor(Color.BLACK);</p><p>canvas.drawBitmap(dstbmp, 10, 10, <font class="keyword">null</font>);</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

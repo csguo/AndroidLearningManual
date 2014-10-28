@@ -1,0 +1,58 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 连连看算法_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li class="navcurrentLink"><A href="index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Android基础之运行原理和机制" href="index_215.html">Android基础之运行原理和机制</A></h2>
+
+  <h2><A title="Android高级篇之Android优化" href="index_216.html">Android高级篇之Android优化</A></h2>
+
+  <h2><A title="Android高级篇之编译及反编译" href="index_217.html">Android高级篇之编译及反编译</A></h2>
+
+  <h2><A title="Android高级篇之加密解密" href="index_218.html">Android高级篇之加密解密</A></h2>
+
+  <h2><A title="Android高级篇之Android 安全" href="index_219.html">Android高级篇之Android 安全</A></h2>
+
+  <h2><A title="Android高级篇之算法" href="index_220.html">Android高级篇之算法</A></h2>
+<UL><li ><A title=Android 快速排序算法 href="show_501_220.html">Android 快速排序算法</A> </li><li class="currentLink"><A title=Android 连连看算法 href="show_502_220.html">Android 连连看算法</A> </li><li ><A title=Android五子棋算法简单实现 href="show_503_220.html">Android五子棋算法简单实现</A> </li><li ><A title=16位Alpha混合的简单算法 href="show_504_220.html">16位Alpha混合的简单算法</A> </li><li ><A title=颜色半透明混色算法 href="show_505_220.html">颜色半透明混色算法</A> </li><li ><A title=Gallery3D 各个界面范围算法 href="show_506_220.html">Gallery3D 各个界面范围算法</A> </li><li ><A title=计算几何常用算法 href="show_507_220.html">计算几何常用算法</A> </li></UL>
+  <h2><A title="Android高级篇之解锁教程" href="index_221.html">Android高级篇之解锁教程</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 连连看算法</H2>
+<div style="line-height:20px; font-size:14px;"><p>前置条件：用一二维数组存放Map,-1表示没有图案可以连通，非-1表示不同的图案。</p><p style="color:#3333FF;">首先是横向检测：</p><p><img src="../img/adv_algorithm/02_Map01.jpg"></p><p><pre><font class="keyword">private </font><font class="keyword">boolean </font>horizon(Po</font><font class="keyword">int </font>a, Po</font><font class="keyword">int </font>b) {</p><p>	<font class="keyword">if </font>(a.x == b.x && a.y == b.y)<font class="Comments">// 如果点击的是同一个图案，直接返回</font><font class="keyword">false</font></font></p><p>		<font class="keyword">return </font><font class="keyword">false</font>;</p><p>	<font class="keyword">int </font>x_start = a.y &lt;= b.y ? a.y : b.y;</p><p>	<font class="keyword">int </font>x_end = a.y &lt;= b.y ? b.y : a.y;</p><p>	<font class="keyword">for </font>(</font><font class="keyword">int </font>x = x_start + 1; x &lt; x_end; x++)</p><p>		<font class="Comments">// 只要一个不是-1，直接返回false</font></p><p>		<font class="keyword">if </font>(map[a.x][x] != -1) {</p><p>			<font class="keyword">return </font><font class="keyword">false</font>;</p><p>		}</p><p>	<font class="keyword">return </font><font class="keyword">true</font>;</p><p>}</p><p></pre></p><p style="color:#3333FF;">其次是纵向检测：</p><p><img src="../img/adv_algorithm/02_Map02.jpg"></p><p><pre><font class="keyword">private </font><font class="keyword">boolean </font>vertical(Po</font><font class="keyword">int </font>a, Po</font><font class="keyword">int </font>b) {</p><p>	<font class="keyword">if </font>(a.x == b.x && a.y == b.y)</p><p>		<font class="keyword">return </font><font class="keyword">false</font>;</p><p>	<font class="keyword">int </font>y_start = a.x &lt;= b.x ? a.x : b.x;</p><p>	<font class="keyword">int </font>y_end = a.x &lt;= b.x ? b.x : a.x;</p><p>	<font class="keyword">for </font>(</font><font class="keyword">int </font>y = y_start + 1; y &lt; y_end; y++)</p><p>		<font class="keyword">if </font>(map[y][a.y] != -1)</p><p>			<font class="keyword">return </font><font class="keyword">false</font>;</p><p>	<font class="keyword">return </font><font class="keyword">true</font>;</p><p>}</p><p></pre></p><p style="color:#3333FF;">一个拐角的检测：</p><p>如果一个拐角能连通的话，则必须存在C、D两点。其中C点的横坐标和A相同，纵坐标与B相同，D的横坐标与B相同，纵坐标与A相同。</p><p><img src="../img/adv_algorithm/02_Map03.jpg"></p><p><pre><font class="keyword">private </font><font class="keyword">boolean </font>oneCorner(Po</font><font class="keyword">int </font>a, Po</font><font class="keyword">int </font>b) {</p><p>	</font>Po<font class="keyword">int </font>c = </font><font class="keyword">new </font>Point(a.x, b.y);</p><p>	</font>Po<font class="keyword">int </font>d = </font><font class="keyword">new </font>Point(b.x, a.y);</p><p>	<font class="keyword">if </font>(map[c.x][c.y] == -1) {</p><p>		<font class="keyword">boolean </font>method1 = horizon(a, c) && vertical(b, c);</p><p>		<font class="keyword">return </font>method1;</p><p>	}</p><p>	<font class="keyword">if </font>(map[d.x][d.y] == -1) {</p><p>		<font class="keyword">boolean </font>method2 = vertical(a, d) && horizon(b, d);</p><p>		<font class="keyword">return </font>method2;</p><p>	</font>} <font class="keyword">else </font>{</p><p>		<font class="keyword">return </font><font class="keyword">false</font>;</p><p>	}</p><p>}</p><p></pre></p><p style="color:#3333FF;">两个拐角的检测：</p><p>这个比较复杂，如果两个拐角能连通的话，则必须存在图中所示的连线，这些连线夹在A、B的横、纵坐标之间,这样的线就以下这个类存储，direct是线的方向，用0、1表示不同的方向。</p><p><img src="../img/adv_algorithm/02_Map04.jpg"></p><p><pre><font class="keyword">class </font>Line {</p><p>	<font class="keyword">public </font>Po</font><font class="keyword">int </font>a;</p><p>	<font class="keyword">public </font>Po</font><font class="keyword">int </font>b;</p><p>	<font class="keyword">public </font><font class="keyword">int </font>direct;</p><p>	<font class="keyword">public </font>Line() {</p><p>	}</p><p>	<font class="keyword">public </font>Line(</font><font class="keyword">int </font>direct, Po</font><font class="keyword">int </font>a, Po</font><font class="keyword">int </font>b) {</p><p>		<font class="keyword">this</font>.direct = direct;</p><p>		<font class="keyword">this</font>.a = a;</p><p>		<font class="keyword">this</font>.b = b;</p><p>	}</p><p>}</p><p></pre></p><p>从A、B点的横纵两个方向进行扫描，就是Scan函数做的事情，把合适的线用LinkList存起来。</p><p><img src="../img/adv_algorithm/02_LinkList01.jpg"></p><p><pre><font class="keyword">private </font>LinkedList scan(Po</font><font class="keyword">int </font>a, Po</font><font class="keyword">int </font>b) {</p><p>	</font>ll = <font class="keyword">new </font>LinkedList&lt;Line&gt;();</p><p>	<font class="Comments">// Point c = new Point(a.x, b.y);</font></p><p>	<font class="Comments">// Point d = new Point(b.x, a.y);</font></p><p>	<font class="keyword">for </font>(</font><font class="keyword">int </font>y = a.y; y &gt;= 0; y--)</p><p>		<font class="keyword">if </font>(map[a.x][y] == -1 && map[b.x][y] == -1</p><p>				</font>&& vertical(<font class="keyword">new </font>Point(a.x, y), </font><font class="keyword">new </font>Point(b.x, y)))</p><p>			</font>ll.add(<font class="keyword">new </font>Line(0, </font><font class="keyword">new </font>Point(a.x, y), </font><font class="keyword">new </font>Point(b.x, y)));</p><p>	<font class="keyword">for </font>(</font><font class="keyword">int </font>y = a.y; y &lt; map.row; y++)</p><p>		<font class="keyword">if </font>(map[a.x][y] == -1 && map[b.x][y] == -1</p><p>				</font>&& vertical(<font class="keyword">new </font>Point(a.x, y), </font><font class="keyword">new </font>Point(b.x, y)))</p><p>			</font>ll.add(<font class="keyword">new </font>Line(0, </font><font class="keyword">new </font>Point(a.x, y), </font><font class="keyword">new </font>Point(b.x, y)));</p><p>	<font class="keyword">for </font>(</font><font class="keyword">int </font>x = a.x; x &gt;= 0; x--)</p><p>		<font class="keyword">if </font>(map[x][a.y] == -1 && map[x][b.y] == -1</p><p>				</font>&& horizon(<font class="keyword">new </font>Point(x, a.y), </font><font class="keyword">new </font>Point(x, b.y)))</p><p>			</font>ll.add(<font class="keyword">new </font>Line(1, </font><font class="keyword">new </font>Point(x, a.y), </font><font class="keyword">new </font>Point(x, b.y)));</p><p>	<font class="keyword">for </font>(</font><font class="keyword">int </font>x = a.x; x &lt; map.column; x++)</p><p>		<font class="keyword">if </font>(map[x][a.y] == -1 && map[x][b.y] == -1</p><p>				</font>&& horizon(<font class="keyword">new </font>Point(x, a.y), </font><font class="keyword">new </font>Point(x, b.y)))</p><p>			</font>ll.add(<font class="keyword">new </font>Line(1, </font><font class="keyword">new </font>Point(x, a.y), </font><font class="keyword">new </font>Point(x, b.y)));</p><p>	<font class="keyword">return </font>ll;</p><p>}</p><p></pre></p><p style="color:#3333FF;">最后是两个拐角的算法：</p><p>取出LinkList里面的线，测试A与B到该线的两点是否连通。</p><p><pre><font class="keyword">private </font><font class="keyword">boolean </font>twoCorner(Po</font><font class="keyword">int </font>a, Po</font><font class="keyword">int </font>b) {</p><p>	ll = scan(a, b);</p><p>	<font class="keyword">if </font>(ll.isEmpty())</p><p>		<font class="keyword">return </font><font class="keyword">false</font>;</p><p>	<font class="keyword">for </font>(</font><font class="keyword">int </font>index = 0; index &lt; ll.size(); index++) {</p><p>		Line line = (Line) ll.get(index);</p><p>		<font class="keyword">if </font>(line.direct == 1) {</p><p>			<font class="keyword">if </font>(vertical(a, line.a) && vertical(b, line.b)) {</p><p>				<font class="keyword">return </font><font class="keyword">true</font>;</p><p>			}</p><p>		</font>} <font class="keyword">else </font><font class="keyword">if </font>(horizon(a, line.a) && horizon(b, line.b)) {</p><p>			<font class="keyword">return </font><font class="keyword">true</font>;</p><p>		}</p><p>	}</p><p>	<font class="keyword">return </font><font class="keyword">false</font>;</p><p>}</p><p></pre></p><p>前面的函数有以下这个总的调用函数来调用，传入两个点，就可以判断这两个点是否符合连连看的算法了。</p><p><pre><font class="keyword">public </font><font class="keyword">boolean </font>checkLink(Po</font><font class="keyword">int </font>a, Po</font><font class="keyword">int </font>b) {</p><p>	<font class="keyword">if </font>(map[a.x][a.y] != map[b.x][b.y])<font class="Comments">// 如果图案不同，直接为</font><font class="keyword">false</font></font></p><p>		<font class="keyword">return </font><font class="keyword">false</font>;</p><p>	<font class="keyword">if </font>(a.x == b.x && horizon(a, b))</p><p>		<font class="keyword">return </font><font class="keyword">true</font>;</p><p>	<font class="keyword">if </font>(a.y == b.y && vertical(a, b))</p><p>		<font class="keyword">return </font><font class="keyword">true</font>;</p><p>	<font class="keyword">if </font>(oneCorner(a, b))</p><p>		<font class="keyword">return </font><font class="keyword">true</font>;</p><p>	else</p><p>		<font class="keyword">return </font>twoCorner(a, b);</p><p>}</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

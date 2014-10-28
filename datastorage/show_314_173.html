@@ -1,0 +1,58 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android从SD卡导入数据库.db文件至APK_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li class="navcurrentLink"><A href="index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="ContentProvider" href="index_170.html">ContentProvider</A></h2>
+
+  <h2><A title="Preferences" href="index_171.html">Preferences</A></h2>
+
+  <h2><A title="SQLite" href="index_172.html">SQLite</A></h2>
+
+  <h2><A title="SD卡" href="index_173.html">SD卡</A></h2>
+<UL><li ><A title=Android SQLite的数据库文件存储在SD卡中（一） href="show_301_173.html">Android SQLite的数据库文件存储在SD卡中（一）</A> </li><li ><A title=Android SQLite的数据库文件存储在SD卡中（二） href="show_302_173.html">Android SQLite的数据库文件存储在SD卡中（二）</A> </li><li ><A title=Android 如何获取SDCard 内存（一） href="show_303_173.html">Android 如何获取SDCard 内存（一）</A> </li><li ><A title=Android 如何获取SDCard 内存（二） href="show_304_173.html">Android 如何获取SDCard 内存（二）</A> </li><li ><A title=Android SDCard的容量大小 href="show_305_173.html">Android SDCard的容量大小</A> </li><li ><A title=Android 查看SDCard还有多少存储空间 href="show_306_173.html">Android 查看SDCard还有多少存储空间</A> </li><li ><A title=Android获取外部和内部存储空间总大小和可用大小 href="show_307_173.html">Android获取外部和内部存储空间总大小和可用大小</A> </li><li ><A title=Android 读写SD卡的权限设置 href="show_308_173.html">Android 读写SD卡的权限设置</A> </li><li ><A title=Android 检测目录是否存在，不存在则创建 href="show_309_173.html">Android 检测目录是否存在，不存在则创建</A> </li><li ><A title=Android 在SD卡上保存图片 href="show_310_173.html">Android 在SD卡上保存图片</A> </li><li ><A title=Android Http下载文件到手机内存与SDCard href="show_311_173.html">Android Http下载文件到手机内存与SDCard</A> </li><li ><A title=Android 程序私有文件（TXT）操作类 href="show_312_173.html">Android 程序私有文件（TXT）操作类</A> </li><li ><A title=Android SD卡里的文件夹功能 href="show_313_173.html">Android SD卡里的文件夹功能</A> </li><li class="currentLink"><A title=Android从SD卡导入数据库.db文件至APK href="show_314_173.html">Android从SD卡导入数据库.db文件至APK</A> </li></UL>
+  <h2><A title="数据库" href="index_174.html">数据库</A></h2>
+
+  <h2><A title="URI" href="index_175.html">URI</A></h2>
+
+  <h2><A title="MediaStore" href="index_176.html">MediaStore</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android从SD卡导入数据库.db文件至APK</H2>
+<div style="line-height:20px; font-size:14px;"><p>代码如下：</p><p><pre><font class="keyword">private </font><font class="keyword">class </font>ImportDatabaseTask </font><font class="keyword">extends </font>AsyncTask&lt;Void, Void, String&gt; {</p><p>	<font class="keyword">private </font><font class="keyword">final </font>ProgressDialog dialog = </font><font class="keyword">new </font>ProgressDialog(mContext);</p><p>	@Override</p><p>	<font class="keyword">protected </font><font class="keyword">void </font>onPreExecute() {</p><p>		<font class="keyword">this</font>.dialog.setMessage(<font class="Fields">"正在从SD卡导入数据库文件..."</font>);</p><p>		<font class="keyword">this</font>.dialog.show();</p><p>	}</p><p>	@Override</p><p>	<font class="keyword">protected </font>String doInBackground(</font><font class="keyword">final </font>Void... args) {</p><p>		<font class="keyword">if </font>(!Environment.MEDIA_MOUNTED.equals(Environment</p><p>				.getExternalStorageState())) {</p><p>			<font class="keyword">return </font><font class="Fields">"未找到SD卡"</font>;</p><p>		}</p><p>		<font class="Comments">// goodboyenglish_setting.db　为SD卡根目录上的一个数据库文件</font></p><p>		</font>File dbBackupFile = <font class="keyword">new </font>File(Environment.getExternalStorageDirectory(),</p><p>				<font class="Fields">"goodboyenglish_setting.db"</font>);</p><p>		<font class="keyword">if </font>(!dbBackupFile.exists()) {</p><p>			<font class="keyword">return </font><font class="Fields">"找不到SD卡上的数据库文件:goodboyenglish_setting.db"</font>;</p><p>		</font>} <font class="keyword">else </font><font class="keyword">if </font>(!dbBackupFile.canRead()) {</p><p>			<font class="keyword">return </font><font class="Fields">"已找到SD卡上的数据库文件，但无法读取!"</font>;</p><p>		}</p><p>		<font class="Comments">// setting.db为APK里的一个数据库文件</font></p><p>		</font>File dbFile = <font class="keyword">new </font>File(Environment.getDataDirectory()</p><p>				</font>+ <font class="Fields">"/data/com.goodboyenglish.leo/databases/setting.db"</font>);</p><p>		<font class="keyword">if </font>(dbFile.exists()) {</p><p>			dbFile.delete();</p><p>		}</p><p>		<font class="keyword">try </font>{</p><p>			dbFile.createNewFile();</p><p>			<font class="Comments">// 把dbBackupFile文件里的内容写入dbFile文件(从头写到尾)</font></p><p>			copyFile(dbBackupFile, dbFile);</p><p>			</font>shouldRestart = <font class="keyword">true</font>;</p><p>			<font class="keyword">return </font><font class="Fields">"成功的导入数据库文件!"</font>;</p><p>		</font>} <font class="keyword">catch </font>(IOException e) {</p><p>			<font class="keyword">return </font><font class="Fields">"导入失败!"</font>;</p><p>		}</p><p>	}</p><p>	@Override</p><p>	<font class="keyword">protected </font><font class="keyword">void </font>onPostExecute(</font><font class="keyword">final </font>String msg) {</p><p>		<font class="keyword">if </font>(</font><font class="keyword">this</font>.dialog.isShowing()) {</p><p>			<font class="keyword">this</font>.dialog.dismiss();</p><p>		}</p><p>		Toast.makeText(mContext, msg, Toast.LENGTH_SHORT).show();</p><p>	}</p><p>	<font class="Comments">// 拷贝文件的函数 src 为需要复制的文件，dst为目标文件(被src覆盖的文件)</font></p><p>	<font class="Comments">// 拷贝的过程其实就是把src文件里内容写入dst文件里的过程(从头写到尾)</font></p><p>	<font class="keyword">public </font><font class="keyword">static </font><font class="keyword">void </font>copyFile(File src, File dst) </font><font class="keyword">throws </font>IOException {</p><p>		</font>FileChannel inChannel = <font class="keyword">new </font>FileInputStream(src).getChannel();</p><p>		</font>FileChannel outChannel = <font class="keyword">new </font>FileOutputStream(dst).getChannel();</p><p>		<font class="keyword">try </font>{</p><p>			inChannel.transferTo(0, inChannel.size(), outChannel);</p><p>		} finally {</p><p>			<font class="keyword">if </font>(inChannel != </font><font class="keyword">null</font>)</p><p>				inChannel.close();</p><p>			<font class="keyword">if </font>(outChannel != </font><font class="keyword">null</font>)</p><p>				outChannel.close();</p><p>		}</p><p>	}</p><p>}</p><p></pre></p><p>用法:new ImportDatabaseTask().execute();</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

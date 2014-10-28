@@ -1,0 +1,70 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android Audio框架_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li class="navcurrentLink"><A href="index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="设备信息" href="index_157.html">设备信息</A></h2>
+
+  <h2><A title="摄像头" href="index_158.html">摄像头</A></h2>
+
+  <h2><A title="通讯录" href="index_159.html">通讯录</A></h2>
+
+  <h2><A title="电话" href="index_160.html">电话</A></h2>
+
+  <h2><A title="短信" href="index_161.html">短信</A></h2>
+
+  <h2><A title="传感器" href="index_162.html">传感器</A></h2>
+
+  <h2><A title="定位" href="index_163.html">定位</A></h2>
+
+  <h2><A title="视频系统" href="index_164.html">视频系统</A></h2>
+
+  <h2><A title="音频系统" href="index_165.html">音频系统</A></h2>
+<UL><li class="currentLink"><A title=Android Audio框架 href="show_801_165.html">Android Audio框架</A> </li><li ><A title=Android Audio抽象层的接口 href="show_802_165.html">Android Audio抽象层的接口</A> </li><li ><A title=Android的Audio系统之一 href="show_803_165.html">Android的Audio系统之一</A> </li><li ><A title=Android的Audio系统之二 href="show_804_165.html">Android的Audio系统之二</A> </li><li ><A title=Android的Audio系统之三 href="show_805_165.html">Android的Audio系统之三</A> </li><li ><A title=Android的Audio系统之四 href="show_806_165.html">Android的Audio系统之四</A> </li><li ><A title=Android的Audio系统之五 href="show_807_165.html">Android的Audio系统之五</A> </li><li ><A title=Android的Audio系统之六 href="show_808_165.html">Android的Audio系统之六</A> </li><li ><A title=Android的Audio系统之七 href="show_809_165.html">Android的Audio系统之七</A> </li><li ><A title=Android 深入研究MediaRecorder类 href="show_810_165.html">Android 深入研究MediaRecorder类</A> </li><li ><A title=Android 讲述MediaPlayer href="show_811_165.html">Android 讲述MediaPlayer</A> </li></UL>
+  <h2><A title="铃声" href="index_166.html">铃声</A></h2>
+
+  <h2><A title="音量" href="index_167.html">音量</A></h2>
+
+  <h2><A title="录音" href="index_168.html">录音</A></h2>
+
+  <h2><A title="输入法" href="index_169.html">输入法</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android Audio框架</H2>
+<div style="line-height:20px; font-size:14px;"><p style="color:#3333FF;">media库中的Audio框架部分</p><p>Android的Audio系统的核心框架在media库中提供，对上面主要实现AudioSystem、AudioTrack和AudioRecorder三个类。</p><p>提供了IAudioFlinger类接口，在这个类中，可以获得IAudioTrack和IAudioRecorder两个接口，分别用于声音的播放和录制。AudioTrack和AudioRecorder分别通过调用IAudioTrack和IAudioRecorder来实现。</p><p>Audio系统的头文件在frameworks/base/include/media/目录中，主要的头文件如下：</p><p>AudioSystem.h：media库的Audio部分对上层的总管接口；</p><p>IAudioFlinger.h：需要下层实现的总管接口；</p><p>AudioTrack.h：放音部分对上接口；</p><p>IAudioTrack.h：放音部分需要下层实现的接口；</p><p>AudioRecorder.h：录音部分对上接口；</p><p>IAudioRecorder.h：录音部分需要下层实现的接口。</p><p>IAudioFlinger.h、IAudioTrack.h和IAudioRecorder.h这三个接口通过下层的继承来实现（即AudioFlinger）。</p><p>AudioFlinger.h、AudioTrack.h和AudioRecorder.h是对上层提供的接口，它们既供本地程序调用（例如声音的播放器、录制器等），也可以通过JNI向Java层提供接口。</p><p>meida库中Audio部分的结构如图所示。</p><p><img src="../img/device_audio/01_audio.jpg"></p><p>从功能上看，AudioSystem负责的是Audio系统的综合管理功能，而AudioTrack和AudioRecorder分别负责音频数据的输出和输入，即播放和录制。</p><p>AudioSystem.h中主要定义了一些枚举值和set/get等一系列接口，如下所示：</p><p><pre><font class="keyword">class </font>AudioSystem { </p><p>	public: enum stream_type {</p><p>		<font class="Comments">// Audio 流的类型 </font></p><p>		SYSTEM = 1,</p><p>		RING = 2,</p><p>		MUSIC = 3,</p><p>		ALARM = 4,</p><p>		NOTIFICATION = 5,</p><p>		BLUETOOTH_SCO = 6,</p><p>		ENFORCED_AUDIBLE = 7,</p><p>		NUM_STREAM_TYPES</p><p>	}; </p><p>	enum audio_output_type {</p><p>		<font class="Comments">// Audio数据输出类型 </font></p><p>		<font class="Comments">// …… 省略部分内容 </font></p><p>	}; </p><p>	enum audio_format {</p><p>		<font class="Comments">// Audio数据格式 </font></p><p>		FORMAT_DEFAULT = 0,</p><p>		PCM_16_BIT,</p><p>		PCM_8_BIT,</p><p>		INVALID_FORMAT</p><p>	}; </p><p>	enum audio_mode {</p><p>		<font class="Comments">// Audio模式 </font></p><p>		<font class="Comments">// …… 省略部分内容 </font></p><p>	}; </p><p>	enum audio_routes {</p><p>		<font class="Comments">// Audio 路径类型 </font></p><p>		ROUTE_EARPIECE = (1 &lt;&lt; 0),</p><p>		ROUTE_SPEAKER = (1 &lt;&lt; 1),</p><p>		ROUTE_BLUETOOTH_SCO = (1 &lt;&lt; 2),</p><p>		ROUTE_HEADSET = (1 &lt;&lt; 3),</p><p>		ROUTE_BLUETOOTH_A2DP = (1 &lt;&lt; 4),</p><p>		ROUTE_ALL = -1UL,</p><p>	}; </p><p>	<font class="Comments">// …… 省略部分内容 </font></p><p>	<font class="keyword">static </font>status_t setMasterVolume(</font><font class="keyword">float </font>value); </p><p>	<font class="keyword">static </font>status_t setMasterMute(bool mute); </p><p>	<font class="keyword">static </font>status_t getMasterVolume(float* volume); </p><p>	<font class="keyword">static </font>status_t getMasterMute(bool* mute); </p><p>	<font class="keyword">static </font>status_t setStreamVolume(</font><font class="keyword">int </font>stream, </font><font class="keyword">float </font>value); </p><p>	<font class="keyword">static </font>status_t setStreamMute(</font><font class="keyword">int </font>stream, bool mute); </p><p>	<font class="keyword">static </font>status_t getStreamVolume(</font><font class="keyword">int </font>stream, float* volume); </p><p>	<font class="keyword">static </font>status_t getStreamMute(</font><font class="keyword">int </font>stream, bool* mute); </p><p>	<font class="keyword">static </font>status_t setMode(</font><font class="keyword">int </font>mode); </p><p>	<font class="keyword">static </font>status_t getMode(int* mode); </p><p>	<font class="keyword">static </font>status_t setRouting(</font><font class="keyword">int </font>mode,uint32_t routes, uint32_t mask); </p><p>	<font class="keyword">static </font>status_t getRouting(</font><font class="keyword">int </font>mode, uint32_t* routes); </p><p>	<font class="Comments">// …… 省略部分内容 </font></p><p>};</p><p></pre></p><p>在Audio系统的几个枚举值中，audio_routes是由单独的位来表示的，而不是由顺序的枚举值表示，因此这个值在使用过程中可以使用"或"的方式。例如，表示声音可以既从耳机（EARPIECE）输出，也从扬声器（SPEAKER）输出，这样是否能实现，由下层提供支持。在这个类中，set/get等接口控制的也是相关的内容，例如Audio声音的大小、Audio的模式、路径等。</p><p>AudioTrack是Audio输出环节的类，其中最重要的接口是write()，主要的函数如下所示。</p><p><pre><font class="keyword">class </font>AudioTrack { </p><p>	</font>typedef <font class="keyword">void </font>(*callback_t)(</font><font class="keyword">int </font>event, void* user, </font><font class="keyword">void </font>*info);</p><p>	</font>AudioTrack( <font class="keyword">int </font>streamType, uint32_t sampleRate = 0,</p><p>	<font class="Comments">// 音频的采样律 </font></p><p>	<font class="keyword">int </font>format = 0, </p><p>	<font class="Comments">//音频的格式（例如8位或者16位的PCM） </font></p><p>	<font class="keyword">int </font>channelCount = 0, </p><p>	<font class="Comments">// 音频的通道数 </font></p><p>	<font class="keyword">int </font>frameCount = 0, </p><p>	<font class="Comments">// 音频的帧数 </font></p><p>	</font>uint32_t flags = 0, callback_t cbf = 0, void* user = 0, <font class="keyword">int </font>notificationFrames = 0);</p><p>	<font class="keyword">void </font>start(); </p><p>	<font class="keyword">void </font>stop(); </p><p>	<font class="keyword">void </font>flush(); </p><p>	<font class="keyword">void </font>pause(); </p><p>	<font class="keyword">void </font>mute(bool); </p><p>	ssize_t write(const void* buffer, size_t size);</p><p>	<font class="Comments">// …… 省略部分内容 </font></p><p>}</p><p></pre></p><p>AudioRecord是Audio输入环节的类，其中最重要的接口为read()，主要的函数如下所示。</p><p><pre><font class="keyword">class </font>AudioRecord { </p><p>	</font>public: AudioRecord(<font class="keyword">int </font>streamType, uint32_t sampleRate = 0,</p><p>	<font class="Comments">// 音频的采样律 </font></p><p>	<font class="keyword">int </font>format = 0, </p><p>	<font class="Comments">// 音频的格式（例如8位或者16位的PCM） </font></p><p>	<font class="keyword">int </font>channelCount = 0, </p><p>	<font class="Comments">// 音频的通道数 </font></p><p>	<font class="keyword">int </font>frameCount = 0, </p><p>	<font class="Comments">// 音频的帧数 </font></p><p>	</font>uint32_t flags = 0, callback_t cbf = 0, void* user = 0, <font class="keyword">int </font>notificationFrames = 0);</p><p>	status_t start();</p><p>	status_t stop();</p><p>	ssize_t read(void* buffer, size_t size);</p><p>	<font class="Comments">// …… 省略部分内容 </font></p><p>}</p><p></pre></p><p>AudioTrack和AudioRecord的read/write函数的参数都是内存的指针及其大小，内存中的内容一般表示的是Audio的原始数据（PCM数据）。这两个类还涉及Auido数据格式、通道数、帧数目等参数，可以在建立时指定，也可以在建立之后使用set()函数进行设置。</p><p>在libmedia库中提供的只是一个Audio系统框架，AudioSystem、AudioTrack和AudioRecord分别调用下层的IAudioFlinger、IAudioTrack和IAudioRecord来实现。另外的一个接口是IAudioFlingerClient，它作为向IAudioFlinger中注册的监听器，相当于使用回调函数获取IAudioFlinger运行时信息。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

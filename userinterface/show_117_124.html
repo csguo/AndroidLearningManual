@@ -1,0 +1,111 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>说说WindowManager.LayoutParams类（一）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li class="navcurrentLink"><A href="index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="用户界面之view(视图)" href="index_123.html">用户界面之view(视图)</A></h2>
+
+  <h2><A title="用户界面之Layout(布局)" href="index_124.html">用户界面之Layout(布局)</A></h2>
+<UL><li ><A title=Android 基础布局介绍 href="show_101_124.html">Android 基础布局介绍</A> </li><li ><A title=Android 开发之旅：view的几种布局方式及实践 href="show_102_124.html">Android 开发之旅：view的几种布局方式及实践</A> </li><li ><A title=Android Layout各种布局 href="show_103_124.html">Android Layout各种布局</A> </li><li ><A title=Android 布局浅析 href="show_104_124.html">Android 布局浅析</A> </li><li ><A title=Android FrameLayou和布局优化（一） href="show_105_124.html">Android FrameLayou和布局优化（一）</A> </li><li ><A title=Android FrameLayou和布局优化（二） href="show_106_124.html">Android FrameLayou和布局优化（二）</A> </li><li ><A title=Android之Android布局管理：LinerLayout线性布局 href="show_107_124.html">Android之Android布局管理：LinerLayout线性布局</A> </li><li ><A title=Android布局之LinearLayout,layout_weight很有用 href="show_108_124.html">Android布局之LinearLayout,layout_weight很有用</A> </li><li ><A title=Android 很炫的线性布局 href="show_109_124.html">Android 很炫的线性布局</A> </li><li ><A title=Android 坐标布局AbsoluteLayout href="show_110_124.html">Android 坐标布局AbsoluteLayout</A> </li><li ><A title=Android-UI篇RelativeLayout(相对布局) href="show_111_124.html">Android-UI篇RelativeLayout(相对布局)</A> </li><li ><A title=Relative Layout 中用到的一些属性 href="show_112_124.html">Relative Layout 中用到的一些属性</A> </li><li ><A title=Android 表格布局（Table Layout） href="show_113_124.html">Android 表格布局（Table Layout）</A> </li><li ><A title=Android Tab Layout（选项卡布局）（一） href="show_114_124.html">Android Tab Layout（选项卡布局）（一）</A> </li><li ><A title=Android Tab Layout（选项卡布局）（二） href="show_115_124.html">Android Tab Layout（选项卡布局）（二）</A> </li><li ><A title=Android 深入研究Layout机制 href="show_116_124.html">Android 深入研究Layout机制</A> </li><li class="currentLink"><A title=说说WindowManager.LayoutParams类（一） href="show_117_124.html">说说WindowManager.LayoutParams类（一）</A> </li><li ><A title=说说WindowManager.LayoutParams类（二） href="show_118_124.html">说说WindowManager.LayoutParams类（二）</A> </li><li ><A title=说说WindowManager.LayoutParams类（三） href="show_119_124.html">说说WindowManager.LayoutParams类（三）</A> </li><li ><A title=一些xml layout组件的说明 href="show_120_124.html">一些xml layout组件的说明</A> </li><li ><A title=Android学习笔记：Layout.xml属性 href="show_121_124.html">Android学习笔记：Layout.xml属性</A> </li><li ><A title=Android 谈谈个人观点的布局设计 href="show_122_124.html">Android 谈谈个人观点的布局设计</A> </li><li ><A title=Android布局优化的要点 href="show_123_124.html">Android布局优化的要点</A> </li><li ><A title=讨论一下android的自适应屏幕的布局（layout)选择问题 href="show_124_124.html">讨论一下android的自适应屏幕的布局（layout)选择问题</A> </li></UL>
+  <h2><A title="用户界面之TextView(文本视图)" href="index_125.html">用户界面之TextView(文本视图)</A></h2>
+
+  <h2><A title="用户界面之EditText(编辑视图)" href="index_126.html">用户界面之EditText(编辑视图)</A></h2>
+
+  <h2><A title="用户界面之Button(按钮)" href="index_127.html">用户界面之Button(按钮)</A></h2>
+
+  <h2><A title="用户界面之Dialog(对话框)" href="index_128.html">用户界面之Dialog(对话框)</A></h2>
+
+  <h2><A title="用户界面之ListView(列表视图)" href="index_129.html">用户界面之ListView(列表视图)</A></h2>
+
+  <h2><A title="用户界面之Adapter(适配器)" href="index_130.html">用户界面之Adapter(适配器)</A></h2>
+
+  <h2><A title="用户界面之Menu(菜单)" href="index_131.html">用户界面之Menu(菜单)</A></h2>
+
+  <h2><A title="用户界面之Notification(通知栏)" href="index_132.html">用户界面之Notification(通知栏)</A></h2>
+
+  <h2><A title="NotificationImageView(图像视图)" href="index_133.html">NotificationImageView(图像视图)</A></h2>
+
+  <h2><A title="用户界面之GridView(格视图)" href="index_134.html">用户界面之GridView(格视图)</A></h2>
+
+  <h2><A title="用户界面之ProgressBar(进度条)" href="index_135.html">用户界面之ProgressBar(进度条)</A></h2>
+
+  <h2><A title="用户界面之Checkbox(复选框)" href="index_136.html">用户界面之Checkbox(复选框)</A></h2>
+
+  <h2><A title="用户界面之ScrollView(滚动视图)" href="index_137.html">用户界面之ScrollView(滚动视图)</A></h2>
+
+  <h2><A title="用户界面之Gallery(长廊视图)" href="index_138.html">用户界面之Gallery(长廊视图)</A></h2>
+
+  <h2><A title="用户界面之ActionBar(导航栏)" href="index_139.html">用户界面之ActionBar(导航栏)</A></h2>
+
+  <h2><A title="用户界面之PopupWindow(弹出窗口)" href="index_140.html">用户界面之PopupWindow(弹出窗口)</A></h2>
+
+  <h2><A title="用户界面之RatingBar(评分栏)" href="index_141.html">用户界面之RatingBar(评分栏)</A></h2>
+
+  <h2><A title="用户界面之Spinner" href="index_142.html">用户界面之Spinner</A></h2>
+
+  <h2><A title="用户界面之SeekBar(搜索bar)" href="index_143.html">用户界面之SeekBar(搜索bar)</A></h2>
+
+  <h2><A title="用户界面之TabHost(分割栏)" href="index_144.html">用户界面之TabHost(分割栏)</A></h2>
+
+  <h2><A title="用户界面之SlidingDrawer(抽屉)" href="index_145.html">用户界面之SlidingDrawer(抽屉)</A></h2>
+
+  <h2><A title="用户界面之ViewFlipper" href="index_146.html">用户界面之ViewFlipper</A></h2>
+
+  <h2><A title="用户界面之SurfaceView" href="index_147.html">用户界面之SurfaceView</A></h2>
+
+  <h2><A title="用户界面之Splash" href="index_148.html">用户界面之Splash</A></h2>
+
+  <h2><A title="用户界面之Toast" href="index_149.html">用户界面之Toast</A></h2>
+
+  <h2><A title="用户界面之AlarmManager" href="index_150.html">用户界面之AlarmManager</A></h2>
+
+  <h2><A title="用户界面之Fragment" href="index_151.html">用户界面之Fragment</A></h2>
+
+  <h2><A title="用户界面之WebView(网络视图)" href="index_152.html">用户界面之WebView(网络视图)</A></h2>
+
+  <h2><A title="Android用户界面之Widget(小组件)" href="index_153.html">Android用户界面之Widget(小组件)</A></h2>
+
+  <h2><A title="Android用户界面之theme和style" href="index_154.html">Android用户界面之theme和style</A></h2>
+
+  <h2><A title="Android用户界面之多语言" href="index_155.html">Android用户界面之多语言</A></h2>
+
+  <h2><A title="Android用户界面之界面特效" href="index_156.html">Android用户界面之界面特效</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>说说WindowManager.LayoutParams类（一）</H2>
+<div style="line-height:20px; font-size:14px;"><p>WindowManager.LayoutParams 是 WindowManager 接口的嵌套类；继承于 ViewGroup.LayoutParams。</p><p>它的内容十分丰富。其实WindowManager.java的主要内容就是由这个类定义构成。下面来分析一下这个类：</p><p>定义</p><p><pre>public static class WindowManager.LayoutParams extends ViewGroup.LayoutParams implements Parcelable</p><p></pre></p><p>继承关系</p><p><pre>java.lang.Object</p><p>android.view.ViewGroup.LayoutParams</p><p>android.view.WindowManager.LayoutParams</p><p></pre></p><p>继承来的属性与常量</p><p>从ViewManager.LayoutParams 继承来的属性：</p><p><pre>android:layout_height</p><p>Specifies the basic height of the view.</p><p>android:layout_width</p><p>Specifies the basic width of the view.</p><p></pre></p><p>从ViewManager.LayoutParams继承的常量：</p><p><pre>FILL_PARENT</p><p>WRAP_CONTENT</p><p>MATCH_PARENT</p><p></pre></p><p>两个变量：</p><p><pre>width</p><p>height</p><p></pre></p><p>属性及可用的常量定义</p><p>1. public int x;</p><p>如果忽略gravity属性，那么它表示窗口的绝对X位置。</p><p>什么是gravity属性呢？简单地说，就是窗口如何停靠。</p><p>当设置了 Gravity.LEFT 或 Gravity.RIGHT 之后，x值就表示到特定边的距离。</p><p>2. public int y;</p><p>如果忽略gravity属性，那么它表示窗口的绝对Y位置。</p><p>当设置了 Gravity.TOP 或 Gravity.BOTTOM 之后，y值就表示到特定边的距离。</p><p>3. public float horizontalWeight;</p><p>public float verticalWeight;</p><p>在纵/横向上，为关联的view预留了多少扩展空间（像素）。如果是0，那么此view不能被拉伸。</p><p>其他情况下，扩展空间（像素）将被widget所均分。</p><p>4. public int type;</p><p>窗口类型。</p><p>有3种主要类型：</p><p>Applicationwindows：</p><p>取值在 FIRST_APPLICATION_WINDOW 和 LAST_APPLICATION_WINDOW 之间。</p><p>是通常的、顶层的应用程序窗口。必须将 token 设置成 activity 的token。</p><p>Sub_windows：</p><p>取值在FIRST_SUB_WINDOW和LAST_SUB_WINDOW之间。</p><p>与顶层窗口相关联，token必须设置为它所附着的宿主窗口的token。</p><p>Systemwindows：</p><p>取值在 FIRST_SYSTEM_WINDOW 和 LAST_SYSTEM_WINDOW 之间。</p><p>用于特定的系统功能。它不能用于应用程序，使用时需要特殊权限。</p><p>下面定义了 type 的取值：</p><p><pre><font class="Comments">// 应用程序窗口。</font></p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>FIRST_APPLICATION_WINDOW = 1;</p><p><font class="Comments">// 所有程序窗口的“基地”窗口，其他应用程序窗口都显示在它上面。</font></p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>TYPE_BASE_APPLICATION = 1;</p><p><font class="Comments">// 普通应用功能程序窗口。token必须设置为Activity的token，以指出该窗口属谁。</font></p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>TYPE_APPLICATION = 2;</p><p><font class="Comments">// 用于应用程序启动时所显示的窗口。应用本身不要使用这种类型。</font></p><p><font class="Comments">// 它用于让系统显示些信息，直到应用程序可以开启自己的窗口。</font></p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>TYPE_APPLICATION_STARTING = 3;</p><p><font class="Comments">// 应用程序窗口结束。</font></p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>LAST_APPLICATION_WINDOW = 99;</p><p><font class="Comments">// 子窗口。子窗口的Z序和坐标空间都依赖于他们的宿主窗口。</font></p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>FIRST_SUB_WINDOW = 1000;</p><p><font class="Comments">// 面板窗口，显示于宿主窗口上层。</font></p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>TYPE_APPLICATION_PANEL = FIRST_SUB_WINDOW;</p><p><font class="Comments">// 媒体窗口，例如视频。显示于宿主窗口下层。</font></p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>TYPE_APPLICATION_MEDIA = FIRST_SUB_WINDOW + 1;</p><p><font class="Comments">// 应用程序窗口的子面板。显示于所有面板窗口的上层。（GUI的一般规律，越“子”越靠上）</font></p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>TYPE_APPLICATION_SUB_PANEL = FIRST_SUB_WINDOW + 2;</p><p><font class="Comments">// 对话框。类似于面板窗口，绘制类似于顶层窗口，而不是宿主的子窗口。</font></p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>TYPE_APPLICATION_ATTACHED_DIALOG = FIRST_SUB_WINDOW + 3;</p><p><font class="Comments">// 媒体信息。显示在媒体层和程序窗口之间，需要实现透明（半透明）效果。（例如显示字幕）</font></p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>TYPE_APPLICATION_MEDIA_OVERLAY = FIRST_SUB_WINDOW + 4;</p><p><font class="Comments">// 子窗口结束。（ End of types of sub-windows ）</font></p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>LAST_SUB_WINDOW = 1999;</p><p><font class="Comments">// 系统窗口。非应用程序创建。</font></p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>FIRST_SYSTEM_WINDOW = 2000;</p><p><font class="Comments">// 状态栏。只能有一个状态栏；它位于屏幕顶端，其他窗口都位于它下方。</font></p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>TYPE_STATUS_BAR = FIRST_SYSTEM_WINDOW;</p><p><font class="Comments">// 搜索栏。只能有一个搜索栏；它位于屏幕上方。</font></p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>TYPE_SEARCH_BAR = FIRST_SYSTEM_WINDOW + 1;</p><p><font class="Comments">// 电话窗口。它用于电话交互（特别是呼入）。它置于所有应用程序之上，状态栏之下。</font></p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>TYPE_PHONE = FIRST_SYSTEM_WINDOW + 2;</p><p><font class="Comments">// 系统提示。它总是出现在应用程序窗口之上。</font></p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>TYPE_SYSTEM_ALERT = FIRST_SYSTEM_WINDOW + 3;</p><p><font class="Comments">// 锁屏窗口。</font></p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>TYPE_KEYGUARD = FIRST_SYSTEM_WINDOW + 4;</p><p><font class="Comments">// 信息窗口。用于显示toast。</font></p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>TYPE_TOAST = FIRST_SYSTEM_WINDOW + 5;</p><p><font class="Comments">// 系统顶层窗口。显示在其他一切内容之上。此窗口不能获得输入焦点，否则影响锁屏。</font></p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>TYPE_SYSTEM_OVERLAY = FIRST_SYSTEM_WINDOW + 6;</p><p><font class="Comments">// 电话优先，当锁屏时显示。此窗口不能获得输入焦点，否则影响锁屏。</font></p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>TYPE_PRIORITY_PHONE = FIRST_SYSTEM_WINDOW + 7;</p><p><font class="Comments">// 系统对话框。（例如音量调节框）。</font></p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>TYPE_SYSTEM_DIALOG = FIRST_SYSTEM_WINDOW + 8;</p><p><font class="Comments">// 锁屏时显示的对话框。</font></p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>TYPE_KEYGUARD_DIALOG = FIRST_SYSTEM_WINDOW + 9;</p><p><font class="Comments">// 系统内部错误提示，显示于所有内容之上。</font></p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>TYPE_SYSTEM_ERROR = FIRST_SYSTEM_WINDOW + 10;</p><p><font class="Comments">// 内部输入法窗口，显示于普通UI之上。应用程序可重新布局以免被此窗口覆盖。</font></p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>TYPE_INPUT_METHOD = FIRST_SYSTEM_WINDOW + 11;</p><p><font class="Comments">// 内部输入法对话框，显示于当前输入法窗口之上。</font></p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>TYPE_INPUT_METHOD_DIALOG = FIRST_SYSTEM_WINDOW + 12;</p><p><font class="Comments">// 墙纸窗口。</font></p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>TYPE_WALLPAPER = FIRST_SYSTEM_WINDOW + 13;</p><p><font class="Comments">// 状态栏的滑动面板。</font></p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>TYPE_STATUS_BAR_PANEL = FIRST_SYSTEM_WINDOW + 14;</p><p><font class="Comments">// 系统窗口结束。</font></p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>LAST_SYSTEM_WINDOW = 2999;</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+  
+   </P>
+</DIV></BODY></HTML>
+

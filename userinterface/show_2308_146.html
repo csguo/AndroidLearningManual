@@ -1,0 +1,111 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>解决ViewFlipper与ScrollView滑动响应事件拦截的问题（二）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li class="navcurrentLink"><A href="index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="用户界面之view(视图)" href="index_123.html">用户界面之view(视图)</A></h2>
+
+  <h2><A title="用户界面之Layout(布局)" href="index_124.html">用户界面之Layout(布局)</A></h2>
+
+  <h2><A title="用户界面之TextView(文本视图)" href="index_125.html">用户界面之TextView(文本视图)</A></h2>
+
+  <h2><A title="用户界面之EditText(编辑视图)" href="index_126.html">用户界面之EditText(编辑视图)</A></h2>
+
+  <h2><A title="用户界面之Button(按钮)" href="index_127.html">用户界面之Button(按钮)</A></h2>
+
+  <h2><A title="用户界面之Dialog(对话框)" href="index_128.html">用户界面之Dialog(对话框)</A></h2>
+
+  <h2><A title="用户界面之ListView(列表视图)" href="index_129.html">用户界面之ListView(列表视图)</A></h2>
+
+  <h2><A title="用户界面之Adapter(适配器)" href="index_130.html">用户界面之Adapter(适配器)</A></h2>
+
+  <h2><A title="用户界面之Menu(菜单)" href="index_131.html">用户界面之Menu(菜单)</A></h2>
+
+  <h2><A title="用户界面之Notification(通知栏)" href="index_132.html">用户界面之Notification(通知栏)</A></h2>
+
+  <h2><A title="NotificationImageView(图像视图)" href="index_133.html">NotificationImageView(图像视图)</A></h2>
+
+  <h2><A title="用户界面之GridView(格视图)" href="index_134.html">用户界面之GridView(格视图)</A></h2>
+
+  <h2><A title="用户界面之ProgressBar(进度条)" href="index_135.html">用户界面之ProgressBar(进度条)</A></h2>
+
+  <h2><A title="用户界面之Checkbox(复选框)" href="index_136.html">用户界面之Checkbox(复选框)</A></h2>
+
+  <h2><A title="用户界面之ScrollView(滚动视图)" href="index_137.html">用户界面之ScrollView(滚动视图)</A></h2>
+
+  <h2><A title="用户界面之Gallery(长廊视图)" href="index_138.html">用户界面之Gallery(长廊视图)</A></h2>
+
+  <h2><A title="用户界面之ActionBar(导航栏)" href="index_139.html">用户界面之ActionBar(导航栏)</A></h2>
+
+  <h2><A title="用户界面之PopupWindow(弹出窗口)" href="index_140.html">用户界面之PopupWindow(弹出窗口)</A></h2>
+
+  <h2><A title="用户界面之RatingBar(评分栏)" href="index_141.html">用户界面之RatingBar(评分栏)</A></h2>
+
+  <h2><A title="用户界面之Spinner" href="index_142.html">用户界面之Spinner</A></h2>
+
+  <h2><A title="用户界面之SeekBar(搜索bar)" href="index_143.html">用户界面之SeekBar(搜索bar)</A></h2>
+
+  <h2><A title="用户界面之TabHost(分割栏)" href="index_144.html">用户界面之TabHost(分割栏)</A></h2>
+
+  <h2><A title="用户界面之SlidingDrawer(抽屉)" href="index_145.html">用户界面之SlidingDrawer(抽屉)</A></h2>
+
+  <h2><A title="用户界面之ViewFlipper" href="index_146.html">用户界面之ViewFlipper</A></h2>
+<UL><li ><A title=Android ViewFlipper（一） href="show_2301_146.html">Android ViewFlipper（一）</A> </li><li ><A title=Android ViewFlipper（二） href="show_2302_146.html">Android ViewFlipper（二）</A> </li><li ><A title=ViewFlipper的使用 href="show_2303_146.html">ViewFlipper的使用</A> </li><li ><A title=ViewFlipper Animation使用 href="show_2304_146.html">ViewFlipper Animation使用</A> </li><li ><A title=ViewFlipper详细使用 href="show_2305_146.html">ViewFlipper详细使用</A> </li><li ><A title=Android ViewFlipper触摸动画 href="show_2306_146.html">Android ViewFlipper触摸动画</A> </li><li ><A title=解决ViewFlipper与ScrollView滑动响应事件拦截的问题（一） href="show_2307_146.html">解决ViewFlipper与ScrollView滑动响应事件拦截的问题（一）</A> </li><li class="currentLink"><A title=解决ViewFlipper与ScrollView滑动响应事件拦截的问题（二） href="show_2308_146.html">解决ViewFlipper与ScrollView滑动响应事件拦截的问题（二）</A> </li><li ><A title=Android实现渐显按钮的左右滑动效果 href="show_2309_146.html">Android实现渐显按钮的左右滑动效果</A> </li><li ><A title=ViewFlipper实现各种切换动画 href="show_2310_146.html">ViewFlipper实现各种切换动画</A> </li></UL>
+  <h2><A title="用户界面之SurfaceView" href="index_147.html">用户界面之SurfaceView</A></h2>
+
+  <h2><A title="用户界面之Splash" href="index_148.html">用户界面之Splash</A></h2>
+
+  <h2><A title="用户界面之Toast" href="index_149.html">用户界面之Toast</A></h2>
+
+  <h2><A title="用户界面之AlarmManager" href="index_150.html">用户界面之AlarmManager</A></h2>
+
+  <h2><A title="用户界面之Fragment" href="index_151.html">用户界面之Fragment</A></h2>
+
+  <h2><A title="用户界面之WebView(网络视图)" href="index_152.html">用户界面之WebView(网络视图)</A></h2>
+
+  <h2><A title="Android用户界面之Widget(小组件)" href="index_153.html">Android用户界面之Widget(小组件)</A></h2>
+
+  <h2><A title="Android用户界面之theme和style" href="index_154.html">Android用户界面之theme和style</A></h2>
+
+  <h2><A title="Android用户界面之多语言" href="index_155.html">Android用户界面之多语言</A></h2>
+
+  <h2><A title="Android用户界面之界面特效" href="index_156.html">Android用户界面之界面特效</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>解决ViewFlipper与ScrollView滑动响应事件拦截的问题（二）</H2>
+<div style="line-height:20px; font-size:14px;"><p>由于ViewFlipper在外，ScrollView在内，因此一般的做法是定义一个手势响应类来处理响应事件，并将响应事件的处理交给内层的ScrollView。大致代码如下：</p><p><pre><font class="keyword">import </font>android.app.Activity;</p><p><font class="keyword">import </font>android.os.Bundle;</p><p><font class="keyword">import </font>android.util.Log;</p><p><font class="keyword">import </font>android.view.GestureDetector;</p><p><font class="keyword">import </font>android.view.GestureDetector.SimpleOnGestureListener;</p><p><font class="keyword">import </font>android.view.LayoutInflater;</p><p><font class="keyword">import </font>android.view.Menu;</p><p><font class="keyword">import </font>android.view.MotionEvent;</p><p><font class="keyword">import </font>android.view.View;</p><p><font class="keyword">import </font>android.view.Window;</p><p><font class="keyword">import </font>android.widget.TextView;</p><p><font class="keyword">import </font>android.widget.Toast;</p><p><font class="keyword">import </font>android.widget.ViewFlipper;</p><p><font class="keyword">public </font><font class="keyword">class </font>Test1 </font><font class="keyword">extends </font>Activity {</p><p>	<font class="keyword">private </font>ViewFlipper viewFlipper;</p><p>	<font class="keyword">private </font>String[] descriptionsArray;</p><p>	<font class="keyword">private </font>String[] titleArray;</p><p>	<font class="keyword">private </font><font class="keyword">int </font>selectedPosition;</p><p>	<font class="keyword">private </font>TextView textViewTitle;</p><p>	<font class="keyword">private </font>TextView textViewContent;</p><p>	<font class="keyword">private </font>FriendlyScrollView scroll;</p><p>	<font class="keyword">private </font>LayoutInflater mInflater;</p><p>	<font class="keyword">private </font>GestureDetector gestureDetector;</p><p>	@Override</p><p>	<font class="keyword">protected </font><font class="keyword">void </font>onCreate(Bundle savedInstanceState) {</p><p>		requestWindowFeature(Window.FEATURE_NO_TITLE);</p><p>		setContentView(R.layout.common_info_list_view);</p><p>		InitUI();</p><p>		<font class="keyword">super</font>.onCreate(savedInstanceState);</p><p>		</font>Toast.makeText(<font class="keyword">this</font>, R.string.hello, Toast.LENGTH_SHORT).show();</p><p>	}</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">boolean </font>onCreateOptionsMenu(Menu menu) {</p><p>		<font class="keyword">super</font>.onCreateOptionsMenu(menu);</p><p>		<font class="keyword">return </font><font class="keyword">false</font>;</p><p>	}</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onBackPressed() {</p><p>		finish();</p><p>	}</p><p>	<font class="keyword">private </font><font class="keyword">void </font>InitUI() {</p><p>		viewFlipper = (ViewFlipper) findViewById(R.id.viewflipper_data);</p><p>		</font>mInflater = LayoutInflater.from(<font class="keyword">this</font>);</p><p>		fillDate();</p><p>		viewFlipper.addView(getContentView());</p><p>	}</p><p>	<font class="keyword">private </font><font class="keyword">void </font>fillDate() {</p><p>		selectedPosition = 0;</p><p>		titleArray = getResources().getStringArray(R.array.title_array);</p><p>		descriptionsArray = getResources().getStringArray(R.array.description_array);</p><p>		</font>gestureDetector = <font class="keyword">new </font>GestureDetector(</font><font class="keyword">new </font>CommonGestureListener());</p><p>	}</p><p>	<font class="keyword">private </font>View getContentView() {</p><p>		</font>View contentView = <font class="keyword">new </font>View(</font><font class="keyword">this</font>);</p><p>		</font>contentView = mInflater.inflate(R.layout.common_info_item_view, <font class="keyword">null</font>);</p><p>		textViewTitle = (TextView) contentView.findViewById(R.id.text_title);</p><p>		textViewContent = (TextView) contentView.findViewById(R.id.text_detail);</p><p>		textViewTitle.setText(titleArray[selectedPosition]);</p><p>		textViewTitle.setPadding(10, 0, 10, 0);</p><p>		textViewContent.setText(descriptionsArray[selectedPosition]);</p><p>		textViewContent.setPadding(10, 5, 10, 5);</p><p>		scroll = (FriendlyScrollView) contentView.findViewById(R.id.scroll);</p><p>		scroll.setOnTouchListener(onTouchListener);</p><p>		scroll.setGestureDetector(gestureDetector);</p><p>		<font class="keyword">return </font>contentView;</p><p>	}</p><p>	<font class="keyword">private </font>View.OnTouchListener onTouchListener = </font><font class="keyword">new </font>View.OnTouchListener() {</p><p>		<font class="keyword">public </font><font class="keyword">boolean </font>onTouch(View v, MotionEvent event) {</p><p>			<font class="keyword">return </font>gestureDetector.onTouchEvent(event);</p><p>		}</p><p>	};</p><p>	<font class="keyword">public </font><font class="keyword">class </font>CommonGestureListener </font><font class="keyword">extends </font>SimpleOnGestureListener {</p><p>		@Override</p><p>		<font class="keyword">public </font><font class="keyword">boolean </font>onDown(MotionEvent e) {</p><p>			</font>Log.d(<font class="Fields">"QueryViewFlipper"</font>, </font><font class="Fields">"====&gt; Jieqi: do onDown..."</font>);</p><p>			<font class="keyword">return </font><font class="keyword">false</font>;</p><p>		}</p><p>		@Override</p><p>		<font class="keyword">public </font><font class="keyword">void </font>onShowPress(MotionEvent e) {</p><p>			</font>Log.d(<font class="Fields">"QueryViewFlipper"</font>, </font><font class="Fields">"====&gt; Jieqi: do onShowPress..."</font>);</p><p>			<font class="keyword">super</font>.onShowPress(e);</p><p>		}</p><p>		@Override</p><p>		<font class="keyword">public </font><font class="keyword">void </font>onLongPress(MotionEvent e) {</p><p>			</font>Log.d(<font class="Fields">"QueryViewFlipper"</font>, </font><font class="Fields">"----&gt; Jieqi: do onLongPress..."</font>);</p><p>		}</p><p>		@Override</p><p>		<font class="keyword">public </font><font class="keyword">boolean </font>onSingleTapConfirmed(MotionEvent e) {</p><p>			</font>Log.d(<font class="Fields">"QueryViewFlipper"</font>, </font><font class="Fields">"====&gt; Jieqi: do onSingleTapConfirmed..."</font>);</p><p>			<font class="keyword">return </font><font class="keyword">false</font>;</p><p>		}</p><p>		@Override</p><p>		<font class="keyword">public </font><font class="keyword">boolean </font>onSingleTapUp(MotionEvent e) {</p><p>			</font>Log.d(<font class="Fields">"QueryViewFlipper"</font>, </font><font class="Fields">"====&gt; Jieqi: do onSingleTapUp..."</font>);</p><p>			<font class="keyword">return </font><font class="keyword">false</font>;</p><p>		}</p><p>		@Override</p><p>		<font class="keyword">public </font><font class="keyword">boolean </font>onFling(MotionEvent e1, MotionEvent e2, </font><font class="keyword">float </font>velocityX,</p><p>				<font class="keyword">float </font>velocityY) {</p><p>			</font>Log.d(<font class="Fields">"QueryViewFlipper"</font>, </font><font class="Fields">"====&gt; Jieqi: do onFling..."</font>);</p><p>			<font class="keyword">if </font>(e1.getX() - e2.getX() &gt; 100 && Math.abs(velocityX) &gt; 50) {</p><p>				<font class="Comments">// 向左</font></p><p>				selectedPosition = selectedPosition + 1 &lt; titleArray.length ? (selectedPosition + 1)</p><p>						: 0;</p><p>				viewFlipper.addView(getContentView());</p><p>				viewFlipper.setInAnimation(AnimationControl</p><p>						.inFromRightAnimation());</p><p>				viewFlipper.setOutAnimation(AnimationControl</p><p>						.outToLeftAnimation());</p><p>				viewFlipper.showNext();</p><p>				viewFlipper.removeViewAt(0);</p><p>			</font>} <font class="keyword">else </font><font class="keyword">if </font>(e2.getX() - e1.getX() &gt; 100 && Math.abs(velocityX) &gt; 50) {</p><p>				<font class="Comments">// 向右</font></p><p>				selectedPosition = selectedPosition &gt; 0 ? (selectedPosition - 1)</p><p>						: (titleArray.length - 1);</p><p>				viewFlipper.addView(getContentView());</p><p>				viewFlipper.setInAnimation(AnimationControl</p><p>						.inFromLeftAnimation());</p><p>				viewFlipper.setOutAnimation(AnimationControl</p><p>						.outToRightAnimation());</p><p>				viewFlipper.showNext();</p><p>				viewFlipper.removeViewAt(0);</p><p>			}</p><p>			<font class="keyword">return </font><font class="keyword">true</font>;</p><p>		}</p><p>		@Override</p><p>		<font class="keyword">public </font><font class="keyword">boolean </font>onScroll(MotionEvent e1, MotionEvent e2,</p><p>				<font class="keyword">float </font>distanceX, </font><font class="keyword">float </font>distanceY) {</p><p>			</font>Log.d(<font class="Fields">"QueryViewFlipper"</font>, </font><font class="Fields">"====&gt; Jieqi: do onScroll..."</font>);</p><p>			<font class="keyword">return </font><font class="keyword">super</font>.onScroll(e1, e2, distanceX, distanceY);</p><p>		}</p><p>	}</p><p>}</p><p></pre></p><p>这个时候问题出现了，通过Log显示，当ScrollView中内容太短的时候，ScrollView不会触发OnScroll和OnFling事件，导致ViewFlipper左右滑动不响应。（当然后来的另一个测试表明这个问题在ListView上不存在）</p><p>为了解决这一个问题，我重新自定义了一个FriendlyScrollView类，来重写ScrollView的onTouchEvent和dispatchTouchEvent方法，具体如下：</p><p><pre><font class="keyword">import </font>android.content.Context;</p><p><font class="keyword">import </font>android.util.AttributeSet;</p><p><font class="keyword">import </font>android.view.GestureDetector;</p><p><font class="keyword">import </font>android.view.MotionEvent;</p><p><font class="keyword">import </font>android.widget.ScrollView;</p><p><font class="keyword">public </font><font class="keyword">class </font>FriendlyScrollView </font><font class="keyword">extends </font>ScrollView {</p><p>	GestureDetector gestureDetector;</p><p>	<font class="keyword">public </font>FriendlyScrollView(Context context) {</p><p>		<font class="keyword">super</font>(context);</p><p>	}</p><p>	<font class="keyword">public </font>FriendlyScrollView(Context context, AttributeSet attrs) {</p><p>		<font class="keyword">super</font>(context, attrs);</p><p>	}</p><p>	<font class="keyword">public </font>FriendlyScrollView(Context context, AttributeSet attrs, </font><font class="keyword">int </font>defStyle) {</p><p>		<font class="keyword">super</font>(context, attrs, defStyle);</p><p>	}</p><p>	<font class="keyword">public </font><font class="keyword">void </font>setGestureDetector(GestureDetector gestureDetector) {</p><p>		<font class="keyword">this</font>.gestureDetector = gestureDetector;</p><p>	}</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">boolean </font>onTouchEvent(MotionEvent event) {</p><p>		<font class="keyword">super</font>.onTouchEvent(event);</p><p>		<font class="keyword">return </font>gestureDetector.onTouchEvent(event);</p><p>	}</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">boolean </font>dispatchTouchEvent(MotionEvent ev) {</p><p>		gestureDetector.onTouchEvent(ev);</p><p>		<font class="keyword">super</font>.dispatchTouchEvent(ev);</p><p>		<font class="keyword">return </font><font class="keyword">true</font>;</p><p>	}</p><p>}</p><p></pre></p><p>然后将common_info_view.xml和程序中的ScrollView改成FriendlyScrollView，终于解决了这个问题。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+  
+   </P>
+</DIV></BODY></HTML>
+

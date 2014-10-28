@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>在Android的Notification中显示进度条_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li class="navcurrentLink"><A href="index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Activity" href="index_112.html">Activity</A></h2>
+
+  <h2><A title="Intent" href="index_113.html">Intent</A></h2>
+
+  <h2><A title="Service" href="index_114.html">Service</A></h2>
+
+  <h2><A title="Content Provider" href="index_115.html">Content Provider</A></h2>
+
+  <h2><A title="BroadcastReceiver" href="index_116.html">BroadcastReceiver</A></h2>
+
+  <h2><A title="AsyncTask" href="index_117.html">AsyncTask</A></h2>
+
+  <h2><A title="Handler" href="index_118.html">Handler</A></h2>
+<UL><li ><A title=Handler 基础认识 href="show_601_118.html">Handler 基础认识</A> </li><li ><A title=Android Handler的使用(一) href="show_602_118.html">Android Handler的使用(一)</A> </li><li ><A title=Android Handler的使用(二) href="show_603_118.html">Android Handler的使用(二)</A> </li><li ><A title=Android GWES之Android消息系统 href="show_604_118.html">Android GWES之Android消息系统</A> </li><li ><A title=用Handler更新进度条ProgressBar href="show_605_118.html">用Handler更新进度条ProgressBar</A> </li><li class="currentLink"><A title=在Android的Notification中显示进度条 href="show_606_118.html">在Android的Notification中显示进度条</A> </li><li ><A title=通过线程改变界面button的内容 href="show_607_118.html">通过线程改变界面button的内容</A> </li><li ><A title=5秒钟自动更新Title href="show_608_118.html">5秒钟自动更新Title</A> </li></UL>
+  <h2><A title="Thread" href="index_119.html">Thread</A></h2>
+
+  <h2><A title="Permission" href="index_120.html">Permission</A></h2>
+
+  <h2><A title="AIDL" href="index_121.html">AIDL</A></h2>
+
+  <h2><A title="Json" href="index_122.html">Json</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>在Android的Notification中显示进度条</H2>
+<div style="line-height:20px; font-size:14px;"><p>最近研究了Notification,参考了一些文档，写了一些心得。在官方文档中得知在Android的Notification中可以显示进度条，就想做个例子试一下。在网上查了下，没有找到。决定自己写下，费了九牛二虎之力搞定了，现在拿出与大家分享下:废话少说，上代码：</p><p>先自定义一个view</p><p><pre>&lt;?xml version=<font class="Fields">"1.0"</font> encoding=</font><font class="Fields">"utf-8"</font>?&gt;</p><p>&lt;LinearLayout xmlns:android=<font class="Fields">"http:<font class="Comments">//schemas.android.com/apk/res/android</font></p><p>    </font>android:layout_width=<font class="Fields">"fill_parent</p><p>    </font>android:layout_height=<font class="Fields">"fill_parent</p><p>    </font>android:background=<font class="Fields">"</font>880490FF</p><p>    </font>android:orientation=<font class="Fields">"horizontal</p><p>    </font>android:padding=<font class="Fields">"10dp"</font> &gt;</p><p>    &lt;ImageView</p><p>        </font>android:id=<font class="Fields">"@+id/image</p><p>        </font>android:layout_width=<font class="Fields">"wrap_content</p><p>        </font>android:layout_height=<font class="Fields">"fill_parent"</font> /&gt;</p><p>    &lt;ProgressBar</p><p>        </font>android:id=<font class="Fields">"@+id/pb</p><p>        </font>style=<font class="Fields">"?android:attr/progressBarStyleHorizontal</p><p>        </font>android:layout_width=<font class="Fields">"180dip</p><p>        </font>android:layout_height=<font class="Fields">"wrap_content</p><p>        </font>android:layout_gravity=<font class="Fields">"center_vertical"</font> /&gt;</p><p>    &lt;TextView</p><p>        </font>android:id=<font class="Fields">"@+id/tv</p><p>        </font>android:layout_width=<font class="Fields">"wrap_content</p><p>        </font>android:layout_height=<font class="Fields">"fill_parent</p><p>        </font>android:textColor=<font class="Fields">"</font>FF0000</p><p>        </font>android:textSize=<font class="Fields">"16px"</font> /&gt;</p><p>&lt;/LinearLayout&gt;</p><p></pre></p><p>接着在Activity中写了逻辑代码：</p><p><pre><font class="keyword">import </font>android.app.Activity;</p><p><font class="keyword">import </font>android.app.Notification;</p><p><font class="keyword">import </font>android.app.NotificationManager;</p><p><font class="keyword">import </font>android.app.PendingIntent;</p><p><font class="keyword">import </font>android.content.Intent;</p><p><font class="keyword">import </font>android.os.Bundle;</p><p><font class="keyword">import </font>android.os.Handler;</p><p><font class="keyword">import </font>android.os.Message;</p><p><font class="keyword">import </font>android.view.View;</p><p><font class="keyword">import </font>android.widget.Button;</p><p><font class="keyword">import </font>android.widget.RemoteViews;</p><p><font class="keyword">public </font><font class="keyword">class </font>MainActivity </font><font class="keyword">extends </font>Activity {</p><p>	<font class="Comments">// 当前进度条里的进度值</font></p><p>	<font class="keyword">private </font><font class="keyword">int </font>progress = 0;</p><p>	<font class="keyword">private </font>RemoteViews view = </font><font class="keyword">null</font>;</p><p>	<font class="keyword">private </font>Notification notification = </font><font class="keyword">new </font>Notification();</p><p>	<font class="keyword">private </font>NotificationManager manager = </font><font class="keyword">null</font>;</p><p>	<font class="keyword">private </font>Intent intent = </font><font class="keyword">null</font>;</p><p>	<font class="keyword">private </font>PendingIntent pIntent = </font><font class="keyword">null</font>;<font class="Comments">// 更新显示</font></p><p>	<font class="keyword">private </font>Handler handler = </font><font class="keyword">new </font>Handler() {</p><p>		@Override</p><p>		<font class="keyword">public </font><font class="keyword">void </font>handleMessage(Message msg) {</p><p>			</font>view.setProgressBar(R.id.pb, 100, progress, <font class="keyword">false</font>);</p><p>			</font>view.setTextViewText(R.id.tv, <font class="Fields">"下载"</font> + progress + </font><font class="Fields">"%"</font>);<font class="Comments">// 关键部分，如果你不重新更新通知，进度条是不会更新的</font></p><p>			notification.contentView = view;</p><p>			notification.contentIntent = pIntent;</p><p>			manager.notify(0, notification);</p><p>			<font class="keyword">super</font>.handleMessage(msg);</p><p>		}</p><p></p><p>	};</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onCreate(Bundle savedInstanceState) {</p><p>		<font class="keyword">super</font>.onCreate(savedInstanceState);</p><p>		setContentView(R.layout.main);</p><p>		manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);</p><p>		</font>view = <font class="keyword">new </font>RemoteViews(getPackageName(), R.layout.custom_dialog);</p><p>		</font>intent = <font class="keyword">new </font>Intent(MainActivity.</font><font class="keyword">this</font>, NotificationService.</font><font class="keyword">class</font>);</p><p>		</font>pIntent = PendingIntent.getService(MainActivity.<font class="keyword">this</font>, 0, intent, 0);</p><p>		Button button = (Button) findViewById(R.id.bt);</p><p>		</font>button.setOnClickListener(<font class="keyword">new </font>Button.OnClickListener() {</p><p>			@Override</p><p>			<font class="keyword">public </font><font class="keyword">void </font>onClick(View v) {</p><p>				<font class="Comments">// 通知的图标必须设置(其他属性为可选设置),否则通知无法显示</font></p><p>				notification.icon = R.drawable.icon;</p><p>				view.setImageViewResource(R.id.image, R.drawable.icon);<font class="Comments">// 起一个线程用来更新progress</font></p><p>				<font class="keyword">new </font>Thread(</font><font class="keyword">new </font>Runnable() {</p><p>					@Override</p><p>					<font class="keyword">public </font><font class="keyword">void </font>run() {</p><p>						<font class="keyword">for </font>(</font><font class="keyword">int </font>i = 0; i &lt; 20; i++) {</p><p>							progress = (i + 1) * 5;</p><p>							<font class="keyword">try </font>{</p><p>								<font class="keyword">if </font>(i &lt; 19) {</p><p>									Thread.sleep(1000);</p><p>								</font>} <font class="keyword">else </font>{</p><p>									Thread.currentThread().interrupt();</p><p>								}</p><p>							</font>} <font class="keyword">catch </font>(InterruptedException e) {</p><p>								e.printStackTrace();</p><p>							}</p><p>							</font>Message msg = <font class="keyword">new </font>Message();</p><p>							handler.sendMessage(msg);</p><p>						}</p><p>					}</p><p>				}).start();</p><p>			}</p><p></p><p>		});</p><p>	}</p><p>}</p><p></pre></p><p>运行效果如图所示：</p><p><img src="../img/component_handler/06_handler.png"></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

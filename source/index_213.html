@@ -1,0 +1,78 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android学习手册_源码开发</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li class="navcurrentLink"><A href="index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">源码开发</div>
+
+  <h2 ><A title="Launcher" href="index_207.html">Launcher</A></h2>
+
+  <h2 ><A title="电话系统RIL" href="index_208.html">电话系统RIL</A></h2>
+
+  <h2 ><A title="进程间通信" href="index_209.html">进程间通信</A></h2>
+
+  <h2 ><A title="内部sensor系统" href="index_210.html">内部sensor系统</A></h2>
+
+  <h2 ><A title="内部surface系统" href="index_211.html">内部surface系统</A></h2>
+
+  <h2 ><A title="启动流程" href="index_212.html">启动流程</A></h2>
+
+  <h2 class="currentLink"><A title="源码编译" href="index_213.html">源码编译</A></h2>
+<UL><li class="currentLink"><A title=详解Android源码的编译 href="show_601_213.html">详解Android源码的编译</A> </li><li ><A title=windows下下载Android源码 href="show_602_213.html">windows下下载Android源码</A> </li><li ><A title=Android 源码编译 href="show_603_213.html">Android 源码编译</A> </li><li ><A title=Android2.3源码下载编译全过程 href="show_604_213.html">Android2.3源码下载编译全过程</A> </li><li ><A title=Android 编辑模块 href="show_605_213.html">Android 编辑模块</A> </li></UL>
+  <h2 ><A title="状态栏" href="index_214.html">状态栏</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1>源码编译</H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>详解Android源码的编译</H2>
+<P>　　本文将为大家介绍的是如何设置Android源码的编译环境，包括Linux下的配置。主要基于Android 1.0环境，希望对大家了解Android开发有所帮助。编译环境：Ubuntu8.10[color=blue]1、安装一些环境[code=java]sudo apt-get</P>
+<P><A title="详解Android源码的编译" href="show_601_213.html">进入 详解Android源码的编译</A> </P></DIV>
+
+<DIV>
+<H2>windows下下载Android源码</H2>
+<P>　　首先下载cygwin，cygwin是一个类linux平台。即在windows环境下模拟linux终端。比起运行linux虚拟机，是一个轻量的解决办法。除了本文用来下载android源码，你当然可以用它来学习linux。cygwin的中文网是http://www.c</P>
+<P><A title="windows下下载Android源码" href="show_602_213.html">进入 windows下下载Android源码</A> </P></DIV>
+
+<DIV>
+<H2>Android 源码编译</H2>
+<P>　　[color=blue]1. Windows下能编译Android源代码吗？目前Android开发网正式Cygwin还无法在Windows下编译Android源代码，不过在Linux或Mac OS这些*nix系统下可以编译。[color=blue]2. 编译Android源码的JDK版本问题按照</P>
+<P><A title="Android 源码编译" href="show_603_213.html">进入 Android 源码编译</A> </P></DIV>
+
+<DIV>
+<H2>Android2.3源码下载编译全过程</H2>
+<P>　　@官方的文档地址：http://source.android.com/source/download.html（但可能会遇到点问题请看下面的讲解）@系统要求：1 ubuntu 10.04或以上版本2 64位系统（查看系统命令： uname -m 如果出现i386 i686 i586则是32位</P>
+<P><A title="Android2.3源码下载编译全过程" href="show_604_213.html">进入 Android2.3源码下载编译全过程</A> </P></DIV>
+
+<DIV>
+<H2>Android 编辑模块</H2>
+<P>　　使用模块编译，只需要在你所在的模块的目录或者其子目录，执行mm，便可以编译出一个单独的apk，这样岂不快哉！具体步骤：1）打开~/.baserc文件，加入source ～/I850/build/envsetup.sh. 加入你自己该文件所在的路径</P>
+<P><A title="Android 编辑模块" href="show_605_213.html">进入 Android 编辑模块</A> </P></DIV>
+
+</DIV>
+
+<DIV id=footer style="display:none">
+<P align="center"> 
+ 
+ 
+ 
+  </P>
+</DIV></DIV></BODY></HTML>
+

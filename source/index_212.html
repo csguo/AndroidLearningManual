@@ -1,0 +1,103 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android学习手册_源码开发</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li class="navcurrentLink"><A href="index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">源码开发</div>
+
+  <h2 ><A title="Launcher" href="index_207.html">Launcher</A></h2>
+
+  <h2 ><A title="电话系统RIL" href="index_208.html">电话系统RIL</A></h2>
+
+  <h2 ><A title="进程间通信" href="index_209.html">进程间通信</A></h2>
+
+  <h2 ><A title="内部sensor系统" href="index_210.html">内部sensor系统</A></h2>
+
+  <h2 ><A title="内部surface系统" href="index_211.html">内部surface系统</A></h2>
+
+  <h2 class="currentLink"><A title="启动流程" href="index_212.html">启动流程</A></h2>
+<UL><li class="currentLink"><A title=从开机到android平台启动的学习路线 href="show_501_212.html">从开机到android平台启动的学习路线</A> </li><li ><A title=讲讲Android的启动 href="show_502_212.html">讲讲Android的启动</A> </li><li ><A title=Android 初始化流程 href="show_503_212.html">Android 初始化流程</A> </li><li ><A title=Android 开机动画启动过程详解 href="show_504_212.html">Android 开机动画启动过程详解</A> </li><li ><A title=Android poweroff 流程 href="show_505_212.html">Android poweroff 流程</A> </li><li ><A title=Android arm linux kernel启动流程（一） href="show_506_212.html">Android arm linux kernel启动流程（一）</A> </li><li ><A title=Android arm linux kernel启动流程（二） href="show_507_212.html">Android arm linux kernel启动流程（二）</A> </li><li ><A title=Android arm linux kernel启动流程（三） href="show_508_212.html">Android arm linux kernel启动流程（三）</A> </li><li ><A title=Android arm linux kernel启动流程（四） href="show_509_212.html">Android arm linux kernel启动流程（四）</A> </li><li ><A title=Android arm linux kernel启动流程（五） href="show_510_212.html">Android arm linux kernel启动流程（五）</A> </li></UL>
+  <h2 ><A title="源码编译" href="index_213.html">源码编译</A></h2>
+
+  <h2 ><A title="状态栏" href="index_214.html">状态栏</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1>启动流程</H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>从开机到android平台启动的学习路线</H2>
+<P>　　最近有大把的时间可以用，因此想彻底的研究一下android根据自己的安排画了一个学习路线图，流程中有一部分涉及很深了，比如说java平台。其他部分倒是接触不深。[code=img]source_start/01_android01.jpg[/code]说明</P>
+<P><A title="从开机到android平台启动的学习路线" href="show_501_212.html">进入 从开机到android平台启动的学习路线</A> </P></DIV>
+
+<DIV>
+<H2>讲讲Android的启动</H2>
+<P>　　Android从Linux系统启动有4个步骤；(1) init进程启动(2) Native服务启动(3) System Server，Android服务启动(4) Home启动总体启动框架图如：[code=img]source_start/02_android01.jpg[/code][code=img]source_start/</P>
+<P><A title="讲讲Android的启动" href="show_502_212.html">进入 讲讲Android的启动</A> </P></DIV>
+
+<DIV>
+<H2>Android 初始化流程</H2>
+<P>　　Android的系统构架，让大家对Android系统有了一个深入的认识；但是，Android系统本身非常庞大，在深入分析每个模块的具体功能之前，有必要对其启动过程进行分析。我们需要了解这么一个庞大的系统在启动的时候需要执</P>
+<P><A title="Android 初始化流程" href="show_503_212.html">进入 Android 初始化流程</A> </P></DIV>
+
+<DIV>
+<H2>Android 开机动画启动过程详解</H2>
+<P>　　Android 开机会出现3个画面： 1. Linux 系统启动，出现Linux小企鹅画面(reboot)(Android 1.5及以上版本已经取消加载图片)； 2. Android平台启动初始化，出现&quot;&quot;A N D R I O D&quot;&quot;文字字样画面； 3.</P>
+<P><A title="Android 开机动画启动过程详解" href="show_504_212.html">进入 Android 开机动画启动过程详解</A> </P></DIV>
+
+<DIV>
+<H2>Android poweroff 流程</H2>
+<P>　　[color=blue]关机流程android系统都有一个关机按键，长按这个按键系统会进行关机操作。具体实现流程如下：在android层通过系统调用reboot（arg）调用内核中的sys_reboot,具体流程如下：[code=java]reboot——&gt;sys</P>
+<P><A title="Android poweroff 流程" href="show_505_212.html">进入 Android poweroff 流程</A> </P></DIV>
+
+<DIV>
+<H2>Android arm linux kernel启动流程（一）</H2>
+<P>　　虽然这里的Arm Linux kernel前面加上了Android，但实际上还是和普遍Arm linux kernel启动的过程一样的，这里只是结合一下Android的Makefile，讲一下bootimage生成的一个过程。这篇文档主要描述bootimage的构造，以及</P>
+<P><A title="Android arm linux kernel启动流程（一）" href="show_506_212.html">进入 Android arm linux kernel启动流程（一）</A> </P></DIV>
+
+<DIV>
+<H2>Android arm linux kernel启动流程（二）</H2>
+<P>　　下面我们来看看kernel产生的过程，老方法，从Makefile开始/arch/arm/boot/Makefile ～[code=java]$(obj)/Image: vmlinux FORCE $(call if_changed,objcopy) @echo '' Kernel: $@ is ready'' $(obj)/compressed/vmlin</P>
+<P><A title="Android arm linux kernel启动流程（二）" href="show_507_212.html">进入 Android arm linux kernel启动流程（二）</A> </P></DIV>
+
+<DIV>
+<H2>Android arm linux kernel启动流程（三）</H2>
+<P>　　这里首先判断LC0当前的运行地址和链接地址是否一样，如果一样就不需要重定位，如果不一样则需要进行重定位。这里肯定是不相等的，因为我们可以通过objdump看到LC0的地址是0x00000138，是一个相对地址，然后adr r0, L</P>
+<P><A title="Android arm linux kernel启动流程（三）" href="show_508_212.html">进入 Android arm linux kernel启动流程（三）</A> </P></DIV>
+
+<DIV>
+<H2>Android arm linux kernel启动流程（四）</H2>
+<P>　　前面说过解压以后，代码会跳到解压完成以后的vmlinux开始执行，具体从什么地方开始执行我们可以看看生成的vmlinux.lds(arch/arm/kernel/)这个文件：[code=java]OUTPUT_ARCH(arm) ENTRY(stext) jiffies = jiffies_64;</P>
+<P><A title="Android arm linux kernel启动流程（四）" href="show_509_212.html">进入 Android arm linux kernel启动流程（四）</A> </P></DIV>
+
+<DIV>
+<H2>Android arm linux kernel启动流程（五）</H2>
+<P>　　他这里的执行过程其实比较简单就是在__proc_info_begin和__proc_info_end这个段里面里面去读取我们注册在里面的proc_info_list这个结构体，这个结构体的定义在arch/arm/include/asm/procinfo.h，具体实现根据你使用</P>
+<P><A title="Android arm linux kernel启动流程（五）" href="show_510_212.html">进入 Android arm linux kernel启动流程（五）</A> </P></DIV>
+
+</DIV>
+
+<DIV id=footer style="display:none">
+<P align="center"> 
+ 
+ 
+ 
+  </P>
+</DIV></DIV></BODY></HTML>
+

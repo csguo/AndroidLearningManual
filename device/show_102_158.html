@@ -1,0 +1,70 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android Camera 模块分析（二）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li class="navcurrentLink"><A href="index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="设备信息" href="index_157.html">设备信息</A></h2>
+
+  <h2><A title="摄像头" href="index_158.html">摄像头</A></h2>
+<UL><li ><A title=Android Camera 模块分析（一） href="show_101_158.html">Android Camera 模块分析（一）</A> </li><li class="currentLink"><A title=Android Camera 模块分析（二） href="show_102_158.html">Android Camera 模块分析（二）</A> </li><li ><A title=Android Camera 模块分析（三） href="show_103_158.html">Android Camera 模块分析（三）</A> </li><li ><A title=Android Camera 模块分析（四） href="show_104_158.html">Android Camera 模块分析（四）</A> </li><li ><A title=Android 浅谈相机研发（一） href="show_105_158.html">Android 浅谈相机研发（一）</A> </li><li ><A title=Android 浅谈相机研发（二） href="show_106_158.html">Android 浅谈相机研发（二）</A> </li><li ><A title=Android 浅谈相机研发（三） href="show_107_158.html">Android 浅谈相机研发（三）</A> </li><li ><A title=Android 浅谈相机研发（四） href="show_108_158.html">Android 浅谈相机研发（四）</A> </li><li ><A title=Android 浅谈相机研发（五） href="show_109_158.html">Android 浅谈相机研发（五）</A> </li><li ><A title=Android获取摄像头的详细介绍 href="show_110_158.html">Android获取摄像头的详细介绍</A> </li><li ><A title=开机启动摄像头的原理 href="show_111_158.html">开机启动摄像头的原理</A> </li></UL>
+  <h2><A title="通讯录" href="index_159.html">通讯录</A></h2>
+
+  <h2><A title="电话" href="index_160.html">电话</A></h2>
+
+  <h2><A title="短信" href="index_161.html">短信</A></h2>
+
+  <h2><A title="传感器" href="index_162.html">传感器</A></h2>
+
+  <h2><A title="定位" href="index_163.html">定位</A></h2>
+
+  <h2><A title="视频系统" href="index_164.html">视频系统</A></h2>
+
+  <h2><A title="音频系统" href="index_165.html">音频系统</A></h2>
+
+  <h2><A title="铃声" href="index_166.html">铃声</A></h2>
+
+  <h2><A title="音量" href="index_167.html">音量</A></h2>
+
+  <h2><A title="录音" href="index_168.html">录音</A></h2>
+
+  <h2><A title="输入法" href="index_169.html">输入法</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android Camera 模块分析（二）</H2>
+<div style="line-height:20px; font-size:14px;"><p>2.4 头文件ICamera.h</p><p>ICamera.h描述的内容是一个实现Camera功能的接口，其定义如下所示：</p><p><pre><font class="keyword">class </font>ICamera: </font><font class="keyword">public </font>IInterface </p><p>{ </p><p>	public:</p><p>	DECLARE_META_INTERFACE(Camera);</p><p>	</font>virtual <font class="keyword">void </font>disconnect() = 0;</p><p>	virtual status_t setPreviewDisplay(const sp&lt;ISurface&gt;& surface) = 0;</p><p>	</font>virtual <font class="keyword">void </font>setHasFrameCallback(bool installed) = 0;</p><p>	virtual status_t startPreview() = 0;</p><p>	</font>virtual <font class="keyword">void </font>stopPreview() = 0;</p><p>	virtual status_t autoFocus() = 0;</p><p>	virtual status_t takePicture() = 0;</p><p>	virtual status_t setParameters(const String8& params) = 0;</p><p>	virtual String8 getParameters() const = 0;</p><p>};  </p><p><font class="keyword">class </font>BnCamera: </font><font class="keyword">public </font>BnInterface&lt;ICamera&gt; </p><p>{ </p><p>	public:</p><p>	virtual status_t onTransact( uint32_t code,</p><p>	const Parcel& data,</p><p>	Parcel* reply,</p><p>	uint32_t flags = 0);</p><p>};</p><p></pre></p><p>ICamera。h描述的内容是一个实现Camera功能的接口，其定义如下所示：</p><p>在camera类中，主要定义Camera的功能接口，这个类必须被继承才能够使用。值得注意的是，这些接口和Camera类的接口有些类似，但是它们并没有直接的关系。事实上，在Camera类的各种实现中，一般都会通过调用ICamera类的实现类来完成。</p><p>2.5 头文件ICameraService.h</p><p>ICameraService.h用于描述一个Camera的服务，定义方式如下所示：</p><p><pre><font class="keyword">class </font>ICameraService : </font><font class="keyword">public </font>IInterface </p><p>{ </p><p>	public:</p><p>	DECLARE_META_INTERFACE(CameraService);</p><p>	virtual sp&lt;ICamera&gt; connect(const sp&lt;ICameraClient&gt;& cameraClient) = 0;</p><p>}; </p><p><font class="keyword">class </font>BnCameraService: </font><font class="keyword">public </font>BnInterface&lt;ICameraService&gt; </p><p>{ </p><p>	public:</p><p>	virtual status_t onTransact( uint32_t code,</p><p>	const Parcel& data,</p><p>	Parcel* reply,</p><p>	uint32_t flags = 0);</p><p>};</p><p></pre></p><p>由于具有纯虚函数，ICameraService以及BnCameraService必须被继承实现才能够使用，在ICameraService只定义了一个connect()接口，它的返回值的类型是sp&lt;ICamera&gt;，这个ICamera 是提供实现功能的接口。注意，ICameraService只有连接函数connect()，没有断开函数，断开的功能由ICamera接口来提供。</p><p>2.6 头文件CameraHardwareInterface.h</p><p>CameraHardwareInterface。h定义的是一个Camera底层的接口，这个类的实现者是最终实现Camera的。</p><p>CameraHardwareInterface 定以Camera硬件的接口，如下所示：</p><p><pre><font class="keyword">class </font>CameraHardwareInterface : </font><font class="keyword">public </font>virtual RefBase { </p><p>	public:</p><p>	virtual ~CameraHardwareInterface() { }</p><p>	virtual sp&lt;IMemoryHeap&gt; getPreviewHeap() const = 0;</p><p>	virtual status_t startPreview(preview_callback cb, void* user) = 0;</p><p>	</font>virtual <font class="keyword">void </font>stopPreview() = 0;</p><p>	virtual status_t autoFocus(autofocus_callback,</p><p>	void* user) = 0;</p><p>	virtual status_t takePicture(shutter_callback,</p><p>	raw_callback,</p><p>	jpeg_callback,</p><p>	void* user) = 0;</p><p>	virtual status_t cancelPicture(bool cancel_shutter,</p><p>	bool cancel_raw,</p><p>	bool cancel_jpeg) = 0;</p><p>	virtual status_t setParameters(const CameraParameters& params) = 0;</p><p>	virtual CameraParameters getParameters() const = 0;</p><p>	</font>virtual <font class="keyword">void </font>release() = 0;</p><p>	</font>virtual status_t dump(<font class="keyword">int </font>fd, const Vector&lt;String16&gt;& args) const = 0;</p><p>};</p><p></pre></p><p>使用C语言的方式导出符号：</p><p>extern "C" sp&lt;CameraHardwareInterface&gt; openCameraHardware()；</p><p>在程序的其他地方，使用openCameraHardware()就可以得到一个 CameraHardwareInterface，然后调用 CameraHardwareInterface的接口完成Camera的功能。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

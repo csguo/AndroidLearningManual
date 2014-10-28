@@ -1,0 +1,58 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 如何获取SDCard 内存（二）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li class="navcurrentLink"><A href="index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="ContentProvider" href="index_170.html">ContentProvider</A></h2>
+
+  <h2><A title="Preferences" href="index_171.html">Preferences</A></h2>
+
+  <h2><A title="SQLite" href="index_172.html">SQLite</A></h2>
+
+  <h2><A title="SD卡" href="index_173.html">SD卡</A></h2>
+<UL><li ><A title=Android SQLite的数据库文件存储在SD卡中（一） href="show_301_173.html">Android SQLite的数据库文件存储在SD卡中（一）</A> </li><li ><A title=Android SQLite的数据库文件存储在SD卡中（二） href="show_302_173.html">Android SQLite的数据库文件存储在SD卡中（二）</A> </li><li ><A title=Android 如何获取SDCard 内存（一） href="show_303_173.html">Android 如何获取SDCard 内存（一）</A> </li><li class="currentLink"><A title=Android 如何获取SDCard 内存（二） href="show_304_173.html">Android 如何获取SDCard 内存（二）</A> </li><li ><A title=Android SDCard的容量大小 href="show_305_173.html">Android SDCard的容量大小</A> </li><li ><A title=Android 查看SDCard还有多少存储空间 href="show_306_173.html">Android 查看SDCard还有多少存储空间</A> </li><li ><A title=Android获取外部和内部存储空间总大小和可用大小 href="show_307_173.html">Android获取外部和内部存储空间总大小和可用大小</A> </li><li ><A title=Android 读写SD卡的权限设置 href="show_308_173.html">Android 读写SD卡的权限设置</A> </li><li ><A title=Android 检测目录是否存在，不存在则创建 href="show_309_173.html">Android 检测目录是否存在，不存在则创建</A> </li><li ><A title=Android 在SD卡上保存图片 href="show_310_173.html">Android 在SD卡上保存图片</A> </li><li ><A title=Android Http下载文件到手机内存与SDCard href="show_311_173.html">Android Http下载文件到手机内存与SDCard</A> </li><li ><A title=Android 程序私有文件（TXT）操作类 href="show_312_173.html">Android 程序私有文件（TXT）操作类</A> </li><li ><A title=Android SD卡里的文件夹功能 href="show_313_173.html">Android SD卡里的文件夹功能</A> </li><li ><A title=Android从SD卡导入数据库.db文件至APK href="show_314_173.html">Android从SD卡导入数据库.db文件至APK</A> </li></UL>
+  <h2><A title="数据库" href="index_174.html">数据库</A></h2>
+
+  <h2><A title="URI" href="index_175.html">URI</A></h2>
+
+  <h2><A title="MediaStore" href="index_176.html">MediaStore</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 如何获取SDCard 内存（二）</H2>
+<div style="line-height:20px; font-size:14px;"><p style="color:#3333FF;">2、讲述 StatFs 类 </p><p>StatFs 一个模拟linux的df命令的一个类，获得SD卡和手机内存的使用情况 </p><p>StatFs 常用方法: </p><p><pre>getAvailableBlocks() </p><p>解释：返回 Int，获取当前可用的存储空间 </p><p>getBlockCount() </p><p>解释：返回 Int，获取该区域可用的文件系统数 </p><p>getBlockSize() </p><p>解释：返回 Int，大小，以字节为单位，一个文件系统 </p><p>getFreeBlocks() </p><p>解释：返回 Int，该块区域剩余的空间 </p><p>restat(String path) </p><p>解释：执行一个由该对象所引用的文件系统 </p><p></pre></p><p>3、完整例子读取 SDCard 内存 </p><p>存储卡在 Android 手机上是可以随时插拔的，每次的动作都对引起操作系统进行 ACTION_BROADCAST，本例子将使用上面学到的方法，计算出 SDCard 的剩余容量和总容量。代码如下： </p><p><pre><font class="keyword">import </font>java.io.File;</p><p><font class="keyword">import </font>java.text.DecimalFormat;</p><p><font class="keyword">import </font>android.R;</p><p><font class="keyword">import </font>android.app.Activity;</p><p><font class="keyword">import </font>android.os.Bundle;</p><p><font class="keyword">import </font>android.os.Environment;</p><p><font class="keyword">import </font>android.os.StatFs;</p><p><font class="keyword">import </font>android.view.View;</p><p><font class="keyword">import </font>android.view.View.OnClickListener;</p><p><font class="keyword">import </font>android.widget.Button;</p><p><font class="keyword">import </font>android.widget.ProgressBar;</p><p><font class="keyword">import </font>android.widget.TextView;</p><p><font class="keyword">import </font>android.widget.Toast;</p><p><font class="keyword">public </font><font class="keyword">class </font>getStorageActivity </font><font class="keyword">extends </font>Activity {</p><p>	<font class="keyword">private </font>Button myButton;</p><p>	<font class="Comments">/** Called when the activity is first created. */</font></p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onCreate(Bundle savedInstanceState) {</p><p>		<font class="keyword">super</font>.onCreate(savedInstanceState);</p><p>		setContentView(R.layout.main);</p><p>		findView();</p><p>		</font>viewHolder.myButton.setOnClickListener(<font class="keyword">new </font>OnClickListener() {</p><p>			@Override</p><p>			<font class="keyword">public </font><font class="keyword">void </font>onClick(View arg0) {</p><p>				getSize();</p><p>			}</p><p>		});</p><p>	}</p><p>	<font class="keyword">void </font>findView() {</p><p>		viewHolder.myButton = (Button) findViewById(R.id.Button01);</p><p>		viewHolder.myBar = (ProgressBar) findViewById(R.id.myProgressBar);</p><p>		viewHolder.myTextView = (TextView) findViewById(R.id.myTextView);</p><p>	}</p><p>	<font class="keyword">void </font>getSize() {</p><p>		</font>viewHolder.myTextView.setText(<font class="Fields">""</font>);</p><p>		viewHolder.myBar.setProgress(0);</p><p>		<font class="Comments">// 判断是否有插入存储卡</font></p><p>		<font class="keyword">if </font>(Environment.getExternalStorageState().equals(</p><p>				Environment.MEDIA_MOUNTED)) {</p><p>			File path = Environment.getExternalStorageDirectory();</p><p>			<font class="Comments">// 取得sdcard文件路径</font></p><p>			</font>StatFs statfs = <font class="keyword">new </font>StatFs(path.getPath());</p><p>			<font class="Comments">// 获取block的SIZE</font></p><p>			<font class="keyword">long </font>blocSize = statfs.getBlockSize();</p><p>			<font class="Comments">// 获取BLOCK数量</font></p><p>			<font class="keyword">long </font>totalBlocks = statfs.getBlockCount();</p><p>			<font class="Comments">// 己使用的Block的数量</font></p><p>			<font class="keyword">long </font>availaBlock = statfs.getAvailableBlocks();</p><p>			String[] total = filesize(totalBlocks * blocSize);</p><p>			String[] availale = filesize(availaBlock * blocSize);</p><p>			<font class="Comments">// 设置进度条的最大值</font></p><p>			<font class="keyword">int </font>maxValue = Integer.parseInt(availale[0]);</p><p>			viewHolder.myBar.setProgress(maxValue);</p><p>			</font>String Text = <font class="Fields">"总共："</font> + total[0] + total[1] + </font><font class="Fields">"\n"</font> + </font><font class="Fields">"可用:</p><p>					+ availale[0] + availale[1];</p><p>			viewHolder.myTextView.setText(Text);</p><p>		</font>} <font class="keyword">else </font><font class="keyword">if </font>(Environment.getExternalStorageState().equals(</p><p>				Environment.MEDIA_REMOVED)) {</p><p>			</font>Toast.makeText(getStorageActivity.<font class="keyword">this</font>, <font class="Fields">"没有sdCard"</font>, 1000).show();</p><p>		}</p><p>	} <font class="Comments">// 返回数组，下标1代表大小，下标2代表单位 KB/MB</font></p><p>	</font>String[] filesize(<font class="keyword">long </font>size) {</p><p>		</font>String str = <font class="Fields">""</font>;</p><p>		<font class="keyword">if </font>(size &gt;= 1024) {</p><p>			</font>str = <font class="Fields">"KB"</font>;</p><p>			size /= 1024;</p><p>			<font class="keyword">if </font>(size &gt;= 1024) {</p><p>				</font>str = <font class="Fields">"MB"</font>;</p><p>				size /= 1024;</p><p>			}</p><p>		}</p><p>		</font>DecimalFormat formatter = <font class="keyword">new </font>DecimalFormat();</p><p>		formatter.setGroupingSize(3);</p><p>		</font>String result[] = <font class="keyword">new </font>String[2];</p><p>		result[0] = formatter.format(size);</p><p>		result[1] = str;</p><p>		<font class="keyword">return </font>result;</p><p>	}</p><p>}</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android中怎样嵌入C语言（六）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li class="navcurrentLink"><A href="index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="开发基础" href="index_100.html">开发基础</A></h2>
+
+  <h2><A title="开发环境搭建" href="index_101.html">开发环境搭建</A></h2>
+
+  <h2><A title="模拟器" href="index_102.html">模拟器</A></h2>
+
+  <h2><A title="Resource" href="index_103.html">Resource</A></h2>
+
+  <h2><A title="Manifest" href="index_104.html">Manifest</A></h2>
+
+  <h2><A title="ADB" href="index_105.html">ADB</A></h2>
+
+  <h2><A title="DDMS" href="index_106.html">DDMS</A></h2>
+
+  <h2><A title="Logcat(日志)" href="index_107.html">Logcat(日志)</A></h2>
+
+  <h2><A title="打包" href="index_108.html">打包</A></h2>
+
+  <h2><A title="文件处理" href="index_109.html">文件处理</A></h2>
+
+  <h2><A title="底层基础" href="index_111.html">底层基础</A></h2>
+<UL><li ><A title=Android中怎样嵌入C语言（一） href="show_1101_111.html">Android中怎样嵌入C语言（一）</A> </li><li ><A title=Android中怎样嵌入C语言（二） href="show_1102_111.html">Android中怎样嵌入C语言（二）</A> </li><li ><A title=Android中怎样嵌入C语言（三） href="show_1103_111.html">Android中怎样嵌入C语言（三）</A> </li><li ><A title=Android中怎样嵌入C语言（四） href="show_1104_111.html">Android中怎样嵌入C语言（四）</A> </li><li ><A title=Android中怎样嵌入C语言（五） href="show_1105_111.html">Android中怎样嵌入C语言（五）</A> </li><li class="currentLink"><A title=Android中怎样嵌入C语言（六） href="show_1106_111.html">Android中怎样嵌入C语言（六）</A> </li></UL>
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android中怎样嵌入C语言（六）</H2>
+<div style="line-height:20px; font-size:14px;"><p>二.使用NDK生成本地方法（ubuntu and windows）</p><p>1.安装NDK：解压，然后进入NDK解压后的目录，运行build/host-setup.sh（需要Make3.81和awk）。若有错，修改host-setup.sh文件：将!/bin/sh修改为!/bin/bash，再次运行即可。</p><p>2.在apps文件夹下建立自己的工程文件夹，然后在该文件夹下建一文件Application.mk和项project文件夹。</p><p>Application.mk文件：</p><p><pre>APP_PROJECT_PATH := $(call my-dir)/project</p><p>APP_MODULES      := myjni</p><p></pre></p><p>3.在project文件夹下建一jni文件夹，然后新建Android.mk和myjni.c。这里不需要用javah生成相应的.h文件，但函数名要包含相应的完整的包、类名。</p><p>4.编辑相应文件内容。</p><p>Android.mk文件：</p><p><pre>java代码：</p><p> Copyright (C) 2009 The Android Open Source Project</p><p></p><p> Licensed under the Apache License, Version 2.0 (the "License");</p><p> you may not use this file except in compliance with the License.</p><p> You may obtain a copy of the License at</p><p></p><p> http://www.apache.org/licenses/LICENSE-2.0</p><p></p><p> Unless required by applicable law or agreed to in writing, software</p><p> distributed under the License is distributed on an "AS IS" BASIS,</p><p> WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</p><p> See the License for the specific language governing permissions and</p><p> limitations under the License.</p><p></p><p>LOCAL_PATH := $(call my-dir)</p><p>include $(CLEAR_VARS)</p><p>LOCAL_MODULE := myjni</p><p>LOCAL_SRC_FILES := myjni.c</p><p>include $(BUILD_SHARED_LIBRARY)</p><p></pre></p><p>myjni.c文件：</p><p><pre>include &lt;string.h&gt;</p><p>include &lt;jni.h&gt;</p><p>jstring</p><p>Java_com_hello_NdkTest_NdkTest_stringFromJNI( JNIEnv* env,</p><p>jobject thiz )</p><p>{</p><p>	return (*env)-&gt;NewStringUTF(env, "Hello from My-JNI !");</p><p>}</p><p></pre></p><p>myjni文件组织：</p><p><pre>a@ubuntu:~/work/android/ndk-1.6_r1/apps$ tree myjni</p><p>myjni</p><p>|-- Application.mk</p><p>`-- project</p><p>|-- jni</p><p>| |-- Android.mk</p><p>| `-- myjni.c</p><p>`-- libs</p><p>`-- armeabi</p><p>`-- libmyjni.so</p><p></pre></p><p>4 directories, 4 files</p><p>5.编译：make APP=myjni.</p><p>以上内容在ubuntu完成。以下内容在windows中完成。当然也可以在ubuntu中完成。</p><p>6.在eclipsh中创建android application。将myjni中自动生成的libs文件夹拷贝到当前工程文件夹中，编译运行即可。</p><p>NdkTest.java文件：</p><p><pre><font class="keyword">import </font>android.app.Activity;</p><p><font class="keyword">import </font>android.os.Bundle;</p><p><font class="keyword">import </font>android.widget.TextView;</p><p><font class="keyword">public </font><font class="keyword">class </font>NdkTest </font><font class="keyword">extends </font>Activity {</p><p>	<font class="Comments">/** Called when the activity is first created. */</font></p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onCreate(Bundle savedInstanceState) {</p><p>		<font class="keyword">super</font>.onCreate(savedInstanceState);</p><p>		</font>TextView tv = <font class="keyword">new </font>TextView(</font><font class="keyword">this</font>);</p><p>		tv.setText(stringFromJNI());</p><p>		setContentView(tv);</p><p>	}</p><p>	<font class="keyword">public </font>native String stringFromJNI();</p><p>	<font class="keyword">static </font>{</p><p>		</font>System.loadLibrary(<font class="Fields">"myjni"</font>);</p><p>	}</p><p>}</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

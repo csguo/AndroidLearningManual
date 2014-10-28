@@ -1,0 +1,143 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android学习手册_设备功能</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li class="navcurrentLink"><A href="index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">设备功能</div>
+
+  <h2 ><A title="设备信息" href="index_157.html">设备信息</A></h2>
+
+  <h2 ><A title="摄像头" href="index_158.html">摄像头</A></h2>
+
+  <h2 ><A title="通讯录" href="index_159.html">通讯录</A></h2>
+
+  <h2 ><A title="电话" href="index_160.html">电话</A></h2>
+
+  <h2 class="currentLink"><A title="短信" href="index_161.html">短信</A></h2>
+<UL><li class="currentLink"><A title=Android sms讲解 href="show_401_161.html">Android sms讲解</A> </li><li ><A title=Android 发送和接收短信实例（一） href="show_402_161.html">Android 发送和接收短信实例（一）</A> </li><li ><A title=Android 发送和接收短信实例（二） href="show_403_161.html">Android 发送和接收短信实例（二）</A> </li><li ><A title=Android 发送和接收短信实例（三） href="show_404_161.html">Android 发送和接收短信实例（三）</A> </li><li ><A title=Android 监听SMS消息 href="show_405_161.html">Android 监听SMS消息</A> </li><li ><A title=Android 追踪和确认SMS消息传递 href="show_406_161.html">Android 追踪和确认SMS消息传递</A> </li><li ><A title=Android 读取短信 href="show_407_161.html">Android 读取短信</A> </li><li ><A title=Android SMS小结 href="show_408_161.html">Android SMS小结</A> </li><li ><A title=短信的收发及在android模拟器之间实践（一） href="show_409_161.html">短信的收发及在android模拟器之间实践（一）</A> </li><li ><A title=短信的收发及在android模拟器之间实践（二） href="show_410_161.html">短信的收发及在android模拟器之间实践（二）</A> </li><li ><A title=如何在你的程序中嵌入收发短信功能 href="show_411_161.html">如何在你的程序中嵌入收发短信功能</A> </li><li ><A title=系统短信库的一些用法 href="show_412_161.html">系统短信库的一些用法</A> </li><li ><A title=在Android中发送短信和彩信 href="show_413_161.html">在Android中发送短信和彩信</A> </li><li ><A title=怎么编写代码实现拦截一些网络垃圾短信 href="show_414_161.html">怎么编写代码实现拦截一些网络垃圾短信</A> </li><li ><A title=Android调用系统短信Intent时将预填接收号码 href="show_415_161.html">Android调用系统短信Intent时将预填接收号码</A> </li><li ><A title=Android广播监听短信并显示内容 href="show_416_161.html">Android广播监听短信并显示内容</A> </li></UL>
+  <h2 ><A title="传感器" href="index_162.html">传感器</A></h2>
+
+  <h2 ><A title="定位" href="index_163.html">定位</A></h2>
+
+  <h2 ><A title="视频系统" href="index_164.html">视频系统</A></h2>
+
+  <h2 ><A title="音频系统" href="index_165.html">音频系统</A></h2>
+
+  <h2 ><A title="铃声" href="index_166.html">铃声</A></h2>
+
+  <h2 ><A title="音量" href="index_167.html">音量</A></h2>
+
+  <h2 ><A title="录音" href="index_168.html">录音</A></h2>
+
+  <h2 ><A title="输入法" href="index_169.html">输入法</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1>短信</H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android sms讲解</H2>
+<P>　　一、android sms所要的权限[code=java]##[/code]二、sms发送 与短消息发送相关的类为：SmsManager. [code=java]#SmsManager.sendTextMessage(destinationAddress, scAddress, text, sentIntent, deliveryIntent);#Pe</P>
+<P><A title="Android sms讲解" href="show_401_161.html">进入 Android sms讲解</A> </P></DIV>
+
+<DIV>
+<H2>Android 发送和接收短信实例（一）</H2>
+<P>　　在做Android开发中经常要用到短信的发送和短信的接收，调用Android提供的api实现起来很简单，今天要用到这个功能研究了一下顺便写下来加强一下记忆。1.首先创建一个Android Project2.设计一个main Activity作为发短</P>
+<P><A title="Android 发送和接收短信实例（一）" href="show_402_161.html">进入 Android 发送和接收短信实例（一）</A> </P></DIV>
+
+<DIV>
+<H2>Android 发送和接收短信实例（二）</H2>
+<P>　　3.创建一个Java类文件，导入以下包：[code=java]#[Keywords]import #java.util.regex.Matcher;#[Keywords]import #java.util.regex.Pattern;#[Keywords]import #com.eshore.smsManagers.R;#[Keywords]import #androi</P>
+<P><A title="Android 发送和接收短信实例（二）" href="show_403_161.html">进入 Android 发送和接收短信实例（二）</A> </P></DIV>
+
+<DIV>
+<H2>Android 发送和接收短信实例（三）</H2>
+<P>　　经过上面的几个步骤发短信的功能基本就完成了，但是现在运行程序是无法工作的，主要是配置文件AndroidManifest.xml中的权限没有配置，要发送短信就要配置，发送短信的权限这样Android才会发送信息，否则发不出去信息</P>
+<P><A title="Android 发送和接收短信实例（三）" href="show_404_161.html">进入 Android 发送和接收短信实例（三）</A> </P></DIV>
+
+<DIV>
+<H2>Android 监听SMS消息</H2>
+<P>　　当设备接收到一条新的SMS消息时，就会广播一个包含了android.provider.Telephony.SMS_RECEIVED动作的Intent。注意，这个动作是一个字符串值，SDK1.0不再包含对这个字符串的引用，因此，在你的应用程序中，你需要显式</P>
+<P><A title="Android 监听SMS消息" href="show_405_161.html">进入 Android 监听SMS消息</A> </P></DIV>
+
+<DIV>
+<H2>Android 追踪和确认SMS消息传递</H2>
+<P>　　为了追踪发出的SMS消息的传送和成功送达，实现并注册Broadcast Receiver来监听你在sendTextMessage方法中传入的PendingIntent的动作。第一个PendingIntent参数，sentIntent，当消息发送成功或发送失败时触发。Broadc</P>
+<P><A title="Android 追踪和确认SMS消息传递" href="show_406_161.html">进入 Android 追踪和确认SMS消息传递</A> </P></DIV>
+
+<DIV>
+<H2>Android 读取短信</H2>
+<P>　　java代码：[code=java]#[Keywords]import #android.app.Activity;#[Keywords]import #android.database.Cursor;#[Keywords]import #android.database.sqlite.SQLiteException;#[Keywords]import #android.net.Uri;#[</P>
+<P><A title="Android 读取短信" href="show_407_161.html">进入 Android 读取短信</A> </P></DIV>
+
+<DIV>
+<H2>Android SMS小结</H2>
+<P>　　1.在Android中，SMS消息传递是由SmsManager进行处理的。可以通过静态方法SmsManager.getDefault()来获得对SmsManager的引用，如下：[code=java]SmsManager smsManager = SmsManager.getDefault();[/code]2.Android中</P>
+<P><A title="Android SMS小结" href="show_408_161.html">进入 Android SMS小结</A> </P></DIV>
+
+<DIV>
+<H2>短信的收发及在android模拟器之间实践（一）</H2>
+<P>　　[color=blue]引言本文通过运行两个Android模拟器，介绍在Android中如何实现短信服务（SMS，short message service）的功能。通过这个例子，我想带给大家的是：更加熟悉之前介绍过的Android应用程序的概念及技术细节</P>
+<P><A title="短信的收发及在android模拟器之间实践（一）" href="show_409_161.html">进入 短信的收发及在android模拟器之间实践（一）</A> </P></DIV>
+
+<DIV>
+<H2>短信的收发及在android模拟器之间实践（二）</H2>
+<P>　　[color=blue]引言前面我们介绍都只是如何发送SMS消息，接下来我们介绍如何接收SMS消息，及另一种发短信的方式并增强为可以发生图片等，最后介绍一下emulator工具。本文的主要内容如下：[code=java]1~5见Android 开发</P>
+<P><A title="短信的收发及在android模拟器之间实践（二）" href="show_410_161.html">进入 短信的收发及在android模拟器之间实践（二）</A> </P></DIV>
+
+<DIV>
+<H2>如何在你的程序中嵌入收发短信功能</H2>
+<P>　　注1：本文原文为英文版本的教程，我只在其基础上加以修改和汉化。注2：本文作为初学者入门，简要的运用了几个基本的功能。在这篇文章里将介绍如何在你的android应用中嵌入收发短信的功能。我们不需要拿真机来测试，</P>
+<P><A title="如何在你的程序中嵌入收发短信功能" href="show_411_161.html">进入 如何在你的程序中嵌入收发短信功能</A> </P></DIV>
+
+<DIV>
+<H2>系统短信库的一些用法</H2>
+<P>　　1、查询所有短信，按发件人进行分组[code=java]#Cursor mCursor = managedQuery(	#Uri.parse(#[Fields]&quot;&quot;content:#[Comments]//sms&quot;&quot;#),	#[Keywords]new #String[] { #[Fields]&quot;&quot;_id,</P>
+<P><A title="系统短信库的一些用法" href="show_412_161.html">进入 系统短信库的一些用法</A> </P></DIV>
+
+<DIV>
+<H2>在Android中发送短信和彩信</H2>
+<P>　　发送短信：[code=java]#String body = #[Fields]&quot;&quot;#[Keywords]this# is sms demo&quot;&quot;#;#Intent mmsintent = #[Keywords]new #Intent(Intent.ACTION_SENDTO, Uri.fromParts(		#[Fields]&quot;&quot</P>
+<P><A title="在Android中发送短信和彩信" href="show_413_161.html">进入 在Android中发送短信和彩信</A> </P></DIV>
+
+<DIV>
+<H2>怎么编写代码实现拦截一些网络垃圾短信</H2>
+<P>　　下面的代码智能实现拦截根据自己设定的手机号或者短信内容的短信，但是究竟怎么才能实现拦截网络垃圾短信呢？就像360手机卫士那样能够自动拦截一些广告短信或者一些乱七八糟的彩信呢？[code=java]#[Keywords]public </P>
+<P><A title="怎么编写代码实现拦截一些网络垃圾短信" href="show_414_161.html">进入 怎么编写代码实现拦截一些网络垃圾短信</A> </P></DIV>
+
+<DIV>
+<H2>Android调用系统短信Intent时将预填接收号码</H2>
+<P>　　前段时间在一个应用中调用系统自带的发送短信的Intent，但是接收者的号码一直穿不过去，代码如下：[code=java]#Uri smsToUri = Uri.parse(#[Fields]&quot;&quot;smsto:123456&quot;&quot;#);#Intent sendIntent = #[</P>
+<P><A title="Android调用系统短信Intent时将预填接收号码" href="show_415_161.html">进入 Android调用系统短信Intent时将预填接收号码</A> </P></DIV>
+
+<DIV>
+<H2>Android广播监听短信并显示内容</H2>
+<P>　　AndroidManifest.xml中添加[code=java]#	#		#	######[/code]再写一个广播监听[code=java]#[Keywords]public #[Keywords]class #receive #[Keywords]extends #BroadcastReceiver {	#String receiveMsg = #[Fields]&qu</P>
+<P><A title="Android广播监听短信并显示内容" href="show_416_161.html">进入 Android广播监听短信并显示内容</A> </P></DIV>
+
+</DIV>
+
+<DIV id=footer style="display:none">
+<P align="center"> 
+ 
+ 
+ 
+  </P>
+</DIV></DIV></BODY></HTML>
+

@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android让模拟器内存变大_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li class="navcurrentLink"><A href="index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="开发基础" href="index_100.html">开发基础</A></h2>
+
+  <h2><A title="开发环境搭建" href="index_101.html">开发环境搭建</A></h2>
+
+  <h2><A title="模拟器" href="index_102.html">模拟器</A></h2>
+<UL><li ><A title=Android 模拟器使用指导 href="show_201_102.html">Android 模拟器使用指导</A> </li><li ><A title=Android 模拟器命令大全 href="show_202_102.html">Android 模拟器命令大全</A> </li><li ><A title=Android模拟器屏幕切换横屏 href="show_203_102.html">Android模拟器屏幕切换横屏</A> </li><li ><A title=更改Android AVD模拟器创建路径位置的方法 href="show_204_102.html">更改Android AVD模拟器创建路径位置的方法</A> </li><li ><A title=模拟器中加载和使用SDCard卡 href="show_205_102.html">模拟器中加载和使用SDCard卡</A> </li><li ><A title=在Android模拟器中永久删除自带应用程序 href="show_206_102.html">在Android模拟器中永久删除自带应用程序</A> </li><li ><A title=PC电脑和Android模拟器访问及模拟器之间TCP/UDP通信 href="show_207_102.html">PC电脑和Android模拟器访问及模拟器之间TCP/UDP通信</A> </li><li ><A title=Android模拟器通过本地电脑上网 href="show_208_102.html">Android模拟器通过本地电脑上网</A> </li><li ><A title=Android模拟器实现打电话发短信 href="show_209_102.html">Android模拟器实现打电话发短信</A> </li><li class="currentLink"><A title=Android让模拟器内存变大 href="show_210_102.html">Android让模拟器内存变大</A> </li></UL>
+  <h2><A title="Resource" href="index_103.html">Resource</A></h2>
+
+  <h2><A title="Manifest" href="index_104.html">Manifest</A></h2>
+
+  <h2><A title="ADB" href="index_105.html">ADB</A></h2>
+
+  <h2><A title="DDMS" href="index_106.html">DDMS</A></h2>
+
+  <h2><A title="Logcat(日志)" href="index_107.html">Logcat(日志)</A></h2>
+
+  <h2><A title="打包" href="index_108.html">打包</A></h2>
+
+  <h2><A title="文件处理" href="index_109.html">文件处理</A></h2>
+
+  <h2><A title="底层基础" href="index_111.html">底层基础</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android让模拟器内存变大</H2>
+<div style="line-height:20px; font-size:14px;"><p>今天我们就来说说模拟器的内存，有的时候我们在用模拟器开发应用的时候，会用到内存，那么一般的应用的话，模拟器自带的内存就够用了，但是有的时候我们会接触到很大的应用的话，我们模拟器上的内存就会不够用，那么我们怎么办才行呢，大家到了这里以后就会头大，过了今天以后童鞋们在看到这种情况的话，就不会再头大了，那么我们还等什么，让自己的android模拟器内存变的更大一些吧。</p><p>1. 我们以Windows平台的SDK为例，这里模拟器配置路径为 C:\Documents and Settings\android\.android\avd\android3.avd，我们用记事本打开这个ini文件，当然我们可以看到Unix/Binary的换行符，这里建议你使用UltraEdit或Notepad++打开，这里仅作为演示我们大家说下这个文件的结构吧，</p><p><pre>hw.lcd.density=160 ; 是屏幕的密度</p><p>sdcard.size=64M   ;这句代表分配SD卡的大小，我这里仅给了64M</p><p>skin.name=WXGA  ;分辨率</p><p>skin.path=platforms\android-11\skins\WXGA ;模拟器皮肤</p><p>hw.keyboard.lid=no ;是否有物理键盘</p><p>vm.heapSize=48  ; 虚拟机默认堆大小</p><p>hw.ramSize=256 ; 模拟器的RAM运行内存大小，可以看到这里只有可怜的256MB</p><p>image.sysdir.1=platforms\android-11\images\ ; 模拟器的映像文件路径</p><p></pre></p><p>这里大家主要是修改hw.ramSize这句，将后面的256换为更大的，当然要根据你PC电脑的物理内存来修改了，否则会严重映像你电脑的性能，如果你电脑的内存是2GB或以上，推荐和摩托Xoom平台的RAM设置的一样大小，hw.ramSize=后面写1024，保存即可，如图：</p><p><img src="../img/basic_emulator/10_emulator2.jpg"></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

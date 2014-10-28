@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 解析Drawable（一）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li class="navcurrentLink"><A href="index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Android多媒体功能" href="index_196.html">Android多媒体功能</A></h2>
+
+  <h2><A title="Android多媒体之2D" href="index_197.html">Android多媒体之2D</A></h2>
+
+  <h2><A title="Android多媒体之3D" href="index_198.html">Android多媒体之3D</A></h2>
+
+  <h2><A title="Android多媒体之Bitmap" href="index_199.html">Android多媒体之Bitmap</A></h2>
+
+  <h2><A title="Android多媒体之Canvas" href="index_200.html">Android多媒体之Canvas</A></h2>
+
+  <h2><A title="Android多媒体之Drawable" href="index_201.html">Android多媒体之Drawable</A></h2>
+<UL><li class="currentLink"><A title=Android 解析Drawable（一） href="show_501_201.html">Android 解析Drawable（一）</A> </li><li ><A title=Android 解析Drawable（二） href="show_502_201.html">Android 解析Drawable（二）</A> </li><li ><A title=Android Drawable的使用 href="show_503_201.html">Android Drawable的使用</A> </li><li ><A title=Drawable、Bitmap、Canvas和Paint的区别 href="show_504_201.html">Drawable、Bitmap、Canvas和Paint的区别</A> </li><li ><A title=Bitmap和Drawable相互转换方法 href="show_505_201.html">Bitmap和Drawable相互转换方法</A> </li><li ><A title=Android Drawable叠加方法 href="show_506_201.html">Android Drawable叠加方法</A> </li><li ><A title=使用SQLite存储以及读取Drawable对象 href="show_508_201.html">使用SQLite存储以及读取Drawable对象</A> </li><li ><A title=drawable(hdpi,ldpi,mdpi)的区别 href="show_509_201.html">drawable(hdpi,ldpi,mdpi)的区别</A> </li><li ><A title=Android 通过图片名称获取drawable目录下的图片 href="show_511_201.html">Android 通过图片名称获取drawable目录下的图片</A> </li><li ><A title=更改手机窗口画面底色(drawable定义颜色常数的方法) href="show_512_201.html">更改手机窗口画面底色(drawable定义颜色常数的方法)</A> </li></UL>
+  <h2><A title="Android多媒体之gif" href="index_202.html">Android多媒体之gif</A></h2>
+
+  <h2><A title="Android多媒体之MediaStore" href="index_203.html">Android多媒体之MediaStore</A></h2>
+
+  <h2><A title="Android多媒体之动画" href="index_204.html">Android多媒体之动画</A></h2>
+
+  <h2><A title="Android多媒体之分辨率" href="index_205.html">Android多媒体之分辨率</A></h2>
+
+  <h2><A title="Android多媒体之分屏幕" href="index_206.html">Android多媒体之分屏幕</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 解析Drawable（一）</H2>
+<div style="line-height:20px; font-size:14px;"><p>Android SDK提供了一个强大的类Drawable，Drawable这个抽象类到底代表了什么，如何使用？Drawable是个很抽象的概念，通过简单的例子程序来学习它，理解它。先看个简单的例子，使用Drawable的子类ShapeDrawable来画图，如下：</p><p><pre><font class="keyword">public </font><font class="keyword">class </font>testView </font><font class="keyword">extends </font>View {</p><p>	<font class="keyword">private </font>ShapeDrawable mDrawable;</p><p>	<font class="keyword">public </font>testView(Context context) {</p><p>		<font class="keyword">super</font>(context);</p><p>		<font class="keyword">int </font>x = 10;</p><p>		<font class="keyword">int </font>y = 10;</p><p>		<font class="keyword">int </font>width = 300;</p><p>		<font class="keyword">int </font>height = 50;</p><p>		</font>mDrawable = <font class="keyword">new </font>ShapeDrawable(</font><font class="keyword">new </font>OvalShape());</p><p>		mDrawable.getPaint().setColor(0xff74AC23);</p><p>		mDrawable.setBounds(x, y, x + width, y + height);</p><p>	}</p><p>	<font class="keyword">protected </font><font class="keyword">void </font>onDraw(Canvas canvas) {</p><p>		<font class="keyword">super</font>.onDraw(canvas);</p><p>		canvas.drawColor(Color.WHITE);<font class="Comments">// 画白色背景</font></p><p>		mDrawable.draw(canvas);</p><p>	}</p><p>}</p><p></pre></p><p><img src="../img/media_drawable/01_drawable.jpg"></p><p>这个简单的例子可以帮我们理解什么是Drawable，Drawable就是一个可画的对象，其可能是一张位图（BitmapDrawable），也可能是一个图形（ShapeDrawable），还有可能是一个图层（LayerDrawable），我们根据画图的需求，创建相应的可画对象，就可以将这个可画对象当作一块“画布（Canvas）”，在其上面操作可画对象，并最终将这种可画对象显示在画布上，有点类似于“内存画布“。</p><p>上面只是一个简单的使用Drawable的例子，完全没有体现出Drawable的强大功能。Android SDK中说明了Drawable主要的作用是：在XML中定义各种动画，然后把XML当作Drawable资源来读取，通过Drawable显示动画。下面举个使用TransitionDrawable 的例子，创建一个Android工程，然后再这个工程的基础上修改，修改过程如下：</p><p>1、去掉layout/main.xml中的TextView，增加ImagView，如下：</p><p><pre>&lt;ImageView</p><p>	</font>android:layout_width=<font class="Fields">"wrap_content</p><p>	</font>android:layout_height=<font class="Fields">"wrap_content</p><p>	</font>android:tint=<font class="Fields">"</font>55ff0000</p><p>	</font>android:src=<font class="Fields">"@drawable/my_image"</font>/&gt;</p><p></pre></p><p>2、创建一个XML文件，命名为expand_collapse.xml，内容如下：</p><p><pre>&lt;?xml version=<font class="Fields">"1.0"</font> encoding=</font><font class="Fields">"UTF-8"</font>?&gt;</p><p>	</font>&lt;transition xmlns:android=<font class="Fields">"http:<font class="Comments">//schemas.android.com/apk/res/android"</font>&gt;</font></p><p>	</font>&lt;item android:drawable=<font class="Fields">"@drawable/image_expand"</font>/&gt;</p><p>	</font>&lt;item android:drawable=<font class="Fields">"@drawable/image_collapse"</font>/&gt;</p><p>&lt;/transition&gt;</p><p></pre></p><p>需要3张png图片，存放到res/drawable目录下，3张图片分别命名为：my_image.png、image_expand.png、image_collapse.png。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

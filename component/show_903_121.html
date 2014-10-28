@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 使用【AIDL】调用外部服务_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li class="navcurrentLink"><A href="index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Activity" href="index_112.html">Activity</A></h2>
+
+  <h2><A title="Intent" href="index_113.html">Intent</A></h2>
+
+  <h2><A title="Service" href="index_114.html">Service</A></h2>
+
+  <h2><A title="Content Provider" href="index_115.html">Content Provider</A></h2>
+
+  <h2><A title="BroadcastReceiver" href="index_116.html">BroadcastReceiver</A></h2>
+
+  <h2><A title="AsyncTask" href="index_117.html">AsyncTask</A></h2>
+
+  <h2><A title="Handler" href="index_118.html">Handler</A></h2>
+
+  <h2><A title="Thread" href="index_119.html">Thread</A></h2>
+
+  <h2><A title="Permission" href="index_120.html">Permission</A></h2>
+
+  <h2><A title="AIDL" href="index_121.html">AIDL</A></h2>
+<UL><li ><A title=什么是AIDL服务 href="show_901_121.html">什么是AIDL服务</A> </li><li ><A title=Android 初谈AIDL服务 href="show_902_121.html">Android 初谈AIDL服务</A> </li><li class="currentLink"><A title=Android 使用【AIDL】调用外部服务 href="show_903_121.html">Android 使用【AIDL】调用外部服务</A> </li><li ><A title=Android开发中实现跨进程通讯的AIDL接口 href="show_904_121.html">Android开发中实现跨进程通讯的AIDL接口</A> </li><li ><A title=Android 跨进程通信（一） href="show_905_121.html">Android 跨进程通信（一）</A> </li><li ><A title=Android 跨进程通信（二） href="show_906_121.html">Android 跨进程通信（二）</A> </li><li ><A title=通过AIDL调用Service href="show_907_121.html">通过AIDL调用Service</A> </li></UL>
+  <h2><A title="Json" href="index_122.html">Json</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 使用【AIDL】调用外部服务</H2>
+<div style="line-height:20px; font-size:14px;"><p>在Android 中有一种服务说是服务其实倒不如说是一个接口，这个接口名为：Android Interface Definition Language ，这个接口可提供跨进程访问服务，英文缩写为:AIDL。</p><p>此种服务的好处在于，多个应用程序之间建立共同的服务机制，通过AIDL在不同应用程序之间达到数据的共享和数据相互操作，下面将通过一个DEMO 演示AIDL 是如何为应用程序之间提供服务的。</p><p>本文大纲为：</p><p><pre>1、创建AIDL 服务端。</p><p>2、创建AIDL 客户端。</p><p>3、客户端调用服务端提供的服务接口。</p><p>4、小结。</p><p></pre></p><p>本文要实现的功能大致如下：创建AIDL服务端，此服务端将提供一个Student的javabean提供客户端取得数据，因为aidl支持的数据类型比较简单，故这里建议把常用的数据类型的数据写入服务。</p><p>1、创建AIDL 服务端</p><p>在Android 的src 文件夹下的任意包里面新建文件，后缀名为*.aidl，如下图</p><p><img src="../img/component_aidl/03_aidl.png"></p><p><pre><font class="keyword">import </font>java.util.Map;</p><p><font class="keyword">interface </font>IMyService {</p><p>	Map getMap(String test_class, Student student);</p><p>	Student getStudent();</p><p>}</p><p></pre></p><p>Student 类是一个序列化的类，这里使用Parcelable 接口来序列化是Google 提供的一个比Serializable 效率更高的序列化类。Student  类代码如下：</p><p><pre><font class="keyword">import </font>android.os.Parcel;</p><p><font class="keyword">import </font>android.os.Parcelable;</p><p><font class="keyword">public </font><font class="keyword">class </font>Student </font><font class="keyword">implements </font>Parcelable {</p><p>	<font class="keyword">private </font><font class="keyword">int </font>age;</p><p>	<font class="keyword">private </font>String name;</p><p>	<font class="keyword">public </font><font class="keyword">int </font>getAge() {</p><p>		<font class="keyword">return </font>age;</p><p>	}</p><p>	<font class="keyword">public </font><font class="keyword">void </font>setAge(</font><font class="keyword">int </font>age) {</p><p>		<font class="keyword">this</font>.age = age;</p><p>	}</p><p>	<font class="keyword">public </font>String getName() {</p><p>		<font class="keyword">return </font>name;</p><p>	}</p><p>	<font class="keyword">public </font><font class="keyword">void </font>setName(String name) {</p><p>		<font class="keyword">this</font>.name = name;</p><p>	}</p><p>	<font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font>Parcelable.Creator&lt;Student&gt; CREATOR = </font><font class="keyword">new </font>Creator&lt;Student&gt;() {</p><p>		@Override</p><p>		<font class="keyword">public </font>Student[] newArray(</font><font class="keyword">int </font>size) {</p><p>			<font class="keyword">return </font><font class="keyword">new </font>Student[size];</p><p>		}</p><p>		@Override</p><p>		<font class="keyword">public </font>Student createFromParcel(Parcel source) {</p><p>			<font class="keyword">return </font><font class="keyword">new </font>Student(source);</p><p>		}</p><p>	};</p><p>	<font class="keyword">public </font>Student() {</p><p>	}</p><p>	<font class="keyword">public </font>Student(Parcel pl) {</p><p>		age = pl.readInt();</p><p>		name = pl.readString();</p><p>	}</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">int </font>describeContents() {</p><p>		<font class="keyword">return </font>0;</p><p>	}</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>writeToParcel(Parcel dest, </font><font class="keyword">int </font>flags) {</p><p>		<font class="Comments">// TODO Auto-generated method stub</font></p><p>		dest.writeInt(age);</p><p>		dest.writeString(name);</p><p>	}</p><p></p><p>}</p><p></pre></p><p>在这里必须注意，编写javabean时必须注意如下三点：</p><p>在Student 类中必须有一个静态常量，常量名必须是CREATOR，而且CREATOR 常量的数据类型必须是 Parcelable.Creator</p><p>在writeToParcel 方法中需要将要序列化的值写入到 Parcel对象中。</p><p>编写完Student 为时，必须再新建一个Student.aidl 文件，此文件输入以下内容：</p><p>parcelable Student; 这里的书写是供上面我们说过的接口   *.aidl 文件导包时可以找到，并通过此文件找到Student类对象。</p><p>如果上面的步骤顺利通过的话，Android 将会自动在gen 目录下R文件的相同目录生成一个以*.aidl 文件命名的*.java 文件，如下图：</p><p><img src="../img/component_aidl/03_aidl2.png"></p><p>顺利生成成功后，我们再来编写一个AIDL 服务类，代码如下：</p><p><pre><font class="keyword">import </font>java.util.HashMap;</p><p><font class="keyword">import </font>java.util.Map;</p><p><font class="keyword">import </font>android.app.Service;</p><p><font class="keyword">import </font>android.content.Intent;</p><p><font class="keyword">import </font>android.os.IBinder;</p><p><font class="keyword">import </font>android.os.RemoteException;</p><p><font class="keyword">public </font><font class="keyword">class </font>MyService </font><font class="keyword">extends </font>Service {</p><p>	@Override</p><p>	<font class="keyword">public </font>IBinder onBind(Intent intent) {</p><p>		<font class="keyword">return </font><font class="keyword">new </font>MyServiceimpl();</p><p>	}</p><p>	<font class="keyword">public </font><font class="keyword">class </font>MyServiceimpl </font><font class="keyword">extends </font>IMyService.Stub {</p><p>		@Override</p><p>		<font class="keyword">public </font>Student getStudent() </font><font class="keyword">throws </font>RemoteException {</p><p>			</font>Student st = <font class="keyword">new </font>Student();</p><p>			st.setAge(18);</p><p>			</font>st.setName(<font class="Fields">"terry"</font>);</p><p>			<font class="keyword">return </font>st;</p><p>		}</p><p>		@Override</p><p>		<font class="keyword">public </font>Map getMap(String testClass, Student student)</p><p>				<font class="keyword">throws </font>RemoteException {</p><p>			</font>Map&lt;String, Object&gt; map = <font class="keyword">new </font>HashMap&lt;String, Object&gt;();</p><p>			</font>map.put(<font class="Fields">"class"</font>, </font><font class="Fields">"五年级"</font>);</p><p>			</font>map.put(<font class="Fields">"age"</font>, student.getAge());</p><p>			</font>map.put(<font class="Fields">"name"</font>, student.getName());</p><p>			<font class="keyword">return </font>map;</p><p>		}</p><p>	}</p><p>}</p><p></pre></p><p>如上代码，MyService 服务类有一个子类并继承自我们上面生成的*.java 文件重写其中我们在*.aidl 中声明的两个接口方法，实现了其功能。上面IBinder 必须返回此服务类的子类对象，否则客户端将无法获得服务对象。</p><p>最后，即然有服务的操作，那么就得在manifest文件中注册服务类，代码如下：</p><p><pre>&lt;service android:name=<font class="Fields">".MyService"</font>&gt;</p><p>	&lt;intent-filter&gt;</p><p>		&lt;action android:name=<font class="Fields">"com.aidl.test.IMyService"</font>&gt;&lt;/action&gt;</p><p>	&lt;/intent-filter&gt;</p><p>&lt;/service&gt;</p><p></pre></p><p>至此，服务端就己经开发完成了，下面接着开发客启端。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

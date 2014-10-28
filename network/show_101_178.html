@@ -1,0 +1,64 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android中的WIFI模块（一）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li class="navcurrentLink"><A href="index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="3G" href="index_177.html">3G</A></h2>
+
+  <h2><A title="WIFI" href="index_178.html">WIFI</A></h2>
+<UL><li class="currentLink"><A title=Android中的WIFI模块（一） href="show_101_178.html">Android中的WIFI模块（一）</A> </li><li ><A title=Android中的WIFI模块（二） href="show_102_178.html">Android中的WIFI模块（二）</A> </li><li ><A title=Android中的WIFI模块（三） href="show_103_178.html">Android中的WIFI模块（三）</A> </li><li ><A title=Android中的WIFI模块（四） href="show_104_178.html">Android中的WIFI模块（四）</A> </li><li ><A title=Android WIFI网络操作 href="show_105_178.html">Android WIFI网络操作</A> </li><li ><A title=Android中的Wifi介绍作 href="show_106_178.html">Android中的Wifi介绍作</A> </li><li ><A title=Android WIFI检测与设置 href="show_107_178.html">Android WIFI检测与设置</A> </li><li ><A title=Android 对Wifi进行操作 href="show_108_178.html">Android 对Wifi进行操作</A> </li><li ><A title=Android SDK 中Android.net.wifi简要分析 href="show_109_178.html">Android SDK 中Android.net.wifi简要分析</A> </li><li ><A title=Android WIFI的打开与关闭WifiManager对象的使用 href="show_110_178.html">Android WIFI的打开与关闭WifiManager对象的使用</A> </li><li ><A title=Android Wifi方法大全 href="show_111_178.html">Android Wifi方法大全</A> </li><li ><A title=Android 大家常用的WIFI href="show_112_178.html">Android 大家常用的WIFI</A> </li><li ><A title=Android 自带的wifi移植 href="show_113_178.html">Android 自带的wifi移植</A> </li><li ><A title=关于WIFI的开启关闭与连接热点 href="show_114_178.html">关于WIFI的开启关闭与连接热点</A> </li><li ><A title=GPS、WIFI、GPRS开关问题 href="show_115_178.html">GPS、WIFI、GPRS开关问题</A> </li><li ><A title=Android平台中Wifi的初始化 href="show_116_178.html">Android平台中Wifi的初始化</A> </li></UL>
+  <h2><A title="蓝牙" href="index_179.html">蓝牙</A></h2>
+
+  <h2><A title="HTTP协议" href="index_180.html">HTTP协议</A></h2>
+
+  <h2><A title="Socket" href="index_181.html">Socket</A></h2>
+
+  <h2><A title="HTML与HTML5" href="index_182.html">HTML与HTML5</A></h2>
+
+  <h2><A title="JavaScript" href="index_183.html">JavaScript</A></h2>
+
+  <h2><A title="Email" href="index_184.html">Email</A></h2>
+
+  <h2><A title="NFC" href="index_185.html">NFC</A></h2>
+
+  <h2><A title="Web Service" href="index_186.html">Web Service</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android中的WIFI模块（一）</H2>
+<div style="line-height:20px; font-size:14px;"><p style="color:#3333FF;">初始化</p><p>在SystemServer启动的时候，会生成一个ConnectivityService的实例，</p><p><pre><font class="keyword">try </font>{</p><p>	</font>Log.i(TAG, <font class="Fields">"Starting Connectivity Service."</font>);</p><p>	ServiceManager.addService(Context.CONNECTIVITY_SERVICE,</p><p>			<font class="keyword">new </font>ConnectivityService(context));</p><p></font>} <font class="keyword">catch </font>(Throwable e) {</p><p>	</font>Log.e(TAG, <font class="Fields">"Failure starting Connectivity Service"</font>, e);</p><p>}</p><p></pre></p><p>ConnectivityService 的构造函数会创建 WifiService，</p><p><pre><font class="keyword">if </font>(DBG)</p><p>	</font>Log.v(TAG, <font class="Fields">"Starting Wifi Service."</font>);</p><p></font>mWifiStateTracker = <font class="keyword">new </font>WifiStateTracker(context, handler);</p><p></font>WifiService wifiService = <font class="keyword">new </font>WifiService(context, mWifiStateTracker);</p><p>ServiceManager.addService(Context.WIFI_SERVICE, wifiService);</p><p></pre></p><p>WifiStateTracker 会创建 WifiMonitor 接收来自底层的事件，WifiService 和 WifiMonitor 是整个模块的核心。WifiService 负责启动关闭 wpa_supplicant、启动关闭 WifiMonitor 监视线程和把命令下发给 wpa_supplicant，而 WifiMonitor 则负责从 wpa_supplicant 接收事件通知。</p><p style="color:#3333FF;">连接 AP</p><p>1. 使用WIFI</p><p>WirelessSettings 在初始化的时候配置了由 WifiEnabler 来处理 Wifi 按钮，</p><p><pre><font class="keyword">private </font><font class="keyword">void </font>initToggles() {</p><p>	</font>mWifiEnabler = <font class="keyword">new </font>WifiEnabler(</font><font class="keyword">this</font>,</p><p>			(WifiManager) getSystemService(WIFI_SERVICE),</p><p>			(CheckBoxPreference) findPreference(KEY_TOGGLE_WIFI));</p><p>}</p><p></pre></p><p>当用户按下Wifi 按钮后，Android 会调用 WifiEnabler 的 onPreferenceChange，再由 WifiEnabler调用WifiManager 的 setWifiEnabled 接口函数，通过 AIDL，实际调用的是WifiService的setWifiEnabled函数，WifiService接着向自身发送一条MESSAGE_ENABLE_WIFI消息，在处理该消息的代码中做真正的使能工作：首先装载WIFI内核模块（该模块的位置硬编码为"/system/lib/modules/wlan.ko"），然后启动wpa_supplicant（配置文件硬编码为"/data/misc/wifi/wpa_supplicant.conf"），再通过WifiStateTracker来启动WifiMonitor中的监视线程。</p><p><pre><font class="keyword">private </font><font class="keyword">boolean </font>setWifiEnabledBlocking(</font><font class="keyword">boolean </font>enable) {</p><p>	<font class="keyword">final </font><font class="keyword">int </font>eventualWifiState = enable ? WIFI_STATE_ENABLED</p><p>			: WIFI_STATE_DISABLED;</p><p>	updateWifiState(enable ? WIFI_STATE_ENABLING : WIFI_STATE_DISABLING);</p><p>	<font class="keyword">if </font>(enable) {</p><p>		<font class="keyword">if </font>(!WifiNative.loadDriver()) {</p><p>			</font>Log.e(TAG, <font class="Fields">"Failed to load Wi-Fi driver."</font>);</p><p>			updateWifiState(WIFI_STATE_UNKNOWN);</p><p>			<font class="keyword">return </font><font class="keyword">false</font>;</p><p>		}</p><p>		<font class="keyword">if </font>(!WifiNative.startSupplicant()) {</p><p>			WifiNative.unloadDriver();</p><p>			</font>Log.e(TAG, <font class="Fields">"Failed to start supplicant daemon."</font>);</p><p>			updateWifiState(WIFI_STATE_UNKNOWN);</p><p>			<font class="keyword">return </font><font class="keyword">false</font>;</p><p>		}</p><p>		mWifiStateTracker.startEventLoop();</p><p>	}</p><p>	<font class="Comments">// Success!</font></p><p>	persistWifiEnabled(enable);</p><p>	updateWifiState(eventualWifiState);</p><p>	<font class="keyword">return </font><font class="keyword">true</font>;</p><p>}	</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

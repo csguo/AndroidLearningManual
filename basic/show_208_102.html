@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android模拟器通过本地电脑上网_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li class="navcurrentLink"><A href="index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="开发基础" href="index_100.html">开发基础</A></h2>
+
+  <h2><A title="开发环境搭建" href="index_101.html">开发环境搭建</A></h2>
+
+  <h2><A title="模拟器" href="index_102.html">模拟器</A></h2>
+<UL><li ><A title=Android 模拟器使用指导 href="show_201_102.html">Android 模拟器使用指导</A> </li><li ><A title=Android 模拟器命令大全 href="show_202_102.html">Android 模拟器命令大全</A> </li><li ><A title=Android模拟器屏幕切换横屏 href="show_203_102.html">Android模拟器屏幕切换横屏</A> </li><li ><A title=更改Android AVD模拟器创建路径位置的方法 href="show_204_102.html">更改Android AVD模拟器创建路径位置的方法</A> </li><li ><A title=模拟器中加载和使用SDCard卡 href="show_205_102.html">模拟器中加载和使用SDCard卡</A> </li><li ><A title=在Android模拟器中永久删除自带应用程序 href="show_206_102.html">在Android模拟器中永久删除自带应用程序</A> </li><li ><A title=PC电脑和Android模拟器访问及模拟器之间TCP/UDP通信 href="show_207_102.html">PC电脑和Android模拟器访问及模拟器之间TCP/UDP通信</A> </li><li class="currentLink"><A title=Android模拟器通过本地电脑上网 href="show_208_102.html">Android模拟器通过本地电脑上网</A> </li><li ><A title=Android模拟器实现打电话发短信 href="show_209_102.html">Android模拟器实现打电话发短信</A> </li><li ><A title=Android让模拟器内存变大 href="show_210_102.html">Android让模拟器内存变大</A> </li></UL>
+  <h2><A title="Resource" href="index_103.html">Resource</A></h2>
+
+  <h2><A title="Manifest" href="index_104.html">Manifest</A></h2>
+
+  <h2><A title="ADB" href="index_105.html">ADB</A></h2>
+
+  <h2><A title="DDMS" href="index_106.html">DDMS</A></h2>
+
+  <h2><A title="Logcat(日志)" href="index_107.html">Logcat(日志)</A></h2>
+
+  <h2><A title="打包" href="index_108.html">打包</A></h2>
+
+  <h2><A title="文件处理" href="index_109.html">文件处理</A></h2>
+
+  <h2><A title="底层基础" href="index_111.html">底层基础</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android模拟器通过本地电脑上网</H2>
+<div style="line-height:20px; font-size:14px;"><p>windows下，配置好Adroid环境变量后(如将d:android-sdk-windows-1.0_r1 ools加入系统变量PATH)，在命令行窗口输入：</p><p><pre>emulator</p><p></pre></p><p>启动Android 模拟器后，输入：</p><p><pre>adb shell</p><p></pre></p><p>进入adb shell模式：</p><p>将网络连接代理设置写入配置数据库，假如你的上网代理IP是10.193.xx.xx：</p><p><pre>sqlite3 /data/data/com.android.providers.settings/databases/settings.db "INSERT INTO system VALUES(99,'http_proxy','10.193.xx.xx:1080')"</p><p></pre></p><p>查询一下是否成功更改了系统设置：</p><p><pre>sqlite3 /data/data/com.android.providers.settings/databases/settings.db "SELECT * FROM system"</p><p></pre></p><p>结果中应有：99|http_proxy|10.193.xx.xx:1080</p><p>重启模拟器，应该可以使用Browser上 Internet了.</p><p>删除刚刚写入的配置信息方法：</p><p><pre>sqlite3 /data/data/com.android.providers.settings/databases/settings.db "DELETE FROM system WHERE _id=99"</p><p></pre></p><p>Android模拟器默认的地址是10.0.2.3，默认的DNS也是 10.0.2.3，对于在家里上网学习Android的人(像我)来讲，一般电脑的IP都是192.168.1.100之类的，不在同一个网段。所以就会出现电脑可以上网但是模拟器不能上网的情况。其实设置方法很简单，只要把模拟器的默认DNS设置成电脑的DNS地址即可。</p><p>第一步：用系统的命令进入Android开发包的tools目录</p><p><pre>cd X:...android-sdk-windows ool</p><p></pre></p><p>第二步：使用adb的shell，确认系统的各项属性</p><p><pre>adb shell</p><p>getprop</p><p>//getprop会列出系统当前的各项属性</p><p></pre></p><p>第三步：得到模拟器的DNS地址</p><p>在结果里可以看到：</p><p><pre>[net.dns1]: [10.0.2.3]</p><p>[net.dns2]: [10.0.2.4]</p><p>[net.dns3]: [10.0.2.5]</p><p>[net.dns4]: [10.0.2.6]</p><p></pre></p><p>第四步：把dns改成我们自己的DNS </p><p><pre>setprop net.dns1 192.168.1.1</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

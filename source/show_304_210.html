@@ -1,0 +1,60 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 浅谈Sensor工作流程（四）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li class="navcurrentLink"><A href="index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Launcher" href="index_207.html">Launcher</A></h2>
+
+  <h2><A title="电话系统RIL" href="index_208.html">电话系统RIL</A></h2>
+
+  <h2><A title="进程间通信" href="index_209.html">进程间通信</A></h2>
+
+  <h2><A title="内部sensor系统" href="index_210.html">内部sensor系统</A></h2>
+<UL><li ><A title=Android 浅谈Sensor工作流程（一） href="show_301_210.html">Android 浅谈Sensor工作流程（一）</A> </li><li ><A title=Android 浅谈Sensor工作流程（二） href="show_302_210.html">Android 浅谈Sensor工作流程（二）</A> </li><li ><A title=Android 浅谈Sensor工作流程（三） href="show_303_210.html">Android 浅谈Sensor工作流程（三）</A> </li><li class="currentLink"><A title=Android 浅谈Sensor工作流程（四） href="show_304_210.html">Android 浅谈Sensor工作流程（四）</A> </li><li ><A title=Android 浅谈Sensor工作流程（五） href="show_305_210.html">Android 浅谈Sensor工作流程（五）</A> </li><li ><A title=Sensor传感器源码的阅读与应用开发简单实例 href="show_306_210.html">Sensor传感器源码的阅读与应用开发简单实例</A> </li></UL>
+  <h2><A title="内部surface系统" href="index_211.html">内部surface系统</A></h2>
+
+  <h2><A title="启动流程" href="index_212.html">启动流程</A></h2>
+
+  <h2><A title="源码编译" href="index_213.html">源码编译</A></h2>
+
+  <h2><A title="状态栏" href="index_214.html">状态栏</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 浅谈Sensor工作流程（四）</H2>
+<div style="line-height:20px; font-size:14px;"><p>我们还是接上一篇帖子，做一个小例子让大家来看看。</p><p><pre>sensors_data_open(JNIEnv *env, j<font class="keyword">class </font>clazz, jobject fdo){</p><p>	</font>j<font class="keyword">class </font>FileDescriptor = env-&gt;FindClass(<font class="Fields">"java/io/FileDescriptor"</font>);</p><p>	</font>jfieldID offset = env-&gt;GetFieldID(FileDescriptor, <font class="Fields">"descriptor"</font>, </font><font class="Fields">"I"</font>);</p><p>	<font class="keyword">int </font>fd = env-&gt;GetIntField(fdo, offset);</p><p>	<font class="keyword">return </font>sSensorDevice-&gt;data_open(sSensorDevice, fd); <font class="Comments">// doesn<font class="Fields">'t take ownership of fd</font></p><p>}</p><p></pre></p><p>调用到最后其实都是用的sSensorDevice的方法</p><p>[color=java]</p><p>static sensors_data_device_t* sSensorDevice = 0;</p><p></pre></p><p>2.service 部分</p><p><pre><font class="keyword">static </font>JNINativeMethod gMethods[] = {</p><p>	</font>{<font class="Fields">"_sensors_control_init"</font>, </font><font class="Fields">"()I"</font>, (void*) android_init </font>},</p><p>	</font>{<font class="Fields">"_sensors_control_open"</font>, </font><font class="Fields">"()Landroid/os/ParcelFileDescriptor;"</font>, (void*) android_open </font>},</p><p>	</font>{<font class="Fields">"_sensors_control_activate"</font>, </font><font class="Fields">"(IZ)Z"</font>, (void*) android_activate </font>},</p><p>	</font>{<font class="Fields">"_sensors_control_wake"</font>, </font><font class="Fields">"()I"</font>, (void*) android_data_wake </font>},</p><p>	</font>{<font class="Fields">"_sensors_control_set_delay"</font>,</font><font class="Fields">"(I)I"</font>, (void*) android_set_delay </font>},</p><p>};</p><p></pre></p><p>然后上面的那些方法我就不一一贴了 给出一个例子 其实这么实现的</p><p><pre>android_activate(JNIEnv *env, j<font class="keyword">class </font>clazz, j</font><font class="keyword">int </font>sensor, j</font><font class="keyword">boolean </font>activate){</p><p>	<font class="keyword">int </font>active = sSensorDevice-&gt;activate(sSensorDevice, sensor, activate);</p><p>	<font class="keyword">return </font>(active&lt;0) ? </font><font class="keyword">false</font> : </font><font class="keyword">true</font>;</p><p>}</p><p></pre></p><p>所以最后调用的其实都是 sSensorDevice 的方法 其他的几个也是这样 sSensorDevice 是这个</p><p><pre>static sensors_control_device_t* sSensorDevice = 0;</p><p></pre></p><p>3.继续追 终于到了硬件层了 最后一切的方法其实就在这里了</p><p><pre>struct sensors_control_device_t {</p><p>	struct hw_device_t common;</p><p>	<font class="Comments">/**</font></p><p>	<font class="Comments">* Returns the fd which will be the parameter to</font></p><p>	<font class="Comments">* sensors_data_device_t::open_data().</font></p><p>	<font class="Comments">* The caller takes ownership of this fd. This is intended to be</font></p><p>	<font class="Comments">* passed cross processes.</font></p><p>	<font class="Comments">*</font></p><p>	<font class="Comments">* @return a fd if successful, &lt; 0 on error</font></p><p>	<font class="Comments">*/</font></p><p>	<font class="keyword">int </font>(*open_data_source)(struct sensors_control_device_t *dev);</p><p>	<font class="Comments">/** Activate/deactivate one sensor.</font></p><p>	<font class="Comments">*</font></p><p>	<font class="Comments">* @param handle is the handle of the sensor to change.</font></p><p>	<font class="Comments">* @param enabled set to 1 to enable, or 0 to disable the sensor.</font></p><p>	<font class="Comments">*</font></p><p>	<font class="Comments">* @return 0 on success, negative errno code otherwise</font></p><p>	<font class="Comments">*/</font></p><p>	<font class="keyword">int </font>(*activate)(struct sensors_control_device_t *dev,</font><font class="keyword">int </font>handle, </font><font class="keyword">int </font>enabled);</p><p>	<font class="Comments">/**</font></p><p>	<font class="Comments">* Set the delay between sensor events in ms</font></p><p>	<font class="Comments">*</font></p><p>	<font class="Comments">* @return 0 if successful, &lt; 0 on error</font></p><p>	<font class="Comments">*/</font></p><p>	<font class="keyword">int </font>(*set_delay)(struct sensors_control_device_t *dev, int32_t ms);</p><p>	<font class="Comments">/**</font></p><p>	<font class="Comments">* Causes sensors_data_device_t.poll() to return -EWOULDBLOCK immediately.</font></p><p>	<font class="Comments">*/</font></p><p>	<font class="keyword">int </font>(*wake)(struct sensors_control_device_t *dev);</p><p>};</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

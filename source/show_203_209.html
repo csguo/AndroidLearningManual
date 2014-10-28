@@ -1,0 +1,60 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android Binder与进程间通信（一）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li class="navcurrentLink"><A href="index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Launcher" href="index_207.html">Launcher</A></h2>
+
+  <h2><A title="电话系统RIL" href="index_208.html">电话系统RIL</A></h2>
+
+  <h2><A title="进程间通信" href="index_209.html">进程间通信</A></h2>
+<UL><li ><A title=Android Framework研究之IPC（一） href="show_201_209.html">Android Framework研究之IPC（一）</A> </li><li ><A title=Android Framework研究之IPC（二） href="show_202_209.html">Android Framework研究之IPC（二）</A> </li><li class="currentLink"><A title=Android Binder与进程间通信（一） href="show_203_209.html">Android Binder与进程间通信（一）</A> </li><li ><A title=Android Binder与进程间通信（二） href="show_204_209.html">Android Binder与进程间通信（二）</A> </li><li ><A title=Android 创建AIDL href="show_205_209.html">Android 创建AIDL</A> </li><li ><A title=来学习Android的IPC href="show_206_209.html">来学习Android的IPC</A> </li><li ><A title=在linux下谈谈Android的IPC href="show_207_209.html">在linux下谈谈Android的IPC</A> </li><li ><A title=Android的binder机制研究（C++部分）（一） href="show_208_209.html">Android的binder机制研究（C++部分）（一）</A> </li><li ><A title=Android的binder机制研究（C++部分）（二） href="show_209_209.html">Android的binder机制研究（C++部分）（二）</A> </li><li ><A title=Android的binder机制研究（C++部分）（三） href="show_210_209.html">Android的binder机制研究（C++部分）（三）</A> </li><li ><A title=Android的binder机制研究（C++部分）（四） href="show_211_209.html">Android的binder机制研究（C++部分）（四）</A> </li><li ><A title=Android的binder机制研究（C++部分）（五） href="show_212_209.html">Android的binder机制研究（C++部分）（五）</A> </li></UL>
+  <h2><A title="内部sensor系统" href="index_210.html">内部sensor系统</A></h2>
+
+  <h2><A title="内部surface系统" href="index_211.html">内部surface系统</A></h2>
+
+  <h2><A title="启动流程" href="index_212.html">启动流程</A></h2>
+
+  <h2><A title="源码编译" href="index_213.html">源码编译</A></h2>
+
+  <h2><A title="状态栏" href="index_214.html">状态栏</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android Binder与进程间通信（一）</H2>
+<div style="line-height:20px; font-size:14px;"><p>Binder机制是android中实现的进程间通信的架构，它采用的是c/s架构，client通过代理完成对server的调用。</p><p>ServiceManager</p><p>既然这里提到了server，那么我们有必要先了解下在android中是怎么来管理server的。先来看一个重要的Native进程：ServiceManager，从名字可以看出来，这个是用来管理所有server的。在init进程启动之后，会启动另外两个重要的进程，一个是我们上一篇讲的Zygote进程，另外一个就是这个ServiceManager进程了，这两个进程启动之后就建立了android的运行环境和server的管理环境。ServiceManager进程启动之后其他server就可以通过ServiceManager的add_service和check_service来添加和获取特定的server了。关于ServiceManager在接下来会详细介绍，因为Binder会涉及到ServiceManager，所以先简单介绍下，有个大概印象，知道他是干什么的就行了。</p><p><img src="../img/source_process/03_Binder01.jpg"></p><p>Binder与进程间通信</p><p>我们所指的客户端没有特别说明的话就指应用程序。应为service和serviceManager通信也会涉及到IPC。</p><p>我们还是从activity的启动开始来研究Binder的机制。来看下startActivity涉及通信的类图：</p><p><img src="../img/source_process/03_startActivity01.jpg"></p><p>在ActivityManagerProxy中，有这句代码</p><p><pre>IBinder b = ServiceManager.getService("activity"); </p><p></pre></p><p>继续看下getService方法，在getService中对数据进行了序列化封装，并通过BinderProxy的native方法向ServiceManager发送请求，获取Binder的代理对象。看下getService代码： 	</p><p><pre><font class="keyword">public </font><font class="keyword">class </font>Snippet {</p><p>	/*</p><p>	 <font class="Comments">* 从ServiceManager中获取service对应的代理Binder</font></p><p>	 <font class="Comments">* @param na</font></p><p>	 <font class="Comments">* @return</font></p><p>	 <font class="Comments">* @throws RemoteException</font></p><p>	 <font class="Comments">*/</font></p><p>	<font class="keyword">public </font>IBinder getService(String name) </font><font class="keyword">throws </font>RemoteException {</p><p>		Parcel data = Parcel.obtain();</p><p>		Parcel reply = Parcel.obtain();</p><p>		data.writeInterfaceToken(IServiceManager.descriptor);</p><p>		data.writeString(name);</p><p>		mRemote.transact(GET_SERVICE_TRANSACTION, data, reply, 0);</p><p>		IBinder binder = reply.readStrongBinder();</p><p>		reply.recycle();</p><p>		data.recycle();</p><p>		<font class="keyword">return </font>binder;</p><p>	}</p><p>}</p><p></pre></p><p>也就是说，在android中进行IPC的话，需要先通过ServiceManager获得客户端的代理，然后再通过该代理与对应的service进行通信。</p><p>1.建立和ServiceManager的连接，获取客户端对象的代理Binder。</p><p>2.客户端再通过该代理binder和服务器端进行通信。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

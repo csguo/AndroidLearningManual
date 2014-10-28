@@ -1,0 +1,58 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android Content Provider（三）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li class="navcurrentLink"><A href="index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="ContentProvider" href="index_170.html">ContentProvider</A></h2>
+<UL><li ><A title=Android系统数据共享 href="show_1_170.html">Android系统数据共享</A> </li><li ><A title=Android 数据存储ContentProvider href="show_2_170.html">Android 数据存储ContentProvider</A> </li><li ><A title=Android Content Provider（一） href="show_3_170.html">Android Content Provider（一）</A> </li><li ><A title=Android Content Provider（二） href="show_4_170.html">Android Content Provider（二）</A> </li><li class="currentLink"><A title=Android Content Provider（三） href="show_5_170.html">Android Content Provider（三）</A> </li><li ><A title=Android 内容提供器Content Providers（一） href="show_6_170.html">Android 内容提供器Content Providers（一）</A> </li><li ><A title=Android 内容提供器Content Providers（二） href="show_7_170.html">Android 内容提供器Content Providers（二）</A> </li><li ><A title=Android 内容提供器Content Providers（三） href="show_8_170.html">Android 内容提供器Content Providers（三）</A> </li><li ><A title=Android中ContentProvider和ContentResolver使用入门 href="show_9_170.html">Android中ContentProvider和ContentResolver使用入门</A> </li><li ><A title=Android 应用程序之间数据共享—ContentProvider href="show_10_170.html">Android 应用程序之间数据共享—ContentProvider</A> </li><li ><A title=Android 使用ContentProvider共享数据 href="show_11_170.html">Android 使用ContentProvider共享数据</A> </li><li ><A title=Android中的ContentResolver应用 href="show_12_170.html">Android中的ContentResolver应用</A> </li></UL>
+  <h2><A title="Preferences" href="index_171.html">Preferences</A></h2>
+
+  <h2><A title="SQLite" href="index_172.html">SQLite</A></h2>
+
+  <h2><A title="SD卡" href="index_173.html">SD卡</A></h2>
+
+  <h2><A title="数据库" href="index_174.html">数据库</A></h2>
+
+  <h2><A title="URI" href="index_175.html">URI</A></h2>
+
+  <h2><A title="MediaStore" href="index_176.html">MediaStore</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android Content Provider（三）</H2>
+<div style="line-height:20px; font-size:14px;"><p>下面我们要来创建一个Activity类，首先向其中插入两个数据，然后通过Toast来显示数据库中的数据。 运行效果如下：</p><p><img src="../img/data_provider/05_datastore.jpg"></p><p><img src="../img/data_provider/05_datastore2.jpg"></p><p><pre><font class="keyword">import </font>android.app.Activity;</p><p><font class="keyword">import </font>android.content.ContentValues;</p><p><font class="keyword">import </font>android.database.Cursor;</p><p><font class="keyword">import </font>android.net.Uri;</p><p><font class="keyword">import </font>android.os.Bundle;</p><p><font class="keyword">import </font>android.view.Gravity;</p><p><font class="keyword">import </font>android.widget.Toast;</p><p><font class="keyword">public </font><font class="keyword">class </font>Activity01 </font><font class="keyword">extends </font>Activity {</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onCreate(Bundle savedInstanceState) {</p><p>		<font class="keyword">super</font>.onCreate(savedInstanceState);</p><p>		setContentView(R.layout.main);</p><p>		/* 插入数据 */</p><p>		</font>ContentValues values = <font class="keyword">new </font>ContentValues();</p><p>		</font>values.put(NotePad.Notes.TITLE, <font class="Fields">"title1"</font>);</p><p>		</font>values.put(NotePad.Notes.NOTE, <font class="Fields">"NOTENOTE1"</font>);</p><p>		getContentResolver().insert(NotePad.Notes.CONTENT_URI, values);</p><p>		values.clear();</p><p>		</font>values.put(NotePad.Notes.TITLE, <font class="Fields">"title2"</font>);</p><p>		</font>values.put(NotePad.Notes.NOTE, <font class="Fields">"NOTENOTE2"</font>);</p><p>		getContentResolver().insert(NotePad.Notes.CONTENT_URI, values);</p><p>		<font class="Comments">// 显示</font></p><p>		displayNote();</p><p>	}</p><p>	<font class="keyword">private </font><font class="keyword">void </font>displayNote() {</p><p>		</font>String columns[] = <font class="keyword">new </font>String[] { NotePad.Notes._ID,</p><p>				NotePad.Notes.TITLE, NotePad.Notes.NOTE,</p><p>				NotePad.Notes.CREATEDDATE, NotePad.Notes.MODIFIEDDATE };</p><p>		Uri myUri = NotePad.Notes.CONTENT_URI;</p><p>		</font>Cursor cur = managedQuery(myUri, columns, <font class="keyword">null</font>, </font><font class="keyword">null</font>, </font><font class="keyword">null</font>);</p><p>		<font class="keyword">if </font>(cur.moveToFirst()) {</p><p>			</font>String id = <font class="keyword">null</font>;</p><p>			</font>String titile = <font class="keyword">null</font>;</p><p>			do {</p><p>				id = cur.getString(cur.getColumnIndex(NotePad.Notes._ID));</p><p>				titile = cur.getString(cur.getColumnIndex(NotePad.Notes.TITLE));</p><p>				</font>Toast toast = Toast.makeText(<font class="keyword">this</font>, <font class="Fields">"TITILE:"</font> + id + </font><font class="Fields">"\t</p><p>						</font>+ <font class="Fields">"NOTE:"</font> + titile, Toast.LENGTH_LONG);</p><p>				toast.setGravity(Gravity.TOP | Gravity.CENTER, 0, 40);</p><p>				toast.show();</p><p>			</font>} <font class="keyword">while </font>(cur.moveToNext());</p><p>		}</p><p>	}</p><p>}</p><p></pre></p><p>最后不要忘记在AndroidManifest.xml文件中声明我们使用的ContentProvider,下面是我的AndroidManifest.xml文件</p><p><pre>&lt;?xml version=<font class="Fields">"1.0"</font> encoding=</font><font class="Fields">"utf-8"</font>?&gt;</p><p>&lt;manifest xmlns:android=<font class="Fields">"http:<font class="Comments">//schemas.android.com/apk/res/android</font></p><p>    </font>package=<font class="Fields">"eoe.demo</p><p>    </font>android:versionCode=<font class="Fields">"1</p><p>    </font>android:versionName=<font class="Fields">"1.0"</font> &gt;</p><p>    &lt;application</p><p>        </font>android:icon=<font class="Fields">"@drawable/icon</p><p>        </font>android:label=<font class="Fields">"@string/app_name"</font> &gt;</p><p>        &lt;provider</p><p>            </font>android:name=<font class="Fields">"NotePadProvider</p><p>            </font>android:authorities=<font class="Fields">"com.xh.google.provider.NotePad"</font> /&gt;</p><p>        &lt;activity</p><p>            </font>android:name=<font class="Fields">".Activity01</p><p>            </font>android:label=<font class="Fields">"@string/app_name"</font> &gt;</p><p>            &lt;intent-filter&gt;</p><p>                </font>&lt;action android:name=<font class="Fields">"android.intent.action.MAIN"</font> /&gt;</p><p>                </font>&lt;category android:name=<font class="Fields">"android.intent.category.LAUNCHER"</font> /&gt;</p><p>            &lt;/intent-filter&gt;</p><p>            &lt;intent-filter&gt;</p><p>                </font>&lt;data android:mimeType=<font class="Fields">"vnd.android.cursor.dir/vnd.google.note"</font> /&gt;</p><p>            &lt;/intent-filter&gt;</p><p>            &lt;intent-filter&gt;</p><p>                </font>&lt;data android:mimeType=<font class="Fields">"vnd.android.cursor.item/vnd.google.note"</font> /&gt;</p><p>            &lt;/intent-filter&gt;</p><p>        &lt;/activity&gt;</p><p>    &lt;/application&gt;</p><p>    </font>&lt;uses-sdk android:minSdkVersion=<font class="Fields">"5"</font> /&gt;</p><p>&lt;/manifest&gt;</p><p></pre></p><p></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

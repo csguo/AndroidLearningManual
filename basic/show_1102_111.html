@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android中怎样嵌入C语言（二）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li class="navcurrentLink"><A href="index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="开发基础" href="index_100.html">开发基础</A></h2>
+
+  <h2><A title="开发环境搭建" href="index_101.html">开发环境搭建</A></h2>
+
+  <h2><A title="模拟器" href="index_102.html">模拟器</A></h2>
+
+  <h2><A title="Resource" href="index_103.html">Resource</A></h2>
+
+  <h2><A title="Manifest" href="index_104.html">Manifest</A></h2>
+
+  <h2><A title="ADB" href="index_105.html">ADB</A></h2>
+
+  <h2><A title="DDMS" href="index_106.html">DDMS</A></h2>
+
+  <h2><A title="Logcat(日志)" href="index_107.html">Logcat(日志)</A></h2>
+
+  <h2><A title="打包" href="index_108.html">打包</A></h2>
+
+  <h2><A title="文件处理" href="index_109.html">文件处理</A></h2>
+
+  <h2><A title="底层基础" href="index_111.html">底层基础</A></h2>
+<UL><li ><A title=Android中怎样嵌入C语言（一） href="show_1101_111.html">Android中怎样嵌入C语言（一）</A> </li><li class="currentLink"><A title=Android中怎样嵌入C语言（二） href="show_1102_111.html">Android中怎样嵌入C语言（二）</A> </li><li ><A title=Android中怎样嵌入C语言（三） href="show_1103_111.html">Android中怎样嵌入C语言（三）</A> </li><li ><A title=Android中怎样嵌入C语言（四） href="show_1104_111.html">Android中怎样嵌入C语言（四）</A> </li><li ><A title=Android中怎样嵌入C语言（五） href="show_1105_111.html">Android中怎样嵌入C语言（五）</A> </li><li ><A title=Android中怎样嵌入C语言（六） href="show_1106_111.html">Android中怎样嵌入C语言（六）</A> </li></UL>
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android中怎样嵌入C语言（二）</H2>
+<div style="line-height:20px; font-size:14px;"><p>此函数回传JNI_VERSION_1_4值给VM，于是VM知道了其所使用的JNI版本了。此外，它也做了一些初期的动作(可呼叫任何本地函数)，例如指令：</p><p><pre><font class="keyword">if </font>(register_android_media_MediaPlayer(env) &lt; 0) {</p><p>	</font>LOGE(<font class="Fields">"ERROR: MediaPlayer native registration failed\n"</font>);</p><p>	goto bail;</p><p>}</p><p></pre></p><p>就将此组件提供的各个本地函数(Native Function)登记到VM里，以便能加快后续呼叫本地函数的效率。</p><p>JNI_OnUnload()函数与JNI_OnLoad()相对应的。在载入C组件时会立即呼叫JNI_OnLoad()来进行组件内的初期动作；而当VM释放该C组件时，则会呼叫JNI_OnUnload()函数来进行善后清除动作。当VM呼叫JNI_OnLoad()或JNI_Unload()函数 时，都会将VM的指针(Pointer)传递给它们，其参数如下：</p><p><pre>jint JNI_OnLoad(JavaVM* vm, void* reserved) {     }</p><p>jint JNI_OnUnload(JavaVM* vm, void* reserved){     }</p><p></pre></p><p>在JNI_OnLoad()函数里，就透过VM之指标而取得JNIEnv之指标值，并存入env指标变数里，如下述指令：</p><p><pre>jint JNI_OnLoad(JavaVM* vm, void* reserved){</p><p>	JNIEnv* env = NULL;</p><p>	jint result = -1;</p><p>	<font class="keyword">if </font>(vm-&gt;GetEnv((void**) &env, JNI_VERSION_1_4) != JNI_OK) {</p><p>		LOGE(<font class="Fields">"ERROR: GetEnv failed\n"</font>);</p><p>		goto bail;</p><p>	}</p><p>}</p><p></pre></p><p>由于VM通常是多执行绪(Multi-threading)的执行环境。每一个执行绪在呼叫JNI_OnLoad()时，所传递进来的JNIEnv指标值 都是不同的。为了配合这种多执行绪的环境，C组件开发者在撰写本地函数时，可藉由JNIEnv指标值之不同而避免执行绪的资料冲突问题，才能确保所写的本 地函数能安全地在Android的多执行绪VM里安全地执行。基于这个理由，当在呼叫C组件的函数时，都会将JNIEnv指标值传递给它，如下：</p><p><pre>jint JNI_OnLoad(JavaVM* vm, void* reserved)</p><p>{</p><p>	JNIEnv* env = NULL;</p><p>	<font class="keyword">if </font>(register_android_media_MediaPlayer(env) &lt; 0) {</p><p>	}</p><p>}</p><p></pre></p><p>这JNI_OnLoad()呼叫register_android_media_MediaPlayer(env)函数时，就将env指标值传递过去。如此，在register_android_media_MediaPlayer()函数就能藉由该指标值而区别不同的执行绪，以便化解资料冲突的问题。</p><p>例如，在register_android_media_MediaPlayer()函数里，可撰写下述指令：</p><p><pre><font class="keyword">if</font>((*env)-&gt;MonitorEnter(env, obj) != JNI_OK) {</p><p>}</p><p></pre></p><p>查看是否已经有其他执行绪进入此物件，如果没有，此执行绪就进入该物件里执行了。还有，也可撰写下述指令：</p><p><pre><font class="keyword">if </font>((*env)-&gt;MonitorExit(env, obj) != JNI_OK) {</p><p>}</p><p></pre></p><p>查看是否此执行绪正在此物件内执行，如果是，此执行绪就会立即离开。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

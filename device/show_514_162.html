@@ -1,0 +1,70 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>利用SensorSimulator进行传感器的模拟_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li class="navcurrentLink"><A href="index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="设备信息" href="index_157.html">设备信息</A></h2>
+
+  <h2><A title="摄像头" href="index_158.html">摄像头</A></h2>
+
+  <h2><A title="通讯录" href="index_159.html">通讯录</A></h2>
+
+  <h2><A title="电话" href="index_160.html">电话</A></h2>
+
+  <h2><A title="短信" href="index_161.html">短信</A></h2>
+
+  <h2><A title="传感器" href="index_162.html">传感器</A></h2>
+<UL><li ><A title=Android的传感器 href="show_501_162.html">Android的传感器</A> </li><li ><A title=关于传感器的使用 href="show_502_162.html">关于传感器的使用</A> </li><li ><A title=方向SensorOrientation传感器功能实现 href="show_503_162.html">方向SensorOrientation传感器功能实现</A> </li><li ><A title=加速度Accelerometer功能源码 href="show_504_162.html">加速度Accelerometer功能源码</A> </li><li ><A title=Android 光传感器 href="show_505_162.html">Android 光传感器</A> </li><li ><A title=Android 磁场传感器 href="show_506_162.html">Android 磁场传感器</A> </li><li ><A title=磁场Magnetic Field源码与示例 href="show_507_162.html">磁场Magnetic Field源码与示例</A> </li><li ><A title=近距离感应Proximity功能源码 href="show_508_162.html">近距离感应Proximity功能源码</A> </li><li ><A title=Android 温度传感器 href="show_509_162.html">Android 温度传感器</A> </li><li ><A title=温度传感器SensorTemperature功能源码 href="show_510_162.html">温度传感器SensorTemperature功能源码</A> </li><li ><A title=Sensor传感器源码的阅读与应用开发简单实例 href="show_511_162.html">Sensor传感器源码的阅读与应用开发简单实例</A> </li><li ><A title=Android 开发中传感器使用实例 href="show_512_162.html">Android 开发中传感器使用实例</A> </li><li ><A title=Android 游戏中的传感器 href="show_513_162.html">Android 游戏中的传感器</A> </li><li class="currentLink"><A title=利用SensorSimulator进行传感器的模拟 href="show_514_162.html">利用SensorSimulator进行传感器的模拟</A> </li></UL>
+  <h2><A title="定位" href="index_163.html">定位</A></h2>
+
+  <h2><A title="视频系统" href="index_164.html">视频系统</A></h2>
+
+  <h2><A title="音频系统" href="index_165.html">音频系统</A></h2>
+
+  <h2><A title="铃声" href="index_166.html">铃声</A></h2>
+
+  <h2><A title="音量" href="index_167.html">音量</A></h2>
+
+  <h2><A title="录音" href="index_168.html">录音</A></h2>
+
+  <h2><A title="输入法" href="index_169.html">输入法</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>利用SensorSimulator进行传感器的模拟</H2>
+<div style="line-height:20px; font-size:14px;"><p>当没有android手机的开发者进行传感器开发的时候，遇到了一个问题，没有真机，怎么进行测试。</p><p>答案是：用SensorSimulator进行模拟（它是一个开源的项目）。</p><p>先看看图：</p><p><img src="../img/device_sensor/14_sensor.jpg"></p><p><img src="../img/device_sensor/14_sensor2.jpg"></p><p><img src="../img/device_sensor/14_sensor3.jpg"></p><p><img src="../img/device_sensor/14_sensor4.jpg"></p><p>1，先下载sensorsimulator-1.1.1.zip </p><p>2，解压缩，解压后我们会看到它的下面有几个文件夹，有个lib的文件夹，那个就是我们要的lib，在我们的项目下导入这个jar包</p><p>3，接下来是代码部分，代码部分其实变化不大，private SensorManagerSimulator mSensorManager;利用这个调用sensor就行了，代码方面就是我们要利用那个lib包的方法调用service，从而使模拟器监听某个端口，而改变xyz。试试吧，挺好用的。 当然，前期测试阶段用模拟器测试要是用SensorManagerSimulator 这个类，如果是放到真机上跑，还是要是用SensorManager这个类的。毕竟是模拟嘛。在你项目中用到的Sensor，SensorManager，SensorEventListener等类，在导入的jar包里面都有，注意在模拟的时候都要导入该jar包中的，不要导入android提供的。不然会报错滴。</p><p>4，将解压出来的bin目录下的SensorSimulatorSettings.apk安装到模拟器上进行参数的配置。</p><p>5，将你自己的DEMO部署到上面，就可以看到你想要的结果啦。</p><p>看代码：（没贴布局文件的代码，很简单，就一个TextView）</p><p><pre><font class="keyword">import </font>org.openintents.sensorsimulator.hardware.Sensor;</p><p><font class="keyword">import </font>org.openintents.sensorsimulator.hardware.SensorEvent;</p><p><font class="keyword">import </font>org.openintents.sensorsimulator.hardware.SensorEventListener;</p><p><font class="keyword">import </font>org.openintents.sensorsimulator.hardware.SensorManagerSimulator;</p><p><font class="keyword">import </font>android.app.Activity;</p><p><font class="keyword">import </font>android.hardware.SensorManager;</p><p><font class="keyword">import </font>android.os.Bundle;</p><p><font class="keyword">import </font>android.widget.TextView;</p><p><font class="keyword">public </font><font class="keyword">class </font>Gravity </font><font class="keyword">extends </font>Activity {</p><p>	<font class="keyword">private </font>TextView view;</p><p>	<font class="keyword">private </font>SensorManagerSimulator manager;</p><p>	<font class="keyword">private </font>MyListener myListener;</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onCreate(Bundle savedInstanceState) {</p><p>		<font class="keyword">super</font>.onCreate(savedInstanceState);</p><p>		setContentView(R.layout.main);</p><p>		view = (TextView) findViewById(R.id.data);</p><p>		<font class="Comments">// 得到SensorManagerSimulator对象。</font></p><p>		</font>manager = SensorManagerSimulator.getSystemService(<font class="keyword">this</font>, SENSOR_SERVICE);</p><p>		<font class="Comments">// 下面这句是必须的，不写没结果</font></p><p>		manager.connectSimulator();</p><p>		</font>myListener = <font class="keyword">new </font>MyListener();</p><p>		manager.registerListener(myListener,</p><p>				manager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),</p><p>				SensorManager.SENSOR_DELAY_FASTEST);</p><p>	}</p><p>	<font class="keyword">class </font>MyListener </font><font class="keyword">implements </font>SensorEventListener {</p><p>		@Override</p><p>		<font class="keyword">public </font><font class="keyword">void </font>onAccuracyChanged(Sensor arg0, </font><font class="keyword">int </font>arg1) {</p><p>		}</p><p>		<font class="Comments">// 这个方法是在传感器接收的数据发生变化的时候的回调函数，将数据传到了SendorEvent对象里。</font></p><p>		@Override</p><p>		<font class="keyword">public </font><font class="keyword">void </font>onSensorChanged(SensorEvent event) {</p><p>			</font>view.setText(<font class="Fields">"X坐标："</font> + event.values[0] + </font><font class="Fields">"Y坐标："</font> + event.values[1]</p><p>					</font>+ <font class="Fields">"Z坐标："</font> + event.values[2]);</p><p>		}</p><p></p><p>	}</p><p>	@Override</p><p>	<font class="keyword">protected </font><font class="keyword">void </font>onPause() {</p><p>		<font class="keyword">super</font>.onPause();</p><p>		<font class="Comments">// 传感器使用起来比较耗电，如果当前的activity不可见应该解除绑定</font></p><p>		manager.unregisterListener(myListener);</p><p>	}</p><p>}</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

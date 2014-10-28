@@ -1,0 +1,64 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 本地联络人并向其发邮件（二）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li class="navcurrentLink"><A href="index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="3G" href="index_177.html">3G</A></h2>
+
+  <h2><A title="WIFI" href="index_178.html">WIFI</A></h2>
+
+  <h2><A title="蓝牙" href="index_179.html">蓝牙</A></h2>
+
+  <h2><A title="HTTP协议" href="index_180.html">HTTP协议</A></h2>
+
+  <h2><A title="Socket" href="index_181.html">Socket</A></h2>
+
+  <h2><A title="HTML与HTML5" href="index_182.html">HTML与HTML5</A></h2>
+
+  <h2><A title="JavaScript" href="index_183.html">JavaScript</A></h2>
+
+  <h2><A title="Email" href="index_184.html">Email</A></h2>
+<UL><li ><A title=Android 本地联络人并向其发邮件（一） href="show_701_184.html">Android 本地联络人并向其发邮件（一）</A> </li><li class="currentLink"><A title=Android 本地联络人并向其发邮件（二） href="show_702_184.html">Android 本地联络人并向其发邮件（二）</A> </li><li ><A title=Android Email程序 href="show_703_184.html">Android Email程序</A> </li><li ><A title=调用系统程序发送带附件的彩信和email href="show_704_184.html">调用系统程序发送带附件的彩信和email</A> </li></UL>
+  <h2><A title="NFC" href="index_185.html">NFC</A></h2>
+
+  <h2><A title="Web Service" href="index_186.html">Web Service</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 本地联络人并向其发邮件（二）</H2>
+<div style="line-height:20px; font-size:14px;"><p>判断用户输入邮箱是否正确方法为： </p><p><pre><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">boolean </font>isEmail(String strEmail) {</p><p>	</font>String strPattern = <font class="Fields">"^[a-zA-Z][\\w\\.-]*[a-zA-Z0-9]@[a-zA-Z0-9][\\w\\.-]*[a-zA-Z0-9]\\.[a-zA-Z][a-zA-Z\\.]*[a-zA-Z]$"</font>;</p><p>	Pattern p = Pattern.compile(strPattern);</p><p>	Matcher m = p.matcher(strEmail);</p><p>	<font class="keyword">return </font>m.matches();</p><p>}</p><p></pre></p><p>关于Content Provider</p><p>如果你要公开你的数据，你可以创建或者使用一个Content Provider。它是一个能使所以应用程度都能存储和检索数据的对象。它是唯一在包和包之间分享数据的方法;因为不存在那种供所有的包来共享的一般存储空间。Android自带了一些Content Provider，它们用于一些一般的数据类型（音频，视频，图片，个人联系信息等等）。您能从Provider这个包中看到一些Android自带的Content Provider。到底表面之下一个Content Provider是如何存储数据的决定于这个Content Provider是如何实现的，但是所有的Content Provider必须实现一种一般公约用来数据查询和一种一般公约来返回结果。然而，一个Content Provider能够实现自定义的方法，使得在处理一些特定的数据时，对于数据的存储/检索更加简单。</p><p>用户长按文本框后，得通过 Content Provider查找跳转到联系人中心，查找用户并返回邮箱代码如下：</p><p><pre><font class="keyword">private </font>OnLongClickListener searhEmail = </font><font class="keyword">new </font>OnLongClickListener() {</p><p>	<font class="keyword">public </font><font class="keyword">boolean </font>onLongClick(View arg0) {</p><p>		</font>Uri uri = Uri.parse(<font class="Fields">"content:<font class="Comments">//contacts/people"</font>);</font></p><p>		</font>Intent intent = <font class="keyword">new </font>Intent(Intent.ACTION_PICK, uri);</p><p>		startActivityForResult(intent, PICK_CONTACT_SUBACTIVITY);</p><p>		<font class="keyword">return </font><font class="keyword">false</font>;</p><p>	};</p><p>};</p><p><font class="keyword">protected </font><font class="keyword">void </font>onActivityResult(</font><font class="keyword">int </font>requestCode, </font><font class="keyword">int </font>resultCode, Intent data) {</p><p>	<font class="keyword">switch </font>(requestCode) {</p><p>	<font class="keyword">case </font>PICK_CONTACT_SUBACTIVITY:</p><p>		<font class="keyword">final </font>Uri uriRet = data.getData();</p><p>		<font class="keyword">if </font>(uriRet != </font><font class="keyword">null</font>) {</p><p>			<font class="keyword">try </font>{</p><p>				</font>Cursor c = managedQuery(uriRet, <font class="keyword">null</font>, </font><font class="keyword">null</font>, </font><font class="keyword">null</font>, </font><font class="keyword">null</font>);</p><p>				c.moveToFirst();</p><p>				<font class="Comments">// 取得联系人的姓名</font></p><p>				String strName = c.getString(c</p><p>						.getColumnIndexOrThrow(People.NAME));</p><p>				<font class="Comments">// 取得联系人的EMAIL</font></p><p>				</font>String[] PROJECTION = <font class="keyword">new </font>String[] {</p><p>						Contacts.ContactMethods._ID,</p><p>						Contacts.ContactMethods.KIND,</p><p>						Contacts.ContactMethods.DATA };</p><p>				<font class="Comments">// 查询指定人的Email</font></p><p>				Cursor newcur = managedQuery(</p><p>						Contacts.ContactMethods.CONTENT_URI,</p><p>						PROJECTION,</p><p>						</font>Contacts.ContactMethods.PERSON_ID + <font class="Fields">"=\'</p><p>								+ c.getLong(c.getColumnIndex(People._ID))</p><p>								</font>+ <font class="Fields">"\</font><font class="Fields">'"</font>, <font class="keyword">null</font>, </font><font class="keyword">null</font>);</p><p>				startManagingCursor(newcur);</p><p>				</font>String email = <font class="Fields">""</font>;</p><p>				<font class="keyword">if </font>(newcur.moveToFirst()) {</p><p>					email = newcur.getString(newcur</p><p>							.getColumnIndex(Contacts.ContactMethods.DATA));</p><p>					myEditText.setText(email);</p><p>				}</p><p>			</font>} <font class="keyword">catch </font>(Exception e) {</p><p>				</font>Toast.makeText(sendEmailActivity.<font class="keyword">this</font>, e.toString(), 1000)</p><p>						.show();</p><p>			}</p><p>		}</p><p>		<font class="keyword">break</font>;</p><p>	<font class="keyword">default</font>:</p><p>		<font class="keyword">break</font>;</p><p>	}</p><p>	<font class="keyword">super</font>.onActivityResult(requestCode, resultCode, data);</p><p>};</p><p></pre></p><p>注意使用Content Provider查找联系必须在配置文件里面配置权限，具体权限如下：</p><p>&lt;uses-permission android:name="android.permission.READ_CONTACTS"/&gt;</p><p>邮件发送程序并不复杂，主要是在 EditText 、Button 控件的构建，通过构造一个自定义的 Intent（android.content.Intent.ACTION_SEND）作为传送 Email 的 Activity 之用，在该Intent中，还必须使用 setType()来决定 Email的格式，使用 putExtra() 来置入寄件入（EXTRA_EMAIL）、主题（EXTRA_SUBJECT）、邮件内容（EXTRA_TEXT）以及其他Email的字段（EXTRA_BCC、EXTRA_CC）。</p><p>代码如下：</p><p><pre></font>myButton.setOnClickListener(<font class="keyword">new </font>OnClickListener() {</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onClick(View v) {</p><p>		</font>Intent mailIntent = <font class="keyword">new </font>Intent(android.content.Intent.ACTION_SEND);</p><p>		</font>mailIntent.setType(<font class="Fields">"plain/test"</font>);</p><p>		</font>strEmailReciver = <font class="keyword">new </font>String[] { myEditText.getText().toString() </font>};</p><p>		</font>strEmailCC = <font class="keyword">new </font>String[] { myEditText2.getText().toString() </font>};</p><p>		strEmailSubject = myEditText3.getText().toString();</p><p>		strEmailBody = myEditText4.getText().toString();</p><p>		mailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, strEmailReciver);</p><p>		mailIntent.putExtra(android.content.Intent.EXTRA_CC, strEmailCC);</p><p>		mailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, strEmailSubject);</p><p>		mailIntent.putExtra(android.content.Intent.EXTRA_TEXT, strEmailBody);</p><p>		startActivity(Intent.createChooser(mailIntent, getResources().getString(R.string.send)));</p><p>	}</p><p>});</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

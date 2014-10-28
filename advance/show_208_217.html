@@ -1,0 +1,58 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android如何防止apk程序被反编译_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li class="navcurrentLink"><A href="index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Android基础之运行原理和机制" href="index_215.html">Android基础之运行原理和机制</A></h2>
+
+  <h2><A title="Android高级篇之Android优化" href="index_216.html">Android高级篇之Android优化</A></h2>
+
+  <h2><A title="Android高级篇之编译及反编译" href="index_217.html">Android高级篇之编译及反编译</A></h2>
+<UL><li ><A title=Android 程序反编译 href="show_201_217.html">Android 程序反编译</A> </li><li ><A title=Android反编译工具Apktool使用 href="show_202_217.html">Android反编译工具Apktool使用</A> </li><li ><A title=Android命令行编译方法,不用Eclipse IDE href="show_203_217.html">Android命令行编译方法,不用Eclipse IDE</A> </li><li ><A title=Android反编译小结 href="show_204_217.html">Android反编译小结</A> </li><li ><A title=反编译APK文件 href="show_205_217.html">反编译APK文件</A> </li><li ><A title=无需eclipse无需ant,直接在android源码中混淆编译 href="show_206_217.html">无需eclipse无需ant,直接在android源码中混淆编译</A> </li><li ><A title=apk反编译问题总结 href="show_207_217.html">apk反编译问题总结</A> </li><li class="currentLink"><A title=Android如何防止apk程序被反编译 href="show_208_217.html">Android如何防止apk程序被反编译</A> </li><li ><A title=Android反编译和防止反编译的方法 href="show_209_217.html">Android反编译和防止反编译的方法</A> </li><li ><A title=构建Android自动编译持续集成系统 href="show_210_217.html">构建Android自动编译持续集成系统</A> </li><li ><A title=跟我一起学【ANT build.xml】 href="show_211_217.html">跟我一起学【ANT build.xml】</A> </li><li ><A title=linux 下 使用shell 控制ant批量打包 href="show_212_217.html">linux 下 使用shell 控制ant批量打包</A> </li></UL>
+  <h2><A title="Android高级篇之加密解密" href="index_218.html">Android高级篇之加密解密</A></h2>
+
+  <h2><A title="Android高级篇之Android 安全" href="index_219.html">Android高级篇之Android 安全</A></h2>
+
+  <h2><A title="Android高级篇之算法" href="index_220.html">Android高级篇之算法</A></h2>
+
+  <h2><A title="Android高级篇之解锁教程" href="index_221.html">Android高级篇之解锁教程</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android如何防止apk程序被反编译</H2>
+<div style="line-height:20px; font-size:14px;"><p>作为Android应用开发者，不得不面对一个尴尬的局面，就是自己辛辛苦苦开发的应用可以被别人很轻易的就反编译出来。</p><p>Google似乎也发现了这个问题，从SDK2.3开始我们可以看到在android-sdk-windows\tools\下面多了一个proguard文件夹。</p><p>proguard是一个java代码混淆的工具，通过proguard，别人即使反编译你的apk包，也只会看到一些让人很难看懂的代码，从而达到保护代码的作用。</p><p>下面具体说一说怎么样让SDK2.3下的proguard.cfg文件起作用，先来看看android-sdk-windows\tools\lib\proguard.cfg的内容。</p><p><pre>-optimizationpasses 5  </p><p>-dontusemixedcaseclassnames  </p><p>-dontskipnonpubliclibraryclasses  </p><p>-dontpreverify  </p><p>-verbose  </p><p>-optimizations !code/simplification/arithmetic,!field/*,!class/merging/*  </p><p>-keep public class * extends android.app.Activity  </p><p>-keep public class * extends android.app.Application  </p><p>-keep public class * extends android.app.Service  </p><p>-keep public class * extends android.content.BroadcastReceiver  </p><p>-keep public class * extends android.content.ContentProvider  </p><p>-keep public class * extends android.app.backup.BackupAgentHelper  </p><p>-keep public class * extends android.preference.Preference  </p><p>-keep public class com.android.vending.licensing.ILicensingService  </p><p>-keepclasseswithmembernames class * {  </p><p>native &lt;methods&gt;;  </p><p>}  </p><p>-keepclasseswithmembernames class * {  </p><p>public &lt;init&gt;(android.content.Context, android.util.AttributeSet);  </p><p>}  </p><p>-keepclasseswithmembernames class * {  </p><p>public &lt;init&gt;(android.content.Context, android.util.AttributeSet, int);  </p><p>}  </p><p>-keepclassmembers enum * {  </p><p>public static **[] values();  </p><p>public static ** valueOf(java.lang.String);  </p><p>}  </p><p>-keep class * implements android.os.Parcelable {  </p><p>public static final android.os.Parcelable$Creator *;  </p><p>}  </p><p></pre></p><p>从脚本中可以看到，混淆中保留了继承自Activity、Service、Application、BroadcastReceiver、ContentProvider等基本组件以及com.android.vending.licensing.ILicensingService。</p><p>并保留了所有的Native变量名及类名，所有类中部分以设定了固定参数格式的构造函数，枚举等等。(详细信息请参考&lt;proguard_path&gt;/examples中的例子及注释。)</p><p>让proguard.cfg起作用的做法很简单，就是在eclipse自动生成的default.properties文件中加上一句“proguard.config=proguard.cfg”就可以了。</p><p>完整的default.properties文件应该如下：</p><p><pre> This file is automatically generated by Android Tools.  </p><p> Do not modify this file -- YOUR CHANGES WILL BE ERASED!  </p><p>  </p><p> This file must be checked in Version Control Systems.  </p><p>  </p><p> To customize properties used by the Ant build system use,  </p><p> "build.properties", and override values to adapt the script to your  </p><p> project structure.  </p><p> Project target.  </p><p>target=android-9  </p><p>proguard.config=proguard.cfg  </p><p></pre></p><p>大功告成，正常的编译签名后就可以防止代码被反编译了。反编译经过代码混淆的apk得到的代码应该类似于下面的效果，是很难看懂的。</p><p><img src="../img/adv_build/08_APK01.jpg"></p><p>如果您使用的是2.3之前的SDK版本也没关系，把上面的proguard.cfg文件复制一份放到项目中，然后进行相同的操作即可。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

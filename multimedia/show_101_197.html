@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 2D绘图_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li class="navcurrentLink"><A href="index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Android多媒体功能" href="index_196.html">Android多媒体功能</A></h2>
+
+  <h2><A title="Android多媒体之2D" href="index_197.html">Android多媒体之2D</A></h2>
+<UL><li class="currentLink"><A title=Android 2D绘图 href="show_101_197.html">Android 2D绘图</A> </li><li ><A title=2D学习之Bitmap href="show_102_197.html">2D学习之Bitmap</A> </li><li ><A title=2D学习之Canvas href="show_103_197.html">2D学习之Canvas</A> </li><li ><A title=2D学习之Paint href="show_104_197.html">2D学习之Paint</A> </li><li ><A title=Android 2D Frame动画 href="show_105_197.html">Android 2D Frame动画</A> </li><li ><A title=Android 2D引擎实例 href="show_106_197.html">Android 2D引擎实例</A> </li><li ><A title=Android Sensor2D感应实例 href="show_107_197.html">Android Sensor2D感应实例</A> </li></UL>
+  <h2><A title="Android多媒体之3D" href="index_198.html">Android多媒体之3D</A></h2>
+
+  <h2><A title="Android多媒体之Bitmap" href="index_199.html">Android多媒体之Bitmap</A></h2>
+
+  <h2><A title="Android多媒体之Canvas" href="index_200.html">Android多媒体之Canvas</A></h2>
+
+  <h2><A title="Android多媒体之Drawable" href="index_201.html">Android多媒体之Drawable</A></h2>
+
+  <h2><A title="Android多媒体之gif" href="index_202.html">Android多媒体之gif</A></h2>
+
+  <h2><A title="Android多媒体之MediaStore" href="index_203.html">Android多媒体之MediaStore</A></h2>
+
+  <h2><A title="Android多媒体之动画" href="index_204.html">Android多媒体之动画</A></h2>
+
+  <h2><A title="Android多媒体之分辨率" href="index_205.html">Android多媒体之分辨率</A></h2>
+
+  <h2><A title="Android多媒体之分屏幕" href="index_206.html">Android多媒体之分屏幕</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 2D绘图</H2>
+<div style="line-height:20px; font-size:14px;"><p>我们这一部分主要展示如何从使用View类改为使用SurfaceView类。改变父类可以有助于你来绘制任何打算显示的东西而不必烦心于布局和XML文件。而且改变父类后你还可以更轻易地实现自定义的动画包括游戏。</p><p>首先将父类由View改为SurfaceView:</p><p><pre><font class="keyword">class </font>Panel </font><font class="keyword">extends </font>SurfaceView </font>{}</p><p></pre></p><p>编译运行后，没有显示，只有黑屏。原因是onDraw()方法没有被调用。为了使得SurfaceView实时刷新，我们需要实现一个视图线程来处理绘制方法的调用。当然这也可以通过调用一个invalidate的方法来实现，但是如果使用一个线程的话，可以有更丰富的控制。因此让我们从SurfaceView最基本的部分开始，首先需要实现SurfaceHolder.Callback接口，该接口提供我们三种可以使用的方法。</p><p><pre><font class="keyword">public </font><font class="keyword">class </font>Panel </font><font class="keyword">extends </font>SurfaceView </font><font class="keyword">implements </font>SurfaceHolder.Callback {</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>surfaceChanged(SurfaceHolder holder, </font><font class="keyword">int </font>format, </font><font class="keyword">int </font>width,</p><p>			<font class="keyword">int </font>height) {</p><p>	}</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>surfaceCreated(SurfaceHolder holder) {</p><p>	}</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>surfaceDestroyed(SurfaceHolder holder) {</p><p>	}</p><p>}</p><p></pre></p><p>为了注册该类作为回调接口，我们需要在构造函数中加入下面所示：</p><p><pre><font class="keyword">public </font>Panel(Context context) {</p><p>	<font class="keyword">super</font>(context);</p><p>	mBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.icon);</p><p>	</font>getHolder().addCallback(<font class="keyword">this</font>);</p><p>}</p><p></pre></p><p>下一步就是我们用来控制绘制Panel类的线程了：</p><p><pre><font class="keyword">public </font><font class="keyword">class </font>ViewThread </font><font class="keyword">extends </font>Thread {</p><p>	<font class="keyword">private </font>Panel mPanel;</p><p>	<font class="keyword">private </font>SurfaceHolder mHolder;</p><p>	<font class="keyword">private </font><font class="keyword">boolean </font>mRun = </font><font class="keyword">false</font>;</p><p>	<font class="keyword">public </font>ViewThread(Panel panel) {</p><p>		mPanel = panel;</p><p>		mHolder = mPanel.getHolder();</p><p>	}</p><p>	<font class="keyword">public </font><font class="keyword">void </font>setRunning(</font><font class="keyword">boolean </font>run) {</p><p>		mRun = run;</p><p>	}</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>run() {</p><p>		</font>Canvas canvas = <font class="keyword">null</font>;</p><p>		<font class="keyword">while </font>(mRun) {</p><p>			canvas = mHolder.lockCanvas();</p><p>			<font class="keyword">if </font>(canvas != </font><font class="keyword">null</font>) {</p><p>				mPanel.doDraw(canvas);</p><p>				mHolder.unlockCanvasAndPost(canvas);</p><p>			}</p><p>		}</p><p>	}</p><p>}</p><p></pre></p><p>这个线程是相当简单的。我们需要一个构造函数将Panel类作为参数。mHolder变量用来避免重复调用getHolder()。布尔值mRun是重要的，因为利用它来避免绘制时的死循环。</p><p>run()函数是关键，这里使用了while循环。当绘制时将canvas锁定。它的工作原理基本类似vertical sync，因此在绘制表面物件时不需要为该表面(surface)提供缓冲。</p><p>你或许注意到了，onDraw()函数名改为了doDraw()，这也很关键，因为现在只允许我们自己控制绘制。无论何时android系统打算使我们的panel无效，它会调用doDraw()函数，而该函数什么都不会做。</p><p>现在我们需要处理panel类中的线程了。来自这个SurfaceHolder.callback接口的方法是很不错的。当准备使用SurfaceView时，调用surfaceCreated()方法。这时我们的线程就启动了。这里我们还需要检查是否线程还是活动的，是否你使用了Home键返回了。</p><p><pre><font class="keyword">private </font>ViewThread mThread;</p><p><font class="keyword">public </font>Panel(Context context) {</p><p>	<font class="keyword">super</font>(context);</p><p>	mBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.icon);</p><p>	</font>getHolder().addCallback(<font class="keyword">this</font>);</p><p>	</font>mThread = <font class="keyword">new </font>ViewThread(</font><font class="keyword">this</font>);</p><p>}</p><p>@Override</p><p><font class="keyword">public </font><font class="keyword">void </font>surfaceCreated(SurfaceHolder holder) {</p><p>	<font class="keyword">if </font>(!mThread.isAlive()) {</p><p>		</font>mThread = <font class="keyword">new </font>ViewThread(</font><font class="keyword">this</font>);</p><p>		</font>mThread.setRunning(<font class="keyword">true</font>);</p><p>		mThread.start();</p><p>	}</p><p>}</p><p>@Override</p><p><font class="keyword">public </font><font class="keyword">void </font>surfaceDestroyed(SurfaceHolder holder) {</p><p>	<font class="keyword">if </font>(mThread.isAlive()) {</p><p>		</font>mThread.setRunning(<font class="keyword">false</font>);</p><p>	}</p><p>}</p><p></pre></p><p>首先我们需要一个控制该线程的线程变量。在构造函数中，我们实例化该线程。在surfaceCreated()中，我们检查是否该线程是活动的。如果它是活动的，就什么都不做，如果不是活动的，我们创建一个新的实例并且启动该线程。这里要注意我们不能复用可能存在的旧线程对象，因为在此时我们不确定该线程是否曾经运行过，而且线程实例也不能被启动超过一次。</p><p>当视图消亡时调用surfaceDestroyed()方法。可能的状况是activity进入后台，因为你打开了另一个程序，或者按下了返回键。这里我们要确保通过终结循环来使线程结束。这里只需要设置mRun变量为false就可以了。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

@@ -1,0 +1,91 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android学习手册_Android高级进阶</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li class="navcurrentLink"><A href="index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">Android高级进阶</div>
+
+  <h2 ><A title="Android基础之运行原理和机制" href="index_215.html">Android基础之运行原理和机制</A></h2>
+
+  <h2 ><A title="Android高级篇之Android优化" href="index_216.html">Android高级篇之Android优化</A></h2>
+
+  <h2 ><A title="Android高级篇之编译及反编译" href="index_217.html">Android高级篇之编译及反编译</A></h2>
+
+  <h2 class="currentLink"><A title="Android高级篇之加密解密" href="index_218.html">Android高级篇之加密解密</A></h2>
+<UL><li class="currentLink"><A title=Android 加密解密 href="show_301_218.html">Android 加密解密</A> </li><li ><A title=Android 用MD5加密算法加密密码（一） href="show_302_218.html">Android 用MD5加密算法加密密码（一）</A> </li><li ><A title=Android 用MD5加密算法加密密码（二） href="show_303_218.html">Android 用MD5加密算法加密密码（二）</A> </li><li ><A title=Android下MD5加密 href="show_304_218.html">Android下MD5加密</A> </li><li ><A title=Android 获取自己程序APK包的MD5指纹 href="show_305_218.html">Android 获取自己程序APK包的MD5指纹</A> </li><li ><A title=Android客户端与服务器端通过DES加密认证 href="show_306_218.html">Android客户端与服务器端通过DES加密认证</A> </li><li ><A title=Java加密解密 href="show_307_218.html">Java加密解密</A> </li><li ><A title=给自己的网络数据加密 href="show_308_218.html">给自己的网络数据加密</A> </li></UL>
+  <h2 ><A title="Android高级篇之Android 安全" href="index_219.html">Android高级篇之Android 安全</A></h2>
+
+  <h2 ><A title="Android高级篇之算法" href="index_220.html">Android高级篇之算法</A></h2>
+
+  <h2 ><A title="Android高级篇之解锁教程" href="index_221.html">Android高级篇之解锁教程</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1>Android高级篇之加密解密</H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 加密解密</H2>
+<P>　　加密解密是我们在生活中经常用到的一个方法。这个给我们带来了很大的方便。因为有了加密我们的文件就会更加安全，这其中我们用到的是KeyGenerator、SecretKey、spec.SecretKeySpec，这三个在加密当中起到了非常大的</P>
+<P><A title="Android 加密解密" href="show_301_218.html">进入 Android 加密解密</A> </P></DIV>
+
+<DIV>
+<H2>Android 用MD5加密算法加密密码（一）</H2>
+<P>　　很多的网络相关的软件都需要用户名密码登录，在开发的时候像这些密码都是保存在SharedPreferences中，这些密码保存在/data/data/包名/shared_prefs下，保存在一个XML文件中，如下：[code=img]adv_build/03_MD501.jpg</P>
+<P><A title="Android 用MD5加密算法加密密码（一）" href="show_302_218.html">进入 Android 用MD5加密算法加密密码（一）</A> </P></DIV>
+
+<DIV>
+<H2>Android 用MD5加密算法加密密码（二）</H2>
+<P>　　login.java[code=java]#[Keywords]import #android.app.Activity;#[Keywords]import #android.os.Bundle;#[Keywords]public #[Keywords]class #Login #[Keywords]extends #Activity {	#@Override	#[Keywords]protect</P>
+<P><A title="Android 用MD5加密算法加密密码（二）" href="show_303_218.html">进入 Android 用MD5加密算法加密密码（二）</A> </P></DIV>
+
+<DIV>
+<H2>Android下MD5加密</H2>
+<P>　　目前做一个项目，用到把用户输入的密码进行md5加密，于是google了下，网上资料很多，但是测试了下总是跟网站的md5加密对不起来， 后来才知道是编码方式不对，我于是自己写一个吧。哎有些事情总是想偷懒，没想到去找</P>
+<P><A title="Android下MD5加密" href="show_304_218.html">进入 Android下MD5加密</A> </P></DIV>
+
+<DIV>
+<H2>Android 获取自己程序APK包的MD5指纹</H2>
+<P>　　刚开始写程序的时候，尤其是使用Google地图，MapABC地图的时候，在开发时，使用的是Debug版的指纹，但是在发布程序的时候，不再能使用Debug版的指纹了，因为，我们需要获取应用程序的指纹。要获取应用程序的指纹，首</P>
+<P><A title="Android 获取自己程序APK包的MD5指纹" href="show_305_218.html">进入 Android 获取自己程序APK包的MD5指纹</A> </P></DIV>
+
+<DIV>
+<H2>Android客户端与服务器端通过DES加密认证</H2>
+<P>　　由于Android应用没有像web开发中的session机制，所以采用PHPSESSID的方式，是没有办法获取客户端登录状态的。这种情况下，如何在用户登录后，服务器端获取用户登录状态并保持，就必须采用一种“握手”的方式。每个手</P>
+<P><A title="Android客户端与服务器端通过DES加密认证" href="show_306_218.html">进入 Android客户端与服务器端通过DES加密认证</A> </P></DIV>
+
+<DIV>
+<H2>Java加密解密</H2>
+<P>　　Java加密，解密算法有BASE64,MD5,DES,等算法。常用的加密算法在JAVA SE中有实现。它们的实现类在java/jre/lib/dt.jar这个包中。我们引入的时候要加入import sun.misc.*;下面我举个例子，如下所示：[code=java]#[Keyw</P>
+<P><A title="Java加密解密" href="show_307_218.html">进入 Java加密解密</A> </P></DIV>
+
+<DIV>
+<H2>给自己的网络数据加密</H2>
+<P>　　[color=blue]网络数据加密的三种技术 在常规密码中，收信方和发信方使用相同的密钥，即加密密钥和解密密钥是相同或等价的。比较著名的常规密码算法有：美国的DES及其各种变形，比如Triple DES、GDES、New DES和DES的</P>
+<P><A title="给自己的网络数据加密" href="show_308_218.html">进入 给自己的网络数据加密</A> </P></DIV>
+
+</DIV>
+
+<DIV id=footer style="display:none">
+<P align="center"> 
+ 
+ 
+ 
+  </P>
+</DIV></DIV></BODY></HTML>
+

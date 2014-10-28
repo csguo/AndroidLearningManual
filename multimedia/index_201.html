@@ -1,0 +1,109 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android学习手册_多媒体</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li class="navcurrentLink"><A href="index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">多媒体</div>
+
+  <h2 ><A title="Android多媒体功能" href="index_196.html">Android多媒体功能</A></h2>
+
+  <h2 ><A title="Android多媒体之2D" href="index_197.html">Android多媒体之2D</A></h2>
+
+  <h2 ><A title="Android多媒体之3D" href="index_198.html">Android多媒体之3D</A></h2>
+
+  <h2 ><A title="Android多媒体之Bitmap" href="index_199.html">Android多媒体之Bitmap</A></h2>
+
+  <h2 ><A title="Android多媒体之Canvas" href="index_200.html">Android多媒体之Canvas</A></h2>
+
+  <h2 class="currentLink"><A title="Android多媒体之Drawable" href="index_201.html">Android多媒体之Drawable</A></h2>
+<UL><li class="currentLink"><A title=Android 解析Drawable（一） href="show_501_201.html">Android 解析Drawable（一）</A> </li><li ><A title=Android 解析Drawable（二） href="show_502_201.html">Android 解析Drawable（二）</A> </li><li ><A title=Android Drawable的使用 href="show_503_201.html">Android Drawable的使用</A> </li><li ><A title=Drawable、Bitmap、Canvas和Paint的区别 href="show_504_201.html">Drawable、Bitmap、Canvas和Paint的区别</A> </li><li ><A title=Bitmap和Drawable相互转换方法 href="show_505_201.html">Bitmap和Drawable相互转换方法</A> </li><li ><A title=Android Drawable叠加方法 href="show_506_201.html">Android Drawable叠加方法</A> </li><li ><A title=使用SQLite存储以及读取Drawable对象 href="show_508_201.html">使用SQLite存储以及读取Drawable对象</A> </li><li ><A title=drawable(hdpi,ldpi,mdpi)的区别 href="show_509_201.html">drawable(hdpi,ldpi,mdpi)的区别</A> </li><li ><A title=Android 通过图片名称获取drawable目录下的图片 href="show_511_201.html">Android 通过图片名称获取drawable目录下的图片</A> </li><li ><A title=更改手机窗口画面底色(drawable定义颜色常数的方法) href="show_512_201.html">更改手机窗口画面底色(drawable定义颜色常数的方法)</A> </li></UL>
+  <h2 ><A title="Android多媒体之gif" href="index_202.html">Android多媒体之gif</A></h2>
+
+  <h2 ><A title="Android多媒体之MediaStore" href="index_203.html">Android多媒体之MediaStore</A></h2>
+
+  <h2 ><A title="Android多媒体之动画" href="index_204.html">Android多媒体之动画</A></h2>
+
+  <h2 ><A title="Android多媒体之分辨率" href="index_205.html">Android多媒体之分辨率</A></h2>
+
+  <h2 ><A title="Android多媒体之分屏幕" href="index_206.html">Android多媒体之分屏幕</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1>Android多媒体之Drawable</H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 解析Drawable（一）</H2>
+<P>　　Android SDK提供了一个强大的类Drawable，Drawable这个抽象类到底代表了什么，如何使用？Drawable是个很抽象的概念，通过简单的例子程序来学习它，理解它。先看个简单的例子，使用Drawable的子类ShapeDrawable来画图</P>
+<P><A title="Android 解析Drawable（一）" href="show_501_201.html">进入 Android 解析Drawable（一）</A> </P></DIV>
+
+<DIV>
+<H2>Android 解析Drawable（二）</H2>
+<P>　　3、修改Activity中的代码，内容如下：[code=java]LinearLayout mLinearLayout;#[Keywords]protected #[Keywords]void #onCreate(Bundle savedInstanceState) {	#[Keywords]super#.onCreate(savedInstanceState);	#mL</P>
+<P><A title="Android 解析Drawable（二）" href="show_502_201.html">进入 Android 解析Drawable（二）</A> </P></DIV>
+
+<DIV>
+<H2>Android Drawable的使用</H2>
+<P>　　最简单的使用Drawable资源的方法是，把图片放入Android工程的res\drawable目录下，编程环境会自动在R类里为此资源创建一个引用。[code=java]    #    #    #    #    #    #    #    #    #    #    #    #    #[/co</P>
+<P><A title="Android Drawable的使用" href="show_503_201.html">进入 Android Drawable的使用</A> </P></DIV>
+
+<DIV>
+<H2>Drawable、Bitmap、Canvas和Paint的区别</H2>
+<P>　　很多朋友刚刚开始学习Android平台，对于Drawable、Bitmap、Canvas和Paint它们之间的概念不是很清楚，其实它们除了Drawable外早在Sun的J2ME中就已经出现了，但是在Android平台中，Bitmap、Canvas相关的都有所变化。首</P>
+<P><A title="Drawable、Bitmap、Canvas和Paint的区别" href="show_504_201.html">进入 Drawable、Bitmap、Canvas和Paint的区别</A> </P></DIV>
+
+<DIV>
+<H2>Bitmap和Drawable相互转换方法</H2>
+<P>　　很多朋友表示，不知道Android的Drawable和Bitmap之间如何相关转换。下面eoe给大家两种比较简单高效的方法。一、Bitmap转Drawable[code=java]Bitmap bm=xxx; #[Comments]//xxx根据你的情况获取BitmapDrawable bd=Bitm</P>
+<P><A title="Bitmap和Drawable相互转换方法" href="show_505_201.html">进入 Bitmap和Drawable相互转换方法</A> </P></DIV>
+
+<DIV>
+<H2>Android Drawable叠加方法</H2>
+<P>　　大家可能知道Bitmap的叠加处理在Android平台中可以通过Canvas一层一层的画就行了，而Drawable中如何处理呢? 除了使用BitmapDrawable的getBitmap方法将Drawable转换为Bitmap外，今天我们就给大家说下好用简单的LayerD</P>
+<P><A title="Android Drawable叠加方法" href="show_506_201.html">进入 Android Drawable叠加方法</A> </P></DIV>
+
+<DIV>
+<H2>使用SQLite存储以及读取Drawable对象</H2>
+<P>　　在进行Android开发过程中，我们经常会接触到Drawable对象（官方开发文档：A Drawable is a general abstraction for &quot;&quot;something that can be drawn.&quot;&quot;），那么，若要使用数据库来进行存储及读</P>
+<P><A title="使用SQLite存储以及读取Drawable对象" href="show_508_201.html">进入 使用SQLite存储以及读取Drawable对象</A> </P></DIV>
+
+<DIV>
+<H2>drawable(hdpi,ldpi,mdpi)的区别</H2>
+<P>　　在之前的版本中，只有一个drawable，而2.1版本中有drawable-mdpi、drawable-ldpi、drawable-hdpi三个，这三个主要是为了支持多分辨率。 drawable- hdpi、drawable- mdpi、drawable-ldpi的区别：(1)drawable-hdpi里面</P>
+<P><A title="drawable(hdpi,ldpi,mdpi)的区别" href="show_509_201.html">进入 drawable(hdpi,ldpi,mdpi)的区别</A> </P></DIV>
+
+<DIV>
+<H2>Android 通过图片名称获取drawable目录下的图片</H2>
+<P>　　一般情况下用不到，使用于特殊情况。直接贴代码。[code=java]#[Keywords]public #[Keywords]class #ReadyDrawable #[Keywords]extends #Activity {	#[Keywords]private #Button btn;	#[Keywords]private #ImageView </P>
+<P><A title="Android 通过图片名称获取drawable目录下的图片" href="show_511_201.html">进入 Android 通过图片名称获取drawable目录下的图片</A> </P></DIV>
+
+<DIV>
+<H2>更改手机窗口画面底色(drawable定义颜色常数的方法)</H2>
+<P>　　[color=blue]范例说明在之前的范例运行结果,窗口的底色一律是”深黑色“，这是由于深黑色是SDK默认的颜色，如果更改Activity里的窗口底色有许多方法，最简单的方法就是将颜色色码事先定义在drawable当中，当程序onCr</P>
+<P><A title="更改手机窗口画面底色(drawable定义颜色常数的方法)" href="show_512_201.html">进入 更改手机窗口画面底色(drawable定义颜色常数的方法)</A> </P></DIV>
+
+</DIV>
+
+<DIV id=footer style="display:none">
+<P align="center"> 
+ 
+ 
+ 
+  </P>
+</DIV></DIV></BODY></HTML>
+

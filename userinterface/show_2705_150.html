@@ -1,0 +1,111 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 闹钟机制实现定时任务_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li class="navcurrentLink"><A href="index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="用户界面之view(视图)" href="index_123.html">用户界面之view(视图)</A></h2>
+
+  <h2><A title="用户界面之Layout(布局)" href="index_124.html">用户界面之Layout(布局)</A></h2>
+
+  <h2><A title="用户界面之TextView(文本视图)" href="index_125.html">用户界面之TextView(文本视图)</A></h2>
+
+  <h2><A title="用户界面之EditText(编辑视图)" href="index_126.html">用户界面之EditText(编辑视图)</A></h2>
+
+  <h2><A title="用户界面之Button(按钮)" href="index_127.html">用户界面之Button(按钮)</A></h2>
+
+  <h2><A title="用户界面之Dialog(对话框)" href="index_128.html">用户界面之Dialog(对话框)</A></h2>
+
+  <h2><A title="用户界面之ListView(列表视图)" href="index_129.html">用户界面之ListView(列表视图)</A></h2>
+
+  <h2><A title="用户界面之Adapter(适配器)" href="index_130.html">用户界面之Adapter(适配器)</A></h2>
+
+  <h2><A title="用户界面之Menu(菜单)" href="index_131.html">用户界面之Menu(菜单)</A></h2>
+
+  <h2><A title="用户界面之Notification(通知栏)" href="index_132.html">用户界面之Notification(通知栏)</A></h2>
+
+  <h2><A title="NotificationImageView(图像视图)" href="index_133.html">NotificationImageView(图像视图)</A></h2>
+
+  <h2><A title="用户界面之GridView(格视图)" href="index_134.html">用户界面之GridView(格视图)</A></h2>
+
+  <h2><A title="用户界面之ProgressBar(进度条)" href="index_135.html">用户界面之ProgressBar(进度条)</A></h2>
+
+  <h2><A title="用户界面之Checkbox(复选框)" href="index_136.html">用户界面之Checkbox(复选框)</A></h2>
+
+  <h2><A title="用户界面之ScrollView(滚动视图)" href="index_137.html">用户界面之ScrollView(滚动视图)</A></h2>
+
+  <h2><A title="用户界面之Gallery(长廊视图)" href="index_138.html">用户界面之Gallery(长廊视图)</A></h2>
+
+  <h2><A title="用户界面之ActionBar(导航栏)" href="index_139.html">用户界面之ActionBar(导航栏)</A></h2>
+
+  <h2><A title="用户界面之PopupWindow(弹出窗口)" href="index_140.html">用户界面之PopupWindow(弹出窗口)</A></h2>
+
+  <h2><A title="用户界面之RatingBar(评分栏)" href="index_141.html">用户界面之RatingBar(评分栏)</A></h2>
+
+  <h2><A title="用户界面之Spinner" href="index_142.html">用户界面之Spinner</A></h2>
+
+  <h2><A title="用户界面之SeekBar(搜索bar)" href="index_143.html">用户界面之SeekBar(搜索bar)</A></h2>
+
+  <h2><A title="用户界面之TabHost(分割栏)" href="index_144.html">用户界面之TabHost(分割栏)</A></h2>
+
+  <h2><A title="用户界面之SlidingDrawer(抽屉)" href="index_145.html">用户界面之SlidingDrawer(抽屉)</A></h2>
+
+  <h2><A title="用户界面之ViewFlipper" href="index_146.html">用户界面之ViewFlipper</A></h2>
+
+  <h2><A title="用户界面之SurfaceView" href="index_147.html">用户界面之SurfaceView</A></h2>
+
+  <h2><A title="用户界面之Splash" href="index_148.html">用户界面之Splash</A></h2>
+
+  <h2><A title="用户界面之Toast" href="index_149.html">用户界面之Toast</A></h2>
+
+  <h2><A title="用户界面之AlarmManager" href="index_150.html">用户界面之AlarmManager</A></h2>
+<UL><li ><A title=AlarmManager的使用 href="show_2701_150.html">AlarmManager的使用</A> </li><li ><A title=深入学习Android之AlarmManager href="show_2702_150.html">深入学习Android之AlarmManager</A> </li><li ><A title=Android 使用Alarm href="show_2703_150.html">Android 使用Alarm</A> </li><li ><A title=Android 定时器的实现 href="show_2704_150.html">Android 定时器的实现</A> </li><li class="currentLink"><A title=Android 闹钟机制实现定时任务 href="show_2705_150.html">Android 闹钟机制实现定时任务</A> </li><li ><A title=Android-AlarmManager(全局定时器闹钟） href="show_2706_150.html">Android-AlarmManager(全局定时器闹钟）</A> </li><li ><A title=实战Service BroadcastReceiver与AlarmManager href="show_2707_150.html">实战Service BroadcastReceiver与AlarmManager</A> </li></UL>
+  <h2><A title="用户界面之Fragment" href="index_151.html">用户界面之Fragment</A></h2>
+
+  <h2><A title="用户界面之WebView(网络视图)" href="index_152.html">用户界面之WebView(网络视图)</A></h2>
+
+  <h2><A title="Android用户界面之Widget(小组件)" href="index_153.html">Android用户界面之Widget(小组件)</A></h2>
+
+  <h2><A title="Android用户界面之theme和style" href="index_154.html">Android用户界面之theme和style</A></h2>
+
+  <h2><A title="Android用户界面之多语言" href="index_155.html">Android用户界面之多语言</A></h2>
+
+  <h2><A title="Android用户界面之界面特效" href="index_156.html">Android用户界面之界面特效</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 闹钟机制实现定时任务</H2>
+<div style="line-height:20px; font-size:14px;"><p>Android的闹钟实现机制很简单，只需要调用AlarmManager.set（）将闹铃时间记录到系统中，当闹铃时间到后，系统会给应用程序发送广播，我们只需要去注册广播接收器就可以了。</p><p>本文分三部分讲解如何实现闹钟：</p><p>目录：</p><p>1. 设置闹铃时间;</p><p>2. 接收闹铃事件广播;</p><p>3. 重开机后重新计算并设置闹铃时间;</p><p>正文：</p><p>1. 设置闹铃时间(毫秒)</p><p><pre><font class="keyword">private </font><font class="keyword">void </font>setAlarmTime(Context context,  </font><font class="keyword">long </font>timeInMillis) {</p><p>	AlarmManager am = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);</p><p>	</font>Intent intent = <font class="keyword">new </font>Intent(<font class="Fields">"android.alarm.demo.action"</font>);</p><p>	PendingIntent sender = PendingIntent.getBroadcast(</p><p>			context, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);</p><p>	<font class="keyword">int </font>interval = 60 * 1000;<font class="Comments">//闹铃间隔， 这里设为1分钟闹一次，在第2步我们将每隔1分钟收到一次广播</font></p><p>	am.setRepeating(AlarmManager.RTC_WAKEUP, timeInMillis, interval, sender)</p><p>}</p><p></pre></p><p>2. 接收闹铃事件广播</p><p><pre><font class="keyword">public </font><font class="keyword">class </font>AlarmReceiver </font><font class="keyword">extends </font>BroadcastReceiver {</p><p>    <font class="keyword">public </font><font class="keyword">void </font>onReceive(Context context, Intent intent) {</p><p>        <font class="keyword">if </font>(<font class="Fields">"android.alarm.demo.action"</font>.equals(intent.getAction())) {</p><p>            <font class="Comments">//第1步中设置的闹铃时间到，这里可以弹出闹铃提示并播放响铃</font></p><p>            <font class="Comments">//可以继续设置下一次闹铃时间;</font></p><p>            <font class="keyword">return</font>;</font></p><p>        }</p><p>    }</p><p>}</p><p></pre></p><p>当然，Receiver是需要在Manifest.xml中注册的：</p><p><pre>&lt;receiver android:name=<font class="Fields">"AlarmReceiver"</font>&gt;</p><p>	&lt;intent-filter&gt;</p><p>		</font>&lt;action android:name=<font class="Fields">"android.alarm.demo.action"</font> /&gt;</p><p>	&lt;/intent-filter&gt;</p><p>&lt;/receiver&gt;</p><p></pre></p><p>3. 重开机后重新计算并设置闹铃时间</p><p>当然要有一个BootReceiver：</p><p><pre><font class="keyword">public </font><font class="keyword">class </font>BootReceiver </font><font class="keyword">extends </font>BroadcastReceiver {</p><p>    <font class="keyword">public </font><font class="keyword">void </font>onReceive(Context context, Intent intent) {</p><p>        String action = intent.getAction();</p><p>        <font class="keyword">if </font>(action.equals(Intent.ACTION_BOOT_COMPLETED)) {</p><p>            <font class="Comments">//重新计算闹铃时间，并调第一步的方法设置闹铃时间及闹铃间隔时间</font></p><p>        }</p><p>    }</p><p>}</p><p></pre></p><p>当然，也需要注册：</p><p><pre>&lt;receiver android:name=<font class="Fields">"BootReceiver"</font>&gt;</p><p>	&lt;intent-filter&gt;</p><p>		</font>&lt;action android:name=<font class="Fields">"android.intent.action.BOOT_COMPLETED"</font> /&gt;</p><p>	&lt;/intent-filter&gt;</p><p>&lt;/receiver&gt;</p><p></pre></p><p>闹钟实现原理其实就这么多，至于具体的细节比如闹铃时间存储及计算， 界面显示及闹铃提示方式，每个人的想法做法都会不一样，就不赘述。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+  
+   </P>
+</DIV></BODY></HTML>
+

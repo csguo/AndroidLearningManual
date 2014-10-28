@@ -1,0 +1,70 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 讲述MediaPlayer_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li class="navcurrentLink"><A href="index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="设备信息" href="index_157.html">设备信息</A></h2>
+
+  <h2><A title="摄像头" href="index_158.html">摄像头</A></h2>
+
+  <h2><A title="通讯录" href="index_159.html">通讯录</A></h2>
+
+  <h2><A title="电话" href="index_160.html">电话</A></h2>
+
+  <h2><A title="短信" href="index_161.html">短信</A></h2>
+
+  <h2><A title="传感器" href="index_162.html">传感器</A></h2>
+
+  <h2><A title="定位" href="index_163.html">定位</A></h2>
+
+  <h2><A title="视频系统" href="index_164.html">视频系统</A></h2>
+
+  <h2><A title="音频系统" href="index_165.html">音频系统</A></h2>
+<UL><li ><A title=Android Audio框架 href="show_801_165.html">Android Audio框架</A> </li><li ><A title=Android Audio抽象层的接口 href="show_802_165.html">Android Audio抽象层的接口</A> </li><li ><A title=Android的Audio系统之一 href="show_803_165.html">Android的Audio系统之一</A> </li><li ><A title=Android的Audio系统之二 href="show_804_165.html">Android的Audio系统之二</A> </li><li ><A title=Android的Audio系统之三 href="show_805_165.html">Android的Audio系统之三</A> </li><li ><A title=Android的Audio系统之四 href="show_806_165.html">Android的Audio系统之四</A> </li><li ><A title=Android的Audio系统之五 href="show_807_165.html">Android的Audio系统之五</A> </li><li ><A title=Android的Audio系统之六 href="show_808_165.html">Android的Audio系统之六</A> </li><li ><A title=Android的Audio系统之七 href="show_809_165.html">Android的Audio系统之七</A> </li><li ><A title=Android 深入研究MediaRecorder类 href="show_810_165.html">Android 深入研究MediaRecorder类</A> </li><li class="currentLink"><A title=Android 讲述MediaPlayer href="show_811_165.html">Android 讲述MediaPlayer</A> </li></UL>
+  <h2><A title="铃声" href="index_166.html">铃声</A></h2>
+
+  <h2><A title="音量" href="index_167.html">音量</A></h2>
+
+  <h2><A title="录音" href="index_168.html">录音</A></h2>
+
+  <h2><A title="输入法" href="index_169.html">输入法</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 讲述MediaPlayer</H2>
+<div style="line-height:20px; font-size:14px;"><p>今天要和大家介绍MediaPlayer的使用。MediaPlayer可以播放音频和视频，另外也可以通过VideoView来播放视频，虽然VideoView比MediaPlayer简单易用，但定制性不如用 MediaPlayer，要视情况选择了。MediaPlayer 播放音频比较简单，但是要播放视频就需要SurfaceView。SurfaceView 比普通的自定义 View 更有绘图上的优势，它支持完全的 OpenGL ES 库。</p><p><pre><font class="keyword">import </font>java.io.IOException;</p><p><font class="keyword">import </font>java.util.Timer;</p><p><font class="keyword">import </font>java.util.TimerTask;</p><p><font class="keyword">import </font>android.app.Activity;</p><p><font class="keyword">import </font>android.media.AudioManager;</p><p><font class="keyword">import </font>android.media.MediaPlayer;</p><p><font class="keyword">import </font>android.os.Bundle;</p><p><font class="keyword">import </font>android.view.SurfaceHolder;</p><p><font class="keyword">import </font>android.view.SurfaceView;</p><p><font class="keyword">import </font>android.view.View;</p><p><font class="keyword">import </font>android.widget.Button;</p><p><font class="keyword">import </font>android.widget.SeekBar;</p><p><font class="keyword">import </font>android.widget.Toast;</p><p><font class="keyword">public </font><font class="keyword">class </font>testMedia </font><font class="keyword">extends </font>Activity {</p><p>	<font class="Comments">/** Called when the activity is first created. */</font></p><p>	<font class="keyword">private </font>SeekBar skb_audio = </font><font class="keyword">null</font>;</p><p>	<font class="keyword">private </font>Button btn_start_audio = </font><font class="keyword">null</font>;</p><p>	<font class="keyword">private </font>Button btn_stop_audio = </font><font class="keyword">null</font>;</p><p>	<font class="keyword">private </font>SeekBar skb_video = </font><font class="keyword">null</font>;</p><p>	<font class="keyword">private </font>Button btn_start_video = </font><font class="keyword">null</font>;</p><p>	<font class="keyword">private </font>Button btn_stop_video = </font><font class="keyword">null</font>;</p><p>	<font class="keyword">private </font>SurfaceView surfaceView;</p><p>	<font class="keyword">private </font>SurfaceHolder surfaceHolder;</p><p>	<font class="keyword">private </font>MediaPlayer m = </font><font class="keyword">null</font>;</p><p>	<font class="keyword">private </font>Timer mTimer;</p><p>	<font class="keyword">private </font>TimerTask mTimerTask;</p><p>	<font class="keyword">private </font><font class="keyword">boolean </font>isChanging = </font><font class="keyword">false</font>;</p><p>	<font class="Comments">// 互斥变量，防止定时器与SeekBar 拖动时进度冲突</font></p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onCreate(Bundle savedInstanceState) {</p><p>		<font class="keyword">super</font>.onCreate(savedInstanceState);</p><p>		setContentView(R.layout.main);</p><p>		<font class="Comments">// ‐‐‐‐‐‐‐‐‐‐Media 控件设置‐‐‐‐‐‐‐‐‐<font class="Comments">//</font></p><p>		</font>m = <font class="keyword">new </font>MediaPlayer();</p><p>		<font class="Comments">// 播放结束之后弹出提示</font></p><p>		</font>m.setOnCompletionListener(<font class="keyword">new </font>MediaPlayer.OnCompletionListener() {</p><p>			@Override</p><p>			<font class="keyword">public </font><font class="keyword">void </font>onCompletion(MediaPlayer arg0) {</p><p>				</font>Toast.makeText(testMedia.<font class="keyword">this</font>, <font class="Fields">"结束"</font>, 1000).show();</p><p>				m.release();</p><p>			}</p><p>		});</p><p>		<font class="Comments">// ‐‐‐‐‐‐‐‐‐‐定时器记录播放进度‐‐‐‐‐‐‐‐‐<font class="Comments">//</font></p><p>		</font>mTimer = <font class="keyword">new </font>Timer();</p><p>		</font>mTimerTask = <font class="keyword">new </font>TimerTask() {</p><p>			@Override</p><p>			<font class="keyword">public </font><font class="keyword">void </font>run() {</p><p>				<font class="keyword">if </font>(isChanging == </font><font class="keyword">true</font>)</p><p>					<font class="keyword">return</font>;</font></p><p>				<font class="keyword">if </font>(m.getVideoHeight() == 0)</p><p>					skb_audio.setProgress(m.getCurrentPosition());</p><p>				else</p><p>					skb_video.setProgress(m.getCurrentPosition());</p><p>			}</p><p>		};</p><p>		mTimer.schedule(mTimerTask, 0, 10);</p><p>		</font>btn_start_audio = (Button) <font class="keyword">this</font>.findViewById(R.id.Button01);</p><p>		</font>btn_stop_audio = (Button) <font class="keyword">this</font>.findViewById(R.id.Button02);</p><p>		</font>btn_start_audio.setOnClickListener(<font class="keyword">new </font>ClickEvent());</p><p>		</font>btn_stop_audio.setOnClickListener(<font class="keyword">new </font>ClickEvent());</p><p>		</font>skb_audio = (SeekBar) <font class="keyword">this</font>.findViewById(R.id.SeekBar01);</p><p>		</font>skb_audio.setOnSeekBarChangeListener(<font class="keyword">new </font>SeekBarChangeEvent());</p><p>		</font>btn_start_video = (Button) <font class="keyword">this</font>.findViewById(R.id.Button03);</p><p>		</font>btn_stop_video = (Button) <font class="keyword">this</font>.findViewById(R.id.Button04);</p><p>		</font>btn_start_video.setOnClickListener(<font class="keyword">new </font>ClickEvent());</p><p>		</font>btn_stop_video.setOnClickListener(<font class="keyword">new </font>ClickEvent());</p><p>		</font>skb_video = (SeekBar) <font class="keyword">this</font>.findViewById(R.id.SeekBar02);</p><p>		</font>skb_video.setOnSeekBarChangeListener(<font class="keyword">new </font>SeekBarChangeEvent());</p><p>		surfaceView = (SurfaceView) findViewById(R.id.SurfaceView01);</p><p>		surfaceHolder = surfaceView.getHolder();</p><p>		surfaceHolder.setFixedSize(100, 100);</p><p>		surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);</p><p>	}</p><p>	/*</p><p>	 <font class="Comments">* 按键事件处理</font></p><p>	 <font class="Comments">*/</font></p><p>	<font class="keyword">class </font>ClickEvent </font><font class="keyword">implements </font>View.OnClickListener {</p><p></p><p>		@Override</p><p>		<font class="keyword">public </font><font class="keyword">void </font>onClick(View v) {</p><p>			<font class="keyword">if </font>(v == btn_start_audio) {</p><p>				m.reset();<font class="Comments">// 恢复到未初始化的状态</font></p><p>				</font>m = MediaPlayer.create(testMedia.<font class="keyword">this</font>, R.raw.big);<font class="Comments">// 读取音频</font></p><p>				skb_audio.setMax(m.getDuration());<font class="Comments">// 设置SeekBar 的长度</font></p><p>				<font class="keyword">try </font>{</p><p>					m.prepare(); <font class="Comments">// 准备</font></p><p>				</font>} <font class="keyword">catch </font>(IllegalStateException e) {</p><p>					<font class="Comments">// TODO Auto‐generated catch block</font></p><p>					e.printStackTrace();</p><p>				</font>} <font class="keyword">catch </font>(IOException e) {</p><p>					<font class="Comments">// TODO Auto‐generated catch block</font></p><p>					e.printStackTrace();</p><p>				}</p><p>				m.start(); <font class="Comments">// 播放</font></p><p>			</font>} <font class="keyword">else </font><font class="keyword">if </font>(v == btn_stop_audio || v == btn_stop_video) {</p><p>				m.stop();</p><p>			</font>} <font class="keyword">else </font><font class="keyword">if </font>(v == btn_start_video) {</p><p>				m.reset();<font class="Comments">// 恢复到未初始化的状态</font></p><p>				</font>m = MediaPlayer.create(testMedia.<font class="keyword">this</font>, R.raw.test);<font class="Comments">// 读取视频</font></p><p>				skb_video.setMax(m.getDuration());<font class="Comments">// 设置SeekBar 的长度</font></p><p>				m.setAudioStreamType(AudioManager.STREAM_MUSIC);</p><p>				m.setDisplay(surfaceHolder);<font class="Comments">// 设置屏幕</font></p><p>				<font class="keyword">try </font>{</p><p>					m.prepare();</p><p>				</font>} <font class="keyword">catch </font>(IllegalArgumentException e) {</p><p>					e.printStackTrace();</p><p>				</font>} <font class="keyword">catch </font>(IllegalStateException e) {</p><p>					e.printStackTrace();</p><p>				</font>} <font class="keyword">catch </font>(IOException e) {</p><p>					e.printStackTrace();</p><p>				}</p><p>				m.start();</p><p>			}</p><p>		}</p><p>	}</p><p>	/*</p><p>	 <font class="Comments">* SeekBar 进度改变事件</font></p><p>	 <font class="Comments">*/</font></p><p>	<font class="keyword">class </font>SeekBarChangeEvent </font><font class="keyword">implements </font>SeekBar.OnSeekBarChangeListener {</p><p>		@Override</p><p>		<font class="keyword">public </font><font class="keyword">void </font>onProgressChanged(SeekBar seekBar, </font><font class="keyword">int </font>progress,</p><p>				<font class="keyword">boolean </font>fromUser) {</p><p>		}</p><p>		@Override</p><p>		<font class="keyword">public </font><font class="keyword">void </font>onStartTrackingTouch(SeekBar seekBar) {</p><p>			</font>isChanging = <font class="keyword">true</font>;</p><p>		}</p><p>		@Override</p><p>		<font class="keyword">public </font><font class="keyword">void </font>onStopTrackingTouch(SeekBar seekBar) {</p><p>			m.seekTo(seekBar.getProgress());</p><p>			</font>isChanging = <font class="keyword">false</font>;</p><p>		}</p><p>	}</p><p>}</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

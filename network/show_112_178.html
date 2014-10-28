@@ -1,0 +1,64 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 大家常用的WIFI_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li class="navcurrentLink"><A href="index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="3G" href="index_177.html">3G</A></h2>
+
+  <h2><A title="WIFI" href="index_178.html">WIFI</A></h2>
+<UL><li ><A title=Android中的WIFI模块（一） href="show_101_178.html">Android中的WIFI模块（一）</A> </li><li ><A title=Android中的WIFI模块（二） href="show_102_178.html">Android中的WIFI模块（二）</A> </li><li ><A title=Android中的WIFI模块（三） href="show_103_178.html">Android中的WIFI模块（三）</A> </li><li ><A title=Android中的WIFI模块（四） href="show_104_178.html">Android中的WIFI模块（四）</A> </li><li ><A title=Android WIFI网络操作 href="show_105_178.html">Android WIFI网络操作</A> </li><li ><A title=Android中的Wifi介绍作 href="show_106_178.html">Android中的Wifi介绍作</A> </li><li ><A title=Android WIFI检测与设置 href="show_107_178.html">Android WIFI检测与设置</A> </li><li ><A title=Android 对Wifi进行操作 href="show_108_178.html">Android 对Wifi进行操作</A> </li><li ><A title=Android SDK 中Android.net.wifi简要分析 href="show_109_178.html">Android SDK 中Android.net.wifi简要分析</A> </li><li ><A title=Android WIFI的打开与关闭WifiManager对象的使用 href="show_110_178.html">Android WIFI的打开与关闭WifiManager对象的使用</A> </li><li ><A title=Android Wifi方法大全 href="show_111_178.html">Android Wifi方法大全</A> </li><li class="currentLink"><A title=Android 大家常用的WIFI href="show_112_178.html">Android 大家常用的WIFI</A> </li><li ><A title=Android 自带的wifi移植 href="show_113_178.html">Android 自带的wifi移植</A> </li><li ><A title=关于WIFI的开启关闭与连接热点 href="show_114_178.html">关于WIFI的开启关闭与连接热点</A> </li><li ><A title=GPS、WIFI、GPRS开关问题 href="show_115_178.html">GPS、WIFI、GPRS开关问题</A> </li><li ><A title=Android平台中Wifi的初始化 href="show_116_178.html">Android平台中Wifi的初始化</A> </li></UL>
+  <h2><A title="蓝牙" href="index_179.html">蓝牙</A></h2>
+
+  <h2><A title="HTTP协议" href="index_180.html">HTTP协议</A></h2>
+
+  <h2><A title="Socket" href="index_181.html">Socket</A></h2>
+
+  <h2><A title="HTML与HTML5" href="index_182.html">HTML与HTML5</A></h2>
+
+  <h2><A title="JavaScript" href="index_183.html">JavaScript</A></h2>
+
+  <h2><A title="Email" href="index_184.html">Email</A></h2>
+
+  <h2><A title="NFC" href="index_185.html">NFC</A></h2>
+
+  <h2><A title="Web Service" href="index_186.html">Web Service</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 大家常用的WIFI</H2>
+<div style="line-height:20px; font-size:14px;"><p>WIFI的全称是Wireless Fidelity，又称802.11b标准，是一种高速的无线通信协议，传输速度可以达到11Mb/s。实际上，对WIFI并不需要过多的控制（当成功连接WIFI后，就可以直接通过IP在WIFI设备之间进行通信了），一般只需要控制打开或关闭WIFI以及获得一些与WIFI相关的信息（例如，MAC地址、IP等）。如果读者的Android手机有WIFI功能，可以在手机上测试本节的例子。要注意的是，WIFI功能不能在Android模拟器上测试，就算在有WIFI功能的真机上也需要先通过WIFI和计算机或其他WIFI设备连接后，才能获得与WIFI相关的信息。</p><p>本节的例子可以关闭和开始WIFI，并获得各种与WIFI相关的信息。首先确认手机通过WIFI与其他WIFI设备成功连接，然后运行本节的例子，会看到如图所示的输出信息。</p><p>效果图：</p><p><img src="../img/network_wifi/12_wifi.jpg"></p><p>本例的完整实现代码如下：</p><p><pre><font class="keyword">import </font>java.net.Inet4Address;</p><p><font class="keyword">import </font>java.util.List;</p><p><font class="keyword">import </font>android.app.Activity;</p><p><font class="keyword">import </font>android.content.Context;</p><p><font class="keyword">import </font>android.net.wifi.WifiConfiguration;</p><p><font class="keyword">import </font>android.net.wifi.WifiInfo;</p><p><font class="keyword">import </font>android.net.wifi.WifiManager;</p><p><font class="keyword">import </font>android.os.Bundle;</p><p><font class="keyword">import </font>android.widget.CheckBox;</p><p><font class="keyword">import </font>android.widget.CompoundButton;</p><p><font class="keyword">import </font>android.widget.TextView;</p><p><font class="keyword">import </font>android.widget.CompoundButton.OnCheckedChangeListener;</p><p><font class="keyword">public </font><font class="keyword">class </font>Main </font><font class="keyword">extends </font>Activity </font><font class="keyword">implements </font>OnCheckedChangeListener {</p><p>	<font class="keyword">private </font>WifiManager wifiManager;</p><p>	<font class="keyword">private </font>WifiInfo wifiInfo;</p><p>	<font class="keyword">private </font>CheckBox chkOpenCloseWifiBox;</p><p>	<font class="keyword">private </font>List&lt;WifiConfiguration&gt; wifiConfigurations;</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onCreate(Bundle savedInstanceState) {</p><p>		<font class="keyword">super</font>.onCreate(savedInstanceState);</p><p>		setContentView(R.layout.main);</p><p>		<font class="Comments">// 获得WifiManager对象</font></p><p>		wifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);</p><p>		<font class="Comments">// 获得连接信息对象</font></p><p>		wifiInfo = wifiManager.getConnectionInfo();</p><p>		chkOpenCloseWifiBox = (CheckBox) findViewById(R.id.chkOpenCloseWifi);</p><p>		TextView tvWifiConfigurations = (TextView) findViewById(R.id.tvWifiConfigurations);</p><p>		TextView tvWifiInfo = (TextView) findViewById(R.id.tvWifiInfo);</p><p>		</font>chkOpenCloseWifiBox.setOnCheckedChangeListener(<font class="keyword">this</font>);</p><p>		<font class="Comments">// 根据当前WIFI的状态（是否被打开）设置复选框的选中状态</font></p><p>		<font class="keyword">if </font>(wifiManager.isWifiEnabled()) {</p><p>			</font>chkOpenCloseWifiBox.setText(<font class="Fields">"Wifi已开启"</font>);</p><p>			</font>chkOpenCloseWifiBox.setChecked(<font class="keyword">true</font>);</p><p>		</font>} <font class="keyword">else </font>{</p><p>			</font>chkOpenCloseWifiBox.setText(<font class="Fields">"Wifi已关闭"</font>);</p><p>			</font>chkOpenCloseWifiBox.setChecked(<font class="keyword">false</font>);</p><p>		}</p><p>		<font class="Comments">// 获得WIFI信息</font></p><p>		</font>StringBuffer sb = <font class="keyword">new </font>StringBuffer();</p><p>		</font>sb.append(<font class="Fields">"Wifi信息\n"</font>);</p><p>		</font>sb.append(<font class="Fields">"MAC地址："</font> + wifiInfo.getMacAddress() + </font><font class="Fields">"\n"</font>);</p><p>		</font>sb.append(<font class="Fields">"接入点的BSSID："</font> + wifiInfo.getBSSID() + </font><font class="Fields">"\n"</font>);</p><p>		</font>sb.append(<font class="Fields">"IP地址（int）："</font> + wifiInfo.getIpAddress() + </font><font class="Fields">"\n"</font>);</p><p>		</font>sb.append(<font class="Fields">"IP地址（Hex）："</font> + Integer.toHexString(wifiInfo.getIpAddress())</p><p>				</font>+ <font class="Fields">"\n"</font>);</p><p>		</font>sb.append(<font class="Fields">"IP地址："</font> + ipIntToString(wifiInfo.getIpAddress()) + </font><font class="Fields">"\n"</font>);</p><p>		</font>sb.append(<font class="Fields">"网络ID："</font> + wifiInfo.getNetworkId() + </font><font class="Fields">"\n"</font>);</p><p>		tvWifiInfo.setText(sb.toString());</p><p>		<font class="Comments">// 得到配置好的网络</font></p><p>		wifiConfigurations = wifiManager.getConfiguredNetworks();</p><p>		</font>tvWifiConfigurations.setText(<font class="Fields">"已连接的无线网络\n"</font>);</p><p>		<font class="keyword">for </font>(WifiConfiguration wifiConfiguration : wifiConfigurations) {</p><p>			tvWifiConfigurations.setText(tvWifiConfigurations.getText()</p><p>					</font>+ wifiConfiguration.SSID + <font class="Fields">"\n"</font>);</p><p>		}</p><p>	}</p><p>	<font class="Comments">// 将int类型的IP转换成字符串形式的IP</font></p><p>	<font class="keyword">private </font>String ipIntToString(</font><font class="keyword">int </font>ip) {</p><p>		<font class="keyword">try </font>{</p><p>			</font>byte[] bytes = <font class="keyword">new </font>byte[4];</p><p>			bytes[0] = (byte) (0xff & ip);</p><p>			bytes[1] = (byte) ((0xff00 & ip) &gt;&gt; 8);</p><p>			bytes[2] = (byte) ((0xff0000 & ip) &gt;&gt; 16);</p><p>			bytes[3] = (byte) ((0xff000000 & ip) &gt;&gt; 24);</p><p>			<font class="keyword">return </font>Inet4Address.getByAddress(bytes).getHostAddress();</p><p>		</font>} <font class="keyword">catch </font>(Exception e) {</p><p>			<font class="keyword">return </font><font class="Fields">""</font>;</p><p>		}</p><p>	}</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onCheckedChanged(CompoundButton buttonView, </font><font class="keyword">boolean </font>isChecked) {</p><p>		<font class="Comments">// 当选中复选框时打开WIFI</font></p><p>		<font class="keyword">if </font>(isChecked) {</p><p>			</font>wifiManager.setWifiEnabled(<font class="keyword">true</font>);</p><p>			</font>chkOpenCloseWifiBox.setText(<font class="Fields">"Wifi已开启"</font>);</p><p>		}</p><p>		<font class="Comments">// 当取消复选框选中状态时关闭WIFI</font></p><p>		<font class="keyword">else </font>{</p><p>			</font>wifiManager.setWifiEnabled(<font class="keyword">false</font>);</p><p>			</font>chkOpenCloseWifiBox.setText(<font class="Fields">"Wifi已关闭"</font>);</p><p>		}</p><p>	}</p><p>}</p><p></pre></p><p>在AndroidManifest.xml文件中要使用如下的代码打开相应的权限。</p><p><pre>&lt;uses-permission android:name=<font class="Fields">"android.permission.ACCESS_WIFI_STATE"</font>&gt;</p><p>&lt;/uses-permission&gt; </p><p>&lt;uses-permission android:name=<font class="Fields">"android.permission.WAKE_LOCK"</font>&gt;</p><p>&lt;/uses-permission&gt; </p><p>&lt;uses-permission android:name=<font class="Fields">"android.permission.CHANGE_WIFI_STATE"</font>&gt;</p><p>&lt;/uses-permission&gt;</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

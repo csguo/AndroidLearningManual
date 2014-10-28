@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>BroadcastReceiver 消息广播详解-简单监控拨打电话_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li class="navcurrentLink"><A href="index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Activity" href="index_112.html">Activity</A></h2>
+
+  <h2><A title="Intent" href="index_113.html">Intent</A></h2>
+
+  <h2><A title="Service" href="index_114.html">Service</A></h2>
+
+  <h2><A title="Content Provider" href="index_115.html">Content Provider</A></h2>
+
+  <h2><A title="BroadcastReceiver" href="index_116.html">BroadcastReceiver</A></h2>
+<UL><li ><A title=BroadcastReceiver简介 href="show_401_116.html">BroadcastReceiver简介</A> </li><li ><A title=BroadcastReceiver学习 href="show_402_116.html">BroadcastReceiver学习</A> </li><li ><A title=BroadcastReceiver生命周期及两种应用 href="show_403_116.html">BroadcastReceiver生命周期及两种应用</A> </li><li ><A title=Android中BroadCastReceiver使用 href="show_404_116.html">Android中BroadCastReceiver使用</A> </li><li class="currentLink"><A title=BroadcastReceiver 消息广播详解-简单监控拨打电话 href="show_405_116.html">BroadcastReceiver 消息广播详解-简单监控拨打电话</A> </li><li ><A title=通过BroadcastReceiver拦截短信 href="show_406_116.html">通过BroadcastReceiver拦截短信</A> </li></UL>
+  <h2><A title="AsyncTask" href="index_117.html">AsyncTask</A></h2>
+
+  <h2><A title="Handler" href="index_118.html">Handler</A></h2>
+
+  <h2><A title="Thread" href="index_119.html">Thread</A></h2>
+
+  <h2><A title="Permission" href="index_120.html">Permission</A></h2>
+
+  <h2><A title="AIDL" href="index_121.html">AIDL</A></h2>
+
+  <h2><A title="Json" href="index_122.html">Json</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>BroadcastReceiver 消息广播详解-简单监控拨打电话</H2>
+<div style="line-height:20px; font-size:14px;"><p>当拨打电话时，拨打电话程序会向系统发生消息，来告诉系统自己在干嘛，这里就是所谓的广播，这样做是为了方便跟其他应用程序或者底层沟通。那么如何才能让其他应用程序拿到这个消息（广播），这里就需要借助广播接收者BroadcastReceiver这个类。</p><p>BroadcastReceiver的onReceiver方法用来接收广播，当一个程序安装到系统的时候，会注册到系统中，这样就能得到系统中的各种广播或者其他有信息，然后与其他程序打交道。过滤到自己想要的广播得指定IntentFilter特定的action，还得是否有这个权限读到这个广播消息，并且必须对该广播接收者进行注册。以下是实现方式：</p><p>第一种实现方式,写在AndroidManifest.xml里</p><p><pre>&lt;receiver android:name=<font class="Fields">".MyReceiver"</font>&gt; </p><p>	&lt;intent-filter&gt;</p><p>		</font>&lt;action android:name=<font class="Fields">"android.intent.action.PHONE_STATE"</font>/&gt;</p><p>	&lt;/intent-filter&gt;</p><p>&lt;/receiver&gt;</p><p></pre></p><p>第二种方式是在java代码里</p><p><pre>MyReceiver myReceiver = <font class="keyword">new </font>MyReceiver(); </p><p>IntentFilter filter = <font class="keyword">new </font>IntentFilter(); </p><p>filter.addAction(<font class="Fields">"android.intent.action.PHONE_STATE"</font>); </p><p>registerReceiver(myReceiver, filter);</p><p></pre></p><p>另外需要加上权限控制：</p><p><pre>&lt;uses-permission android:name=<font class="Fields">"android.permission.READ_PHONE_STATE"</font>&gt; </p><p>&lt;/uses-permission&gt;</p><p></pre></p><p>具体步骤实现如下：</p><p>第一步：</p><p>先画一个按钮，然后通过点击这个按钮退出程序，这里只是为了让该程序安装到手机或者模拟器里</p><p>/BroadcastReceiverDemo/res/layout/main.xml</p><p><pre>&lt;?xml version=<font class="Fields">"1.0"</font> encoding=</font><font class="Fields">"utf-8"</font>?&gt; </p><p>&lt;LinearLayout xmlns:android=<font class="Fields">"http:<font class="Comments">//schemas.android.com/apk/res/android"</font> </font></p><p>	</font>android:orientation=<font class="Fields">"vertical"</font></p><p>	</font>android:layout_width=<font class="Fields">"fill_parent"</font></p><p>	</font>android:layout_height=<font class="Fields">"fill_parent"</font> &gt;</p><p>&lt;Button android:id=<font class="Fields">"@+id/button"</font> </p><p>	</font>android:layout_width=<font class="Fields">"fill_parent"</font></p><p>	</font>android:layout_height=<font class="Fields">"wrap_content"</font></p><p>	</font>android:text=<font class="Fields">"启动BroadcastReceiver"</font>/&gt;</p><p>&lt;/LinearLayout&gt;</p><p></pre></p><p>第二步：</p><p>对main.xml里的按钮进行事件监听，单击后退出程序</p><p>/BroadcastReceiverDemo/src/com/broadcast/activity/MainActivity.java</p><p><pre><font class="keyword">import </font>android.app.Activity;</p><p><font class="keyword">import </font>android.os.Bundle;</p><p><font class="keyword">import </font>android.view.View;</p><p><font class="keyword">import </font>android.widget.Button;</p><p><font class="keyword">public </font><font class="keyword">class </font>MainActivity </font><font class="keyword">extends </font>Activity {</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onCreate(Bundle savedInstanceState) {</p><p>		<font class="keyword">super</font>.onCreate(savedInstanceState);</p><p>		setContentView(R.layout.main);</p><p>		Button button = (Button) findViewById(R.id.button);</p><p>		</font>View.OnClickListener listener = <font class="keyword">new </font>View.OnClickListener() {</p><p>			@Override</p><p>			<font class="keyword">public </font><font class="keyword">void </font>onClick(View v) {</p><p>				System.exit(0);</p><p>			}</p><p>		};</p><p>		button.setOnClickListener(listener);</p><p>	}</p><p>}</p><p></pre></p><p>第三步：</p><p>定义一个广播接收者</p><p>/BroadcastReceiverDemo/src/com/broadcast/activity/MyReceiver.java</p><p><pre><font class="keyword">import </font>android.content.BroadcastReceiver;</p><p><font class="keyword">import </font>android.content.Context;</p><p><font class="keyword">import </font>android.content.Intent;</p><p><font class="keyword">public </font><font class="keyword">class </font>MyReceiver </font><font class="keyword">extends </font>BroadcastReceiver {</p><p>	<font class="Comments">// 这里intent是来自于拨打电话，而intentTemp是用来跳转到MainActivity界面里</font></p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onReceive(Context context, Intent intent) {</p><p>		</font>Intent intentTemp = <font class="keyword">new </font>Intent(context, MainActivity.</font><font class="keyword">class</font>);</p><p>		<font class="Comments">// 必须为这个intent设置一个Flag</font></p><p>		intentTemp.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);</p><p>		context.startActivity(intentTemp);</p><p>	}</p><p>}</p><p></pre></p><p>第四步：注册MyReceiver，并开启相关权限</p><p>/BroadcastReceiverDemo/AndroidManifest.xml</p><p><pre>&lt;?xml version=<font class="Fields">"1.0"</font> encoding=</font><font class="Fields">"utf-8"</font>?&gt;</p><p>&lt;manifest xmlns:android=<font class="Fields">"http:<font class="Comments">//schemas.android.com/apk/res/android</font></p><p>    </font>package=<font class="Fields">"com.broadcast.activity</p><p>    </font>android:versionCode=<font class="Fields">"1</p><p>    </font>android:versionName=<font class="Fields">"1.0"</font> &gt;</p><p>    &lt;application</p><p>        </font>android:icon=<font class="Fields">"@drawable/icon</p><p>        </font>android:label=<font class="Fields">"@string/app_name"</font> &gt;</p><p>        &lt;activity</p><p>            </font>android:name=<font class="Fields">".MainActivity</p><p>            </font>android:label=<font class="Fields">"@string/app_name"</font> &gt;</p><p>            &lt;intent-filter&gt;</p><p>                </font>&lt;action android:name=<font class="Fields">"android.intent.action.MAIN"</font> /&gt;</p><p>                </font>&lt;category android:name=<font class="Fields">"android.intent.category.LAUNCHER"</font> /&gt;</p><p>            &lt;/intent-filter&gt;</p><p>        &lt;/activity&gt;</p><p>        </font>&lt;receiver android:name=<font class="Fields">".MyReceiver"</font> &gt;</p><p>            &lt;intent-filter&gt;</p><p>                &lt;!-- 得到电话状态广播，可以得到拨打电话 --&gt;</p><p>                </font>&lt;action android:name=<font class="Fields">"android.intent.action.PHONE_STATE"</font> /&gt;</p><p>            &lt;/intent-filter&gt;</p><p>        &lt;/receiver&gt;</p><p>    &lt;/application&gt;</p><p>    </font>&lt;uses-sdk android:minSdkVersion=<font class="Fields">"8"</font> /&gt;</p><p>    &lt;!-- 设置该程序能够读取到电话状态 --&gt;</p><p>    </font>&lt;uses-permission android:name=<font class="Fields">"android.permission.READ_PHONE_STATE"</font> &gt;</p><p>    &lt;/uses-permission&gt;</p><p>&lt;/manifest&gt; </p><p></pre></p><p>操作步骤：</p><p>运行该程序，然后点击按钮后会关闭该程序（表示已经安装到系统），然后拨打电话，接下来该程序界面又会出现。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

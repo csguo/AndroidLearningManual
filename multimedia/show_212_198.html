@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>简单实现3d旋转动画_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li class="navcurrentLink"><A href="index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Android多媒体功能" href="index_196.html">Android多媒体功能</A></h2>
+
+  <h2><A title="Android多媒体之2D" href="index_197.html">Android多媒体之2D</A></h2>
+
+  <h2><A title="Android多媒体之3D" href="index_198.html">Android多媒体之3D</A></h2>
+<UL><li ><A title=Android 3D绘图基本概念（一） href="show_201_198.html">Android 3D绘图基本概念（一）</A> </li><li ><A title=Android 3D绘图基本概念（二） href="show_202_198.html">Android 3D绘图基本概念（二）</A> </li><li ><A title=Android 3D坐标（一） href="show_203_198.html">Android 3D坐标（一）</A> </li><li ><A title=Android 3D坐标（二） href="show_204_198.html">Android 3D坐标（二）</A> </li><li ><A title=Android中3D效果 href="show_205_198.html">Android中3D效果</A> </li><li ><A title=Android3D旋转 href="show_206_198.html">Android3D旋转</A> </li><li ><A title=Android 3d页面跳转（一） href="show_207_198.html">Android 3d页面跳转（一）</A> </li><li ><A title=Android 3d页面跳转（二） href="show_208_198.html">Android 3d页面跳转（二）</A> </li><li ><A title=Android 3d页面跳转（三） href="show_209_198.html">Android 3d页面跳转（三）</A> </li><li ><A title=ApiDemo上面的一个图片3D旋转效果 href="show_210_198.html">ApiDemo上面的一个图片3D旋转效果</A> </li><li ><A title=浅谈Android 3D旋转 href="show_211_198.html">浅谈Android 3D旋转</A> </li><li class="currentLink"><A title=简单实现3d旋转动画 href="show_212_198.html">简单实现3d旋转动画</A> </li><li ><A title=Android 3D相册 href="show_213_198.html">Android 3D相册</A> </li></UL>
+  <h2><A title="Android多媒体之Bitmap" href="index_199.html">Android多媒体之Bitmap</A></h2>
+
+  <h2><A title="Android多媒体之Canvas" href="index_200.html">Android多媒体之Canvas</A></h2>
+
+  <h2><A title="Android多媒体之Drawable" href="index_201.html">Android多媒体之Drawable</A></h2>
+
+  <h2><A title="Android多媒体之gif" href="index_202.html">Android多媒体之gif</A></h2>
+
+  <h2><A title="Android多媒体之MediaStore" href="index_203.html">Android多媒体之MediaStore</A></h2>
+
+  <h2><A title="Android多媒体之动画" href="index_204.html">Android多媒体之动画</A></h2>
+
+  <h2><A title="Android多媒体之分辨率" href="index_205.html">Android多媒体之分辨率</A></h2>
+
+  <h2><A title="Android多媒体之分屏幕" href="index_206.html">Android多媒体之分屏幕</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>简单实现3d旋转动画</H2>
+<div style="line-height:20px; font-size:14px;"><p>在android中要实现3d翻转效果，可以通过animation配合camera实现。在api demo中有个例子。</p><p>首先需要写一个类继承animation--Rotate3DAnimation</p><p><pre><font class="keyword">import </font>android.view.animation.Animation;</p><p><font class="keyword">import </font>android.view.animation.Transformation;</p><p><font class="keyword">import </font>android.graphics.Camera;</p><p><font class="keyword">import </font>android.graphics.Matrix;</p><p><font class="keyword">public </font><font class="keyword">class </font>Rotate3dAnimation </font><font class="keyword">extends </font>Animation {</p><p>	<font class="keyword">private </font><font class="keyword">final </font><font class="keyword">float </font>mFromDegrees;</p><p>	<font class="keyword">private </font><font class="keyword">final </font><font class="keyword">float </font>mToDegrees;</p><p>	<font class="keyword">private </font><font class="keyword">final </font><font class="keyword">float </font>mCenterX;</p><p>	<font class="keyword">private </font><font class="keyword">final </font><font class="keyword">float </font>mCenterY;</p><p>	<font class="keyword">private </font><font class="keyword">final </font><font class="keyword">float </font>mDepthZ;</p><p>	<font class="keyword">private </font><font class="keyword">final </font><font class="keyword">boolean </font>mReverse;</p><p>	<font class="keyword">private </font>Camera mCamera;</p><p>	<font class="keyword">public </font>Rotate3dAnimation(</font><font class="keyword">float </font>fromDegrees, </font><font class="keyword">float </font>toDegrees, </font><font class="keyword">float </font>centerX,</p><p>			<font class="keyword">float </font>centerY, </font><font class="keyword">float </font>depthZ, </font><font class="keyword">boolean </font>reverse) {</p><p>		mFromDegrees = fromDegrees;</p><p>		mToDegrees = toDegrees;</p><p>		mCenterX = centerX;</p><p>		mCenterY = centerY;</p><p>		mDepthZ = depthZ;</p><p>		mReverse = reverse;</p><p>	}</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>initialize(</font><font class="keyword">int </font>width, </font><font class="keyword">int </font>height, </font><font class="keyword">int </font>parentWidth,</p><p>			<font class="keyword">int </font>parentHeight) {</p><p>		<font class="keyword">super</font>.initialize(width, height, parentWidth, parentHeight);</p><p>		</font>mCamera = <font class="keyword">new </font>Camera();</p><p>	}</p><p>	@Override</p><p>	<font class="keyword">protected </font><font class="keyword">void </font>applyTransformation(</font><font class="keyword">float </font>interpolatedTime, Transformation t) {</p><p>		<font class="keyword">final </font><font class="keyword">float </font>fromDegrees = mFromDegrees;</p><p>		<font class="keyword">float </font>degrees = fromDegrees</p><p>				+ ((mToDegrees - fromDegrees) * interpolatedTime);</p><p>		<font class="keyword">final </font><font class="keyword">float </font>centerX = mCenterX;</p><p>		<font class="keyword">final </font><font class="keyword">float </font>centerY = mCenterY;</p><p>		<font class="keyword">final </font>Camera camera = mCamera;</p><p>		<font class="keyword">final </font>Matrix matrix = t.getMatrix();</p><p>		camera.save();</p><p>		<font class="keyword">if </font>(mReverse) {</p><p>			camera.translate(0.0f, 0.0f, mDepthZ * interpolatedTime);</p><p>		</font>} <font class="keyword">else </font>{</p><p>			camera.translate(0.0f, 0.0f, mDepthZ * (1.0f - interpolatedTime));</p><p>		}</p><p>		camera.rotateY(degrees);</p><p>		camera.getMatrix(matrix);</p><p>		camera.restore();</p><p>		matrix.preTranslate(-centerX, -centerY);</p><p>		matrix.postTranslate(centerX, centerY);</p><p>	}</p><p>}</p><p></pre></p><p>mFromDegrees是开始转动的角度，mToDegrees是转停时的角度，mCenterX、mCenterY是转动时的中心坐标点。mDepthZ是转动时的深度。</p><p>怎样实现翻牌效果呢？ 这里我们假设你有两张图片（或者两个view），一张正面，一张反面。你把这两张图片布局到帧布局中 如下：</p><p><pre>&lt;FrameLayout android:id=<font class="Fields">"@+id/container</p><p>	</font>android:layout_width=<font class="Fields">"fill_parent</p><p>	</font>android:layout_height=<font class="Fields">"fill_parent"</font>&gt;</p><p>	</font>&lt;ImageView android:id=<font class="Fields">"@+id/imageview1</p><p>		</font>android:layout_width=<font class="Fields">"fill_parent</p><p>		</font>android:layout_height=<font class="Fields">"fill_parent</p><p>		</font>android:src=<font class="Fields">"@drawable/front</p><p>		</font>android:scaleType=<font class="Fields">"fitXY"</font>/&gt;</p><p>	</font>&lt;ImageView android:id=<font class="Fields">"@+id/imageview2</p><p>		</font>android:layout_width=<font class="Fields">"fill_parent</p><p>		</font>android:layout_height=<font class="Fields">"fill_parent</p><p>		</font>android:src=<font class="Fields">"@drawable/back</p><p>		</font>android:scaleType=<font class="Fields">"fitXY</p><p>		</font>android:visibility=<font class="Fields">"gone"</font>/&gt;</p><p>&lt;/FrameLayout&gt;</p><p></pre></p><p>然后在activity中去翻转这个framelayout，并控制当前显示哪个imageview。</p><p>整个翻转过程分为两部分，首先将framelayout从0转到90度，并设置监听器AnimationListener。在onAnimationEnd中把第一个imageview设置成GONE，把第二个imageview设置成VISIBLE，并执行接下来的翻转。把他从-90度转到0度。（注意如果这里从90度转到180度，那么第二张图片看到的是左右相反的图片）</p><p>mContainer是上面帧布局中的Framelayout</p><p><pre><font class="keyword">final </font><font class="keyword">float </font>centerX = mContainer.getWidth() / 2.0f;</p><p><font class="keyword">final </font><font class="keyword">float </font>centerY = mContainer.getHeight() / 2.0f;</p><p>Rotate3dAnimation rotation = <font class="keyword">new </font>Rotate3dAnimation(start, end, centerX,</p><p>		</font>centerY, 200.0f, <font class="keyword">true</font>);</p><p>rotation.setDuration(500);</p><p>rotation.setInterpolator(<font class="keyword">new </font>AccelerateInterpolator());</p><p>rotation.setAnimationListener(<font class="keyword">new </font>AnimationListener() {</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onAnimationEnd(Animation arg0) {</p><p>		</font>mContainer.post(<font class="keyword">new </font>Runnable() {</p><p>			@Override</p><p>			<font class="keyword">public </font><font class="keyword">void </font>run() {</p><p>				<font class="keyword">if </font>(viewId == R.id.imageview1) {</p><p>					imageView1.setVisibility(View.GONE);</p><p>					imageView2.setVisibility(View.VISIBLE);</p><p>				</font>} <font class="keyword">else </font><font class="keyword">if </font>(viewId == R.id.imageview2) {</p><p>					imageView2.setVisibility(View.GONE);</p><p>					imageView1.setVisibility(View.VISIBLE);</p><p>				}</p><p>				</font>Rotate3dAnimation rotatiomAnimation = <font class="keyword">new </font>Rotate3dAnimation(</p><p>						</font>-90, 0, centerX, centerY, 200.0f, <font class="keyword">false</font>);</p><p>				rotatiomAnimation.setDuration(500);</p><p>				rotatiomAnimation</p><p>						</font>.setInterpolator(<font class="keyword">new </font>DecelerateInterpolator());</p><p></p><p>				mContainer.startAnimation(rotatiomAnimation);</p><p>			}</p><p>		});</p><p>	}</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onAnimationRepeat(Animation arg0) {</p><p>	}</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onAnimationStart(Animation arg0) {</p><p>	}</p><p>});</p><p>mContainer.startAnimation(rotation);</p><p></pre></p><p>下面是效果图及demo：</p><p><img src="../img/media_3d/12_3d.jpg"></p><p><img src="../img/media_3d/12_3d2.jpg"></p><p><img src="../img/media_3d/12_3d3.jpg"></p><p><img src="../img/media_3d/12_3d4.jpg"></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

@@ -1,0 +1,64 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 浅谈Socket（二）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li class="navcurrentLink"><A href="index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="3G" href="index_177.html">3G</A></h2>
+
+  <h2><A title="WIFI" href="index_178.html">WIFI</A></h2>
+
+  <h2><A title="蓝牙" href="index_179.html">蓝牙</A></h2>
+
+  <h2><A title="HTTP协议" href="index_180.html">HTTP协议</A></h2>
+
+  <h2><A title="Socket" href="index_181.html">Socket</A></h2>
+<UL><li ><A title=Android 浅谈Socket（一） href="show_401_181.html">Android 浅谈Socket（一）</A> </li><li class="currentLink"><A title=Android 浅谈Socket（二） href="show_402_181.html">Android 浅谈Socket（二）</A> </li><li ><A title=Socket编程(多线程、双向通信) href="show_403_181.html">Socket编程(多线程、双向通信)</A> </li><li ><A title=Android开发之socket通信向PC机发信息获取本机IP href="show_404_181.html">Android开发之socket通信向PC机发信息获取本机IP</A> </li><li ><A title=Http和Socket区别 href="show_405_181.html">Http和Socket区别</A> </li><li ><A title=PC客户端与Android服务端的Socket同步通信（一） href="show_406_181.html">PC客户端与Android服务端的Socket同步通信（一）</A> </li><li ><A title=PC客户端与Android服务端的Socket同步通信（二） href="show_407_181.html">PC客户端与Android服务端的Socket同步通信（二）</A> </li><li ><A title=PC客户端与Android服务端的Socket同步通信（三） href="show_408_181.html">PC客户端与Android服务端的Socket同步通信（三）</A> </li><li ><A title=Android解析socket流 href="show_409_181.html">Android解析socket流</A> </li><li ><A title=Android 实例Socket发送Http请求 href="show_410_181.html">Android 实例Socket发送Http请求</A> </li><li ><A title=Android socket和seversocket的用法 href="show_411_181.html">Android socket和seversocket的用法</A> </li><li ><A title=Android与PC的socket通信 href="show_412_181.html">Android与PC的socket通信</A> </li><li ><A title=测试Android作为客户端使用socket网络编程连接到数据库 href="show_413_181.html">测试Android作为客户端使用socket网络编程连接到数据库</A> </li></UL>
+  <h2><A title="HTML与HTML5" href="index_182.html">HTML与HTML5</A></h2>
+
+  <h2><A title="JavaScript" href="index_183.html">JavaScript</A></h2>
+
+  <h2><A title="Email" href="index_184.html">Email</A></h2>
+
+  <h2><A title="NFC" href="index_185.html">NFC</A></h2>
+
+  <h2><A title="Web Service" href="index_186.html">Web Service</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 浅谈Socket（二）</H2>
+<div style="line-height:20px; font-size:14px;"><p>注意问题：为了实现对于多个客户端的处理，使用了多线程的操作，每个线程维护一个Socket的连接与通信，新连接的Socket的管道被加入到ArrayList中。对于输出流的操作是对于所有的连接的客户端进行写数据。对于关闭了Socket的客户端管道从List中移除。</p><p>客户端编程代码：</p><p><pre><font class="keyword">import </font>java.io.DataInputStream;</p><p><font class="keyword">import </font>java.io.DataOutputStream;</p><p><font class="keyword">import </font>java.io.IOException;</p><p><font class="keyword">import </font>java.net.InetSocketAddress;</p><p><font class="keyword">import </font>java.net.Socket;</p><p><font class="keyword">import </font>java.net.SocketAddress;</p><p><font class="keyword">import </font>java.net.UnknownHostException;</p><p><font class="keyword">import </font>android.app.Activity;</p><p><font class="keyword">import </font>android.os.Bundle;</p><p><font class="keyword">import </font>android.os.Handler;</p><p><font class="keyword">import </font>android.os.Message;</p><p><font class="keyword">import </font>android.util.Log;</p><p><font class="keyword">import </font>android.view.View;</p><p><font class="keyword">import </font>android.view.View.OnClickListener;</p><p><font class="keyword">import </font>android.widget.Button;</p><p><font class="keyword">import </font>android.widget.EditText;</p><p><font class="keyword">import </font>android.widget.TextView;</p><p><font class="keyword">public </font><font class="keyword">class </font>SocketActivity </font><font class="keyword">extends </font>Activity {</p><p>	</font>EditText editText = <font class="keyword">null</font>;</p><p>	</font>Button sendButton = <font class="keyword">null</font>;</p><p>	</font>TextView display = <font class="keyword">null</font>;</p><p>	</font>Socket client = <font class="keyword">null</font>;</p><p>	MyHandler myHandler;</p><p>	DataOutputStream dout;</p><p>	DataInputStream din;</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onCreate(Bundle savedInstanceState) {</p><p>		<font class="keyword">super</font>.onCreate(savedInstanceState);</p><p>		setContentView(R.layout.clientsocket);</p><p>		editText = (EditText) findViewById(R.id.message);</p><p>		sendButton = (Button) findViewById(R.id.send);</p><p>		display = (TextView) findViewById(R.id.display);</p><p>		sendButton.setOnClickListener(listener);</p><p>		<font class="keyword">try </font>{</p><p>			</font>client = <font class="keyword">new </font>Socket(<font class="Fields">"192.168.0.120"</font>, 50003);</p><p>			</font>dout = <font class="keyword">new </font>DataOutputStream(client.getOutputStream());</p><p>			</font>din = <font class="keyword">new </font>DataInputStream(client.getInputStream());</p><p>		</font>} <font class="keyword">catch </font>(UnknownHostException e) {</p><p>			e.printStackTrace();</p><p>		</font>} <font class="keyword">catch </font>(IOException e) {</p><p>			e.printStackTrace();</p><p>		}</p><p>		</font>myHandler = <font class="keyword">new </font>MyHandler();</p><p>		</font>MyThread m = <font class="keyword">new </font>MyThread();</p><p>		m.start();</p><p>	}</p><p>	<font class="keyword">class </font>MyHandler </font><font class="keyword">extends </font>Handler {</p><p>		<font class="keyword">public </font>MyHandler() {</p><p>		}</p><p>		<font class="Comments">// 子类必须重写此方法,接受数据</font></p><p>		@Override</p><p>		<font class="keyword">public </font><font class="keyword">void </font>handleMessage(Message msg) {</p><p>			<font class="Comments">// TODO Auto-generated method stub</font></p><p>			</font>Log.d(<font class="Fields">"MyHandler"</font>, </font><font class="Fields">"handleMessage......"</font>);</p><p>			<font class="keyword">super</font>.handleMessage(msg);</p><p>			<font class="Comments">// 此处可以更新UI</font></p><p>			<font class="keyword">if </font>(client != </font><font class="keyword">null</font> && client.isConnected()) {</p><p>				</font>Log.i(<font class="Fields">"handler.."</font>, </font><font class="Fields">"*-----*"</font>);</p><p>				<font class="keyword">try </font>{</p><p>					</font>dout.writeUTF(<font class="Fields">"connect..."</font>);</p><p>					String message = din.readUTF();</p><p>					<font class="keyword">if </font>(!message.equals(<font class="Fields">""</font>))</p><p>						</font>display.setText(display.getText().toString() + <font class="Fields">"</p><p>								</font>+ <font class="Fields">"服务器发来的消息--："</font> + message);</p><p>				</font>} <font class="keyword">catch </font>(IOException e) {</p><p>					<font class="Comments">// TODO Auto-generated catch block</font></p><p>					e.printStackTrace();</p><p>				}</p><p>			}</p><p>		}</p><p>	}</p><p>	<font class="keyword">class </font>MyThread </font><font class="keyword">extends </font>Thread {</p><p>		<font class="keyword">public </font><font class="keyword">void </font>run() {</p><p>			<font class="keyword">while </font>(</font><font class="keyword">true</font>) {</p><p>				<font class="keyword">try </font>{</p><p>					Thread.sleep(1000);</p><p>				</font>} <font class="keyword">catch </font>(InterruptedException e) {</p><p>					e.printStackTrace();</p><p>				}</p><p>				</font>Message msg = <font class="keyword">new </font>Message();</p><p>				</font>SocketActivity.<font class="keyword">this</font>.myHandler.sendMessage(msg);</p><p>			}</p><p>		}</p><p>	}</p><p>	</font>OnClickListener listener = <font class="keyword">new </font>OnClickListener() {</p><p>		@Override</p><p>		<font class="keyword">public </font><font class="keyword">void </font>onClick(View v) {</p><p>			String sendText = editText.getText().toString();</p><p>			<font class="keyword">try </font>{</p><p>				<font class="Comments">// din = new DataInputStream(client.getInputStream());</font></p><p>				dout.writeUTF(sendText);</p><p>				/*</p><p>				 <font class="Comments">* display.setText(display.getText().toString() + " " +</font></p><p>				 <font class="Comments">* "服务器发来的消息：" + din.readUTF());</font></p><p>				 <font class="Comments">*/</font></p><p>				/*</p><p>				 <font class="Comments">* display.setText(display.getText().toString() + " " +</font></p><p>				 <font class="Comments">* "服务器发来的消息--：" + din.readUTF());</font></p><p>				 <font class="Comments">*/</font></p><p>			</font>} <font class="keyword">catch </font>(UnknownHostException e) {</p><p>				e.printStackTrace();</p><p>			</font>} <font class="keyword">catch </font>(IOException e) {</p><p>				e.printStackTrace();</p><p>			}</p><p>		}</p><p>	};</p><p>}</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

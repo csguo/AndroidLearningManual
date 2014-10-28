@@ -1,0 +1,81 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android学习手册_数据存储</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li class="navcurrentLink"><A href="index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">数据存储</div>
+
+  <h2 ><A title="ContentProvider" href="index_170.html">ContentProvider</A></h2>
+
+  <h2 ><A title="Preferences" href="index_171.html">Preferences</A></h2>
+
+  <h2 ><A title="SQLite" href="index_172.html">SQLite</A></h2>
+
+  <h2 ><A title="SD卡" href="index_173.html">SD卡</A></h2>
+
+  <h2 ><A title="数据库" href="index_174.html">数据库</A></h2>
+
+  <h2 ><A title="URI" href="index_175.html">URI</A></h2>
+
+  <h2 class="currentLink"><A title="MediaStore" href="index_176.html">MediaStore</A></h2>
+<UL><li class="currentLink"><A title=Android教程之MediaStore href="show_601_176.html">Android教程之MediaStore</A> </li><li ><A title=Android平台中应该如何获取音乐文件的信息 href="show_602_176.html">Android平台中应该如何获取音乐文件的信息</A> </li><li ><A title=MusicPlayer中，根据uri或者id从mediastore中得到全路径文件名 href="show_603_176.html">MusicPlayer中，根据uri或者id从mediastore中得到全路径文件名</A> </li><li ><A title=Android中使用Thumbnails批量加载sdcard中的缩略图片 href="show_604_176.html">Android中使用Thumbnails批量加载sdcard中的缩略图片</A> </li><li ><A title=一些获得缩略图的封装 href="show_605_176.html">一些获得缩略图的封装</A> </li><li ><A title=Android 带ListView的音乐播放器 href="show_606_176.html">Android 带ListView的音乐播放器</A> </li></UL>
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1>MediaStore</H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android教程之MediaStore</H2>
+<P>　　今天给大家讲android的多媒体数据库。MediaStore这个类是android系统提供的一个多媒体数据库，android中多媒体信息都可以从这里提取。这个MediaStore包括了多媒体数据库的所有信息，包括音频，视频和图像,android把</P>
+<P><A title="Android教程之MediaStore" href="show_601_176.html">进入 Android教程之MediaStore</A> </P></DIV>
+
+<DIV>
+<H2>Android平台中应该如何获取音乐文件的信息</H2>
+<P>　　Android系统提供了MediaScanner，MediaProvider，MediaStore等接口，并且提供了一套数据库表格，通过Content Provider的方式提供给用户。当手机开机或者有SD卡插拔等事件发生时，系统将会自动扫描SD卡和手机内存上的</P>
+<P><A title="Android平台中应该如何获取音乐文件的信息" href="show_602_176.html">进入 Android平台中应该如何获取音乐文件的信息</A> </P></DIV>
+
+<DIV>
+<H2>MusicPlayer中，根据uri或者id从mediastore中得到全路径文件名</H2>
+<P>　　以下代码经过本人亲自验证[code=java]#[Comments]// get file''s absolute path via id#[Keywords]private #String getAbsPath(#[Keywords]long #id) {	#[Comments]// Log.d(&quot;&quot;vrix&quot;&quot;,Long.toSt</P>
+<P><A title="MusicPlayer中，根据uri或者id从mediastore中得到全路径文件名" href="show_603_176.html">进入 MusicPlayer中，根据uri或者id从mediastore中得到全路径文件名</A> </P></DIV>
+
+<DIV>
+<H2>Android中使用Thumbnails批量加载sdcard中的缩略图片</H2>
+<P>　　通过以下的方法可以得到的是卡中所有图片的缩略图，另外可以使用异步加载，提高速度：[code=java]String[] projection = { MediaStore.Images.Media.SIZE, MediaStore.Images.Media.DISPLAY_NAME #};Uri uri = Media</P>
+<P><A title="Android中使用Thumbnails批量加载sdcard中的缩略图片" href="show_604_176.html">进入 Android中使用Thumbnails批量加载sdcard中的缩略图片</A> </P></DIV>
+
+<DIV>
+<H2>一些获得缩略图的封装</H2>
+<P>　　这个是别人的代码，我自己把那些比较难看懂的都加上了注释：[code=java]#[Keywords]import #java.util.ArrayList;#[Keywords]import #java.util.List;#[Keywords]import #android.app.Activity;#[Keywords]import #a</P>
+<P><A title="一些获得缩略图的封装" href="show_605_176.html">进入 一些获得缩略图的封装</A> </P></DIV>
+
+<DIV>
+<H2>Android 带ListView的音乐播放器</H2>
+<P>　　带ListView的音乐播放器[功能]今天说的是：通过MediaStore 来得到目标的Uri 在把之传入MediaPlay 然后再播放所以会有2个重点：[code=java]* 列出emulator 的所有音乐文件* 音乐播放器[/code]1. 构建界面：main.xml写</P>
+<P><A title="Android 带ListView的音乐播放器" href="show_606_176.html">进入 Android 带ListView的音乐播放器</A> </P></DIV>
+
+</DIV>
+
+<DIV id=footer style="display:none">
+<P align="center"> 
+ 
+ 
+ 
+  </P>
+</DIV></DIV></BODY></HTML>
+

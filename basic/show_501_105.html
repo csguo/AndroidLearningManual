@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android ADB介绍_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li class="navcurrentLink"><A href="index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="开发基础" href="index_100.html">开发基础</A></h2>
+
+  <h2><A title="开发环境搭建" href="index_101.html">开发环境搭建</A></h2>
+
+  <h2><A title="模拟器" href="index_102.html">模拟器</A></h2>
+
+  <h2><A title="Resource" href="index_103.html">Resource</A></h2>
+
+  <h2><A title="Manifest" href="index_104.html">Manifest</A></h2>
+
+  <h2><A title="ADB" href="index_105.html">ADB</A></h2>
+<UL><li class="currentLink"><A title=Android ADB介绍 href="show_501_105.html">Android ADB介绍</A> </li><li ><A title=ADB 指令大全 href="show_502_105.html">ADB 指令大全</A> </li><li ><A title=Android 深入研究adb（一） href="show_503_105.html">Android 深入研究adb（一）</A> </li><li ><A title=Android 深入研究adb（二） href="show_504_105.html">Android 深入研究adb（二）</A> </li><li ><A title=Android 深入研究adb（三） href="show_505_105.html">Android 深入研究adb（三）</A> </li><li ><A title=Android 深入研究adb（四） href="show_506_105.html">Android 深入研究adb（四）</A> </li><li ><A title=Android Debug Bridge操作命令详解 href="show_507_105.html">Android Debug Bridge操作命令详解</A> </li></UL>
+  <h2><A title="DDMS" href="index_106.html">DDMS</A></h2>
+
+  <h2><A title="Logcat(日志)" href="index_107.html">Logcat(日志)</A></h2>
+
+  <h2><A title="打包" href="index_108.html">打包</A></h2>
+
+  <h2><A title="文件处理" href="index_109.html">文件处理</A></h2>
+
+  <h2><A title="底层基础" href="index_111.html">底层基础</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android ADB介绍</H2>
+<div style="line-height:20px; font-size:14px;"><p>在Android的应用程序开发中，通常使用的是Java语言，除了要熟悉Java语言的基础外，还需要了解Android提供的Java扩展功能。</p><p>一、重要包描述</p><p><pre>Android.app：提供高层的程序模型、提供基本的运行环境。</p><p>Android.content：包含对各种的设备上的数据进行访问和发布的类。</p><p>Android.database：通过内容提供者浏览和操作数据库。</p><p>Android.graphics：底层的图形库，包含画布、颜色过滤、点、矩形，可以将它们直接绘制到屏幕上。</p><p>Android.location：定位和服务的相关类。</p><p>Android.media：提供了一些管理音频视频的媒体接口的相关类。</p><p>Android.net提供了关于网络访问的类，超过通常的java.net.*接口。</p><p>Android.os：提供了系统服务，消息传输，IPC机制。</p><p>Android.opengl：提供了OpenGL的工具。</p><p>Android.provider：提供类访问Android的内容提供者。</p><p>Android.telephony：提供与拨打电话相关的API交互。</p><p>Android.view：提供基本的用户界面接口框架。</p><p>Android.util：涉及工具性的方法，例如时间日期型的操作。</p><p>Android.webkit：默认浏览器操作接口。</p><p>Android.widget：包含各种U元素，在应用程序的屏幕中使用。</p><p></pre></p><p>二、Android的相关文件类型概述</p><p style="color:#3333FF;">Java文件---应用程序源文件</p><p>Android的应用必须使用Java来开发。</p><p style="color:#3333FF;">Class文件---Java编译后的目标文件。</p><p>不想J2SE，java编译成class文件就直接可以运行，Android平台上的class文件不能直接在Android平台上运行.由于google使用了自己的</p><p>Dalvik来运行应用，所以这里的class也肯定不能在Android Dalvik上运行，Android的class文件实际上只是编译过程的中间目标文件，需要</p><p>链接成Dex文件才能运行在Dalvik上。</p><p style="color:#3333FF;">Dex文件---Android平台上的可执行文件。</p><p>Dalvik执行的并非是Java字节码，而是另一种字节码：dex格式的字节码（Java字节码-&gt;dex字节码）.Dalvik可以执行许多VM而不会占用太多</p><p>的Resource。</p><p style="color:#3333FF;">APK 文件---Android上的安装文件</p><p>APK是Android安装包的扩展名，一个Android安装包包含了与某个应用程序相关的所有文件，APK文件将AndroidMainfest.xml文件、应用程序</p><p>代码（DEX）文件、资源文件和其他文件打成一个压缩包。一个工程只能打进一个.apk文件。</p><p>三、Android ADB工具的使用</p><p>ADB是Android提供的一个通用调试工具，借助这个工具，我们管理手机模拟器的状态.</p><p style="color:#3333FF;">1、ADB功能操作</p><p>快速更新设备或手机模拟器的代码，如应用或Android系统升级.</p><p>在设备上运行shell命令</p><p>管理设备或手机模拟器上的预定接口</p><p>在设备或手机模拟器上复制、粘贴文件</p><p style="color:#3333FF;">2、ADB的常用操作</p><p style="color:#3333FF;">安装应用到模拟器</p><p><pre>adb install app.apk</p><p></pre></p><p>Android没有提供一个卸载应用的命令，只能手动删除：</p><p><pre>Adb shell</p><p>Cd data/app</p><p>Rm.app.apk</p><p></pre></p><p>进入设备或模拟器的shell</p><p><pre>Adb shell</p><p></pre></p><p>通过以上命令，可以进入设备或模拟器的shell环境中，在这个shell中，你可以执行各种Linux的命令，另外如果只想执行一条shell命令，可</p><p>以采用以下方式：</p><p><pre>Adb shell[command]</p><p>如：</p><p>Adb shell emesg</p><p></pre></p><p>会打印出内核的调试信息</p><p style="color:#3333FF;">发布端口</p><p>可以设置任意的端口号，作为主机箱模拟器或设备的请求端口.如：</p><p><pre>Adb forward tcp ：5555 tcp：8000</p><p></pre></p><p style="color:#3333FF;">复制文件</p><p>复制一个文件或目录到设备或模拟器上；</p><p><pre>Adb push</p><p>如：</p><p>Adb push test.txt/tmp/test.txt</p><p>Adb pull</p><p>如：</p><p>Adb pull /Android/lib/libwebcore.os</p><p></pre></p><p style="color:#3333FF;">搜索/等待模拟器、设备实例</p><p>取得当前运行的模拟器、设备的实例列表及每个实例的状态或等待正在运行的设备</p><p><pre>Adb devices</p><p>Adb wait-for-device</p><p></pre></p><p style="color:#3333FF;">查看debug报告</p><p><pre>Adb bugreport</p><p></pre></p><p style="color:#3333FF;">记录无线通信日志</p><p>无线通信日志非常多，在运行时没必要记录，可以通过命令设置记录</p><p><pre>Adb shell</p><p>Logcat -b radio</p><p></pre></p><p style="color:#3333FF;">获取设备ID和序列号</p><p><pre>Adb get-product</p><p>Adb get-serialno</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

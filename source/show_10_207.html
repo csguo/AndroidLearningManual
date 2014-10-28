@@ -1,0 +1,60 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 深入研究拖放功能Launcher（二）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li class="navcurrentLink"><A href="index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Launcher" href="index_207.html">Launcher</A></h2>
+<UL><li ><A title=Android Launcher 分析（一） href="show_1_207.html">Android Launcher 分析（一）</A> </li><li ><A title=Android Launcher 分析（二） href="show_2_207.html">Android Launcher 分析（二）</A> </li><li ><A title=Android Launcher 分析（三） href="show_3_207.html">Android Launcher 分析（三）</A> </li><li ><A title=Android 启动唯一的Launcher href="show_4_207.html">Android 启动唯一的Launcher</A> </li><li ><A title=Launcher之文件夹美化 href="show_5_207.html">Launcher之文件夹美化</A> </li><li ><A title=关于使用Eclipse调试Launcher的完美解决方法 href="show_6_207.html">关于使用Eclipse调试Launcher的完美解决方法</A> </li><li ><A title=提取Launcher中的WorkSapce，可以左右滑动切换屏幕页面的类 href="show_7_207.html">提取Launcher中的WorkSapce，可以左右滑动切换屏幕页面的类</A> </li><li ><A title=使用ViewPager实现高仿launcher拖动效果 href="show_8_207.html">使用ViewPager实现高仿launcher拖动效果</A> </li><li ><A title=Android 深入研究拖放功能Launcher（一） href="show_9_207.html">Android 深入研究拖放功能Launcher（一）</A> </li><li class="currentLink"><A title=Android 深入研究拖放功能Launcher（二） href="show_10_207.html">Android 深入研究拖放功能Launcher（二）</A> </li><li ><A title=Android 深入研究拖放功能Launcher（三） href="show_11_207.html">Android 深入研究拖放功能Launcher（三）</A> </li><li ><A title=Android 深入研究拖放功能Launcher（四） href="show_12_207.html">Android 深入研究拖放功能Launcher（四）</A> </li><li ><A title=Android 深入研究拖放功能Launcher（五） href="show_13_207.html">Android 深入研究拖放功能Launcher（五）</A> </li><li ><A title=Android 深入研究拖放功能Launcher（六） href="show_14_207.html">Android 深入研究拖放功能Launcher（六）</A> </li><li ><A title=Android 在launcher 2.1上实现2.2的屏幕标记 href="show_15_207.html">Android 在launcher 2.1上实现2.2的屏幕标记</A> </li></UL>
+  <h2><A title="电话系统RIL" href="index_208.html">电话系统RIL</A></h2>
+
+  <h2><A title="进程间通信" href="index_209.html">进程间通信</A></h2>
+
+  <h2><A title="内部sensor系统" href="index_210.html">内部sensor系统</A></h2>
+
+  <h2><A title="内部surface系统" href="index_211.html">内部surface系统</A></h2>
+
+  <h2><A title="启动流程" href="index_212.html">启动流程</A></h2>
+
+  <h2><A title="源码编译" href="index_213.html">源码编译</A></h2>
+
+  <h2><A title="状态栏" href="index_214.html">状态栏</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 深入研究拖放功能Launcher（二）</H2>
+<div style="line-height:20px; font-size:14px;"><p>看了上面代码知道，当开始点击桌面时，celllayout就会根据点击区域去查找在该区域是否有child存在，若有把它设置为tag.cell,没有,tag.cell设置为null,后面在开始拖放时launcher.onlongclick中对tag进行处理，这个理顺了，再深入到workspace.startDrag函数，workspace.startDrag调用DragController.startDrag去处理拖放。</p><p><pre>mDragController.startDrag(child, <font class="keyword">this</font>, child.getTag(), DragController.DRAG_ACTION_MOVE);</p><p></pre></p><p>再分析一下上面调用的几个参数</p><p><pre>child = tag.cell</p><p>this = workspace</p><p></pre></p><p>child.getTag()是什么呢?在什么时候被设置?再仔细回顾原来launcher加载过程代码，在launcher.createShortcut中它被设置了：注意下面我代码中的注释</p><p><pre>View createShortcut(<font class="keyword">int </font>layoutResId, ViewGroup parent, ShortcutInfo info) {</p><p>	TextView favorite = (TextView) mInflater.inflate(layoutResId, parent,</p><p>			<font class="keyword">false</font>);</p><p>	</font>favorite.setCompoundDrawablesWithIntrinsicBounds(<font class="keyword">null</font>,</p><p>			<font class="keyword">new </font>FastBitmapDrawable(info.getIcon(mIconCache)), </font><font class="keyword">null</font>, </font><font class="keyword">null</font>);</p><p>	favorite.setText(info.title);</p><p>	<font class="Comments">// 设置favorite(一个桌面Shortcut类型的图标)的tag</font></p><p>	favorite.setTag(info);</p><p>	</font>favorite.setOnClickListener(<font class="keyword">this</font>);</p><p>	<font class="keyword">return </font>favorite;</p><p>}</p><p></pre></p><p>继续深入解读DragController.startDrag函数：</p><p><pre><font class="keyword">public </font><font class="keyword">void </font>startDrag(View v, DragSource source, Object dragInfo,</p><p>		<font class="keyword">int </font>dragAction) {</p><p>	<font class="Comments">// 设置拖放源view</font></p><p>	mOriginator = v;</p><p>	<font class="Comments">// 获取view的bitmap</font></p><p>	Bitmap b = getViewBitmap(v);</p><p>	<font class="keyword">if </font>(b == </font><font class="keyword">null</font>) {</p><p>		<font class="Comments">// out of memory?</font></p><p>		<font class="keyword">return</font>;</font></p><p>	}</p><p>	<font class="Comments">// 获取源view在整个屏幕的坐标</font></p><p>	<font class="keyword">int</font>[] loc = mCoordinatesTemp;</p><p>	v.getLocationOnScreen(loc);</p><p>	<font class="keyword">int </font>screenX = loc[0];</p><p>	<font class="keyword">int </font>screenY = loc[1];</p><p>	<font class="Comments">// 该函数功能解读请继续往下看</font></p><p>	startDrag(b, screenX, screenY, 0, 0, b.getWidth(), b.getHeight(),</p><p>			source, dragInfo, dragAction);</p><p>	b.recycle();</p><p>	<font class="Comments">// 设置原来view不可见</font></p><p>	<font class="keyword">if </font>(dragAction == DRAG_ACTION_MOVE) {</p><p>		v.setVisibility(View.GONE);</p><p>	}</p><p>}</p><p><font class="keyword">public </font><font class="keyword">void </font>startDrag(Bitmap b, </font><font class="keyword">int </font>screenX, </font><font class="keyword">int </font>screenY, </font><font class="keyword">int </font>textureLeft,</p><p>		<font class="keyword">int </font>textureTop, </font><font class="keyword">int </font>textureWidth, </font><font class="keyword">int </font>textureHeight,</p><p>		</font>DragSource source, Object dragInfo, <font class="keyword">int </font>dragAction) {</p><p>	<font class="Comments">// 隐藏软键盘</font></p><p>	<font class="keyword">if </font>(mInputMethodManager == </font><font class="keyword">null</font>) {</p><p>		mInputMethodManager = (InputMethodManager) mContext</p><p>				.getSystemService(Context.INPUT_METHOD_SERVICE);</p><p>	}</p><p>	mInputMethodManager.hideSoftInputFromWindow(mWindowToken, 0);</p><p>	<font class="Comments">// mListener = deletezone,在blog laucher ui框架中有说明该函数，主要就是现实deletezone</font></p><p>	<font class="keyword">if </font>(mListener != </font><font class="keyword">null</font>) {</p><p>		mListener.onDragStart(source, dragInfo, dragAction);</p><p>	}</p><p>	<font class="Comments">// 记住手指点击位置与屏幕左上角位置偏差</font></p><p>	<font class="keyword">int </font>registrationX = ((</font><font class="keyword">int</font>) mMotionDownX) - screenX;</p><p>	<font class="keyword">int </font>registrationY = ((</font><font class="keyword">int</font>) mMotionDownY) - screenY;</p><p>	mTouchOffsetX = mMotionDownX - screenX;</p><p>	mTouchOffsetY = mMotionDownY - screenY;</p><p>	</font>mDragging = <font class="keyword">true</font>;</p><p>	mDragSource = source;</p><p>	mDragInfo = dragInfo;</p><p>	mVibrator.vibrate(VIBRATE_DURATION);</p><p>	<font class="Comments">// 创建DragView对象</font></p><p>	</font>DragView dragView = mDragView = <font class="keyword">new </font>DragView(mContext, b,</p><p>			registrationX, registrationY, textureLeft, textureTop,</p><p>			textureWidth, textureHeight);</p><p>	<font class="Comments">// 显示Dragview对象</font></p><p>	</font>dragView.show(mWindowToken, (<font class="keyword">int</font>) mMotionDownX, (</font><font class="keyword">int</font>) mMotionDownY);</p><p>}</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

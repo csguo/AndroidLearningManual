@@ -1,0 +1,58 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>构建Android自动编译持续集成系统_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li class="navcurrentLink"><A href="index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Android基础之运行原理和机制" href="index_215.html">Android基础之运行原理和机制</A></h2>
+
+  <h2><A title="Android高级篇之Android优化" href="index_216.html">Android高级篇之Android优化</A></h2>
+
+  <h2><A title="Android高级篇之编译及反编译" href="index_217.html">Android高级篇之编译及反编译</A></h2>
+<UL><li ><A title=Android 程序反编译 href="show_201_217.html">Android 程序反编译</A> </li><li ><A title=Android反编译工具Apktool使用 href="show_202_217.html">Android反编译工具Apktool使用</A> </li><li ><A title=Android命令行编译方法,不用Eclipse IDE href="show_203_217.html">Android命令行编译方法,不用Eclipse IDE</A> </li><li ><A title=Android反编译小结 href="show_204_217.html">Android反编译小结</A> </li><li ><A title=反编译APK文件 href="show_205_217.html">反编译APK文件</A> </li><li ><A title=无需eclipse无需ant,直接在android源码中混淆编译 href="show_206_217.html">无需eclipse无需ant,直接在android源码中混淆编译</A> </li><li ><A title=apk反编译问题总结 href="show_207_217.html">apk反编译问题总结</A> </li><li ><A title=Android如何防止apk程序被反编译 href="show_208_217.html">Android如何防止apk程序被反编译</A> </li><li ><A title=Android反编译和防止反编译的方法 href="show_209_217.html">Android反编译和防止反编译的方法</A> </li><li class="currentLink"><A title=构建Android自动编译持续集成系统 href="show_210_217.html">构建Android自动编译持续集成系统</A> </li><li ><A title=跟我一起学【ANT build.xml】 href="show_211_217.html">跟我一起学【ANT build.xml】</A> </li><li ><A title=linux 下 使用shell 控制ant批量打包 href="show_212_217.html">linux 下 使用shell 控制ant批量打包</A> </li></UL>
+  <h2><A title="Android高级篇之加密解密" href="index_218.html">Android高级篇之加密解密</A></h2>
+
+  <h2><A title="Android高级篇之Android 安全" href="index_219.html">Android高级篇之Android 安全</A></h2>
+
+  <h2><A title="Android高级篇之算法" href="index_220.html">Android高级篇之算法</A></h2>
+
+  <h2><A title="Android高级篇之解锁教程" href="index_221.html">Android高级篇之解锁教程</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>构建Android自动编译持续集成系统</H2>
+<div style="line-height:20px; font-size:14px;"><p>因为我们专业，所以我们用Auto Build，所以我们用CI系统。</p><p>代码管理使用SVN，自动编译使用Ant，而持续集成使用Hudson，操作系统使用Ubuntu10.04。</p><p style="color:#3333FF;">1. 安装</p><p style="color:#3333FF;">1.1 安装JDK</p><p>sudo apt-get install sun-java6-jdk</p><p style="color:#3333FF;">1.2 安装Ant</p><p>sudo apt-get install ant-optional</p><p style="color:#3333FF;">1.3 安装Hudson</p><p>sudo apt-get upgrade</p><p>wget -O /tmp/key http://hudson-ci.org/debian/hudson-ci.org.key</p><p>sudo apt-key add /tmp/key</p><p>wget -O /tmp/hudson.deb http://hudson-ci.org/latest/debian/hudson.deb</p><p>sudo dpkg --install /tmp/hudson.deb</p><p style="color:#3333FF;">1.4 安装Android SDK</p><p>http://androidappdocs.appspot.com/sdk/index.html</p><p style="color:#3333FF;">2. Project配置</p><p style="color:#3333FF;">2.1 build.xml</p><p>http://androidappdocs.appspot.com/guide/developing/other-ide.html</p><p>按照官方的做法，使用自动生成的build文件就可以了。</p><p><pre>&lt;?xml version=<font class="Fields">"1.0"</font> encoding=</font><font class="Fields">"UTF-8"</font>?&gt;</p><p>&lt;project name=<font class="Fields">"test-android"</font>&gt;</p><p>&lt;!-- The local.properties file is created and updated by the <font class="Fields">'android'</font> tool.</p><p>It contains the path to the SDK. It should *NOT* be checked in in Version</p><p>Control Systems. --&gt;</p><p>&lt;property file=<font class="Fields">"local.properties"</font> /&gt;</p><p>&lt;!-- The build.properties file can be created by you and is never touched</p><p>by the <font class="Fields">'android'</font> tool. This is the place to change some of the default property values</p><p>used by the Ant rules.</p><p>Here are some properties you may want to change/update:</p><p>application.package</p><p>the name of your application package as defined in the manifest. Used by the</p><p><font class="Fields">'uninstall'</font> rule.</p><p>source.dir</p><p>the name of the source directory. Default is <font class="Fields">'src'</font>.</p><p>out.dir</p><p>the name of the output directory. Default is <font class="Fields">'bin'</font>.</p><p>Properties related to the SDK location or the project target should be updated</p><p>using the <font class="Fields">'android'</font> tool with the </font><font class="Fields">'update'</font> action.</p><p>This file is an integral part of the build system <font class="keyword">for </font>your application and</p><p>should be checked in in Version Control Systems.</p><p>--&gt;</p><p>&lt;property file=<font class="Fields">"build.properties"</font> /&gt;</p><p>&lt;!-- The default.properties file is created and updated by the <font class="Fields">'android'</font> tool, as well</p><p>as ADT.</p><p>This file is an integral part of the build system <font class="keyword">for </font>your application and</p><p>should be checked in in Version Control Systems. --&gt;</p><p>&lt;property file=<font class="Fields">"default.properties"</font> /&gt;</p><p>&lt;!-- Custom Android task to deal with the project target, and <font class="keyword">import </font>the proper rules.</p><p>This requires ant 1.6.0 or above. --&gt;</p><p>&lt;path id=<font class="Fields">"android.antlibs"</font>&gt;</p><p>&lt;pathelement path=<font class="Fields">"${sdk.dir</font>}/tools/lib/anttasks.jar"</font> /&gt;</p><p>&lt;pathelement path=<font class="Fields">"${sdk.dir</font>}/tools/lib/sdklib.jar"</font> /&gt;</p><p>&lt;pathelement path=<font class="Fields">"${sdk.dir</font>}/tools/lib/androidprefs.jar"</font> /&gt;</p><p>&lt;pathelement path=<font class="Fields">"${sdk.dir</font>}/tools/lib/apkbuilder.jar"</font> /&gt;</p><p>&lt;pathelement path=<font class="Fields">"${sdk.dir</font>}/tools/lib/jarutils.jar"</font> /&gt;</p><p>&lt;/path&gt;</p><p>&lt;taskdef name=<font class="Fields">"setup"</font> classname=</font><font class="Fields">"com.android.ant.SetupTask"</font> classpathref=</font><font class="Fields">"android.antlibs"</font> /&gt;</p><p>&lt;!-- Execute the Android Setup task that will setup some properties specific to the target,</p><p>and <font class="keyword">import </font>the build rules files.</p><p>The rules file is imported from</p><p>&lt;SDK&gt;/platforms/&lt;target_platform&gt;/templates/android_rules.xml</p><p>To customize some build steps <font class="keyword">for </font>your project:</p><p>- copy the content of the main node &lt;project&gt; from android_rules.xml</p><p>- paste it in <font class="keyword">this</font> build.xml below the &lt;setup /&gt; task.</p><p>- disable the <font class="keyword">import </font>by changing the setup task below to &lt;setup import=<font class="Fields">"</font><font class="keyword">false</font>"</font> /&gt;</p><p>This will ensure that the properties are setup correctly but that your customized</p><p>build steps are used.</p><p>--&gt;</p><p>&lt;setup /&gt;</p><p>&lt;/project&gt;</p><p></pre></p><p style="color:#3333FF;">2.2 local.properties</p><p>这个配置文件定义了Android SDK的位置。</p><p>sdk.dir=${tool.android.sdk}</p><p style="color:#3333FF;">2.3 build.properties</p><p>这个文件里面定义了App的Package，以及生成App签名必须用的一些配置。</p><p><pre>application.package=test.android</p><p>key.store=../test-android.keystore</p><p>key.alias=test-android</p><p>key.store.password=password</p><p>key.alias.password=password</p><p></pre></p><p style="color:#3333FF;">3. Hudson配置</p><p>3.1 System Configuration</p><p>系统配置很简单，只需要配置JDK、Ant的位置就可以了。</p><p>比较有用的还有一项：E-mail Notification，如果你需要在build失败发送邮件的话，那么需要配置这一项。</p><p>3.2 Job Configuration</p><p>3.2.1 Source Code Management</p><p>1. 选择Subversion，并且设置好SVN的地址以及用户名、密码。</p><p>2. 把Use update和Revert勾选上。</p><p style="color:#3333FF;">3.2.2 Build Triggers</p><p>1. 勾选上Build Periodically，然后设置自动Build的时机，这里语法跟cron的语法是一样的。</p><p>例如：0 2 * * 1-6</p><p>2. 勾选上Poll SCM，设置每隔多长时间检测SVN的变更。</p><p>例如：0,15,30,45 9-23 * * 1-5</p><p style="color:#3333FF;">3.2.3 Build</p><p>Step1：删除上次编译的文件</p><p><pre>rm –f test-android.keystore</p><p>rm –f –R ./test-android/gen</p><p>rm –f –R ./test-android/bin</p><p></pre></p><p>Step2：生成Keystore</p><p>http://androidappdocs.appspot.co ... ng/app-signing.html</p><p>例如：</p><p><pre>keytool -genkey -v -alias test-android -keyalg RSA -keysize 2048 -dname 'CN=xxx, OU=xxx, O=xxx, L=xxx, ST=xxx, C=xx' -validity 10000 -keypass password -storepass password -keystore 'test-android.keystore'</p><p></pre></p><p>Step3：Invoke Ant</p><p>设置Targets：release –Dsdk.dir=$your-sdk-dir</p><p>例如：</p><p><pre>release –Dsdk.dir=/home/build/android-sdk-linux</p><p></pre></p><p style="color:#3333FF;">3.2.3 Post-build　Actions</p><p>1. 勾选上Archive the artifacts，设置Files to archive：test-android/bin/test-android-release.apk。</p><p>2. 勾选上E-mail Notification，可以设置发送邮件的对象和时机。</p><p>经过以上步骤的设置，大功告成了。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

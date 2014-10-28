@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Canvas、Matrix倒影实例教程_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li class="navcurrentLink"><A href="index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Android多媒体功能" href="index_196.html">Android多媒体功能</A></h2>
+
+  <h2><A title="Android多媒体之2D" href="index_197.html">Android多媒体之2D</A></h2>
+
+  <h2><A title="Android多媒体之3D" href="index_198.html">Android多媒体之3D</A></h2>
+
+  <h2><A title="Android多媒体之Bitmap" href="index_199.html">Android多媒体之Bitmap</A></h2>
+
+  <h2><A title="Android多媒体之Canvas" href="index_200.html">Android多媒体之Canvas</A></h2>
+<UL><li ><A title=Android中的Canvas（一） href="show_401_200.html">Android中的Canvas（一）</A> </li><li ><A title=Android中的Canvas（二） href="show_402_200.html">Android中的Canvas（二）</A> </li><li ><A title=Canvas建立欢迎界面 href="show_403_200.html">Canvas建立欢迎界面</A> </li><li ><A title=Android Bitmap与Canvas href="show_405_200.html">Android Bitmap与Canvas</A> </li><li ><A title=Android Bitmap和Canvas实例（一） href="show_406_200.html">Android Bitmap和Canvas实例（一）</A> </li><li ><A title=Android Bitmap和Canvas实例（二） href="show_407_200.html">Android Bitmap和Canvas实例（二）</A> </li><li ><A title=canvas的save()和restore()用法 href="show_408_200.html">canvas的save()和restore()用法</A> </li><li ><A title=canvas 之save,与restore href="show_409_200.html">canvas 之save,与restore</A> </li><li ><A title=Gridview控件自定义,canvas绘制view,gridview拖动时canvas重绘 href="show_411_200.html">Gridview控件自定义,canvas绘制view,gridview拖动时canvas重绘</A> </li><li class="currentLink"><A title=Canvas、Matrix倒影实例教程 href="show_412_200.html">Canvas、Matrix倒影实例教程</A> </li></UL>
+  <h2><A title="Android多媒体之Drawable" href="index_201.html">Android多媒体之Drawable</A></h2>
+
+  <h2><A title="Android多媒体之gif" href="index_202.html">Android多媒体之gif</A></h2>
+
+  <h2><A title="Android多媒体之MediaStore" href="index_203.html">Android多媒体之MediaStore</A></h2>
+
+  <h2><A title="Android多媒体之动画" href="index_204.html">Android多媒体之动画</A></h2>
+
+  <h2><A title="Android多媒体之分辨率" href="index_205.html">Android多媒体之分辨率</A></h2>
+
+  <h2><A title="Android多媒体之分屏幕" href="index_206.html">Android多媒体之分屏幕</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Canvas、Matrix倒影实例教程</H2>
+<div style="line-height:20px; font-size:14px;"><p>大家都知道android系统自带的控件都不好用，想要美观立体实用肯定需要自定View(未来是自定义的世界。跑题了)，自定义view要是做出来效果肯定要Matrix和Canva以及paint，那么今天带大家去学学利用Matrix、Canvas做一个倒影的效果例子。</p><p>效果图：</p><p><img src="../img/media_canvas/12_canvas.jpg"></p><p><pre><font class="Comments">/**</font></p><p> <font class="Comments">* 创建有倒影的位图</font></p><p> <font class="Comments">* @param oldBitmap</font></p><p> <font class="Comments">*/</font></p><p><font class="keyword">private </font>Bitmap createFlectionBitmap(Bitmap oldBitmap) {</p><p>	<font class="keyword">final </font><font class="keyword">int </font>gap = 2; <font class="Comments">// 老图 和倒立图的间隔距离</font></p><p>	<font class="Comments">// 获取老图的宽、高</font></p><p>	<font class="keyword">int </font>mWidth = oldBitmap.getWidth();</p><p>	<font class="keyword">int </font>mHeight = oldBitmap.getHeight();</p><p>	<font class="Comments">/**</font></p><p>	 <font class="Comments">* 第一步:创建倒立的Bitmap，宽度跟老图一样 高度是老图的一般</font></p><p>	 <font class="Comments">* 第二步：画出能容纳老图、倒立图、间隔的背景Bitmap-background 第三步:创建间隔的图形 (如果你不喜欢，也可以不花)</font></p><p>	 <font class="Comments">* 第四部：用backgroud传给canvas 然后安顺序在background上 画出老图、间隔(用矩形)、倒立的图 第五部：渐变处理用</font></p><p>	 <font class="Comments">* LinearGradient 第六步：用一个矩形覆盖在倒立的像上,这样在渐变的效果下使得看起来像倒影一样 大功告成</font></p><p>	 <font class="Comments">*/</font></p><p>	<font class="Comments">// 第一步：画倒立的Bitmap 宽度跟老图一样 高度是原图的一般</font></p><p>	</font>Matrix matrix = <font class="keyword">new </font>Matrix();</p><p>	matrix.preScale(1, -1); <font class="Comments">// 1表示翻转x的一倍 -1表示翻转拉伸-1倍 也就是倒立过来</font></p><p>	Bitmap flectionBitmap = Bitmap.createBitmap(oldBitmap, 0, mHeight / 2,</p><p>			</font>mWidth, mHeight / 2, matrix, <font class="keyword">false</font>);</p><p>	<font class="Comments">// 第二步：画出完整图像的背景Bitmap. 注解 创建背景位图 宽度当时是要跟老图的一样 高度呢应该是 背景高 = 老图的高 + 倒立图高</font></p><p>	<font class="Comments">// + 间隔 。 当时是创建最好质量的背景位图了</font></p><p>	Bitmap background = Bitmap.createBitmap(mWidth, mHeight + mHeight / 2</p><p>			+ mHeight + gap, Config.ARGB_8888);</p><p>	</font>Canvas canvas = <font class="keyword">new </font>Canvas(background);</p><p>	<font class="Comments">// 为什么要将background传递给Canvas呢</font></p><p>	<font class="Comments">// 因为我们要在background上画图</font></p><p>	<font class="Comments">// 所以要讲给canvas</font></p><p>	</font>Pa<font class="keyword">int </font>paintRect = </font><font class="keyword">new </font>Paint();</p><p>	<font class="Comments">// 第三步、第四步：将间距、老图、倒立图画在背景上</font></p><p>	</font>canvas.drawBitmap(oldBitmap, 0, 0, <font class="keyword">null</font>);</p><p>	canvas.drawRect(0, mHeight, mWidth, mHeight + gap, paintRect);</p><p>	canvas.drawBitmap(flectionBitmap, 0, mHeight + gap, paintRect);</p><p>	</font>Pa<font class="keyword">int </font>shaderPa</font><font class="keyword">int </font>= </font><font class="keyword">new </font>Paint();</p><p>	<font class="Comments">// 从(0,mHeight) 到 (0,flectionBitmap.getHeight())</font></p><p>	<font class="Comments">// 开始渐变,颜色从0x70ffffff到0x00ffffff,利用镜像模式</font></p><p>	</font>LinearGradient shader = <font class="keyword">new </font>LinearGradient(0, mHeight, 0,</p><p>			flectionBitmap.getHeight(), 0x70ffffff, 0x00ffffff,</p><p>			TileMode.MIRROR);</p><p>	shaderPaint.setShader(shader);</p><p>	</font>shaderPaint.setXfermode(<font class="keyword">new </font>PorterDuffXfermode(</p><p>			android.graphics.PorterDuff.Mode.DST_IN));</p><p>	</font>canvas.drawRect(0, mHeight, mWidth, background.getHeight(), shaderPa<font class="keyword">int</font>);</p><p>	<font class="keyword">return </font>background;</p><p>}</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

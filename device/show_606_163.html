@@ -1,0 +1,70 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 基站定位源代码_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li class="navcurrentLink"><A href="index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="设备信息" href="index_157.html">设备信息</A></h2>
+
+  <h2><A title="摄像头" href="index_158.html">摄像头</A></h2>
+
+  <h2><A title="通讯录" href="index_159.html">通讯录</A></h2>
+
+  <h2><A title="电话" href="index_160.html">电话</A></h2>
+
+  <h2><A title="短信" href="index_161.html">短信</A></h2>
+
+  <h2><A title="传感器" href="index_162.html">传感器</A></h2>
+
+  <h2><A title="定位" href="index_163.html">定位</A></h2>
+<UL><li ><A title=Android 实现GPS定位（一） href="show_601_163.html">Android 实现GPS定位（一）</A> </li><li ><A title=Android 实现GPS定位（二） href="show_602_163.html">Android 实现GPS定位（二）</A> </li><li ><A title=Android GPS定位 href="show_603_163.html">Android GPS定位</A> </li><li ><A title=Android wifi实现定位（一） href="show_604_163.html">Android wifi实现定位（一）</A> </li><li ><A title=Android wifi实现定位（二） href="show_605_163.html">Android wifi实现定位（二）</A> </li><li class="currentLink"><A title=Android 基站定位源代码 href="show_606_163.html">Android 基站定位源代码</A> </li><li ><A title=Android GPS，WIFI，基站定位集合 href="show_607_163.html">Android GPS，WIFI，基站定位集合</A> </li><li ><A title=Android 使用地图 href="show_608_163.html">Android 使用地图</A> </li><li ><A title=Android 显示查询结果（一） href="show_609_163.html">Android 显示查询结果（一）</A> </li><li ><A title=Android 显示查询结果（二） href="show_610_163.html">Android 显示查询结果（二）</A> </li><li ><A title=Google地图经纬度转换成具体位置 href="show_611_163.html">Google地图经纬度转换成具体位置</A> </li></UL>
+  <h2><A title="视频系统" href="index_164.html">视频系统</A></h2>
+
+  <h2><A title="音频系统" href="index_165.html">音频系统</A></h2>
+
+  <h2><A title="铃声" href="index_166.html">铃声</A></h2>
+
+  <h2><A title="音量" href="index_167.html">音量</A></h2>
+
+  <h2><A title="录音" href="index_168.html">录音</A></h2>
+
+  <h2><A title="输入法" href="index_169.html">输入法</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 基站定位源代码</H2>
+<div style="line-height:20px; font-size:14px;"><p>经过几天的调研以及测试，终于解决了联通2G、移动2G、电信3G的基站定位代码。团队里面只有这些机器的制式了。下面就由我来做一个详细的讲解吧。</p><p style="color:#3333FF;">1，相关技术内容</p><p>Google Android Api里面的TelephonyManager的管理。</p><p>联通、移动、电信不同制式在获取基站位置的代码区别。</p><p>通过基站的基本信息，通过Google Gears获取对应的GPS经纬度。</p><p>通过Google Map API根据GPS经纬度获取当前位置。</p><p style="color:#3333FF;">2，目前存在的几个问题</p><p>由于得到的GPS经纬度在Google Map上面显示需要偏移，这块暂时没有进行处理。</p><p>没有使用PhoneStateListener来对状态实时进行更新。</p><p>没有使用线程异步获取数据</p><p>没有使用服务的方式来实时获取数据</p><p>所以如果是商业使用的话，还需进一步修改。</p><p style="color:#3333FF;">3，当然本部分代码已经移植到我们的家庭卫士的项目中了，2提到的问题全部解决了。</p><p>下面我针对第一部分的四大内容进行代码注解。</p><p style="color:#3333FF;">1 Google Android Api里面的TelephonyManager的管理。</p><p><pre> </p><p>TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);</p><p></pre></p><p>通过这个方式就可以得到TelephonyManager接口。这个接口的源代码可以通过设置在项目里面查看，这里不具体附上了。得到TelephonyManager后，由于针对不同的运营商，代码有所不同，所以需要判断getNetworkType()在源代码里面有如下的类型定义 </p><p><pre>  </p><p><font class="Comments">/** Network type is unknown */</font></p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>NETWORK_TYPE_UNKNOWN = 0;</p><p><font class="Comments">/** Current network is GPRS */</font></p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>NETWORK_TYPE_GPRS = 1;</p><p><font class="Comments">/** Current network is EDGE */</font></p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>NETWORK_TYPE_EDGE = 2;</p><p><font class="Comments">/** Current network is UMTS */</font></p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>NETWORK_TYPE_UMTS = 3;</p><p><font class="Comments">/** Current network is CDMA: Either IS95A or IS95B */</font></p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>NETWORK_TYPE_CDMA = 4;</p><p><font class="Comments">/** Current network is EVDO revision 0 */</font></p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>NETWORK_TYPE_EVDO_0 = 5;</p><p><font class="Comments">/** Current network is EVDO revision A */</font></p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>NETWORK_TYPE_EVDO_A = 6;</p><p><font class="Comments">/** Current network is 1xRTT */</font></p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>NETWORK_TYPE_1xRTT = 7;</p><p><font class="Comments">/** Current network is HSDPA */</font></p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>NETWORK_TYPE_HSDPA = 8;</p><p><font class="Comments">/** Current network is HSUPA */</font></p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>NETWORK_TYPE_HSUPA = 9;</p><p><font class="Comments">/** Current network is HSPA */</font></p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>NETWORK_TYPE_HSPA = 10;</p><p></pre></p><p style="color:#3333FF;">2 联通、移动、电信不同制式在获取基站位置的代码区别。</p><p>这部分是我实际测试出来的，经过无数次的拆机，放卡，才实现了不同制式的完美实现。</p><p>代码如下：</p><p><pre><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">void </font>main(String[] args) {</p><p>	TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);</p><p>	<font class="keyword">int </font>type = tm.getNetworkType();</p><p>	<font class="Comments">// 中国电信为CTC</font></p><p>	<font class="Comments">// NETWORK_TYPE_EVDO_A是中国电信3G的getNetworkType</font></p><p>	<font class="Comments">// NETWORK_TYPE_CDMA电信2G是CDMA</font></p><p>	<font class="keyword">if </font>(type == TelephonyManager.NETWORK_TYPE_EVDO_A</p><p>			|| type == TelephonyManager.NETWORK_TYPE_CDMA</p><p>			|| type == TelephonyManager.NETWORK_TYPE_1xRTT) {</p><p>	}</p><p>	<font class="Comments">// 移动2G卡 + CMCC + 2</font></p><p>	<font class="Comments">// type = NETWORK_TYPE_EDGE</font></p><p>	<font class="keyword">else </font><font class="keyword">if </font>(type == TelephonyManager.NETWORK_TYPE_EDGE) {</p><p>	}</p><p>	<font class="Comments">// 联通的2G经过测试 China Unicom 1 NETWORK_TYPE_GPRS</font></p><p>	<font class="keyword">else </font><font class="keyword">if </font>(type == TelephonyManager.NETWORK_TYPE_GPRS) {</p><p>	</font>} <font class="keyword">else </font>{</p><p>		</font>tv.setText(<font class="Fields">"Current Not Support This Type."</font>);</p><p>	}</p><p>}</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

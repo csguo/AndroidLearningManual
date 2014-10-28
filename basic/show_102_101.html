@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>HelloWorld项目的目录结构_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li class="navcurrentLink"><A href="index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="开发基础" href="index_100.html">开发基础</A></h2>
+
+  <h2><A title="开发环境搭建" href="index_101.html">开发环境搭建</A></h2>
+<UL><li ><A title=环境搭建及HelloWorld href="show_101_101.html">环境搭建及HelloWorld</A> </li><li class="currentLink"><A title=HelloWorld项目的目录结构 href="show_102_101.html">HelloWorld项目的目录结构</A> </li><li ><A title=又见Hello World！ href="show_103_101.html">又见Hello World！</A> </li><li ><A title=深入分析布局文件&又是“Hello World！” href="show_104_101.html">深入分析布局文件&又是“Hello World！”</A> </li></UL>
+  <h2><A title="模拟器" href="index_102.html">模拟器</A></h2>
+
+  <h2><A title="Resource" href="index_103.html">Resource</A></h2>
+
+  <h2><A title="Manifest" href="index_104.html">Manifest</A></h2>
+
+  <h2><A title="ADB" href="index_105.html">ADB</A></h2>
+
+  <h2><A title="DDMS" href="index_106.html">DDMS</A></h2>
+
+  <h2><A title="Logcat(日志)" href="index_107.html">Logcat(日志)</A></h2>
+
+  <h2><A title="打包" href="index_108.html">打包</A></h2>
+
+  <h2><A title="文件处理" href="index_109.html">文件处理</A></h2>
+
+  <h2><A title="底层基础" href="index_111.html">底层基础</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>HelloWorld项目的目录结构</H2>
+<div style="line-height:20px; font-size:14px;"><p style="color:#3333FF;">引言</p><p>前面环境搭建及HelloWorld，我们介绍了如何搭建Android开发环境及简单地建立一个HelloWorld项目，本篇将通过HelloWorld项目来介绍Android项目的目录结构。本文的主要主题如下：</p><p><pre>1、HelloWorld项目的目录结构</p><p>1.1、src文件夹</p><p>1.2、gen文件夹</p><p>1.3、Android 2.1文件夹</p><p>1.4、assets </p><p>1.5、res文件夹</p><p>1.6、AndroidManifest.xml</p><p>1.7、default.properties</p><p></pre></p><p>1、HelloWorld项目的目录结构</p><p>（这个HelloWorld项目是基于Android 2.1的）在Eclipse的左侧展开HelloWorld项目，可以看到如下图的目录结构：</p><p><img src="../img/basic_env/02_helloworld.jpg"></p><p>下面将分节介绍上面的各级目录结构。</p><p>1.1、src文件夹</p><p>顾名思义（src, source code）该文件夹是放项目的源代码的。打开HelloWorld.java文件会看到如下代码：</p><p><pre><font class="keyword">import </font>android.R;</p><p><font class="keyword">import </font>android.app.Activity;</p><p><font class="keyword">import </font>android.os.Bundle;</p><p><font class="keyword">public </font><font class="keyword">class </font>HelloWorld </font><font class="keyword">extends </font>Activity {</p><p>	<font class="Comments">/** Called when the activity is first created. */</font></p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onCreate(Bundle savedInstanceState) {</p><p>		<font class="keyword">super</font>.onCreate(savedInstanceState);</p><p>		setContentView(R.layout.main);</p><p>	}</p><p>}</p><p></pre></p><p>可以知道：我们新建一个简单的HelloWorld项目，系统为我们生成了一个HelloWorld.java文件。他导入了两个类android.app.Activity和android.os.Bundle，HelloWorld类继承自Activity且重写了onCreate方法。</p><p><pre>以下说明针对没有学过Java或者Java基础薄弱的人</p><p>@Override</p><p>在重写父类的onCreate时，在方法前面加上@Override 系统可以帮你检查方法的正确性。</p><p>例如，</p><p><font class="keyword">public </font>void onCreate(Bundle savedInstanceState){…….}</p><p>这种写法是正确的，如果你写成</p><p><font class="keyword">public </font>void oncreate(Bundle savedInstanceState){…….}</p><p>这样编译器回报如下错误——The method oncreate(Bundle) of type HelloWorld must override or implement a supertype method，以确保你正确重写onCreate方法。（因为oncreate应该为onCreate）</p><p>而如果你不加@Override，则编译器将不会检测出错误，而是会认为你新定义了一个方法oncreate。</p><p></pre></p><p style="color:#3333FF;">android.app.Activity类：</p><p>因为几乎所有的活动（activities）都是与用户交互的，所以Activity类关注创建窗口，你可以用方法setContentView(View)将自己的UI放到里面。然而活动通常以全屏的方式展示给用户，也可以以浮动窗口或嵌入在另外一个活动中。有两个方法是几乎所有的Activity子类都实现的：</p><p>1、onCreate(Bundle)：初始化你的活动（Activity），比如完成一些图形的绘制。最重要的是，在这个方法里你通常将用布局资源（layout resource）调用setContentView(int)方法定义你的UI，和用findViewById(int)在你的UI中检索你需要编程地交互的小部件（widgets）。setContentView指定由哪个文件指定布局（main.xml），可以将这个界面显示出来，然后我们进行相关操作，我们的操作会被包装成为一个意图，然后这个意图对应有相关的activity进行处理。</p><p>2、onPause()：处理当离开你的活动时要做的事情。最重要的是，用户做的所有改变应该在这里提交（通常ContentProvider保存数据）。</p><p>更多的关于Activity类的详细信息此系列以后的文章将做介绍，如果你想了解更多请参阅相关文档。</p><p style="color:#3333FF;">android.os.Bundle类：</p><p>从字符串值映射各种可打包的（Parcelable）类型（Bundle单词就是捆绑的意思，所有这个类很好理解和记忆）。如该类提供了公有方法——public boolean containKey(String key)，如果给定的key包含在Bundle的映射中返回true，否则返回false。该类实现了Parceable和Cloneable接口，所以它具有这两者的特性。</p><p style="color:#3333FF;">1.2、gen文件夹</p><p>该文件夹下面有个R.java文件，R.java是在建立项目时自动生成的，这个文件是只读模式的，不能更改。R.java文件中定义了一个类——R，R类中包含很多静态类，且静态类的名字都与res中的一个名字对应，即R类定义该项目所有资源的索引。看我们的HelloWorld项目是不是如此，如下图：</p><p><img src="../img/basic_env/02_helloworld2.jpg"></p><p>通过R.java我们可以很快地查找我们需要的资源，另外编绎器也会检查R.java列表中的资源是否被使用到，没有被使用到的资源不会编绎进软件中，这样可以减少应用在手机占用的空间。</p><p style="color:#3333FF;">1.3、Android 2.1文件夹</p><p>该文件夹下包含android.jar文件，这是一个Java 归档文件，其中包含构建应用程序所需的所有的Android SDK 库（如Views、Controls）和APIs。通过android.jar将自己的应用程序绑定到Android SDK和Android Emulator，这允许你使用所有Android的库和包，且使你的应用程序在适当的环境中调试。例如上面的HelloWorld.java源文件中的：</p><p><pre>import android.app.Activity;</p><p>import android.os.Bundle;</p><p></pre></p><p>这里两行代码就是从android.jar导入包。</p><p style="color:#3333FF;">1.4、assets</p><p>包含应用系统需要使用到的诸如mp3、视频类的文件。</p><p style="color:#3333FF;">1.5、res文件夹</p><p>资源目录，包含你项目中的资源文件并将编译进应用程序。向此目录添加资源时，会被R.java自动记录。新建一个项目，res目录下会有三个子目录：drawabel、layout、values。</p><p>drawabel-?dpi：包含一些你的应用程序可以用的图标文件(*.png、*.jpg)</p><p>layout：界面布局文件(main.xml)与WEB应用中的HTML类同，没修改过的main.xml文件如下（HelloWorld的就没有修改过）：</p><p><pre>&lt;?xml version="1.0" encoding="utf-8"?&gt;</p><p>&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"</p><p>    android:orientation="vertical"</p><p>    android:layout_width="fill_parent"</p><p>    android:layout_height="fill_parent"</p><p>    &gt;</p><p>&lt;TextView  </p><p>    android:layout_width="fill_parent" </p><p>    android:layout_height="wrap_content" </p><p>    android:text="@string/hello"</p><p>    /&gt;</p><p>&lt;/LinearLayout&gt;</p><p></pre></p><p>values：软件上所需要显示的各种文字。可以存放多个*.xml文件，还可以存放不同类型的数据。比如arrays.xml、colors.xml、dimens.xml、styles.xml</p><p style="color:#3333FF;">1.6、AndroidManifest.xml</p><p>项目的总配置文件，记录应用中所使用的各种组件。这个文件列出了应用程序所提供的功能，在这个文件中，你可以指定应用程序使用到的服务(如电话服务、互联网服务、短信服务、GPS服务等等)。另外当你新添加一个Activity的时候，也需要在这个文件中进行相应配置，只有配置好后，才能调用此Activity。AndroidManifest.xml将包含如下设置：application permissions、Activities、intent filters等。</p><p>如果你跟我一样是ASP.NET出生或者学过，你会发现AndroidManifest.xml跟web.config文件很像，可以把它类同于web.config文件理解。</p><p>如果你不是，你可以这样理解——众所周知xml是一种数据交换格式，AndroidManifest.xml就是用来存储一些数据的，只不过这些数据时关于android项目的配置数据。</p><p>HelloWorld项目的AndroidManifest.xml如下所示：</p><p><pre>&lt;?xml version="1.0" encoding="utf-8"?&gt;</p><p>&lt;manifest xmlns:android="http://schemas.android.com/apk/res/android"</p><p>      package="helloworld.test"</p><p>      android:versionCode="1"</p><p>      android:versionName="1.0"&gt;</p><p>    &lt;application android:icon="@drawable/icon" android:label="@string/app_name"&gt;</p><p>        &lt;activity android:name=".HelloWorld"</p><p>                  android:label="@string/app_name"&gt;</p><p>            &lt;intent-filter&gt;</p><p>                &lt;action android:name="android.intent.action.MAIN" /&gt;</p><p>                &lt;category android:name="android.intent.category.LAUNCHER" /&gt;</p><p>            &lt;/intent-filter&gt;</p><p>        &lt;/activity&gt;</p><p>    &lt;/application&gt;</p><p>&lt;/manifest&gt; </p><p></pre></p><p>关于AndroidManifest.xml现在就讲这么多，此系列后面的文章将单独详细介绍。</p><p style="color:#3333FF;">1.7、default.properties</p><p>记录项目中所需要的环境信息，比如Android的版本等。 HelloWorld的default.properties文件代码如下所示，代码中的注释已经把default.properties解释得很清楚了：</p><p><pre> This file is automatically generated by Android Tools.</p><p> Do not modify this file -- YOUR CHANGES WILL BE ERASED!</p><p> </p><p> This file must be checked in Version Control Systems.</p><p> </p><p> To customize properties used by the Ant build system use,</p><p> "build.properties", and override values to adapt the script to your</p><p> project structure.</p><p></p><p> Indicates whether an apk should be generated for each density.</p><p>split.density=false</p><p> Project target.</p><p>target=android-7</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

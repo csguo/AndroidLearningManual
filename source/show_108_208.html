@@ -1,0 +1,60 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 中的telephony（三）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li class="navcurrentLink"><A href="index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Launcher" href="index_207.html">Launcher</A></h2>
+
+  <h2><A title="电话系统RIL" href="index_208.html">电话系统RIL</A></h2>
+<UL><li ><A title=Android RIL结构分析与移植一 href="show_101_208.html">Android RIL结构分析与移植一</A> </li><li ><A title=Android RIL结构分析与移植二 href="show_102_208.html">Android RIL结构分析与移植二</A> </li><li ><A title=Android RIL结构分析与移植三 href="show_103_208.html">Android RIL结构分析与移植三</A> </li><li ><A title=Android RIL 调试（一） href="show_104_208.html">Android RIL 调试（一）</A> </li><li ><A title=Android RIL 调试（二） href="show_105_208.html">Android RIL 调试（二）</A> </li><li ><A title=Android 中的telephony（一） href="show_106_208.html">Android 中的telephony（一）</A> </li><li ><A title=Android 中的telephony（二） href="show_107_208.html">Android 中的telephony（二）</A> </li><li class="currentLink"><A title=Android 中的telephony（三） href="show_108_208.html">Android 中的telephony（三）</A> </li></UL>
+  <h2><A title="进程间通信" href="index_209.html">进程间通信</A></h2>
+
+  <h2><A title="内部sensor系统" href="index_210.html">内部sensor系统</A></h2>
+
+  <h2><A title="内部surface系统" href="index_211.html">内部surface系统</A></h2>
+
+  <h2><A title="启动流程" href="index_212.html">启动流程</A></h2>
+
+  <h2><A title="源码编译" href="index_213.html">源码编译</A></h2>
+
+  <h2><A title="状态栏" href="index_214.html">状态栏</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 中的telephony（三）</H2>
+<div style="line-height:20px; font-size:14px;"><p>下面来研究一个incoming call的流程：</p><p>1. 创建GsmPhone时，mCT = new GsmCallTracker(this);</p><p>2. 创建GsmCallTracker时:</p><p><pre>cm.registerForCallStateChanged(this, EVENT_CALL_STATE_CHANGE, null); --&gt;    </p><p>mCallStateRegistrants.add(r); </p><p></pre></p><p>3. RIL中的RILReceiver线程首先读取从rild中传来的数据：processResponse -&gt; processUnsolicited。</p><p>4. 对应于incoming call,RIL收到RIL_UNSOL_RESPONSE_CALL_STATE_CHANGED 消息，触发mCallStateRegistrants中的所有记录。</p><p>5. GsmCallTracker处理EVENT_CALL_STATE_CHANGE，调用pollCallsWhenSafe。</p><p>6. 函数pllCallsWhenSafe 处理：</p><p><pre>lastRelevantPoll = obtainMessage(EVENT_POLL_CALLS_RESULT);</p><p>cm.getCurrentCalls(lastRelevantPoll);</p><p></pre></p><p>7. RIL::getCurrentCalls</p><p><pre>RILRequest rr = RILRequest.obtain(RIL_REQUEST_GET_CURRENT_CALLS, result);</p><p>...</p><p>send(rr);	</p><p></pre></p><p>8. 接着RIL调用processSolicited处理RIL_REQUEST_GET_CURRENT_CALLS的返回结果。</p><p>9. GsmCallTracker的handleMessage被触发，处理事件EVENT_POLL_CALLS_RESULT，调用函数handlePollCalls</p><p>10.handlPollCalls 调用phone.notifyNewRingingConnection(newRinging);</p><p>11. PhoneApp中创建CallNotifier</p><p>12. CallNotifier注册：</p><p><pre>registerForNewRingingConnection -&gt; mNewRingingConnectionRegistrants.addUnique(h, what, obj);</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

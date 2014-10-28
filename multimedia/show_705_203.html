@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android多媒体分析（五）音乐播放器实例_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li class="navcurrentLink"><A href="index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Android多媒体功能" href="index_196.html">Android多媒体功能</A></h2>
+
+  <h2><A title="Android多媒体之2D" href="index_197.html">Android多媒体之2D</A></h2>
+
+  <h2><A title="Android多媒体之3D" href="index_198.html">Android多媒体之3D</A></h2>
+
+  <h2><A title="Android多媒体之Bitmap" href="index_199.html">Android多媒体之Bitmap</A></h2>
+
+  <h2><A title="Android多媒体之Canvas" href="index_200.html">Android多媒体之Canvas</A></h2>
+
+  <h2><A title="Android多媒体之Drawable" href="index_201.html">Android多媒体之Drawable</A></h2>
+
+  <h2><A title="Android多媒体之gif" href="index_202.html">Android多媒体之gif</A></h2>
+
+  <h2><A title="Android多媒体之MediaStore" href="index_203.html">Android多媒体之MediaStore</A></h2>
+<UL><li ><A title=Android多媒体分析（一）MediaScanner href="show_701_203.html">Android多媒体分析（一）MediaScanner</A> </li><li ><A title=Android多媒体分析（二）MediaStore href="show_702_203.html">Android多媒体分析（二）MediaStore</A> </li><li ><A title=Android多媒体分析（三）通过MediaStore获取Audio信息 href="show_703_203.html">Android多媒体分析（三）通过MediaStore获取Audio信息</A> </li><li ><A title=Android多媒体分析（四）AudioManager href="show_704_203.html">Android多媒体分析（四）AudioManager</A> </li><li class="currentLink"><A title=Android多媒体分析（五）音乐播放器实例 href="show_705_203.html">Android多媒体分析（五）音乐播放器实例</A> </li><li ><A title=Android 音乐资源管理与播放（一） href="show_706_203.html">Android 音乐资源管理与播放（一）</A> </li><li ><A title=07_Android音乐资源管理与播放（二） href="show_707_203.html">07_Android音乐资源管理与播放（二）</A> </li></UL>
+  <h2><A title="Android多媒体之动画" href="index_204.html">Android多媒体之动画</A></h2>
+
+  <h2><A title="Android多媒体之分辨率" href="index_205.html">Android多媒体之分辨率</A></h2>
+
+  <h2><A title="Android多媒体之分屏幕" href="index_206.html">Android多媒体之分屏幕</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android多媒体分析（五）音乐播放器实例</H2>
+<div style="line-height:20px; font-size:14px;"><p>总之说了这么多上个例子让大家看看吧！先来个简单的例子，上图：</p><p><img src="../img/media_store/05_mediastore.jpg"></p><p>先说说这个程序的基本框架吧：这个程序有两个线程一个Main负责播放音乐，一个Handler负责更新数据，这个播放器是通过ContentProvider获取存在数据库中的相关信息，然后播放音乐。附上代码：</p><p>这里注释挺详细的如果有什么不明白的可以看前几篇文章，里面有详细解释：</p><p><pre><font class="keyword">public </font><font class="keyword">void </font>onCreate(Bundle savedInstanceState) {</p><p>	<font class="keyword">super</font>.onCreate(savedInstanceState);</p><p>	setContentView(R.layout.main);</p><p>	<font class="Comments">// 初始化各种控件</font></p><p>	ProceseekBar2 = (SeekBar) findViewById(R.id.seekBar1); <font class="Comments">// ProceseekBar2是调节播放进度的拖动条</font></p><p>	SoundseekBar = (SeekBar) findViewById(R.id.seekBar2); <font class="Comments">// SoundseekBar是调节音量的拖动条</font></p><p>	button = (Button) findViewById(R.id.button1);</p><p>	nowPlayTime = (TextView) findViewById(R.id.textView1);</p><p>	allTime = (TextView) findViewById(R.id.textView2);</p><p>	volumeView = (TextView) findViewById(R.id.textView3);</p><p>	maxVolumeTextView = (TextView) findViewById(R.id.textView4);</p><p>	songNameTV = (TextView) findViewById(R.id.songName);</p><p>	songTitleTV = (TextView) findViewById(R.id.songTitle);</p><p>	</font>button.setOnClickListener(<font class="keyword">new </font>ButtonListener());</p><p>	<font class="Comments">// 获取歌曲的相关信息</font></p><p>	getSongInfo();</p><p>	<font class="Comments">// 显示歌曲名称和歌手</font></p><p>	</font>songTitleTV.setText(<font class="Fields">"歌曲名称："</font> + songTitle);</p><p>	</font>songNameTV.setText(<font class="Fields">"歌手："</font> + songName);</p><p>	</font>mediaPlayer = <font class="keyword">new </font>MediaPlayer();</p><p>	audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);</p><p>	<font class="Comments">// 获取最大音量getStreamMaxVolume</font></p><p>	<font class="keyword">int </font>MaxSound = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);</p><p>	maxVolumeTextView.setText(String.valueOf(MaxSound));</p><p>	<font class="Comments">// 设置音量的最大范围</font></p><p>	SoundseekBar.setMax(MaxSound);</p><p>	<font class="Comments">// 获取当前音量范围getStreamVolume</font></p><p>	<font class="keyword">int </font>currentSount = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);</p><p>	volumeView.setText(String.valueOf(currentSount));</p><p>	SoundseekBar.setProgress(currentSount);</p><p>	</font>SoundseekBar.setOnSeekBarChangeListener(<font class="keyword">new </font>SeekBarListener());</p><p>	</font>ProceseekBar2.setOnSeekBarChangeListener(<font class="keyword">new </font>ProcessBarListener());</p><p>}</p><p><font class="Comments">// 从数据库读取歌曲信息，此处只做了读取数据库中第一首歌曲的信息</font></p><p><font class="keyword">private </font><font class="keyword">void </font>getSongInfo() {</p><p>	ContentResolver cr = getContentResolver();</p><p>	<font class="Comments">/**</font></p><p>	 <font class="Comments">* 此处的query是ContentResolver,不是数据库的,因此必须得到一个ContentResolver对象</font></p><p>	 <font class="Comments">* 返回所有在外部存储卡上的音乐文件的信息 第二个参数Null则返回所有信息</font></p><p>	 <font class="Comments">*/</font></p><p>	</font>Cursor c = cr.query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, <font class="keyword">null</font>,</p><p>			<font class="keyword">null</font>, </font><font class="keyword">null</font>, MediaStore.Audio.Media.DEFAULT_SORT_ORDER);</p><p>	<font class="keyword">if </font>(c == </font><font class="keyword">null</font>) {</p><p>		</font>Toast.makeText(<font class="keyword">this</font>, <font class="Fields">"没有歌曲信息"</font>, Toast.LENGTH_SHORT).show();</p><p>	</font>} <font class="keyword">else </font>{</p><p>		<font class="keyword">if </font>(c.moveToFirst()) {</p><p>			<font class="Comments">// 获取歌曲的ID</font></p><p>			<font class="Comments">// int id =</font></p><p>			<font class="Comments">// c.getInt(c.getColumnIndexOrThrow(MediaStore.Audio.Media._ID));</font></p><p>			<font class="Comments">// int testid =</font></p><p>			<font class="Comments">// c.getColumnIndexOrThrow(MediaStore.Audio.Media._ID);</font></p><p>			<font class="Comments">// <font class="Comments">// 从此处可以看出歌曲信息的在队列中</div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

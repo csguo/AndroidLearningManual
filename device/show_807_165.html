@@ -1,0 +1,70 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android的Audio系统之五_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li class="navcurrentLink"><A href="index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="设备信息" href="index_157.html">设备信息</A></h2>
+
+  <h2><A title="摄像头" href="index_158.html">摄像头</A></h2>
+
+  <h2><A title="通讯录" href="index_159.html">通讯录</A></h2>
+
+  <h2><A title="电话" href="index_160.html">电话</A></h2>
+
+  <h2><A title="短信" href="index_161.html">短信</A></h2>
+
+  <h2><A title="传感器" href="index_162.html">传感器</A></h2>
+
+  <h2><A title="定位" href="index_163.html">定位</A></h2>
+
+  <h2><A title="视频系统" href="index_164.html">视频系统</A></h2>
+
+  <h2><A title="音频系统" href="index_165.html">音频系统</A></h2>
+<UL><li ><A title=Android Audio框架 href="show_801_165.html">Android Audio框架</A> </li><li ><A title=Android Audio抽象层的接口 href="show_802_165.html">Android Audio抽象层的接口</A> </li><li ><A title=Android的Audio系统之一 href="show_803_165.html">Android的Audio系统之一</A> </li><li ><A title=Android的Audio系统之二 href="show_804_165.html">Android的Audio系统之二</A> </li><li ><A title=Android的Audio系统之三 href="show_805_165.html">Android的Audio系统之三</A> </li><li ><A title=Android的Audio系统之四 href="show_806_165.html">Android的Audio系统之四</A> </li><li class="currentLink"><A title=Android的Audio系统之五 href="show_807_165.html">Android的Audio系统之五</A> </li><li ><A title=Android的Audio系统之六 href="show_808_165.html">Android的Audio系统之六</A> </li><li ><A title=Android的Audio系统之七 href="show_809_165.html">Android的Audio系统之七</A> </li><li ><A title=Android 深入研究MediaRecorder类 href="show_810_165.html">Android 深入研究MediaRecorder类</A> </li><li ><A title=Android 讲述MediaPlayer href="show_811_165.html">Android 讲述MediaPlayer</A> </li></UL>
+  <h2><A title="铃声" href="index_166.html">铃声</A></h2>
+
+  <h2><A title="音量" href="index_167.html">音量</A></h2>
+
+  <h2><A title="录音" href="index_168.html">录音</A></h2>
+
+  <h2><A title="输入法" href="index_169.html">输入法</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android的Audio系统之五</H2>
+<div style="line-height:20px; font-size:14px;"><p style="color:#3333FF;">Audio的硬件抽象层</p><p style="color:#3333FF;">Audio硬件抽象层的接口定义</p><p>Audio的硬件抽象层是AudioFlinger和Audio硬件的接口，在各个系统的移植过程中可以有不同的实现方式。Audio硬件抽象层的接口路径为：</p><p>hardware/libhardware_legacy/include/hardware/</p><p>其中主要的文件为：AudioHardwareBase.h和AudioHardwareInterface.h。</p><p>Android中的Audio硬件抽象层可以基于Linux标准的ALSA或OSS音频驱动实现，也可以基于私有的Audio驱动接口来实现。</p><p>在AudioHardwareInterface.h中定义了类：AudioStreamOut、AudioStreamIn和AudioHardwareInterface。AudioStreamOut和AudioStreamIn的主要定义如下所示：</p><p><pre><font class="keyword">class </font>AudioStreamOut {  </p><p>public:  </p><p>    virtual ~AudioStreamOut() = 0;</p><p>    </font>virtual status_t setVolume(<font class="keyword">float </font>volume) = 0;</p><p>    virtual ssize_t write(const void* buffer, size_t bytes) = 0;</p><p>    <font class="Comments">//......  省略部分内容</font></p><p>};  </p><p></p><p><font class="keyword">class </font>AudioStreamIn {  </p><p>public:  </p><p>    virtual ~AudioStreamIn() = 0;</p><p>    </font>virtual status_t setGain(<font class="keyword">float </font>gain) = 0;</p><p>    virtual ssize_t read(void* buffer, ssize_t bytes) = 0;</p><p>    <font class="Comments">//......  省略部分内容</font></p><p>};</p><p></pre></p><p>AudioStreamOut和AudioStreamIn分别对应了音频的输出环节和输入环节，其中负责数据流的接口分别是wirte()和read()，参数是一块内存的指针和长度；另外还有一些设置和获取接口。</p><p>Audio的硬件抽象层主体AudioHardwareInterface类的定义如下所示：</p><p><pre><font class="keyword">class </font>AudioHardwareInterface  </p><p>{  </p><p>public:  </p><p>    virtual status_t    initCheck() = 0;</p><p>    </font>virtual status_t    setVoiceVolume(<font class="keyword">float </font>volume) = 0;</p><p>    </font>virtual status_t    setMasterVolume(<font class="keyword">float </font>volume) = 0;</p><p>    </font>virtual status_t    setRouting(<font class="keyword">int </font>mode, uint32_t routes) = 0;</p><p>    </font>virtual status_t    getRouting(<font class="keyword">int </font>mode, uint32_t* routes) = 0;</p><p>    </font>virtual status_t    setMode(<font class="keyword">int </font>mode) = 0;</p><p>    virtual status_t    getMode(int* mode) = 0;</p><p>    <font class="Comments">//......  省略部分内容</font></p><p>    virtual AudioStreamOut* openOutputStream(       <font class="Comments">// 打开输出流</font></p><p>            <font class="keyword">int </font>format=0,  </p><p>            <font class="keyword">int </font>channelCount=0,  </p><p>            uint32_t sampleRate=0,</p><p>            status_t *status=0) = 0;</p><p>    virtual AudioStreamIn* openInputStream(         <font class="Comments">// 打开输入流</font></p><p>            <font class="keyword">int </font>format,  </p><p>            <font class="keyword">int </font>channelCount,  </p><p>            uint32_t sampleRate,</p><p>            status_t *status,</p><p>            AudioSystem::audio_in_acoustics acoustics) = 0;</p><p>    <font class="keyword">static </font>AudioHardwareInterface* create();  </p><p>};</p><p></pre></p><p>在这个AudioHardwareInterface接口中，使用openOutputStream()和openInputStream()函数分别获取AudioStreamOut和AudioStreamIn两个类，它们作为音频输入/输出设备来</p><p>使用。</p><p>此外，AudioHardwareInterface.h定义了C语言的接口来获取一个AudioHardware Interface类型的指针。</p><p><pre>extern <font class="Fields">"C"</font> AudioHardwareInterface* createAudioHardware(void);</p><p></pre></p><p>如果实现一个Android的硬件抽象层，则需要实现AudioHardwareInterface、AudioStream Out和AudioStreamIn三个类，将代码编译成动态库libauido.so。AudioFlinger会连接这个动态库，并调用其中的createAudioHardware()函数来获取接口。</p><p>在AudioHardwareBase.h中定义了类：AudioHardwareBase，它继承了Audio HardwareInterface，显然继承这个接口也可以实现Audio的硬件抽象层。</p><p>提示：Android系统的Audio硬件抽象层可以通过继承类AudioHardwareInterface来实现，其中分为控制部分和输入/输出处理部分。</p><p style="color:#3333FF;">AudioFlinger中自带Audio硬件抽象层实现（1）</p><p>在AudioFlinger中可以通过编译宏的方式选择使用哪一个Audio硬件抽象层。这些Audio硬件抽象层既可以作为参考设计，也可以在没有实际的Audio硬件抽象层（甚至没有Audio设备）时使用，以保证系统的正常运行。</p><p>在AudioFlinger的编译文件Android.mk中，具有如下的定义：</p><p><pre>ifeq ($(strip $(BOARD_USES_GENERIC_AUDIO)),true)  </p><p>    LOCAL_STATIC_LIBRARIES += libaudiointerface  </p><p>else</p><p>    LOCAL_SHARED_LIBRARIES += libaudio  </p><p>endif  </p><p>    LOCAL_MODULE:= libaudioflinger  </p><p>    include $(BUILD_SHARED_LIBRARY)</p><p></pre></p><p>定义的含义为：当宏BOARD_USES_GENERIC_AUDIO为true时，连接libaudiointer face.a静态库；当BOARD_USES_GENERIC_AUDIO为false时，连接libaudiointerface.so动态库。在正常的情况下，一般是使用后者，即在另外的地方实现libaudiointerface.so动态库，由AudioFlinger的库libaudioflinger.so来连接使用。</p><p>libaudiointerface.a也在这个Android.mk中生成：</p><p><pre>include $(CLEAR_VARS)  </p><p>LOCAL_SRC_FILES:= \  </p><p>    AudioHardwareGeneric.cpp \  </p><p>    AudioHardwareStub.cpp \  </p><p>    AudioDumpInterface.cpp \  </p><p>    AudioHardwareInterface.cpp  </p><p>LOCAL_SHARED_LIBRARIES := \  </p><p>    libcutils \  </p><p>    libutils \  </p><p>    libmedia \  </p><p>    libhardware_legacy  </p><p>ifeq ($(strip $(BOARD_USES_GENERIC_AUDIO)),true)  </p><p>    LOCAL_CFLAGS += -DGENERIC_AUDIO  </p><p>endif  </p><p>    LOCAL_MODULE:= libaudiointerface  </p><p>    include $(BUILD_STATIC_LIBRARY)</p><p></pre></p><p>以上内容通过编译4个源文件，生成了libaudiointerface.a静态库。其中AudioHard wareInterface.cpp负责实现基础类和管理，而AudioHardwareGeneric.cpp、AudioHard wareStub.cpp和AudioDumpInterface.cpp三个文件各自代表一种Auido硬件抽象层的实现。</p><p>AudioHardwareGeneric.cpp：实现基于特定驱动的通用Audio硬件抽象层；</p><p>AudioHardwareStub.cpp：实现Audio硬件抽象层的一个桩；</p><p>AudioDumpInterface.cpp：实现输出到文件的Audio硬件抽象层。</p><p>在AudioHardwareInterface.cpp中，实现了Audio硬件抽象层的创建函数AudioHardwareInterface::create()，内容如下所示：</p><p><pre>AudioHardwareInterface* AudioHardwareInterface::create()  </p><p>{  </p><p>    AudioHardwareInterface* hw = 0;</p><p>    char value[PROPERTY_VALUE_MAX];</p><p>    ifdef GENERIC_AUDIO  </p><p>    	</font>hw = <font class="keyword">new </font>AudioHardwareGeneric(); <font class="Comments">// 使用通用的Audio硬件抽象层</font></p><p>    else</p><p>        <font class="keyword">if </font>(property_get(<font class="Fields">"ro.kernel.qemu"</font>, value, 0)) {  </p><p>            </font>LOGD(<font class="Fields">"Running in emulation - using generic audio driver"</font>);</p><p>            </font>hw = <font class="keyword">new </font>AudioHardwareGeneric();</p><p>        </font>} <font class="keyword">else </font>{  </p><p>            </font>LOGV(<font class="Fields">"Creating Vendor Specific AudioHardware"</font>);</p><p>            hw = createAudioHardware(); <font class="Comments">// 使用实际的Audio硬件抽象层</font></p><p>        }  </p><p>    </font>end<font class="keyword">if </font> </p><p>    <font class="keyword">if </font>(hw-&gt;initCheck() != NO_ERROR) {  </p><p>        </font>LOGW(<font class="Fields">"Using stubbed audio hardware. No sound will be produced."</font>);</p><p>        delete hw;</p><p>        </font>hw = <font class="keyword">new </font>AudioHardwareStub(); <font class="Comments">// 使用实际的Audio硬件抽象层的桩实现</font></p><p>    }  </p><p>    ifdef DUMP_FLINGER_OUT  </p><p>        </font>hw = <font class="keyword">new </font>AudioDumpInterface(hw); <font class="Comments">// 使用实际的Audio的Dump接口实现</font></p><p>    </font>end<font class="keyword">if </font> </p><p>    	<font class="keyword">return </font>hw;  </p><p>}</p><p></pre></p><p>根据GENERIC_AUDIO、DUMP_FLINGER_OUT等宏选择创建几个不同的Audio硬件抽象层，最后返回的接口均为AudioHardwareInterface类型的指针。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

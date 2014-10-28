@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>AsyncTask在Android中的实现_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li class="navcurrentLink"><A href="index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Activity" href="index_112.html">Activity</A></h2>
+
+  <h2><A title="Intent" href="index_113.html">Intent</A></h2>
+
+  <h2><A title="Service" href="index_114.html">Service</A></h2>
+
+  <h2><A title="Content Provider" href="index_115.html">Content Provider</A></h2>
+
+  <h2><A title="BroadcastReceiver" href="index_116.html">BroadcastReceiver</A></h2>
+
+  <h2><A title="AsyncTask" href="index_117.html">AsyncTask</A></h2>
+<UL><li ><A title=Android 浅谈AsyncTask href="show_501_117.html">Android 浅谈AsyncTask</A> </li><li class="currentLink"><A title=AsyncTask在Android中的实现 href="show_502_117.html">AsyncTask在Android中的实现</A> </li><li ><A title=AsyncTask几点要注意的地方 href="show_503_117.html">AsyncTask几点要注意的地方</A> </li><li ><A title=AsyncTask代替Handler更改主线程UI显示 href="show_504_117.html">AsyncTask代替Handler更改主线程UI显示</A> </li><li ><A title=实例讲解Android中如何实现图片的异步加载功能 href="show_505_117.html">实例讲解Android中如何实现图片的异步加载功能</A> </li><li ><A title=一个异步任务AsyncTask的例子 href="show_506_117.html">一个异步任务AsyncTask的例子</A> </li></UL>
+  <h2><A title="Handler" href="index_118.html">Handler</A></h2>
+
+  <h2><A title="Thread" href="index_119.html">Thread</A></h2>
+
+  <h2><A title="Permission" href="index_120.html">Permission</A></h2>
+
+  <h2><A title="AIDL" href="index_121.html">AIDL</A></h2>
+
+  <h2><A title="Json" href="index_122.html">Json</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>AsyncTask在Android中的实现</H2>
+<div style="line-height:20px; font-size:14px;"><p>在单线程模型中始终要记住两条法则： </p><p>1、不要阻塞UI线程。</p><p>2、确保只在UI线程中访问Android UI工具包。</p><p>比如说从网上获取一个网页，在一个TextView中将其源代码显示出来，这种涉及到网络操作的程序一般都是需要开一个线程完成网络访问，但是在获得页面源码后，是不能直接在网络操作线程中调用TextView.setText()的。因为其他线程中是不能直接访问主UI线程成员。</p><p>这些类或方法同样会使你的代码很复杂很难理解。然而当你需要实现一些很复杂的操作并需要频繁地更新UI时这会变得更糟糕。 </p><p>为了解决这个问题，Android1.5提供了一个工具类：AsyncTask，它使创建需要与用户界面交互的长时间运行的任务变得更简单。不需要借助线程和Handler即可实现。 </p><p>AsyncTask是抽象类.AsyncTask定义了三种泛型类型 Params，Progress和Result。 </p><p>1、Params 启动任务执行的输入参数，比如HTTP请求的URL。 </p><p>2、Progress 后台任务执行的百分比。 </p><p>3、Result 后台执行任务最终返回的结果，比如String。 </p><p style="color:#3333FF;">子类化AsyncTask </p><p>实现AsyncTask中定义的下面一个或几个方法</p><p>为了正确的使用AsyncTask类，以下是几条必须遵守的准则： </p><p>1) Task的实例必须在UI thread中创建。</p><p>2) execute方法必须在UI thread中调用。</p><p>3) 不要手动的调用onPreExecute()，onPostExecute(Result)，doInBackground(Params...), onProgressUpdate(Progress...)这几个方法。</p><p>4) 该task只能被执行一次，否则多次调用时将会出现异常。</p><p><pre><font class="keyword">import </font>java.io.ByteArrayOutputStream;</p><p><font class="keyword">import </font>java.io.InputStream;</p><p><font class="keyword">import </font>java.util.ArrayList;</p><p><font class="keyword">import </font>org.apache.http.HttpEntity;</p><p><font class="keyword">import </font>org.apache.http.HttpResponse;</p><p><font class="keyword">import </font>org.apache.http.client.HttpClient;</p><p><font class="keyword">import </font>org.apache.http.client.methods.HttpGet;</p><p><font class="keyword">import </font>org.apache.http.impl.client.DefaultHttpClient;</p><p><font class="keyword">import </font>android.app.Activity;</p><p><font class="keyword">import </font>android.app.ProgressDialog;</p><p><font class="keyword">import </font>android.content.Context;</p><p><font class="keyword">import </font>android.content.DialogInterface;</p><p><font class="keyword">import </font>android.os.AsyncTask;</p><p><font class="keyword">import </font>android.os.Bundle;</p><p><font class="keyword">import </font>android.os.Handler;</p><p><font class="keyword">import </font>android.os.Message;</p><p><font class="keyword">import </font>android.view.View;</p><p><font class="keyword">import </font>android.widget.Button;</p><p><font class="keyword">import </font>android.widget.EditText;</p><p><font class="keyword">import </font>android.widget.TextView;</p><p><font class="keyword">public </font><font class="keyword">class </font>NetworkActivity </font><font class="keyword">extends </font>Activity {</p><p>	<font class="keyword">private </font>TextView message;</p><p>	<font class="keyword">private </font>Button open;</p><p>	<font class="keyword">private </font>EditText url;</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onCreate(Bundle savedInstanceState) {</p><p>		<font class="keyword">super</font>.onCreate(savedInstanceState);</p><p>		setContentView(R.layout.network);</p><p>		message = (TextView) findViewById(R.id.message);</p><p>		url = (EditText) findViewById(R.id.url);</p><p>		open = (Button) findViewById(R.id.open);</p><p>		</font>open.setOnClickListener(<font class="keyword">new </font>View.OnClickListener() {</p><p>			<font class="keyword">public </font><font class="keyword">void </font>onClick(View arg0) {</p><p>				connect();</p><p>			}</p><p>		});</p><p></p><p>	}</p><p>	<font class="keyword">private </font><font class="keyword">void </font>connect() {</p><p>		</font>PageTask task = <font class="keyword">new </font>PageTask(</font><font class="keyword">this</font>);</p><p>		task.execute(url.getText().toString());</p><p>	}</p><p>	<font class="keyword">class </font>PageTask </font><font class="keyword">extends </font>AsyncTask&lt;String, Integer, String&gt; {</p><p>		<font class="Comments">// 可变长的输入参数，与AsyncTask.exucute()对应</font></p><p>		ProgressDialog pdialog;</p><p>		<font class="keyword">public </font>PageTask(Context context) {</p><p>			</font>pdialog = <font class="keyword">new </font>ProgressDialog(context, 0);</p><p>			</font>pdialog.setButton(<font class="Fields">"cancel"</font>, <font class="keyword">new </font>DialogInterface.OnClickListener() {</p><p>				<font class="keyword">public </font><font class="keyword">void </font>onClick(DialogInterface dialog, </font><font class="keyword">int </font>i) {</p><p>					dialog.cancel();</p><p>				}</p><p>			});</p><p>			</font>pdialog.setOnCancelListener(<font class="keyword">new </font>DialogInterface.OnCancelListener() {</p><p>				<font class="keyword">public </font><font class="keyword">void </font>onCancel(DialogInterface dialog) {</p><p>					finish();</p><p>				}</p><p>			});</p><p>			</font>pdialog.setCancelable(<font class="keyword">true</font>);</p><p>			pdialog.setMax(100);</p><p>			pdialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);</p><p>			pdialog.show();</p><p>		}</p><p>		@Override</p><p>		<font class="keyword">protected </font>String doInBackground(String... params) {</p><p>			<font class="keyword">try </font>{</p><p>				</font>HttpClient client = <font class="keyword">new </font>DefaultHttpClient();</p><p>				<font class="Comments">// params[0]代表连接的url</font></p><p>				</font>HttpGet get = <font class="keyword">new </font>HttpGet(params[0]);</p><p>				HttpResponse response = client.execute(get);</p><p>				HttpEntity entity = response.getEntity();</p><p>				<font class="keyword">long </font>length = entity.getContentLength();</p><p>				InputStream is = entity.getContent();</p><p>				</font>String s = <font class="keyword">null</font>;</p><p>				<font class="keyword">if </font>(is != </font><font class="keyword">null</font>) {</p><p>					</font>ByteArrayOutputStream baos = <font class="keyword">new </font>ByteArrayOutputStream();</p><p>					</font>byte[] buf = <font class="keyword">new </font>byte[128];</p><p>					<font class="keyword">int </font>ch = -1;</p><p>					<font class="keyword">int </font>count = 0;</p><p></p><p>					<font class="keyword">while </font>((ch = is.read(buf)) != -1) {</p><p>						baos.write(buf, 0, ch);</p><p>						count += ch;</p><p></p><p>						<font class="keyword">if </font>(length &gt; 0) {</p><p>							<font class="Comments">// 如果知道响应的长度，调用publishProgress（）更新进度</font></p><p></p><p>							</font>publishProgress((<font class="keyword">int</font>) ((count / (</font><font class="keyword">float</font>) length) * 100));</p><p>						}</p><p>						<font class="Comments">// 让线程休眠100ms</font></p><p>						Thread.sleep(100);</p><p>					}</p><p>					</font>s = <font class="keyword">new </font>String(baos.toByteArray());</p><p>				}</p><p>				<font class="Comments">// 返回结果</font></p><p>				<font class="keyword">return </font>s;</p><p>			</font>} <font class="keyword">catch </font>(Exception e) {</p><p>				e.printStackTrace();</p><p>			}</p><p>			<font class="keyword">return </font><font class="keyword">null</font>;</p><p>		}</p><p>		@Override</p><p>		<font class="keyword">protected </font><font class="keyword">void </font>onCancelled() {</p><p>			<font class="keyword">super</font>.onCancelled();</p><p>		}</p><p>		@Override</p><p>		<font class="keyword">protected </font><font class="keyword">void </font>onPostExecute(String result) {</p><p>			<font class="Comments">// 返回HTML页面的内容</font></p><p>			message.setText(result);</p><p>			pdialog.dismiss();</p><p>		}</p><p>		@Override</p><p>		<font class="keyword">protected </font><font class="keyword">void </font>onPreExecute() {</p><p>			<font class="Comments">// 任务启动，可以在这里显示一个对话框，这里简单处理</font></p><p>			message.setText(R.string.task_started);</p><p>		}</p><p>		@Override</p><p>		<font class="keyword">protected </font><font class="keyword">void </font>onProgressUpdate(Integer... values) {</p><p>			<font class="Comments">// 更新进度</font></p><p>			</font>System.<font class="Fields">out</font>.println(</font><font class="Fields">""</font> + values[0]);</p><p>			</font>message.setText(<font class="Fields">""</font> + values[0]);</p><p>			pdialog.setProgress(values[0]);</p><p>		}</p><p>	}</p><p>}</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

@@ -1,0 +1,89 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android学习手册_Android组件</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li class="navcurrentLink"><A href="index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">Android组件</div>
+
+  <h2 ><A title="Activity" href="index_112.html">Activity</A></h2>
+
+  <h2 ><A title="Intent" href="index_113.html">Intent</A></h2>
+
+  <h2 ><A title="Service" href="index_114.html">Service</A></h2>
+
+  <h2 ><A title="Content Provider" href="index_115.html">Content Provider</A></h2>
+
+  <h2 ><A title="BroadcastReceiver" href="index_116.html">BroadcastReceiver</A></h2>
+
+  <h2 class="currentLink"><A title="AsyncTask" href="index_117.html">AsyncTask</A></h2>
+<UL><li class="currentLink"><A title=Android 浅谈AsyncTask href="show_501_117.html">Android 浅谈AsyncTask</A> </li><li ><A title=AsyncTask在Android中的实现 href="show_502_117.html">AsyncTask在Android中的实现</A> </li><li ><A title=AsyncTask几点要注意的地方 href="show_503_117.html">AsyncTask几点要注意的地方</A> </li><li ><A title=AsyncTask代替Handler更改主线程UI显示 href="show_504_117.html">AsyncTask代替Handler更改主线程UI显示</A> </li><li ><A title=实例讲解Android中如何实现图片的异步加载功能 href="show_505_117.html">实例讲解Android中如何实现图片的异步加载功能</A> </li><li ><A title=一个异步任务AsyncTask的例子 href="show_506_117.html">一个异步任务AsyncTask的例子</A> </li></UL>
+  <h2 ><A title="Handler" href="index_118.html">Handler</A></h2>
+
+  <h2 ><A title="Thread" href="index_119.html">Thread</A></h2>
+
+  <h2 ><A title="Permission" href="index_120.html">Permission</A></h2>
+
+  <h2 ><A title="AIDL" href="index_121.html">AIDL</A></h2>
+
+  <h2 ><A title="Json" href="index_122.html">Json</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1>AsyncTask</H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 浅谈AsyncTask</H2>
+<P>　　首先明确Android之所以有Handler和AsyncTask，都是为了不阻塞主线程（UI线程），且UI的更新只能在主线程中完成，因此异步处理是不可避免的。Android 1.5提供了一个工具类：AsyncTask，它使创建需要与用户界面交互的</P>
+<P><A title="Android 浅谈AsyncTask" href="show_501_117.html">进入 Android 浅谈AsyncTask</A> </P></DIV>
+
+<DIV>
+<H2>AsyncTask在Android中的实现</H2>
+<P>　　在单线程模型中始终要记住两条法则： 1、不要阻塞UI线程。2、确保只在UI线程中访问Android UI工具包。比如说从网上获取一个网页，在一个TextView中将其源代码显示出来，这种涉及到网络操作的程序一般都是需要开一个</P>
+<P><A title="AsyncTask在Android中的实现" href="show_502_117.html">进入 AsyncTask在Android中的实现</A> </P></DIV>
+
+<DIV>
+<H2>AsyncTask几点要注意的地方</H2>
+<P>　　问题1：AsyncTask是多线程吗？答：是。问题2：AsyncTask与Handler相比，谁更轻量级？答：通过看源码，发现AsyncTask实际上就是一个线程池，而网上的说法是AsyncTask比handler要轻量级，显然上不准确的，只能这样说，</P>
+<P><A title="AsyncTask几点要注意的地方" href="show_503_117.html">进入 AsyncTask几点要注意的地方</A> </P></DIV>
+
+<DIV>
+<H2>AsyncTask代替Handler更改主线程UI显示</H2>
+<P>　　今天学习了一下AsyncTask这异步类的使用，也是从别人那里拿过来的，和大家分享一下，加了点注释。[code=java]#[Keywords]import #android.R;#[Keywords]import #android.app.Activity;#[Keywords]import #android.ap</P>
+<P><A title="AsyncTask代替Handler更改主线程UI显示" href="show_504_117.html">进入 AsyncTask代替Handler更改主线程UI显示</A> </P></DIV>
+
+<DIV>
+<H2>实例讲解Android中如何实现图片的异步加载功能</H2>
+<P>　　Android开发当中，经常会碰到图片的异步加载问题（也叫延时加载，英文叫Lazyload）。图片的读取工作是个比较耗时的工作，如果还是从互联网读取图片资源就更加耗时。如果在主线程里处理的时间过长，就会引发著名的应</P>
+<P><A title="实例讲解Android中如何实现图片的异步加载功能" href="show_505_117.html">进入 实例讲解Android中如何实现图片的异步加载功能</A> </P></DIV>
+
+<DIV>
+<H2>一个异步任务AsyncTask的例子</H2>
+<P>　　直接看代码，注释很详细[code=java]#[Keywords]import #android.app.Activity;#[Keywords]import #android.os.AsyncTask;#[Keywords]import #android.os.Bundle;#[Keywords]import #android.os.Handler;#[Keywords]i</P>
+<P><A title="一个异步任务AsyncTask的例子" href="show_506_117.html">进入 一个异步任务AsyncTask的例子</A> </P></DIV>
+
+</DIV>
+
+<DIV id=footer style="display:none">
+<P align="center"> 
+ 
+ 
+ 
+  </P>
+</DIV></DIV></BODY></HTML>
+

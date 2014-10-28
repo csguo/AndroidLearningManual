@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android手机模式详解_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li class="navcurrentLink"><A href="index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="开发基础" href="index_100.html">开发基础</A></h2>
+<UL><li ><A title=Android概述 href="show_1_100.html">Android概述</A> </li><li ><A title=Android架构 href="show_2_100.html">Android架构</A> </li><li ><A title=Linux简介 href="show_3_100.html">Linux简介</A> </li><li ><A title=Android中的库 href="show_4_100.html">Android中的库</A> </li><li ><A title=Android Apk文件结构简介 href="show_5_100.html">Android Apk文件结构简介</A> </li><li ><A title=Android SDK 目录和作用详解 href="show_6_100.html">Android SDK 目录和作用详解</A> </li><li ><A title=Android SDK中tools详解 href="show_7_100.html">Android SDK中tools详解</A> </li><li ><A title=Android 文件类型和MIME的匹配表 href="show_8_100.html">Android 文件类型和MIME的匹配表</A> </li><li class="currentLink"><A title=Android手机模式详解 href="show_9_100.html">Android手机模式详解</A> </li><li ><A title=Dalvik虚拟机简介 href="show_10_100.html">Dalvik虚拟机简介</A> </li></UL>
+  <h2><A title="开发环境搭建" href="index_101.html">开发环境搭建</A></h2>
+
+  <h2><A title="模拟器" href="index_102.html">模拟器</A></h2>
+
+  <h2><A title="Resource" href="index_103.html">Resource</A></h2>
+
+  <h2><A title="Manifest" href="index_104.html">Manifest</A></h2>
+
+  <h2><A title="ADB" href="index_105.html">ADB</A></h2>
+
+  <h2><A title="DDMS" href="index_106.html">DDMS</A></h2>
+
+  <h2><A title="Logcat(日志)" href="index_107.html">Logcat(日志)</A></h2>
+
+  <h2><A title="打包" href="index_108.html">打包</A></h2>
+
+  <h2><A title="文件处理" href="index_109.html">文件处理</A></h2>
+
+  <h2><A title="底层基础" href="index_111.html">底层基础</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android手机模式详解</H2>
+<div style="line-height:20px; font-size:14px;"><p>作为一款智能操作系统，Android和Windows Mobile以及Symbian系统一样具备多个系统模式，详细讲解各种系统模式的功能和进入方法。</p><p>Android系统中具备6个模式，分别为一般启动模式（normal mode）、安全模式（safe mode）、恢复模式（recovery mode）、引导模式（bootloader mode）、fastboot模式和诊断模式（diagnostic mode）。</p><p>1、一般启动模式（normal mode）的功能是正常启动手机，方法为关机状态下按电源键启动。</p><p>2、安全模式（safe mode）。</p><p>此模式和正常启动一样，但没有登记Google，所以不能访问Market或使用你的Google账号。操作方法为按住“menu”键，按电源键启动手机，直至手机启动完成松开“menu”键。</p><p>3、恢复模式（recovery mode）可打开命令解释程序（shell），刷新映像文件（flash image），执行备份等。当然这一切取决于你手机上的recovery image版本。使用方法很简单，就是home键和电源键一起按。</p><p>4、引导模式（bootloader mode）的功能是从SD卡上安装新的系统映像（DREAIMG.NBH），只需再按一次电源键。值得一提的事为Android手机获取root权限，就是使用这个模式。操作方法为照相键和电源键一起按。</p><p>5、fastboot模式主要是在电脑上使用fastboot命令来刷新映像文件。使用方法为按住返回键，按电源键启动手机，直至屏幕出现FASTBOOT字样后松开返回键。</p><p>6、诊断模式（diagnostic mode）是为了测试手机各项功能的模式，刻意通过轨迹球中心键和电源键打开。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

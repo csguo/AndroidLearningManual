@@ -1,0 +1,60 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>浅析HoneyComb中左下角三个导航键的实现源码_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li class="navcurrentLink"><A href="index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Launcher" href="index_207.html">Launcher</A></h2>
+
+  <h2><A title="电话系统RIL" href="index_208.html">电话系统RIL</A></h2>
+
+  <h2><A title="进程间通信" href="index_209.html">进程间通信</A></h2>
+
+  <h2><A title="内部sensor系统" href="index_210.html">内部sensor系统</A></h2>
+
+  <h2><A title="内部surface系统" href="index_211.html">内部surface系统</A></h2>
+
+  <h2><A title="启动流程" href="index_212.html">启动流程</A></h2>
+
+  <h2><A title="源码编译" href="index_213.html">源码编译</A></h2>
+
+  <h2><A title="状态栏" href="index_214.html">状态栏</A></h2>
+<UL><li ><A title=Android 软件中状态栏图标处理 href="show_701_214.html">Android 软件中状态栏图标处理</A> </li><li ><A title=Android 状态栏上添加按钮 href="show_702_214.html">Android 状态栏上添加按钮</A> </li><li ><A title=Android全屏 去除标题栏和状态栏 href="show_703_214.html">Android全屏 去除标题栏和状态栏</A> </li><li class="currentLink"><A title=浅析HoneyComb中左下角三个导航键的实现源码 href="show_704_214.html">浅析HoneyComb中左下角三个导航键的实现源码</A> </li><li ><A title=在android的状态栏(statusbar)中增加menu，home和back快捷键的方法 href="show_705_214.html">在android的状态栏(statusbar)中增加menu，home和back快捷键的方法</A> </li><li ><A title=在状态栏添加文字显示的解决方法 href="show_706_214.html">在状态栏添加文字显示的解决方法</A> </li><li ><A title=Android 状态栏提示的另一种方法（一） href="show_707_214.html">Android 状态栏提示的另一种方法（一）</A> </li><li ><A title=Android 状态栏提示的另一种方法（二） href="show_708_214.html">Android 状态栏提示的另一种方法（二）</A> </li></UL>
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>浅析HoneyComb中左下角三个导航键的实现源码</H2>
+<div style="line-height:20px; font-size:14px;"><p>HoneyComb中最下面是一栏类似Windows的状态栏，分为两个部分：左边是三个导航键：从左置右依次是：返回键，Home键和RecentApplication 键，就是查看最近打开的所有程序，多任务切换就在这里。  </p><p>这三个键为一个区域叫NavigationArea，即导航区。最右边是NotificationArea，也就是提示信息区，有电量，无线信号，蓝牙等信息显示。这条StatusBar,是无论打开哪个程序都会显示在最下方的。</p><p>因为最近项目中打开Browser时，按键盘的ESC键不会退出程序，但是按左下角的返回键可以退出。所以就想着看看这个返回键是如何让浏览器关闭的，那么我就在源码中让按ESC时的响应函数和它一样就可以了。</p><p>因为这条状态栏活跃在所有应用程序打开的时候，因此我想应该不会在Launcher中实现，大概是在FrameWorks下面实现。结果证明我的想法是对的。在Frameworks/base/Packages/SystemUI/ 下面找到了这三个按键的图片 ：默认显示的图片分别是ic_sysbar_back_default.png,ic_sysbar_home_default.png和ic_sysbar_recent_default.png。所以很自然可以知道界面肯定是在这里实现的。</p><p>查看布局文件（在res/Layout-xlarge/status_bar.xml)可以看到back键和home键是属于KeyButtonView这个类的，这个类后面再分析。而recentApp这个键是一个imageView。Menu键也在这里有定义，只是被默认设置为invisible。整个StatusBar的布局是TabletStatusBarView这个类，而这类是继承FrameLayout的。整个导航区三个键的布局还比较纠结，Back键是被包在RelativeLayout里面，靠左显示，而home键，recentApp键和menu键是又更深一层被包在一个LinearLayout里面。其它Notificatin的具体布局可以自己查看，都在这个status_bar.xml布局中。</p><p>在SystemUI/Tablet/TabletStatusBar.java中的 makeStatusBarView()函数中实现界面的初始化，这个函数的返回值类型是View。其中导航键实现</p><p><pre>mBackButton = (ImageView)sb.findViewById(R.id.back);</p><p>mNavigationArea = sb.findViewById(R.id.navigationArea);</p><p>mHomeButton = mNavigationArea.findViewById(R.id.home);</p><p>mMenuButton = mNavigationArea.findViewById(R.id.menu);</p><p>mRecentButton = mNavigationArea.findViewById(R.id.recent_apps);</p><p>mRecentButton.setOnClickListener(mOnClickListener);</p><p></pre></p><p>由于mRecentButton是ImageView所以要单独实现OnClickListener监听。而mBackButton，mHomeButton和mMenuButton是属于KeyButtonView，这个类是ImageView的子类，具体实现在SystemUI/Policy/KeyButtonView.java中。在这个类中可以看到重载了onTouchEvent这个函数。在响应MotionEvent.ACTION_UP后，会调用这样一个函数</p><p><pre>sendEvent(KeyEvent.ACTION_UP, KeyEvent.FLAG_FROM_SYSTEM | KeyEvent.FLAG_VIRTUAL_HARD_KEY);</p><p></pre></p><p>其中FLAG_FROM_SYSTEM表示是这是个没有被第三方所修改过的，系统消息。FLAG_VIRTUAL_HARD_KEY表示这是个虚拟按键消息，即从触摸屏发出，而非实体键盘发出的。</p><p>最终会调用这句</p><p><pre><font class="keyword">final </font>KeyEvent ev = </font><font class="keyword">new </font>KeyEvent(mDownTime, when, action, mCode, mRepeat, 0, KeyCharacterMap.VIRTUAL_KEYBOARD, 0, flags, InputDevice.SOURCE_KEYBOARD);</p><p></pre></p><p>这就是创建一个新的KeyEvent ，具体参数的含义参看KeyEvent.java中的相关构造函数。关键信息就是mCode,这个值</p><p><pre>mCode = a.getInteger(R.styleable.KeyButtonView_keyCode, 0);</p><p></pre></p><p>也就是返回键和Home以及Menu键的键值。</p><p>最后调用</p><p><pre>mWindowManager.injectInputEventNoWait(ev);</p><p></pre></p><p>它调用的是WindowManagerService中的injectInputEventNoWait(ev)函数，最终调用的是InputManager.java中的</p><p><pre><font class="keyword">private </font><font class="keyword">static </font>native </font><font class="keyword">int </font>nativeInjectInputEvent(InputEvent event, </font><font class="keyword">int </font>injectorPid, </font><font class="keyword">int </font>injectorUid, </font><font class="keyword">int </font>syncMode, </font><font class="keyword">int </font>timeoutMillis);</p><p></pre></p><p>这是个native的函数，也就是JNI调用了。可以看出点击Back和Home键，并没有单独的处理函数去处理事件，而只是生成了一个新的KeyEvent，也就是相当于发送了一个按键消息而已。其实一开始就应该想到，这个导航区中的Back和Home键，其实就是虚拟键，按虚拟键和实体键，只是发送键值的路径不同，最终应该都进入一个消息队列，而且应该对应的键值是相同的。所以处理也应该是相同的。</p><p>具体虚拟按键的按键事件的分发和处理都具体在哪里，我还没有细看，应该和按实体键盘类似在phoneWindowManager.java中有dispatch。只是估计，之后会细看下。这样的话，我们定制底下的那条Statusbar也应该可以了，包括多任务显示那一栏也都在这边实现。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

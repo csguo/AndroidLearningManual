@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android的AndroidManifest.xml文件介绍_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li class="navcurrentLink"><A href="index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="开发基础" href="index_100.html">开发基础</A></h2>
+
+  <h2><A title="开发环境搭建" href="index_101.html">开发环境搭建</A></h2>
+
+  <h2><A title="模拟器" href="index_102.html">模拟器</A></h2>
+
+  <h2><A title="Resource" href="index_103.html">Resource</A></h2>
+
+  <h2><A title="Manifest" href="index_104.html">Manifest</A></h2>
+<UL><li class="currentLink"><A title=Android的AndroidManifest.xml文件介绍 href="show_401_104.html">Android的AndroidManifest.xml文件介绍</A> </li><li ><A title=AndroidManifest.xml元素含义介绍 href="show_402_104.html">AndroidManifest.xml元素含义介绍</A> </li><li ><A title=AndroidManifest.xml文件综合详解 href="show_403_104.html">AndroidManifest.xml文件综合详解</A> </li><li ><A title=Manifest权限大全 href="show_404_104.html">Manifest权限大全</A> </li><li ><A title=Manifest文件和Intent相关 href="show_405_104.html">Manifest文件和Intent相关</A> </li><li ><A title=Android 动态关闭Manifest中的Receiver的方法 href="show_406_104.html">Android 动态关闭Manifest中的Receiver的方法</A> </li><li ><A title=Android manifest.xml 中元素含义 href="show_407_104.html">Android manifest.xml 中元素含义</A> </li></UL>
+  <h2><A title="ADB" href="index_105.html">ADB</A></h2>
+
+  <h2><A title="DDMS" href="index_106.html">DDMS</A></h2>
+
+  <h2><A title="Logcat(日志)" href="index_107.html">Logcat(日志)</A></h2>
+
+  <h2><A title="打包" href="index_108.html">打包</A></h2>
+
+  <h2><A title="文件处理" href="index_109.html">文件处理</A></h2>
+
+  <h2><A title="底层基础" href="index_111.html">底层基础</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android的AndroidManifest.xml文件介绍</H2>
+<div style="line-height:20px; font-size:14px;"><p>AndroidManifest.xml是每一个应用都需要的文件，位于应用根目录下，它描述了程序包的全局变量，包括暴露的应用组件(activities,services等等)和为每个组件的实现类，什么样的数据可以操作，以及在什么地方运行。 </p><p>主要包括以下各个元素。 </p><p>A.包名(package):指定本应用内java主程序包的包名。当没有指定apk的文件名时，编译后产生程序包将以此命名。本包名应当在Android系统运行时唯一。 </p><p>B.认证(certificate):指定本应用程序所授予的信任级别，目前有的认证级别有platform(system)、shared、media以及应用自定义的认证。不同的认证可以享受不同的权限。 </p><p>C.权限组(permission-group):权限组的定义是为了描述一组具有共同特性的权限。 </p><p>D.权限(permission):权限用来描述是否拥有做某件事的权力。Android系统中权限是分级的，前分为普通级别(Normal)，危险级别(dangerous)，签名级别(signature)和系统/签名级别(signature or system)。系统中所有预定义的权限根据作用的不同，分别属于不同的级别。对于普通和危险级别的权限，我们称之为低级权限，应用申请即授予。其他两级权限，我们称之为高级权限或系统权限，应用拥有platform级别的认证才能申请。当应用试图在没有权限的情况下做受限操作，应用将被系统杀掉以警示。系统应用可以使用任何权限。权限的声明者可无条件使用该权限。 </p><p>E.权限树(permission-tree)权限树的设置是为了统一管理一组权限，声明于该树下的权限所有者归属该应用。系统提供了API，应用可以在运行时动态添加。 PackageManager.addPermission() </p><p>F.使用权限(uses-permission):应用需要的权限应当在此处申请，所申请的权限应当被系统或某个应用所定义，否则视为无效申请。同时，使用权限的申请需要遵循权限授予条件，非platform认证的应用无法申请高级权限。 </p><p>G:SDK（uses-sdk）:标识本应用运行的SDK版本。高兼容性的应用可以忽略此项。 </p><p>H.application:application是Android应用内最高级别(top level)的模块，每个应用内最多只能有一个application，如果应用没有指定该模块，一个默认的application将被启用。application将在应用启动时最先被加载，并存活在应用的整个运行时生命周期。因此一些初始化的工作适合在本模块完成. Application元素有许多属性，其中：“persistent”表示本应用是否为常驻内存，“enable”表示本应用当前是否应当被加载。 </p><p><pre>&lt;application android:icon="@drawable/icon" android:label="@string/app_name"&gt; </p><p>	&lt;activity android:name=".HelloOPhone" </p><p>		android:label="@string/app_name"&gt; </p><p>		&lt;intent-filter&gt; </p><p>			&lt;action android:name="android.intent.action.MAIN" /&gt; </p><p>			&lt;category android:name="android.intent.category.LAUNCHER" /&gt; </p><p>		&lt;/intent-filter&gt; </p><p>	&lt;/activity&gt; </p><p>&lt;/application&gt; </p><p></pre></p><p>在AndroidManifest.xml文件中，运行时模块的定义都作为本模块的子元素。当运行时模块被调度时，如果应用没有启动，将首先启动应用进行初始化，然后调度对应模块。 </p><p>I.activity:activity是application模块的运行时子元素，标识了一个UI。除了application，一个应用可以声明并实现零至多个其它运行时模块，activity也同样。activity也包含了许多定义它工作状态的属性，其中：“name”是必须的，它指定了该activity所在的文件名，如果该文件所属包不同于该应用的包名（即本描述文件的最开始处），那么名字前面需要加入所在包名。activity通过增加intent-fliter来标识哪些intent可以被处理，同时intent也是调度activity的主要参数。</p><p>J.receiver:receiver也是application的运行时子元素。receiver通过增加intent-fliter来标识它需要接受哪些intent。当收到intent后，receiver将根据不同的intent进行不同的处理。当一个Intent发出后，所有注册了该intent的receiver都将会收到，系统会根据receiver在系统中的注册次序顺序发送。当一个receiver处理完该Intent后，系统才会向下一个receiver发送。当一个receiver有多个未接收的intent时，将按照intent发送的次序顺序接收。 </p><p>在本实例中，intent-filter如下：</p><p><pre> </p><p>&lt;action android:name="android.intent.action.MAIN" /&gt; </p><p>&lt;category android:name="android.intent.category.LAUNCHER" /&gt; </p><p></pre></p><p>K.service:service也是application的运行时子元素。Service属于后台模块，启动后将长时间运行，除非停止该service或所在应用进程被杀死。 </p><p>L.provider:provider也是application的运行时子元素。它继承于ContentProvider，是对该应用管理的用户数据的结构化接入，是基于数据库操作方式的封装。如果应用允许外部应用访问／管理它的用户数据，provider是Android平台提供的最佳方式。 </p><p>M.activity-alias:顾名思义，是已有activity的别名。 </p><p>N:uses-library:标识应用启动所必须的共享库。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

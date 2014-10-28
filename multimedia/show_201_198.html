@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 3D绘图基本概念（一）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li class="navcurrentLink"><A href="index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Android多媒体功能" href="index_196.html">Android多媒体功能</A></h2>
+
+  <h2><A title="Android多媒体之2D" href="index_197.html">Android多媒体之2D</A></h2>
+
+  <h2><A title="Android多媒体之3D" href="index_198.html">Android多媒体之3D</A></h2>
+<UL><li class="currentLink"><A title=Android 3D绘图基本概念（一） href="show_201_198.html">Android 3D绘图基本概念（一）</A> </li><li ><A title=Android 3D绘图基本概念（二） href="show_202_198.html">Android 3D绘图基本概念（二）</A> </li><li ><A title=Android 3D坐标（一） href="show_203_198.html">Android 3D坐标（一）</A> </li><li ><A title=Android 3D坐标（二） href="show_204_198.html">Android 3D坐标（二）</A> </li><li ><A title=Android中3D效果 href="show_205_198.html">Android中3D效果</A> </li><li ><A title=Android3D旋转 href="show_206_198.html">Android3D旋转</A> </li><li ><A title=Android 3d页面跳转（一） href="show_207_198.html">Android 3d页面跳转（一）</A> </li><li ><A title=Android 3d页面跳转（二） href="show_208_198.html">Android 3d页面跳转（二）</A> </li><li ><A title=Android 3d页面跳转（三） href="show_209_198.html">Android 3d页面跳转（三）</A> </li><li ><A title=ApiDemo上面的一个图片3D旋转效果 href="show_210_198.html">ApiDemo上面的一个图片3D旋转效果</A> </li><li ><A title=浅谈Android 3D旋转 href="show_211_198.html">浅谈Android 3D旋转</A> </li><li ><A title=简单实现3d旋转动画 href="show_212_198.html">简单实现3d旋转动画</A> </li><li ><A title=Android 3D相册 href="show_213_198.html">Android 3D相册</A> </li></UL>
+  <h2><A title="Android多媒体之Bitmap" href="index_199.html">Android多媒体之Bitmap</A></h2>
+
+  <h2><A title="Android多媒体之Canvas" href="index_200.html">Android多媒体之Canvas</A></h2>
+
+  <h2><A title="Android多媒体之Drawable" href="index_201.html">Android多媒体之Drawable</A></h2>
+
+  <h2><A title="Android多媒体之gif" href="index_202.html">Android多媒体之gif</A></h2>
+
+  <h2><A title="Android多媒体之MediaStore" href="index_203.html">Android多媒体之MediaStore</A></h2>
+
+  <h2><A title="Android多媒体之动画" href="index_204.html">Android多媒体之动画</A></h2>
+
+  <h2><A title="Android多媒体之分辨率" href="index_205.html">Android多媒体之分辨率</A></h2>
+
+  <h2><A title="Android多媒体之分屏幕" href="index_206.html">Android多媒体之分屏幕</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 3D绘图基本概念（一）</H2>
+<div style="line-height:20px; font-size:14px;"><p>前面介绍了使用Android 编写OpenGL ES应用的程序框架，本篇介绍3D绘图的一些基本构成要素，最终将实现一个多边形的绘制。</p><p>一个3D图形通常是由一些小的基本元素（顶点，边，面，多边形）构成，每个基本元素都可以单独来操作。</p><p style="color:#3333FF;">Vertex （顶点）</p><p>顶点是3D建模时用到的最小构成元素，顶点定义为两条或是多条边交会的地方。在3D模型中一个顶点可以为多条边，面或是多边形所共享。一个顶点也可以代表一个点光源或是Camera的位置。下图中标识为黄色的点为一个顶点(Vertex)。</p><p><img src="../img/media_3d/01_3d.jpg"></p><p>在Android系统中可以使用一个浮点数数组来定义一个顶点，浮点数数组通常放在一个Buffer（java.nio)中来提高性能。</p><p>比如：下图中定义了四个顶点和对应的Android 顶点定义：</p><p><pre><font class="keyword">private </font><font class="keyword">float </font>vertices[] = { </p><p>	-1.0f, 1.0f, 0.0f, <font class="Comments">// 0, Top Left</font></p><p>	-1.0f, -1.0f, 0.0f, <font class="Comments">// 1, Bottom Left</font></p><p>	1.0f, -1.0f, 0.0f, <font class="Comments">// 2, Bottom Right</font></p><p>	1.0f, 1.0f, 0.0f, <font class="Comments">// 3, Top Right</font></p><p>};</p><p></pre></p><p>为了提高性能，通常将这些数组存放到java.io 中定义的Buffer类中：</p><p><pre><font class="Comments">// a float is 4 bytes, therefore we multiply the</font></p><p><font class="Comments">// number if vertices with 4.</font></p><p>ByteBuffer vbb = ByteBuffer.allocateDirect(vertices.length * 4);</p><p>vbb.order(ByteOrder.nativeOrder());</p><p>FloatBuffer vertexBuffer = vbb.asFloatBuffer();</p><p>vertexBuffer.put(vertices);</p><p>vertexBuffer.position(0);</p><p></pre></p><p>有了顶点的定义，下面一步就是如何将它们传给OpenGL ES库，OpenGL ES提供一个成为”管道Pipeline”的机制，这个管道定义了一些“开关”来控制OpenGL ES支持的某些功能，缺省情况这些功能是关闭的，如果需要使用OpenGL ES的这些功能，需要明确告知OpenGL“管道”打开所需功能。</p><p>因此对于我们的这个示例，需要告诉OpenGL库打开Vertex buffer以便传入顶点坐标Buffer。要注意的使用完某个功能之后，要关闭这个功能以免影响后续操作：</p><p><pre><font class="Comments">// Enabled the vertex buffer for writing and to be used during rendering.</font></p><p>gl.glEnableClientState(GL10.GL_VERTEX_ARRAY);<font class="Comments">// OpenGL docs.</font></p><p><font class="Comments">// Specifies the location and data format of an array of vertex</font></p><p><font class="Comments">// coordinates to use when rendering.</font></p><p>gl.glVertexPointer(3, GL10.GL_FLOAT, 0, vertexBuffer); <font class="Comments">// OpenGL docs.</font></p><p></font>When you are done with the buffer don<font class="Fields">'t forget to disable it.</p><p><font class="Comments">// Disable the vertices buffer.</font></p><p>gl.glDisableClientState(GL10.GL_VERTEX_ARRAY);<font class="Comments">// OpenGL docs.</font></p><p></pre></p><p style="color:#3333FF;">Edge（边）</p><p>边定义为两个顶点之间的线段。边是面和多边形的边界线。在3D模型中，边可以被相邻的两个面或是多边形形共享。对一个边做变换将影响边相接的所有顶点，面或多边形。在OpenGL中，通常无需直接来定义一个边，而是通过顶点定义一个面，从而由面定义了其所对应的三条边。可以通过修改边的两个顶点来更改一条边。</p><p style="color:#3333FF;">Face (面）</p><p>在OpenGL ES中，面特指一个三角形，由三个顶点和三条边构成，对一个面所做的变化影响到连接面的所有顶点和边，面多边形。</p><p style="color:#3333FF;">Polygon （多边形）</p><p>多边形由多个面（三角形）拼接而成，在三维空间上，多边形并一定表示这个Polygon在同一平面上。这里我们使用缺省的逆时针方向代表面的“前面Front)。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

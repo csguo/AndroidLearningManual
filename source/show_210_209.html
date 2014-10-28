@@ -1,0 +1,60 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android的binder机制研究（C++部分）（三）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li class="navcurrentLink"><A href="index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Launcher" href="index_207.html">Launcher</A></h2>
+
+  <h2><A title="电话系统RIL" href="index_208.html">电话系统RIL</A></h2>
+
+  <h2><A title="进程间通信" href="index_209.html">进程间通信</A></h2>
+<UL><li ><A title=Android Framework研究之IPC（一） href="show_201_209.html">Android Framework研究之IPC（一）</A> </li><li ><A title=Android Framework研究之IPC（二） href="show_202_209.html">Android Framework研究之IPC（二）</A> </li><li ><A title=Android Binder与进程间通信（一） href="show_203_209.html">Android Binder与进程间通信（一）</A> </li><li ><A title=Android Binder与进程间通信（二） href="show_204_209.html">Android Binder与进程间通信（二）</A> </li><li ><A title=Android 创建AIDL href="show_205_209.html">Android 创建AIDL</A> </li><li ><A title=来学习Android的IPC href="show_206_209.html">来学习Android的IPC</A> </li><li ><A title=在linux下谈谈Android的IPC href="show_207_209.html">在linux下谈谈Android的IPC</A> </li><li ><A title=Android的binder机制研究（C++部分）（一） href="show_208_209.html">Android的binder机制研究（C++部分）（一）</A> </li><li ><A title=Android的binder机制研究（C++部分）（二） href="show_209_209.html">Android的binder机制研究（C++部分）（二）</A> </li><li class="currentLink"><A title=Android的binder机制研究（C++部分）（三） href="show_210_209.html">Android的binder机制研究（C++部分）（三）</A> </li><li ><A title=Android的binder机制研究（C++部分）（四） href="show_211_209.html">Android的binder机制研究（C++部分）（四）</A> </li><li ><A title=Android的binder机制研究（C++部分）（五） href="show_212_209.html">Android的binder机制研究（C++部分）（五）</A> </li></UL>
+  <h2><A title="内部sensor系统" href="index_210.html">内部sensor系统</A></h2>
+
+  <h2><A title="内部surface系统" href="index_211.html">内部surface系统</A></h2>
+
+  <h2><A title="启动流程" href="index_212.html">启动流程</A></h2>
+
+  <h2><A title="源码编译" href="index_213.html">源码编译</A></h2>
+
+  <h2><A title="状态栏" href="index_214.html">状态栏</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android的binder机制研究（C++部分）（三）</H2>
+<div style="line-height:20px; font-size:14px;"><p>这个接口函数的参数指定了一个URL，函数将为这个URL创建一个播放器实例用于播放该URL。</p><p>函数首先定义了两个局部变量data和reply，变量的类型都是Parcel。Parcel是一个专为binder通信的数据传送而定义的类，该类提供了对多种类型的数据的封装功能，同时提供多个数据读取和写入函数，用于多种类型的数据的写入和读取，支持的数据类型既包括简单数据类型，也包括对象。这里定义的变量data是用于封装create()函数调用所需要的输入参数，而reply则是用于封装调用的返回数据(包括输出参数的值和函数返回值)。</p><p>函数首先向data中写入各种数据。第一个写入的是接口的一个描述字符串，binder的实现类中会用这个字符串来对接口做验证，防止调用错误。这个字符串也可以不写，如果不写，在binder实现类中相应的也就不要做验证了。跟在描述字符串后面写入的是该接口函数所需要的各种的输入参数。需要说明的是，Pacel提供一种先入先出的数据存储方式，即数据的写入顺序和读取顺序必须严格一致，否则将会出错。</p><p>完成数据写入后，函数调用remote()-&gt;transact()用于完成binder通信。transact()函数的第一个参数就是前面提到过的功能代码。transact()的功能是将data中的数据传给binder的实现类，函数调用结束后，reply中将包含返回数据。首先来看看remote()成员函数。前面讲到过BpMediaPlayerService通过继承BpInterface模板类间接继承了IMediaPlayerService接口类，其实BpInterface类是一个有两个父类的多重继承子类，另一个父类是BpRefbase(frameworks\base\include\utils\Binder.h)。remote()就是继承自BpRefBase类的一个成员函数，该函数返回BpRefBase类中定义的一个私有属性mRemote。mRemote是对IBinder接口类的子类BpBinder的一个对象的引用。transact()函数在IBinder接口类中定义(frameworks\base\include\utils\Binder.h)，并在BpBinder类中实现(frameworks\base\include\utils\BpBinder.h、frameworks\base\libs\utils\BpBinder.cpp)。在transact()函数中将调用IPCThreadState类的transact()函数，并进而通过Lniux内核中的android共享内存驱动来实现进程间通信。不过这些细节这里就不多说了。在这里BpBinder类对象是一个关键，是实现Binder代理的核心之一。BpBinder类可以看成是一个通信handle(类似于网络编程中的socket)，用于实现进程间通信。接下来需要研究的是这个BpBinder类对象(即mRemote成员变量的值)是从哪里来的。</p><p>回过头来BpMediaPlayerService的构造函数(看前面的代码)。该构造函数的参数是一个IBinder对象的引用。mRemote的值就是在这里传进来的这个对象。那么这个对象又是怎么来的呢？要搞清楚这一点就需要找到创建BpMediaPlayerService类的实例的代码，这个代码就就跟在该类的定义代码的下面。继续看IMediaPlayerService.cpp文件，在BpMediaPlayerService类定义的后面，是下面这样一行代码：</p><p><pre>IMPLEMENT_META_INTERFACE(MediaPlayerService, <font class="Fields">"android.hardware.IMediaPlayerService"</font>);	</p><p></pre></p><p>这行代码调用了一个宏定义IMPLEMENT_META_INTERFACE()。这个宏定义与前面提到过的DECLARE_META_INTERFACE()相呼应。看名字就知道，IMPLEMENT_META_INTERFACE()宏是对DECLARE_META_INTERFACE()所定义的成员函数的具体实现。这个宏的第一个参数与DECLARE_META_INTERFACE()的参数需完全一样，第二参数是接口的描述字符串(这个字符串前面也已经讲到过了)。描述字符串不重要，重要的是宏里面定义的一个静态成员函数asInterface()。BpMediaPlayerService的类实例是在IMediaPlayerService的静态成员函数asInterface()中创建的，在IInterface.h中定义了一个内联函数interface_cast()，对这个成员函数进行了封装。通过看代码容易知道，BpMediaPlayerService的构造函数的参数是通过interface_cast()的参数传进来的。</p><p>好，下面就该看看这个interface_cast()是在哪里调用的，它的参数到底是什么。找到frameworks\base\media\libmedia\mediaplayer.cpp文件，其中的MediaPlayer::getMediaPlayerService()的实现代码：</p><p><pre>const sp&lt;IMediaPlayerService&gt;& MediaPlayer::getMediaPlayerService()</p><p>{</p><p>	Mutex::Autolock _l(sServiceLock);</p><p>	<font class="keyword">if </font>(sMediaPlayerService.get() == 0) {</p><p>		sp&lt;IServiceManager&gt; sm = defaultServiceManager();</p><p>		sp&lt;IBinder&gt; binder;</p><p>		do {</p><p>			</font>binder = sm-&gt;getService(String16(<font class="Fields">"media.player"</font>));</p><p>			<font class="keyword">if </font>(binder != 0)</p><p>			<font class="keyword">break</font>;</p><p>			</font>LOGW(<font class="Fields">"MediaPlayerService not published, waiting..."</font>);</p><p>			usleep(500000); <font class="Comments">// 0.5 s</font></p><p>		</font>} while(<font class="keyword">true</font>);</p><p>		<font class="keyword">if </font>(sDeathNotifier == NULL) {</p><p>			</font>sDeathNotifier = <font class="keyword">new </font>DeathNotifier();</p><p>		}</p><p>		binder-&gt;linkToDeath(sDeathNotifier);</p><p>		sMediaPlayerService = interface_cast&lt;IMediaPlayerService&gt;(binder);</p><p>	}</p><p>	</font>LOGE_IF(sMediaPlayerService==0, <font class="Fields">"no MediaPlayerService!?"</font>);</p><p>	<font class="keyword">return </font>sMediaPlayerService;</p><p>}</p><p></pre></p><p>看一下上面这段代码中的红色字体部分。结合前面的分析，可知BpBinder类的对象实例是从android的服务管理器的getService()函数中获取，进一步追进去，会发现下面这样一段代码：</p><p><pre>{</p><p>	Parcel data, reply;</p><p>	data.writeInterfaceToken(IServiceManager::getInterfaceDescriptor());</p><p>	data.writeString16(name);</p><p>	remote()-&gt;transact(CHECK_SERVICE_TRANSACTION, data, &reply);</p><p>	return reply.readStrongBinder();</p><p>}	</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

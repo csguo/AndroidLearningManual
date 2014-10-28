@@ -1,0 +1,58 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Java加密解密_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li class="navcurrentLink"><A href="index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Android基础之运行原理和机制" href="index_215.html">Android基础之运行原理和机制</A></h2>
+
+  <h2><A title="Android高级篇之Android优化" href="index_216.html">Android高级篇之Android优化</A></h2>
+
+  <h2><A title="Android高级篇之编译及反编译" href="index_217.html">Android高级篇之编译及反编译</A></h2>
+
+  <h2><A title="Android高级篇之加密解密" href="index_218.html">Android高级篇之加密解密</A></h2>
+<UL><li ><A title=Android 加密解密 href="show_301_218.html">Android 加密解密</A> </li><li ><A title=Android 用MD5加密算法加密密码（一） href="show_302_218.html">Android 用MD5加密算法加密密码（一）</A> </li><li ><A title=Android 用MD5加密算法加密密码（二） href="show_303_218.html">Android 用MD5加密算法加密密码（二）</A> </li><li ><A title=Android下MD5加密 href="show_304_218.html">Android下MD5加密</A> </li><li ><A title=Android 获取自己程序APK包的MD5指纹 href="show_305_218.html">Android 获取自己程序APK包的MD5指纹</A> </li><li ><A title=Android客户端与服务器端通过DES加密认证 href="show_306_218.html">Android客户端与服务器端通过DES加密认证</A> </li><li class="currentLink"><A title=Java加密解密 href="show_307_218.html">Java加密解密</A> </li><li ><A title=给自己的网络数据加密 href="show_308_218.html">给自己的网络数据加密</A> </li></UL>
+  <h2><A title="Android高级篇之Android 安全" href="index_219.html">Android高级篇之Android 安全</A></h2>
+
+  <h2><A title="Android高级篇之算法" href="index_220.html">Android高级篇之算法</A></h2>
+
+  <h2><A title="Android高级篇之解锁教程" href="index_221.html">Android高级篇之解锁教程</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Java加密解密</H2>
+<div style="line-height:20px; font-size:14px;"><p>Java加密，解密算法有BASE64,MD5,DES,等算法。常用的加密算法在JAVA SE中有实现。</p><p>它们的实现类在java/jre/lib/dt.jar这个包中。我们引入的时候要加入import sun.misc.*;</p><p>下面我举个例子，如下所示：</p><p><pre><font class="keyword">import </font>java.io.IOException;</p><p><font class="keyword">import </font>java.math.BigInteger;</p><p><font class="keyword">import </font>java.security.MessageDigest;</p><p><font class="keyword">import </font>java.security.NoSuchAlgorithmException;</p><p><font class="keyword">import </font>sun.misc.BASE64Decoder;</p><p><font class="keyword">import </font>sun.misc.BASE64Encoder;</p><p><font class="Comments">/**</font></p><p> <font class="Comments">* 常用加密算法工具类</font></p><p> <font class="Comments">*/</font></p><p><font class="keyword">public </font><font class="keyword">class </font>EncryptUtils {</p><p>	<font class="Comments">/**</font></p><p>	 <font class="Comments">* 用MD5算法进行加密</font></p><p>	 <font class="Comments">* @param str 需要加密的字符串</font></p><p>	 <font class="Comments">* @return MD5加密后的结果</font></p><p>	 <font class="Comments">*/</font></p><p>	<font class="keyword">public </font><font class="keyword">static </font>String encodeMD5String(String str) {</p><p>		<font class="keyword">return </font>encode(str, <font class="Fields">"MD5"</font>);</p><p>	}</p><p>	<font class="Comments">/**</font></p><p>	 <font class="Comments">* 用SHA算法进行加密</font></p><p>	 <font class="Comments">* @param str 需要加密的字符串</font></p><p>	 <font class="Comments">* @return SHA加密后的结果</font></p><p>	 <font class="Comments">*/</font></p><p>	<font class="keyword">public </font><font class="keyword">static </font>String encodeSHAString(String str) {</p><p>		<font class="keyword">return </font>encode(str, <font class="Fields">"SHA"</font>);</p><p>	}</p><p>	<font class="Comments">/**</font></p><p>	 <font class="Comments">* 用base64算法进行加密</font></p><p>	 <font class="Comments">* @param str 需要加密的字符串</font></p><p>	 <font class="Comments">* @return base64加密后的结果</font></p><p>	 <font class="Comments">*/</font></p><p>	<font class="keyword">public </font><font class="keyword">static </font>String encodeBase64String(String str) {</p><p>		</font>BASE64Encoder encoder = <font class="keyword">new </font>BASE64Encoder();</p><p>		<font class="keyword">return </font>encoder.encode(str.getBytes());</p><p>	}</p><p>	<font class="Comments">/**</font></p><p>	 <font class="Comments">* 用base64算法进行解密</font></p><p>	 <font class="Comments">* @param str 需要解密的字符串</font></p><p>	 <font class="Comments">* @return base64解密后的结果</font></p><p>	 <font class="Comments">* @throws IOException</font></p><p>	 <font class="Comments">*/</font></p><p>	<font class="keyword">public </font><font class="keyword">static </font>String decodeBase64String(String str) </font><font class="keyword">throws </font>IOException {</p><p>		</font>BASE64Decoder encoder = <font class="keyword">new </font>BASE64Decoder();</p><p>		<font class="keyword">return </font><font class="keyword">new </font>String(encoder.decodeBuffer(str));</p><p>	}</p><p></p><p>	<font class="keyword">private </font><font class="keyword">static </font>String encode(String str, String method) {</p><p>		</font>MessageDigest md = <font class="keyword">null</font>;</p><p>		</font>String dstr = <font class="keyword">null</font>;</p><p>		<font class="keyword">try </font>{</p><p>			md = MessageDigest.getInstance(method);</p><p>			md.update(str.getBytes());</p><p>			</font>dstr = <font class="keyword">new </font>BigInteger(1, md.digest()).toString(16);</p><p>		</font>} <font class="keyword">catch </font>(NoSuchAlgorithmException e) {</p><p>			e.printStackTrace();</p><p>		}</p><p>		<font class="keyword">return </font>dstr;</p><p>	}</p><p>	<font class="keyword">public </font><font class="keyword">static </font><font class="keyword">void </font>main(String[] args) </font><font class="keyword">throws </font>IOException {</p><p>		</font>String user = <font class="Fields">"oneadmin"</font>;</p><p>		</font>System.<font class="Fields">out</font>.println(</font><font class="Fields">"原始字符串 "</font> + user);</p><p>		</font>System.<font class="Fields">out</font>.println(</font><font class="Fields">"MD5加密 "</font> + encodeMD5String(user));</p><p>		</font>System.<font class="Fields">out</font>.println(</font><font class="Fields">"SHA加密 "</font> + encodeSHAString(user));</p><p>		String base64Str = encodeBase64String(user);</p><p>		</font>System.<font class="Fields">out</font>.println(</font><font class="Fields">"Base64加密 "</font> + base64Str);</p><p>		</font>System.<font class="Fields">out</font>.println(</font><font class="Fields">"Base64解密 "</font> + decodeBase64String(base64Str));</p><p>	}</p><p>}</p><p></pre></p><p>引入dt.jar至。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

@@ -1,0 +1,70 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android广播监听短信并显示内容_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li class="navcurrentLink"><A href="index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="设备信息" href="index_157.html">设备信息</A></h2>
+
+  <h2><A title="摄像头" href="index_158.html">摄像头</A></h2>
+
+  <h2><A title="通讯录" href="index_159.html">通讯录</A></h2>
+
+  <h2><A title="电话" href="index_160.html">电话</A></h2>
+
+  <h2><A title="短信" href="index_161.html">短信</A></h2>
+<UL><li ><A title=Android sms讲解 href="show_401_161.html">Android sms讲解</A> </li><li ><A title=Android 发送和接收短信实例（一） href="show_402_161.html">Android 发送和接收短信实例（一）</A> </li><li ><A title=Android 发送和接收短信实例（二） href="show_403_161.html">Android 发送和接收短信实例（二）</A> </li><li ><A title=Android 发送和接收短信实例（三） href="show_404_161.html">Android 发送和接收短信实例（三）</A> </li><li ><A title=Android 监听SMS消息 href="show_405_161.html">Android 监听SMS消息</A> </li><li ><A title=Android 追踪和确认SMS消息传递 href="show_406_161.html">Android 追踪和确认SMS消息传递</A> </li><li ><A title=Android 读取短信 href="show_407_161.html">Android 读取短信</A> </li><li ><A title=Android SMS小结 href="show_408_161.html">Android SMS小结</A> </li><li ><A title=短信的收发及在android模拟器之间实践（一） href="show_409_161.html">短信的收发及在android模拟器之间实践（一）</A> </li><li ><A title=短信的收发及在android模拟器之间实践（二） href="show_410_161.html">短信的收发及在android模拟器之间实践（二）</A> </li><li ><A title=如何在你的程序中嵌入收发短信功能 href="show_411_161.html">如何在你的程序中嵌入收发短信功能</A> </li><li ><A title=系统短信库的一些用法 href="show_412_161.html">系统短信库的一些用法</A> </li><li ><A title=在Android中发送短信和彩信 href="show_413_161.html">在Android中发送短信和彩信</A> </li><li ><A title=怎么编写代码实现拦截一些网络垃圾短信 href="show_414_161.html">怎么编写代码实现拦截一些网络垃圾短信</A> </li><li ><A title=Android调用系统短信Intent时将预填接收号码 href="show_415_161.html">Android调用系统短信Intent时将预填接收号码</A> </li><li class="currentLink"><A title=Android广播监听短信并显示内容 href="show_416_161.html">Android广播监听短信并显示内容</A> </li></UL>
+  <h2><A title="传感器" href="index_162.html">传感器</A></h2>
+
+  <h2><A title="定位" href="index_163.html">定位</A></h2>
+
+  <h2><A title="视频系统" href="index_164.html">视频系统</A></h2>
+
+  <h2><A title="音频系统" href="index_165.html">音频系统</A></h2>
+
+  <h2><A title="铃声" href="index_166.html">铃声</A></h2>
+
+  <h2><A title="音量" href="index_167.html">音量</A></h2>
+
+  <h2><A title="录音" href="index_168.html">录音</A></h2>
+
+  <h2><A title="输入法" href="index_169.html">输入法</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android广播监听短信并显示内容</H2>
+<div style="line-height:20px; font-size:14px;"><p>AndroidManifest.xml中添加</p><p><pre></font>&lt;receiver android:name=<font class="Fields">".receive"</font> &gt;</p><p>	&lt;intent-filter&gt;</p><p>		</font>&lt;action android:name=<font class="Fields">"android.provider.Telephony.SMS_RECEIVED"</font> /&gt;</p><p>	&lt;/intent-filter&gt;</p><p>&lt;/receiver&gt;</p><p></font>&lt;uses-permission android:name=<font class="Fields">"android.permission.RECEIVE_SMS"</font> &gt;</p><p>&lt;/uses-permission&gt;</p><p></font>&lt;uses-permission android:name=<font class="Fields">"android.permission.READ_SMS"</font> &gt;</p><p>&lt;/uses-permission&gt;</p><p></pre></p><p>再写一个广播监听</p><p><pre><font class="keyword">public </font><font class="keyword">class </font>receive </font><font class="keyword">extends </font>BroadcastReceiver {</p><p>	</font>String receiveMsg = <font class="Fields">""</font>;</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onReceive(Context context, Intent intent) {</p><p>		</font>SmsMessage[] msg = <font class="keyword">null</font>;</p><p>		<font class="keyword">if </font>(intent.getAction()</p><p>				</font>.equals(<font class="Fields">"android.provider.Telephony.SMS_RECEIVED"</font>)) {</p><p>			<font class="Comments">// StringBuilder buf = new StringBuilder();</font></p><p>			Bundle bundle = intent.getExtras();</p><p>			<font class="keyword">if </font>(bundle != </font><font class="keyword">null</font>) {</p><p>				</font>Object[] pdusObj = (Object[]) bundle.get(<font class="Fields">"pdus"</font>);</p><p>				</font>msg = <font class="keyword">new </font>SmsMessage[pdusObj.length];</p><p>				<font class="keyword">for </font>(</font><font class="keyword">int </font>i = 0; i &lt; pdusObj.length; i++)</p><p>					msg[i] = SmsMessage.createFromPdu((byte[]) pdusObj[i]);</p><p>			}</p><p>			<font class="keyword">for </font>(</font><font class="keyword">int </font>i = 0; i &lt; msg.length; i++) {</p><p>				String msgTxt = msg[i].getMessageBody();</p><p>				<font class="keyword">if </font>(msgTxt.equals(<font class="Fields">"Testing!"</font>)) {</p><p>					</font>Toast.makeText(context, <font class="Fields">"success!"</font>, Toast.LENGTH_LONG)</p><p>							.show();</p><p>					<font class="keyword">return</font>;</font></p><p>				</font>} <font class="keyword">else </font>{</p><p>					Toast.makeText(context, msgTxt, Toast.LENGTH_LONG).show();</p><p>					<font class="keyword">return</font>;</font></p><p>				}</p><p>			}</p><p>			<font class="keyword">return</font>;</font></p><p>		}</p><p>	}</p><p>}</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

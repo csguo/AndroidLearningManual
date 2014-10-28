@@ -1,0 +1,60 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android2.3源码下载编译全过程_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li class="navcurrentLink"><A href="index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Launcher" href="index_207.html">Launcher</A></h2>
+
+  <h2><A title="电话系统RIL" href="index_208.html">电话系统RIL</A></h2>
+
+  <h2><A title="进程间通信" href="index_209.html">进程间通信</A></h2>
+
+  <h2><A title="内部sensor系统" href="index_210.html">内部sensor系统</A></h2>
+
+  <h2><A title="内部surface系统" href="index_211.html">内部surface系统</A></h2>
+
+  <h2><A title="启动流程" href="index_212.html">启动流程</A></h2>
+
+  <h2><A title="源码编译" href="index_213.html">源码编译</A></h2>
+<UL><li ><A title=详解Android源码的编译 href="show_601_213.html">详解Android源码的编译</A> </li><li ><A title=windows下下载Android源码 href="show_602_213.html">windows下下载Android源码</A> </li><li ><A title=Android 源码编译 href="show_603_213.html">Android 源码编译</A> </li><li class="currentLink"><A title=Android2.3源码下载编译全过程 href="show_604_213.html">Android2.3源码下载编译全过程</A> </li><li ><A title=Android 编辑模块 href="show_605_213.html">Android 编辑模块</A> </li></UL>
+  <h2><A title="状态栏" href="index_214.html">状态栏</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android2.3源码下载编译全过程</H2>
+<div style="line-height:20px; font-size:14px;"><p>@官方的文档地址：http://source.android.com/source/download.html（但可能会遇到点问题请看下面的讲解）</p><p>@系统要求：1 ubuntu 10.04或以上版本</p><p>2 64位系统（查看系统命令： uname -m 如果出现i386 i686 i586则是32位 如果出现amd64 则是64位系统 ）</p><p>3 jdk1.6 或更高版本</p><p>@说明：下面如果有修改文件不好保存或无法打开可能是权限问题要进入那个目录修改权限 chmod 777 filename</p><p style="color:#3333FF;">1安装下载源码所需要的工具 </p><p>1.1</p><p><pre>sudo apt-get install git-core curl</p><p></pre></p><p>这条命令会从互联网的软件仓库中安装 git-core 和 curl</p><p>1.2</p><p><pre>mkdir ~/bin</p><p>PATH=~/bin:$PATH</p><p></pre></p><p>在home目录下建立bin目录并设置环境变量</p><p>1.3</p><p><pre>curl http://android.git.kernel.org/repo &gt;~/bin/repo</p><p></pre></p><p>这句命令会下载 repo 脚本文件到当前主目录的/bin 目录下,并保存在文件repo 中。</p><p>1.4</p><p><pre>chmod a+x ~/bin/repo</p><p></pre></p><p>修改 repo 文件可执行权限</p><p>1.5 执行下面的命令创建并进入空文件夹</p><p><pre>mkdir yourdirectory</p><p>cd yourdirectory</p><p></pre>   </p><p style="color:#3333FF;">2repo客户端初始化</p><p>下面是官网给的命令，但在公司行不通会报Connection timed out的错误，但在家直接用估计可以</p><p><pre>repo init -u git://android.git.kernel.org/platform/manifest.git -b cupcake</p><p></pre></p><p>2.2 在公司同步要先将bin里的.repo文件的</p><p><pre>REPO_URL='git://android.git.kernel.org/tools/repo.git' </p><p></pre>   </p><p>改成</p><p><pre>REPO_URL='http://android.git.kernel.org/tools/repo.git'</p><p></pre> </p><p>然后命令改成下面这个（注意后面的版本号写法和官网不太一样，如果写-b Gingerbread的话会找不到版本）</p><p><pre>repo init -u http://android.git.kernel.org/platform/manifest.git -b android-2.3.3_r1</p><p></pre> </p><p>(参考 http://blog.csdn.net/shaohui99/archive/2010/06/29/5702483.aspx)</p><p>2.3 执行上面的命令可能还会报个IOError找不到文件（暂时还不知道为什么）</p><p>但执行下面两条命令</p><p><pre>touch ~/.gitconfig</p><p>rm -rf .repo</p><p></pre> </p><p>后再执行2.2的命令就可以同步了</p><p>成功的话会叫你填写自己的名字和邮箱</p><p style="color:#3333FF;">3下载源码</p><p>3.1 执行下面的命令会开始下载代码</p><p><pre>repo sync</p><p></pre> </p><p>如果也有 Connection timed out错误就找到你在1.5时创建的目录下找到.repo文件夹打开后找到下载清单manifest.xml（manifest.xml为隐藏文件，得显示隐藏文件后才能看见）</p><p>打开manifest.xml</p><p>修改</p><p><pre>fetch="git://android.git.kernel.org/"</p><p></pre> </p><p>为</p><p><pre>fetch="http://android.git.kernel.org/"（http的穿透）</p><p></pre> </p><p>然后再执行repo sync，成功后会下载代码要几个小时(我下载了一天)</p><p style="color:#3333FF;">4编译</p><p>4.1 先进入1.5创建的空目录</p><p>再执行 make 命令</p><p>编译后的文件在out文件夹中</p><p style="color:#3333FF;">5生成SDK</p><p><pre>make PRODUCT-sdk-sdk</p><p></pre> </p><p style="color:#3333FF;">5生成SDK</p><p>make PRODUCT-sdk-sdk</p><p>编译完成后会在/work/froyo/out/host/linux-x86/sdk/目录生成sdk</p><p><img src="../img/source_build/04_sdk01.jpg"></p><p><img src="../img/source_build/04_sdk02.jpg"></p><p><img src="../img/source_build/04_sdk03.jpg"></p><p><img src="../img/source_build/04_sdk04.jpg"></p><p><img src="../img/source_build/04_sdk05.jpg"></p><p><img src="../img/source_build/04_sdk06.jpg"></p><p><img src="../img/source_build/04_sdk07.jpg"></p><p><img src="../img/source_build/04_sdk08.jpg"></p><p><img src="../img/source_build/04_android01.jpg"></p><p>其实32位的也可以编译，这个是别人写的，我试了，成功，给大家参考一下</p><p>在使用：</p><p><pre>$ repo init -u git://Android.git.kernel.org/platform/manifest.git</p><p>$ repo sync</p><p></pre></p><p>下载完代码后，进行make，</p><p><pre>$cd ~/mydroid</p><p>$make</p><p></pre></p><p>却出现了如下错误：</p><p><pre>build/core/main.mk:73: You are attempting to build on a 32-bit system.</p><p>build/core/main.mk:74: Only 64-bit build environments are supported beyond froyo/2.2.</p><p></pre></p><p>这是因为froyo/2.2默认只支持64-bit，看到有些网友还要去下载64-比他的操作系统，很是麻烦，于是通过不断搜索资料终于解决，</p><p>解决办法：</p><p>需要进行如下修改即可，</p><p>将</p><p><pre>./external/clearsilver/cgi/Android.mk </p><p>./external/clearsilver/java-jni/Android.mk </p><p>./external/clearsilver/util/Android.mk </p><p>./external/clearsilver/cs/Android.mk</p><p></pre></p><p>四个文件中的</p><p><pre>LOCAL_CFLAGS += -m64 </p><p>LOCAL_LDFLAGS += -m64 </p><p></pre></p><p>注释掉，或者将“64”换成“32”</p><p><pre>LOCAL_CFLAGS += -m32 </p><p>LOCAL_LDFLAGS += -m32 </p><p></pre></p><p>然后，将./build/core/main.mk中的</p><p><pre>ifneq (64,$(findstring 64,$(build_arch))) </p><p></pre></p><p>改为</p><p><pre>ifneq (i686,$(findstring i686,$(build_arch))) </p><p></pre></p><p>OK！问题解决。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

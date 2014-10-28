@@ -1,0 +1,58 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>无需eclipse无需ant,直接在android源码中混淆编译_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li class="navcurrentLink"><A href="index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Android基础之运行原理和机制" href="index_215.html">Android基础之运行原理和机制</A></h2>
+
+  <h2><A title="Android高级篇之Android优化" href="index_216.html">Android高级篇之Android优化</A></h2>
+
+  <h2><A title="Android高级篇之编译及反编译" href="index_217.html">Android高级篇之编译及反编译</A></h2>
+<UL><li ><A title=Android 程序反编译 href="show_201_217.html">Android 程序反编译</A> </li><li ><A title=Android反编译工具Apktool使用 href="show_202_217.html">Android反编译工具Apktool使用</A> </li><li ><A title=Android命令行编译方法,不用Eclipse IDE href="show_203_217.html">Android命令行编译方法,不用Eclipse IDE</A> </li><li ><A title=Android反编译小结 href="show_204_217.html">Android反编译小结</A> </li><li ><A title=反编译APK文件 href="show_205_217.html">反编译APK文件</A> </li><li class="currentLink"><A title=无需eclipse无需ant,直接在android源码中混淆编译 href="show_206_217.html">无需eclipse无需ant,直接在android源码中混淆编译</A> </li><li ><A title=apk反编译问题总结 href="show_207_217.html">apk反编译问题总结</A> </li><li ><A title=Android如何防止apk程序被反编译 href="show_208_217.html">Android如何防止apk程序被反编译</A> </li><li ><A title=Android反编译和防止反编译的方法 href="show_209_217.html">Android反编译和防止反编译的方法</A> </li><li ><A title=构建Android自动编译持续集成系统 href="show_210_217.html">构建Android自动编译持续集成系统</A> </li><li ><A title=跟我一起学【ANT build.xml】 href="show_211_217.html">跟我一起学【ANT build.xml】</A> </li><li ><A title=linux 下 使用shell 控制ant批量打包 href="show_212_217.html">linux 下 使用shell 控制ant批量打包</A> </li></UL>
+  <h2><A title="Android高级篇之加密解密" href="index_218.html">Android高级篇之加密解密</A></h2>
+
+  <h2><A title="Android高级篇之Android 安全" href="index_219.html">Android高级篇之Android 安全</A></h2>
+
+  <h2><A title="Android高级篇之算法" href="index_220.html">Android高级篇之算法</A></h2>
+
+  <h2><A title="Android高级篇之解锁教程" href="index_221.html">Android高级篇之解锁教程</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>无需eclipse无需ant,直接在android源码中混淆编译</H2>
+<div style="line-height:20px; font-size:14px;"><p>终于知道怎么在android源码中混淆编译了，不用ant也不用eclipse插件。</p><p>在需要混淆的工程目录下(package/apps/下的工程)添加proguard.flags文件，该文件即为网络传说中的proguard.cfg，只是命名不一样而已，然后再Android.mk中添加如下两句：</p><p><pre>LOCAL_PROGUARD_ENABLED := full</p><p>LOCAL_PROGUARD_FLAG_FILES := proguard.flags</p><p></pre></p><p>上面的full 也可以是custom，如果不写这句，那还得添加如下一句：</p><p><pre>TARGET_BUILD_VARIANT := user或者TARGET_BUILD_VARIANT := userdebug</p><p></pre></p><p>这样后在工程目录下执行mm便可以看到在out目录下生成了形如proguard.classes.jar的东东，这就说明已在编译中启动了proguard。</p><p>但反编译一看，并未出现网络云说的abcd替代符号，其实代码并未真正混淆。</p><p>android在编译时默认关闭了混淆选项，有去研究build/core目录的同志会发现这里也有个proguard.flags文件，其实在proguard的过程中，编译器会调用包括本地目录下和系统定义了的多个proguard.flags文件，而在这个文件中混淆的选项被禁止了，故而编译出来的apk仍未混淆。因此将如下句子注释掉便可实现真正的混淆编译。</p><p><pre> Don't obfuscate. We only need dead code striping.</p><p></pre></p><p>-dontobfuscate（将该句加个号注释掉）</p><p>好奇的同志还可以继续看看，为什么TARGET_BUILD_VARIANT := user和LOCAL_PROGUARD_ENABLED := full二选一即可，详见build/core/package.mk。</p><p><pre>LOCAL_PROGUARD_ENABLED:=$(strip $(LOCAL_PROGUARD_ENABLED))</p><p>ifndef LOCAL_PROGUARD_ENABLED</p><p>ifneq ($(filter user userdebug, $(TARGET_BUILD_VARIANT)),)</p><p> turn on Proguard by default for user & userdebug build</p><p>LOCAL_PROGUARD_ENABLED :=full</p><p>endif</p><p>endif</p><p>ifeq ($(LOCAL_PROGUARD_ENABLED),disabled)</p><p> the package explicitly request to disable proguard.</p><p>LOCAL_PROGUARD_ENABLED :=</p><p>endif</p><p>proguard_options_file :=</p><p>ifneq ($(LOCAL_PROGUARD_ENABLED),custom)</p><p>ifneq ($(all_resources),)</p><p>proguard_options_file := $(package_expected_intermediates_COMMON)/proguard_options</p><p>endif  all_resources</p><p>endif  !custom</p><p>LOCAL_PROGUARD_FLAGS := $(addprefix -include ,$(proguard_options_file)) $(LOCAL_PROGUARD_FLAGS)</p><p></pre></p><p>具体我就不解释了，大家自己理解吧哈。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

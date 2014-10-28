@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android GWES之Android消息系统_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li class="navcurrentLink"><A href="index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Activity" href="index_112.html">Activity</A></h2>
+
+  <h2><A title="Intent" href="index_113.html">Intent</A></h2>
+
+  <h2><A title="Service" href="index_114.html">Service</A></h2>
+
+  <h2><A title="Content Provider" href="index_115.html">Content Provider</A></h2>
+
+  <h2><A title="BroadcastReceiver" href="index_116.html">BroadcastReceiver</A></h2>
+
+  <h2><A title="AsyncTask" href="index_117.html">AsyncTask</A></h2>
+
+  <h2><A title="Handler" href="index_118.html">Handler</A></h2>
+<UL><li ><A title=Handler 基础认识 href="show_601_118.html">Handler 基础认识</A> </li><li ><A title=Android Handler的使用(一) href="show_602_118.html">Android Handler的使用(一)</A> </li><li ><A title=Android Handler的使用(二) href="show_603_118.html">Android Handler的使用(二)</A> </li><li class="currentLink"><A title=Android GWES之Android消息系统 href="show_604_118.html">Android GWES之Android消息系统</A> </li><li ><A title=用Handler更新进度条ProgressBar href="show_605_118.html">用Handler更新进度条ProgressBar</A> </li><li ><A title=在Android的Notification中显示进度条 href="show_606_118.html">在Android的Notification中显示进度条</A> </li><li ><A title=通过线程改变界面button的内容 href="show_607_118.html">通过线程改变界面button的内容</A> </li><li ><A title=5秒钟自动更新Title href="show_608_118.html">5秒钟自动更新Title</A> </li></UL>
+  <h2><A title="Thread" href="index_119.html">Thread</A></h2>
+
+  <h2><A title="Permission" href="index_120.html">Permission</A></h2>
+
+  <h2><A title="AIDL" href="index_121.html">AIDL</A></h2>
+
+  <h2><A title="Json" href="index_122.html">Json</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android GWES之Android消息系统</H2>
+<div style="line-height:20px; font-size:14px;"><p>Looper，Handler，View</p><p>我们要理解Android的消息系统，Looper，Handle，View等概念还是需要从消息系统的基本原理及其构造这个源头开始。从这个源头，我们才能很清楚的看到Android设计者设计消息系统之意图及其设计的技术路线。</p><p style="color:#3333FF;">1.消息系统的基本原理</p><p>从一般的系统设计来讲，一个消息循环系统的建立需要有以下几个要素：</p><p><pre>消息队列</p><p>发送消息</p><p>消息读取</p><p>消息分发</p><p>消息循环线程</p><p></pre></p><p>首先来研究一下消息驱动的基本模型，我使用如下的图形来表示一个消息系统最基本构成：</p><p><img src="../img/component_handler/04_handler.gif"></p><p>上面的模型代表应用程序一直查询自己的消息队列,如果有有消息进来,应用消息处理函数中根据消息类型及其参数来作相应的处理。消息系统要运作起来,必定有消息的产生和消费。我们可以从下图看到消息生产和消费的一个基本的链条，这是一个最基本的，最简单的消息系统。</p><p><img src="../img/component_handler/04_handler2.gif"></p><p>生产线程将消息发送到消息队列，消息消费者线程从消息队列取出消息进行相应的处理。但是这样简单的模型对实际运行的系统来说是不够的，例如对系统资源的消耗等不能很好的处理，我们就需要一个有旗语的消息系统模型，在上面的消息系统模型中加入了一个旗语，让消息消费者线程在没有消息队列为空时，等待旗语，进入到挂起状态，而有消息到达时，才被唤醒继续运行。当然生产者同时也可以是消费者。</p><p><img src="../img/component_handler/04_handler3.gif"></p><p style="color:#3333FF;">2. Android的消息模型</p><p>Android要建立一个消息系统使用了Looper，MessageQueue,Handler等概念，从上节的原理我们可以知道这些都是概念包装,本质的东西就是消息队列中消息的分发路径的和消息分发处理方式的设计。Android巧妙的利用了对象抽象技术抽象出了Looper和Handler的概念。在Looper和Handler两个概念的基础上,通过View的处理函数框架，Android十分完美的达到消息分发的目的。 参照基本消息系统描述模型，我给出了Android消息系统整体框架，表示如下：</p><p><img src="../img/component_handler/04_handler4.gif"></p><p>Android消息系统消息分发框架</p><p><img src="../img/component_handler/04_handler5.gif"></p><p style="color:#3333FF;">3 Looper,Handler详解 Looper只是产生一个消息循环框架，首先Looper创建了消息队列并把它挂接在Linux的线程上下文中，进入到取消息，并分发消息的循环当中。Handler对象在同一个线程上下文中取得消息队列，对消息队列进行封装操作，最主要的就是SendMessage和担当起dispatchMessage这个实际工作。外部系统需要向某个Android线程发送消息，必须通过属于该AndroidThread的Handler这个对象进行。</p><p><img src="../img/component_handler/04_handler6.gif"></p><p>Handler属于某个线程，取决Handlerd对象在哪个线程中建立。Handler在构建时做了如下的默认动作： </p><p>1、从线程上下文取得Looper。</p><p>2、通过Looper获取到消息队列并记录在自己的成员mQueue变量中，Handler使用消息队列进行对象封装，提供如下的成员函数：</p><p>3、通过post(Runnable r)发送。Runnable是消息处理的回调函数，通过该消息的发送，引起Runable的回调运行，post消息放置消息队列的前面。Message.callback=Runable。</p><p><pre><font class="Comments">/**</font></p><p> <font class="Comments">* Causes the Runnable r to be added to the message queue. The runnable will</font></p><p> <font class="Comments">* be run on the thread to which this handler is attached.</font></p><p> <font class="Comments">* </font></p><p> <font class="Comments">* @param r</font></p><p> <font class="Comments">*            The Runnable that will be executed.</font></p><p> <font class="Comments">* </font></p><p> <font class="Comments">* @return Returns true if the Runnable was successfully placed in to the</font></p><p> <font class="Comments">*         message queue. Returns false on failure, usually because the</font></p><p> <font class="Comments">*         looper processing the message queue is exiting.</font></p><p> <font class="Comments">*/</font></p><p><font class="keyword">public </font><font class="keyword">final </font><font class="keyword">boolean </font>post(Runnable r) {</p><p>	<font class="keyword">return </font>sendMessageDelayed(getPostMessage(r), 0);</p><p>}</p><p></pre></p><p>通过 sendMessage发送。放置在所有的Post消息之后，sendMessage发送消息。（具体源码：）</p><p><pre><font class="Comments">/**</font></p><p> <font class="Comments">* Pushes a message onto the end of the message queue after all pending</font></p><p> <font class="Comments">* messages before the current time. It will be received in</font></p><p> <font class="Comments">* {@link handleMessage}, in the thread attached to this handler.</font></p><p> <font class="Comments">* </font></p><p> <font class="Comments">* @return Returns true if the message was successfully placed in to the</font></p><p> <font class="Comments">*         message queue. Returns false on failure, usually because the</font></p><p> <font class="Comments">*         looper processing the message queue is exiting.</font></p><p> <font class="Comments">*/</font></p><p><font class="keyword">public </font><font class="keyword">final </font><font class="keyword">boolean </font>sendMessage(Message msg) {</p><p>	<font class="keyword">return </font>sendMessageDelayed(msg, 0);</p><p>}</p><p></pre></p><p>dispatchMessage分发消息。消息带有回调函数，则执行消息回调函数，如何没有则使用默认处理函数：handleMessage。而handleMessage往往被重载成某个继承Handler对象的新的特定的handleMessage。几乎所有的Message发送时，都指定了target。Message.target=(this).</p><p><pre>/*package*/ Handler target;</p><p>/*package*/ Runnable callback;</p><p>....</p><p>....</p><p>.....</p><p>.....</p><p><font class="keyword">public </font><font class="keyword">void </font>setTarget(Handler target) {</p><p>		<font class="keyword">this</font>.target = target;</p><p>}</p><p></pre></p><p>Looper运行在Activity何处？我们现在可以从代码堆栈中纵观一下Looper的位置。 </p><p><pre>NaiveStart.main() </p><p>ZygoteInit.main </p><p>ZygoteInit$MethodAndArgsCall.run </p><p>Method.Invoke </p><p>method.invokeNative </p><p>ActivityThread.main() </p><p>Looper.loop() </p><p>ViewRoot$RootHandler().dispatch() </p><p>handleMessage ....</p><p></pre></p><p>这样我们就更清楚的了解到Looper的运行位置。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android Handler的使用(一)_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li class="navcurrentLink"><A href="index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Activity" href="index_112.html">Activity</A></h2>
+
+  <h2><A title="Intent" href="index_113.html">Intent</A></h2>
+
+  <h2><A title="Service" href="index_114.html">Service</A></h2>
+
+  <h2><A title="Content Provider" href="index_115.html">Content Provider</A></h2>
+
+  <h2><A title="BroadcastReceiver" href="index_116.html">BroadcastReceiver</A></h2>
+
+  <h2><A title="AsyncTask" href="index_117.html">AsyncTask</A></h2>
+
+  <h2><A title="Handler" href="index_118.html">Handler</A></h2>
+<UL><li ><A title=Handler 基础认识 href="show_601_118.html">Handler 基础认识</A> </li><li class="currentLink"><A title=Android Handler的使用(一) href="show_602_118.html">Android Handler的使用(一)</A> </li><li ><A title=Android Handler的使用(二) href="show_603_118.html">Android Handler的使用(二)</A> </li><li ><A title=Android GWES之Android消息系统 href="show_604_118.html">Android GWES之Android消息系统</A> </li><li ><A title=用Handler更新进度条ProgressBar href="show_605_118.html">用Handler更新进度条ProgressBar</A> </li><li ><A title=在Android的Notification中显示进度条 href="show_606_118.html">在Android的Notification中显示进度条</A> </li><li ><A title=通过线程改变界面button的内容 href="show_607_118.html">通过线程改变界面button的内容</A> </li><li ><A title=5秒钟自动更新Title href="show_608_118.html">5秒钟自动更新Title</A> </li></UL>
+  <h2><A title="Thread" href="index_119.html">Thread</A></h2>
+
+  <h2><A title="Permission" href="index_120.html">Permission</A></h2>
+
+  <h2><A title="AIDL" href="index_121.html">AIDL</A></h2>
+
+  <h2><A title="Json" href="index_122.html">Json</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android Handler的使用(一)</H2>
+<div style="line-height:20px; font-size:14px;"><p>Handler基本概念： </p><p>Handler主要用于异步消息的处理：当发出一个消息之后，首先进入一个消息队列，发送消息的函数即刻返回，而另外一个部分逐个的在消息队列中将消息取出，然后对消息进行出来，就是发送消息和接收消息不是同步的处理。 这种机制通常用来处理相对耗时比较长的操作。 </p><p>使用一个例子简单的来介绍一下Handler。 </p><p>示例1：一个应用程序中有2个按钮（start、end），当点击start按钮时，执行一个线程，这个线程在控制台输出一串字符串，并且每隔3秒再执行一次线程，直到点击end按钮为止，线程停止。 </p><p>下图为这个应用程序的界面： </p><p><img src="../img/component_handler/02_handler.png"></p><p>开发步骤： </p><p>1、 新建一个Android应用程序 。</p><p>2、 在布局文件中添加2个Button控件标签，并为其设置属性和值。</p><p>3、 在Activity中，声明控件变量并根据id获得控件对象。</p><p>4、 在Activity中，创建一个Handler对象。</p><p>5、 在Activity中，创建一个Runnable对象。</p><p>a) 以匿名内部类的方式。</p><p>b) 将要执行的操作写在Runnable对象中的run()方法中。</p><p>i. 打印出一句话。</p><p>ii. 调用Runnable对象的postDelayed()方法。</p><p>6、 在Activity中，编写start按钮需要的监听器，并绑定。</p><p>a) 在这个监听器的Onclick()方法中，调用Handler的post()方法，将要执行的线程对象放到队列当中。 </p><p>7、 在Activity中，编写end按钮需要的监听器，并帮定。</p><p>a) 在这个监听器的Onclick()方法中，调用Handler的removeCallbacks ()方法，删除队列当中未执行的线程对象。 </p><p>b) </p><p>下面是Activity的代码： </p><p>Java代码：</p><p><pre><font class="keyword">import </font>android.app.Activity;</p><p><font class="keyword">import </font>android.os.Bundle;</p><p><font class="keyword">import </font>android.os.Handler;</p><p><font class="keyword">import </font>android.view.View;</p><p><font class="keyword">import </font>android.view.View.OnClickListener;</p><p><font class="keyword">import </font>android.widget.Button;</p><p><font class="keyword">public </font><font class="keyword">class </font>HandlerTest </font><font class="keyword">extends </font>Activity {</p><p>	<font class="Comments">/** Called when the activity is first created. */</font></p><p>	<font class="keyword">private </font>Button startButton;</p><p>	<font class="keyword">private </font>Button endButton;</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onCreate(Bundle savedInstanceState) {</p><p>		<font class="keyword">super</font>.onCreate(savedInstanceState);</p><p>		setContentView(R.layout.main);</p><p>		<font class="Comments">// 根据id获得控件对象</font></p><p>		startButton = (Button) findViewById(R.id.startButton);</p><p>		endButton = (Button) findViewById(R.id.endButton);</p><p>		<font class="Comments">// 为控件设置监听器</font></p><p>		</font>startButton.setOnClickListener(<font class="keyword">new </font>StartButtonListener());</p><p>		</font>endButton.setOnClickListener(<font class="keyword">new </font>EndButtonListener());</p><p>	}</p><p>	<font class="keyword">class </font>StartButtonListener </font><font class="keyword">implements </font>OnClickListener {</p><p>		<font class="keyword">public </font><font class="keyword">void </font>onClick(View v) {</p><p>			<font class="Comments">// 调用Handler的post()方法，将要执行的线程对象放到队列当中</font></p><p>			handler.post(updateThread);</p><p>		}</p><p>	}</p><p>	<font class="keyword">class </font>EndButtonListener </font><font class="keyword">implements </font>OnClickListener {</p><p>		<font class="keyword">public </font><font class="keyword">void </font>onClick(View v) {</p><p>			<font class="Comments">// 调用Handler的removeCallbacks()方法，删除队列当中未执行的线程对象</font></p><p>			handler.removeCallbacks(updateThread);</p><p>		}</p><p>	}</p><p>	<font class="Comments">// 创建Handler对象</font></p><p>	</font>Handler handler = <font class="keyword">new </font>Handler();</p><p>	<font class="Comments">// 新建一个线程对象</font></p><p>	</font>Runnable updateThread = <font class="keyword">new </font>Runnable() {</p><p>		<font class="Comments">// 将要执行的操作写在线程对象的run方法当中</font></p><p>		<font class="keyword">public </font><font class="keyword">void </font>run() {</p><p>			</font>System.<font class="Fields">out</font>.println(</font><font class="Fields">"updateThread"</font>);</p><p>			<font class="Comments">// 调用Handler的postDelayed()方法</font></p><p>			<font class="Comments">// 这个方法的作用是：将要执行的线程对象放入到队列当中，待时间结束后，运行制定的线程对象</font></p><p>			<font class="Comments">// 第一个参数是Runnable类型：将要执行的线程对象</font></p><p>			<font class="Comments">// 第二个参数是long类型：延迟的时间，以毫秒为单位</font></p><p>			handler.postDelayed(updateThread, 3000);</p><p>		}</p><p>	};</p><p>}</p><p></pre></p><p>上面是一个最简单的例子，下面再看另外一个例子。 </p><p>示例2：一个应用程序中有一个进度条和一个按钮，当点击按钮后，每隔一秒钟进度条前进一部分。 </p><p>下图为应用程序的运行效果图：</p><p><img src="../img/component_handler/02_handler2.png"></p><p>开发步骤： </p><p>1、 新建一个Android应用程序。</p><p>2、 在布局文件中添加一个progressBar和一个Button，并为其设置属性和值。</p><p>3、 在Activity中，声明控件变量并根据id获得控件对象。</p><p>4、 创建线程对象。</p><p>a) 通过匿名内部类的方式。</p><p>b) 在编写完了5、6步之后再来继续编写这个线程对象里的操作。</p><p>i. 声明一个变量用来设置进度条的进度。</p><p>ii. 重写线程类的run方法()，里面编写要执行的操作。</p><p>1. 打印一个字符串。</p><p>2. 进度条的值增加。</p><p>3. 得到一个消息对象。</p><p>4. 设置消息对象arg1的值。</p><p>5. 让线程休眠一秒钟。</p><p>6. 将消息对象放入到消息队列中。</p><p>7. 判断，如果进度条的值等于100，则将线程对象从队列中移除。 </p><p>5、 创建Handler对象。</p><p>a) 与示例1不同的地方是，这里是通过匿名内部类的方式来声明的，而示例1是直接new出来的对象。</p><p>b) 重写Handler对象的handlerMessage(Message msg)方法。</p><p>i. 这个方法传入了一个Message对象，即消息对象，首先设置进度条的进度（这个值是Messag对象里面的一个成员变量arg1）。 </p><p>ii. 将要执行的线程对象放入到队列当中 </p><p>6、 编写Button需要的监听器，并绑定 </p><p>a) 设置进度条为显示状态 </p><p>b) 将要执行的线程对象放入到队列当中 </p><p><pre><font class="keyword">import </font>android.app.Activity;</p><p><font class="keyword">import </font>android.os.Bundle;</p><p><font class="keyword">import </font>android.os.Handler;</p><p><font class="keyword">import </font>android.os.Message;</p><p><font class="keyword">import </font>android.view.View;</p><p><font class="keyword">import </font>android.view.View.OnClickListener;</p><p><font class="keyword">import </font>android.widget.Button;</p><p><font class="keyword">import </font>android.widget.ProgressBar;</p><p><font class="keyword">public </font><font class="keyword">class </font>ProgressBarHandlerTest </font><font class="keyword">extends </font>Activity {</p><p>	<font class="Comments">/** Called when the activity is first created. */</font></p><p>	<font class="keyword">private </font>ProgressBar progressBar;</p><p>	<font class="keyword">private </font>Button startButton;</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onCreate(Bundle savedInstanceState) {</p><p>		<font class="keyword">super</font>.onCreate(savedInstanceState);</p><p>		setContentView(R.layout.main);</p><p>		progressBar = (ProgressBar) findViewById(R.id.progressbar);</p><p>		startButton = (Button) findViewById(R.id.startButton);</p><p></p><p>		</font>startButton.setOnClickListener(<font class="keyword">new </font>ProgressBarOnClickListener());</p><p>	}</p><p>	<font class="keyword">class </font>ProgressBarOnClickListener </font><font class="keyword">implements </font>OnClickListener {</p><p>		<font class="keyword">public </font><font class="keyword">void </font>onClick(View v) {</p><p>			<font class="Comments">// 设置进度条为可见状态</font></p><p>			progressBar.setVisibility(View.VISIBLE);</p><p>			updateBarHandler.post(updateThread);</p><p>		}</p><p>	}</p><p>	<font class="Comments">// 使用匿名内部类来复写Handler当中的handlerMessage()方法</font></p><p>	</font>Handler updateBarHandler = <font class="keyword">new </font>Handler() {</p><p>		@Override</p><p>		<font class="keyword">public </font><font class="keyword">void </font>handleMessage(Message msg) {</p><p>			progressBar.setProgress(msg.arg1);</p><p>			updateBarHandler.post(updateThread); <font class="Comments">// 将要执行的线程放入到队列当中</font></p><p>		}</p><p>	};</p><p>	<font class="Comments">// 线程类，该类使用匿名内部类的方式进行声明</font></p><p>	</font>Runnable updateThread = <font class="keyword">new </font>Runnable() {</p><p>		<font class="keyword">int </font>i = 0;</p><p>		<font class="keyword">public </font><font class="keyword">void </font>run() {</p><p>			<font class="Comments">// TODO Auto-generated method stub</font></p><p>			</font>System.<font class="Fields">out</font>.println(</font><font class="Fields">"Begin Thread"</font>);</p><p>			i += 10;</p><p>			<font class="Comments">// 得到一个消息对象，Message类是android系统提供的</font></p><p>			Message msg = updateBarHandler.obtainMessage();</p><p>			<font class="Comments">// 将Message对象的arg1参数的值设置为i</font></p><p>			msg.arg1 = i; <font class="Comments">// 用arg1、arg2这两个成员变量传递消息，优点是系统性能消耗较少</font></p><p>			<font class="keyword">try </font>{</p><p>				Thread.sleep(1000); <font class="Comments">// 让当前线程休眠1000毫秒</font></p><p>			</font>} <font class="keyword">catch </font>(InterruptedException ex) {</p><p>				ex.printStackTrace();</p><p>			}</p><p>			<font class="Comments">// 将Message对象加入到消息队列当中</font></p><p>			updateBarHandler.sendMessage(msg);</p><p>			<font class="Comments">// 如果i的值等于100</font></p><p>			<font class="keyword">if </font>(i == 100) {</p><p>				<font class="Comments">// 将线程对象从队列中移除</font></p><p>				updateBarHandler.removeCallbacks(updateThread);</p><p>			}</p><p>		}</p><p>	};</p><p>}</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

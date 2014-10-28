@@ -1,0 +1,372 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android开发之gallery（画廊）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li class="navcurrentLink"><A href="index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="用户界面之view(视图)" href="index_123.html">用户界面之view(视图)</A></h2>
+
+  <h2><A title="用户界面之Layout(布局)" href="index_124.html">用户界面之Layout(布局)</A></h2>
+
+  <h2><A title="用户界面之TextView(文本视图)" href="index_125.html">用户界面之TextView(文本视图)</A></h2>
+
+  <h2><A title="用户界面之EditText(编辑视图)" href="index_126.html">用户界面之EditText(编辑视图)</A></h2>
+
+  <h2><A title="用户界面之Button(按钮)" href="index_127.html">用户界面之Button(按钮)</A></h2>
+
+  <h2><A title="用户界面之Dialog(对话框)" href="index_128.html">用户界面之Dialog(对话框)</A></h2>
+
+  <h2><A title="用户界面之ListView(列表视图)" href="index_129.html">用户界面之ListView(列表视图)</A></h2>
+
+  <h2><A title="用户界面之Adapter(适配器)" href="index_130.html">用户界面之Adapter(适配器)</A></h2>
+
+  <h2><A title="用户界面之Menu(菜单)" href="index_131.html">用户界面之Menu(菜单)</A></h2>
+
+  <h2><A title="用户界面之Notification(通知栏)" href="index_132.html">用户界面之Notification(通知栏)</A></h2>
+
+  <h2><A title="NotificationImageView(图像视图)" href="index_133.html">NotificationImageView(图像视图)</A></h2>
+
+  <h2><A title="用户界面之GridView(格视图)" href="index_134.html">用户界面之GridView(格视图)</A></h2>
+
+  <h2><A title="用户界面之ProgressBar(进度条)" href="index_135.html">用户界面之ProgressBar(进度条)</A></h2>
+
+  <h2><A title="用户界面之Checkbox(复选框)" href="index_136.html">用户界面之Checkbox(复选框)</A></h2>
+
+  <h2><A title="用户界面之ScrollView(滚动视图)" href="index_137.html">用户界面之ScrollView(滚动视图)</A></h2>
+
+  <h2><A title="用户界面之Gallery(长廊视图)" href="index_138.html">用户界面之Gallery(长廊视图)</A></h2>
+<UL><li class="currentLink"><A title=Android开发之gallery（画廊） href="show_1501_138.html">Android开发之gallery（画廊）</A> </li><li ><A title=Android控件Gallery href="show_1502_138.html">Android控件Gallery</A> </li><li ><A title=Android-UI篇-Gallery（画廊视图） href="show_1503_138.html">Android-UI篇-Gallery（画廊视图）</A> </li><li ><A title=Android Gallery的学习心得 href="show_1504_138.html">Android Gallery的学习心得</A> </li><li ><A title=Android Gallery组件详解 href="show_1505_138.html">Android Gallery组件详解</A> </li><li ><A title=Android Gallery控件使用方法详解 href="show_1506_138.html">Android Gallery控件使用方法详解</A> </li><li ><A title=Android Gallery的简单应用 href="show_1507_138.html">Android Gallery的简单应用</A> </li><li ><A title=Android Gallery与衍生BaseAdapter全面讲解 href="show_1508_138.html">Android Gallery与衍生BaseAdapter全面讲解</A> </li><li ><A title=Android对Gallery的探究 href="show_1509_138.html">Android对Gallery的探究</A> </li><li ><A title=Gallery3D笔记 href="show_1510_138.html">Gallery3D笔记</A> </li><li ><A title=Gallery3D各个界面范围算法 href="show_1511_138.html">Gallery3D各个界面范围算法</A> </li><li ><A title=Android-Gallery 3D实例 href="show_1512_138.html">Android-Gallery 3D实例</A> </li><li ><A title=Android Gallery3D源码分析(一) href="show_1513_138.html">Android Gallery3D源码分析(一)</A> </li><li ><A title=Android Gallery3D源码分析（二) href="show_1514_138.html">Android Gallery3D源码分析（二)</A> </li><li ><A title=Android Gallery3D效果教程 href="show_1515_138.html">Android Gallery3D效果教程</A> </li><li ><A title=Android Gallery.layoutParams方法学习 href="show_1516_138.html">Android Gallery.layoutParams方法学习</A> </li><li ><A title=Android 控件之Gallery图片集 href="show_1517_138.html">Android 控件之Gallery图片集</A> </li><li ><A title=Android控件之Gallery实现图片列表 href="show_1518_138.html">Android控件之Gallery实现图片列表</A> </li><li ><A title=Android Gallery实现图片的左右循环旋转源码 href="show_1519_138.html">Android Gallery实现图片的左右循环旋转源码</A> </li><li ><A title=Android Gallery实现异步加载网络图片 并只加载当前停止页面图 href="show_1520_138.html">Android Gallery实现异步加载网络图片 并只加载当前停止页面图</A> </li><li ><A title=Android中实现Gallery点击放大 href="show_1521_138.html">Android中实现Gallery点击放大</A> </li><li ><A title=Gallery 图片拖动效果 href="show_1522_138.html">Gallery 图片拖动效果</A> </li><li ><A title=Android Gallery + ImageSwitcher href="show_1523_138.html">Android Gallery + ImageSwitcher</A> </li><li ><A title=Android中Gallery和ImageSwitcher同步自动(滚动)播放图片库 href="show_1524_138.html">Android中Gallery和ImageSwitcher同步自动(滚动)播放图片库</A> </li><li ><A title=结合ImageSwithcer和Gallery控件制作一个图片浏览 href="show_1525_138.html">结合ImageSwithcer和Gallery控件制作一个图片浏览</A> </li><li ><A title=利用Gallery来实现缩略图浏览器 href="show_1526_138.html">利用Gallery来实现缩略图浏览器</A> </li><li ><A title=向左对齐的Gallery href="show_1527_138.html">向左对齐的Gallery</A> </li><li ><A title=使用远程图片填充Gallery href="show_1528_138.html">使用远程图片填充Gallery</A> </li><li ><A title=Android自定义Gallery，实现CoverFlow效果 href="show_1529_138.html">Android自定义Gallery，实现CoverFlow效果</A> </li><li ><A title=使用Android自带Gallery组件实现CoverFlow href="show_1530_138.html">使用Android自带Gallery组件实现CoverFlow</A> </li><li ><A title=关于Gallery显示效果问题 href="show_1531_138.html">关于Gallery显示效果问题</A> </li></UL>
+  <h2><A title="用户界面之ActionBar(导航栏)" href="index_139.html">用户界面之ActionBar(导航栏)</A></h2>
+
+  <h2><A title="用户界面之PopupWindow(弹出窗口)" href="index_140.html">用户界面之PopupWindow(弹出窗口)</A></h2>
+
+  <h2><A title="用户界面之RatingBar(评分栏)" href="index_141.html">用户界面之RatingBar(评分栏)</A></h2>
+
+  <h2><A title="用户界面之Spinner" href="index_142.html">用户界面之Spinner</A></h2>
+
+  <h2><A title="用户界面之SeekBar(搜索bar)" href="index_143.html">用户界面之SeekBar(搜索bar)</A></h2>
+
+  <h2><A title="用户界面之TabHost(分割栏)" href="index_144.html">用户界面之TabHost(分割栏)</A></h2>
+
+  <h2><A title="用户界面之SlidingDrawer(抽屉)" href="index_145.html">用户界面之SlidingDrawer(抽屉)</A></h2>
+
+  <h2><A title="用户界面之ViewFlipper" href="index_146.html">用户界面之ViewFlipper</A></h2>
+
+  <h2><A title="用户界面之SurfaceView" href="index_147.html">用户界面之SurfaceView</A></h2>
+
+  <h2><A title="用户界面之Splash" href="index_148.html">用户界面之Splash</A></h2>
+
+  <h2><A title="用户界面之Toast" href="index_149.html">用户界面之Toast</A></h2>
+
+  <h2><A title="用户界面之AlarmManager" href="index_150.html">用户界面之AlarmManager</A></h2>
+
+  <h2><A title="用户界面之Fragment" href="index_151.html">用户界面之Fragment</A></h2>
+
+  <h2><A title="用户界面之WebView(网络视图)" href="index_152.html">用户界面之WebView(网络视图)</A></h2>
+
+  <h2><A title="Android用户界面之Widget(小组件)" href="index_153.html">Android用户界面之Widget(小组件)</A></h2>
+
+  <h2><A title="Android用户界面之theme和style" href="index_154.html">Android用户界面之theme和style</A></h2>
+
+  <h2><A title="Android用户界面之多语言" href="index_155.html">Android用户界面之多语言</A></h2>
+
+  <h2><A title="Android用户界面之界面特效" href="index_156.html">Android用户界面之界面特效</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android开发之gallery（画廊）</H2>
+<div style="line-height:20px; font-size:14px;"><p style="color:#3333FF;">一、结构
+<pre>
+public class Gallery extends AbsSpinner 
+implements GestureDetector.OnGestureListener
+java.lang.Object
+android.view.View
+android.view.ViewGroup
+android.widget.AdapterView
+android.widget.AbsSpinner
+android.widget.Gallery
+</pre>
+<p style="color:#3333FF;">二、概述
+<img src="../img/view_gallery/01_gallery.jpg">
+一个锁定中心条目并且拥有水平滚动列表的视图。
+Gallery（画廊）使用Theme_galleryItemBackground作为Gallery（画廊）适配器中的各视图的默认参数。如果你没有设置，你就需要调整一些Gallery（画廊）的属性，比如间距。
+Gallery（画廊）中的视图应该使用Gallery.LayoutParams作为它们的布局参数类型。
+参见Gallery tutorial。
+<p style="color:#3333FF;">三、内部类
+<pre>
+<font class="keyword">class </font>Gallery.LayoutParams
+</pre>
+Gallery(画廊)扩展了LayoutParams，以此提供可以容纳当前的转换信息和先前的位置转换信息的场所。</p><p style="color:#3333FF;">四、XML属性
+<img src="../img/view_gallery/01_gallery2.jpg">
+<p style="color:#3333FF;">五、公共方法 
+<pre>
+<font class="keyword">public </font><font class="keyword">boolean </font>dispatchKeyEvent (KeyEvent event)
+</pre></p><p>在焦点路径上分发按钮事件到下一个视图。该路径从视图树的顶端遍历到当前获得焦点的视图。如果当前视图已获得焦点，就分发给自身。否则，就分发到下一个节点的焦点路径上。该方法监听任何按钮事件。
+参数
+event 被分发的按钮事件
+返回值
+时间被处理返回true，否则false 
+<pre>
+<font class="keyword">public </font><font class="keyword">void </font>dispatchSetSelected (</font><font class="keyword">boolean </font>selected)
+</pre></p><p>分发setSelected给视图的子类。
+参数
+selected 新选中的状态 
+<pre>
+<font class="keyword">public </font>ViewGroup.LayoutParams generateLayoutParams (AttributeSet attrs)
+</pre></p><p>返回一个新的已设置属性集合的布局参数。
+参数
+attrs 用于生成布局参数的属性集合
+返回值
+一个ViewGroup.LayoutParams实例或者它的子类 
+<pre>
+<font class="keyword">public </font><font class="keyword">boolean </font>onDown (MotionEvent e)
+</pre></p><p>当轻击和按下手势事件发生时通知该方法。任何按下事件都会直接触发该方法。所有其他的事件都要先于该方法。
+参数
+e 按下动作事件 
+<pre>
+<font class="keyword">public </font><font class="keyword">boolean </font>onFling (MotionEvent e1, MotionEvent e2, </font><font class="keyword">float </font>velocityX, </font><font class="keyword">float </font>velocityY)
+</pre></p><p>当初始化的按下动作事件和松开动作事件匹配时通知fling（译者注：快滑，用户按下触摸屏、快速移动后松开）事件。该动作的速度通过计算X和Y轴上每秒移动多少像素得来。
+参数
+e1 导致开始fling的按下动作事件。
+e2 触发当前onFling方法的移动动作事件
+velocityX 测量fling沿X轴上的速度，像素/每秒
+velocityY 测量fling沿Y轴上的速度，像素/每秒
+返回值
+如果该事件被消耗返回true，否则false。 
+<pre>
+<font class="keyword">public </font><font class="keyword">boolean </font>onKeyDown (</font><font class="keyword">int </font>keyCode, KeyEvent event)</p><p></pre></p><p>处理左，右和点击事件
+参数
+keyCode 代表按下按钮的按键码，来自KeyEvent。
+event 定义按钮动作的KeyEvent对象。
+返回值
+如果已经处理了按钮事件，则返回true。如果你想让下一个事件接收者处理，就返回false
+参见
+onKeyDown(int, KeyEvent) </p><p><pre>
+<font class="keyword">public </font><font class="keyword">boolean </font>onKeyUp (</font><font class="keyword">int </font>keyCode, KeyEvent event)</p><p></pre>
+KeyEvent.Callback.onKeyMultiple()方法的默认实现：当KEYCODE_DPAD_CENTER 或者 KEYCODE_ENTER被释放时，执行点击视图操作。
+参数
+keyCode 代表按下按钮的按键码，来自KeyEvent。
+event定义按钮动作的KeyEvent对象。
+返回值
+如果已经处理了按钮事件，则返回true。如果你想让下一个事件接收者处理，就返回false 
+<pre>
+<font class="keyword">public </font><font class="keyword">void </font>onLongPress (MotionEvent e)</p><p></pre>
+MotionEvent初始化并按下触发长按并通知本方法。
+参数
+e 导致开始长按的初始按下动作事件。 
+<pre>
+<font class="keyword">public </font><font class="keyword">boolean </font>onScroll (MotionEvent e1, MotionEvent e2, </font><font class="keyword">float </font>distanceX, </font><font class="keyword">float </font>distanceY)
+</pre></p><p>当初始按下动作事件和当前移动动作事件导致滚动时通知本方法。为了方便提供了X和Y轴上的距离。
+监听屏幕滚动事件。为了方便提供了X和Y轴上的距离。
+参数
+e1 导致滚动开始按下的动作事件。
+e2 触发当前onScroll方法的移动动作事件。
+distanceX 距离是自上一次调用onScroll方法在X轴上的距离。不是e1 和e2之间的距离。
+distanceY 距离是自上一次调用onScroll方法在Y轴上的距离。不是e1 和e2之间的距离。
+返回值
+如果该事件被消耗返回true否则false 
+<pre>
+<font class="keyword">public </font><font class="keyword">void </font>onShowPress (MotionEvent e)</p><p></pre></p><p>用户已经执行按下动作还没有执行移动或者弹起动作。该事件常通过高亮一个元素来向用户提供一个视觉反馈即用户的操作已经被辨识了。
+参数
+e按下动作事件 
+<pre>
+<font class="keyword">public </font><font class="keyword">boolean </font>onSingleTapUp (MotionEvent e)
+</pre></p><p>在轻击动作和up动作事件触发时通知本方法。（译者注：点击屏幕上的某项的执行流程 有两种情况，一种是时间很短，一种时间稍长：时间很短：onDown—&gt;onSingleTapUp—&gt;onSingleTapConfirmed，见这里1，这里2。）
+参数
+e 完成开始轻击的up动作事件
+返回值
+如果该事件被消耗返回true否则false 
+<pre><font class="keyword">public </font><font class="keyword">boolean </font>onTouchEvent (MotionEvent event)</p><p></pre></p><p>实现该方法来处理触摸屏动作事件
+参数
+event 动作事件
+返回值
+如果该事件被消耗返回true否则false </p><p><pre><font class="keyword">public </font><font class="keyword">void </font>setAnimationDuration (</font><font class="keyword">int </font>animationDurationMillis)</p><p></pre></p><p>设置当子视图改变位置时动画转换时间。仅限于动画开始时生效。
+参数
+animationDurationMillis 动画转换时间（毫秒级） </p><p><pre>
+<font class="keyword">public </font><font class="keyword">void </font>setCallbackDuringFling (</font><font class="keyword">boolean </font>shouldCallback)</p><p></pre></p><p>当flinged时是否回调每一个getOnItemSelectedListener()。如果设为false，只回调最终选中的项。如果为true，则所有的项都会回调。
+参数
+shouldCallback 设置抛滑的过程中是否回调 
+<pre>
+<font class="keyword">public </font><font class="keyword">void </font>setGravity (</font><font class="keyword">int </font>gravity)</p><p></pre></p><p>描述子视图的对齐方式。 
+<pre>
+<font class="keyword">public </font><font class="keyword">void </font>setSpacing (</font><font class="keyword">int </font>spacing)
+</pre></p><p>设置Gallery中项的间距
+参数
+spacing Gallery中项的间距，以像素为单位 </p><p><pre><font class="keyword">public </font><font class="keyword">void </font>setUnselectedAlpha (</font><font class="keyword">float </font>unselectedAlpha)</p><p></pre></p><p>设置Gallery中未选中项的透明度(alpha)值。
+参数
+unselectedAlpha 未选中项的透明度(alpha)值 
+<pre>
+<font class="keyword">public </font><font class="keyword">boolean </font>showContextMenu ()
+</pre></p><p>显示该视图上下文菜单。
+返回值
+上下文菜单是否显示。
+<pre>
+<font class="keyword">public </font><font class="keyword">boolean </font>showContextMenuForChild (View originalView)
+</pre></p><p>为指定的视图或者其父类显示上下文菜单。
+大部分情况下，子类不需要重写该方法。但是，如果子类被直接添加到窗口管理器（例如：addView(View.android.view.ViewGroup.LayoutParams)），此时就需要重写来显示上下文菜单
+参数
+originalView 上下文菜单初次调用的源视图
+返回值
+如果上下文菜单被显示了 则返回true。</p><p style="color:#3333FF;">六、受保护方法 </p><p><pre>
+<font class="keyword">protected </font><font class="keyword">int </font>computeHorizontalScrollExtent ()</p><p></pre></p><p>在水平范围内计算滚动条滑块的滚动范围。该值用来计算滚动条滑块的长度。
+该范围可以使用任意的单位但是必须跟computeHorizontalScrollRange()和computeHorizontalScrollOffset()的单位保持一致。
+默认范围是视图的宽度。
+返回值
+滚动条滑块的水平滚动范围 
+<pre>
+<font class="keyword">protected </font><font class="keyword">int </font>computeHorizontalScrollOffset ()
+</pre>
+在水平范围内计算滚动条滑块的偏移量。该值用来计算水平滑块的位置。
+该范围可以使用任意的单位但是必须跟computeHorizontalScrollRange()和computeHorizontalScrollExtent()的单位保持一致。
+默认偏移量是视图的偏移量。
+返回值
+滚动条滑块的水平偏移量。 </p><p><pre>
+<font class="keyword">protected </font><font class="keyword">int </font>computeHorizontalScrollRange ()</p><p></pre></p><p>计算滚动条水平方向上的滚动范围。
+该范围可以使用任意的单位但是必须跟computeHorizontalScrollExtent()和computeHorizontalScrollOffset()的单位保持一致。
+返回值
+水平滚动条代表的滑动总范围</p><p><pre>
+<font class="keyword">protected </font><font class="keyword">void </font>dispatchSetPressed (</font><font class="keyword">boolean </font>pressed)</p><p></pre></p><p>分发 setPressed到View的子类。
+参数
+pressed 新按下的状态 
+<pre>
+<font class="keyword">protected </font>ViewGroup.LayoutParams generateDefaultLayoutParams ()</p><p></pre></p><p>返回默认的布局参数。当View作为参数传递给addView(View)而没有布局参数时就会请求这些参数。如果返回null，则addView会抛出异常。
+返回值
+默认的布局参数或null 
+<pre>
+<font class="keyword">protected </font>ViewGroup.LayoutParams generateLayoutParams (ViewGroup.LayoutParams p)
+</pre>
+返回一组合法的受支持的布局参数。当把ViewGroup传递给View而该View的布局参数并没有通过checkLayoutParams(android.view.ViewGroup.LayoutParams)的测试时，就会调用该方法。该方法应该返回一组适合该ViewGroup的新的布局参数，该过程可能需要从指定的一组布局参数中复制相关的属性。
+参数
+p 被转换成适合该ViewGroup的一组参数。
+返回值
+返回一个ViewGroup.LayoutParams的实例或者一个它的子类。 </p><p><pre><font class="keyword">protected </font><font class="keyword">int </font>getChildDrawingOrder (</font><font class="keyword">int </font>childCount, </font><font class="keyword">int </font>i)</p><p></pre></p><p>返回迭代的绘制子类索引。如果你想改变子类的绘制顺序就要重写该方法。默认返回 i 值。
+提示：为了能够调用该方法，你必须首先调用setChildrenDrawingOrderEnabled(boolean)来允许子类排序。
+参数
+childCount 子类个数
+i 当前迭代顺序
+返回值
+绘制该迭代子类的索引 
+<pre>
+<font class="keyword">protected </font><font class="keyword">boolean </font>getChildStaticTransformation (View child, Transformation t)
+</pre>
+（译者注：setStaticTransformationsEnabled这个属性设成true的时候每次viewGroup(看Gallery的源码就可以看到它是从ViewGroup间接继承过来的)在重新画它的child的时候都会促发getChildStaticTransformation这个函数。这里1、这里2） 
+<pre></font><font class="keyword">protected </font>ContextMenu.ContextMenuInfo getContextMenuInfo()</p><p></pre>
+Views如果有额外的信息跟上下文菜单有联系的话就需要实现该方法。返回的结果被用作回调方法onCreateContextMenu(ContextMenu, View, ContextMenuInfo)的参数。
+返回值
+显示上下文菜单的条目的额外信息。这些信息将会改变View不同的子类
+<pre><font class="keyword">protected </font><font class="keyword">void </font>onFocusChanged (</font><font class="keyword">boolean </font>gainFocus, </font><font class="keyword">int </font>direction, Rect previouslyFocusedRect)
+</pre>
+当该视图的焦点状态发生改变时将会调用视图系统。当导向的方向触发焦点事件时，方向和先前获得焦点的矩形提供焦点事件的来源。当用户重写该方法，必须调用父类方法来触发标准的焦点处理事件。
+参数
+gainFocus 如果View获得焦点为true，否则false
+direction 当调用requestFocus()方法来给该视图焦点时焦点的移动方向。该值:FOCUS_UP, FOCUS_DOWN, FOCUS_LEFT 或 FOCUS_RIGHT。该参数不常用，通常使用它的默认值。
+previouslyFocusedRect 该视图坐标系统中先前获得焦点的视图的矩形。如果适用，这将获得焦点事件来源的更细致的信息（除了方向以外）。否则为null。 
+<pre>
+</font><font class="keyword">protected </font><font class="keyword">void </font>onLayout (</font><font class="keyword">boolean </font>changed, </font><font class="keyword">int </font>l, </font><font class="keyword">int </font>t, </font><font class="keyword">int </font>r, </font><font class="keyword">int </font>b)</p><p></pre></p><p>当视图为每一个子类分配大小和位置时从布局中调用该方法。有子类的派生类应该重写该方法在子类中调用布局。
+参数
+changed 该视图新的大小和位置。
+l 相对父容器的左侧位置
+t 相对父容器的顶部位置
+r 相对父容器的右侧位置
+b 相对父容器的底部位置七、补充
+文章精选
+Android开发——使用Gallery实现“多级联动”
+android 图片拖动效果(Gallery)
+示例代码
+<pre>
+<font class="keyword">public </font><font class="keyword">class </font>MyGallery </font><font class="keyword">extends </font>Activity {
+	<font class="Comments">/** Called when the activity is first created. */
+	</font><font class="keyword">private </font>Gallery gallery;
+	</font>@Override
+	</font><font class="keyword">public </font><font class="keyword">void </font>onCreate(Bundle savedInstanceState) {
+		</font><font class="keyword">super</font>.onCreate(savedInstanceState);
+		</font>setContentView(R.layout.main);
+		</font>gallery = (Gallery) findViewById(R.id.gallery);
+		</font>gallery.setAdapter(</font><font class="keyword">new </font>ImageAdapter(</font><font class="keyword">this</font>));<font class="Comments">// 设置图片适配器
+		<font class="Comments">// 设置监听器
+		</font>gallery.setOnItemClickListener(</font><font class="keyword">new </font>OnItemClickListener() {
+			</font>@Override
+			</font><font class="keyword">public </font><font class="keyword">void </font>onItemClick(AdapterView&lt;?&gt; arg0, View arg1, </font><font class="keyword">int </font>arg2,
+					</font><font class="keyword">long </font>arg3) {
+				</font>Toast.makeText(MyGallery.</font><font class="keyword">this</font>, <font class="Fields">"点击了第"</font> + arg2 + </font><font class="Fields">"张图片"</font>,
+						</font>Toast.LENGTH_LONG).show();
+			</font>}
+		</font>});
+	</font>}
+</font>}
+</font><font class="keyword">class </font>ImageAdapter </font><font class="keyword">extends </font>BaseAdapter {
+	</font><font class="keyword">private </font>Context context;
+	<font class="Comments">// 图片源数组
+	</font><font class="keyword">private </font>Integer[] imageInteger = { R.drawable.gallery_photo_1,
+			</font>R.drawable.gallery_photo_2, R.drawable.gallery_photo_3,
+			</font>R.drawable.gallery_photo_4, R.drawable.gallery_photo_5,
+			</font>R.drawable.gallery_photo_6, R.drawable.gallery_photo_7,
+			</font>R.drawable.gallery_photo_8 </font>};
+	</font><font class="keyword">public </font>ImageAdapter(Context c) {
+		</font>context = c;
+	</font>}
+	</font>@Override
+	</font><font class="keyword">public </font><font class="keyword">int </font>getCount() {
+		</font><font class="keyword">return </font>imageInteger.length;
+	</font>}
+	</font>@Override
+	</font><font class="keyword">public </font>Object getItem(</font><font class="keyword">int </font>position) {
+		</font><font class="keyword">return </font>position;
+	</font>}
+	</font>@Override
+	</font><font class="keyword">public </font><font class="keyword">long </font>getItemId(</font><font class="keyword">int </font>position) {
+		</font><font class="keyword">return </font>position;
+	</font>}
+	</font>@Override
+	</font><font class="keyword">public </font>View getView(</font><font class="keyword">int </font>position, View convertView, ViewGroup parent) {
+		</font>ImageView imageView = </font><font class="keyword">new </font>ImageView(context);
+		</font>imageView.setImageResource(imageInteger[position]);
+		</font>imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+		</font>imageView.setLayoutParams(</font><font class="keyword">new </font>Gallery.LayoutParams(136, 88));
+		</font><font class="keyword">return </font>imageView;
+	</font>}
+</font>}
+</pre>
+XML文件 
+<pre>
+&lt;?xml version=</font><font class="Fields">"1.0"</font> encoding=</font><font class="Fields">"utf-8"</font>?&gt;
+&lt;Gallery xmlns:android=</font><font class="Fields">"http:<font class="Comments">//schemas.android.com/apk/res/android
+    </font>android:id=</font><font class="Fields">"@+id/gallery
+    </font>android:layout_width=</font><font class="Fields">"fill_parent
+    </font>android:layout_height=</font><font class="Fields">"wrap_content
+    </font>android:background=</font><font class="Fields">"?android:galleryItemBackground
+    </font>android:gravity=</font><font class="Fields">"center_vertical"</font> /&gt;
+</pre></font></font></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+  
+   </P>
+</DIV></BODY></HTML>
+

@@ -1,0 +1,58 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 加密解密_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li class="navcurrentLink"><A href="index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Android基础之运行原理和机制" href="index_215.html">Android基础之运行原理和机制</A></h2>
+
+  <h2><A title="Android高级篇之Android优化" href="index_216.html">Android高级篇之Android优化</A></h2>
+
+  <h2><A title="Android高级篇之编译及反编译" href="index_217.html">Android高级篇之编译及反编译</A></h2>
+
+  <h2><A title="Android高级篇之加密解密" href="index_218.html">Android高级篇之加密解密</A></h2>
+<UL><li class="currentLink"><A title=Android 加密解密 href="show_301_218.html">Android 加密解密</A> </li><li ><A title=Android 用MD5加密算法加密密码（一） href="show_302_218.html">Android 用MD5加密算法加密密码（一）</A> </li><li ><A title=Android 用MD5加密算法加密密码（二） href="show_303_218.html">Android 用MD5加密算法加密密码（二）</A> </li><li ><A title=Android下MD5加密 href="show_304_218.html">Android下MD5加密</A> </li><li ><A title=Android 获取自己程序APK包的MD5指纹 href="show_305_218.html">Android 获取自己程序APK包的MD5指纹</A> </li><li ><A title=Android客户端与服务器端通过DES加密认证 href="show_306_218.html">Android客户端与服务器端通过DES加密认证</A> </li><li ><A title=Java加密解密 href="show_307_218.html">Java加密解密</A> </li><li ><A title=给自己的网络数据加密 href="show_308_218.html">给自己的网络数据加密</A> </li></UL>
+  <h2><A title="Android高级篇之Android 安全" href="index_219.html">Android高级篇之Android 安全</A></h2>
+
+  <h2><A title="Android高级篇之算法" href="index_220.html">Android高级篇之算法</A></h2>
+
+  <h2><A title="Android高级篇之解锁教程" href="index_221.html">Android高级篇之解锁教程</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 加密解密</H2>
+<div style="line-height:20px; font-size:14px;"><p>加密解密是我们在生活中经常用到的一个方法。这个给我们带来了很大的方便。因为有了加密我们的文件就会更加安全，这其中我们用到的是KeyGenerator、SecretKey、spec.SecretKeySpec，这三个在加密当中起到了非常大的作用。下面的代码就是讲述了怎么才能实现加密的效果。</p><p><pre><font class="keyword">import </font>java.security.SecureRandom;</p><p><font class="keyword">import </font>javax.crypto.Cipher;</p><p><font class="keyword">import </font>javax.crypto.KeyGenerator;</p><p><font class="keyword">import </font>javax.crypto.SecretKey;</p><p><font class="keyword">import </font>javax.crypto.spec.SecretKeySpec;</p><p><font class="Comments">/**</font></p><p> <font class="Comments">* Usage:</font></p><p> <font class="Comments">* &lt;pre&gt;</font></p><p> <font class="Comments">* String crypto = SimpleCrypto.encrypt(masterpassword, cleartext)</font></p><p> <font class="Comments">* String cleartext = SimpleCrypto.decrypt(masterpassword, crypto)</font></p><p> <font class="Comments">* &lt;/pre&gt;</font></p><p> <font class="Comments">*/</font></p><p><font class="keyword">public </font><font class="keyword">class </font>SimpleCrypto {</p><p>	<font class="keyword">public </font><font class="keyword">static </font>String encrypt(String seed, String cleartext)</p><p>			<font class="keyword">throws </font>Exception {</p><p>		byte[] rawKey = getRawKey(seed.getBytes());</p><p>		byte[] result = encrypt(rawKey, cleartext.getBytes());</p><p>		<font class="keyword">return </font>toHex(result);</p><p>	}</p><p>	<font class="keyword">public </font><font class="keyword">static </font>String decrypt(String seed, String encrypted)</p><p>			<font class="keyword">throws </font>Exception {</p><p>		byte[] rawKey = getRawKey(seed.getBytes());</p><p>		byte[] enc = toByte(encrypted);</p><p>		byte[] result = decrypt(rawKey, enc);</p><p>		<font class="keyword">return </font><font class="keyword">new </font>String(result);</p><p>	}</p><p>	<font class="keyword">private </font><font class="keyword">static </font>byte[] getRawKey(byte[] seed) </font><font class="keyword">throws </font>Exception {</p><p>		</font>KeyGenerator kgen = KeyGenerator.getInstance(<font class="Fields">"AES"</font>);</p><p>		</font>SecureRandom sr = SecureRandom.getInstance(<font class="Fields">"SHA1PRNG"</font>);</p><p>		sr.setSeed(seed);</p><p>		kgen.init(128, sr); <font class="Comments">// 192 and 256 bits may not be available</font></p><p>		SecretKey skey = kgen.generateKey();</p><p>		byte[] raw = skey.getEncoded();</p><p>		<font class="keyword">return </font>raw;</p><p>	}</p><p>	<font class="keyword">private </font><font class="keyword">static </font>byte[] encrypt(byte[] raw, byte[] clear) </font><font class="keyword">throws </font>Exception {</p><p>		</font>SecretKeySpec skeySpec = <font class="keyword">new </font>SecretKeySpec(raw, <font class="Fields">"AES"</font>);</p><p>		</font>Cipher cipher = Cipher.getInstance(<font class="Fields">"AES"</font>);</p><p>		cipher.init(Cipher.ENCRYPT_MODE, skeySpec);</p><p>		byte[] encrypted = cipher.doFinal(clear);</p><p>		<font class="keyword">return </font>encrypted;</p><p>	}</p><p>	<font class="keyword">private </font><font class="keyword">static </font>byte[] decrypt(byte[] raw, byte[] encrypted)</p><p>			<font class="keyword">throws </font>Exception {</p><p>		</font>SecretKeySpec skeySpec = <font class="keyword">new </font>SecretKeySpec(raw, <font class="Fields">"AES"</font>);</p><p>		</font>Cipher cipher = Cipher.getInstance(<font class="Fields">"AES"</font>);</p><p>		cipher.init(Cipher.DECRYPT_MODE, skeySpec);</p><p>		byte[] decrypted = cipher.doFinal(encrypted);</p><p>		<font class="keyword">return </font>decrypted;</p><p>	}</p><p>	<font class="keyword">public </font><font class="keyword">static </font>String toHex(String txt) {</p><p>		<font class="keyword">return </font>toHex(txt.getBytes());</p><p>	}</p><p>	<font class="keyword">public </font><font class="keyword">static </font>String fromHex(String hex) {</p><p>		<font class="keyword">return </font><font class="keyword">new </font>String(toByte(hex));</p><p>	}</p><p>	<font class="keyword">public </font><font class="keyword">static </font>byte[] toByte(String hexString) {</p><p>		<font class="keyword">int </font>len = hexString.length() / 2;</p><p>		</font>byte[] result = <font class="keyword">new </font>byte[len];</p><p>		<font class="keyword">for </font>(</font><font class="keyword">int </font>i = 0; i &lt; len; i++)</p><p>			result[i] = Integer.valueOf(hexString.substring(2 * i, 2 * i + 2),</p><p>					16).byteValue();</p><p>		<font class="keyword">return </font>result;</p><p>	}</p><p>	<font class="keyword">public </font><font class="keyword">static </font>String toHex(byte[] buf) {</p><p>		<font class="keyword">if </font>(buf == </font><font class="keyword">null</font>)</p><p>			<font class="keyword">return </font><font class="Fields">""</font>;</p><p>		</font>StringBuffer result = <font class="keyword">new </font>StringBuffer(2 * buf.length);</p><p>		<font class="keyword">for </font>(</font><font class="keyword">int </font>i = 0; i &lt; buf.length; i++) {</p><p>			appendHex(result, buf[i]);</p><p>		}</p><p>		<font class="keyword">return </font>result.toString();</p><p>	}</p><p>	<font class="keyword">private </font><font class="keyword">final </font><font class="keyword">static </font>String HEX = <font class="Fields">"0123456789ABCDEF"</font>;</p><p>	<font class="keyword">private </font><font class="keyword">static </font><font class="keyword">void </font>appendHex(StringBuffer sb, byte b) {</p><p>		sb.append(HEX.charAt((b &gt;&gt; 4) & 0x0f)).append(HEX.charAt(b & 0x0f));</p><p>	}</p><p>}</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

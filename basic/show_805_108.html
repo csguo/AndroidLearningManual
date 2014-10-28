@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>关于多个apk打包一起安装_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li class="navcurrentLink"><A href="index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="开发基础" href="index_100.html">开发基础</A></h2>
+
+  <h2><A title="开发环境搭建" href="index_101.html">开发环境搭建</A></h2>
+
+  <h2><A title="模拟器" href="index_102.html">模拟器</A></h2>
+
+  <h2><A title="Resource" href="index_103.html">Resource</A></h2>
+
+  <h2><A title="Manifest" href="index_104.html">Manifest</A></h2>
+
+  <h2><A title="ADB" href="index_105.html">ADB</A></h2>
+
+  <h2><A title="DDMS" href="index_106.html">DDMS</A></h2>
+
+  <h2><A title="Logcat(日志)" href="index_107.html">Logcat(日志)</A></h2>
+
+  <h2><A title="打包" href="index_108.html">打包</A></h2>
+<UL><li ><A title=APK文件的解包打包和修改 href="show_801_108.html">APK文件的解包打包和修改</A> </li><li ><A title=Android 把APK文件打包编译 href="show_802_108.html">Android 把APK文件打包编译</A> </li><li ><A title=Android 批量打包 href="show_803_108.html">Android 批量打包</A> </li><li ><A title=Linux下使用shell控制ant批量打包 href="show_804_108.html">Linux下使用shell控制ant批量打包</A> </li><li class="currentLink"><A title=关于多个apk打包一起安装 href="show_805_108.html">关于多个apk打包一起安装</A> </li></UL>
+  <h2><A title="文件处理" href="index_109.html">文件处理</A></h2>
+
+  <h2><A title="底层基础" href="index_111.html">底层基础</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>关于多个apk打包一起安装</H2>
+<div style="line-height:20px; font-size:14px;"><p>我们常常会遇到这样一种情况，比如我的某个工程特别的大，想分成几个子工程来做，或者在某些时候想引用外部的apk为自己所用，想在安装自己程序apk的时候一起安装关联的apk</p><p>把你关联的apk放在 assets目录下面。代码如下，只是在安装关联apk的时候是显示安装的。</p><p><pre><font class="keyword">private </font>File getAssetFile() {</p><p>	</font>AssetManager asset = <font class="keyword">this</font>.getAssets();</p><p>	<font class="keyword">try </font>{</p><p>		</font>InputStream is = asset.open(<font class="Fields">"Zxing.apk"</font>);</p><p>		</font>FileOutputStream fos = <font class="keyword">this</font>.openFileOutput(<font class="Fields">"Zxing.apk"</font>,</p><p>				Context.MODE_PRIVATE + Context.MODE_WORLD_READABLE);</p><p>		</font>byte[] buffer = <font class="keyword">new </font>byte[1024];</p><p>		<font class="keyword">int </font>len = 0;</p><p>		<font class="keyword">while </font>((len = is.read(buffer)) != -1) {</p><p>			fos.write(buffer, 0, len);</p><p>		}</p><p>		fos.flush();</p><p>		is.close();</p><p>		fos.close();</p><p>	</font>} <font class="keyword">catch </font>(IOException e) {</p><p>		e.printStackTrace();</p><p>	}</p><p>	<font class="keyword">return </font><font class="keyword">new </font>File(<font class="Fields">"Zxing.apk"</font>);</p><p>}</p><p><font class="keyword">private </font><font class="keyword">void </font>installApk(File file) {</p><p>	</font>Intent intent = <font class="keyword">new </font>Intent();</p><p>	intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);</p><p>	intent.setAction(Intent.ACTION_VIEW);</p><p>	</font>String type = <font class="Fields">"android/vnd.android.package-archive"</font>;</p><p>	intent.setDataAndType(Uri.fromFile(file), type);</p><p>	startActivity(intent);</p><p>}</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

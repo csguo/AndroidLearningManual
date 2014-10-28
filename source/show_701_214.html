@@ -1,0 +1,60 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 软件中状态栏图标处理_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li class="navcurrentLink"><A href="index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Launcher" href="index_207.html">Launcher</A></h2>
+
+  <h2><A title="电话系统RIL" href="index_208.html">电话系统RIL</A></h2>
+
+  <h2><A title="进程间通信" href="index_209.html">进程间通信</A></h2>
+
+  <h2><A title="内部sensor系统" href="index_210.html">内部sensor系统</A></h2>
+
+  <h2><A title="内部surface系统" href="index_211.html">内部surface系统</A></h2>
+
+  <h2><A title="启动流程" href="index_212.html">启动流程</A></h2>
+
+  <h2><A title="源码编译" href="index_213.html">源码编译</A></h2>
+
+  <h2><A title="状态栏" href="index_214.html">状态栏</A></h2>
+<UL><li class="currentLink"><A title=Android 软件中状态栏图标处理 href="show_701_214.html">Android 软件中状态栏图标处理</A> </li><li ><A title=Android 状态栏上添加按钮 href="show_702_214.html">Android 状态栏上添加按钮</A> </li><li ><A title=Android全屏 去除标题栏和状态栏 href="show_703_214.html">Android全屏 去除标题栏和状态栏</A> </li><li ><A title=浅析HoneyComb中左下角三个导航键的实现源码 href="show_704_214.html">浅析HoneyComb中左下角三个导航键的实现源码</A> </li><li ><A title=在android的状态栏(statusbar)中增加menu，home和back快捷键的方法 href="show_705_214.html">在android的状态栏(statusbar)中增加menu，home和back快捷键的方法</A> </li><li ><A title=在状态栏添加文字显示的解决方法 href="show_706_214.html">在状态栏添加文字显示的解决方法</A> </li><li ><A title=Android 状态栏提示的另一种方法（一） href="show_707_214.html">Android 状态栏提示的另一种方法（一）</A> </li><li ><A title=Android 状态栏提示的另一种方法（二） href="show_708_214.html">Android 状态栏提示的另一种方法（二）</A> </li></UL>
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 软件中状态栏图标处理</H2>
+<div style="line-height:20px; font-size:14px;"><p>QQ的状态栏通知机制：当所有QQ的UI Activity切换到后台后，添加状态通知；切换回来后，删除该状态通知。飞信的状态栏通知方式：运行软件后，图标一直显示在状态栏的通知栏中；显示退出软件则删除该状态通知。似乎QQ的更有点技术含量，多个程序切换到后台的处理而已；以飞信的模式，做个类似的测试，案例如下：</p><p>程序路径：org.anymobile.im</p><p>程序入口：org.anymobile.im.LoginActivity（Action：android.intent.action.MAIN；Category：android.intent.category.LAUNCHER）</p><p>主界面程序：org.anymobile.im.MainActivity</p><p>测试程序流程：未登录的情况下，或者第一次运行会打开LoginActivity程序；登陆后，一直停留在主界面MainActivity。</p><p>所以，通过Notification，需可以回到im项目的上一个界面程序，LoginActivity/MainActivity，这里就要参考Launcher应用的相关实现，Intent的flag设置。</p><p>测试代码，新建一个android项目，TestNotification，入口程序：TestActivity，代码如下：</p><p><pre><font class="keyword">import </font>android.app.Activity;</p><p><font class="keyword">import </font>android.content.ComponentName;</p><p><font class="keyword">import </font>android.content.Intent;</p><p><font class="keyword">import </font>android.graphics.LightingColorFilter;</p><p><font class="keyword">import </font>android.os.Bundle;</p><p><font class="keyword">import </font>android.view.Menu;</p><p><font class="keyword">import </font>android.view.View;</p><p><font class="keyword">import </font>android.view.View.OnClickListener;</p><p><font class="keyword">import </font>android.widget.Button;</p><p><font class="keyword">public </font><font class="keyword">class </font>TestActivity </font><font class="keyword">extends </font>Activity {</p><p>	<font class="keyword">private </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>ADD_ID = 0;</p><p>	<font class="keyword">private </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>DEL_ID = 1;</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onCreate(Bundle savedInstanceState) {</p><p>		<font class="keyword">super</font>.onCreate(savedInstanceState);</p><p>		setContentView(R.layout.main);</p><p>		</font>Button button = (Button) <font class="keyword">this</font>.findViewById(R.id.btn_menu);</p><p>		</font>button.setOnClickListener(<font class="keyword">new </font>OnClickListener() {</p><p>			<font class="keyword">public </font><font class="keyword">void </font>onClick(View v) {</p><p>				<font class="Comments">// TestActivity.this.openOptionsMenu();</font></p><p>				</font>String packName = <font class="Fields">"org.anymobile.im"</font>;</p><p>				</font>String className = packName + <font class="Fields">".LoginActivity"</font>;</p><p>				</font>Intent intent = <font class="keyword">new </font>Intent();</p><p>				</font>ComponentName componentName = <font class="keyword">new </font>ComponentName(packName,</p><p>						className);</p><p>				intent.setComponent(componentName);</p><p>				</font>intent.setAction(<font class="Fields">"android.intent.action.MAIN"</font>);</p><p>				</font>intent.addCategory(<font class="Fields">"android.intent.category.LAUNCHER"</font>);</p><p>				intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);</p><p>				intent.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);</p><p>				</font>TestActivity.<font class="keyword">this</font>.startActivity(intent);</p><p>			}</p><p>		});</p><p>		<font class="Comments">// button.getBackground().setColorFilter(0xFFFF0000,</font></p><p>		<font class="Comments">// PorterDuff.Mode.MULTIPLY);</font></p><p>		button.getBackground().setColorFilter(</p><p>				<font class="keyword">new </font>LightingColorFilter(0xFFFFFFFF, 0xFFAA0000));</p><p>	}</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">boolean </font>onCreateOptionsMenu(Menu menu) {</p><p>		</font>menu.add(0, ADD_ID, 0, <font class="Fields">"ADD"</font>);</p><p>		</font>menu.add(0, DEL_ID, 0, <font class="Fields">"DEL"</font>);</p><p>		<font class="keyword">return </font><font class="keyword">super</font>.onCreateOptionsMenu(menu);</p><p>	}</p><p>}</p><p></pre></p><p>OK，开始测试状态栏的通知功能：</p><p>1、LoginActivity.onCreate() 调用showNotification()方法，创建一个通知图标；</p><p><pre><font class="keyword">protected </font><font class="keyword">void </font>showNotification() {</p><p>	</font>CharSequence from = <font class="Fields">"IM"</font>;</p><p>	</font>CharSequence message = <font class="Fields">"IM start up"</font>;</p><p>	</font>Intent intent = <font class="keyword">new </font>Intent();</p><p>	</font>ComponentName componentName = <font class="keyword">new </font>ComponentName(<font class="Fields">"com.longcheer.imm"</font>,</p><p>			<font class="Fields">"com.longcheer.imm.activitys.LoginActivity"</font>);</p><p>	intent.setComponent(componentName);</p><p>	</font>intent.setAction(<font class="Fields">"android.intent.action.MAIN"</font>);</p><p>	</font>intent.addCategory(<font class="Fields">"android.intent.category.LAUNCHER"</font>);</p><p>	intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);</p><p>	intent.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);</p><p>	</font>PendingIntent contentIntent = PendingIntent.getActivity(<font class="keyword">this</font>, 0,</p><p>			intent, 0);</p><p>	</font>Notification not<font class="keyword">if </font>= </font><font class="keyword">new </font>Notification(R.drawable.icon,</p><p>			<font class="Fields">"IMM Still run background!"</font>, System.currentTimeMillis());</p><p>	</font>notif.setLatestEventInfo(<font class="keyword">this</font>, from, message, contentIntent);</p><p>	<font class="Comments">// 查一下通知服务</font></p><p>	NotificationManager nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);</p><p>	nm.notify(R.string.app_name, notif);</p><p>}</p><p></pre></p><p>2、在LoginActivity / MainAcitivity的退出操作中cancel该通知。</p><p><pre><font class="keyword">private </font><font class="keyword">void </font>doExit() {</p><p>	<font class="keyword">this</font>.finish();</p><p>	NotificationManager nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);</p><p>	nm.cancel(R.string.app_name);</p><p>}</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

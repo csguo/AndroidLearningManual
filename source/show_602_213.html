@@ -1,0 +1,60 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>windows下下载Android源码_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li class="navcurrentLink"><A href="index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Launcher" href="index_207.html">Launcher</A></h2>
+
+  <h2><A title="电话系统RIL" href="index_208.html">电话系统RIL</A></h2>
+
+  <h2><A title="进程间通信" href="index_209.html">进程间通信</A></h2>
+
+  <h2><A title="内部sensor系统" href="index_210.html">内部sensor系统</A></h2>
+
+  <h2><A title="内部surface系统" href="index_211.html">内部surface系统</A></h2>
+
+  <h2><A title="启动流程" href="index_212.html">启动流程</A></h2>
+
+  <h2><A title="源码编译" href="index_213.html">源码编译</A></h2>
+<UL><li ><A title=详解Android源码的编译 href="show_601_213.html">详解Android源码的编译</A> </li><li class="currentLink"><A title=windows下下载Android源码 href="show_602_213.html">windows下下载Android源码</A> </li><li ><A title=Android 源码编译 href="show_603_213.html">Android 源码编译</A> </li><li ><A title=Android2.3源码下载编译全过程 href="show_604_213.html">Android2.3源码下载编译全过程</A> </li><li ><A title=Android 编辑模块 href="show_605_213.html">Android 编辑模块</A> </li></UL>
+  <h2><A title="状态栏" href="index_214.html">状态栏</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>windows下下载Android源码</H2>
+<div style="line-height:20px; font-size:14px;"><p>首先下载cygwin，cygwin是一个类linux平台。即在windows环境下模拟linux终端。比起运行linux虚拟机，是一个轻量的解决办法。除了本文用来下载android源码，你当然可以用它来学习linux。cygwin的中文网是http://www.cygwin.cn/，建议从这下载cygwin，这是国内最快的镜像站点。严格按网站的说明安装：http://www.cygwin.cn/site/install/，最后注意的是在安装说明的下一步操作是选择需要下载的工具库，缺省是是default，鼠标点击default，会把安装类别切换成install，这样才能安装下载android源码需要的所有工具。当然，如果你熟悉所有情况，你可以手工在工具库里选择你要安装的库（库是很多的，安装程序又没有提供全部选择或者全部取消的功能，我奇怪linux有关的程序总是有这种类似的遗漏。） </p><p>安装完cygwin后，运行它。会出现一个类linux的环境。输入 </p><p><pre>$mkdir /home/android　//创建工作目录 </p><p>$cd /home/android </p><p>$mkdir bin </p><p>//下载安装repo版本管理工具： </p><p>$curl http://android.git.kernel.org/repo&gt; /home/android /bin/repo </p><p></pre></p><p>注意：在这步骤中。我出现bash: curl: command not found错误，在网上搜索了好久的资料，大概说是没有装curl.几经周折，终于找到一篇比较有用的帖子：内容如下：</p><p><pre>So I searched for the curl-7.20.1-1 cygwin on Google. I found this helpful site mirrors.xmission.com/cygwin/release/curl/</p><p>That site had a link to download curl-7.20.1-1.tar.bz2. I unzipped it using 7zip. It unzips it into ./user/bin/ or something so I had to find curl.exe in the local /usr/bin folder and put it into my /bin folder of c:\cygwin</p><p></pre></p><p>看了大家都知道了吧！在上面那个网址中下载压缩文件curl-7.20.1-1.tar.bz2，然后解压，将/usr/bin下面的curl.exe拷贝到c:\cygwin\bin（这是cygwin的安装路径）下面。照着这样做了之后，在执行上面的命令，就OK，成功通过了。$cd bin </p><p>$chmod a+x repo </p><p>准备下载Android： </p><p><pre>$cd /home/android </p><p>$python ./bin/repo init -u git://android.git.kernel.org/platform/manifest.git –bcupcake </p><p>$git config --global user.email \"xxxxx@xxxxxxx\" </p><p>$git config --global user.name \"xxxxxx\" </p><p></pre></p><p>邮箱地址填有效邮箱即可，我试过，其实这步跳过也没有问题。 </p><p>下载源码： </p><p><pre>$python repo sync </p><p></pre></p><p>唯一和linux下不同的地方是该环境似乎没有内嵌支持python，因此需要用命令行python来调用repo脚本。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

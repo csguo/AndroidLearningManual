@@ -1,0 +1,83 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android学习手册_源码开发</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li class="navcurrentLink"><A href="index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">源码开发</div>
+
+  <h2 ><A title="Launcher" href="index_207.html">Launcher</A></h2>
+
+  <h2 ><A title="电话系统RIL" href="index_208.html">电话系统RIL</A></h2>
+
+  <h2 ><A title="进程间通信" href="index_209.html">进程间通信</A></h2>
+
+  <h2 ><A title="内部sensor系统" href="index_210.html">内部sensor系统</A></h2>
+
+  <h2 class="currentLink"><A title="内部surface系统" href="index_211.html">内部surface系统</A></h2>
+<UL><li class="currentLink"><A title=Android 来说说Surface系统(一) href="show_401_211.html">Android 来说说Surface系统(一)</A> </li><li ><A title=Android 来说说Surface系统(二) href="show_402_211.html">Android 来说说Surface系统(二)</A> </li><li ><A title=Android 来说说Surface系统(三) href="show_403_211.html">Android 来说说Surface系统(三)</A> </li><li ><A title=Android 来说说Surface系统(四) href="show_404_211.html">Android 来说说Surface系统(四)</A> </li><li ><A title=SurfaceFlinger中的Layer,LayerDim,LayerBlur,LayerBuffer href="show_405_211.html">SurfaceFlinger中的Layer,LayerDim,LayerBlur,LayerBuffer</A> </li><li ><A title=SharedClient href="show_406_211.html">SharedClient</A> </li></UL>
+  <h2 ><A title="启动流程" href="index_212.html">启动流程</A></h2>
+
+  <h2 ><A title="源码编译" href="index_213.html">源码编译</A></h2>
+
+  <h2 ><A title="状态栏" href="index_214.html">状态栏</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1>内部surface系统</H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 来说说Surface系统(一)</H2>
+<P>　　[color=blue]一 目的目的就是为了讲清楚Android中的Surface系统，大家耳熟能详的SurfaceFlinger到底是个什么东西，它的工作流程又是怎样的。当然，鉴于SurfaceFlinger的复杂性，我们依然将采用情景分析的办法，找到</P>
+<P><A title="Android 来说说Surface系统(一)" href="show_401_211.html">进入 Android 来说说Surface系统(一)</A> </P></DIV>
+
+<DIV>
+<H2>Android 来说说Surface系统(二)</H2>
+<P>　　如果你有兴趣的话，看看Surface其他构造函数，最终都会调用native的实现，而这些native的实现将和SurfaceFlinger建立关系，但我们这里ViewRoot中的mSurface显然还没有到这一步。那它到底是怎么和SurfaceFlinger搞上</P>
+<P><A title="Android 来说说Surface系统(二)" href="show_402_211.html">进入 Android 来说说Surface系统(二)</A> </P></DIV>
+
+<DIV>
+<H2>Android 来说说Surface系统(三)</H2>
+<P>　　我们赶紧转到WindowManagerService去看看吧。[code=java]#[Keywords]public #[Keywords]int #relayoutWindow(Session session, IWindow client, WindowManager.LayoutParams attrs, #[Keywords]int #requestedWidth,</P>
+<P><A title="Android 来说说Surface系统(三)" href="show_403_211.html">进入 Android 来说说Surface系统(三)</A> </P></DIV>
+
+<DIV>
+<H2>Android 来说说Surface系统(四)</H2>
+<P>　　真奇怪啊，Binder客户端这头竟然没有把outSurface的信息发过去。我们赶紧看看服务端。服务端这边处理是在onTranscat函数中。[code=java]@Override#[Keywords]public #[Keywords]boolean #onTransact(#[Keywords]int </P>
+<P><A title="Android 来说说Surface系统(四)" href="show_404_211.html">进入 Android 来说说Surface系统(四)</A> </P></DIV>
+
+<DIV>
+<H2>SurfaceFlinger中的Layer,LayerDim,LayerBlur,LayerBuffer</H2>
+<P>　　应用程序中不同类型的Surface,在FrameWorks本地层的SurfaceFlinger中，分别对应着不同的Layer类，本文主要是讨论这几种Layer的实现和差异。效果图：[code=img]source_surface/05_Layer01.jpg[/code]Layer对应普通的</P>
+<P><A title="SurfaceFlinger中的Layer,LayerDim,LayerBlur,LayerBuffer" href="show_405_211.html">进入 SurfaceFlinger中的Layer,LayerDim,LayerBlur,LayerBuffer</A> </P></DIV>
+
+<DIV>
+<H2>SharedClient</H2>
+<P>　　[color=blue]06_SharedClient:客户端（Surface）和服务端（Layer）SurfaceFlinger在系统启动阶段作为系统服务被加载。应用程序中的每个窗口，对应本地代码中的Surface，而Surface又对应于SurfaceFlinger中的各个Laye</P>
+<P><A title="SharedClient" href="show_406_211.html">进入 SharedClient</A> </P></DIV>
+
+</DIV>
+
+<DIV id=footer style="display:none">
+<P align="center"> 
+ 
+ 
+ 
+  </P>
+</DIV></DIV></BODY></HTML>
+

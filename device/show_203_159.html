@@ -1,0 +1,70 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 通讯录查询（二）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li class="navcurrentLink"><A href="index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="设备信息" href="index_157.html">设备信息</A></h2>
+
+  <h2><A title="摄像头" href="index_158.html">摄像头</A></h2>
+
+  <h2><A title="通讯录" href="index_159.html">通讯录</A></h2>
+<UL><li ><A title=Android 通讯录选择联系人 href="show_201_159.html">Android 通讯录选择联系人</A> </li><li ><A title=Android 通讯录查询（一） href="show_202_159.html">Android 通讯录查询（一）</A> </li><li class="currentLink"><A title=Android 通讯录查询（二） href="show_203_159.html">Android 通讯录查询（二）</A> </li><li ><A title=Android 查询联系人信息 href="show_204_159.html">Android 查询联系人信息</A> </li><li ><A title=Android 获得联系人信息 href="show_205_159.html">Android 获得联系人信息</A> </li><li ><A title=Android 手机联系人操作 href="show_206_159.html">Android 手机联系人操作</A> </li><li ><A title=Android 删除联系人分组 href="show_207_159.html">Android 删除联系人分组</A> </li><li ><A title=详解Android中的通信录模型 href="show_208_159.html">详解Android中的通信录模型</A> </li><li ><A title=Android 用PhoneLookup读取电话号码 href="show_209_159.html">Android 用PhoneLookup读取电话号码</A> </li></UL>
+  <h2><A title="电话" href="index_160.html">电话</A></h2>
+
+  <h2><A title="短信" href="index_161.html">短信</A></h2>
+
+  <h2><A title="传感器" href="index_162.html">传感器</A></h2>
+
+  <h2><A title="定位" href="index_163.html">定位</A></h2>
+
+  <h2><A title="视频系统" href="index_164.html">视频系统</A></h2>
+
+  <h2><A title="音频系统" href="index_165.html">音频系统</A></h2>
+
+  <h2><A title="铃声" href="index_166.html">铃声</A></h2>
+
+  <h2><A title="音量" href="index_167.html">音量</A></h2>
+
+  <h2><A title="录音" href="index_168.html">录音</A></h2>
+
+  <h2><A title="输入法" href="index_169.html">输入法</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 通讯录查询（二）</H2>
+<div style="line-height:20px; font-size:14px;"><p>按这个细路就可以写代码了:</p><p><pre><font class="Comments">/** </font></p><p><font class="Comments">* 通过姓名(uName)来查找通讯录，返回一个list。 </font></p><p><font class="Comments">*其中"display_name"保存姓名,"phone_number"保存电话 </font></p><p><font class="Comments">*/ </font></p><p><font class="keyword">public </font>List&lt;HashMap&lt;String, String&gt;&gt; getContactsByName(String uName) { </p><p></font>List&lt;HashMap&lt;String, String&gt;&gt; list = <font class="keyword">new </font>ArrayList&lt;HashMap&lt;String, String&gt;&gt;();</p><p><font class="keyword">boolean </font>isQueryAll = </font><font class="keyword">false</font>; </p><p></p><p><font class="Comments">// cu姓名游标，cn电话号码游标 </font></p><p><font class="Comments">// 查询条件，SQL是的Where语句的后部分 </font></p><p></font>String selection = <font class="keyword">null</font>;</p><p>uName = uName.trim();</p><p><font class="Comments">// 是否查询全部通讯录,如果姓名为空则是 </font></p><p></font>isQueryAll = uName.equals(<font class="Fields">""</font>) ? <font class="keyword">true</font> : </font><font class="keyword">false</font>;</p><p><font class="keyword">if </font>(isQueryAll) {</p><p><font class="Comments">// 查询全部时的，查询条件，主要用在cu游标上</font></p><p></font>selection = ContactsContract.Data.MIMETYPE + <font class="Fields">"=</font><font class="Fields">'"</font>+ ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE+ </font><font class="Fields">"'</font>"</font>;</p><p><font class="Comments">//System.out.println("Query For ALl--" + selection);</font></p><p></font>} <font class="keyword">else </font>{</p><p><font class="Comments">// 根据姓名查询时的，查询条件，主要用在cu游标上</font></p><p>selection = ContactsContract.Data.MIMETYPE</p><p> </font>+ <font class="Fields">"=</font><font class="Fields">'"</font>    + ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE</p><p></font>+ <font class="Fields">"</font><font class="Fields">'"</font>+ </font><font class="Fields">" AND "</font> + ContactsContract.CommonDataKinds.StructuredName.DISPLAY_NAME</p><p></font>+ <font class="Fields">" LIKE "</font> + </font><font class="Fields">"</font><font class="Fields">'%"</font> + uName + </font><font class="Fields">"%'</font>"</font>;</p><p><font class="Comments">//System.out.println("Query For Some--" + selection);</font></p><p>}</p><p><font class="keyword">try </font>{</p><p><font class="Comments">// 根据姓名查询出完整姓名和通讯录ID</font></p><p></font>cu = contentReso.query(   URI,<font class="keyword">new </font>String[] {ContactsContract.Data.RAW_CONTACT_ID,ContactsContract.CommonDataKinds.StructuredName.DISPLAY_NAME </font>},selection, </font><font class="keyword">null</font>, </font><font class="keyword">null</font>);</p><p><font class="Comments">// 根据通讯录ID，查找对应的电话号码的查询条件，主要用于cn游标</font></p><p></font>selection = ContactsContract.Data.MIMETYPE + <font class="Fields">"='</p><p></font>+ ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE+ <font class="Fields">"</font><font class="Fields">'"</font>+ </font><font class="Fields">" AND "</font> + </font><font class="Fields">"=?"</font>;</p><p><font class="Comments">//System.out.println("Number Query--" + selection);</font></p><p><font class="keyword">while </font>(cu.moveToNext()) {</p><p>String contactId = String.valueOf(cu.getInt(0));<font class="Comments">//开始查找电话号码</font></p><p><font class="Comments">//System.out.println("  Start Query Num");</font></p><p></font>cn = contentReso.query(URI,<font class="keyword">new </font>String[] { ContactsContract.CommonDataKinds.Phone.NUMBER   selection, </font><font class="keyword">new </font>String[] { contactId </font>}, </font><font class="keyword">null</font>);</p><p><font class="keyword">while </font>(cn.moveToNext()) {</p><p><font class="Comments">// 将一组通讯录记录在HashMap中</font></p><p></font>HashMap&lt;String, String&gt; map = <font class="keyword">new </font>HashMap&lt;String, String&gt;();</p><p></font>map.put(<font class="Fields">"display_name"</font>, cu.getString(1));</p><p></font>map.put(<font class="Fields">"phone_number"</font>, cn.getString(0));</p><p><font class="Comments">// 将查到通讯录添加到List中</font></p><p>list.add(map);</p><p>}</p><p>}</p><p><font class="Comments">//关闭游标</font></p><p>cu.close();</p><p>cn.close();</p><p></font>} <font class="keyword">catch </font>(Exception e) {</p><p><font class="keyword">return </font>list;</p><p>}</p><p></pre></p><p>最后再说一下那个MIMETYPE，在data数据库里面它的值是整型，如果看一下官方文档的话，给它所赋的值像ContactsContract.CommonDataKinds.StructuredName.DISPLAY_NAME 之类的都字符串，那么这些字符串和data里面的整型是怎么对应的呢。</p><p>其实就是通过mimetypes表来对应的。里面的对应列主要就是9个：</p><p><pre>1|vnd.android.cursor.item/email_v2</p><p>2|vnd.android.cursor.item/im</p><p>3|vnd.android.cursor.item/postal-address_v2</p><p>4|vnd.android.cursor.item/photo</p><p>5|vnd.android.cursor.item/phone_v2</p><p>6|vnd.android.cursor.item/name</p><p>7|vnd.android.cursor.item/organization</p><p>8|vnd.android.cursor.item/nickname</p><p>9|vnd.android.cursor.item/group_membership</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

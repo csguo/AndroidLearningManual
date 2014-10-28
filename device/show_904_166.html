@@ -1,0 +1,70 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Media开发之铃声设置(RingtoneManager)_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li class="navcurrentLink"><A href="index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="设备信息" href="index_157.html">设备信息</A></h2>
+
+  <h2><A title="摄像头" href="index_158.html">摄像头</A></h2>
+
+  <h2><A title="通讯录" href="index_159.html">通讯录</A></h2>
+
+  <h2><A title="电话" href="index_160.html">电话</A></h2>
+
+  <h2><A title="短信" href="index_161.html">短信</A></h2>
+
+  <h2><A title="传感器" href="index_162.html">传感器</A></h2>
+
+  <h2><A title="定位" href="index_163.html">定位</A></h2>
+
+  <h2><A title="视频系统" href="index_164.html">视频系统</A></h2>
+
+  <h2><A title="音频系统" href="index_165.html">音频系统</A></h2>
+
+  <h2><A title="铃声" href="index_166.html">铃声</A></h2>
+<UL><li ><A title=Android 获取、设置铃声、音量、静音、扬声器 href="show_901_166.html">Android 获取、设置铃声、音量、静音、扬声器</A> </li><li ><A title=Android 设置铃声+震动 href="show_902_166.html">Android 设置铃声+震动</A> </li><li ><A title=Android 个人铃声设置代码 href="show_903_166.html">Android 个人铃声设置代码</A> </li><li class="currentLink"><A title=Media开发之铃声设置(RingtoneManager) href="show_904_166.html">Media开发之铃声设置(RingtoneManager)</A> </li></UL>
+  <h2><A title="音量" href="index_167.html">音量</A></h2>
+
+  <h2><A title="录音" href="index_168.html">录音</A></h2>
+
+  <h2><A title="输入法" href="index_169.html">输入法</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Media开发之铃声设置(RingtoneManager)</H2>
+<div style="line-height:20px; font-size:14px;"><p>代码如下：</p><p><pre><font class="keyword">public </font><font class="keyword">class </font>Media_RingTongActivity </font><font class="keyword">extends </font>Activity {</p><p>	<font class="Comments">// 定义三个按钮</font></p><p>	<font class="keyword">private </font>Button mRingtongButton;</p><p>	<font class="keyword">private </font>Button mAlarmButton;</p><p>	<font class="keyword">private </font>Button mNotificationButton;</p><p>	<font class="Comments">// 定义类型</font></p><p>	<font class="keyword">private </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>RingtongButton = 0;</p><p>	<font class="keyword">private </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>AlarmButton = 1;</p><p>	<font class="keyword">private </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>NotificationButton = 2;</p><p>	<font class="Comments">// 铃声文件夹</font></p><p>	<font class="keyword">private </font>String strRingtongFolder = <font class="Fields">"/sdcard/media/ringtones"</font>;</p><p>	<font class="keyword">private </font>String strAlarmFolder = <font class="Fields">"/sdcard/media/alarms"</font>;</p><p>	<font class="keyword">private </font>String strNotificationFolder = <font class="Fields">"/sdcard/media/notifications"</font>;</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onCreate(Bundle savedInstanceState) {</p><p>		<font class="keyword">super</font>.onCreate(savedInstanceState);</p><p>		setContentView(R.layout.main);</p><p>		mRingtongButton = (Button) findViewById(R.id.myRingtongButton);</p><p>		</font>mRingtongButton.setOnClickListener(<font class="keyword">new </font>myRingtongButtonListener());</p><p>		mAlarmButton = (Button) findViewById(R.id.myAlarmButton);</p><p>		</font>mAlarmButton.setOnClickListener(<font class="keyword">new </font>myAlarmButtonListener());</p><p>		mNotificationButton = (Button) findViewById(R.id.myNotificationButton);</p><p>		mNotificationButton</p><p>				</font>.setOnClickListener(<font class="keyword">new </font>myNotificationButtonListener());</p><p>	}</p><p>	<font class="Comments">// 设置来电铃声监听器</font></p><p>	<font class="keyword">private </font><font class="keyword">class </font>myRingtongButtonListener </font><font class="keyword">implements </font>OnClickListener {</p><p>		@Override</p><p>		<font class="keyword">public </font><font class="keyword">void </font>onClick(View v) {</p><p>			<font class="keyword">if </font>(isFolder(strRingtongFolder)) {</p><p>				<font class="Comments">// 打开系统铃声设置</font></p><p>				</font>Intent intent = <font class="keyword">new </font>Intent(</p><p>						RingtoneManager.ACTION_RINGTONE_PICKER);</p><p>				</font>intent.putExtra(RingtoneManager.EXTRA_RINGTONE_PICKED_URI, <font class="keyword">true</font>);</p><p>				<font class="Comments">// 类型为来电ringtong</font></p><p>				intent.putExtra(RingtoneManager.EXTRA_RINGTONE_TYPE,</p><p>						RingtoneManager.TYPE_RINGTONE);</p><p>				<font class="Comments">// 设置显示的题目</font></p><p>				</font>intent.putExtra(RingtoneManager.EXTRA_RINGTONE_TITLE, <font class="Fields">"设置来电的铃声"</font>);</p><p>				<font class="Comments">// 当设置完成之后返回到当前的activity</font></p><p>				startActivityForResult(intent, RingtongButton);</p><p>			}</p><p>		}</p><p>	}</p><p>	<font class="Comments">// 设置闹钟铃声监听器</font></p><p>	<font class="keyword">private </font><font class="keyword">class </font>myAlarmButtonListener </font><font class="keyword">implements </font>OnClickListener {</p><p>		@Override</p><p>		<font class="keyword">public </font><font class="keyword">void </font>onClick(View v) {</p><p>			<font class="keyword">if </font>(isFolder(strAlarmFolder)) {</p><p>				</font>Intent intent = <font class="keyword">new </font>Intent(</p><p>						RingtoneManager.ACTION_RINGTONE_PICKER);</p><p>				intent.putExtra(RingtoneManager.EXTRA_RINGTONE_TYPE,</p><p>						RingtoneManager.TYPE_ALARM);</p><p>				</font>intent.putExtra(RingtoneManager.EXTRA_RINGTONE_TITLE, <font class="Fields">"设置闹铃铃声"</font>);</p><p>				startActivityForResult(intent, AlarmButton);</p><p>			}</p><p>		}</p><p>	}</p><p>	<font class="Comments">// 设置通知铃声监听器</font></p><p>	<font class="keyword">private </font><font class="keyword">class </font>myNotificationButtonListener </font><font class="keyword">implements </font>OnClickListener {</p><p>		@Override</p><p>		<font class="keyword">public </font><font class="keyword">void </font>onClick(View v) {</p><p>			<font class="keyword">if </font>(isFolder(strNotificationFolder)) {</p><p>				</font>Intent intent = <font class="keyword">new </font>Intent(</p><p>						RingtoneManager.ACTION_RINGTONE_PICKER);</p><p>				intent.putExtra(RingtoneManager.EXTRA_RINGTONE_TYPE,</p><p>						RingtoneManager.TYPE_NOTIFICATION);</p><p>				</font>intent.putExtra(RingtoneManager.EXTRA_RINGTONE_TITLE, <font class="Fields">"设置通知铃声"</font>);</p><p>				startActivityForResult(intent, NotificationButton);</p><p>			}</p><p>		}</p><p>	}</p><p>	<font class="Comments">// 检查是否存在指定的文件夹，如果不存在就创建</font></p><p>	<font class="keyword">private </font><font class="keyword">boolean </font>isFolder(String strFolder) {</p><p>		<font class="keyword">boolean </font>tmp = </font><font class="keyword">false</font>;</p><p>		</font>File f1 = <font class="keyword">new </font>File(strFolder);</p><p>		<font class="keyword">if </font>(!f1.exists()) {</p><p>			<font class="keyword">if </font>(f1.mkdirs()) {</p><p>				</font>tmp = <font class="keyword">true</font>;</p><p>			</font>} <font class="keyword">else </font>{</p><p>				</font>tmp = <font class="keyword">false</font>;</p><p>			}</p><p>		</font>} <font class="keyword">else </font>{</p><p>			</font>tmp = <font class="keyword">true</font>;</p><p>		}</p><p>		<font class="keyword">return </font>tmp;</p><p>	}</p><p>	@Override</p><p>	<font class="keyword">protected </font><font class="keyword">void </font>onActivityResult(</font><font class="keyword">int </font>requestCode, </font><font class="keyword">int </font>resultCode, Intent data) {</p><p>		<font class="keyword">if </font>(resultCode != RESULT_OK) {</p><p>			<font class="keyword">return</font>;</font></p><p>		}</p><p>		<font class="keyword">switch </font>(requestCode) {</p><p>		<font class="keyword">case </font>RingtongButton:</p><p>			<font class="keyword">try </font>{</p><p>				<font class="Comments">// 得到我们选择的铃声</font></p><p>				Uri pickedUri = data</p><p>						.getParcelableExtra(RingtoneManager.EXTRA_RINGTONE_PICKED_URI);</p><p>				<font class="Comments">// 将我们选择的铃声选择成默认</font></p><p>				<font class="keyword">if </font>(pickedUri != </font><font class="keyword">null</font>) {</p><p>					RingtoneManager.setActualDefaultRingtoneUri(</p><p>							</font>Media_RingTongActivity.<font class="keyword">this</font>,</p><p>							RingtoneManager.TYPE_RINGTONE, pickedUri);</p><p>				}</p><p>			</font>} <font class="keyword">catch </font>(Exception e) {</p><p>				e.printStackTrace();</p><p>			}</p><p>			<font class="keyword">break</font>;</p><p>		<font class="keyword">case </font>AlarmButton:</p><p>			<font class="keyword">try </font>{</p><p>				<font class="Comments">// 得到我们选择的铃声</font></p><p>				Uri pickedUri = data</p><p>						.getParcelableExtra(RingtoneManager.EXTRA_RINGTONE_PICKED_URI);</p><p>				<font class="Comments">// 将我们选择的铃声选择成默认</font></p><p>				<font class="keyword">if </font>(pickedUri != </font><font class="keyword">null</font>) {</p><p>					RingtoneManager.setActualDefaultRingtoneUri(</p><p>							</font>Media_RingTongActivity.<font class="keyword">this</font>,</p><p>							RingtoneManager.TYPE_ALARM, pickedUri);</p><p>				}</p><p>			</font>} <font class="keyword">catch </font>(Exception e) {</p><p>				e.printStackTrace();</p><p>			}</p><p>			<font class="keyword">break</font>;</p><p>		<font class="keyword">case </font>NotificationButton:</p><p>			<font class="keyword">try </font>{</p><p>				<font class="Comments">// 得到我们选择的铃声</font></p><p>				Uri pickedUri = data</p><p>						.getParcelableExtra(RingtoneManager.EXTRA_RINGTONE_PICKED_URI);</p><p>				<font class="Comments">// 将我们选择的铃声选择成默认</font></p><p>				<font class="keyword">if </font>(pickedUri != </font><font class="keyword">null</font>) {</p><p>					RingtoneManager.setActualDefaultRingtoneUri(</p><p>							</font>Media_RingTongActivity.<font class="keyword">this</font>,</p><p>							RingtoneManager.TYPE_NOTIFICATION, pickedUri);</p><p>				}</p><p>			</font>} <font class="keyword">catch </font>(Exception e) {</p><p>				e.printStackTrace();</p><p>			}</p><p>			<font class="keyword">break</font>;</p><p>		}</p><p>		<font class="keyword">super</font>.onActivityResult(requestCode, resultCode, data);</p><p>	}</p><p>}</p><p></pre></p><p>1.布局文件就是三个按钮，没什么好说的了。 </p><p>2.在真机盖世兔上测试了一下，可以运行，在模拟器测试的童鞋要注意了，每次把音频文件push到sdcard中得时候,必须重启模拟器,模拟器才会应用设置,不然是检索不到的哦，这点我后面才发现的。</p><p>3.系统的原始声音存放在/system/media/audio/文件中、</p><p>4.最后一点不要忘记给应用程序加权限了：</p><p><pre>&lt;uses-permission android:name=<font class="Fields">"android.permission.INTERNET"</font>/&gt;</p><p>&lt;uses-permission android:name=<font class="Fields">"android.permission.MOUNT_UNMOUNT_FILESYSTEMS"</font>/&gt;</p><p>&lt;uses-permission android:name=<font class="Fields">"android.permission.WRITE_SETTINGS"</font>/&gt;</p><p></pre></p><p>结果：</p><p><img src="../img/device_audio/04_audio2.jpg"></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

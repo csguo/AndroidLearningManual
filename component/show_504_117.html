@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>AsyncTask代替Handler更改主线程UI显示_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li class="navcurrentLink"><A href="index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Activity" href="index_112.html">Activity</A></h2>
+
+  <h2><A title="Intent" href="index_113.html">Intent</A></h2>
+
+  <h2><A title="Service" href="index_114.html">Service</A></h2>
+
+  <h2><A title="Content Provider" href="index_115.html">Content Provider</A></h2>
+
+  <h2><A title="BroadcastReceiver" href="index_116.html">BroadcastReceiver</A></h2>
+
+  <h2><A title="AsyncTask" href="index_117.html">AsyncTask</A></h2>
+<UL><li ><A title=Android 浅谈AsyncTask href="show_501_117.html">Android 浅谈AsyncTask</A> </li><li ><A title=AsyncTask在Android中的实现 href="show_502_117.html">AsyncTask在Android中的实现</A> </li><li ><A title=AsyncTask几点要注意的地方 href="show_503_117.html">AsyncTask几点要注意的地方</A> </li><li class="currentLink"><A title=AsyncTask代替Handler更改主线程UI显示 href="show_504_117.html">AsyncTask代替Handler更改主线程UI显示</A> </li><li ><A title=实例讲解Android中如何实现图片的异步加载功能 href="show_505_117.html">实例讲解Android中如何实现图片的异步加载功能</A> </li><li ><A title=一个异步任务AsyncTask的例子 href="show_506_117.html">一个异步任务AsyncTask的例子</A> </li></UL>
+  <h2><A title="Handler" href="index_118.html">Handler</A></h2>
+
+  <h2><A title="Thread" href="index_119.html">Thread</A></h2>
+
+  <h2><A title="Permission" href="index_120.html">Permission</A></h2>
+
+  <h2><A title="AIDL" href="index_121.html">AIDL</A></h2>
+
+  <h2><A title="Json" href="index_122.html">Json</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>AsyncTask代替Handler更改主线程UI显示</H2>
+<div style="line-height:20px; font-size:14px;"><p>今天学习了一下AsyncTask这异步类的使用，也是从别人那里拿过来的，和大家分享一下，加了点注释。</p><p><pre><font class="keyword">import </font>android.R;</p><p><font class="keyword">import </font>android.app.Activity;</p><p><font class="keyword">import </font>android.app.ProgressDialog;</p><p><font class="keyword">import </font>android.content.Context;</p><p><font class="keyword">import </font>android.content.DialogInterface;</p><p><font class="keyword">import </font>android.os.AsyncTask;</p><p><font class="keyword">import </font>android.os.Bundle;</p><p><font class="keyword">import </font>android.view.View;</p><p><font class="keyword">import </font>android.widget.Button;</p><p><font class="keyword">import </font>android.widget.EditText;</p><p><font class="keyword">import </font>android.widget.TextView;</p><p><font class="keyword">public </font><font class="keyword">class </font>AsyncTest </font><font class="keyword">extends </font>Activity {</p><p>	<font class="keyword">private </font>TextView message;</p><p>	<font class="keyword">private </font>Button open;</p><p>	<font class="keyword">private </font>EditText url;</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onCreate(Bundle savedInstanceState) {</p><p>		<font class="keyword">super</font>.onCreate(savedInstanceState);</p><p>		setContentView(R.layout.network);</p><p>		message = (TextView) findViewById(R.id.message);</p><p>		url = (EditText) findViewById(R.id.url);</p><p>		open = (Button) findViewById(R.id.open);</p><p>		</font>open.setOnClickListener(<font class="keyword">new </font>View.OnClickListener() {</p><p>			<font class="keyword">public </font><font class="keyword">void </font>onClick(View arg0) {</p><p>				connect();</p><p>			}</p><p>		});</p><p>	}</p><p>	<font class="keyword">private </font><font class="keyword">void </font>connect() {</p><p>		</font>PageTask task = <font class="keyword">new </font>PageTask(</font><font class="keyword">this</font>);</p><p>		task.execute(url.getText().toString()); <font class="Comments">// 这个函数的参数个数是可变的，可以传0个，1个，2个或者更多，</font></p><p>												<font class="Comments">// 当调用这个函数系统就会自动去调用doInBackgound()函数</font></p><p>	}</p><p>	<font class="keyword">class </font>PageTask </font><font class="keyword">extends </font>AsyncTask&lt;String, Integer, String&gt; {<font class="Comments">// 这三个参数对应的是excute(String),</font></p><p>		<font class="Comments">// onProgressUpdate(Integer),onPostResult(string)这三个方法里面的参数类型</font></p><p>		<font class="Comments">// 可变长的输入参数，与AsyncTask.exucute()对应</font></p><p>		ProgressDialog pdialog;</p><p>		<font class="keyword">public </font>PageTask(Context context) {</p><p>			</font>pdialog = <font class="keyword">new </font>ProgressDialog(context, 0);</p><p>			</font>pdialog.setButton(<font class="Fields">"cancel"</font>, <font class="keyword">new </font>DialogInterface.OnClickListener() {</p><p>				<font class="keyword">public </font><font class="keyword">void </font>onClick(DialogInterface dialog, </font><font class="keyword">int </font>i) {</p><p>					dialog.cancel();</p><p>				}</p><p>			});</p><p>			</font>pdialog.setOnCancelListener(<font class="keyword">new </font>DialogInterface.OnCancelListener() {</p><p>				<font class="keyword">public </font><font class="keyword">void </font>onCancel(DialogInterface dialog) {</p><p>					finish();</p><p>				}</p><p>			});</p><p>			</font>pdialog.setCancelable(<font class="keyword">true</font>);</p><p>			pdialog.setMax(100);</p><p>			pdialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);</p><p>			pdialog.show();</p><p>		}</p><p>		@Override</p><p>		<font class="keyword">protected </font>String doInBackground(String... params) { <font class="Comments">// 用来接受excute(String)里面的参数</font></p><p>			<font class="keyword">try </font>{</p><p>				<font class="keyword">int </font>i = 0;</p><p>				<font class="keyword">while </font>(i &lt;= 100) {</p><p>					publishProgress(i++); <font class="Comments">// 这个函数的参数的个数也是可以变化的</font></p><p>					Thread.sleep(1000);</p><p>				}</p><p>			</font>} <font class="keyword">catch </font>(Exception e) {</p><p>				e.printStackTrace();</p><p>			}</p><p>			<font class="keyword">return </font><font class="Fields">"下载完成"</font>;</p><p></p><p>		}</p><p>		@Override</p><p>		<font class="keyword">protected </font><font class="keyword">void </font>onCancelled() {</p><p>			<font class="keyword">super</font>.onCancelled();</p><p>		}</p><p>		@Override</p><p>		<font class="keyword">protected </font><font class="keyword">void </font>onPostExecute(String result) { <font class="Comments">// 这个参数是接受doInBackgound()的返回值的</font></p><p>			<font class="Comments">// 返回HTML页面的内容</font></p><p>			message.setText(result);</p><p>			<font class="Comments">// pdialog.dismiss();</font></p><p>		}</p><p>		@Override</p><p>		<font class="keyword">protected </font><font class="keyword">void </font>onPreExecute() {</p><p>			<font class="Comments">// 任务启动，可以在这里显示一个对话框，这里简单处理</font></p><p>			</font>message.setText(<font class="Fields">"开始下载"</font>);</p><p>		}</p><p>		@Override</p><p>		<font class="keyword">protected </font><font class="keyword">void </font>onProgressUpdate(Integer... values) { <font class="Comments">// 这个参数是接受publishProgress(Integer)的参数的</font></p><p>			<font class="Comments">// 更新进度</font></p><p>			</font>System.<font class="Fields">out</font>.println(</font><font class="Fields">""</font> + values[0]);</p><p>			</font>message.setText(<font class="Fields">""</font> + values[0]);</p><p>			pdialog.setProgress(values[0]);</p><p>		}</p><p>	}</p><p>}</p><p></pre></p><p><img src="../img/component_asynctask/04_asynctask.jpg"></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

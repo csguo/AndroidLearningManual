@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android架构_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li class="navcurrentLink"><A href="index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="开发基础" href="index_100.html">开发基础</A></h2>
+<UL><li ><A title=Android概述 href="show_1_100.html">Android概述</A> </li><li class="currentLink"><A title=Android架构 href="show_2_100.html">Android架构</A> </li><li ><A title=Linux简介 href="show_3_100.html">Linux简介</A> </li><li ><A title=Android中的库 href="show_4_100.html">Android中的库</A> </li><li ><A title=Android Apk文件结构简介 href="show_5_100.html">Android Apk文件结构简介</A> </li><li ><A title=Android SDK 目录和作用详解 href="show_6_100.html">Android SDK 目录和作用详解</A> </li><li ><A title=Android SDK中tools详解 href="show_7_100.html">Android SDK中tools详解</A> </li><li ><A title=Android 文件类型和MIME的匹配表 href="show_8_100.html">Android 文件类型和MIME的匹配表</A> </li><li ><A title=Android手机模式详解 href="show_9_100.html">Android手机模式详解</A> </li><li ><A title=Dalvik虚拟机简介 href="show_10_100.html">Dalvik虚拟机简介</A> </li></UL>
+  <h2><A title="开发环境搭建" href="index_101.html">开发环境搭建</A></h2>
+
+  <h2><A title="模拟器" href="index_102.html">模拟器</A></h2>
+
+  <h2><A title="Resource" href="index_103.html">Resource</A></h2>
+
+  <h2><A title="Manifest" href="index_104.html">Manifest</A></h2>
+
+  <h2><A title="ADB" href="index_105.html">ADB</A></h2>
+
+  <h2><A title="DDMS" href="index_106.html">DDMS</A></h2>
+
+  <h2><A title="Logcat(日志)" href="index_107.html">Logcat(日志)</A></h2>
+
+  <h2><A title="打包" href="index_108.html">打包</A></h2>
+
+  <h2><A title="文件处理" href="index_109.html">文件处理</A></h2>
+
+  <h2><A title="底层基础" href="index_111.html">底层基础</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android架构</H2>
+<div style="line-height:20px; font-size:14px;"><p style="color:#3333FF;">引言</p><p>我们对android有了个大致的了解，知道如何搭建android的环境及简单地写一个HelloWorld程序，而且知道一个android项目包括哪些文件夹和文件及相应的作用。本篇将站在顶级的高度——架构，来看android。我开篇就说了，这个系列适合0基础的人且我也是从0开始按照这个步骤来学的，谈架构是不是有点螳臂挡车，自不量力呢？我觉得其实不然，如果一开始就对整个android的架构了然于胸，就不会误入歧途，能够很好地把握全局。本文的主题如下：</p><p><pre>1、架构图直观</p><p>2、架构详解</p><p>2.1、Linux Kernel</p><p>2.1、Android Runtime</p><p>2.3、Libraries</p><p>2.4、Application Framework</p><p>2.5、Applications</p><p>3、总结</p><p></pre></p><p style="color:#3333FF;">1、架构图直观</p><p>下面这张图展示了Android系统的主要组成部分：</p><p><img src="../img/basic_basic/02_android.jpg"></p><p>可以很明显看出，Android系统架构由5部分组成，分别是：Linux Kernel、Android Runtime、Libraries、Application Framework、Applications。第二部分将详细介绍这5个部分。</p><p style="color:#3333FF;">2、架构详解</p><p>现在我们拿起手术刀来剖析各个部分。其实这部分SDK文档已经帮我们做得很好了，我们要做的就是拿来主义，然后再加上自己理解。下面自底向上分析各层。</p><p style="color:#3333FF;">2.1、Linux Kernel</p><p>Android基于Linux 2.6提供核心系统服务，例如：安全、内存管理、进程管理、网络堆栈、驱动模型。Linux Kernel也作为硬件和软件之间的抽象层，它隐藏具体硬件细节而为上层提供统一的服务。</p><p>如果你学过计算机网络知道OSI/RM，就会知道分层的好处就是使用下层提供的服务而为上层提供统一的服务，屏蔽本层及以下层的差异，当本层及以下层发生了变化不会影响到上层。也就是说各层各司其职，各层提供固定的SAP（Service Access Point），专业点可以说是高内聚、低耦合。</p><p>如果你只是做应用开发，就不需要深入了解Linux Kernel层。</p><p style="color:#3333FF;">2.2、Android Runtime</p><p>Android包含一个核心库的集合，提供大部分在Java编程语言核心类库中可用的功能。每一个Android应用程序是Dalvik虚拟机中的实例，运行在他们自己的进程中。Dalvik虚拟机设计成，在一个设备可以高效地运行多个虚拟机。Dalvik虚拟机可执行文件格式是.dex，dex格式是专为Dalvik设计的一种压缩格式，适合内存和处理器速度有限的系统。</p><p>大多数虚拟机包括JVM都是基于栈的，而Dalvik虚拟机则是基于寄存器的。两种架构各有优劣，一般而言，基于栈的机器需要更多指令，而基于寄存器的机器指令更大。dx 是一套工具，可以將 Java .class 转换成 .dex 格式。一个dex文件通常会有多个.class。由于dex有時必须进行最佳化，会使文件大小增加1-4倍，以ODEX结尾。</p><p>Dalvik虚拟机依赖于Linux 内核提供基本功能，如线程和底层内存管理。</p><p style="color:#3333FF;">2.3、Libraries</p><p>Android包含一个C/C++库的集合，供Android系统的各个组件使用。这些功能通过Android的应用程序框架（application framework）暴露给开发者。下面列出一些核心库：</p><p>1、系统C库——标准C系统库（libc）的BSD衍生，调整为基于嵌入式Linux设备。</p><p>2、媒体库——基于PacketVideo的OpenCORE。这些库支持播放和录制许多流行的音频和视频格式，以及静态图像文件，包括MPEG4、H.264、 MP3、 AAC、 AMR、JPG、PNG。</p><p>3、界面管理——管理访问显示子系统和无缝组合多个应用程序的二维和三维图形层。</p><p>4、LibWebCore——新式的Web浏览器引擎,驱动Android 浏览器和内嵌的web视图。</p><p>5、SGL——基本的2D图形引擎。</p><p>6、3D库——基于OpenGL ES 1.0 APIs的实现。库使用硬件3D加速或包含高度优化的3D软件光栅。</p><p>7、FreeType ——位图和矢量字体渲染。</p><p>8、SQLite ——所有应用程序都可以使用的强大而轻量级的关系数据库引擎。</p><p style="color:#3333FF;">2.4、Application Framework</p><p>通过提供开放的开发平台，Android使开发者能够编制极其丰富和新颖的应用程序。开发者可以自由地利用设备硬件优势、访问位置信息、运行后台服务、设置闹钟、向状态栏添加通知等等，很多很多。</p><p>开发者可以完全使用核心应用程序所使用的框架APIs。应用程序的体系结构旨在简化组件的重用，任何应用程序都能发布他的功能且任何其他应用程序可以使用这些功能（需要服从框架执行的安全限制）。这一机制允许用户替换组件。</p><p>所有的应用程序其实是一组服务和系统，包括：</p><p>1、视图（View）——丰富的、可扩展的视图集合，可用于构建一个应用程序。包括包括列表、网格、文本框、按钮，甚至是内嵌的网页浏览器。</p><p>2、内容提供者（Content Providers）——使应用程序能访问其他应用程序（如通讯录）的数据，或共享自己的数据。</p><p>3、资源管理器（Resource Manager）——提供访问非代码资源，如本地化字符串、图形和布局文件。</p><p>4、通知管理器（Notification Manager）——使所有的应用程序能够在状态栏显示自定义警告。</p><p>5、活动管理器（ActivityManager）——管理应用程序生命周期,提供通用的导航回退功能。</p><p style="color:#3333FF;">2.5、Applications</p><p>Android装配一个核心应用程序集合，包括电子邮件客户端、SMS程序、日历、地图、浏览器、联系人和其他设置。所有应用程序都是用Java编程语言写的。更加丰富的应用程序有待我们去开发！</p><p style="color:#3333FF;">3、总结</p><p>从上面我们知道Android的架构是分层的，非常清晰，分工很明确。Android本身是一套软件堆叠(Software Stack)，或称为「软件叠层架构」，叠层主要分成三层：操作系统、中间件、应用程序。从上面我们也看到了开源的力量，一个个熟悉的开源软件在这里贡献了自己的一份力量。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

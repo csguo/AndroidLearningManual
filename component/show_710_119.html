@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 线程交互+修改Button样式（二）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li class="navcurrentLink"><A href="index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Activity" href="index_112.html">Activity</A></h2>
+
+  <h2><A title="Intent" href="index_113.html">Intent</A></h2>
+
+  <h2><A title="Service" href="index_114.html">Service</A></h2>
+
+  <h2><A title="Content Provider" href="index_115.html">Content Provider</A></h2>
+
+  <h2><A title="BroadcastReceiver" href="index_116.html">BroadcastReceiver</A></h2>
+
+  <h2><A title="AsyncTask" href="index_117.html">AsyncTask</A></h2>
+
+  <h2><A title="Handler" href="index_118.html">Handler</A></h2>
+
+  <h2><A title="Thread" href="index_119.html">Thread</A></h2>
+<UL><li ><A title=线程的基础知识 href="show_701_119.html">线程的基础知识</A> </li><li ><A title=Android 线程学习 href="show_702_119.html">Android 线程学习</A> </li><li ><A title=Android开发之旅：进程与线程 href="show_703_119.html">Android开发之旅：进程与线程</A> </li><li ><A title=线程和进程的区别 href="show_704_119.html">线程和进程的区别</A> </li><li ><A title=创建线程的两种方式 href="show_705_119.html">创建线程的两种方式</A> </li><li ><A title=Android 线程间的通信 href="show_706_119.html">Android 线程间的通信</A> </li><li ><A title=Android线程间通信的Message机制 href="show_707_119.html">Android线程间通信的Message机制</A> </li><li ><A title=Activity与Thread之间的通讯 href="show_708_119.html">Activity与Thread之间的通讯</A> </li><li ><A title=Android 线程交互+修改Button样式（一） href="show_709_119.html">Android 线程交互+修改Button样式（一）</A> </li><li class="currentLink"><A title=Android 线程交互+修改Button样式（二） href="show_710_119.html">Android 线程交互+修改Button样式（二）</A> </li><li ><A title=Android 多线程下载 href="show_711_119.html">Android 多线程下载</A> </li></UL>
+  <h2><A title="Permission" href="index_120.html">Permission</A></h2>
+
+  <h2><A title="AIDL" href="index_121.html">AIDL</A></h2>
+
+  <h2><A title="Json" href="index_122.html">Json</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 线程交互+修改Button样式（二）</H2>
+<div style="line-height:20px; font-size:14px;"><p>其实单线程模型就是默认情况下android把所有操作都放在主线程也就是UI Thread线程中来执行，如果你想O上边那段不是说它会阻塞用户界面嘛。</p><p>那我可以另起一个线程来执行一些操作 没错你的想法非常good 。很给力。那么接下来 你就会尝试另起一个线程来 执行一些操作。</p><p>OK 结果就有两种可能 </p><p>一：你在另外开启的那个线程中执行了一些后台的操作 比如开启一个服务啊。那么恭喜你 你成功了。 </p><p>二：第二种可能结果就是你会收到一个华丽的异常。</p><p>下面我们就通过一个小例子来说明这个华丽的异常时怎么回事？ </p><p>因为本篇文章的例子比较多所以我为了大家好找 给例子起了名称 这个例子的名称是：异常测试 </p><p><pre>&lt;?xml version=<font class="Fields">"1.0"</font> encoding=</font><font class="Fields">"utf-8"</font>?&gt;</p><p>&lt;RelativeLayout xmlns:android=<font class="Fields">"http:<font class="Comments">//schemas.android.com/apk/res/android</font></p><p>    </font>android:layout_width=<font class="Fields">"fill_parent</p><p>    </font>android:layout_height=<font class="Fields">"fill_parent</p><p>    </font>android:orientation=<font class="Fields">"vertical"</font> &gt;</p><p>    &lt;TextView</p><p>        </font>android:id=<font class="Fields">"@+id/textview01</p><p>        </font>android:layout_width=<font class="Fields">"fill_parent</p><p>        </font>android:layout_height=<font class="Fields">"wrap_content</p><p>        </font>android:text=<font class="Fields">"@string/hello"</font> /&gt;</p><p>    &lt;Button</p><p>        </font>android:id=<font class="Fields">"@+id/myButton</p><p>        </font>android:layout_width=<font class="Fields">"wrap_content</p><p>        </font>android:layout_height=<font class="Fields">"wrap_content</p><p>        </font>android:layout_below=<font class="Fields">"@id/textview01</p><p>        </font>android:text=<font class="Fields">"异常测试"</font> /&gt;</p><p>    &lt;TextView</p><p>        </font>android:id=<font class="Fields">"@+id/myTextView</p><p>        </font>android:layout_width=<font class="Fields">"wrap_content</p><p>        </font>android:layout_height=<font class="Fields">"wrap_content</p><p>        </font>android:layout_alignTop=<font class="Fields">"@id/myButton</p><p>        </font>android:layout_toRightOf=<font class="Fields">"@id/myButton</p><p>        </font>android:textColor=<font class="Fields">"</font>FF0000</p><p>        </font>android:textSize=<font class="Fields">"15pt"</font> /&gt;</p><p>&lt;/RelativeLayout&gt;</p><p></pre></p><p>java代码：</p><p><pre><font class="keyword">import </font>android.app.Activity;</p><p><font class="keyword">import </font>android.os.Bundle;</p><p><font class="keyword">import </font>android.view.View;</p><p><font class="keyword">import </font>android.view.View.OnClickListener;</p><p><font class="keyword">import </font>android.widget.Button;</p><p><font class="keyword">import </font>android.widget.TextView;</p><p><font class="keyword">public </font><font class="keyword">class </font>Activity01 </font><font class="keyword">extends </font>Activity {</p><p>	<font class="keyword">private </font>Button myButton;</p><p>	<font class="keyword">private </font>TextView myTextView;</p><p>	@Override</p><p>	<font class="keyword">protected </font><font class="keyword">void </font>onCreate(Bundle savedInstanceState) {</p><p>		<font class="keyword">super</font>.onCreate(savedInstanceState);</p><p>		setContentView(R.layout.main);</p><p>		myButton = (Button) findViewById(R.id.myButton);</p><p>		myTextView = (TextView) findViewById(R.id.myTextView);</p><p>		</font>myButton.setOnClickListener(<font class="keyword">new </font>MyButtonListener());</p><p>	}</p><p>	<font class="keyword">class </font>MyButtonListener </font><font class="keyword">implements </font>OnClickListener {</p><p>		@Override</p><p>		<font class="keyword">public </font><font class="keyword">void </font>onClick(View v) {</p><p>			<font class="keyword">new </font>Thread() {</p><p></p><p>				@Override</p><p>				<font class="keyword">public </font><font class="keyword">void </font>run() {</p><p>					<font class="Comments">// 我们在这里更新了UI 设置了TextView的值</font></p><p>					</font>myTextView.setText(<font class="Fields">"张三"</font>);</p><p>				}</p><p>			}.start();</p><p>		}</p><p>	}</p><p>}</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

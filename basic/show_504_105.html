@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 深入研究adb（二）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li class="navcurrentLink"><A href="index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="开发基础" href="index_100.html">开发基础</A></h2>
+
+  <h2><A title="开发环境搭建" href="index_101.html">开发环境搭建</A></h2>
+
+  <h2><A title="模拟器" href="index_102.html">模拟器</A></h2>
+
+  <h2><A title="Resource" href="index_103.html">Resource</A></h2>
+
+  <h2><A title="Manifest" href="index_104.html">Manifest</A></h2>
+
+  <h2><A title="ADB" href="index_105.html">ADB</A></h2>
+<UL><li ><A title=Android ADB介绍 href="show_501_105.html">Android ADB介绍</A> </li><li ><A title=ADB 指令大全 href="show_502_105.html">ADB 指令大全</A> </li><li ><A title=Android 深入研究adb（一） href="show_503_105.html">Android 深入研究adb（一）</A> </li><li class="currentLink"><A title=Android 深入研究adb（二） href="show_504_105.html">Android 深入研究adb（二）</A> </li><li ><A title=Android 深入研究adb（三） href="show_505_105.html">Android 深入研究adb（三）</A> </li><li ><A title=Android 深入研究adb（四） href="show_506_105.html">Android 深入研究adb（四）</A> </li><li ><A title=Android Debug Bridge操作命令详解 href="show_507_105.html">Android Debug Bridge操作命令详解</A> </li></UL>
+  <h2><A title="DDMS" href="index_106.html">DDMS</A></h2>
+
+  <h2><A title="Logcat(日志)" href="index_107.html">Logcat(日志)</A></h2>
+
+  <h2><A title="打包" href="index_108.html">打包</A></h2>
+
+  <h2><A title="文件处理" href="index_109.html">文件处理</A></h2>
+
+  <h2><A title="底层基础" href="index_111.html">底层基础</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 深入研究adb（二）</H2>
+<div style="line-height:20px; font-size:14px;"><p>下面是一个展示devices 命令和输出的例子:</p><p><pre>$ adb devicesList of devices attached emulator-5554 deviceemulator-5556 deviceemulator-5558 device</p><p></pre></p><p>如果当前没有模拟器/设备运行，adb则返回 no device。</p><p>给特定的模拟器/设备实例发送命令</p><p>如果有多个模拟器/设备实例在运行，在发布adb命令时需要指定一个目标实例。 这样做，请使用-s 选项的命令。在使用的-s选项是</p><p><pre>adb -s &lt; serialNumber&gt; &lt; command&gt;</p><p></pre></p><p>如上所示，给一个命令指定了目标实例，这个目标实例使用由adb分配的序列号。你可以使用 devices 命令来获得运行着的模拟器/设备实例的序列号</p><p>示例如下:</p><p><pre>adb -s emulator-5556 install helloWorld.apk</p><p></pre></p><p>注意这点，如果没有指定一个目标模拟器/设备实例就执行 -s 这个命令的话，adb会产生一个错误。</p><p style="color:#3333FF;">安装软件</p><p>你可以使用adb从你的开发电脑上复制一个应用程序，并且将其安装在一个模拟器/设备实例。像这样做，使用install命令。这个install命令要求你必须指定你所要安装的.apk文件的路径:</p><p><pre>adb install &lt; path_to_apk&gt;</p><p></pre></p><p>为了获取更多的关于怎样创建一个可以安装在模拟器/设备实例上的.apk文件的信息，可参照Android Asset Packaging Tool (aapt)。</p><p>要注意的是，如果你正在使用Eclipse IDE并且已经安装过ADT插件，那么就不需要直接使用adb(或者aapt)去安装模拟器/设备上的应用程序。否则，ADT插件代你全权处理应用程序的打包和安装.</p><p style="color:#3333FF;">转发端口</p><p>可以使用forward命令进行任意端口的转发——一个模拟器/设备实例的某一特定主机端口向另一不同端口的转发请求。下面演示了如何建立从主机端口6100到模拟器/设备端口7100的转发。</p><p><pre>adb forward tcp:6100 tcp:7100</p><p></pre></p><p>同样地，可以使用adb来建立命名为抽象的UNIX域套接口，上述过程如下所示:</p><p><pre>adb forward tcp:6100 local:logd</p><p></pre></p><p>从模拟器/设备中拷入或拷出文件</p><p>可以使用adbpull，push 命令将文件复制到一个模拟器/设备实例的数据文件或是从数据文件中复制。install 命令只将一个.apk文件复制到一个特定的位置，与其不同的是，pull 和 push 命令可令你复制任意的目录和文件到一个模拟器/设备实例的任何位置。</p><p>从模拟器或者设备中复制文件或目录，使用(如下命):</p><p><pre>adb pull &lt; remote&gt; &lt; local&gt;</p><p></pre></p><p>将文件或目录复制到模拟器或者设备，使用(如下命令)</p><p><pre>adb push &lt; local&gt; &lt; remote&gt;</p><p></pre></p><p>在这些命令中， &lt; local&gt; 和&lt; remote&gt; 分别指通向自己的发展机(本地)和模拟器/设备实例(远程)上的目标文件/目录的路径。</p><p style="color:#3333FF;">下面是一个例子：</p><p><pre>adb push foo.txt /sdcard/foo.txt</p><p></pre></p><p style="color:#3333FF;">Adb命令列表</p><p>下列表格列出了adb支持的所有命令,并对它们的意义和使用方法做了说明。</p><p><pre>Category Command Description Comments</p><p>Options -d 仅仅通过USB接口来管理abd. 如果不只是用USB接口来管理则返回错误。</p><p>-e 仅仅通过模拟器实例来管理adb. 如果不是仅仅通过模拟器实例管理则返回错误。</p><p>-s &lt; serialNumber&gt; 通过模拟器/设备的允许的命令号码来发送命令来管理adb (比如: "emulator-5556")。如果没有指定号码，则会报错。</p><p>General devices 查看所有连接模拟器/设备的设施的清单。</p><p>help 查看adb所支持的所有命令。</p><p>version 查看adb的版本序列号。</p><p>Debug logcat [&lt; option&gt;] [&lt; filter-specs&gt;] 将日志数据输出到屏幕上。</p><p>bugreport 查看bug的报告，如dumpsys ,dumpstate ,和logcat 信息。</p><p>jdwp 查看指定的设施的可用的JDWP信息。可以用 forward jdwp:&lt; pid&gt; 端口映射信息来连接指定的JDWP进程。例如：</p><p>adb forward tcp:8000 jdwp:472</p><p>jdb -attach localhost:8000</p><p>Data install &lt; path-to-apk&gt; 安装Android为(可以模拟器/设施的数据文件.apk指定完整的路径)。</p><p>pull &lt; remote&gt; &lt; local&gt; 将指定的文件从模拟器/设施的拷贝到电脑上。</p><p>push &lt; local&gt; &lt; remote&gt; 将指定的文件从电脑上拷贝到模拟器/设备中。</p><p>Ports and Networking forward &lt; local&gt; &lt; remote&gt; 用本地指定的端口通过socket方法远程连接模拟器/设施 </p><p></pre></p><p style="color:#3333FF;">端口需要描述下列信息:</p><p><pre>* tcp:&lt; portnum&gt;</p><p>* local:&lt; UNIX domain socket name&gt;</p><p>* dev:&lt; character device name&gt;</p><p>* jdwp:&lt; pid&gt;</p><p>ppp &lt; tty&gt; [parm]... 通过USB运行ppp：</p><p>* &lt; tty&gt; — the tty for PPP stream. For</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

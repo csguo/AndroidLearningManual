@@ -1,0 +1,60 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 在launcher 2.1上实现2.2的屏幕标记_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li class="navcurrentLink"><A href="index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Launcher" href="index_207.html">Launcher</A></h2>
+<UL><li ><A title=Android Launcher 分析（一） href="show_1_207.html">Android Launcher 分析（一）</A> </li><li ><A title=Android Launcher 分析（二） href="show_2_207.html">Android Launcher 分析（二）</A> </li><li ><A title=Android Launcher 分析（三） href="show_3_207.html">Android Launcher 分析（三）</A> </li><li ><A title=Android 启动唯一的Launcher href="show_4_207.html">Android 启动唯一的Launcher</A> </li><li ><A title=Launcher之文件夹美化 href="show_5_207.html">Launcher之文件夹美化</A> </li><li ><A title=关于使用Eclipse调试Launcher的完美解决方法 href="show_6_207.html">关于使用Eclipse调试Launcher的完美解决方法</A> </li><li ><A title=提取Launcher中的WorkSapce，可以左右滑动切换屏幕页面的类 href="show_7_207.html">提取Launcher中的WorkSapce，可以左右滑动切换屏幕页面的类</A> </li><li ><A title=使用ViewPager实现高仿launcher拖动效果 href="show_8_207.html">使用ViewPager实现高仿launcher拖动效果</A> </li><li ><A title=Android 深入研究拖放功能Launcher（一） href="show_9_207.html">Android 深入研究拖放功能Launcher（一）</A> </li><li ><A title=Android 深入研究拖放功能Launcher（二） href="show_10_207.html">Android 深入研究拖放功能Launcher（二）</A> </li><li ><A title=Android 深入研究拖放功能Launcher（三） href="show_11_207.html">Android 深入研究拖放功能Launcher（三）</A> </li><li ><A title=Android 深入研究拖放功能Launcher（四） href="show_12_207.html">Android 深入研究拖放功能Launcher（四）</A> </li><li ><A title=Android 深入研究拖放功能Launcher（五） href="show_13_207.html">Android 深入研究拖放功能Launcher（五）</A> </li><li ><A title=Android 深入研究拖放功能Launcher（六） href="show_14_207.html">Android 深入研究拖放功能Launcher（六）</A> </li><li class="currentLink"><A title=Android 在launcher 2.1上实现2.2的屏幕标记 href="show_15_207.html">Android 在launcher 2.1上实现2.2的屏幕标记</A> </li></UL>
+  <h2><A title="电话系统RIL" href="index_208.html">电话系统RIL</A></h2>
+
+  <h2><A title="进程间通信" href="index_209.html">进程间通信</A></h2>
+
+  <h2><A title="内部sensor系统" href="index_210.html">内部sensor系统</A></h2>
+
+  <h2><A title="内部surface系统" href="index_211.html">内部surface系统</A></h2>
+
+  <h2><A title="启动流程" href="index_212.html">启动流程</A></h2>
+
+  <h2><A title="源码编译" href="index_213.html">源码编译</A></h2>
+
+  <h2><A title="状态栏" href="index_214.html">状态栏</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 在launcher 2.1上实现2.2的屏幕标记</H2>
+<div style="line-height:20px; font-size:14px;"><p>在launcher 2.1上实现2.2的屏幕标记。</p><p>Launcher2.2自带了屏幕标记，他是分了两块，分别为在左下角和右下角。</p><p>1) 每一块为一个imageview，在配置文件Launcher.xml中直接添加</p><p><pre>&lt;ImageView</p><p>    </font>android:id=<font class="Fields">"@+id/previous_screen</p><p>    </font>android:layout_width=<font class="Fields">"93dip</p><p>    </font>android:layout_height=<font class="Fields">"20dip</p><p>    </font>android:layout_gravity=<font class="Fields">"bottom|left</p><p>    </font>android:layout_marginLeft=<font class="Fields">"6dip</p><p>    </font>android:clickable=<font class="Fields">"<font class="keyword">true</font></p><p>    </font>android:focusable=<font class="Fields">"<font class="keyword">true</font></p><p>    </font>android:onClick=<font class="Fields">"previousScreen</p><p>    </font>android:scaleType=<font class="Fields">"center</p><p>    </font>android:src=<font class="Fields">"@drawable/home_arrows_left"</font> /&gt;</p><p></pre></p><p>其中android:onClick="previousScreen"引用了一个名为previousScreen的方法，在Launcher.java类中定义。</p><p>其它一些用到的配置文件及图片可以直接从2.2的工程中拷贝。</p><p>2) 在Launcher的setupViews方法中获取配置文件中添加的imageview：</p><p><pre>mPreviousView = (ImageView) dragLayer.findViewById(R.id.previous_screen);</p><p>Drawable previous = mPreviousView.getDrawable();</p><p>mPreviousView.setHapticFeedbackEnabled(<font class="keyword">false</font>);</p><p>mPreviousView.setOnLongClickListener(<font class="keyword">this</font>);	</p><p></pre></p><p>3) 在Launcher的setupViews方法后添加previousScreen方法：</p><p><pre><font class="keyword">public </font><font class="keyword">void </font>previousScreen(View v) {</p><p>	mWorkspace.scrollLeft();</p><p>}</p><p></pre></p><p>4) 在workspace的setIndicators方法中添加：</p><p><pre>mPreviousIndicator = previous;</p><p>mNextIndicator = next;</p><p></pre></p><p>setCurrentScreen方法中添加：</p><p><pre>mPreviousIndicator.setLevel(mCurrentScreen);</p><p>mNextIndicator.setLevel(mCurrentScreen);</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

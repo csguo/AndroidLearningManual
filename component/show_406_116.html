@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>通过BroadcastReceiver拦截短信_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li class="navcurrentLink"><A href="index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Activity" href="index_112.html">Activity</A></h2>
+
+  <h2><A title="Intent" href="index_113.html">Intent</A></h2>
+
+  <h2><A title="Service" href="index_114.html">Service</A></h2>
+
+  <h2><A title="Content Provider" href="index_115.html">Content Provider</A></h2>
+
+  <h2><A title="BroadcastReceiver" href="index_116.html">BroadcastReceiver</A></h2>
+<UL><li ><A title=BroadcastReceiver简介 href="show_401_116.html">BroadcastReceiver简介</A> </li><li ><A title=BroadcastReceiver学习 href="show_402_116.html">BroadcastReceiver学习</A> </li><li ><A title=BroadcastReceiver生命周期及两种应用 href="show_403_116.html">BroadcastReceiver生命周期及两种应用</A> </li><li ><A title=Android中BroadCastReceiver使用 href="show_404_116.html">Android中BroadCastReceiver使用</A> </li><li ><A title=BroadcastReceiver 消息广播详解-简单监控拨打电话 href="show_405_116.html">BroadcastReceiver 消息广播详解-简单监控拨打电话</A> </li><li class="currentLink"><A title=通过BroadcastReceiver拦截短信 href="show_406_116.html">通过BroadcastReceiver拦截短信</A> </li></UL>
+  <h2><A title="AsyncTask" href="index_117.html">AsyncTask</A></h2>
+
+  <h2><A title="Handler" href="index_118.html">Handler</A></h2>
+
+  <h2><A title="Thread" href="index_119.html">Thread</A></h2>
+
+  <h2><A title="Permission" href="index_120.html">Permission</A></h2>
+
+  <h2><A title="AIDL" href="index_121.html">AIDL</A></h2>
+
+  <h2><A title="Json" href="index_122.html">Json</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>通过BroadcastReceiver拦截短信</H2>
+<div style="line-height:20px; font-size:14px;"><p>当android系统接收到短信时，会发送一个广播BroadcastReceiver，这个广播是以有序广播的形式发送的。</p><p>所谓的有序广播就是广播发出后，接收者是按照设置的优先级一个一个接着接收，前面的接收者可以选择是否终止这条广播以使后面的接收者接收不到，而普遍广播发送后所有的接收者都能同时接到，但是不能终止这条广播，也不能将它的处理结果传递给下个接收者。</p><p>今天实现的sms拦截就是通过实现一个BroadcastReceiver并将其的优先级设置的比系统sms接收者高。接下来给大家进行仔细讲解。</p><p>首先实现一个BroadcastReceiver：</p><p><pre><font class="keyword">import </font>android.content.BroadcastReceiver;</p><p><font class="keyword">import </font>android.content.Context;</p><p><font class="keyword">import </font>android.content.Intent;</p><p><font class="keyword">import </font>android.os.Bundle;</p><p><font class="keyword">import </font>android.telephony.SmsMessage;</p><p><font class="keyword">import </font>android.util.Log;</p><p><font class="keyword">public </font><font class="keyword">class </font>SMSReceive </font><font class="keyword">extends </font>BroadcastReceiver {</p><p>	<font class="keyword">static </font><font class="keyword">final </font>String TAG = <font class="Fields">"SMSReceive"</font>;</p><p>	<font class="keyword">static </font><font class="keyword">final </font>String smsuri = <font class="Fields">"android.provider.Telephony.SMS_RECEIVED"</font>;</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onReceive(Context arg0, Intent arg1) {</p><p>		<font class="keyword">if </font>(arg1.getAction().equals(smsuri)) {</p><p>			Bundle bundle = arg1.getExtras();</p><p>			<font class="keyword">if </font>(</font><font class="keyword">null</font> != bundle) {</p><p>				</font>Object[] pdus = (Object[]) bundle.get(<font class="Fields">"pdus"</font>);</p><p>				</font>SmsMessage[] smg = <font class="keyword">new </font>SmsMessage[pdus.length];</p><p>				<font class="keyword">for </font>(</font><font class="keyword">int </font>i = 0; i &lt; pdus.length; i++) {</p><p>					smg[i] = SmsMessage.createFromPdu((byte[]) pdus[i]);</p><p>					</font>Log.i(TAG + <font class="Fields">"smg"</font> + i, smg[i].toString());</p><p>				}</p><p>				<font class="keyword">for </font>(SmsMessage cursmg : smg) {</p><p>					String codeStr = cursmg.getDisplayMessageBody();</p><p>					String codeStr2 = cursmg.getDisplayOriginatingAddress();</p><p>					String codeStr3 = cursmg.getMessageBody();</p><p>					String codeStr6 = cursmg.getOriginatingAddress();</p><p>					</font>Log.i(TAG + <font class="Fields">"codeStr"</font>, codeStr);</p><p>					</font>Log.i(TAG + <font class="Fields">"codeStr2"</font>, codeStr2);</p><p>					</font>Log.i(TAG + <font class="Fields">"codeStr3"</font>, codeStr3);</p><p>					</font>Log.i(TAG + <font class="Fields">"codeStr6"</font>, codeStr6);</p><p>				}</p><p>				abortBroadcast(); <font class="Comments">// 终止此条广播</font></p><p>			}</p><p>		}</p><p>	}</p><p>}</p><p></pre></p><p>然后，我们还要注册它，android:priority就是设置优先级的。</p><p>Xml代码：</p><p><pre>&lt;receiver android:name=<font class="Fields">"SMSReceive"</font>&gt;  </p><p>     </font>&lt;intent-filter android:priority=<font class="Fields">"100"</font>&gt;</p><p>         </font>&lt;action android:name=<font class="Fields">"android.provider.Telephony.SMS_RECEIVED"</font> /&gt;</p><p>     &lt;/intent-filter&gt;</p><p>&lt;/receiver&gt; </p><p></pre></p><p>此为，不要忘了添加接收sms的权限：</p><p>Xml代码：</p><p><pre>&lt;uses-permission android:name=<font class="Fields">"android.permission.RECEIVE_SMS"</font>&gt;&lt;/uses-permission&gt;</p><p></pre></p><p>好了，短信拦截就实现了，如果想实现短信黑名单，只需要代码中获取到的号码和已设置的号码匹配然后做相关操作就可以了。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

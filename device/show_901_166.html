@@ -1,0 +1,70 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 获取、设置铃声、音量、静音、扬声器_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li class="navcurrentLink"><A href="index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="设备信息" href="index_157.html">设备信息</A></h2>
+
+  <h2><A title="摄像头" href="index_158.html">摄像头</A></h2>
+
+  <h2><A title="通讯录" href="index_159.html">通讯录</A></h2>
+
+  <h2><A title="电话" href="index_160.html">电话</A></h2>
+
+  <h2><A title="短信" href="index_161.html">短信</A></h2>
+
+  <h2><A title="传感器" href="index_162.html">传感器</A></h2>
+
+  <h2><A title="定位" href="index_163.html">定位</A></h2>
+
+  <h2><A title="视频系统" href="index_164.html">视频系统</A></h2>
+
+  <h2><A title="音频系统" href="index_165.html">音频系统</A></h2>
+
+  <h2><A title="铃声" href="index_166.html">铃声</A></h2>
+<UL><li class="currentLink"><A title=Android 获取、设置铃声、音量、静音、扬声器 href="show_901_166.html">Android 获取、设置铃声、音量、静音、扬声器</A> </li><li ><A title=Android 设置铃声+震动 href="show_902_166.html">Android 设置铃声+震动</A> </li><li ><A title=Android 个人铃声设置代码 href="show_903_166.html">Android 个人铃声设置代码</A> </li><li ><A title=Media开发之铃声设置(RingtoneManager) href="show_904_166.html">Media开发之铃声设置(RingtoneManager)</A> </li></UL>
+  <h2><A title="音量" href="index_167.html">音量</A></h2>
+
+  <h2><A title="录音" href="index_168.html">录音</A></h2>
+
+  <h2><A title="输入法" href="index_169.html">输入法</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 获取、设置铃声、音量、静音、扬声器</H2>
+<div style="line-height:20px; font-size:14px;"><p>通过程序获取android系统手机的铃声和音量。同样，设置铃声和音量的方法也很简单！ </p><p><pre>AudioManager mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);</p><p></pre></p><p>设置音量的方法也很简单，AudioManager提供了方法： </p><p><pre><font class="keyword">public </font><font class="keyword">void </font>setStreamVolume(</font><font class="keyword">int </font>streamType, </font><font class="keyword">int </font>index, </font><font class="keyword">int </font>flags)</p><p></pre></p><p>streamType为铃声类型，例如：AudioManager.STREAM_VOICE_CALL、AudioManager.STREAM_SYSTEM等，index为音量大小，falgs为标志位。</p><p>设置振动：</p><p><pre>mVibrator = (Vibrator) mContext.getSystemService(Service.VIBRATOR_SERVICE);   </p><p><font class="keyword">long</font>[] pattern = {150, 100</font>}; <font class="Comments">// OFF/ON/OFF/ON...  </font></p><p>mVibrator.vibrate(pattern, -1);</p><p></pre></p><p>静音：</p><p>设置系统声音为0就行</p><p><pre><font class="Comments">//通话时设置静音System.out.println("isMicrophoneMute =" + audioManager.isMicrophoneMute());</font></p><p>audioManager.setMicrophoneMute(!audioManager.isMicrophoneMute());</p><p><font class="Comments">//通话时设置免提System.out.println("isSpeakerphoneOn =" + audioManager.isSpeakerphoneOn());</font></p><p>audioManager.setSpeakerphoneOn(!audioManager.isSpeakerphoneOn());</p><p></pre></p><p>别忘了修改的权限：</p><p><pre>&lt;uses-permission android:name=<font class="Fields">"android.permission.MODIFY_AUDIO_SETTINGS"</font>/&gt;</p><p></pre></p><p>Android开发_如何获取和设置android系统铃声和音量大小</p><p>通过程序获取android系统手机的铃声和音量。同样，设置铃声和音量的方法也很简单！</p><p>设置音量的方法也很简单，AudioManager提供了方法：</p><p><pre><font class="keyword">public </font><font class="keyword">void </font>setStreamVolume(</font><font class="keyword">int </font>streamType,</font><font class="keyword">int </font>index,</font><font class="keyword">int </font>flags)</p><p></pre></p><p>其中streamType有内置的常量，去文档里面就可以看到。</p><p>JAVA代码：</p><p><pre>AudioManager mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);</p><p><font class="Comments">//通话音量</font></p><p><font class="keyword">int </font>max = mAudioManager.getStreamMaxVolume( AudioManager.STREAM_VOICE_CALL );</p><p><font class="keyword">int </font>current = mAudioManager.getStreamVolume( AudioManager.STREAM_VOICE_CALL );</p><p>Log.d(<font class="Fields">"VIOCE_CALL"</font>, </font><font class="Fields">"max : "</font> + max + </font><font class="Fields">" current : "</font> + current);</p><p><font class="Comments">//系统音量</font></p><p>max = mAudioManager.getStreamMaxVolume( AudioManager.STREAM_SYSTEM );</p><p>current = mAudioManager.getStreamVolume( AudioManager.STREAM_SYSTEM );</p><p>Log.d(<font class="Fields">"SYSTEM"</font>, </font><font class="Fields">"max : "</font> + max + </font><font class="Fields">" current : "</font> + current);</p><p><font class="Comments">//铃声音量</font></p><p>max = mAudioManager.getStreamMaxVolume( AudioManager.STREAM_RING );</p><p>current = mAudioManager.getStreamVolume( AudioManager.STREAM_RING );</p><p>Log.d(<font class="Fields">"RING"</font>, </font><font class="Fields">"max : "</font> + max + </font><font class="Fields">" current : "</font> + current);</p><p><font class="Comments">//音乐音量</font></p><p>max = mAudioManager.getStreamMaxVolume( AudioManager.STREAM_MUSIC );</p><p>current = mAudioManager.getStreamVolume( AudioManager.STREAM_MUSIC );</p><p>Log.d(<font class="Fields">"MUSIC"</font>, </font><font class="Fields">"max : "</font> + max + </font><font class="Fields">" current : "</font> + current);</p><p><font class="Comments">//提示声音音量</font></p><p>max = mAudioManager.getStreamMaxVolume( AudioManager.STREAM_ALARM );</p><p>current = mAudioManager.getStreamVolume( AudioManager.STREAM_ALARM );</p><p>Log.d(<font class="Fields">"ALARM"</font>, </font><font class="Fields">"max : "</font> + max + </font><font class="Fields">" current : "</font> + current);</p><p></pre></p><p>ps：游戏过程中只允许调整多媒体音量，而不允许调整通话音量。</p><p><pre>setVolumeControlStream(AudioManager.STREAM_MUSIC);</p><p></pre></p><p>长时间不动，不允许黑屏，View.setKeepScreenOn(true);</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

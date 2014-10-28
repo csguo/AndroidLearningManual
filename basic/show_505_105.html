@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 深入研究adb（三）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li class="navcurrentLink"><A href="index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="开发基础" href="index_100.html">开发基础</A></h2>
+
+  <h2><A title="开发环境搭建" href="index_101.html">开发环境搭建</A></h2>
+
+  <h2><A title="模拟器" href="index_102.html">模拟器</A></h2>
+
+  <h2><A title="Resource" href="index_103.html">Resource</A></h2>
+
+  <h2><A title="Manifest" href="index_104.html">Manifest</A></h2>
+
+  <h2><A title="ADB" href="index_105.html">ADB</A></h2>
+<UL><li ><A title=Android ADB介绍 href="show_501_105.html">Android ADB介绍</A> </li><li ><A title=ADB 指令大全 href="show_502_105.html">ADB 指令大全</A> </li><li ><A title=Android 深入研究adb（一） href="show_503_105.html">Android 深入研究adb（一）</A> </li><li ><A title=Android 深入研究adb（二） href="show_504_105.html">Android 深入研究adb（二）</A> </li><li class="currentLink"><A title=Android 深入研究adb（三） href="show_505_105.html">Android 深入研究adb（三）</A> </li><li ><A title=Android 深入研究adb（四） href="show_506_105.html">Android 深入研究adb（四）</A> </li><li ><A title=Android Debug Bridge操作命令详解 href="show_507_105.html">Android Debug Bridge操作命令详解</A> </li></UL>
+  <h2><A title="DDMS" href="index_106.html">DDMS</A></h2>
+
+  <h2><A title="Logcat(日志)" href="index_107.html">Logcat(日志)</A></h2>
+
+  <h2><A title="打包" href="index_108.html">打包</A></h2>
+
+  <h2><A title="文件处理" href="index_109.html">文件处理</A></h2>
+
+  <h2><A title="底层基础" href="index_111.html">底层基础</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 深入研究adb（三）</H2>
+<div style="line-height:20px; font-size:14px;"><p>需要提醒你的不能自动启动PDP连接。</p><p>Scripting get-serialno 查看adb实例的序列号。</p><p>get-state 查看模拟器/设施的当前状态。</p><p>wait-for-device 如果设备不联机就不让执行,--也就是实例状态是 device 时. 你可以提前把命令转载在adb的命令器中,在命令器中的命令在模拟器/设备连接之前是不会执行其它命令的。</p><p>示例如下:</p><p><pre>adb wait-for-device shell getprop</p><p></pre></p><p>需要提醒的是这些命令在所有的系统启动启动起来之前是不会启动adb的 所以在所有的系统启动起来之前你也不能执行其它的命令。</p><p>比如：运用install 的时候就需要Android包，这些包只有系统完全启动。</p><p>例如：</p><p><pre>adb wait-for-device install &lt; app&gt;.apk</p><p></pre></p><p>上面的命令只有连接上了模拟器/设备连接上了adb服务才会被执行，而在Android系统完全启动前执行就会有错误发生。</p><p>Server start-server 选择服务是否启动adb服务进程。</p><p>kill-server 终止adb服务进程。</p><p>Shell shell 通过远程shell命令来控制模拟器/设备实例。 </p><p>shell [&lt; shellCommand&gt;] 连接模拟器/设施执行shell命令，执行完毕后退出远程shell端l。</p><p style="color:#3333FF;">启动shell命令</p><p>Adb 提供了shell端，通过shell端你可以在模拟器或设备上运行各种命令。这些命令以2进制的形式保存在本地的模拟器或设备的文件系统中:</p><p>/system/bin/...</p><p>不管你是否完全进入到模拟器/设备的adb远程shell端，你都能 shell 命令来执行命令。</p><p>当没有完全进入到远程shell的时候，这样使用shell 命令来执行一条命令:</p><p>adb [-d|-e|-s {&lt; serialNumber&gt;}] shell &lt; shellCommand&gt;</p><p>在模拟器/设备中不用远程shell端时，这样使用shell 命 :</p><p>adb [-d|-e|-s {&lt; serialNumber&gt;}] shell</p><p>通过操作CTRL+D 或exit 就可以退出shell远程连接。</p><p>下面一些就将告诉你更多的关于shell命令的知识。</p><p>通过远程shell端运行sqllite3连接数据库。</p><p>通过adb远程shell端，你可以通过Android软sqlite3命令程序来管理数据库。sqlite3 工具包含了许多使用命令，比如：.dump 显示表的内容，.schema 可以显示出已经存在的表空间的SQL CREATE结果集。Sqlite3还允许你远程执行sql命令。</p><p>通过sqlite3，按照前几节的方法登陆模拟器的远程shell端，然后启动工具就可以使用sqlite3命令。当sqlite3启动以后，你还可以指定你想查看的数据库的完整路径。模拟器/设备实例会在文件夹中保存SQLite3数据库。 /data/data/&lt; package_name&gt;/databases/ 。</p><p>示例如下:</p><p><pre>$ adb -s emulator-5554 shell sqlite3 /data/data/com.example.google.rss.rssexample/databases/rssitems.dbSQLite version 3.3.12Enter ".help" for instructions.... enter commands, then quit...sqlite&gt; .exit</p><p></pre></p><p>当你启动sqlite3的时候，你就可以通过shell端发送 sqlite3 ,命令了。用exit 或 CTRL+D 退出adb远程shell端。</p><p style="color:#3333FF;">UI/软件 试验程序 Monkey</p><p>当Monkey程序在模拟器或设备运行的时候，如果用户出发了比如点击，触摸，手势或一些系统级别的事件的时候，它就会产生随机脉冲，所以可以用Monkey用随机重复的方法去负荷测试你开发的软件。</p><p>最简单的方法就是用用下面的命令来使用Monkey，这个命令将会启动你的软件并且触发500个事件。</p><p><pre>$ adb shell monkey -v -p your.package.name 500</p><p></pre></p><p style="color:#3333FF;">其它的shell命令</p><p>下面的表格列出了一些adbshell命令，如果需要全部的命令和程序，可以启动模拟器实例并且用adb -help 命令。</p><p>adb shell ls /system/bin</p><p>对大部分命令来说，help都是可用的。</p><p><pre>Shell Command Description Comments</p><p></pre></p><p>dumpsys 清除屏幕中的系统数据n。 </p><p>Dalvik Debug Monitor Service (DDMS)工具提供了完整的调试。</p><p>dumpstate 清除一个文件的状态。</p><p>logcat [&lt; option&gt;]... [&lt; filter-spec&gt;]... 启动信息日志并且但因输出到屏幕上。</p><p>dmesg 输出主要的调试信息到屏幕上。</p><p>start 启动或重启一个模拟器/设备实例。</p><p>stop 关闭一个模拟器/设备实例。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

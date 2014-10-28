@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Activity与Thread之间的通讯_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li class="navcurrentLink"><A href="index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Activity" href="index_112.html">Activity</A></h2>
+
+  <h2><A title="Intent" href="index_113.html">Intent</A></h2>
+
+  <h2><A title="Service" href="index_114.html">Service</A></h2>
+
+  <h2><A title="Content Provider" href="index_115.html">Content Provider</A></h2>
+
+  <h2><A title="BroadcastReceiver" href="index_116.html">BroadcastReceiver</A></h2>
+
+  <h2><A title="AsyncTask" href="index_117.html">AsyncTask</A></h2>
+
+  <h2><A title="Handler" href="index_118.html">Handler</A></h2>
+
+  <h2><A title="Thread" href="index_119.html">Thread</A></h2>
+<UL><li ><A title=线程的基础知识 href="show_701_119.html">线程的基础知识</A> </li><li ><A title=Android 线程学习 href="show_702_119.html">Android 线程学习</A> </li><li ><A title=Android开发之旅：进程与线程 href="show_703_119.html">Android开发之旅：进程与线程</A> </li><li ><A title=线程和进程的区别 href="show_704_119.html">线程和进程的区别</A> </li><li ><A title=创建线程的两种方式 href="show_705_119.html">创建线程的两种方式</A> </li><li ><A title=Android 线程间的通信 href="show_706_119.html">Android 线程间的通信</A> </li><li ><A title=Android线程间通信的Message机制 href="show_707_119.html">Android线程间通信的Message机制</A> </li><li class="currentLink"><A title=Activity与Thread之间的通讯 href="show_708_119.html">Activity与Thread之间的通讯</A> </li><li ><A title=Android 线程交互+修改Button样式（一） href="show_709_119.html">Android 线程交互+修改Button样式（一）</A> </li><li ><A title=Android 线程交互+修改Button样式（二） href="show_710_119.html">Android 线程交互+修改Button样式（二）</A> </li><li ><A title=Android 多线程下载 href="show_711_119.html">Android 多线程下载</A> </li></UL>
+  <h2><A title="Permission" href="index_120.html">Permission</A></h2>
+
+  <h2><A title="AIDL" href="index_121.html">AIDL</A></h2>
+
+  <h2><A title="Json" href="index_122.html">Json</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Activity与Thread之间的通讯</H2>
+<div style="line-height:20px; font-size:14px;"><p>在Android中要让Activity与Thread进行通讯 其实很简单。</p><p>重点就在于android.os.Handler、java.lang.Thread以及android.os.Message这三个类的整合应用</p><p>我们在Thread中可以通过Message来通知Handler，Handler在这里扮演着联系Acitivity与Thread之间的角色。</p><p>首先在Acitivity中我们要定义一个常量来作为判断标示</p><p><pre><font class="keyword">private </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>GUINOTIFIER = 0x1234;</p><p></pre></p><p>然后定义一些例子里面需要的属性</p><p><pre><font class="keyword">public </font>Calendar mCalendar;</p><p><font class="keyword">public </font><font class="keyword">int </font>mMinutes;</p><p><font class="keyword">public </font><font class="keyword">int </font>mHour;</p><p><font class="keyword">public </font>Handler mHandler;</p><p><font class="keyword">private </font>Thread mClockThread;</p><p></pre></p><p>接着我们通过Handler来接收Thread所传递的信息</p><p><pre></font>mHandler = <font class="keyword">new </font>Handler() {</p><p>	<font class="keyword">public </font><font class="keyword">void </font>handleMessage(Message msg) {</p><p>		<font class="keyword">switch </font>(msg.what) {</p><p>			<font class="keyword">case </font>TestHandler.GUINOTIFIER:<font class="Comments">//TestHandler是Activity的类名</font></p><p>				<font class="Comments">//得到Handle的通知了 这个时候你可以做相应的操作，本例是使用TextView来显示时间</font></p><p>				</font>mTextView.setText(mHour + <font class="Fields">" : "</font> + mMinutes);</p><p>				<font class="keyword">break</font>;</p><p>		}</p><p>		<font class="keyword">super</font>.handleMessage(msg);</p><p>	}</p><p>};</p><p></pre></p><p>接下来我们自定义一个Thread</p><p><pre><font class="keyword">class </font>LooperThread </font><font class="keyword">extends </font>Thread {</p><p>	<font class="keyword">public </font><font class="keyword">void </font>run() {</p><p>		<font class="keyword">super</font>.run();</p><p>		<font class="keyword">try </font>{</p><p>			do {<font class="Comments">// 每间隔一秒取一次系统时间</font></p><p>				<font class="keyword">long </font>time = System.currentTimeMillis();</p><p>				<font class="keyword">final </font>Calendar mCalendar = Calendar.getInstance();</p><p>				mCalendar.setTimeInMillis(time);</p><p>				mHour = mCalendar.get(Calendar.HOUR);</p><p>				mMinutes = mCalendar.get(Calendar.MINUTE);</p><p>				Thread.sleep(1000);</p><p>				<font class="Comments">// 取得系统时间后发送消息给Handler</font></p><p>				</font>Message m = <font class="keyword">new </font>Message();</p><p>				m.what = Ex04_14.GUINOTIFIER;</p><p>				</font>Ex04_14.<font class="keyword">this</font>.mHandler.sendMessage(m);</p><p>			</font>} <font class="keyword">while </font>(!LooperThread.interrupted());<font class="Comments">// 当系统发出终端命令时停止循环</font></p><p>		</font>} <font class="keyword">catch </font>(InterruptedException e) {</p><p>			e.printStackTrace();</p><p>		}</p><p>	}</p><p>}</p><p></pre></p><p>最后我们启动线程</p><p><pre>mClockThread = <font class="keyword">new </font>LooperThread();</p><p>mClockThread.start();</p><p></pre></p><p>利用上面的例子我们可以扩展更多的应用，比如使用Thread进行上传下载操作，完成后通知主Activity等等</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

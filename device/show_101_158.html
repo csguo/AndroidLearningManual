@@ -1,0 +1,70 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android Camera 模块分析（一）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li class="navcurrentLink"><A href="index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="设备信息" href="index_157.html">设备信息</A></h2>
+
+  <h2><A title="摄像头" href="index_158.html">摄像头</A></h2>
+<UL><li class="currentLink"><A title=Android Camera 模块分析（一） href="show_101_158.html">Android Camera 模块分析（一）</A> </li><li ><A title=Android Camera 模块分析（二） href="show_102_158.html">Android Camera 模块分析（二）</A> </li><li ><A title=Android Camera 模块分析（三） href="show_103_158.html">Android Camera 模块分析（三）</A> </li><li ><A title=Android Camera 模块分析（四） href="show_104_158.html">Android Camera 模块分析（四）</A> </li><li ><A title=Android 浅谈相机研发（一） href="show_105_158.html">Android 浅谈相机研发（一）</A> </li><li ><A title=Android 浅谈相机研发（二） href="show_106_158.html">Android 浅谈相机研发（二）</A> </li><li ><A title=Android 浅谈相机研发（三） href="show_107_158.html">Android 浅谈相机研发（三）</A> </li><li ><A title=Android 浅谈相机研发（四） href="show_108_158.html">Android 浅谈相机研发（四）</A> </li><li ><A title=Android 浅谈相机研发（五） href="show_109_158.html">Android 浅谈相机研发（五）</A> </li><li ><A title=Android获取摄像头的详细介绍 href="show_110_158.html">Android获取摄像头的详细介绍</A> </li><li ><A title=开机启动摄像头的原理 href="show_111_158.html">开机启动摄像头的原理</A> </li></UL>
+  <h2><A title="通讯录" href="index_159.html">通讯录</A></h2>
+
+  <h2><A title="电话" href="index_160.html">电话</A></h2>
+
+  <h2><A title="短信" href="index_161.html">短信</A></h2>
+
+  <h2><A title="传感器" href="index_162.html">传感器</A></h2>
+
+  <h2><A title="定位" href="index_163.html">定位</A></h2>
+
+  <h2><A title="视频系统" href="index_164.html">视频系统</A></h2>
+
+  <h2><A title="音频系统" href="index_165.html">音频系统</A></h2>
+
+  <h2><A title="铃声" href="index_166.html">铃声</A></h2>
+
+  <h2><A title="音量" href="index_167.html">音量</A></h2>
+
+  <h2><A title="录音" href="index_168.html">录音</A></h2>
+
+  <h2><A title="输入法" href="index_169.html">输入法</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android Camera 模块分析（一）</H2>
+<div style="line-height:20px; font-size:14px;"><p>Camera主要的头文件有以下几个：</p><p><pre>ICameraClient.h</p><p>Camera.h </p><p>ICamera.h</p><p>ICameraService.h</p><p>CameraHardwareInterface.h</p><p></pre></p><p>在这些头文件Camera.h提供了对上层的接口，而其他的几个头文件都是提供一些接口类（即包含了纯虚函数的类），这些接口类必须被实现类继承才能够使用。</p><p>整个Camera在运行的时候，可以大致上分成Client和Server两个部分，它们分别在两个进程中运行，它们之间使用Binder机制实现进程间通讯。这样在客户端调用接口，功能则在服务器中实现，但是在客户端中调用就好像直接调用服务器中的功能，进程间通讯的部分对上层程序不可见。</p><p>从框架结构上来看，ICameraService.h、ICameraClient.h和ICamera.h三个类定义了MeidaPlayer的接口和架构，ICameraService.cpp和Camera.cpp两个文件用于Camera架构的实现，Camera的具体功能在下层调用硬件相关的接口来实现。</p><p>从Camera的整体结构上，类Camera是整个系统核心，ICamera类提供了Camera主要功能的接口，在客户端方面调用，CameraService是Camera服务，它通过调用实际的Camera硬件接口来实现功能。事实上，图中红色虚线框的部分都是Camera程序的框架部分，它主要利用了Android的系统的Binder机制来完成通讯。蓝色的部分通过调用Camera硬件相关的接口完成具体的Camera服务功能，其它的部分是为上层的JAVA程序提供JNI接口。在整体结构上，左边可以视为一个客户端，右边是一个可以视为服务器，二者通过Android的Bimder来实现进程间的通讯。</p><p>2.2 头文件ICameraClient.h</p><p>ICameraClient.h用于描述一个Camera客户端的接口，定义如下所示：</p><p><pre><font class="keyword">class </font>ICameraClient: </font><font class="keyword">public </font>IInterface </p><p>{ </p><p>	public:</p><p>	DECLARE_META_INTERFACE(CameraClient);</p><p>	</font>virtual <font class="keyword">void </font>shutterCallback() = 0;</p><p>	</font>virtual <font class="keyword">void </font>rawCallback(const sp&lt;IMemory&gt;& picture) = 0;</p><p>	</font>virtual <font class="keyword">void </font>jpegCallback(const sp&lt;IMemory&gt;& picture) = 0;</p><p>	</font>virtual <font class="keyword">void </font>frameCallback(const sp&lt;IMemory&gt;& frame) = 0;</p><p>	</font>virtual <font class="keyword">void </font>errorCallback(status_t error) = 0;</p><p>	</font>virtual <font class="keyword">void </font>autoFocusCallback(bool focused) = 0;</p><p>};</p><p></p><p><font class="keyword">class </font>BnCameraClient: </font><font class="keyword">public </font>BnInterface&lt;ICameraClient&gt; </p><p>{ </p><p>	public:</p><p>	virtual status_t onTransact( uint32_t code,</p><p>	const Parcel& data,</p><p>	Parcel* reply,</p><p>	uint32_t flags = 0);</p><p>};</p><p></pre></p><p>在定义中，ICameraClient 类继承IInterface，并定义了一个Camera客户端的接口，BnCameraClient 继承了BnInterface&lt;ICameraClient&gt;，这是为基于Android的基础类Binder机制实现在进程通讯而构建的。根据BnInterface类模版的定义BnInterface&lt;ICameraClient&gt;类相当于双继承了BnInterface和 ICameraClient。</p><p>IcameraClient这个类的主要接口是几个回调函数shutterCallback、rawCallback和jpegCallback等，它们在相应动作发生的时候被调用。作为Camera的“客户端”，需要自己实现几个回调函数，让服务器程序去“间接地”调用它们。</p><p>2.3 头文件Camera.h</p><p>Camera.h是Camera对外的接口头文件，它被实现Camera JNI的文件android_hardware_Camera.cpp所调用。Camera.h最主要是定义了一个Camera类：</p><p><pre><font class="keyword">class </font>Camera : </font><font class="keyword">public </font>BnCameraClient, </font><font class="keyword">public </font>IBinder:: DeathRecipient </p><p>{ </p><p>	public:</p><p>	<font class="keyword">static </font>sp&lt;Camera&gt; connect(); </p><p>	~Camera();</p><p>	<font class="keyword">void </font>disconnect(); </p><p>	</font>status_t getStatus() { <font class="keyword">return </font>mStatus; </font>}</p><p>	status_t setPreviewDisplay(const sp&lt;Surface&gt;& surface);</p><p>	status_t startPreview();</p><p>	<font class="keyword">void </font>stopPreview(); </p><p>	status_t autoFocus();</p><p>	status_t takePicture();</p><p>	status_t setParameters(const String8& params);</p><p>	String8 getParameters() const;</p><p>	<font class="keyword">void </font>setShutterCallback(shutter_callback cb, </font><font class="keyword">void </font>*cookie); </p><p>	<font class="keyword">void </font>setRawCallback(frame_callback cb, </font><font class="keyword">void </font>*cookie); </p><p>	<font class="keyword">void </font>setJpegCallback(frame_callback cb, </font><font class="keyword">void </font>*cookie); </p><p>	<font class="keyword">void </font>setFrameCallback(frame_callback cb, </font><font class="keyword">void </font>*cookie); </p><p>	<font class="keyword">void </font>setErrorCallback(error_callback cb, </font><font class="keyword">void </font>*cookie); </p><p>	<font class="keyword">void </font>setAutoFocusCallback(autofocus_callback cb, </font><font class="keyword">void </font>*cookie); </p><p>	<font class="Comments">// ICameraClient interface </font></p><p>	</font>virtual <font class="keyword">void </font>shutterCallback();</p><p>	</font>virtual <font class="keyword">void </font>rawCallback(const sp&lt;IMemory&gt;& picture);</p><p>	</font>virtual <font class="keyword">void </font>jpegCallback(const sp&lt;IMemory&gt;& picture);</p><p>	</font>virtual <font class="keyword">void </font>frameCallback(const sp&lt;IMemory&gt;& frame);</p><p>	</font>virtual <font class="keyword">void </font>errorCallback(status_t error);</p><p>	</font>virtual <font class="keyword">void </font>autoFocusCallback(bool focused);</p><p>	<font class="Comments">//……</font></p><p>}</p><p></pre></p><p>从接口中可以看出Camera类刚好实现了一个Camera的基本操作，例如播放（startPreview）、停止（stopPreview）、暂停（takePicture）等。在Camera类中connect()是一个静态函数，它用于得到一个Camera的实例。在这个类中，具有设置回调函数的几个函数：setShutterCallback、setRawCallback和setJpegCallback等，这几个函数是为了提供给上层使用，上层利用这几个设置回调函数，这些回调函数在相应的回调函数中调用，例如使用setShutterCallback设置的回调函数指针被 shutterCallback所调用。</p><p>在定义中，ICameraClient 类双继承了IInterface和IBinder DeathRecipient，并定义了一个Camera客户端的接口，BnCameraClient继承了BnInterface&lt;ICameraClient&gt;，这是为基于Android的基础类Binder机制实现在进程通讯而构建的。事实上，根据BnInterface类模版的定义BnInterface&lt;ICameraClient&gt;类相当于双继承了BnInterface和ICameraClient。这是Android一种常用的定义方式。</p><p>继承了DeathNotifier类之后，这样当这个类作为IBinder使用的时候，当这个Binder即将Died的时候被调用其中的binderDied函数。继承这个类基本上实现了一个回调函数的功能。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

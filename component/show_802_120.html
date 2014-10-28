@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android permission的四个等级_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li class="navcurrentLink"><A href="index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Activity" href="index_112.html">Activity</A></h2>
+
+  <h2><A title="Intent" href="index_113.html">Intent</A></h2>
+
+  <h2><A title="Service" href="index_114.html">Service</A></h2>
+
+  <h2><A title="Content Provider" href="index_115.html">Content Provider</A></h2>
+
+  <h2><A title="BroadcastReceiver" href="index_116.html">BroadcastReceiver</A></h2>
+
+  <h2><A title="AsyncTask" href="index_117.html">AsyncTask</A></h2>
+
+  <h2><A title="Handler" href="index_118.html">Handler</A></h2>
+
+  <h2><A title="Thread" href="index_119.html">Thread</A></h2>
+
+  <h2><A title="Permission" href="index_120.html">Permission</A></h2>
+<UL><li ><A title=Android permission 基础知识 href="show_801_120.html">Android permission 基础知识</A> </li><li class="currentLink"><A title=Android permission的四个等级 href="show_802_120.html">Android permission的四个等级</A> </li><li ><A title=Android permission 访问权限大全 href="show_803_120.html">Android permission 访问权限大全</A> </li><li ><A title=Android中startAcitvity中的Permission检测与UID机制 href="show_804_120.html">Android中startAcitvity中的Permission检测与UID机制</A> </li></UL>
+  <h2><A title="AIDL" href="index_121.html">AIDL</A></h2>
+
+  <h2><A title="Json" href="index_122.html">Json</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android permission的四个等级</H2>
+<div style="line-height:20px; font-size:14px;"><p>java代码：</p><p><pre>android:protectionLevel=<font class="Fields">"normal</p><p>android:protectionLevel=<font class="Fields">"dangerous</p><p>android:protectionLevel=<font class="Fields">"signature</p><p>android:protectionLevel=<font class="Fields">"signatureOrSystem</p><p></pre></p><p style="color:#3333FF;">normal</p><p>默认值。一个事实给请求应用访问许可中分离出应用特点出发,以最小的风险其他的应用,系统或用户。系统自动奖助金这种类型的许可,在安装一个请求的应用程序,而不要求给予用户的明确的批准(尽管用户总是选择安装前审查这些权限)。</p><p style="color:#3333FF;">dangerous</p><p>一个高风险许可,这将会给一个请求的应用程序访问私人用户数据或控制的设备,可以负面影响的用户。因为这种类型的许可介绍一个潜在的危险,系统可能并不会自动给你的请求的应用程序。例如,任何危险的权限要求,一项应用也许被显示在用户和需要确认在进行下一步之前,或其他方法可能要采取防止用户自动允许使用这些设备。</p><p style="color:#3333FF;">signature</p><p>一个权限,该系统奖助金,只有在请求的应用程序是相同的证书签署的申请许可声明。如果匹配,系统自动证书发给许可未通知用户或用户的明确要求批准。</p><p style="color:#3333FF;">signatureOrSystem</p><p>一个权限,该系统应用程序的奖助金只有在机器人系统的形象,或者是用同样的证书签署和其它系统的形象。这个选项,请避免使用“签名”应该足以保护水平为最需要的作品无论在哪申请安装。“signatureOrSystem“许可用于某些特殊情况下,应用多供应商建立一个系统的形象和需要分享的具体特征明确,因为他们同被建造。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

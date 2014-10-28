@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android DDMS使用_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li class="navcurrentLink"><A href="index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="开发基础" href="index_100.html">开发基础</A></h2>
+
+  <h2><A title="开发环境搭建" href="index_101.html">开发环境搭建</A></h2>
+
+  <h2><A title="模拟器" href="index_102.html">模拟器</A></h2>
+
+  <h2><A title="Resource" href="index_103.html">Resource</A></h2>
+
+  <h2><A title="Manifest" href="index_104.html">Manifest</A></h2>
+
+  <h2><A title="ADB" href="index_105.html">ADB</A></h2>
+
+  <h2><A title="DDMS" href="index_106.html">DDMS</A></h2>
+<UL><li ><A title=Android DDMS工作原理 href="show_601_106.html">Android DDMS工作原理</A> </li><li class="currentLink"><A title=Android DDMS使用 href="show_602_106.html">Android DDMS使用</A> </li><li ><A title=如何应用DDMS协助开发Android Apps href="show_603_106.html">如何应用DDMS协助开发Android Apps</A> </li></UL>
+  <h2><A title="Logcat(日志)" href="index_107.html">Logcat(日志)</A></h2>
+
+  <h2><A title="打包" href="index_108.html">打包</A></h2>
+
+  <h2><A title="文件处理" href="index_109.html">文件处理</A></h2>
+
+  <h2><A title="底层基础" href="index_111.html">底层基础</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android DDMS使用</H2>
+<div style="line-height:20px; font-size:14px;"><p>DDMS 的全称是Dalvik Debug Monitor Service，它为我们提供例如：为测试设备截屏，针对特定的进程查看正在运行的线程以及堆信息、Logcat、广播状态信息、模拟电话呼叫、接收SMS、虚拟地理坐标等等。</p><p style="color:#3333FF;">如何启动 DDMS</p><p>DDMS 工具存放在SDK – tools/路径下，启动DDMS方法如下:</p><p>直接双击ddms.bat运行； </p><p>在Eclipes调试程序的过程中启动DDMS，在Eclipes中的界面如下：</p><p><img src="../img/basic_ddms/02_ddms.jpg"></p><p>选择“Other”，界面如下：</p><p><img src="../img/basic_ddms/02_ddms2.jpg"></p><p>双击DDMS就可以启动了。 </p><p>DDMS对Emulator和外接测试机有同等效用。如果系统检测到它们(VM)同时运行，那么DDMS将会默认指向 Emulator。以上2种启动后的操作有些不一样，建议分别尝试下。</p><p style="color:#3333FF;">DDMS 的工作原理</p><p>DDMS将搭建起IDE与测试终端(Emulator 或者connected device)的链接，它们应用各自独立的端口监听调试器的信息，DDMS可以实时监测到测试终端的连接情况。当有新的测试终端连接后，DDMS将捕捉到终端的ID,并通过adb建立调试器，从而实现发送指令到测试终端的目的。</p><p><img src="../img/basic_ddms/02_ddms3.jpg"></p><p>DDMS监听第一个终端App进程的端口为8600，APP进程将分配8601，如果有更多终端或者更多APP进程将按照这个顺序依次类推。DDMS通过8700端口（”base port”）接收所有终端的指令。</p><p>下边通过GUI详细了解DDMS的一些功能</p><p style="color:#3333FF;">Devices</p><p>在GUI的左上角可以看到标签为”Devices”的面板，这里可以查看到所有与DDMS连接的终端的详细信息，以及每个终端正在运行的APP进程，每个进程最右边相对应的是与调试器链接的端口。因为Android是基于Linux内核开发的操作平台，同时也保留了Linux中特有的进程ID，它介于进程名和端口号之间。</p><p>在面板的右上角有一排很重要的按键他们分别是Debug the selected process、Update Threads、Update Heap、Stop Process和ScreenShot。</p><p style="color:#3333FF;">Emulator Control</p><p>通过这个面板的一些功能可以非常容易的使测试终端模拟真实手机所具备的一些交互功能，比如：接听电话，根据选项模拟各种不同网络情况，模拟接受SMS消息和发送虚拟地址坐标用于测试GPS功能等。</p><p><img src="../img/basic_ddms/02_ddms4.jpg"></p><p>Telephony Status: 通过选项模拟语音质量以及信号连接模式。</p><p>Telephony Actions: 模拟电话接听和发送SMS到测试终端。</p><p>Location Control: 模拟地理坐标或者模拟动态的路线坐标变化并显示预设的地理标识，可以通过以下3种方式：</p><p>Manual： 手动为终端发送二维经纬坐标。 </p><p>GPX： 通过GPX文件导入序列动态变化地理坐标，从而模拟行进中GPS变化的数值。 </p><p>KML： 通过KML文件导入独特的地理标识，并以动态形式根据变化的地理坐标显示在测试终端。 </p><p>Threads、Heap、File Exporler</p><p><img src="../img/basic_ddms/02_ddms5.jpg"></p><p>这几项，我们在其他开发工具中也经常使用，就在不此详细说明了。通过File Exporler可以查看Android模拟器中的文件，可以很方便的导入/出文件。</p><p>Locate、Console</p><p><img src="../img/basic_ddms/02_ddms6.jpg"></p><p>Locate：显示输出的调试信息，详见Android下如何调试程序？；</p><p>Console：是Android模拟器输出的信息，加载程序等信息；</p><p>使用DDMS模拟发送短信，操作过程如下：</p><p>在Emulator Control"Telephony Actions 中输入以下内容</p><p><img src="../img/basic_ddms/02_ddms7.jpg"></p><p>单击发送后，在Android模拟器中打开Messaging，看到下面的短信：</p><p><img src="../img/basic_ddms/02_ddms8.jpg"></p><p>单击新短信，详细查看短信内容：</p><p><img src="../img/basic_ddms/02_ddms9.jpg"></p><p>中文显示为乱码，在未来的开发中，我们必须要注意中文字符的问题。</p><p>总结说明：</p><p>DDMS是我们开发人员最好的调试工具，它将是每个从事Android开发的人员都不可缺少的。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

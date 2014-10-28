@@ -1,0 +1,60 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 深入研究拖放功能Launcher（五）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li class="navcurrentLink"><A href="index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Launcher" href="index_207.html">Launcher</A></h2>
+<UL><li ><A title=Android Launcher 分析（一） href="show_1_207.html">Android Launcher 分析（一）</A> </li><li ><A title=Android Launcher 分析（二） href="show_2_207.html">Android Launcher 分析（二）</A> </li><li ><A title=Android Launcher 分析（三） href="show_3_207.html">Android Launcher 分析（三）</A> </li><li ><A title=Android 启动唯一的Launcher href="show_4_207.html">Android 启动唯一的Launcher</A> </li><li ><A title=Launcher之文件夹美化 href="show_5_207.html">Launcher之文件夹美化</A> </li><li ><A title=关于使用Eclipse调试Launcher的完美解决方法 href="show_6_207.html">关于使用Eclipse调试Launcher的完美解决方法</A> </li><li ><A title=提取Launcher中的WorkSapce，可以左右滑动切换屏幕页面的类 href="show_7_207.html">提取Launcher中的WorkSapce，可以左右滑动切换屏幕页面的类</A> </li><li ><A title=使用ViewPager实现高仿launcher拖动效果 href="show_8_207.html">使用ViewPager实现高仿launcher拖动效果</A> </li><li ><A title=Android 深入研究拖放功能Launcher（一） href="show_9_207.html">Android 深入研究拖放功能Launcher（一）</A> </li><li ><A title=Android 深入研究拖放功能Launcher（二） href="show_10_207.html">Android 深入研究拖放功能Launcher（二）</A> </li><li ><A title=Android 深入研究拖放功能Launcher（三） href="show_11_207.html">Android 深入研究拖放功能Launcher（三）</A> </li><li ><A title=Android 深入研究拖放功能Launcher（四） href="show_12_207.html">Android 深入研究拖放功能Launcher（四）</A> </li><li class="currentLink"><A title=Android 深入研究拖放功能Launcher（五） href="show_13_207.html">Android 深入研究拖放功能Launcher（五）</A> </li><li ><A title=Android 深入研究拖放功能Launcher（六） href="show_14_207.html">Android 深入研究拖放功能Launcher（六）</A> </li><li ><A title=Android 在launcher 2.1上实现2.2的屏幕标记 href="show_15_207.html">Android 在launcher 2.1上实现2.2的屏幕标记</A> </li></UL>
+  <h2><A title="电话系统RIL" href="index_208.html">电话系统RIL</A></h2>
+
+  <h2><A title="进程间通信" href="index_209.html">进程间通信</A></h2>
+
+  <h2><A title="内部sensor系统" href="index_210.html">内部sensor系统</A></h2>
+
+  <h2><A title="内部surface系统" href="index_211.html">内部surface系统</A></h2>
+
+  <h2><A title="启动流程" href="index_212.html">启动流程</A></h2>
+
+  <h2><A title="源码编译" href="index_213.html">源码编译</A></h2>
+
+  <h2><A title="状态栏" href="index_214.html">状态栏</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 深入研究拖放功能Launcher（五）</H2>
+<div style="line-height:20px; font-size:14px;"><p>拖放过程总的处理思路就是根据当前坐标位置获取dropTarget的目标位置，然后又根据相关状态和坐标位置调用dropTarget的对应生命周期函数，这里面有两个点需要进一步深入了解，一是查找dropTarget：findDropTarget(screenX, screenY, coordinates)，二是mHandler.postDelayed(mScrollRunnable, SCROLL_DELAY);</p><p style="color:#3333FF;">1.findDropTarget</p><p><pre><font class="keyword">private </font>DropTarget findDropTarget(</font><font class="keyword">int </font>x, </font><font class="keyword">int </font>y, </font><font class="keyword">int</font>[] dropCoordinates) {</p><p>	<font class="keyword">final </font>Rect r = mRectTemp;</p><p>	<font class="Comments">// mDropTargets是一个拖放目标view别表，在laucher初始化等被添加</font></p><p>	<font class="keyword">final </font>ArrayList dropTargets = mDropTargets;</p><p>	<font class="keyword">final </font><font class="keyword">int </font>count = dropTargets.size();</p><p>	<font class="Comments">// 遍历dropTargets列表，查看{x,y}是否落在dropTarget坐标区域，若是，返回dropTarget。</font></p><p>	<font class="keyword">for </font>(</font><font class="keyword">int </font>i = count - 1; i &gt;= 0; i--) {</p><p>		<font class="keyword">final </font>DropTarget target = dropTargets.get(i);</p><p>		target.getHitRect(r);</p><p>		<font class="Comments">// 获取target左上角屏幕坐标</font></p><p>		target.getLocationOnScreen(dropCoordinates);</p><p>		r.offset(dropCoordinates[0] - target.getLeft(), dropCoordinates[1]</p><p>				- target.getTop());</p><p>		<font class="keyword">if </font>(r.contains(x, y)) {</p><p>			dropCoordinates[0] = x - dropCoordinates[0];</p><p>			dropCoordinates[1] = y - dropCoordinates[1];</p><p>			<font class="keyword">return </font>target;</p><p>		}</p><p>	}</p><p>	<font class="keyword">return </font><font class="keyword">null</font>;</p><p>}</p><p></pre></p><p style="color:#3333FF;">2.mScrollRunnable</p><p>看mScrollRunnable对象的构造类，通过setDirection设置滚动方向，然后通过一步调用DragScroller.scrollLeft/scrollRight来对桌面进行向左向右滚动。</p><p><pre><font class="keyword">private </font><font class="keyword">class </font>ScrollRunnable </font><font class="keyword">implements </font>Runnable {</p><p>	<font class="keyword">private </font><font class="keyword">int </font>mDirection;</p><p>	ScrollRunnable() {</p><p>	}</p><p>	<font class="keyword">public </font><font class="keyword">void </font>run() {</p><p>		<font class="keyword">if </font>(mDragScroller != </font><font class="keyword">null</font>) {</p><p>			<font class="keyword">if </font>(mDirection == SCROLL_LEFT) {</p><p>				mDragScroller.scrollLeft();</p><p>			</font>} <font class="keyword">else </font>{</p><p>				mDragScroller.scrollRight();</p><p>			}</p><p>			mScrollState = SCROLL_OUTSIDE_ZONE;</p><p>		}</p><p>	}</p><p>	<font class="keyword">void </font>setDirection(</font><font class="keyword">int </font>direction) {</p><p>		mDirection = direction;</p><p>	}</p><p>}</p><p></pre></p><p style="color:#3333FF;">3.拖放结束，入口还是在DragController.onTouchEvent(MotionEvent ev)</p><p>先看调用堆栈：</p><p><pre>at com.android.launcher2.DragController.endDrag</p><p>at com.android.launcher2.DragController.onTouchEvent</p><p>at com.android.launcher2.DragLayer.onTouchEvent</p><p>at android.view.View.dispatchTouchEvent</p><p></pre></p><p>onTouchEvent关键代码：</p><p><pre><font class="keyword">case </font>MotionEvent.ACTION_UP:</p><p>mHandler.removeCallbacks(mScrollRunnable);</p><p><font class="keyword">if </font>(mDragging) {</p><p>	<font class="Comments">// 拖动过程手指离开屏幕</font></p><p>	drop(screenX, screenY);</p><p>}</p><p>endDrag();</p><p><font class="keyword">break</font>;</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

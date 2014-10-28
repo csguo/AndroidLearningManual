@@ -1,0 +1,58 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>关于Android里面安全与权限里面的SharedUserId？_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li class="navcurrentLink"><A href="index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Android基础之运行原理和机制" href="index_215.html">Android基础之运行原理和机制</A></h2>
+
+  <h2><A title="Android高级篇之Android优化" href="index_216.html">Android高级篇之Android优化</A></h2>
+
+  <h2><A title="Android高级篇之编译及反编译" href="index_217.html">Android高级篇之编译及反编译</A></h2>
+
+  <h2><A title="Android高级篇之加密解密" href="index_218.html">Android高级篇之加密解密</A></h2>
+
+  <h2><A title="Android高级篇之Android 安全" href="index_219.html">Android高级篇之Android 安全</A></h2>
+<UL><li ><A title=Android手机获得ROOT权限后的安全隐患 href="show_401_219.html">Android手机获得ROOT权限后的安全隐患</A> </li><li ><A title=Android 安全之谁动了我的流量(0权限上传数据) href="show_402_219.html">Android 安全之谁动了我的流量(0权限上传数据)</A> </li><li ><A title=Android 安全与权限介绍 href="show_403_219.html">Android 安全与权限介绍</A> </li><li ><A title=Android手机的三大安全误区 href="show_404_219.html">Android手机的三大安全误区</A> </li><li class="currentLink"><A title=关于Android里面安全与权限里面的SharedUserId？ href="show_405_219.html">关于Android里面安全与权限里面的SharedUserId？</A> </li></UL>
+  <h2><A title="Android高级篇之算法" href="index_220.html">Android高级篇之算法</A></h2>
+
+  <h2><A title="Android高级篇之解锁教程" href="index_221.html">Android高级篇之解锁教程</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>关于Android里面安全与权限里面的SharedUserId？</H2>
+<div style="line-height:20px; font-size:14px;"><p>SharedUserId</p><p style="color:#3333FF;">关于SharedUserId的总结：</p><p>我们知道一般每个app都有一个唯一的linux user ID，则这样权限就被设置成该应用程序的文件只对该用户可见，只对该应用程序自身可见，而我们可以使他们对其他的应用程序可见，这会使我们用到SharedUserId，也就是让两个apk使用相同的userID，这样它们就可以看到对方的文件。为了节省资源，具有相同ID的apk也可以在相同的linux进程中进行(这儿需要注意，并不是一定要在一个进程里面运行)，共享一个虚拟机。</p><p><img src="../img/adv_security/05_ID01.jpg"></p><p>我们可以建立两个application，分别为test_a和test_b,我们的目的就是让test_b访问test_a里面的文件或者是数据：具体做法如下:</p><p>在test_a应用程序的包com.test1的manifest里面添加anroid：shareuserid=“com.test2”（注：这儿test_a是被访的apk，so 加上这句  android:exported="false"说明它是私有的，然后会让shareuserid应用更有力）。</p><p>具体内容如下：</p><p><pre>&lt;?xml version=<font class="Fields">"1.0"</font> encoding=</font><font class="Fields">"utf-8"</font>?&gt;</p><p>&lt;manifest xmlns:android=<font class="Fields">"http:<font class="Comments">//schemas.android.com/apk/res/android</font></p><p>    </font>package=<font class="Fields">"com.test1</p><p>    </font>android:exported=<font class="Fields">"<font class="keyword">false</font></p><p>    </font>android:sharedUserId=<font class="Fields">"com.test2</p><p>    </font>android:versionCode=<font class="Fields">"1</p><p>    </font>android:versionName=<font class="Fields">"1.0"</font> &gt;</p><p>    &lt;application</p><p>        </font>android:icon=<font class="Fields">"@drawable/icon</p><p>        </font>android:label=<font class="Fields">"@string/app_name"</font> &gt;</p><p>        &lt;activity</p><p>            </font>android:name=<font class="Fields">".TestAcitvity1</p><p>            </font>android:label=<font class="Fields">"@string/app_name"</font> &gt;</p><p>            &lt;intent-filter&gt;</p><p>                </font>&lt;action android:name=<font class="Fields">"android.intent.action.MAIN"</font> /&gt;</p><p>                </font>&lt;category android:name=<font class="Fields">"android.intent.category.LAUNCHER"</font> /&gt;</p><p>            &lt;/intent-filter&gt;</p><p>        &lt;/activity&gt;</p><p>    &lt;/application&gt;</p><p>&lt;/manifest&gt;</p><p></pre></p><p>然后再应用程序test_b的包com.test2下的manifest.xml中添加anroid： </p><p><pre>shareuserid=<font class="Fields">"com.test2"</font></p><p></pre></p><p>然后在test_b的TestActivity2中添加如下代码：</p><p><pre><font class="keyword">private </font>Button.OnClickListener button_listener = </font><font class="keyword">new </font>Button.OnClickListener() {</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onClick(View v) {</p><p>		</font>Intent intent = <font class="keyword">new </font>Intent();</p><p>		</font>intent.setClassName(<font class="Fields">"us.imnet.iceskysl.db"</font>,</p><p>				<font class="Fields">"us.imnet.iceskysl.db.DBSharedPreferences"</font>);</p><p>		<font class="Comments">// intent.setClassName("com.test1","com.test1.TestActivity1");</font></p><p>		startActivity(intent);</p><p>	}</p><p>};</p><p></pre> </p><p>这样就可以调整跳转，然后就可以运行。完整代码是：</p><p><pre> </p><p><font class="keyword">import </font>android.app.Activity;</p><p><font class="keyword">import </font>android.content.Intent;</p><p><font class="keyword">import </font>android.os.Bundle;</p><p><font class="keyword">import </font>android.view.View;</p><p><font class="keyword">import </font>android.widget.Button;</p><p><font class="keyword">public </font><font class="keyword">class </font>TestActivity2 </font><font class="keyword">extends </font>Activity {</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onCreate(Bundle savedInstanceState) {</p><p>		<font class="keyword">super</font>.onCreate(savedInstanceState);</p><p>		setContentView(R.layout.main);</p><p>		find_and_modify_button();</p><p>	}</p><p>	<font class="keyword">private </font><font class="keyword">void </font>find_and_modify_button() {</p><p>		Button change_test1 = (Button) findViewById(R.id.change_test1);</p><p>		change_test1.setOnClickListener(button_listener);</p><p>	}</p><p>	<font class="keyword">private </font>Button.OnClickListener button_listener = </font><font class="keyword">new </font>Button.OnClickListener() {</p><p>		<font class="keyword">public </font><font class="keyword">void </font>onClick(View v) {</p><p>			</font>Intent intent = <font class="keyword">new </font>Intent();</p><p>			</font>intent.setClassName(<font class="Fields">"us.imnet.iceskysl.db"</font>,</p><p>					<font class="Fields">"us.imnet.iceskysl.db.DBSharedPreferences"</font>);</p><p>			<font class="Comments">// intent.setClassName("com.test1","com.test1.TestActivity1");</font></p><p>			startActivity(intent);</p><p>		}</p><p>	};</p><p>}</p><p></pre></p><p>运行结果是：从test_b的TestActivity1中进去，然后跳到TestActivity2中，这样可以读取到它里面的数据出来。</p><p>文件访问：</p><p>可以通过getSharedPreferences(String,int),openFileOutput(String,int)或者openOrCreateDatabase(String,int,SQLiteDatabase.CursorFactory)创建一个新文件时,你可以同时或分别使用MODE_WORLD_READABLE和MODE_WORLD_WRITEABLE标志允许其它包读/写此文件。</p><p>下面是用getSharedPreferences(String, int),创建到文件，修改它的属性为MODE_WORLD_WRITEABLE 则看到它的文件权限的变化。</p><p>（补充）：关于linux下面文件权限</p><p>第2～10个字符当中的每3个为一组，左边三个字符表示所有者权限，中间3个字符表示与所有者同一组的用户的权限，右边3个字符是其他用户的权限。这三个一组共9个字符，代表的意义如下：   </p><p>r(Read，读取)：对文件而言，具有读取文件内容的权限；对目录来说，具有浏览目 录的权限。   </p><p>w(Write,写入)：对文件而言，具有新增、修改文件内容的权限；对目录来说，具有删除、移动目录内文件的权限。   </p><p>x(eXecute，执行)：对文件而言，具有执行文件的权限；对目录了来说该用户具有进入目录的权限。   </p><p>－：表示不具有该项权限。</p><p><img src="../img/adv_security/05_linux01.jpg"></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

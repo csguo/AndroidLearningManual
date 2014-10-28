@@ -1,0 +1,64 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android webservice 理论_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li class="navcurrentLink"><A href="index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="3G" href="index_177.html">3G</A></h2>
+
+  <h2><A title="WIFI" href="index_178.html">WIFI</A></h2>
+
+  <h2><A title="蓝牙" href="index_179.html">蓝牙</A></h2>
+
+  <h2><A title="HTTP协议" href="index_180.html">HTTP协议</A></h2>
+
+  <h2><A title="Socket" href="index_181.html">Socket</A></h2>
+
+  <h2><A title="HTML与HTML5" href="index_182.html">HTML与HTML5</A></h2>
+
+  <h2><A title="JavaScript" href="index_183.html">JavaScript</A></h2>
+
+  <h2><A title="Email" href="index_184.html">Email</A></h2>
+
+  <h2><A title="NFC" href="index_185.html">NFC</A></h2>
+
+  <h2><A title="Web Service" href="index_186.html">Web Service</A></h2>
+<UL><li ><A title=Android说说WebService href="show_901_186.html">Android说说WebService</A> </li><li class="currentLink"><A title=Android webservice 理论 href="show_902_186.html">Android webservice 理论</A> </li><li ><A title=Android中调用webservice href="show_903_186.html">Android中调用webservice</A> </li><li ><A title=Android webservice通信之ksoap href="show_904_186.html">Android webservice通信之ksoap</A> </li><li ><A title=Android+webservice的连接 href="show_905_186.html">Android+webservice的连接</A> </li><li ><A title=调用webservice查询手机号归属地信息 href="show_906_186.html">调用webservice查询手机号归属地信息</A> </li><li ><A title=自己真实开发的中调用webservice方法总结（带请求头SoapHeader） href="show_907_186.html">自己真实开发的中调用webservice方法总结（带请求头SoapHeader）</A> </li></UL>
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android webservice 理论</H2>
+<div style="line-height:20px; font-size:14px;"><p>Android webservice 见解 </p><p>现在大多数写关于android网络webservice会用到一个接口ksoap2.0</p><p>ksoap2.0接口介绍</p><p>org.ksoap2.SoapEnvelope</p><p>org.ksoap2.SoapSerializationEnvelope</p><p>org.ksoap2.SoapObject</p><p>org.ksoap2.transport. HttpTransport</p><p>ksoap2.0接口介绍</p><p>服务端给客户端的响应数据一般有如下两种 xml或json ,不过不知道ksoap和webservice是不是json 可能是复杂对象吧</p><p>ksoap和webservice传递字符串等的比较简单 ,主要是复杂对象,客户端软件需要对复杂对象来解析 </p><p>下面是ksoap2与webservice的通讯过程</p><p>1 创建</p><p><pre>SoapObject request  = <font class="keyword">new </font>SoapObject(serviceNamespace, methodName);</p><p>参数1是命名空间,参数2是要调用的方法的名字</p><p>request.addProperty(string,string ); <font class="Comments">//要传给服务端的参数键值，例如天气程序中 这里传递的是城市名称</font></p><p></pre></p><p>2 封装</p><p><pre><font class="Comments">//告诉SoapSerializationEnvelope把构造好的SoapObject封装进去：</font></p><p>SoapSerializationEnvelope envelope=<font class="keyword">new </font>SoapSerializationEnvelope(SoapEnvelope.VER11);</p><p>envelope.bodyOut=sobject;</p><p>envelope.dotNet=<font class="keyword">true</font>;</p><p>envelope.setOutputSoapObject(request);</p><p></pre></p><p>******这一部分是封转你要传递的数据</p><p>3 提交并等待应答</p><p><pre>AndroidHttpTransport ht=<font class="keyword">new </font>AndroidHttpTransport(URL);<font class="Comments">//投递SOAP数据的目标地址</font></p><p>ht.debug=<font class="keyword">true</font>;</p><p>ht.call(SOAP_ACTION, envelope); <font class="Comments">//等待调用</font></p><p></pre></p><p>4 获取结果</p><p><pre><font class="Comments">//获取应答对象 ,复杂对象的解析</font></p><p>SoapObject result=(SoapObject) envelope.bodyIn;</p><p>SoapObject detail=(SoapObject) result.getProperty(String);<font class="Comments">//类似于获取服务端返回复杂节点的一个内接点String </font></p><p></pre></p><p>5 根据具体情况来解析复杂对象</p><p>例如:String mstr=detail.getProperty(index).toString();//detail是获取的对象,index是要获得第几个参数。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

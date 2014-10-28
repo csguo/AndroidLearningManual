@@ -1,0 +1,70 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android Camera 模块分析（三）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li class="navcurrentLink"><A href="index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="设备信息" href="index_157.html">设备信息</A></h2>
+
+  <h2><A title="摄像头" href="index_158.html">摄像头</A></h2>
+<UL><li ><A title=Android Camera 模块分析（一） href="show_101_158.html">Android Camera 模块分析（一）</A> </li><li ><A title=Android Camera 模块分析（二） href="show_102_158.html">Android Camera 模块分析（二）</A> </li><li class="currentLink"><A title=Android Camera 模块分析（三） href="show_103_158.html">Android Camera 模块分析（三）</A> </li><li ><A title=Android Camera 模块分析（四） href="show_104_158.html">Android Camera 模块分析（四）</A> </li><li ><A title=Android 浅谈相机研发（一） href="show_105_158.html">Android 浅谈相机研发（一）</A> </li><li ><A title=Android 浅谈相机研发（二） href="show_106_158.html">Android 浅谈相机研发（二）</A> </li><li ><A title=Android 浅谈相机研发（三） href="show_107_158.html">Android 浅谈相机研发（三）</A> </li><li ><A title=Android 浅谈相机研发（四） href="show_108_158.html">Android 浅谈相机研发（四）</A> </li><li ><A title=Android 浅谈相机研发（五） href="show_109_158.html">Android 浅谈相机研发（五）</A> </li><li ><A title=Android获取摄像头的详细介绍 href="show_110_158.html">Android获取摄像头的详细介绍</A> </li><li ><A title=开机启动摄像头的原理 href="show_111_158.html">开机启动摄像头的原理</A> </li></UL>
+  <h2><A title="通讯录" href="index_159.html">通讯录</A></h2>
+
+  <h2><A title="电话" href="index_160.html">电话</A></h2>
+
+  <h2><A title="短信" href="index_161.html">短信</A></h2>
+
+  <h2><A title="传感器" href="index_162.html">传感器</A></h2>
+
+  <h2><A title="定位" href="index_163.html">定位</A></h2>
+
+  <h2><A title="视频系统" href="index_164.html">视频系统</A></h2>
+
+  <h2><A title="音频系统" href="index_165.html">音频系统</A></h2>
+
+  <h2><A title="铃声" href="index_166.html">铃声</A></h2>
+
+  <h2><A title="音量" href="index_167.html">音量</A></h2>
+
+  <h2><A title="录音" href="index_168.html">录音</A></h2>
+
+  <h2><A title="输入法" href="index_169.html">输入法</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android Camera 模块分析（三）</H2>
+<div style="line-height:20px; font-size:14px;"><p>第三部分 Camera的主要实现分析</p><p>3.1 JAVA程序部分</p><p>在packages/apps/Camera/src/com/android/camera/ 目录的Camera。java文件中，包含了对Camera的调用。</p><p>在Camera.java中包含对包的引用：</p><p><pre><font class="keyword">import </font>android.hardware.Camera.PictureCallback;</p><p><font class="keyword">import </font>android.hardware.Camera.Size;</p><p></pre></p><p>在这里定义的Camera类继承了活动Activity类，在它的内部，包含了一个 android.hardware.Camera</p><p><pre><font class="keyword">public </font><font class="keyword">class </font>Camera </font><font class="keyword">extends </font>Activity </font><font class="keyword">implements </font>View.OnClickListener,</p><p>		SurfaceHolder.Callback {</p><p>	android.hardware.Camera mCameraDevice;</p><p>}</p><p></pre></p><p>对Camera功能的一些调用如下所示：</p><p><pre>mCameraDevice.takePicture(mShutterCallback, mRawPictureCallback, mJpegPictureCallback);</p><p>mCameraDevice.startPreview()；</p><p>mCameraDevice.stopPreview()；</p><p></pre></p><p>startPreview、stopPreview 和takePicture等接口就是通过JAVA本地调用（JNI）来实现的。</p><p>frameworks/base/core/java/android/hardware/目录中的Camera。java文件提供了一个JAVA类：Camera。</p><p><pre><font class="keyword">public class </font>Camera {</p><p>}</p><p></pre></p><p>在这个类当中，大部分代码使用JNI调用下层得到，例如：</p><p><pre><font class="keyword">public </font><font class="keyword">void </font>setParameters(Parameters params) {</p><p>	</font>Log.e(TAG, <font class="Fields">"setParameters()"</font>);</p><p>	<font class="Comments">// params.dump()；</font></p><p>	native_setParameters(params.flatten());</p><p>}</p><p></pre></p><p>再者，例如以下代码：</p><p><pre><font class="keyword">public </font><font class="keyword">final </font><font class="keyword">void </font>setPreviewDisplay(SurfaceHolder holder) {</p><p>	setPreviewDisplay(holder.getSurface());</p><p>}</p><p><font class="keyword">private native final </font>void setPreviewDisplay(Surface surface);</p><p></pre></p><p>两个setPreviewDisplay参数不同，后一个是本地方法，参数为Surface类型，前一个通过调用后一个实现，但自己的参数以SurfaceHolder为类型。</p><p>3.2 Camera的JAVA本地调用部分</p><p>Camera的JAVA本地调用（JNI）部分在frameworks/base/core/jni/目录的android_hardware_Camera。cpp中的文件中实现。</p><p>android_hardware_Camera。cpp之中定义了一个JNINativeMethod（JAVA本地调用方法）类型的数组gMethods，如下所示：</p><p><pre><font class="keyword">static </font>JNINativeMethod camMethods[] = { </p><p>	</font>{<font class="Fields">"native_setup"</font>,</font><font class="Fields">"(Ljava/lang/Object;)V"</font>,(void*)android_hardware_Camera_native_setup </font>},</p><p>	</font>{<font class="Fields">"native_release"</font>,</font><font class="Fields">"()V"</font>,(void*)android_hardware_Camera_release </font>},</p><p>	</font>{<font class="Fields">"setPreviewDisplay"</font>,</font><font class="Fields">"(Landroid/view/Surface;)V"</font>,(<font class="keyword">void </font>*)android_hardware_Camera_setPreviewDisplay </font>},</p><p>	</font>{<font class="Fields">"startPreview"</font>,</font><font class="Fields">"()V"</font>,(<font class="keyword">void </font>*)android_hardware_Camera_startPreview </font>},</p><p>	</font>{<font class="Fields">"stopPreview"</font>, </font><font class="Fields">"()V"</font>, (<font class="keyword">void </font>*)android_hardware_Camera_stopPreview </font>},</p><p>	</font>{<font class="Fields">"setHasPreviewCallback"</font>,</font><font class="Fields">"(Z)V"</font>,(<font class="keyword">void </font>*)android_hardware_Camera_setHasPreviewCallback </font>},</p><p>	</font>{<font class="Fields">"native_autoFocus"</font>,</font><font class="Fields">"()V"</font>,(<font class="keyword">void </font>*)android_hardware_Camera_autoFocus </font>},</p><p>	</font>{<font class="Fields">"native_takePicture"</font>, </font><font class="Fields">"()V"</font>, (<font class="keyword">void </font>*)android_hardware_Camera_takePicture </font>},</p><p>	</font>{<font class="Fields">"native_setParameters"</font>,</font><font class="Fields">"(Ljava/lang/String;)V"</font>,(<font class="keyword">void </font>*)android_hardware_Camera_setParameters </font>},</p><p>	</font>{<font class="Fields">"native_getParameters"</font>, </font><font class="Fields">"()Ljava/lang/String;"</font>,(<font class="keyword">void </font>*)android_hardware_Camera_getParameters </font>}</p><p>	};</p><p></pre></p><p>JNINativeMethod的第一个成员是一个字符串，表示了JAVA本地调用方法的名称，这个名称是在JAVA程序中调用的名称；第二个成员也是一个字符串，表示JAVA本地调用方法的参数和返回值；第三个成员是JAVA本地调用方法对应的C语言函数。</p><p>register_android_hardware_Camera 函数将gMethods注册为的类"android/media/Camera"，其主要的实现如下所示。</p><p><pre><font class="keyword">int </font>register_android_hardware_Camera(JNIEnv *env) </p><p>{</p><p><font class="Comments">// Register native functions </font></p><p><font class="keyword">return </font>AndroidRuntime::registerNativeMethods(env, <font class="Fields">"android/hardware/Camera"</font>, </p><p>				camMethods, NELEM(camMethods));</p><p>}</p><p></pre></p><p>"android/hardware/Camera"对应JAVA的类android.hardware.Camera。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

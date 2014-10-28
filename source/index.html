@@ -1,0 +1,128 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android学习手册_源码开发</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li class="navcurrentLink"><A href="index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">源码开发</div>
+
+  <h2 class="currentLink"><A title="Launcher" href="index_207.html">Launcher</A></h2>
+<UL><li class="currentLink"><A title=Android Launcher 分析（一） href="show_1_207.html">Android Launcher 分析（一）</A> </li><li ><A title=Android Launcher 分析（二） href="show_2_207.html">Android Launcher 分析（二）</A> </li><li ><A title=Android Launcher 分析（三） href="show_3_207.html">Android Launcher 分析（三）</A> </li><li ><A title=Android 启动唯一的Launcher href="show_4_207.html">Android 启动唯一的Launcher</A> </li><li ><A title=Launcher之文件夹美化 href="show_5_207.html">Launcher之文件夹美化</A> </li><li ><A title=关于使用Eclipse调试Launcher的完美解决方法 href="show_6_207.html">关于使用Eclipse调试Launcher的完美解决方法</A> </li><li ><A title=提取Launcher中的WorkSapce，可以左右滑动切换屏幕页面的类 href="show_7_207.html">提取Launcher中的WorkSapce，可以左右滑动切换屏幕页面的类</A> </li><li ><A title=使用ViewPager实现高仿launcher拖动效果 href="show_8_207.html">使用ViewPager实现高仿launcher拖动效果</A> </li><li ><A title=Android 深入研究拖放功能Launcher（一） href="show_9_207.html">Android 深入研究拖放功能Launcher（一）</A> </li><li ><A title=Android 深入研究拖放功能Launcher（二） href="show_10_207.html">Android 深入研究拖放功能Launcher（二）</A> </li><li ><A title=Android 深入研究拖放功能Launcher（三） href="show_11_207.html">Android 深入研究拖放功能Launcher（三）</A> </li><li ><A title=Android 深入研究拖放功能Launcher（四） href="show_12_207.html">Android 深入研究拖放功能Launcher（四）</A> </li><li ><A title=Android 深入研究拖放功能Launcher（五） href="show_13_207.html">Android 深入研究拖放功能Launcher（五）</A> </li><li ><A title=Android 深入研究拖放功能Launcher（六） href="show_14_207.html">Android 深入研究拖放功能Launcher（六）</A> </li><li ><A title=Android 在launcher 2.1上实现2.2的屏幕标记 href="show_15_207.html">Android 在launcher 2.1上实现2.2的屏幕标记</A> </li></UL>
+  <h2 ><A title="电话系统RIL" href="index_208.html">电话系统RIL</A></h2>
+
+  <h2 ><A title="进程间通信" href="index_209.html">进程间通信</A></h2>
+
+  <h2 ><A title="内部sensor系统" href="index_210.html">内部sensor系统</A></h2>
+
+  <h2 ><A title="内部surface系统" href="index_211.html">内部surface系统</A></h2>
+
+  <h2 ><A title="启动流程" href="index_212.html">启动流程</A></h2>
+
+  <h2 ><A title="源码编译" href="index_213.html">源码编译</A></h2>
+
+  <h2 ><A title="状态栏" href="index_214.html">状态栏</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1>Launcher</H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android Launcher 分析（一）</H2>
+<P>　　Linux kernel启动以后会通过app_main进程来初始化android Runtime Java运行环境，而zygote是Android的第一个进程。所有的android的应用以及大部分系统服务都是通过zygote fork出来的子进程（我现在看到的只有native</P>
+<P><A title="Android Launcher 分析（一）" href="show_1_207.html">进入 Android Launcher 分析（一）</A> </P></DIV>
+
+<DIV>
+<H2>Android Launcher 分析（二）</H2>
+<P>　　[color=blue]3.应用程序代码分析由Launcher中的AndroidManifest.xml可以看出整个Launcher的代码结构。[code=img]source_launcher/02_Launcher01.jpg[/code]首先，是一些权限的声明。例如：[code=java]  [/code]这部</P>
+<P><A title="Android Launcher 分析（二）" href="show_2_207.html">进入 Android Launcher 分析（二）</A> </P></DIV>
+
+<DIV>
+<H2>Android Launcher 分析（三）</H2>
+<P>　　方法onActivityResult()：完成在workspace上增加shortcut，appwidge和Livefolder；方法onSaveInstantceState()和onRestoreInstanceState()：为了防止Sensor、Land和Port布局自动切换时数据被置空，通过onSaveInstanc</P>
+<P><A title="Android Launcher 分析（三）" href="show_3_207.html">进入 Android Launcher 分析（三）</A> </P></DIV>
+
+<DIV>
+<H2>Android 启动唯一的Launcher</H2>
+<P>　　如果你要定制一个Android系统，你想用你自己的Launcher(Home)作主界面来替换Android自己的Home，而且不希望用户安装的Launcher来替换掉你的Launcher。我们可以通过修改Framework来实现这样的功能。这里以Android2.1</P>
+<P><A title="Android 启动唯一的Launcher" href="show_4_207.html">进入 Android 启动唯一的Launcher</A> </P></DIV>
+
+<DIV>
+<H2>Launcher之文件夹美化</H2>
+<P>　　需要的源代码包：（还需要在Eclipse中配置）[code=img]source_launcher/05_Launcher01.jpg[/code]从launcher源码中很容易变可以看出需要修改的文件，主要修改FolderIcon.java这个文件。修改后的代码如下：[code=java</P>
+<P><A title="Launcher之文件夹美化" href="show_5_207.html">进入 Launcher之文件夹美化</A> </P></DIV>
+
+<DIV>
+<H2>关于使用Eclipse调试Launcher的完美解决方法</H2>
+<P>　　看了论坛还没有帖子解决这个问题，特写这篇教学，大家互相学习。由于在Android源码中，很多方法、成员、类、包都被打上@hide标签，这些成员在SDK中没有公开，以至于在编译Launcher源码时最常遇到的类android.view.Vi</P>
+<P><A title="关于使用Eclipse调试Launcher的完美解决方法" href="show_6_207.html">进入 关于使用Eclipse调试Launcher的完美解决方法</A> </P></DIV>
+
+<DIV>
+<H2>提取Launcher中的WorkSapce，可以左右滑动切换屏幕页面的类</H2>
+<P>　　提取Launcher中的WorkSapce，可以左右滑动切换屏幕页面的类[color=blue]下载源码对于Launcher的桌面滑动大家应该都比较熟悉了，最好的体验应该是可以随着手指的滑动而显示不同位置的桌面。比一般用ViewFlinger+动画</P>
+<P><A title="提取Launcher中的WorkSapce，可以左右滑动切换屏幕页面的类" href="show_7_207.html">进入 提取Launcher中的WorkSapce，可以左右滑动切换屏幕页面的类</A> </P></DIV>
+
+<DIV>
+<H2>使用ViewPager实现高仿launcher拖动效果</H2>
+<P>　　今天用ViewPager这个类实现了同样的效果，这样代码更少，但是效果是一样的。ViewPager是实现左右两个屏幕平滑地切换的一个类，它是Google提供的。       使用ViewPager首先需要引入android-support-v4.jar这个jar包</P>
+<P><A title="使用ViewPager实现高仿launcher拖动效果" href="show_8_207.html">进入 使用ViewPager实现高仿launcher拖动效果</A> </P></DIV>
+
+<DIV>
+<H2>Android 深入研究拖放功能Launcher（一）</H2>
+<P>　　Luancher有一个相对比较复杂的功能就是拖放功能，要深入了解launcher，深入理解拖放功能是有必要的，我将对launcher的拖放功能做深入的了解。1.首先直观感受什么时候开始拖放?我们长按桌面一个应用图标或者控件的时</P>
+<P><A title="Android 深入研究拖放功能Launcher（一）" href="show_9_207.html">进入 Android 深入研究拖放功能Launcher（一）</A> </P></DIV>
+
+<DIV>
+<H2>Android 深入研究拖放功能Launcher（二）</H2>
+<P>　　看了上面代码知道，当开始点击桌面时，celllayout就会根据点击区域去查找在该区域是否有child存在，若有把它设置为tag.cell,没有,tag.cell设置为null,后面在开始拖放时launcher.onlongclick中对tag进行处理，这个理</P>
+<P><A title="Android 深入研究拖放功能Launcher（二）" href="show_10_207.html">进入 Android 深入研究拖放功能Launcher（二）</A> </P></DIV>
+
+<DIV>
+<H2>Android 深入研究拖放功能Launcher（三）</H2>
+<P>　　到这里，拖放开始处理的框框基本清楚，但是DragView的创建和显示还有必要进一步深究[code=java]DragView dragView = mDragView = new DragView(mContext, b, registrationX, registrationY, textureLeft, textureTop</P>
+<P><A title="Android 深入研究拖放功能Launcher（三）" href="show_11_207.html">进入 Android 深入研究拖放功能Launcher（三）</A> </P></DIV>
+
+<DIV>
+<H2>Android 深入研究拖放功能Launcher（四）</H2>
+<P>　　[color=blue]2，拖放过程拖放过程的处理需要深入了解DragController.onTouchEvent(MotionEvent ev)函数的实现，我下面列出关键的MotionEvent.ACTION_MOVE部分代码并作出注释说明[code=java]#[Keywords]case #MotionE</P>
+<P><A title="Android 深入研究拖放功能Launcher（四）" href="show_12_207.html">进入 Android 深入研究拖放功能Launcher（四）</A> </P></DIV>
+
+<DIV>
+<H2>Android 深入研究拖放功能Launcher（五）</H2>
+<P>　　拖放过程总的处理思路就是根据当前坐标位置获取dropTarget的目标位置，然后又根据相关状态和坐标位置调用dropTarget的对应生命周期函数，这里面有两个点需要进一步深入了解，一是查找dropTarget：findDropTarget(scr</P>
+<P><A title="Android 深入研究拖放功能Launcher（五）" href="show_13_207.html">进入 Android 深入研究拖放功能Launcher（五）</A> </P></DIV>
+
+<DIV>
+<H2>Android 深入研究拖放功能Launcher（六）</H2>
+<P>　　[color=blue]1.drop(screenX, screenY);[code=java]#[Keywords]final #[Keywords]int#[] coordinates = mCoordinatesTemp;#[Comments]// 获取dropTarget对象DropTarget dropTarget = findDropTarget((#[Keywords]int</P>
+<P><A title="Android 深入研究拖放功能Launcher（六）" href="show_14_207.html">进入 Android 深入研究拖放功能Launcher（六）</A> </P></DIV>
+
+<DIV>
+<H2>Android 在launcher 2.1上实现2.2的屏幕标记</H2>
+<P>　　在launcher 2.1上实现2.2的屏幕标记。Launcher2.2自带了屏幕标记，他是分了两块，分别为在左下角和右下角。1) 每一块为一个imageview，在配置文件Launcher.xml中直接添加[code=java][/code]其中android:onClick=&quo</P>
+<P><A title="Android 在launcher 2.1上实现2.2的屏幕标记" href="show_15_207.html">进入 Android 在launcher 2.1上实现2.2的屏幕标记</A> </P></DIV>
+
+</DIV>
+
+<DIV id=footer style="display:none">
+<P align="center"> 
+ 
+ 
+ 
+  </P>
+</DIV></DIV></BODY></HTML>
+

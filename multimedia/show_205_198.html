@@ -1,0 +1,67 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android中3D效果_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li class="navcurrentLink"><A href="index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Android多媒体功能" href="index_196.html">Android多媒体功能</A></h2>
+
+  <h2><A title="Android多媒体之2D" href="index_197.html">Android多媒体之2D</A></h2>
+
+  <h2><A title="Android多媒体之3D" href="index_198.html">Android多媒体之3D</A></h2>
+<UL><li ><A title=Android 3D绘图基本概念（一） href="show_201_198.html">Android 3D绘图基本概念（一）</A> </li><li ><A title=Android 3D绘图基本概念（二） href="show_202_198.html">Android 3D绘图基本概念（二）</A> </li><li ><A title=Android 3D坐标（一） href="show_203_198.html">Android 3D坐标（一）</A> </li><li ><A title=Android 3D坐标（二） href="show_204_198.html">Android 3D坐标（二）</A> </li><li class="currentLink"><A title=Android中3D效果 href="show_205_198.html">Android中3D效果</A> </li><li ><A title=Android3D旋转 href="show_206_198.html">Android3D旋转</A> </li><li ><A title=Android 3d页面跳转（一） href="show_207_198.html">Android 3d页面跳转（一）</A> </li><li ><A title=Android 3d页面跳转（二） href="show_208_198.html">Android 3d页面跳转（二）</A> </li><li ><A title=Android 3d页面跳转（三） href="show_209_198.html">Android 3d页面跳转（三）</A> </li><li ><A title=ApiDemo上面的一个图片3D旋转效果 href="show_210_198.html">ApiDemo上面的一个图片3D旋转效果</A> </li><li ><A title=浅谈Android 3D旋转 href="show_211_198.html">浅谈Android 3D旋转</A> </li><li ><A title=简单实现3d旋转动画 href="show_212_198.html">简单实现3d旋转动画</A> </li><li ><A title=Android 3D相册 href="show_213_198.html">Android 3D相册</A> </li></UL>
+  <h2><A title="Android多媒体之Bitmap" href="index_199.html">Android多媒体之Bitmap</A></h2>
+
+  <h2><A title="Android多媒体之Canvas" href="index_200.html">Android多媒体之Canvas</A></h2>
+
+  <h2><A title="Android多媒体之Drawable" href="index_201.html">Android多媒体之Drawable</A></h2>
+
+  <h2><A title="Android多媒体之gif" href="index_202.html">Android多媒体之gif</A></h2>
+
+  <h2><A title="Android多媒体之MediaStore" href="index_203.html">Android多媒体之MediaStore</A></h2>
+
+  <h2><A title="Android多媒体之动画" href="index_204.html">Android多媒体之动画</A></h2>
+
+  <h2><A title="Android多媒体之分辨率" href="index_205.html">Android多媒体之分辨率</A></h2>
+
+  <h2><A title="Android多媒体之分屏幕" href="index_206.html">Android多媒体之分屏幕</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android中3D效果</H2>
+<div style="line-height:20px; font-size:14px;"><p>大家见过没有用opengl的3D动画，其实就是用的Camera实现的，内部机制实际上还是opengl，不过大大简化了使用方法。</p><p>Camera就像一个摄像机，一个物体在原地不动，然后我们带着这个摄像机四处移动，在摄像机里面呈现出来的画面，就会有立体感，就可以从各个角度观看这个物体。</p><p>它有旋转、平移的一系列方法，实际上都是在改变一个Matrix对象，一系列操作完毕之后，我们得到这个Matrix，然后画我们的物体，就可以了。</p><p><pre><font class="keyword">import </font>android.content.Context;</p><p><font class="keyword">import </font>android.graphics.Bitmap;</p><p><font class="keyword">import </font>android.graphics.BitmapFactory;</p><p><font class="keyword">import </font>android.graphics.Camera;</p><p><font class="keyword">import </font>android.graphics.Canvas;</p><p><font class="keyword">import </font>android.graphics.Matrix;</p><p><font class="keyword">import </font>android.graphics.Paint;</p><p><font class="keyword">import </font>android.view.MotionEvent;</p><p><font class="keyword">import </font>android.view.View;</p><p><font class="Comments">/**</font></p><p> <font class="Comments">* 图片三维翻转</font></p><p> <font class="Comments">*/</font></p><p><font class="keyword">public </font><font class="keyword">class </font>CubeView </font><font class="keyword">extends </font>View {</p><p>	<font class="Comments">// 摄像机</font></p><p>	<font class="keyword">private </font>Camera mCamera;</p><p>	<font class="Comments">// 翻转用的图片</font></p><p>	<font class="keyword">private </font>Bitmap face;</p><p>	<font class="keyword">private </font>Matrix mMatrix = </font><font class="keyword">new </font>Matrix();</p><p>	<font class="keyword">private </font>Pa</font><font class="keyword">int </font>mPa</font><font class="keyword">int </font>= </font><font class="keyword">new </font>Paint();</p><p>	<font class="keyword">private </font><font class="keyword">int </font>mLastMotionX, mLastMotionY;</p><p>	<font class="Comments">// 图片的中心点坐标</font></p><p>	<font class="keyword">private </font><font class="keyword">int </font>centerX, centerY;</p><p>	<font class="Comments">// 转动的总距离，跟度数比例1:1</font></p><p>	<font class="keyword">private </font><font class="keyword">int </font>deltaX, deltaY;</p><p>	<font class="Comments">// 图片宽度高度</font></p><p>	<font class="keyword">private </font><font class="keyword">int </font>bWidth, bHeight;</p><p>	<font class="keyword">public </font>CubeView(Context context) {</p><p>		<font class="keyword">super</font>(context);</p><p>		</font>setWillNotDraw(<font class="keyword">false</font>);</p><p>		</font>mCamera = <font class="keyword">new </font>Camera();</p><p>		</font>mPaint.setAntiAlias(<font class="keyword">true</font>);</p><p>		face = BitmapFactory.decodeResource(getResources(), R.drawable.x);</p><p>		bWidth = face.getWidth();</p><p>		bHeight = face.getHeight();</p><p>		centerX = bWidth &gt;&gt; 1;</p><p>		centerY = bHeight &gt;&gt; 1;</p><p>	}</p><p>	<font class="Comments">/**</font></p><p>	 <font class="Comments">* 转动</font></p><p>	 <font class="Comments">* @param degreeX</font></p><p>	 <font class="Comments">* @param degreeY</font></p><p>	 <font class="Comments">*/</font></p><p>	<font class="keyword">void </font>rotate(</font><font class="keyword">int </font>degreeX, </font><font class="keyword">int </font>degreeY) {</p><p>		deltaX += degreeX;</p><p>		deltaY += degreeY;</p><p>		mCamera.save();</p><p>		mCamera.rotateY(deltaX);</p><p>		mCamera.rotateX(-deltaY);</p><p>		mCamera.translate(0, 0, -centerX);</p><p>		mCamera.getMatrix(mMatrix);</p><p>		mCamera.restore();</p><p>		<font class="Comments">// 以图片的中心点为旋转中心,如果不加这两句，就是以（0,0）点为旋转中心</font></p><p>		mMatrix.preTranslate(-centerX, -centerY);</p><p>		mMatrix.postTranslate(centerX, centerY);</p><p>		mCamera.save();</p><p>		postInvalidate();</p><p>	}</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">boolean </font>onTouchEvent(MotionEvent event) {</p><p>		<font class="keyword">int </font>x = (</font><font class="keyword">int</font>) event.getX();</p><p>		<font class="keyword">int </font>y = (</font><font class="keyword">int</font>) event.getY();</p><p>		<font class="keyword">switch </font>(event.getAction()) {</p><p>		<font class="keyword">case </font>MotionEvent.ACTION_DOWN:</p><p>			mLastMotionX = x;</p><p>			mLastMotionY = y;</p><p>			<font class="keyword">break</font>;</p><p>		<font class="keyword">case </font>MotionEvent.ACTION_MOVE:</p><p>			<font class="keyword">int </font>dx = x - mLastMotionX;</p><p>			<font class="keyword">int </font>dy = y - mLastMotionY;</p><p>			rotate(dx, dy);</p><p>			mLastMotionX = x;</p><p>			mLastMotionY = y;</p><p>			<font class="keyword">break</font>;</p><p>		<font class="keyword">case </font>MotionEvent.ACTION_UP:</p><p>			<font class="keyword">break</font>;</p><p>		}</p><p>		<font class="keyword">return </font><font class="keyword">true</font>;</p><p>	}</p><p>
+	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>dispatchDraw(Canvas canvas) {</p><p>		<font class="keyword">super</font>.dispatchDraw(canvas);</p><p>		</font>canvas.drawBitmap(face, mMatrix, mPa<font class="keyword">int</font>);</p><p>	}</p><p>}</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

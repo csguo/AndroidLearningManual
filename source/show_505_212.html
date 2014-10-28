@@ -1,0 +1,60 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android poweroff 流程_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li class="navcurrentLink"><A href="index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Launcher" href="index_207.html">Launcher</A></h2>
+
+  <h2><A title="电话系统RIL" href="index_208.html">电话系统RIL</A></h2>
+
+  <h2><A title="进程间通信" href="index_209.html">进程间通信</A></h2>
+
+  <h2><A title="内部sensor系统" href="index_210.html">内部sensor系统</A></h2>
+
+  <h2><A title="内部surface系统" href="index_211.html">内部surface系统</A></h2>
+
+  <h2><A title="启动流程" href="index_212.html">启动流程</A></h2>
+<UL><li ><A title=从开机到android平台启动的学习路线 href="show_501_212.html">从开机到android平台启动的学习路线</A> </li><li ><A title=讲讲Android的启动 href="show_502_212.html">讲讲Android的启动</A> </li><li ><A title=Android 初始化流程 href="show_503_212.html">Android 初始化流程</A> </li><li ><A title=Android 开机动画启动过程详解 href="show_504_212.html">Android 开机动画启动过程详解</A> </li><li class="currentLink"><A title=Android poweroff 流程 href="show_505_212.html">Android poweroff 流程</A> </li><li ><A title=Android arm linux kernel启动流程（一） href="show_506_212.html">Android arm linux kernel启动流程（一）</A> </li><li ><A title=Android arm linux kernel启动流程（二） href="show_507_212.html">Android arm linux kernel启动流程（二）</A> </li><li ><A title=Android arm linux kernel启动流程（三） href="show_508_212.html">Android arm linux kernel启动流程（三）</A> </li><li ><A title=Android arm linux kernel启动流程（四） href="show_509_212.html">Android arm linux kernel启动流程（四）</A> </li><li ><A title=Android arm linux kernel启动流程（五） href="show_510_212.html">Android arm linux kernel启动流程（五）</A> </li></UL>
+  <h2><A title="源码编译" href="index_213.html">源码编译</A></h2>
+
+  <h2><A title="状态栏" href="index_214.html">状态栏</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android poweroff 流程</H2>
+<div style="line-height:20px; font-size:14px;"><p style="color:#3333FF;">关机流程</p><p>android系统都有一个关机按键，长按这个按键系统会进行关机操作。具体实现流程如下：</p><p>在android层通过系统调用reboot（arg）调用内核中的sys_reboot,具体流程如下：</p><p><pre>reboot——&gt;sys_reboot()——&gt;kernel_power_off()——&gt;machine_power_off()——&gt;pm_power_off();</p><p></pre></p><p>pm_power_off是一个函数指针，他指向和具体硬件平台相关的关机操作函数。和sys_reboot相关的系统调用在source/kernel/sys.c中实现，然后在source/asm-arm/unistd.h中添加系统调用号。然后在source/arch/arm/kernel/entry-common.S中对sys_call_table(系统调用表)进行定义，具体的表在source/arch/arm/kernel/call.S中实现。</p><p style="color:#3333FF;">Reboot流程</p><p>Linux下的关机和重启流程对于一般的桌面应用和网络服务器来说并不重要，但是在用户自己定义的嵌入式系统内核中就有一定的研究意义，通过了解Linux 关机重启的流程，我们对它可以修改和自定义，甚至以此为基础开发出全新的功能来。</p><p style="color:#3333FF;">1.概述</p><p>在linux下的关机和重启可能由两种行为引发，一是通过用户编程，一是系统自己产生的消息。用户和系统进行交互的方式也有两个，一个是系统调用：sys_reboot，另一个就是apm或则acpi的设备文件，通过对其操作也可以使系统关机或者重启。</p><p style="color:#3333FF;">2.通过系统调用sys_reboot的重启</p><p>这个系统调用定义了一系列的MAGIC_NUMBER，在调用的开始部分首先检查MAGIC_NUMBER是否正确，只有正确才继续向下运行。在重启的时候转向分支case LINUX_REBOOT_CMD_RESTART:</p><p>首先使用notifier_call_chain向其它部分发出重启的消息，然后调用machine_restart函数完成重启。</p><p>machine_restart函数的开始部分有一段SMP相关的代码，主要完成多CPU时由一个CPU完成重启操作，其它CPU处于等待状态。之后系统根据一个变量reboot_thru_bios的内容判断重启方式，通过阅读reboot_setup我们可以得知，这个参数的内容是在系统启动时指定的，决定了是否利用bios，事实上是系统复位后的入口(FFFF：0000)地址的程序进行重启。在不通过bios进行重启的情况下，系统首先设定了重启标志，然后向端口0xfe写入数字0x64,这种重启的具体原理我还不大清楚，似乎是模拟了一次reset键的按下，希望大家和我讨论。在通过 bios重启的情况下，系统同样先设定了重启模式，然后切换到了实模式，通过一条ljmp $0xffff,$0x0完成了重启。</p><p style="color:#3333FF;">3.通过系统调用sys_reboot进行关机</p><p>在系统调用的处理分支上，我们可以看到，首先同样是检查MAGIC_NUMBER，然后在case LINUX_REBOOT_CMD_POWER_OFF的执行流程里面，又是使用notifier_call_chain发出了关闭计算机电源的消息，紧接着执行了machine_power_off 函数。我们machine_power_off函数中可以看到，如果pm_power_off这个函数指针不为空，那么系统就会通过调用这个函数进行关机。在apm已经加载的情况下(SMP除外)，实际上pm_power_off函数实际上指向了apm.c中的apm_power_off，在这个函数里系统通过apm_info结构里的值，使用切换到实模式关机，或者使用apm_bios_call_simple函数调用保护模式下的apm接口关机两种方法。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

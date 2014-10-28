@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>模拟器中加载和使用SDCard卡_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li class="navcurrentLink"><A href="index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="开发基础" href="index_100.html">开发基础</A></h2>
+
+  <h2><A title="开发环境搭建" href="index_101.html">开发环境搭建</A></h2>
+
+  <h2><A title="模拟器" href="index_102.html">模拟器</A></h2>
+<UL><li ><A title=Android 模拟器使用指导 href="show_201_102.html">Android 模拟器使用指导</A> </li><li ><A title=Android 模拟器命令大全 href="show_202_102.html">Android 模拟器命令大全</A> </li><li ><A title=Android模拟器屏幕切换横屏 href="show_203_102.html">Android模拟器屏幕切换横屏</A> </li><li ><A title=更改Android AVD模拟器创建路径位置的方法 href="show_204_102.html">更改Android AVD模拟器创建路径位置的方法</A> </li><li class="currentLink"><A title=模拟器中加载和使用SDCard卡 href="show_205_102.html">模拟器中加载和使用SDCard卡</A> </li><li ><A title=在Android模拟器中永久删除自带应用程序 href="show_206_102.html">在Android模拟器中永久删除自带应用程序</A> </li><li ><A title=PC电脑和Android模拟器访问及模拟器之间TCP/UDP通信 href="show_207_102.html">PC电脑和Android模拟器访问及模拟器之间TCP/UDP通信</A> </li><li ><A title=Android模拟器通过本地电脑上网 href="show_208_102.html">Android模拟器通过本地电脑上网</A> </li><li ><A title=Android模拟器实现打电话发短信 href="show_209_102.html">Android模拟器实现打电话发短信</A> </li><li ><A title=Android让模拟器内存变大 href="show_210_102.html">Android让模拟器内存变大</A> </li></UL>
+  <h2><A title="Resource" href="index_103.html">Resource</A></h2>
+
+  <h2><A title="Manifest" href="index_104.html">Manifest</A></h2>
+
+  <h2><A title="ADB" href="index_105.html">ADB</A></h2>
+
+  <h2><A title="DDMS" href="index_106.html">DDMS</A></h2>
+
+  <h2><A title="Logcat(日志)" href="index_107.html">Logcat(日志)</A></h2>
+
+  <h2><A title="打包" href="index_108.html">打包</A></h2>
+
+  <h2><A title="文件处理" href="index_109.html">文件处理</A></h2>
+
+  <h2><A title="底层基础" href="index_111.html">底层基础</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>模拟器中加载和使用SDCard卡</H2>
+<div style="line-height:20px; font-size:14px;"><p>在这个例子中没有说到模拟SD CARD，所以这个补充对我们这些菜鸟朋友来说应该有点用处。</p><p>模拟器或真机都会有一定大小的内部存储空间（不是指内存，指的是持久化存储空间），但这并不够，有时我们需要更大的存储空间。为了在模拟器上开发使用扩展存储空间的程序，需要在PC上模拟一个SDCard的虚拟文件，然后加载到模拟器中。</p><p>sdcard文件使用tools目录下的mksdcard.exe命令生成，假设要生成大小256M的sdcard文件，可以使用如下的命令：</p><p><pre>mksdcard -l mycard 256M sdcard/mycard.img </p><p></pre></p><p>使用mksdcard命令要注意如下六点：</p><p>1. mycard命令可以使用三种尺寸：字节、K和M。如果只使用数字，表示字节。后面还可以跟K，如262144K，也表示256M。</p><p>2. mycard建立的虚拟文件最小为8M，也就是说，模拟器只支持大于8M的虚拟文件。</p><p>3. -l命令行参数表示虚拟磁盘的卷标，可以没有该参数。</p><p>4. 虚拟文件的扩展名可以是任意的，如mycard.abc。</p><p>5. mksdcard命令不会自动建立不存在的目录，因此，在执行上面命令之前，要先在当前目录(tools目录)中建立一个sdcard目录。</p><p>6. mksdcard命令是按实际大小生成的sdcard虚拟文件。也就是说，生成256M的虚拟文件的尺寸就是256M。</p><p>执行完上面的命令后，在tools/sdcard目录下会生成mycard.img文件。</p><p>在Eclipse中新建一个AVD，注意SD Card选项选择刚刚创建的mycard.img虚拟文件。</p><p>创建好AVD后，打开run dialog切换到Target选项选择刚刚创建的AVD</p><p>启动模拟器，这时模拟器便自动加载了我们配置的SD CARD，起来之后在sdcard目录下会生成一个名字为mycard.img.lock的临时文件夹，如果没有生成则说明SD CARD加载失败。</p><p>SD CARD加载成功后通过什么样的方式来管理呢？比如我要向SD CARD中添加一个文件，这里可以通过多种方式来实现：</p><p>1、使用命令 ：adb push C:/video. 3gp sdcard </p><p>2、在eclipse中进行管理，打开DDMS透视图，通过右上角的两个按钮可以添加、删除文件。</p><p>以上的步骤操作成功后便可以将视频文件放到SD CARD中。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

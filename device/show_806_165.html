@@ -1,0 +1,70 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android的Audio系统之四_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li class="navcurrentLink"><A href="index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="设备信息" href="index_157.html">设备信息</A></h2>
+
+  <h2><A title="摄像头" href="index_158.html">摄像头</A></h2>
+
+  <h2><A title="通讯录" href="index_159.html">通讯录</A></h2>
+
+  <h2><A title="电话" href="index_160.html">电话</A></h2>
+
+  <h2><A title="短信" href="index_161.html">短信</A></h2>
+
+  <h2><A title="传感器" href="index_162.html">传感器</A></h2>
+
+  <h2><A title="定位" href="index_163.html">定位</A></h2>
+
+  <h2><A title="视频系统" href="index_164.html">视频系统</A></h2>
+
+  <h2><A title="音频系统" href="index_165.html">音频系统</A></h2>
+<UL><li ><A title=Android Audio框架 href="show_801_165.html">Android Audio框架</A> </li><li ><A title=Android Audio抽象层的接口 href="show_802_165.html">Android Audio抽象层的接口</A> </li><li ><A title=Android的Audio系统之一 href="show_803_165.html">Android的Audio系统之一</A> </li><li ><A title=Android的Audio系统之二 href="show_804_165.html">Android的Audio系统之二</A> </li><li ><A title=Android的Audio系统之三 href="show_805_165.html">Android的Audio系统之三</A> </li><li class="currentLink"><A title=Android的Audio系统之四 href="show_806_165.html">Android的Audio系统之四</A> </li><li ><A title=Android的Audio系统之五 href="show_807_165.html">Android的Audio系统之五</A> </li><li ><A title=Android的Audio系统之六 href="show_808_165.html">Android的Audio系统之六</A> </li><li ><A title=Android的Audio系统之七 href="show_809_165.html">Android的Audio系统之七</A> </li><li ><A title=Android 深入研究MediaRecorder类 href="show_810_165.html">Android 深入研究MediaRecorder类</A> </li><li ><A title=Android 讲述MediaPlayer href="show_811_165.html">Android 讲述MediaPlayer</A> </li></UL>
+  <h2><A title="铃声" href="index_166.html">铃声</A></h2>
+
+  <h2><A title="音量" href="index_167.html">音量</A></h2>
+
+  <h2><A title="录音" href="index_168.html">录音</A></h2>
+
+  <h2><A title="输入法" href="index_169.html">输入法</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android的Audio系统之四</H2>
+<div style="line-height:20px; font-size:14px;"><p style="color:#3333FF;">Audio系统的JNI代码</p><p>Android的Audio部分通过JNI向Java层提供接口，在Java层可以通过JNI接口完成Audio系统的大部分操作。</p><p>Audio JNI部分的代码路径为：frameworks/base/core/jni。</p><p>其中，主要实现的3个文件为：android_media_AudioSystem.cpp、android_media_Audio Track.cpp和android_media_AudioRecord.cpp，它们分别对应了Android Java框架中的3个类的支持：</p><p><pre>android.media.AudioSystem：负责Audio系统的总体控制；</p><p>android.media.AudioTrack：负责Audio系统的输出环节；</p><p>android.media.AudioRecorder：负责Audio系统的输入环节。</p><p></pre></p><p>在Android的Java层中，可以对Audio系统进行控制和数据流操作，对于控制操作，和底层的处理基本一致；但是对于数据流操作，由于Java不支持指针，因此接口被封装成了另外的形式。</p><p>例如，对于音频输出，android_media_AudioTrack.cpp提供的是写字节和写短整型的接口类型。</p><p><pre><font class="keyword">static </font>j</font><font class="keyword">int </font>android_media_AudioTrack_native_write(JNIEnv *env,  jobject thiz, jbyteArray javaAudioData,  </p><p>                 </font>j<font class="keyword">int </font>offsetInBytes, j</font><font class="keyword">int </font>sizeInBytes,  j</font><font class="keyword">int </font>javaAudioFormat) {</p><p>     jbyte* cAudioData = NULL;</p><p>     AudioTrack *lpTrack = NULL;</p><p>     </font>lpTrack = (AudioTrack *)env-&gt;GetIntField(<font class="keyword">this</font>, javaAudioTrackFields. Native TrackInJavaObj);</p><p>     <font class="Comments">// …… 省略部分内容</font></p><p>     ssize_t written = 0;</p><p>     <font class="keyword">if </font>(lpTrack-&gt;sharedBuffer() == 0) {  </p><p>          <font class="Comments">//进行写操作</font></p><p>          written = lpTrack-&gt;write(cAudioData + offsetInBytes, sizeInBytes);</p><p>     </font>} <font class="keyword">else </font>{  </p><p>          <font class="keyword">if </font>(javaAudioFormat == javaAudioTrackFields.PCM16) {  </p><p>               memcpy(lpTrack-&gt;sharedBuffer()-&gt;pointer(),  cAudioData+offsetInBytes, sizeInBytes);</p><p>               written = sizeInBytes;</p><p>          </font>}<font class="keyword"> else</font>{</p><p>               <font class="keyword">if </font>(javaAudioFormat == javaAudioTrackFields.PCM8) {  </p><p>                    <font class="keyword">int </font>count = sizeInBytes;  </p><p>                    int16_t *dst = (int16_t *)lpTrack-&gt;sharedBuffer()-&gt;pointer();</p><p>                    const int8_t *src = (const int8_t *)(cAudioData + offsetInBytes);</p><p>                    while(count--) {</p><p>                         <font class="Comments">*dst++ = (int16_t)(<font class="Comments">*src++^0x80) &lt;&lt; 8;  </font></p><p>                     }  </p><p>                    written = sizeInBytes;</p><p>                }  </p><p>          }  </p><p></p><p>     <font class="Comments">// …… 省略部分内容</font></p><p>     env-&gt;ReleasePrimitiveArrayCritical(javaAudioData, cAudioData, 0);</p><p>     <font class="keyword">return </font>(</font><font class="keyword">int</font>)written;  </p><p>}</p><p></pre></p><p>所定义的JNI接口native_write_byte和native_write_short如下所示：</p><p><pre>{<font class="Fields">"native_write_byte"</font>, </font><font class="Fields">"([BIII)I"</font>, (<font class="keyword">void </font>*)android_media_AudioTrack_native_write</font>},  </p><p>{<font class="Fields">"native_write_short"</font>, </font><font class="Fields">"([SIII)I"</font>, (<font class="keyword">void </font>*)android_media_AudioTrack_native_ write_short</font>},</p><p></pre></p><p>向Java提供native_write_byte和native_write_short接口，它们一般是通过调用AudioTrack的write()函数来完成的，只是在Java的数据类型和C++的指针中做了一步转换。</p><p style="color:#3333FF;">Audio系统的Java代码</p><p>Android的Audio系统的相关类在android.media 包中，Java部分的代码路径为：</p><p><pre>frameworks/base/media/java/android/media</p><p></pre></p><p>Audio系统主要实现了以下几个类：android.media.AudioSystem、android.media. Audio Track、android.media.AudioRecorder、android.media.AudioFormat。前面的3个类和本地代码是对应的，AudioFormat提供了一些Audio相关类型的枚举值。</p><p>注意：在Audio系统的Java代码中，虽然可以通过AudioTrack和AudioRecorder的write()和read()接口，在Java层对Audio的数据流进行操作。但是，更多的时候并不需要这样做，而是在本地代码中直接调用接口进行数据流的输入/输出，而Java层只进行控制类操作，不处理数据流。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

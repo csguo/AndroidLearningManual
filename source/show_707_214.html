@@ -1,0 +1,60 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 状态栏提示的另一种方法（一）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li class="navcurrentLink"><A href="index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Launcher" href="index_207.html">Launcher</A></h2>
+
+  <h2><A title="电话系统RIL" href="index_208.html">电话系统RIL</A></h2>
+
+  <h2><A title="进程间通信" href="index_209.html">进程间通信</A></h2>
+
+  <h2><A title="内部sensor系统" href="index_210.html">内部sensor系统</A></h2>
+
+  <h2><A title="内部surface系统" href="index_211.html">内部surface系统</A></h2>
+
+  <h2><A title="启动流程" href="index_212.html">启动流程</A></h2>
+
+  <h2><A title="源码编译" href="index_213.html">源码编译</A></h2>
+
+  <h2><A title="状态栏" href="index_214.html">状态栏</A></h2>
+<UL><li ><A title=Android 软件中状态栏图标处理 href="show_701_214.html">Android 软件中状态栏图标处理</A> </li><li ><A title=Android 状态栏上添加按钮 href="show_702_214.html">Android 状态栏上添加按钮</A> </li><li ><A title=Android全屏 去除标题栏和状态栏 href="show_703_214.html">Android全屏 去除标题栏和状态栏</A> </li><li ><A title=浅析HoneyComb中左下角三个导航键的实现源码 href="show_704_214.html">浅析HoneyComb中左下角三个导航键的实现源码</A> </li><li ><A title=在android的状态栏(statusbar)中增加menu，home和back快捷键的方法 href="show_705_214.html">在android的状态栏(statusbar)中增加menu，home和back快捷键的方法</A> </li><li ><A title=在状态栏添加文字显示的解决方法 href="show_706_214.html">在状态栏添加文字显示的解决方法</A> </li><li class="currentLink"><A title=Android 状态栏提示的另一种方法（一） href="show_707_214.html">Android 状态栏提示的另一种方法（一）</A> </li><li ><A title=Android 状态栏提示的另一种方法（二） href="show_708_214.html">Android 状态栏提示的另一种方法（二）</A> </li></UL>
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 状态栏提示的另一种方法（一）</H2>
+<div style="line-height:20px; font-size:14px;"><p style="color:#3333FF;">NotificationManager与Notification对象的应用</p><p>在Android手机界面的最上方有一条显示时间、信号强度和电池状态等信息的区域，这是Android手机的状态栏（Status Bar）。当系统有一些信息要通知手机用户时，例如，收到新短信、收到新的电子邮件或有未接来电时，系统通常会把信息显示在状态栏中，有的仅显示小图标，有的则显示图标及文字提醒，用手指按住状态栏往下拉，还可以展开状态栏，查看所有系统发出的信息。</p><p>在程序中，要如何把提示信息放入状态栏，又要如何显示小图标呢？Android API已经为了管理提示信息（Notification），率先定义了NotificationManager（Android.app.NotificationMana- ger），只要将Notification添加NotificationManager，即可将信息显示在状态栏。</p><p>本范例将模拟MSN在线状态的切换，会在切换在线状态的同时，改变状态栏上显示的在线状态小图标，并以文字提示目前MSN显示的状态为何。</p><p>实现本范例时需先准备几张MSN在线状态的小Icon，并预先存入/res/drawable/文件夹中，图片文件路径如下：</p><p><pre>/res/drawable/msn.png：    在线的小ICON </p><p>/res/drawable/away.png：   离开的小ICON </p><p>/res/drawable/busy.png：   忙碌中的小ICON </p><p>/res/drawable/min.png：    马上回来的小ICON </p><p>/res/drawable/offine.png： 离线的小ICON</p><p></pre></p><p>效果图:</p><p><img src="../img/source_build/07_msn01.jpg"></p><p>程序中以setAdapter()将存放5种登录状态的String[] status设置至Spinner中，当任何一个item被选择时，将会触发onItemSelected()这个方法，并依照其所选择的item，调用自定义的setNotiType()来发出Notification。</p><p>在setNotiType()这个方法中，以NotificationManager.notify()来发出Notification，并同时发出系统默认的铃响。</p><p><pre><font class="keyword">import </font>android.app.Notification;</p><p><font class="keyword">import </font>android.app.NotificationManager;</p><p><font class="keyword">import </font>android.app.PendingIntent;</p><p><font class="keyword">public </font><font class="keyword">class </font>EX05_08 </font><font class="keyword">extends </font>Activity {</p><p>	/* 声明对象变量 */</p><p>	<font class="keyword">private </font>NotificationManager myNotiManager;</p><p>	<font class="keyword">private </font>Spinner mySpinner;</p><p>	<font class="keyword">private </font>ArrayAdapter&lt;String&gt; myAdapter;</p><p>	<font class="keyword">private </font><font class="keyword">static </font><font class="keyword">final </font>String[] status = { <font class="Fields">"在线"</font>, </font><font class="Fields">"离开"</font>, </font><font class="Fields">"忙碌中"</font>, </font><font class="Fields">"马上回来"</font>, </font><font class="Fields">"离线"</font> </font>};</p><p>	@Override</p><p>	<font class="keyword">protected </font><font class="keyword">void </font>onCreate(Bundle savedInstanceState) {</p><p>		<font class="keyword">super</font>.onCreate(savedInstanceState);</p><p>		/* 载入main.xml Layout */</p><p>		setContentView(R.layout.main);</p><p>		/* 初始化对象 */</p><p>		myNotiManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);</p><p>		mySpinner = (Spinner) findViewById(R.id.mySpinner);</p><p>		</font>myAdapter = <font class="keyword">new </font>ArrayAdapter&lt;String&gt;(</font><font class="keyword">this</font>,</p><p>				android.R.layout.simple_spinner_item, status);</p><p>		/* 应用myspinner_dropdown自定义下拉菜单模式 */</p><p>		myAdapter.setDropDownViewResource(R.layout.myspinner_dropdown);</p><p>		/* 将ArrayAdapter添加Spinner对象中 */</p><p>		mySpinner.setAdapter(myAdapter);</p><p>		/* 将mySpinner添加OnItemSelectedListener */</p><p>		mySpinner</p><p>				</font>.setOnItemSelectedListener(<font class="keyword">new </font>Spinner.OnItemSelectedListener() {</p><p>					@Override</p><p>					<font class="keyword">public </font><font class="keyword">void </font>onItemSelected(AdapterView&lt;?&gt; arg0, View arg1,</p><p>							<font class="keyword">int </font>arg2, </font><font class="keyword">long </font>arg3) {</p><p>						/* 依照选择的item来判断要发哪一个notification */</p><p>						<font class="keyword">if </font>(status[arg2].equals(<font class="Fields">"在线"</font>)) {</p><p>							</font>setNotiType(R.drawable.msn, <font class="Fields">"在线"</font>);</p><p>						</font>} <font class="keyword">else </font><font class="keyword">if </font>(status[arg2].equals(<font class="Fields">"离开"</font>)) {</p><p>							</font>setNotiType(R.drawable.away, <font class="Fields">"离开"</font>);</p><p>						</font>} <font class="keyword">else </font><font class="keyword">if </font>(status[arg2].equals(<font class="Fields">"忙碌中"</font>)) {</p><p>							</font>setNotiType(R.drawable.busy, <font class="Fields">"忙碌中"</font>);</p><p>						</font>} <font class="keyword">else </font><font class="keyword">if </font>(status[arg2].equals(<font class="Fields">"马上回来"</font>)) {</p><p>							</font>setNotiType(R.drawable.min, <font class="Fields">"马上回来"</font>);</p><p>						</font>} <font class="keyword">else </font>{</p><p>							</font>setNotiType(R.drawable.offine, <font class="Fields">"离线"</font>);</p><p>						}</p><p>					}</p><p>					@Override</p><p>					<font class="keyword">public </font><font class="keyword">void </font>onNothingSelected(AdapterView&lt;?&gt; arg0) {</p><p>					}</p><p>				});</p><p>	}</p><p>	/* 发出Notification的method */</p><p>	<font class="keyword">private </font><font class="keyword">void </font>setNotiType(</font><font class="keyword">int </font>iconId, String text) {</p><p>		/*</p><p>		 <font class="Comments">* 创建新的Intent，作为单击Notification留言条时， 会运行的Activity</font></p><p>		 <font class="Comments">*/</font></p><p>		</font>Intent notifyIntent = <font class="keyword">new </font>Intent(</font><font class="keyword">this</font>, EX05_08_1.</font><font class="keyword">class</font>);</p><p>		notifyIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);</p><p>		/* 创建PendingIntent作为设置递延运行的Activity */</p><p>		</font>PendingIntent appIntent = PendingIntent.getActivity(EX05_08.<font class="keyword">this</font>, 0,</p><p>				notifyIntent, 0);</p><p>		/* 创建Notication，并设置相关参数 */</p><p>		</font>Notification myNoti = <font class="keyword">new </font>Notification();</p><p>		/* 设置statusbar显示的icon */</p><p>		myNoti.icon = iconId;</p><p>		/* 设置statusbar显示的文字信息 */</p><p>		myNoti.tickerText = text;</p><p>		/* 设置notification发生时同时发出默认声音 */</p><p>		myNoti.defaults = Notification.DEFAULT_SOUND;</p><p>		/* 设置Notification留言条的参数 */</p><p>		</font>myNoti.setLatestEventInfo(EX05_08.<font class="keyword">this</font>, <font class="Fields">"MSN登录状态"</font>, text, appIntent);</p><p>		/* 送出Notification */</p><p>		myNotiManager.notify(0, myNoti);</p><p>	}</p><p>}</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

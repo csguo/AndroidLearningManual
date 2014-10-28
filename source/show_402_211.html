@@ -1,0 +1,60 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 来说说Surface系统(二)_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li class="navcurrentLink"><A href="index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Launcher" href="index_207.html">Launcher</A></h2>
+
+  <h2><A title="电话系统RIL" href="index_208.html">电话系统RIL</A></h2>
+
+  <h2><A title="进程间通信" href="index_209.html">进程间通信</A></h2>
+
+  <h2><A title="内部sensor系统" href="index_210.html">内部sensor系统</A></h2>
+
+  <h2><A title="内部surface系统" href="index_211.html">内部surface系统</A></h2>
+<UL><li ><A title=Android 来说说Surface系统(一) href="show_401_211.html">Android 来说说Surface系统(一)</A> </li><li class="currentLink"><A title=Android 来说说Surface系统(二) href="show_402_211.html">Android 来说说Surface系统(二)</A> </li><li ><A title=Android 来说说Surface系统(三) href="show_403_211.html">Android 来说说Surface系统(三)</A> </li><li ><A title=Android 来说说Surface系统(四) href="show_404_211.html">Android 来说说Surface系统(四)</A> </li><li ><A title=SurfaceFlinger中的Layer,LayerDim,LayerBlur,LayerBuffer href="show_405_211.html">SurfaceFlinger中的Layer,LayerDim,LayerBlur,LayerBuffer</A> </li><li ><A title=SharedClient href="show_406_211.html">SharedClient</A> </li></UL>
+  <h2><A title="启动流程" href="index_212.html">启动流程</A></h2>
+
+  <h2><A title="源码编译" href="index_213.html">源码编译</A></h2>
+
+  <h2><A title="状态栏" href="index_214.html">状态栏</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 来说说Surface系统(二)</H2>
+<div style="line-height:20px; font-size:14px;"><p>如果你有兴趣的话，看看Surface其他构造函数，最终都会调用native的实现，而这些native的实现将和SurfaceFlinger建立关系，但我们这里ViewRoot中的mSurface显然还没有到这一步。那它到底是怎么和SurfaceFlinger搞上的呢?这一切待会就会水落石出的。</p><p>另外，为什么ViewRoot是主人公呢?因为ViewRoot建立了客户端和SystemServer的关系。我们看看它的构造函数。</p><p><pre><font class="keyword">public </font>ViewRoot(Context context) { </p><p>	<font class="keyword">super</font>(); </p><p>	getWindowSession(context.getMainLooper());</p><p>}</p><p></pre></p><p>getWindowsession将建立和WindowManagerService的关系。</p><p><pre><font class="keyword">public </font><font class="keyword">static </font>IWindowSession getWindowSession(Looper mainLooper) { </p><p>	<font class="keyword">synchronized </font>(mStaticInit) { </p><p>	<font class="keyword">if </font>(!mInitialized) { </p><p>		<font class="keyword">try </font>{ </p><p>			<font class="Comments">//sWindowSession是通过Binder机制创建的。终于让我们看到点希望了 </font></p><p>			InputMethodManager imm = InputMethodManager.getInstance(mainLooper);</p><p>			</font>sWindowSession = IWindowManager.Stub.asInterface( ServiceManager.getService(<font class="Fields">"window"</font>)) .openSession(imm.getClient(), imm.getInputContext());</p><p>			</font>mInitialized = <font class="keyword">true</font>;</p><p>		</font>} <font class="keyword">catch </font>(RemoteException e) { </p><p>		} </p><p>	} </p><p>	<font class="keyword">return </font>sWindowSession; </p><p>	} </p><p>}	</p><p></pre></p><p>上面跨Binder的进程调用另一端是WindowManagerService，代码在framework/base/services/java/com/android/server/WindowManagerService.java中。我们先不说这个。回过头来看看ViewRoot接下来的调用。</p><p><pre>	</p><p><font class="keyword">public </font><font class="keyword">void </font>setView(View view, WindowManager.LayoutParams attrs, View panelParentView) { </p><p>	<font class="keyword">synchronized </font>(</font><font class="keyword">this</font>) { </p><p>		requestLayout();</p><p>		<font class="keyword">try </font>{ </p><p>			res = sWindowSession.add(mWindow, mWindowAttributes,</p><p>			getHostVisibility(), mAttachInfo.mContentInsets);</p><p>		} </p><p>	} </p><p>}</p><p></pre></p><p>requestLayout实现很简单，就是往handler中发送了一个消息。</p><p><pre>	</p><p><font class="keyword">public </font><font class="keyword">void </font>requestLayout() { </p><p>	checkThread();</p><p>	</font>mLayoutRequested = <font class="keyword">true</font>;</p><p>	scheduleTraversals(); <font class="Comments">//发送DO_TRAVERSAL消息</font></p><p>} </p><p><font class="keyword">public </font><font class="keyword">void </font>scheduleTraversals() { </p><p>	<font class="keyword">if </font>(!mTraversalScheduled) { </p><p>		</font>mTraversalScheduled = <font class="keyword">true</font>;</p><p>		sendEmptyMessage(DO_TRAVERSAL);</p><p>	} </p><p>}</p><p></pre></p><p>我们看看跨进程的那个调用。sWindowSession.add。它的最终实现在WindowManagerService中。</p><p><pre><font class="keyword">public </font><font class="keyword">int </font>add(IWindow window, WindowManager.LayoutParams attrs, </p><p>	<font class="keyword">int </font>viewVisibility, Rect outContentInsets) { </p><p>	<font class="keyword">return </font>addWindow(</font><font class="keyword">this</font>, window, attrs, viewVisibility, outContentInsets); </p><p>}</p><p></pre></p><p>WindowSession是个内部类，会调用外部类的addWindow。这个函数巨复杂无比，但是我们的核心目标是找到创建显示相关的部分。所以，最后精简的话就简单了。</p><p><pre><font class="keyword">public </font><font class="keyword">int </font>addWindow(Session session, IWindow client, WindowManager.LayoutParams attrs, </font><font class="keyword">int </font>viewVisibility, Rect outContentInsets) { </p><p>	<font class="Comments">//创建一个WindowState，这个又是什么玩意儿呢？ </font></p><p>	</font>win = <font class="keyword">new </font>WindowState(session, client, token,</p><p>	attachedWindow, attrs, viewVisibility);</p><p>	win.attach();</p><p>	<font class="keyword">return </font>res; </p><p>} </p><p></pre></p><p>WindowState类中有一个和Surface相关的成员变量，叫SurfaceSession。它会在attach函数中被创建。SurfaceSession嘛，就和SurfaceFlinger有关系了。我们待会看。我们知道ViewRoot创建及调用add后，我们客户端的View系统就和WindowManagerService建立了牢不可破的关系。</p><p>另外，我们知道ViewRoot是一个handler，而且刚才我们调用了requestLayout，所以接下来消息循环下一个将调用的就是ViewRoot的handleMessage。</p><p><pre><font class="keyword">public </font><font class="keyword">void </font>handleMessage(Message msg) { </p><p>	<font class="keyword">switch </font>(msg.what) { </p><p>		<font class="keyword">case </font>DO_TRAVERSAL: </p><p>		performTraversals();</p><p>	}</p><p>}</p><p></pre></p><p>performTraversals更加复杂无比，经过我仔细挑选，目标锁定为下面几个函数。当然，后面我们还会回到performTraversals，不过我们现在更感兴趣的是Surface是如何创建的。</p><p><pre><font class="keyword">private </font><font class="keyword">void </font>performTraversals() { </p><p>	<font class="keyword">final </font>View host = mView; </p><p>	<font class="keyword">boolean </font>initialized = </font><font class="keyword">false</font>; </p><p>	<font class="keyword">boolean </font>contentInsetsChanged = </font><font class="keyword">false</font>; </p><p>	<font class="keyword">boolean </font>visibleInsetsChanged; </p><p>	<font class="keyword">try </font>{ </p><p>		<font class="Comments">//ViewRoot也有一个Surface成员变量，叫mSurface，这个就是代表SurfaceFlinger的客户端 </font></p><p>		<font class="Comments">//ViewRoot在这个Surface上作画，最后将由SurfaceFlinger来合成显示。刚才说了mSurface还没有什么内容。 </font></p><p>		relayoutResult = relayoutWindow(params, viewVisibility, insetsPending);</p><p>		<font class="keyword">private </font><font class="keyword">int </font>relayoutWindow(WindowManager.LayoutParams params, </font><font class="keyword">int </font>viewVisibility, </p><p>		<font class="keyword">boolean </font>insetsPending) </font><font class="keyword">throws </font>RemoteException { </p><p>			<font class="Comments">//relayOut是跨进程调用，mSurface做为参数传进去了，看来离真相越来越近了呀！ </font></p><p>			<font class="keyword">int </font>relayoutResult = sWindowSession.relayout( </p><p>			</font>mWindow, params, (<font class="keyword">int</font>) (mView.mMeasuredWidth * appScale + 0.5f), (</font><font class="keyword">int</font>) (mView.mMeasuredHeight * appScale + 0.5f), viewVisibility, insetsPending, mWinFrame, mPendingContentInsets, mPendingVisibleInsets, mPendingConfiguration, mSurface);</p><p>			<font class="Comments">//mSurface做为参数传进去了。 </font></p><p>		} </p><p>	}</p><p>}</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

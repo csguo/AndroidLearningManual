@@ -1,0 +1,70 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 浅谈相机研发（四）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li class="navcurrentLink"><A href="index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="设备信息" href="index_157.html">设备信息</A></h2>
+
+  <h2><A title="摄像头" href="index_158.html">摄像头</A></h2>
+<UL><li ><A title=Android Camera 模块分析（一） href="show_101_158.html">Android Camera 模块分析（一）</A> </li><li ><A title=Android Camera 模块分析（二） href="show_102_158.html">Android Camera 模块分析（二）</A> </li><li ><A title=Android Camera 模块分析（三） href="show_103_158.html">Android Camera 模块分析（三）</A> </li><li ><A title=Android Camera 模块分析（四） href="show_104_158.html">Android Camera 模块分析（四）</A> </li><li ><A title=Android 浅谈相机研发（一） href="show_105_158.html">Android 浅谈相机研发（一）</A> </li><li ><A title=Android 浅谈相机研发（二） href="show_106_158.html">Android 浅谈相机研发（二）</A> </li><li ><A title=Android 浅谈相机研发（三） href="show_107_158.html">Android 浅谈相机研发（三）</A> </li><li class="currentLink"><A title=Android 浅谈相机研发（四） href="show_108_158.html">Android 浅谈相机研发（四）</A> </li><li ><A title=Android 浅谈相机研发（五） href="show_109_158.html">Android 浅谈相机研发（五）</A> </li><li ><A title=Android获取摄像头的详细介绍 href="show_110_158.html">Android获取摄像头的详细介绍</A> </li><li ><A title=开机启动摄像头的原理 href="show_111_158.html">开机启动摄像头的原理</A> </li></UL>
+  <h2><A title="通讯录" href="index_159.html">通讯录</A></h2>
+
+  <h2><A title="电话" href="index_160.html">电话</A></h2>
+
+  <h2><A title="短信" href="index_161.html">短信</A></h2>
+
+  <h2><A title="传感器" href="index_162.html">传感器</A></h2>
+
+  <h2><A title="定位" href="index_163.html">定位</A></h2>
+
+  <h2><A title="视频系统" href="index_164.html">视频系统</A></h2>
+
+  <h2><A title="音频系统" href="index_165.html">音频系统</A></h2>
+
+  <h2><A title="铃声" href="index_166.html">铃声</A></h2>
+
+  <h2><A title="音量" href="index_167.html">音量</A></h2>
+
+  <h2><A title="录音" href="index_168.html">录音</A></h2>
+
+  <h2><A title="输入法" href="index_169.html">输入法</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 浅谈相机研发（四）</H2>
+<div style="line-height:20px; font-size:14px;"><p>注意，这是必须添加在sd卡上写数据的权限</p><p><pre>&lt;uses-permission android:name=<font class="Fields">"android.permission.WRITE_EXTERNAL_STORAGE"</font>/&gt;</p><p></pre></p><p>(7)能够拍照了，这下子要考虑如何让图片更好看了，这显然是专业人士的强项，但是我们在程序上，也可以做一些处理，向上面的那些，因为我直接把surfaceView当做整体布局，就可能出现屏幕被拉开了，不是很好看，所以这时，就可以不要把surfaceView弄成整体布局，把他弄到到一个布局管理器，在设置相关的参数.</p><p>这是需要注意的是有些参数不能随便乱设，如以下代码：</p><p><pre>Camera.Parameters parames = myCamera.getParameters();<font class="Comments">//获得参数对象</font></p><p>parames.setPictureFormat(PixelFormat.JPEG);<font class="Comments">//设置图片格式</font></p><p>parames.setPreviewSize(640，480);<font class="Comments">//这里面的参数只能是几个特定的参数，否则会报错.(176*144，320*240，352*288，480*360，640*480)</font></p><p>myCamera.setParameters(parames);</p><p></pre></p><p>还有自动对焦，当然有些手机没有这个功能，自动对焦是通过autoFocus()这个方法调用一个自动对焦的接口，并在里面进行处理。</p><p>注意，这个方法必须在startPreview()和stopPreview()中间。</p><p>AutoFocusCallback是自动对焦的接口，实现它必须实现public void onAutoFocus(boolean success， Camera camera)这个方法，所以我们可以将拍照方法放在这里面，然后对焦后再进行拍摄..效果会好很多。</p><p>注意自动对焦需要添加&lt;uses-feature android：name="android.hardware.camera.autofocus" /&gt;</p><p>下面我叫直接把上面的使用例子直接写出。</p><p><pre><font class="keyword">import </font>java.io.BufferedOutputStream;</p><p><font class="keyword">import </font>java.io.File;</p><p><font class="keyword">import </font>java.io.FileOutputStream;</p><p><font class="keyword">import </font>java.io.IOException;</p><p><font class="keyword">import </font>android.app.Activity;</p><p><font class="keyword">import </font>android.content.pm.ActivityInfo;</p><p><font class="keyword">import </font>android.graphics.Bitmap;</p><p><font class="keyword">import </font>android.graphics.BitmapFactory;</p><p><font class="keyword">import </font>android.graphics.PixelFormat;</p><p><font class="keyword">import </font>android.hardware.Camera;</p><p><font class="keyword">import </font>android.hardware.Camera.AutoFocusCallback;</p><p><font class="keyword">import </font>android.hardware.Camera.PictureCallback;</p><p><font class="keyword">import </font>android.os.Bundle;</p><p><font class="keyword">import </font>android.view.SurfaceHolder;</p><p><font class="keyword">import </font>android.view.SurfaceView;</p><p><font class="keyword">import </font>android.view.View;</p><p><font class="keyword">import </font>android.view.Window;</p><p><font class="keyword">import </font>android.view.SurfaceHolder.Callback;</p><p><font class="keyword">import </font>android.view.View.OnClickListener;</p><p><font class="keyword">public </font><font class="keyword">class </font>CameraTest_4 </font><font class="keyword">extends </font>Activity </font><font class="keyword">implements </font>Callback,</p><p>		OnClickListener, AutoFocusCallback {</p><p>	SurfaceView mySurfaceView;<font class="Comments">// surfaceView声明</font></p><p>	SurfaceHolder holder;<font class="Comments">// surfaceHolder声明</font></p><p>	Camera myCamera;<font class="Comments">// 相机声明</font></p><p>	</font>String filePath = <font class="Fields">"/sdcard/wjh.jpg"</font>;<font class="Comments">// 照片保存路径</font></p><p>	<font class="keyword">boolean </font>isClicked = </font><font class="keyword">false</font>;<font class="Comments">// 是否点击标识</font></p><p>	<font class="Comments">// 创建jpeg图片回调数据对象</font></p><p>	</font>PictureCallback jpeg = <font class="keyword">new </font>PictureCallback() {</p><p>		@Override</p><p>		<font class="keyword">public </font><font class="keyword">void </font>onPictureTaken(byte[] data, Camera camera) {</p><p>			<font class="keyword">try </font>{<font class="Comments">// 获得图片</font></p><p>				Bitmap bm = BitmapFactory.decodeByteArray(data, 0, data.length);</p><p>				</font>File file = <font class="keyword">new </font>File(filePath);</p><p>				</font>BufferedOutputStream bos = <font class="keyword">new </font>BufferedOutputStream(</p><p>						<font class="keyword">new </font>FileOutputStream(file));</p><p>				bm.compress(Bitmap.CompressFormat.JPEG, 100, bos);<font class="Comments">// 将图片压缩到流中</font></p><p>				bos.flush();<font class="Comments">// 输出</font></p><p>				bos.close();<font class="Comments">// 关闭</font></p><p>			</font>} <font class="keyword">catch </font>(Exception e) {</p><p>				e.printStackTrace();</p><p>			}</p><p>		}</p><p>	};</p><p>	<font class="Comments">/** Called when the activity is first created. */</font></p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onCreate(Bundle savedInstanceState) {</p><p>		<font class="keyword">super</font>.onCreate(savedInstanceState);</p><p>		requestWindowFeature(Window.FEATURE_NO_TITLE);<font class="Comments">// 无标题</font></p><p>		<font class="Comments">// 设置拍摄方向</font></p><p>		<font class="keyword">this</font>.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);</p><p>		setContentView(R.layout.main);</p><p>		<font class="Comments">// 获得控件</font></p><p>		mySurfaceView = (SurfaceView) findViewById(R.id.surfaceView1);</p><p>		<font class="Comments">// 获得句柄</font></p><p>		holder = mySurfaceView.getHolder();</p><p>		<font class="Comments">// 添加回调</font></p><p>		</font>holder.addCallback(<font class="keyword">this</font>);</p><p>		<font class="Comments">// 设置类型</font></p><p>		holder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);</p><p>		<font class="Comments">// 设置监听</font></p><p>		</font>mySurfaceView.setOnClickListener(<font class="keyword">this</font>);</p><p>	}</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>surfaceChanged(SurfaceHolder holder, </font><font class="keyword">int </font>format, </font><font class="keyword">int </font>width,</p><p>			<font class="keyword">int </font>height) {</p><p>		<font class="Comments">// 设置参数并开始预览</font></p><p>		Camera.Parameters params = myCamera.getParameters();</p><p>		params.setPictureFormat(PixelFormat.JPEG);</p><p>		params.setPreviewSize(640, 480);</p><p>		myCamera.setParameters(params);</p><p>		myCamera.startPreview();</p><p>	}</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>surfaceCreated(SurfaceHolder holder) {</p><p>		<font class="Comments">// 开启相机</font></p><p>		<font class="keyword">if </font>(myCamera == </font><font class="keyword">null</font>) {</p><p>			myCamera = Camera.open();</p><p>			<font class="keyword">try </font>{</p><p>				myCamera.setPreviewDisplay(holder);</p><p>			</font>} <font class="keyword">catch </font>(IOException e) {</p><p>				e.printStackTrace();</p><p>			}</p><p>		}</p><p>	}</p><p>}</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

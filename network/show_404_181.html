@@ -1,0 +1,64 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android开发之socket通信向PC机发信息获取本机IP_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li class="navcurrentLink"><A href="index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="3G" href="index_177.html">3G</A></h2>
+
+  <h2><A title="WIFI" href="index_178.html">WIFI</A></h2>
+
+  <h2><A title="蓝牙" href="index_179.html">蓝牙</A></h2>
+
+  <h2><A title="HTTP协议" href="index_180.html">HTTP协议</A></h2>
+
+  <h2><A title="Socket" href="index_181.html">Socket</A></h2>
+<UL><li ><A title=Android 浅谈Socket（一） href="show_401_181.html">Android 浅谈Socket（一）</A> </li><li ><A title=Android 浅谈Socket（二） href="show_402_181.html">Android 浅谈Socket（二）</A> </li><li ><A title=Socket编程(多线程、双向通信) href="show_403_181.html">Socket编程(多线程、双向通信)</A> </li><li class="currentLink"><A title=Android开发之socket通信向PC机发信息获取本机IP href="show_404_181.html">Android开发之socket通信向PC机发信息获取本机IP</A> </li><li ><A title=Http和Socket区别 href="show_405_181.html">Http和Socket区别</A> </li><li ><A title=PC客户端与Android服务端的Socket同步通信（一） href="show_406_181.html">PC客户端与Android服务端的Socket同步通信（一）</A> </li><li ><A title=PC客户端与Android服务端的Socket同步通信（二） href="show_407_181.html">PC客户端与Android服务端的Socket同步通信（二）</A> </li><li ><A title=PC客户端与Android服务端的Socket同步通信（三） href="show_408_181.html">PC客户端与Android服务端的Socket同步通信（三）</A> </li><li ><A title=Android解析socket流 href="show_409_181.html">Android解析socket流</A> </li><li ><A title=Android 实例Socket发送Http请求 href="show_410_181.html">Android 实例Socket发送Http请求</A> </li><li ><A title=Android socket和seversocket的用法 href="show_411_181.html">Android socket和seversocket的用法</A> </li><li ><A title=Android与PC的socket通信 href="show_412_181.html">Android与PC的socket通信</A> </li><li ><A title=测试Android作为客户端使用socket网络编程连接到数据库 href="show_413_181.html">测试Android作为客户端使用socket网络编程连接到数据库</A> </li></UL>
+  <h2><A title="HTML与HTML5" href="index_182.html">HTML与HTML5</A></h2>
+
+  <h2><A title="JavaScript" href="index_183.html">JavaScript</A></h2>
+
+  <h2><A title="Email" href="index_184.html">Email</A></h2>
+
+  <h2><A title="NFC" href="index_185.html">NFC</A></h2>
+
+  <h2><A title="Web Service" href="index_186.html">Web Service</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android开发之socket通信向PC机发信息获取本机IP</H2>
+<div style="line-height:20px; font-size:14px;"><p>小知识点：UDP协议和TCP协议的不同。UDP是把数据都打成数据包，数据包上自带通信的地址，但是数据包发出去之后UDP协议不能保证你能否收到。而TCP协议要求接收方收到数据后给个回应，当发送重要数据的时候就可以选择TCP协议。UDP发送数据的量是有限的，而TCP是没有限制的，当然这导致UDP很快，TCP相对慢点。根据不同的情况，有不同的选择。TCP能保证数据传输的成功性，UDP只传输，不保证传输的正确性。</p><p>一，通信的基本结构：客户端和服务器端 </p><p>客户端这边是Socket类：客户端指定给某个服务器端上的某个端口发送消息。比如向56.152.16.5这台机器的19001号端口发送消息。</p><p>服务器端是ServiceSocket类：服务器端就在19001号这个端口上监听，一旦有消息来立刻捕捉还可以有所回应。</p><p>客户端通过OutputStream向服务器端发送数据，服务器端通过InputStream获取数据，即OutputStream（发）——&gt;InputStream（收） 如果服务器端想回发消息也是同样的道理。</p><p>二，实例讲解编写服务器端和客户端</p><p>1，服务器端：这是个纯java的project，单独在一个工程</p><p><pre><font class="keyword">public </font><font class="keyword">class </font>ServerSocketText {</p><p>	<font class="keyword">public </font><font class="keyword">static </font><font class="keyword">void </font>main(String[] args) {</p><p>		<font class="keyword">new </font>ServerThread().start();</p><p>	}</p><p>}</p><p><font class="Comments">// 创建一个线程在后台监听</font></p><p><font class="keyword">class </font>ServerThread </font><font class="keyword">extends </font>Thread {</p><p>	<font class="keyword">private </font><font class="keyword">static </font><font class="keyword">int </font>Port = 19001;</p><p>	</font>ServerSocket serversocket = <font class="keyword">null</font>;</p><p>	<font class="keyword">public </font><font class="keyword">void </font>run() {</p><p>		<font class="keyword">try </font>{</p><p>			<font class="Comments">// 创建一个serversocket对象，并让他在Port端口监听</font></p><p>			</font>serversocket = <font class="keyword">new </font>ServerSocket(Port);</p><p>			<font class="keyword">while </font>(</font><font class="keyword">true</font>) {</p><p>				<font class="Comments">// 调用serversocket的accept()方法，接收客户端发送的请求</font></p><p>				Socket socket = serversocket.accept();</p><p>				</font>BufferedReader buffer = <font class="keyword">new </font>BufferedReader(</p><p>						<font class="keyword">new </font>InputStreamReader(socket.getInputStream()));</p><p>				<font class="Comments">// 读取数据</font></p><p>				String msg = buffer.readLine();</p><p>				</font>System.<font class="Fields">out</font>.println(</font><font class="Fields">"msg:"</font> + msg);</p><p>			}</p><p>		</font>} <font class="keyword">catch </font>(IOException e) {</p><p>			e.printStackTrace();</p><p>		} finally {</p><p>			<font class="keyword">try </font>{</p><p>				serversocket.close();</p><p>			</font>} <font class="keyword">catch </font>(IOException e) {</p><p>				e.printStackTrace();</p><p>			}</p><p>		}</p><p>	}</p><p>}</p><p></pre></p><p>2，客户端：这是个android的客户端，用于发送消息</p><p><pre><font class="keyword">public </font><font class="keyword">class </font>Client </font><font class="keyword">extends </font>Activity {</p><p>	<font class="keyword">private </font><font class="keyword">static </font>String IpAddress = <font class="Fields">"56.152.16.5"</font>;</p><p>	<font class="keyword">private </font><font class="keyword">static </font><font class="keyword">int </font>Port = 10000;</p><p>	<font class="keyword">private </font>EditText edittext = </font><font class="keyword">null</font>;</p><p>	<font class="keyword">private </font>Button send = </font><font class="keyword">null</font>;</p><p>	</font>Socket socket = <font class="keyword">null</font>;</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onCreate(Bundle savedInstanceState) {</p><p>		<font class="keyword">super</font>.onCreate(savedInstanceState);</p><p>		setContentView(R.layout.main);</p><p>		edittext = (EditText) findViewById(R.id.edittext);</p><p>		send = (Button) findViewById(R.id.send);</p><p>		</font>send.setOnClickListener(<font class="keyword">new </font>OnClickListener() {</p><p>			@Override</p><p>			<font class="keyword">public </font><font class="keyword">void </font>onClick(View v) {</p><p>				sendMsg();</p><p>			}</p><p>		});</p><p>	}</p><p>	<font class="Comments">// 发送信息</font></p><p>	<font class="keyword">public </font><font class="keyword">void </font>sendMsg() {</p><p>		<font class="keyword">try </font>{</p><p>			<font class="Comments">// 创建socket对象，指定服务器端地址和端口号</font></p><p>			</font>socket = <font class="keyword">new </font>Socket(IpAddress, Port);</p><p>			<font class="Comments">// 获取 Client 端的输出流</font></p><p>			</font>PrintWriter out = <font class="keyword">new </font>PrintWriter(</font><font class="keyword">new </font>BufferedWriter(</p><p>					<font class="keyword">new </font>OutputStreamWriter(socket.getOutputStream())), </font><font class="keyword">true</font>);</p><p>			<font class="Comments">// 填充信息</font></p><p>			out.println(edittext.getText());</p><p>			</font>System.<font class="Fields">out</font>.println(</font><font class="Fields">"msg="</font> + edittext.getText());</p><p>			<font class="Comments">// 关闭</font></p><p>		</font>} <font class="keyword">catch </font>(UnknownHostException e1) {</p><p>			e1.printStackTrace();</p><p>		</font>} <font class="keyword">catch </font>(IOException e1) {</p><p>			e1.printStackTrace();</p><p>		} finally {</p><p>			<font class="keyword">try </font>{</p><p>				socket.close();</p><p>			</font>} <font class="keyword">catch </font>(IOException e) {</p><p>				e.printStackTrace();</p><p>			}</p><p>		}</p><p>	}</p><p>}</p><p></pre></p><p>3，注意事项：</p><p>记得在AndroidManifest.xml中添加你的网络权限</p><p>&lt;uses-permission android:name="android.permission.INTERNET"/&gt;</p><p>activity布局就是一个edittext和已个button，所以没贴出代码。</p><p>运行时最好先android 在服务器端，这样客户端发消息时才方便查看。</p><p>4，知识扩充：获取android手机的ip地址</p><p>只要能获取到ip地址的话，我们就可以让PC机和android实现聊天功能。但是这里我就不演示了怎么实现了。</p><p><pre><font class="keyword">public </font>String getLocalIpAddress() {</p><p>	<font class="keyword">try </font>{</p><p>		<font class="keyword">for </font>(Enumeration&lt;NetworkInterface&gt; en = NetworkInterface</p><p>				.getNetworkInterfaces();</p><p>		en.hasMoreElements();) {</p><p>			NetworkInterface intf = en.nextElement();</p><p>			<font class="keyword">for </font>(Enumeration&lt;InetAddress&gt; enumIpAddr = intf</p><p>					.getInetAddresses();</p><p>			enumIpAddr.hasMoreElements();) {</p><p>				InetAddress inetAddress = enumIpAddr.nextElement();</p><p>				<font class="keyword">if </font>(!inetAddress.isLoopbackAddress()) {</p><p>					<font class="keyword">return </font>inetAddress.getHostAddress().toString();</p><p>				}</p><p>			}</p><p>		}</p><p>	</font>} <font class="keyword">catch </font>(SocketException ex) {</p><p>	}</p><p>	<font class="keyword">return </font><font class="keyword">null</font>;</p><p>}</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

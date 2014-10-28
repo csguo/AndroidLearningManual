@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android Service 生命期详解_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li class="navcurrentLink"><A href="index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Activity" href="index_112.html">Activity</A></h2>
+
+  <h2><A title="Intent" href="index_113.html">Intent</A></h2>
+
+  <h2><A title="Service" href="index_114.html">Service</A></h2>
+<UL><li ><A title=Android Service (一) href="show_201_114.html">Android Service (一)</A> </li><li ><A title=Android Service (二) href="show_202_114.html">Android Service (二)</A> </li><li ><A title=Android Service生命周期 href="show_203_114.html">Android Service生命周期</A> </li><li class="currentLink"><A title=Android Service 生命期详解 href="show_204_114.html">Android Service 生命期详解</A> </li><li ><A title=Service的启动与运行 href="show_205_114.html">Service的启动与运行</A> </li><li ><A title=startservice和bindservice详解 href="show_206_114.html">startservice和bindservice详解</A> </li><li ><A title=Android Service 通信 href="show_207_114.html">Android Service 通信</A> </li><li ><A title=Service 与 Thread 的区分详解 href="show_208_114.html">Service 与 Thread 的区分详解</A> </li><li ><A title=判断一个指定的Service是否存在的方法 href="show_209_114.html">判断一个指定的Service是否存在的方法</A> </li><li ><A title=Android Service 代码实例 href="show_210_114.html">Android Service 代码实例</A> </li><li ><A title=Android Service 详解简单音乐播放器 href="show_211_114.html">Android Service 详解简单音乐播放器</A> </li></UL>
+  <h2><A title="Content Provider" href="index_115.html">Content Provider</A></h2>
+
+  <h2><A title="BroadcastReceiver" href="index_116.html">BroadcastReceiver</A></h2>
+
+  <h2><A title="AsyncTask" href="index_117.html">AsyncTask</A></h2>
+
+  <h2><A title="Handler" href="index_118.html">Handler</A></h2>
+
+  <h2><A title="Thread" href="index_119.html">Thread</A></h2>
+
+  <h2><A title="Permission" href="index_120.html">Permission</A></h2>
+
+  <h2><A title="AIDL" href="index_121.html">AIDL</A></h2>
+
+  <h2><A title="Json" href="index_122.html">Json</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android Service 生命期详解</H2>
+<div style="line-height:20px; font-size:14px;"><p>一个从service播放音乐的音乐播放器，应被设置为前台运行，因为用户会明确地注意它的运行．在状态栏中的通知可能会显示当前的歌曲并且允许用户启动一个activity来与音乐播放器交互。</p><p><pre>Notification notification = <font class="keyword">new </font>Notification(R.drawable.icon, getText(R.string.ticker_text),</p><p>System.currentTimeMillis());</p><p>Intent notificationIntent = <font class="keyword">new </font>Intent(</font><font class="keyword">this</font>， ExampleActivity.</font><font class="keyword">class</font>);</p><p>PendingIntent pendingIntent = PendingIntent.getActivity(<font class="keyword">this</font>, 0, notificationIntent, 0);</p><p>notification.setLatestEventInfo(<font class="keyword">this</font>, getText(R.string.notification_title),</p><p>getText(R.string.notification_message),pendingIntent);</p><p>startForeground(ONGOING_NOTIFICATION,notification);</p><p></pre></p><p>要请求你的service运行于前台，调用startForeground()．此方法有两个参数：一个整数唯一的标识一个通知，和这个用于状态栏的通知，例如：</p><p>要从前台移除service，调用stopForeground()。这个方法有boolean型参数，表明是否也从状态栏删除对应的通知．这个方法不会停掉service。然而，如果你停止了正在前台运行的service，这个通知也会被删除。</p><p>注意：方法startForeground()和方法stopForeground()是从Android2.0 (API Level 5)引入的。为了在早期版本是于前台运行你的service，你必须使用以前的那个setForeground()方法—见startForeground()的API文档查看如何提供与旧版本的兼容性。</p><p style="color:#3333FF;">管理Service的生命期</p><p>一个service的生命期比一个activity要简单得多。然而，你依然需要密切关注你的service是如何被创建又是如何被销毁的，因为一个service可以运行于后台而用户看不到它。</p><p>service的生命期—从它被创建到它被销毁—有两条路可走：</p><p style="color:#3333FF;">一个＂启动的＂service</p><p>在其它组件调用startService()时创建。然后service就长期运行并且必须调用stopSelf()自己停止自己。另一个组件也可以调用stopService()来停止它。当service停止后，系统就销毁它。</p><p style="color:#3333FF;">一个绑定的service</p><p>当另一个组件(一个客户端)调用bindService()时创建。然后客户端通过一个IBinder接口与service通信。客户端可以调用unbindService()停止通信。多个客户端可以绑定到同一个service并且当所有的客户端都解除绑定后，系统就销毁掉这个service。(service不需停止自己。)</p><p>这两条路并不是完全分离的。也就是，你是可以绑定到用startService()启动的service的。例如，一个后台音乐service在通过传入指明要播放的音乐的intent来调用startService()后启动。之后，当用户想对播放器进行一些操作或要获取当前歌曲的信息时，一个activity可以通过调用bindService()绑定到service。在此情况下，stopService()或stopSelf()不会真正的停止service，除非所有的客户端都取消绑定了。</p><p style="color:#3333FF;">实现生命期回调方法</p><p>就像activity，service也具有生命期回调方法，用它们你可以监视service的状态的变化并且在合适的时机做一些工作。下面的框架代码演示了每个生命期方法的实现：</p><p><pre><font class="keyword">import </font>android.app.Service;</p><p><font class="keyword">import </font>android.content.Intent;</p><p><font class="keyword">import </font>android.os.IBinder;</p><p><font class="keyword">public </font><font class="keyword">class </font>ExampleService </font><font class="keyword">extends </font>Service {</p><p>	<font class="keyword">int </font>mStartMode; <font class="Comments">// 表明在service被杀后的行为</font></p><p>	IBinder mBinder; <font class="Comments">// 客户端绑定到的接口</font></p><p>	<font class="keyword">boolean </font>mAllowRebind; <font class="Comments">// 表明onRebind是否应被使用</font></p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onCreate() {</p><p>		<font class="Comments">// The service is being created</font></p><p>	}</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">int </font>onStartCommand(Intent intent, </font><font class="keyword">int </font>flags, </font><font class="keyword">int </font>startId) {</p><p>		<font class="Comments">// service 正在启动,在调用startService()期间被调用</font></p><p>		<font class="keyword">return </font>mStartMode;</p><p>	}</p><p>	@Override</p><p>	<font class="keyword">public </font>IBinder onBind(Intent intent) {</p><p>		<font class="Comments">// 一个客户端通过bindService()绑定到这个service</font></p><p>		<font class="keyword">return </font>mBinder;</p><p>	}</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">boolean </font>onUnbind(Intent intent) {</p><p>		<font class="Comments">// 所有的客户端使用unbindService()解除了绑定</font></p><p>		<font class="keyword">return </font>mAllowRebind;</p><p>	}</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onRebind(Intent intent) {</p><p>		<font class="Comments">// 一个客户端在调用onUnbind()之后,正使用bindService()绑定到service</font></p><p>	}</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onDestroy() {</p><p>		<font class="Comments">// service不再被使用并将被销毁</font></p><p>	}</p><p>}</p><p></pre></p><p>注：不像activity的生命期回调方法们，你不需要调用父类的相应实现。</p><p><img src="../img/component_service/04_service.jpg"></p><p>图 service的生命期。</p><p>左图显示了用startService()创建的service的生命期，右图显示了用bindService()创建的service的生命期。</p><p>通过实现这些方法们，你可以监视service生命期的两个嵌套循环：</p><p>service的一生介于调用onCreate()的时间和onDestroy()返回的时间。就像activity，service在onCreate()中做初始化工作并且onDestroy()中释放所有资源。例如，一个音乐播放service可以在onCreate()中创建音乐播放的线程，之后在onDestroy()中停止这个线程。</p><p>onCreate()和onDestroy()方法被所有的service调用，不管它们通过startService()还是bindService()创建。</p><p>service的活动生命期开始于onStartCommand()或onBind()被调用时．每个方法各自处理传入的Intent。</p><p>如果service是＂启动的＂，活动生命期就结束于整个生命期的结束时(即使onStartCommand()返回后，service依然处于活动状态)。如果是一个绑定的service，它的活动生命期在onUnbind()返回后结束。</p><p>注：尽管一个＂启动的＂service在调用stopSelf()或stopService()时结束，但并没有单独的回调对应这些停止方法(没有类似于onStop()的回调)。所以，除非service被绑定到一个客户端，系统就会在停止时销毁service—onDestroy()是唯一收到的回调。</p><p>尽管图示分开了通过startService()和bindService()创建的service，但记住任何service，不管它是怎样启动的，都是可能允许绑定的。所以一个从onStartCommand()启动的service(客户端调用了startService())仍可以接收onBind()调用(当客户端调用bindService()时)。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

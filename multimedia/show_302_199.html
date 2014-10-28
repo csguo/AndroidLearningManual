@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android Bitmap类相关学习_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li class="navcurrentLink"><A href="index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Android多媒体功能" href="index_196.html">Android多媒体功能</A></h2>
+
+  <h2><A title="Android多媒体之2D" href="index_197.html">Android多媒体之2D</A></h2>
+
+  <h2><A title="Android多媒体之3D" href="index_198.html">Android多媒体之3D</A></h2>
+
+  <h2><A title="Android多媒体之Bitmap" href="index_199.html">Android多媒体之Bitmap</A></h2>
+<UL><li class="currentLink"><A title=Android Bitmap类相关学习 href="show_302_199.html">Android Bitmap类相关学习</A> </li><li ><A title=Android里的BitMap（一） href="show_303_199.html">Android里的BitMap（一）</A> </li><li ><A title=Android里的BitMap（二） href="show_304_199.html">Android里的BitMap（二）</A> </li><li ><A title=Android里的BitMap（三） href="show_305_199.html">Android里的BitMap（三）</A> </li><li ><A title=Android里的BitMap（四） href="show_306_199.html">Android里的BitMap（四）</A> </li><li ><A title=Android bitmap内存溢出（一） href="show_307_199.html">Android bitmap内存溢出（一）</A> </li><li ><A title=Android bitmap内存溢出（二） href="show_308_199.html">Android bitmap内存溢出（二）</A> </li><li ><A title=Android 避免bitmap内存限制 href="show_309_199.html">Android 避免bitmap内存限制</A> </li><li ><A title=Bitmap导致的OOM终极解决方案 href="show_310_199.html">Bitmap导致的OOM终极解决方案</A> </li><li ><A title=Bitmap的用法（浅谈） href="show_311_199.html">Bitmap的用法（浅谈）</A> </li><li ><A title=Android 两种方法获取Bitmap href="show_312_199.html">Android 两种方法获取Bitmap</A> </li><li ><A title=Android整合两个Bitmap href="show_313_199.html">Android整合两个Bitmap</A> </li><li ><A title=通过纯RGB数据流生成Bitmap对象 href="show_314_199.html">通过纯RGB数据流生成Bitmap对象</A> </li><li ><A title=Bitmap总结 href="show_315_199.html">Bitmap总结</A> </li></UL>
+  <h2><A title="Android多媒体之Canvas" href="index_200.html">Android多媒体之Canvas</A></h2>
+
+  <h2><A title="Android多媒体之Drawable" href="index_201.html">Android多媒体之Drawable</A></h2>
+
+  <h2><A title="Android多媒体之gif" href="index_202.html">Android多媒体之gif</A></h2>
+
+  <h2><A title="Android多媒体之MediaStore" href="index_203.html">Android多媒体之MediaStore</A></h2>
+
+  <h2><A title="Android多媒体之动画" href="index_204.html">Android多媒体之动画</A></h2>
+
+  <h2><A title="Android多媒体之分辨率" href="index_205.html">Android多媒体之分辨率</A></h2>
+
+  <h2><A title="Android多媒体之分屏幕" href="index_206.html">Android多媒体之分屏幕</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android Bitmap类相关学习</H2>
+<div style="line-height:20px; font-size:14px;"><p>我们现在说的这个类是非常重要的，不管你做什么都都得用到Bitmap类，我们就来看看，Bitmap类都有哪些是必须要掌握的，Paint类是我们必须要掌握的。p.setAlpha(0x80);括号里的0x00表示的就是完全透明。要是0xff那就表示不透明。ascent 表示到基准线之上的距离、descent 表示到基准线之下的距离，下面我们就具体了解一下Bitmap类。</p><p><pre><font class="keyword">private </font><font class="keyword">static </font><font class="keyword">class </font>SampleView </font><font class="keyword">extends </font>View {</p><p>	<font class="keyword">private </font>Bitmap mBitmap;</p><p>	<font class="keyword">private </font>Bitmap mBitmap2;</p><p>	<font class="keyword">private </font>Bitmap mBitmap3;</p><p>	<font class="keyword">private </font>Shader mShader;</p><p>	<font class="keyword">private </font><font class="keyword">static </font><font class="keyword">void </font>drawIntoBitmap(Bitmap bm) {</p><p>		<font class="keyword">float </font>x = bm.getWidth();</p><p>		<font class="keyword">float </font>y = bm.getHeight();</p><p>		</font>Canvas c = <font class="keyword">new </font>Canvas(bm);</p><p>		</font>Pa<font class="keyword">int </font>p = </font><font class="keyword">new </font>Paint();</p><p>		</font>/* Paint类的一个边缘光滑的方法，<font class="keyword">true</font>表示边缘光滑 */</p><p>		</font>p.setAntiAlias(<font class="keyword">true</font>);</p><p>		p.setAlpha(0x80);<font class="Comments">// 设置颜色透明度为十六进制80(半透明),0x00全透明，0xFF不透明</font></p><p>		/* 在位图矩阵区域内画一个相切的圆 */</p><p>		c.drawCircle(x / 2, y / 2, x / 2, p);</p><p>		p.setAlpha(0x30);</p><p>		/*</p><p>		 <font class="Comments">* 用指定的PorterDuff模型创建xformode，PorterDuff.Mode.SRC 表示下面要绘制的文本应在上面绘制的圆的上层</font></p><p>		 <font class="Comments">*/</font></p><p>		</font>p.setXfermode(<font class="keyword">new </font>PorterDuffXfermode(PorterDuff.Mode.SRC));</p><p>		p.setTextSize(60);</p><p>		/*</p><p>		 <font class="Comments">* Paint.Align 是文本对齐方式的一个枚举类 CENTER表示文本居中 LEFT 表示做对齐 RIGHT 表示右对齐</font></p><p>		 <font class="Comments">*/</font></p><p>		p.setTextAlign(Paint.Align.CENTER);</p><p>		Paint.FontMetrics fm = p.getFontMetrics();</p><p>		</font>c.drawText(<font class="Fields">"Alpha"</font>, x / 2, (y - fm.ascent) / 2, p);</p><p>	}</p><p>	<font class="keyword">public </font>SampleView(Context context) {</p><p>		<font class="keyword">super</font>(context);</p><p>		</font>setFocusable(<font class="keyword">true</font>);</p><p>		/* 取得资源文件的输入流 */</p><p>		InputStream is = context.getResources().openRawResource(</p><p>				R.drawable.app_sample_code);</p><p>		/*</p><p>		 <font class="Comments">* BitmapFactory 是位图的一个工厂类 从各种各样的位图对象中创建位图对象，包括文件，流，字节数组。</font></p><p>		 <font class="Comments">*/</font></p><p>		mBitmap = BitmapFactory.decodeStream(is);</p><p>		/*</p><p>		 <font class="Comments">* extractAlpha()位图的这个方法是通过提取 了原始位图的透明通道值重建新的位图</font></p><p>		 <font class="Comments">*/</font></p><p>		mBitmap2 = mBitmap.extractAlpha();</p><p>		/*</p><p>		 <font class="Comments">* 通过位图的宽度和高度已经位图的颜色配置来创建位图 Bitmap.Config是内部枚举类表示位图的颜色配置</font></p><p>		 <font class="Comments">* 它的颜色配置有ALPHA_8、ARGB_4444、ARGB_8888、RGB_565</font></p><p>		 <font class="Comments">*/</font></p><p>		mBitmap3 = Bitmap.createBitmap(200, 200, Bitmap.Config.ALPHA_8);</p><p>		drawIntoBitmap(mBitmap3);</p><p>	}</p><p>}</p><p></pre></p><p>我们从注释上就可以非常明白的了解Bitmap类这个类了，总之这个类在android中用到的地方非常的多，要是开发什么游戏或软件，那就不可避免要用到Bitmap类。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

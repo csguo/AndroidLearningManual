@@ -1,0 +1,64 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android SDK 中Android.net.wifi简要分析_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li class="navcurrentLink"><A href="index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="3G" href="index_177.html">3G</A></h2>
+
+  <h2><A title="WIFI" href="index_178.html">WIFI</A></h2>
+<UL><li ><A title=Android中的WIFI模块（一） href="show_101_178.html">Android中的WIFI模块（一）</A> </li><li ><A title=Android中的WIFI模块（二） href="show_102_178.html">Android中的WIFI模块（二）</A> </li><li ><A title=Android中的WIFI模块（三） href="show_103_178.html">Android中的WIFI模块（三）</A> </li><li ><A title=Android中的WIFI模块（四） href="show_104_178.html">Android中的WIFI模块（四）</A> </li><li ><A title=Android WIFI网络操作 href="show_105_178.html">Android WIFI网络操作</A> </li><li ><A title=Android中的Wifi介绍作 href="show_106_178.html">Android中的Wifi介绍作</A> </li><li ><A title=Android WIFI检测与设置 href="show_107_178.html">Android WIFI检测与设置</A> </li><li ><A title=Android 对Wifi进行操作 href="show_108_178.html">Android 对Wifi进行操作</A> </li><li class="currentLink"><A title=Android SDK 中Android.net.wifi简要分析 href="show_109_178.html">Android SDK 中Android.net.wifi简要分析</A> </li><li ><A title=Android WIFI的打开与关闭WifiManager对象的使用 href="show_110_178.html">Android WIFI的打开与关闭WifiManager对象的使用</A> </li><li ><A title=Android Wifi方法大全 href="show_111_178.html">Android Wifi方法大全</A> </li><li ><A title=Android 大家常用的WIFI href="show_112_178.html">Android 大家常用的WIFI</A> </li><li ><A title=Android 自带的wifi移植 href="show_113_178.html">Android 自带的wifi移植</A> </li><li ><A title=关于WIFI的开启关闭与连接热点 href="show_114_178.html">关于WIFI的开启关闭与连接热点</A> </li><li ><A title=GPS、WIFI、GPRS开关问题 href="show_115_178.html">GPS、WIFI、GPRS开关问题</A> </li><li ><A title=Android平台中Wifi的初始化 href="show_116_178.html">Android平台中Wifi的初始化</A> </li></UL>
+  <h2><A title="蓝牙" href="index_179.html">蓝牙</A></h2>
+
+  <h2><A title="HTTP协议" href="index_180.html">HTTP协议</A></h2>
+
+  <h2><A title="Socket" href="index_181.html">Socket</A></h2>
+
+  <h2><A title="HTML与HTML5" href="index_182.html">HTML与HTML5</A></h2>
+
+  <h2><A title="JavaScript" href="index_183.html">JavaScript</A></h2>
+
+  <h2><A title="Email" href="index_184.html">Email</A></h2>
+
+  <h2><A title="NFC" href="index_185.html">NFC</A></h2>
+
+  <h2><A title="Web Service" href="index_186.html">Web Service</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android SDK 中Android.net.wifi简要分析</H2>
+<div style="line-height:20px; font-size:14px;"><p>这里列了很多，但是大致可以分为四个主要的类ScanResult wifiConfiguration WifiInfo WifiManager</p><p>(1)ScanResult，主要是通过wifi 硬件的扫描来获取一些周边的wifi 热点的信息。</p><p>在我们进行wifi 搜索的时候，一般会搜到这些信息，首先是接入点名字、接入点信息的强弱、还有接入点使用的安全模式，是WPA、WPE。</p><p>打开这个类，我们可以看到以下几个信息</p><p>BSSID 接入点的地址，这里主要是指小范围几个无线设备相连接所获取的地址，比如说两台笔记本通过无线网卡进行连接，双方的无线网卡分配的地址。</p><p>SSID 网络的名字，当我们搜索一个网络时，就是靠这个来区分每个不同的网络接入点。</p><p>Capabilities 网络接入的性能，这里主要是来判断网络的加密方式等。</p><p>Frequency频率，每一个频道交互的MHz数。</p><p>Level 等级，主要来判断网络连接的优先数。</p><p>这里只提供了一个方法，就是将获得信息编程字符串toString()。</p><p>(2)wifiConfiguration 在我们连通一个wifi 接入点的时候，需要获取到的一些信息。大家可以跟我们有线的设备进行对比一下。</p><p>这里的数据相对来说比较复杂一下。</p><p>六个子类</p><p><pre>WifiConfiguration.AuthAlgorthm 用来判断加密方法。</p><p>WifiConfiguration.GroupCipher 获取使用GroupCipher 的方法来进行加密。</p><p>WifiConfiguration.KeyMgmt 获取使用KeyMgmt 进行。</p><p>WifiConfiguration.PairwiseCipher 获取使用WPA 方式的加密。</p><p>WifiConfiguration.Protocol 获取使用哪一种协议进行加密。</p><p>wifiConfiguration.Status 获取当前网络的状态。</p><p></pre></p><p>对于上述加密感兴趣的朋友，可以在网上搜索相关的内容。</p><p>(3)WifiInfo 在我们的wifi 已经连通了以后，可以通过这个类获得一些已经连通的wifi 连接的信息获取当前链接的信息，这里信息就比较简单了，这里简单介绍一下这里的方法:</p><p><pre>getBSSID() 获取BSSID</p><p>getDetailedStateOf() 获取客户端的连通性</p><p>getHiddenSSID() 获得SSID 是否被隐藏</p><p>getIpAddress() 获取IP 地址</p><p>getLinkSpeed() 获得连接的速度</p><p>getMacAddress() 获得Mac 地址</p><p>getRssi() 获得802.11n 网络的信号</p><p>getSSID() 获得SSID</p><p>getSupplicanState() 返回具体客户端状态的信息</p><p></pre></p><p>(4)wifiManager这个不用说，就是用来管理我们的wifi连接，这里已经定义好了一些类，可以供我们使用。这里来说相对复杂，里面的内容比较多，但是通过字面意思，我们还是可以获得很多相关的信息。这个类里面预先定义了许多常量，我们可以直接使用，不用再次创建。</p><p>这里还是简单介绍一下这里的方法：</p><p><pre>addNetwork(WifiConfiguration config) 通过获取到的网络的链接状态信息，来添加网络</p><p>calculateSignalLevel(int rssi , int numLevels) 计算信号的等级</p><p>compareSignalLevel(int rssiA, int rssiB) 对比连接A 和连接B</p><p>createWifiLock(int lockType, String tag) 创建一个wifi 锁，锁定当前的wifi 连接</p><p>disableNetwork(int netId) 让一个网络连接失效</p><p>disconnect() 断开连接</p><p>enableNetwork(int netId, Boolean disableOthers) 连接一个连接</p><p>getConfiguredNetworks() 获取网络连接的状态</p><p>getConnectionInfo() 获取当前连接的信息</p><p>getDhcpInfo() 获取DHCP 的信息</p><p>getScanResulats() 获取扫描测试的结果</p><p>getWifiState() 获取一个wifi 接入点是否有效</p><p>isWifiEnabled() 判断一个wifi 连接是否有效</p><p>pingSupplicant() ping 一个连接，判断是否能连通</p><p>ressociate() 即便连接没有准备好，也要连通</p><p>reconnect() 如果连接准备好了，连通</p><p>removeNetwork() 移除某一个网络</p><p>saveConfiguration() 保留一个配置信息</p><p>setWifiEnabled() 让一个连接有效</p><p>startScan() 开始扫描</p><p>updateNetwork(WifiConfiguration config) 更新一个网络连接的信息</p><p></pre></p><p>此外wifiManaer 还提供了一个内部的子类，也就是wifiManagerLock，WifiManagerLock 的作用是这样的，在普通的状态下，如果我们的wifi 的状态处于闲置，那么网络的连通，将会暂时中断。但是如果我们把当前的网络状态锁上，那么wifi 连通将会保持在一定状态，当然接触锁定之后，就会恢复常态。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

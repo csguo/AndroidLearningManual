@@ -1,0 +1,64 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 浅谈Socket（一）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li class="navcurrentLink"><A href="index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="3G" href="index_177.html">3G</A></h2>
+
+  <h2><A title="WIFI" href="index_178.html">WIFI</A></h2>
+
+  <h2><A title="蓝牙" href="index_179.html">蓝牙</A></h2>
+
+  <h2><A title="HTTP协议" href="index_180.html">HTTP协议</A></h2>
+
+  <h2><A title="Socket" href="index_181.html">Socket</A></h2>
+<UL><li class="currentLink"><A title=Android 浅谈Socket（一） href="show_401_181.html">Android 浅谈Socket（一）</A> </li><li ><A title=Android 浅谈Socket（二） href="show_402_181.html">Android 浅谈Socket（二）</A> </li><li ><A title=Socket编程(多线程、双向通信) href="show_403_181.html">Socket编程(多线程、双向通信)</A> </li><li ><A title=Android开发之socket通信向PC机发信息获取本机IP href="show_404_181.html">Android开发之socket通信向PC机发信息获取本机IP</A> </li><li ><A title=Http和Socket区别 href="show_405_181.html">Http和Socket区别</A> </li><li ><A title=PC客户端与Android服务端的Socket同步通信（一） href="show_406_181.html">PC客户端与Android服务端的Socket同步通信（一）</A> </li><li ><A title=PC客户端与Android服务端的Socket同步通信（二） href="show_407_181.html">PC客户端与Android服务端的Socket同步通信（二）</A> </li><li ><A title=PC客户端与Android服务端的Socket同步通信（三） href="show_408_181.html">PC客户端与Android服务端的Socket同步通信（三）</A> </li><li ><A title=Android解析socket流 href="show_409_181.html">Android解析socket流</A> </li><li ><A title=Android 实例Socket发送Http请求 href="show_410_181.html">Android 实例Socket发送Http请求</A> </li><li ><A title=Android socket和seversocket的用法 href="show_411_181.html">Android socket和seversocket的用法</A> </li><li ><A title=Android与PC的socket通信 href="show_412_181.html">Android与PC的socket通信</A> </li><li ><A title=测试Android作为客户端使用socket网络编程连接到数据库 href="show_413_181.html">测试Android作为客户端使用socket网络编程连接到数据库</A> </li></UL>
+  <h2><A title="HTML与HTML5" href="index_182.html">HTML与HTML5</A></h2>
+
+  <h2><A title="JavaScript" href="index_183.html">JavaScript</A></h2>
+
+  <h2><A title="Email" href="index_184.html">Email</A></h2>
+
+  <h2><A title="NFC" href="index_185.html">NFC</A></h2>
+
+  <h2><A title="Web Service" href="index_186.html">Web Service</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 浅谈Socket（一）</H2>
+<div style="line-height:20px; font-size:14px;"><p>Socket 编程基础知识：</p><p>主要分服务器端编程和客户端编程。</p><p style="color:#3333FF;">服务器端编程步骤：</p><p>1：创建服务器端套接字并绑定到一个端口上(0-1023是系统预留的，最好大约1024)。</p><p>2：套接字设置监听模式等待连接请求。</p><p>3：接受连接请求后进行通信。</p><p>4：返回，等待赢一个连接请求。</p><p style="color:#3333FF;">客户端编程步骤：</p><p>1：创建客户端套接字(指定服务器端IP地址与端口号)。</p><p>2：连接(Android 创建Socket时会自动连接)。</p><p>3：与服务器端进行通信。</p><p>4：关闭套接字。</p><p style="color:#3333FF;">Android Socket通信原理注意：</p><p>1：中间的管道连接是通过InputStream/OutputStream流实现的。</p><p>2：一旦管道建立起来可进行通信。</p><p>3：关闭管道的同时意味着关闭Socket。</p><p>4：当对同一个Socket创建重复管道时会异常。</p><p>5：通信过程中顺序很重要：服务器端首先得到输入流，然后将输入流信息输出到其各个客户端。</p><p>客户端先建立连接后先写入输出流，然后再获得输入流。不然活有EOFException的异常。</p><p><pre><font class="keyword">import </font>java.io.DataInputStream;</p><p><font class="keyword">import </font>java.io.DataOutputStream;</p><p><font class="keyword">import </font>java.io.IOException;</p><p><font class="keyword">import </font>java.net.ServerSocket;</p><p><font class="keyword">import </font>java.net.Socket;</p><p><font class="keyword">import </font>java.util.ArrayList;</p><p><font class="keyword">public </font><font class="keyword">class </font>Server {</p><p>	<font class="keyword">static </font>ServerSocket aServerSocket = </font><font class="keyword">null</font>; <font class="Comments">// Server Socet.</font></p><p>	</font>DataInputStream aDataInput = <font class="keyword">null</font>; <font class="Comments">// Server input Stream that to</font></p><p>	<font class="Comments">// receive msg from client.</font></p><p>	</font>DataOutputStream aDataOutput = <font class="keyword">null</font>; <font class="Comments">// Server output Stream that to</font></p><p>	<font class="keyword">static </font>ArrayList list = </font><font class="keyword">new </font>ArrayList();</p><p>	<font class="keyword">public </font><font class="keyword">static </font><font class="keyword">void </font>main(String[] args) {</p><p>		<font class="keyword">try </font>{</p><p>			</font>aServerSocket = <font class="keyword">new </font>ServerSocket(50003); <font class="Comments">// listen 8888 port.</font></p><p>			</font>System.<font class="Fields">out</font>.println(</font><font class="Fields">"already listen 50003 port."</font>);</p><p>		</font>} <font class="keyword">catch </font>(Exception e) {</p><p>			e.printStackTrace();</p><p>		}</p><p>		<font class="keyword">int </font>num = 0;</p><p>		<font class="keyword">while </font>(num &lt; 10) {</p><p>			</font>Socket aSessionSoket = <font class="keyword">null</font>;</p><p>			<font class="keyword">try </font>{</p><p>				aSessionSoket = aServerSocket.accept();</p><p>				</font>MyThread thread = <font class="keyword">new </font>Server().</font><font class="keyword">new </font>MyThread(aSessionSoket);</p><p>				thread.start();</p><p>				num = list.size();</p><p>			</font>} <font class="keyword">catch </font>(IOException e1) {</p><p>				e1.printStackTrace();</p><p>			}</p><p>		}</p><p>	}</p><p>	<font class="keyword">class </font>MyThread </font><font class="keyword">extends </font>Thread {</p><p>		</font>Socket aSessionSoket = <font class="keyword">null</font>;</p><p>		<font class="keyword">public </font>MyThread(Socket socket) {</p><p>			aSessionSoket = socket;</p><p>		}</p><p>		<font class="keyword">public </font><font class="keyword">void </font>run() {</p><p>			<font class="keyword">try </font>{</p><p>				</font>aDataInput = <font class="keyword">new </font>DataInputStream(aSessionSoket.getInputStream());</p><p>				</font>aDataOutput = <font class="keyword">new </font>DataOutputStream(</p><p>						aSessionSoket.getOutputStream());</p><p>				list.add(aDataOutput);</p><p>				<font class="keyword">while </font>(</font><font class="keyword">true</font>) {</p><p>					String msg = aDataInput.readUTF(); <font class="Comments">// read msg.</font></p><p>					<font class="keyword">if </font>(!msg.equals(<font class="Fields">"connect..."</font>)) {</p><p>						</font>System.<font class="Fields">out</font>.println(</font><font class="Fields">"ip: </p><p>								</font>+ aSessionSoket.getInetAddress());<font class="Comments">// ip.</font>System.<font class="Fields">out</font>.println(</font><font class="Fields">"receive msg:</font></p><p>																	<font class="Comments">// + msg);</font></p><p>						<font class="keyword">for </font>(</font><font class="keyword">int </font>i = 0; i &lt; list.size(); i++) {</p><p>							DataOutputStream output = (DataOutputStream) list</p><p>									.get(i);</p><p>							</font>output.writeUTF(msg + <font class="Fields">"----"</font> + list.size());</p><p>						}</p><p>						<font class="keyword">if </font>(msg.equals(<font class="Fields">"end"</font>))</p><p>							<font class="keyword">break</font>;</p><p>					}</p><p>					</font>aDataOutput.writeUTF(<font class="Fields">""</font>);</p><p>				}</p><p>			</font>} <font class="keyword">catch </font>(IOException e) {</p><p>				e.printStackTrace();</p><p>			} finally {</p><p>				<font class="keyword">try </font>{</p><p>					aDataInput.close();</p><p>					<font class="keyword">if </font>(aDataOutput != </font><font class="keyword">null</font>)</p><p>						aDataOutput.close();</p><p>					list.remove(aDataOutput);</p><p>					aSessionSoket.close();</p><p>				</font>} <font class="keyword">catch </font>(Exception e2) {</p><p>				}</p><p>			}</p><p>		}</p><p>	}</p><p>}</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

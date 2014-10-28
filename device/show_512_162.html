@@ -1,0 +1,70 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 开发中传感器使用实例_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li class="navcurrentLink"><A href="index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="设备信息" href="index_157.html">设备信息</A></h2>
+
+  <h2><A title="摄像头" href="index_158.html">摄像头</A></h2>
+
+  <h2><A title="通讯录" href="index_159.html">通讯录</A></h2>
+
+  <h2><A title="电话" href="index_160.html">电话</A></h2>
+
+  <h2><A title="短信" href="index_161.html">短信</A></h2>
+
+  <h2><A title="传感器" href="index_162.html">传感器</A></h2>
+<UL><li ><A title=Android的传感器 href="show_501_162.html">Android的传感器</A> </li><li ><A title=关于传感器的使用 href="show_502_162.html">关于传感器的使用</A> </li><li ><A title=方向SensorOrientation传感器功能实现 href="show_503_162.html">方向SensorOrientation传感器功能实现</A> </li><li ><A title=加速度Accelerometer功能源码 href="show_504_162.html">加速度Accelerometer功能源码</A> </li><li ><A title=Android 光传感器 href="show_505_162.html">Android 光传感器</A> </li><li ><A title=Android 磁场传感器 href="show_506_162.html">Android 磁场传感器</A> </li><li ><A title=磁场Magnetic Field源码与示例 href="show_507_162.html">磁场Magnetic Field源码与示例</A> </li><li ><A title=近距离感应Proximity功能源码 href="show_508_162.html">近距离感应Proximity功能源码</A> </li><li ><A title=Android 温度传感器 href="show_509_162.html">Android 温度传感器</A> </li><li ><A title=温度传感器SensorTemperature功能源码 href="show_510_162.html">温度传感器SensorTemperature功能源码</A> </li><li ><A title=Sensor传感器源码的阅读与应用开发简单实例 href="show_511_162.html">Sensor传感器源码的阅读与应用开发简单实例</A> </li><li class="currentLink"><A title=Android 开发中传感器使用实例 href="show_512_162.html">Android 开发中传感器使用实例</A> </li><li ><A title=Android 游戏中的传感器 href="show_513_162.html">Android 游戏中的传感器</A> </li><li ><A title=利用SensorSimulator进行传感器的模拟 href="show_514_162.html">利用SensorSimulator进行传感器的模拟</A> </li></UL>
+  <h2><A title="定位" href="index_163.html">定位</A></h2>
+
+  <h2><A title="视频系统" href="index_164.html">视频系统</A></h2>
+
+  <h2><A title="音频系统" href="index_165.html">音频系统</A></h2>
+
+  <h2><A title="铃声" href="index_166.html">铃声</A></h2>
+
+  <h2><A title="音量" href="index_167.html">音量</A></h2>
+
+  <h2><A title="录音" href="index_168.html">录音</A></h2>
+
+  <h2><A title="输入法" href="index_169.html">输入法</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 开发中传感器使用实例</H2>
+<div style="line-height:20px; font-size:14px;"><p>样例应用程序仅监控对方向和加速表传感器的更改。当我们收到更改时，传感器值在 TextView 小部件的屏幕上显示。图 1 展示了该应用程序的运行情况。</p><p><img src="../img/device_sensor/12_sensor.jpg"></p><p>图1. 监视加速和方向</p><p>使用Eclipse环境和Android Developer Tools插件创建的应用程序。</p><p>IBMEyes.java</p><p><pre><font class="keyword">import </font>android.app.Activity;</p><p><font class="keyword">import </font>android.os.Bundle;</p><p><font class="keyword">import </font>android.util.Log;</p><p><font class="keyword">import </font>android.widget.TextView;</p><p><font class="keyword">import </font>android.hardware.SensorManager;</p><p><font class="keyword">import </font>android.hardware.SensorListener;</p><p><font class="keyword">public </font><font class="keyword">class </font>IBMEyes </font><font class="keyword">extends </font>Activity </font><font class="keyword">implements </font>SensorListener {</p><p>	<font class="keyword">final </font>String tag = <font class="Fields">"IBMEyes"</font>;</p><p>	</font>SensorManager sm = <font class="keyword">null</font>;</p><p>	</font>TextView xViewA = <font class="keyword">null</font>;</p><p>	</font>TextView yViewA = <font class="keyword">null</font>;</p><p>	</font>TextView zViewA = <font class="keyword">null</font>;</p><p>	</font>TextView xViewO = <font class="keyword">null</font>;</p><p>	</font>TextView yViewO = <font class="keyword">null</font>;</p><p>	</font>TextView zViewO = <font class="keyword">null</font>;</p><p>	<font class="Comments">/** Called when the activity is first created. */</font></p><p>	<font class="keyword">public </font><font class="keyword">void </font>onCreate(Bundle savedInstanceState) {</p><p>		<font class="keyword">super</font>.onCreate(savedInstanceState);</p><p>		<font class="Comments">// get reference to SensorManager sm = (SensorManager)</font></p><p>		<font class="Comments">// getSystemService(SENSOR_SERVICE); setContentView(R.layout.main);</font></p><p>		xViewA = (TextView) findViewById(R.id.xbox);</p><p>		yViewA = (TextView) findViewById(R.id.ybox);</p><p>		zViewA = (TextView) findViewById(R.id.zbox);</p><p>		xViewO = (TextView) findViewById(R.id.xboxo);</p><p>		yViewO = (TextView) findViewById(R.id.yboxo);</p><p>		zViewO = (TextView) findViewById(R.id.zboxo);</p><p>	}</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onSensorChanged(</font><font class="keyword">int </font>sensor, </font><font class="keyword">float</font>[] values) {</p><p>		<font class="keyword">synchronized </font>(</font><font class="keyword">this</font>) {</p><p>			</font>Log.d(tag, <font class="Fields">"onSensorChanged: "</font> + sensor + </font><font class="Fields">", x: "</font> + values[0]</p><p>					</font>+ <font class="Fields">", y: "</font> + values[1] + </font><font class="Fields">", z: "</font> + values[2]);</p><p>			<font class="keyword">if </font>(sensor == SensorManager.SENSOR_ORIENTATION) {</p><p>				</font>xViewO.setText(<font class="Fields">"Orientation X: "</font> + values[0]);</p><p>				</font>yViewO.setText(<font class="Fields">"Orientation Y: "</font> + values[1]);</p><p>				</font>zViewO.setText(<font class="Fields">"Orientation Z: "</font> + values[2]);</p><p>			}</p><p>			<font class="keyword">if </font>(sensor == SensorManager.SENSOR_ACCELEROMETER) {</p><p>				</font>xViewA.setText(<font class="Fields">"Accel X: "</font> + values[0]);</p><p>				</font>yViewA.setText(<font class="Fields">"Accel Y: "</font> + values[1]);</p><p>				</font>zViewA.setText(<font class="Fields">"Accel Z: "</font> + values[2]);</p><p>			}</p><p>		}</p><p>	}</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onAccuracyChanged(</font><font class="keyword">int </font>sensor, </font><font class="keyword">int </font>accuracy) {</p><p>		</font>Log.d(tag, <font class="Fields">"onAccuracyChanged: "</font> + sensor + </font><font class="Fields">", accuracy: "</font> + accuracy);</p><p>	}</p><p>	<font class="keyword">protected </font><font class="keyword">void </font>onResume() {</p><p>		<font class="keyword">super</font>.onResume();</p><p>		<font class="Comments">// register this class as a listener for the orientation and</font></p><p>		<font class="Comments">// accelerometer sensors sm.registerListener(this,</font></p><p>		<font class="Comments">// SensorManager.SENSOR_ORIENTATION |SensorManager.SENSOR_ACCELEROMETER,</font></p><p>		<font class="Comments">// SensorManager.SENSOR_DELAY_NORMAL);</font></p><p></p><p>	}</p><p>	<font class="keyword">protected </font><font class="keyword">void </font>onStop() {</p><p>		<font class="Comments">// unregister listener</font></p><p>		</font>sm.unregisterListener(<font class="keyword">this</font>);</p><p>		<font class="keyword">super</font>.onStop();</p><p>	}</p><p>}</p><p></pre></p><p>编写应用程序必须基于常见的活动，因为它只是利用从传感器获取的数据更新屏幕。在设备可能在前台执行其他活动的应用程序中，将应用程序构建为服务可能更加合适。</p><p>该活动的onCreate方法可以引用SensorManager，其中包含所有与传感器有关的函数。onCreate方法还建立了对6个TextView小部件的引用，您需要使用传感器数据值更新这些小部件。</p><p>onResume()方法使用对SensorManager的引用通过registerListener方法注册传感器更新：</p><p>第一个参数是实现 SensorListener 接口的类的实例。</p><p>第二个参数是所需传感器的位掩码。在本例中，应用程序从SENSOR_ORIENTATION和SENSOR_ACCELEROMETER请求数据。</p><p>第三个参数是一个系统提示，指出应用程序更新传感器值所需的速度。</p><p>应用程序(活动)暂停后，需要注销侦听器，这样以后就不会再收到传感器更新。这通过SensorManager的unregisterListener方法实现。惟一的参数是SensorListener的实例。</p><p>在registerListener和unregisterListener方法调用中，应用程序使用关键字this。注意类定义中的implements关键字，其中声明了该类实现SensorListener接口。这就是要将它传递到 registerListener 和 unregisterListener 的原因。</p><p>SensorListener必须实现两个方法onSensorChange和onAccuracyChanged。示例应用程序不关心传感器的准确度，但关注传感器当前的X、Y和Z值。onAccuracyChanged 方法实质上不执行任何操作;它只在每次调用时添加一个日志项。</p><p>似乎经常需要调用onSensorChanged，方法：因为加速表和方向传感器正在快速发送数据。查看第一个参数确定哪个传感器在发送数据。确认了发送数据的传感器之后，将使用方法第二个参数传递的浮点值数组中所包含的数据更新相应的UI元素。该示例只是显示这些值，但在更加高级的应用程序中，还可以分析这些值，比较原来的值，或者设置某种模式识别算法来确定用户(或外部环境)的行为。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

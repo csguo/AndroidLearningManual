@@ -1,0 +1,96 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android学习手册_数据存储</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li class="navcurrentLink"><A href="index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">数据存储</div>
+
+  <h2 ><A title="ContentProvider" href="index_170.html">ContentProvider</A></h2>
+
+  <h2 ><A title="Preferences" href="index_171.html">Preferences</A></h2>
+
+  <h2 ><A title="SQLite" href="index_172.html">SQLite</A></h2>
+
+  <h2 ><A title="SD卡" href="index_173.html">SD卡</A></h2>
+
+  <h2 class="currentLink"><A title="数据库" href="index_174.html">数据库</A></h2>
+<UL><li class="currentLink"><A title=Android 数据存取之Databases href="show_401_174.html">Android 数据存取之Databases</A> </li><li ><A title=Android教程之SQlite数据库操作 href="show_402_174.html">Android教程之SQlite数据库操作</A> </li><li ><A title=Android 数据库一次创建多个表（一） href="show_403_174.html">Android 数据库一次创建多个表（一）</A> </li><li ><A title=Android 数据库一次创建多个表（二） href="show_404_174.html">Android 数据库一次创建多个表（二）</A> </li><li ><A title=Android 数据库经验总结 href="show_405_174.html">Android 数据库经验总结</A> </li><li ><A title=创建数据库的时候就将数据库保存到SDcard href="show_406_174.html">创建数据库的时候就将数据库保存到SDcard</A> </li><li ><A title=Android保存图片到数据库 href="show_407_174.html">Android保存图片到数据库</A> </li><li ><A title=Android中访问已有的SQLite数据库 href="show_408_174.html">Android中访问已有的SQLite数据库</A> </li><li ><A title=关于Android SQLite database存储到sdcard上的问题 href="show_409_174.html">关于Android SQLite database存储到sdcard上的问题</A> </li></UL>
+  <h2 ><A title="URI" href="index_175.html">URI</A></h2>
+
+  <h2 ><A title="MediaStore" href="index_176.html">MediaStore</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1>数据库</H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 数据存取之Databases</H2>
+<P>　　在Android平台上可以操作数据库，这是第一次接触Android时的惊艳之一。在Android平台上，绑定了SQLite数据库，这个数据库系统也是极具性格的，它的最大的应用场景是嵌入式系统。如果有JDBC的经验，那么在这里会容易</P>
+<P><A title="Android 数据存取之Databases" href="show_401_174.html">进入 Android 数据存取之Databases</A> </P></DIV>
+
+<DIV>
+<H2>Android教程之SQlite数据库操作</H2>
+<P>　　SQlite API:android.database.sqlite.SQLiteOpenHelperpublic SQLiteOpenHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version)  Create a helper object to create, open, and</P>
+<P><A title="Android教程之SQlite数据库操作" href="show_402_174.html">进入 Android教程之SQlite数据库操作</A> </P></DIV>
+
+<DIV>
+<H2>Android 数据库一次创建多个表（一）</H2>
+<P>　　我们今天来说的就是android中的数据库（sqlite）一次性多建立几个表，这样我们就可以不会在用的时候在建立一张表，一次性我们建立多表以后，我们就省去很多的事情，那么我们还等什么，就来看看代码吧：[code=java]#[</P>
+<P><A title="Android 数据库一次创建多个表（一）" href="show_403_174.html">进入 Android 数据库一次创建多个表（一）</A> </P></DIV>
+
+<DIV>
+<H2>Android 数据库一次创建多个表（二）</H2>
+<P>　　Java代码：[code=java]#[Keywords]public #[Keywords]void #deleteItemData(String tableName, Integer id) {	#dbOpenHelper.getWritableDatabase()			#.execSQL(#[Fields]&quot;&quot;delete from &quot;&quot;# + </P>
+<P><A title="Android 数据库一次创建多个表（二）" href="show_404_174.html">进入 Android 数据库一次创建多个表（二）</A> </P></DIV>
+
+<DIV>
+<H2>Android 数据库经验总结</H2>
+<P>　　在学习Android数据库SQLite之前，必须意识到这一点，目前在Android系统中集成的是SQLite3版本，SQLite是一个开源的嵌入式数据库，他支持NULL、INTEGER、REAL、TEXT和BLOB数据类型，不支持静态数据类型，而是使用列关</P>
+<P><A title="Android 数据库经验总结" href="show_405_174.html">进入 Android 数据库经验总结</A> </P></DIV>
+
+<DIV>
+<H2>创建数据库的时候就将数据库保存到SDcard</H2>
+<P>　　我们知道数据库创建的时候默认保存到系统data/data/项目名下面了，有没有一种方法保存到自己指定的SDCard上的文件夹里面呢？答案是可以的。我们只需要找到SQLiteOpenHelper这个类，了解一下就不难发现其保存的路径是</P>
+<P><A title="创建数据库的时候就将数据库保存到SDcard" href="show_406_174.html">进入 创建数据库的时候就将数据库保存到SDcard</A> </P></DIV>
+
+<DIV>
+<H2>Android保存图片到数据库</H2>
+<P>　　我给大家介绍把图片保存到数据库的方法。方法一：[code=java]#[Keywords]public #[Keywords]void #saveIcon(Bitmap icon) {	#[Keywords]if #(icon == #[Keywords]null#) {		#[Keywords]return#;#	#}	#[Comments]// </P>
+<P><A title="Android保存图片到数据库" href="show_407_174.html">进入 Android保存图片到数据库</A> </P></DIV>
+
+<DIV>
+<H2>Android中访问已有的SQLite数据库</H2>
+<P>　　1.先将已有的.db文件拷贝到android默认的目录下。很多人就在这里挡住了，怎么copy呢？这里就要用到android自带的tools工具了。首先，查询默认目录有哪些.db[开始 - cmd  -输入adb shell --回车（也可开始 - adb shel</P>
+<P><A title="Android中访问已有的SQLite数据库" href="show_408_174.html">进入 Android中访问已有的SQLite数据库</A> </P></DIV>
+
+<DIV>
+<H2>关于Android SQLite database存储到sdcard上的问题</H2>
+<P>　　最近碰到apk和后台的cpp code都需要访问一个数据库的问题。结果发现apk中创建的数据库外部的进程是没有权限去读/写的。这就需要把数据库文件创建到sdcard上。后来发现在SQLiteOpenHelper(frameworks/base/core/java/</P>
+<P><A title="关于Android SQLite database存储到sdcard上的问题" href="show_409_174.html">进入 关于Android SQLite database存储到sdcard上的问题</A> </P></DIV>
+
+</DIV>
+
+<DIV id=footer style="display:none">
+<P align="center"> 
+ 
+ 
+ 
+  </P>
+</DIV></DIV></BODY></HTML>
+

@@ -1,0 +1,111 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>剖析SurfaceView！Callback以及SurfaceHolder_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li class="navcurrentLink"><A href="index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="用户界面之view(视图)" href="index_123.html">用户界面之view(视图)</A></h2>
+
+  <h2><A title="用户界面之Layout(布局)" href="index_124.html">用户界面之Layout(布局)</A></h2>
+
+  <h2><A title="用户界面之TextView(文本视图)" href="index_125.html">用户界面之TextView(文本视图)</A></h2>
+
+  <h2><A title="用户界面之EditText(编辑视图)" href="index_126.html">用户界面之EditText(编辑视图)</A></h2>
+
+  <h2><A title="用户界面之Button(按钮)" href="index_127.html">用户界面之Button(按钮)</A></h2>
+
+  <h2><A title="用户界面之Dialog(对话框)" href="index_128.html">用户界面之Dialog(对话框)</A></h2>
+
+  <h2><A title="用户界面之ListView(列表视图)" href="index_129.html">用户界面之ListView(列表视图)</A></h2>
+
+  <h2><A title="用户界面之Adapter(适配器)" href="index_130.html">用户界面之Adapter(适配器)</A></h2>
+
+  <h2><A title="用户界面之Menu(菜单)" href="index_131.html">用户界面之Menu(菜单)</A></h2>
+
+  <h2><A title="用户界面之Notification(通知栏)" href="index_132.html">用户界面之Notification(通知栏)</A></h2>
+
+  <h2><A title="NotificationImageView(图像视图)" href="index_133.html">NotificationImageView(图像视图)</A></h2>
+
+  <h2><A title="用户界面之GridView(格视图)" href="index_134.html">用户界面之GridView(格视图)</A></h2>
+
+  <h2><A title="用户界面之ProgressBar(进度条)" href="index_135.html">用户界面之ProgressBar(进度条)</A></h2>
+
+  <h2><A title="用户界面之Checkbox(复选框)" href="index_136.html">用户界面之Checkbox(复选框)</A></h2>
+
+  <h2><A title="用户界面之ScrollView(滚动视图)" href="index_137.html">用户界面之ScrollView(滚动视图)</A></h2>
+
+  <h2><A title="用户界面之Gallery(长廊视图)" href="index_138.html">用户界面之Gallery(长廊视图)</A></h2>
+
+  <h2><A title="用户界面之ActionBar(导航栏)" href="index_139.html">用户界面之ActionBar(导航栏)</A></h2>
+
+  <h2><A title="用户界面之PopupWindow(弹出窗口)" href="index_140.html">用户界面之PopupWindow(弹出窗口)</A></h2>
+
+  <h2><A title="用户界面之RatingBar(评分栏)" href="index_141.html">用户界面之RatingBar(评分栏)</A></h2>
+
+  <h2><A title="用户界面之Spinner" href="index_142.html">用户界面之Spinner</A></h2>
+
+  <h2><A title="用户界面之SeekBar(搜索bar)" href="index_143.html">用户界面之SeekBar(搜索bar)</A></h2>
+
+  <h2><A title="用户界面之TabHost(分割栏)" href="index_144.html">用户界面之TabHost(分割栏)</A></h2>
+
+  <h2><A title="用户界面之SlidingDrawer(抽屉)" href="index_145.html">用户界面之SlidingDrawer(抽屉)</A></h2>
+
+  <h2><A title="用户界面之ViewFlipper" href="index_146.html">用户界面之ViewFlipper</A></h2>
+
+  <h2><A title="用户界面之SurfaceView" href="index_147.html">用户界面之SurfaceView</A></h2>
+<UL><li ><A title=SurfaceView的基本应用 href="show_2401_147.html">SurfaceView的基本应用</A> </li><li ><A title=SurfaceView使用示例（一） href="show_2402_147.html">SurfaceView使用示例（一）</A> </li><li ><A title=SurfaceView使用示例（二） href="show_2403_147.html">SurfaceView使用示例（二）</A> </li><li ><A title=SurfaceView双缓冲应用 href="show_2404_147.html">SurfaceView双缓冲应用</A> </li><li ><A title=SurfaceView运行机制详解 href="show_2405_147.html">SurfaceView运行机制详解</A> </li><li class="currentLink"><A title=剖析SurfaceView！Callback以及SurfaceHolder href="show_2406_147.html">剖析SurfaceView！Callback以及SurfaceHolder</A> </li><li ><A title=Android surfaceView与View的区别 href="show_2407_147.html">Android surfaceView与View的区别</A> </li><li ><A title=自定义SurfaceView href="show_2408_147.html">自定义SurfaceView</A> </li><li ><A title=在SurfaceView中照样使用Animation(上) href="show_2409_147.html">在SurfaceView中照样使用Animation(上)</A> </li><li ><A title=在SurfaceView中照样使用Animation(中) href="show_2410_147.html">在SurfaceView中照样使用Animation(中)</A> </li><li ><A title=在SurfaceView中照样使用Animation(下) href="show_2411_147.html">在SurfaceView中照样使用Animation(下)</A> </li><li ><A title=在SurfaceView中添加组件！并交互数据 href="show_2412_147.html">在SurfaceView中添加组件！并交互数据</A> </li><li ><A title=SurfaceView设置透明背景 href="show_2413_147.html">SurfaceView设置透明背景</A> </li></UL>
+  <h2><A title="用户界面之Splash" href="index_148.html">用户界面之Splash</A></h2>
+
+  <h2><A title="用户界面之Toast" href="index_149.html">用户界面之Toast</A></h2>
+
+  <h2><A title="用户界面之AlarmManager" href="index_150.html">用户界面之AlarmManager</A></h2>
+
+  <h2><A title="用户界面之Fragment" href="index_151.html">用户界面之Fragment</A></h2>
+
+  <h2><A title="用户界面之WebView(网络视图)" href="index_152.html">用户界面之WebView(网络视图)</A></h2>
+
+  <h2><A title="Android用户界面之Widget(小组件)" href="index_153.html">Android用户界面之Widget(小组件)</A></h2>
+
+  <h2><A title="Android用户界面之theme和style" href="index_154.html">Android用户界面之theme和style</A></h2>
+
+  <h2><A title="Android用户界面之多语言" href="index_155.html">Android用户界面之多语言</A></h2>
+
+  <h2><A title="Android用户界面之界面特效" href="index_156.html">Android用户界面之界面特效</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>剖析SurfaceView！Callback以及SurfaceHolder</H2>
+<div style="line-height:20px; font-size:14px;"><p>各位童鞋请你们注意：surfaceview中确实有 onDraw这个方法，但是你surfaceview不会自己去调用！！！</p><p>而我代码中的ondraw() 也好 draw() 也好，都是我自己定义的一个方法。。。放在线程中不断调用的，一定要注意！!</p><p>之前我们对view和surfaceview做了比较和取舍，最后我们发现surfaceview更加的适合运作与游戏开发中，那么下面就让我们来看看这个surfaceview的结构吧；</p><p>先上一段代码：</p><p><pre><font class="keyword">import </font>android.content.Context;</p><p><font class="keyword">import </font>android.graphics.Canvas;</p><p><font class="keyword">import </font>android.graphics.Color;</p><p><font class="keyword">import </font>android.graphics.Paint;</p><p><font class="keyword">import </font>android.view.SurfaceHolder;</p><p><font class="keyword">import </font>android.view.SurfaceView;</p><p><font class="keyword">import </font>android.view.SurfaceHolder.Callback;</p><p><font class="keyword">import </font>android.view.animation.Animation;</p><p><font class="keyword">public </font><font class="keyword">class </font>MySurfaceView </font><font class="keyword">extends </font>SurfaceView </font><font class="keyword">implements </font>Callback, Runnable {<font class="Comments">// 备注1</font></p><p>	<font class="keyword">private </font>SurfaceHolder sfh;</p><p>	<font class="keyword">private </font>Thread th;</p><p>	<font class="keyword">private </font>Canvas canvas;</p><p>	<font class="keyword">private </font>Pa</font><font class="keyword">int </font>paint;</p><p>	<font class="keyword">private </font><font class="keyword">int </font>ScreenW, ScreenH;</p><p>	<font class="keyword">public </font>MySurfaceView(Context context) {</p><p>		<font class="keyword">super</font>(context);</p><p>		</font>th = <font class="keyword">new </font>Thread(</font><font class="keyword">this</font>);</p><p>		</font>sfh = <font class="keyword">this</font>.getHolder();</p><p>		</font>sfh.addCallback(<font class="keyword">this</font>); <font class="Comments">// 备注1</font></p><p>		</font>pa<font class="keyword">int </font>= </font><font class="keyword">new </font>Paint();</p><p>		</font>paint.setAntiAlias(<font class="keyword">true</font>);</p><p>		paint.setColor(Color.RED);</p><p>		<font class="keyword">this</font>.setKeepScreenOn(</font><font class="keyword">true</font>);<font class="Comments">// 保持屏幕常亮</font></p><p>	}</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>startAnimation(Animation animation) {</p><p>		<font class="keyword">super</font>.startAnimation(animation);</p><p>	}</p><p>	<font class="keyword">public </font><font class="keyword">void </font>surfaceCreated(SurfaceHolder holder) {</p><p>		</font>ScreenW = <font class="keyword">this</font>.getWidth();<font class="Comments">// 备注2</font></p><p>		</font>ScreenH = <font class="keyword">this</font>.getHeight();</p><p>		th.start();</p><p>	}</p><p>	<font class="keyword">private </font><font class="keyword">void </font>draw() {</p><p>		<font class="keyword">try </font>{</p><p>			canvas = sfh.lockCanvas(); <font class="Comments">// 得到一个canvas实例</font></p><p>			canvas.drawColor(Color.WHITE);<font class="Comments">// 刷屏</font></p><p>			</font>canvas.drawText(<font class="Fields">"Himi"</font>, 100, 100, pa<font class="keyword">int</font>);<font class="Comments">// 画文字文本</font></p><p>			</font>canvas.drawText(<font class="Fields">"这就是简单的一个游戏框架"</font>, 100, 130, pa<font class="keyword">int</font>);</p><p>			sfh.unlockCanvasAndPost(canvas); <font class="Comments">// 将画好的画布提交</font></p><p>		</font>} <font class="keyword">catch </font>(Exception ex) {</p><p>		} finally { <font class="Comments">// 备注3</font></p><p>			<font class="keyword">if </font>(canvas != </font><font class="keyword">null</font>)</p><p>				sfh.unlockCanvasAndPost(canvas);</p><p>		}</p><p>	}</p><p>	<font class="keyword">public </font><font class="keyword">void </font>run() {</p><p>		<font class="keyword">while </font>(</font><font class="keyword">true</font>) {</p><p>			draw();</p><p>			<font class="keyword">try </font>{</p><p>				Thread.sleep(100);</p><p>			</font>} <font class="keyword">catch </font>(InterruptedException e) {</p><p>				e.printStackTrace();</p><p>			}</p><p>		}</p><p>	}</p><p>	<font class="keyword">public </font><font class="keyword">void </font>surfaceChanged(SurfaceHolder holder, </font><font class="keyword">int </font>format, </font><font class="keyword">int </font>width,</p><p>			<font class="keyword">int </font>height) {</p><p>	}</p><p>	<font class="keyword">public </font><font class="keyword">void </font>surfaceDestroyed(SurfaceHolder holder) {</p><p>	}</p><p>}</p><p></pre></p><p>代码很简单，我们继承继承surfaceview类，并且使用回调callback接口以及线程runnable接口。那么这里我简单的说下Callback接口和SurfaceHolder 类的作用；</p><p>//备注1</p><p>callback接口:</p><p>只要继承SurfaceView类并实现SurfaceHolder.Callback接口就可以实现一个自定义的SurfaceView了，SurfaceHolder.Callback在底层的Surface状态发生变化的时候通知View，SurfaceHolder.Callback具有如下的接口：</p><p>surfaceCreated(SurfaceHolder holder)：当Surface第一次创建后会立即调用该函数。程序可以在该函数中做些和绘制界面相关的初始化工作，一般情况下都是在另外的线程来绘制界面，所以不要在这个函数中绘制Surface。</p><p>surfaceChanged(SurfaceHolder holder, int format, int width,int height)：当Surface的状态（大小和格式）发生变化的时候会调用该函数，在surfaceCreated调用后该函数至少会被调用一次。</p><p>SurfaceHolder 类：</p><p>它是一个用于控制surface的接口，它提供了控制surface 的大小，格式，上面的像素，即监视其改变的。</p><p>SurfaceView的getHolder()函数可以获取SurfaceHolder对象，Surface 就在SurfaceHolder对象内。虽然Surface保存了当前窗口的像素数据，但是在使用过程中是不直接和Surface打交道的，由SurfaceHolder的Canvas lockCanvas()或则Canvas lockCanvas()函数来获取Canvas对象，通过在Canvas上绘制内容来修改Surface中的数据。如果Surface不可编辑或则尚未创建调用该函数会返回null，在 unlockCanvas() 和 lockCanvas()中Surface的内容是不缓存的，所以需要完全重绘Surface的内容，为了提高效率只重绘变化的部分则可以调用lockCanvas(Rect rect)函数来指定一个rect区域，这样该区域外的内容会缓存起来。在调用lockCanvas函数获取Canvas后，SurfaceView会获取Surface的一个同步锁直到调用unlockCanvasAndPost(Canvas canvas)函数才释放该锁，这里的同步机制保证在Surface绘制过程中不会被改变（被摧毁、修改）。</p><p>// 备注2</p><p>我没有在该surfaceview的初始化函数中将其 ScreenW 与 ScreenH 进行赋值，这里要特别注意，如果你在初始化调用ScreenW = this.getWidth();和ScreenH = this.getHeight();那么你将得到很失望的值 全部为0;原因是和接口Callback接口机制有关，当我们继承callback接口会重写它的surfaceChanged()、surfaceCreated()、surfaceDestroyed(),这几个函数当surfaceCreated()被执行的时候，真正的view才被创建，也就是说之前得到的值为0 ，是因为初始化会在surfaceCreated（）方法执行以前执行，view没有的时候我们去取屏幕宽高肯定是0，所以这里要注意这一点；</p><p>//备注3</p><p>这里我把draw的代码都try起来，主要是为了当画的内容中一旦抛出异常了，那么我们也能 在finally中执行该操作。这样当代码抛出异常的时候不会导致Surface出去不一致的状态。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+  
+   </P>
+</DIV></BODY></HTML>
+

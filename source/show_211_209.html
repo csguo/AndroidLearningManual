@@ -1,0 +1,60 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android的binder机制研究（C++部分）（四）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li class="navcurrentLink"><A href="index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Launcher" href="index_207.html">Launcher</A></h2>
+
+  <h2><A title="电话系统RIL" href="index_208.html">电话系统RIL</A></h2>
+
+  <h2><A title="进程间通信" href="index_209.html">进程间通信</A></h2>
+<UL><li ><A title=Android Framework研究之IPC（一） href="show_201_209.html">Android Framework研究之IPC（一）</A> </li><li ><A title=Android Framework研究之IPC（二） href="show_202_209.html">Android Framework研究之IPC（二）</A> </li><li ><A title=Android Binder与进程间通信（一） href="show_203_209.html">Android Binder与进程间通信（一）</A> </li><li ><A title=Android Binder与进程间通信（二） href="show_204_209.html">Android Binder与进程间通信（二）</A> </li><li ><A title=Android 创建AIDL href="show_205_209.html">Android 创建AIDL</A> </li><li ><A title=来学习Android的IPC href="show_206_209.html">来学习Android的IPC</A> </li><li ><A title=在linux下谈谈Android的IPC href="show_207_209.html">在linux下谈谈Android的IPC</A> </li><li ><A title=Android的binder机制研究（C++部分）（一） href="show_208_209.html">Android的binder机制研究（C++部分）（一）</A> </li><li ><A title=Android的binder机制研究（C++部分）（二） href="show_209_209.html">Android的binder机制研究（C++部分）（二）</A> </li><li ><A title=Android的binder机制研究（C++部分）（三） href="show_210_209.html">Android的binder机制研究（C++部分）（三）</A> </li><li class="currentLink"><A title=Android的binder机制研究（C++部分）（四） href="show_211_209.html">Android的binder机制研究（C++部分）（四）</A> </li><li ><A title=Android的binder机制研究（C++部分）（五） href="show_212_209.html">Android的binder机制研究（C++部分）（五）</A> </li></UL>
+  <h2><A title="内部sensor系统" href="index_210.html">内部sensor系统</A></h2>
+
+  <h2><A title="内部surface系统" href="index_211.html">内部surface系统</A></h2>
+
+  <h2><A title="启动流程" href="index_212.html">启动流程</A></h2>
+
+  <h2><A title="源码编译" href="index_213.html">源码编译</A></h2>
+
+  <h2><A title="状态栏" href="index_214.html">状态栏</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android的binder机制研究（C++部分）（四）</H2>
+<div style="line-height:20px; font-size:14px;"><p>Android的服务管理器是一个单独的进程，也向外提供接口。这段代码的含义，是通过Android的服务管理器的接口代理，请求调用服务管理器的checkService()接口函数，查找指定的服务(上面就是查找media.player服务)，查找成功后返回一个BpBinder类的对象实例，用于供IMediaPlayerService代理使用。这个对象BpBinder是在Parcel::readStrongBinder()函数里面创建的。那么到底是怎么创建出来的呢？在这里没有必要追到ServiceManager的实现代码里去，毕竟我们只是想知道BpBinder的对象是如何创建的，我们可以换一个例子来看。回到前面的BpMediaPlayerService::create()函数的实现，是不是很眼熟。没错，在那个函数里也创建了一个BpBinder类对象，那个对象是是给IMediaPlayer接口代理使用的。虽然接口不同，但是创建原理是一样的。我们继续，下面该到binder的另一个类——实现类的代码了。</p><p style="color:#3333FF;">(3)BnMediaPlayerService代码分析</p><p>BnMediaPlayerService类的定义在文件frameworks\base\include\media\IMediaPlayService.h，实现则与BpMediaPlayerService一样是在文件frameworks\base\media\libmidia\IMediaPlayerService.cpp中。类定义的代码如下：</p><p><pre><font class="keyword">class </font>BnMediaPlayerService: </font><font class="keyword">public </font>BnInterface&lt;IMediaPlayerService&gt;</p><p>{</p><p>	public:</p><p>	virtual status_t onTransact( uint32_t code,</p><p>	const Parcel& data,</p><p>	Parcel* reply,</p><p>	uint32_t flags = 0);</p><p>};	</p><p></pre></p><p>这个类继承自BnInterface模板类，约束类型为IMediaPlayerService。看一下BnInterface模板类的定义(IInterface.h)就可以知道，BnMediaPlayerService间接继承了IMediaPlayerService接口类。不过BnInterface类并没有实现IMediaPlayerService所定义的6个接口函数，因此BnInterface还是一个纯虚类。这些接口需要在BnMediaPlayerService的子类中真正实现，这个子类就是MediaPlayerService(frameworks\base\media\libmidiaservice\MediaPlayerService.h，frameworks\base\media\libmidiaservice\MediaPlayerService.cpp)。在BnMediaPlayerService的成员函数onTransact()中，需要调用这6个接口函数。BnMediaPlayerService中主要就是定义并实现了onTransact()函数。当在代理那边调用了transact()函数后，这边的onTransact()函数就会被调用。BnMediaPlayerService的实现代码如下：</p><p><pre>define CHECK_INTERFACE(interface, data, reply)</p><p>do { </p><p>	<font class="keyword">if </font>(!data.enforceInterface(interface::getInterfaceDescriptor())) { </p><p>		</font>LOGW(<font class="Fields">"Call incorrectly routed to "</font> </font>interface);</p><p>		<font class="keyword">return </font>PERMISSION_DENIED; </p><p>	} </p><p></font>} <font class="keyword">while </font>(0)</p><p>	status_t BnMediaPlayerService::onTransact(</p><p>	uint32_t code, const Parcel& data, Parcel* reply, uint32_t flags)</p><p>{</p><p>switch(code) {</p><p><font class="keyword">case </font>CREATE_URL: {</p><p>	CHECK_INTERFACE(IMediaPlayerService, data, reply);</p><p>	pid_t pid = data.readInt32();</p><p>	sp&lt;IMediaPlayerClient&gt; client = interface_cast&lt;IMediaPlayerClient&gt;(data.readStrongBinder());</p><p>	const char* url = data.readCString();</p><p>	sp&lt;IMediaPlayer&gt; player = create(pid, client, url);</p><p>	reply-&gt;writeStrongBinder(player-&gt;asBinder());</p><p>	<font class="keyword">return </font>NO_ERROR;</p><p>} </p><p><font class="keyword">break</font>;</p><p><font class="keyword">case </font>CREATE_FD: {</p><p>	CHECK_INTERFACE(IMediaPlayerService, data, reply);</p><p>	pid_t pid = data.readInt32();</p><p>	sp&lt;IMediaPlayerClient&gt; client = interface_cast&lt;IMediaPlayerClient&gt;(data.readStrongBinder());</p><p>	<font class="keyword">int </font>fd = dup(data.readFileDescriptor());</p><p>	int64_t offset = data.readInt64();</p><p>	int64_t length = data.readInt64();</p><p>	sp&lt;IMediaPlayer&gt; player = create(pid, client, fd, offset, length);</p><p>	reply-&gt;writeStrongBinder(player-&gt;asBinder());</p><p>	<font class="keyword">return </font>NO_ERROR;</p><p>} </p><p><font class="keyword">break</font>;</p><p><font class="keyword">case </font>DECODE_URL: {</p><p>	CHECK_INTERFACE(IMediaPlayerService, data, reply);</p><p>	const char* url = data.readCString();</p><p>	uint32_t sampleRate;</p><p>	<font class="keyword">int </font>numChannels;</p><p>	<font class="keyword">int </font>format;</p><p>	sp&lt;IMemory&gt; player = decode(url, &sampleRate, &numChannels, &format);</p><p>	reply-&gt;writeInt32(sampleRate);</p><p>	reply-&gt;writeInt32(numChannels);</p><p>	reply-&gt;writeInt32(format);</p><p>	reply-&gt;writeStrongBinder(player-&gt;asBinder());</p><p>	<font class="keyword">return </font>NO_ERROR;</p><p>} </p><p><font class="keyword">break</font>;</p><p><font class="keyword">case </font>DECODE_FD: {</p><p>	CHECK_INTERFACE(IMediaPlayerService, data, reply);</p><p>	<font class="keyword">int </font>fd = dup(data.readFileDescriptor());</p><p>	int64_t offset = data.readInt64();</p><p>	int64_t length = data.readInt64();</p><p>	uint32_t sampleRate;</p><p>	<font class="keyword">int </font>numChannels;</p><p>	<font class="keyword">int </font>format;</p><p>	sp&lt;IMemory&gt; player = decode(fd, offset, length, &sampleRate, &numChannels, &format);</p><p>	reply-&gt;writeInt32(sampleRate);</p><p>	reply-&gt;writeInt32(numChannels);</p><p>	reply-&gt;writeInt32(format);</p><p>	reply-&gt;writeStrongBinder(player-&gt;asBinder());</p><p>	<font class="keyword">return </font>NO_ERROR;</p><p>} </p><p><font class="keyword">break</font>;</p><p><font class="keyword">case </font>CREATE_MEDIA_RECORDER: {</p><p>	CHECK_INTERFACE(IMediaPlayerService, data, reply);</p><p>	pid_t pid = data.readInt32();</p><p>	sp&lt;IMediaRecorder&gt; recorder = createMediaRecorder(pid);</p><p>	reply-&gt;writeStrongBinder(recorder-&gt;asBinder());</p><p>	<font class="keyword">return </font>NO_ERROR;</p><p>} </p><p><font class="keyword">break</font>;</p><p><font class="keyword">case </font>CREATE_METADATA_RETRIEVER: {</p><p>	CHECK_INTERFACE(IMediaPlayerService, data, reply);</p><p>	pid_t pid = data.readInt32();</p><p>	sp&lt;IMediaMetadataRetriever&gt; retriever = createMetadataRetriever(pid);</p><p>	reply-&gt;writeStrongBinder(retriever-&gt;asBinder());</p><p>	<font class="keyword">return </font>NO_ERROR;</p><p>} </p><p><font class="keyword">break</font>;</p><p><font class="keyword">default</font>:</p><p><font class="keyword">return </font>BBinder::onTransact(code, data, reply, flags);</p><p>}</p><p>}	</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

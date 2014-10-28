@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android中怎样嵌入C语言（一）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li class="navcurrentLink"><A href="index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="开发基础" href="index_100.html">开发基础</A></h2>
+
+  <h2><A title="开发环境搭建" href="index_101.html">开发环境搭建</A></h2>
+
+  <h2><A title="模拟器" href="index_102.html">模拟器</A></h2>
+
+  <h2><A title="Resource" href="index_103.html">Resource</A></h2>
+
+  <h2><A title="Manifest" href="index_104.html">Manifest</A></h2>
+
+  <h2><A title="ADB" href="index_105.html">ADB</A></h2>
+
+  <h2><A title="DDMS" href="index_106.html">DDMS</A></h2>
+
+  <h2><A title="Logcat(日志)" href="index_107.html">Logcat(日志)</A></h2>
+
+  <h2><A title="打包" href="index_108.html">打包</A></h2>
+
+  <h2><A title="文件处理" href="index_109.html">文件处理</A></h2>
+
+  <h2><A title="底层基础" href="index_111.html">底层基础</A></h2>
+<UL><li class="currentLink"><A title=Android中怎样嵌入C语言（一） href="show_1101_111.html">Android中怎样嵌入C语言（一）</A> </li><li ><A title=Android中怎样嵌入C语言（二） href="show_1102_111.html">Android中怎样嵌入C语言（二）</A> </li><li ><A title=Android中怎样嵌入C语言（三） href="show_1103_111.html">Android中怎样嵌入C语言（三）</A> </li><li ><A title=Android中怎样嵌入C语言（四） href="show_1104_111.html">Android中怎样嵌入C语言（四）</A> </li><li ><A title=Android中怎样嵌入C语言（五） href="show_1105_111.html">Android中怎样嵌入C语言（五）</A> </li><li ><A title=Android中怎样嵌入C语言（六） href="show_1106_111.html">Android中怎样嵌入C语言（六）</A> </li></UL>
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android中怎样嵌入C语言（一）</H2>
+<div style="line-height:20px; font-size:14px;"><p style="color:#3333FF;">Android JNI知识简介</p><p>Java Native Interface (JNI)标准是java平台的一部分，它允许Java代码和其他语言写的代码进行交互。JNI 是本地编程接口，它使得在 Java 虚拟机 (VM) 内部运行的 Java 代码能够与用其它编程语言(如 C、C++ 和汇编语言)编写的应用程序和库进行交互操作。</p><p style="color:#3333FF;">1.从如何载入.so档案谈起</p><p>由于Android的应用层的类都是以Java写的，这些Java类编译为Dex型式的Bytecode之后，必须靠Dalvik虚拟机(VM: Virtual Machine)来执行。VM在Android平台里，扮演很重要的角色。</p><p>此外，在执行Java类的过程中，如果Java类需要与C组件沟通时，VM就会去载入C组件，然后让Java的函数顺利地调用到C组件的函数。此时，VM扮演着桥梁的角色，让Java与C组件能通过标准的JNI介面而相互沟通。</p><p>应用层的Java类是在虚拟机(VM: Vitual Machine)上执行的，而C件不是在VM上执行，那么Java程式又如何要求VM去载入(Load)所指定的C组件呢? 可使用下述指令：</p><p>System.loadLibrary(*.so的档案名); </p><p>例如，Android框架里所提供的MediaPlayer.java类，含指令：</p><p><pre><font class="keyword">public class </font>MediaPlayer{ </p><p>	<font class="keyword">static </font>{</p><p>		</font>System.loadLibrary(<font class="Fields">"media_jni"</font>);</p><p>	}</p><p>}</p><p></pre></p><p>这要求VM去载入Android的/system/lib/libmedia_jni.so档案。载入*.so之后，Java类与*.so档案就汇合起来，一起执行了。</p><p style="color:#3333FF;">2.如何撰写*.so的入口函数</p><p>JNI_OnLoad()与JNI_OnUnload()函数的用途</p><p>当Android的VM(Virtual Machine)执行到System.loadLibrary()函数时，首先会去执行C组件里的JNI_OnLoad()函数。它的用途有二：</p><p>(1)告诉VM此C组件使用那一个JNI版本。如果你的*.so档没有提供JNI_OnLoad()函数，VM会默认该*.so档是使用最老的JNI 1.1版本。由于新版的JNI做了许多扩充，如果需要使用JNI的新版功能，例如JNI 1.4的java.nio.ByteBuffer,就必须藉由JNI_OnLoad()函数来告知VM。</p><p>(2)由于VM执行到System.loadLibrary()函数时，就会立即先呼叫JNI_OnLoad()，所以C组件的开发者可以藉由JNI_OnLoad()来进行C组件内的初期值之设定(Initialization)。</p><p>例如，在Android的/system/lib/libmedia_jni.so档案里，就提供了JNI_OnLoad()函数，其程式码片段为：</p><p><pre><font class="Comments">//define LOG_NDEBUG 0</font></p><p></font>define LOG_TAG <font class="Fields">"MediaPlayer-JNI</p><p></font>j<font class="keyword">int </font>JNI_OnLoad(JavaVM* vm, void* reserved)</p><p>{</p><p>	JNIEnv* env = NULL;</p><p>	</font>j<font class="keyword">int </font>result = -1;</p><p>	<font class="keyword">if </font>(vm-&gt;GetEnv((void**) &env, JNI_VERSION_1_4) != JNI_OK) {</p><p>		</font>LOGE(<font class="Fields">"ERROR: GetEnv failed\n"</font>);</p><p>		goto bail;</p><p>	}</p><p>	assert(env != NULL);</p><p>	<font class="keyword">if </font>(register_android_media_MediaPlayer(env) &lt; 0) {</p><p>		</font>LOGE(<font class="Fields">"ERROR: MediaPlayer native registration failed\n"</font>);</p><p>		goto bail;</p><p>	}</p><p>	<font class="keyword">if </font>(register_android_media_MediaRecorder(env) &lt; 0) {</p><p>		</font>LOGE(<font class="Fields">"ERROR: MediaRecorder native registration failed\n"</font>);</p><p>		goto bail;</p><p>	}</p><p>	<font class="keyword">if </font>(register_android_media_MediaScanner(env) &lt; 0) {</p><p>		</font>LOGE(<font class="Fields">"ERROR: MediaScanner native registration failed\n"</font>);</p><p>		goto bail;</p><p>	}</p><p>	<font class="keyword">if </font>(register_android_media_MediaMetadataRetriever(env) &lt; 0) {</p><p>		</font>LOGE(<font class="Fields">"ERROR: MediaMetadataRetriever native registration failed\n"</font>);</p><p>		goto bail;</p><p>	}</p><p>	</font>/* success -- <font class="keyword">return </font>valid version number */</p><p>	result = JNI_VERSION_1_4;</p><p>	bail:</p><p>		<font class="keyword">return </font>result;</p><p>}</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

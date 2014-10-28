@@ -1,0 +1,60 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android全屏 去除标题栏和状态栏_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li class="navcurrentLink"><A href="index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Launcher" href="index_207.html">Launcher</A></h2>
+
+  <h2><A title="电话系统RIL" href="index_208.html">电话系统RIL</A></h2>
+
+  <h2><A title="进程间通信" href="index_209.html">进程间通信</A></h2>
+
+  <h2><A title="内部sensor系统" href="index_210.html">内部sensor系统</A></h2>
+
+  <h2><A title="内部surface系统" href="index_211.html">内部surface系统</A></h2>
+
+  <h2><A title="启动流程" href="index_212.html">启动流程</A></h2>
+
+  <h2><A title="源码编译" href="index_213.html">源码编译</A></h2>
+
+  <h2><A title="状态栏" href="index_214.html">状态栏</A></h2>
+<UL><li ><A title=Android 软件中状态栏图标处理 href="show_701_214.html">Android 软件中状态栏图标处理</A> </li><li ><A title=Android 状态栏上添加按钮 href="show_702_214.html">Android 状态栏上添加按钮</A> </li><li class="currentLink"><A title=Android全屏 去除标题栏和状态栏 href="show_703_214.html">Android全屏 去除标题栏和状态栏</A> </li><li ><A title=浅析HoneyComb中左下角三个导航键的实现源码 href="show_704_214.html">浅析HoneyComb中左下角三个导航键的实现源码</A> </li><li ><A title=在android的状态栏(statusbar)中增加menu，home和back快捷键的方法 href="show_705_214.html">在android的状态栏(statusbar)中增加menu，home和back快捷键的方法</A> </li><li ><A title=在状态栏添加文字显示的解决方法 href="show_706_214.html">在状态栏添加文字显示的解决方法</A> </li><li ><A title=Android 状态栏提示的另一种方法（一） href="show_707_214.html">Android 状态栏提示的另一种方法（一）</A> </li><li ><A title=Android 状态栏提示的另一种方法（二） href="show_708_214.html">Android 状态栏提示的另一种方法（二）</A> </li></UL>
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android全屏 去除标题栏和状态栏</H2>
+<div style="line-height:20px; font-size:14px;"><p>在开发中我们经常需要把我们的应用设置为全屏，这里我所知道的有俩中方法，一中是在代码中设置，另一种方法是在配置文件里改！</p><p style="color:#3333FF;">一、在代码中设置：</p><p><pre><font class="keyword">import </font>android.app.Activity;</p><p><font class="keyword">import </font>android.os.Bundle;</p><p><font class="keyword">import </font>android.view.Window;</p><p><font class="keyword">import </font>android.view.WindowManager;</p><p><font class="keyword">public </font><font class="keyword">class </font>OpenGl_Lesson1 </font><font class="keyword">extends </font>Activity {</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onCreate(Bundle savedInstanceState) {</p><p>		<font class="keyword">super</font>.onCreate(savedInstanceState);</p><p>		<font class="Comments">// 去除title</font></p><p>		requestWindowFeature(Window.FEATURE_NO_TITLE);</p><p>		<font class="Comments">// 去掉Activity上面的状态栏</font></p><p>		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,</p><p>				WindowManager.LayoutParams.FLAG_FULLSCREEN);</p><p>		setContentView(R.layout.main);</p><p>	}</p><p>}</p><p></pre></p><p>在这里要强调一点，设置全屏的俩段代码必须在setContentView（R.layout.main） 之前，不然会报错.</p><p style="color:#3333FF;">二、在配置文件里修改</p><p>（关键代码：android：theme="@android：style/Theme.NoTitleBar.Fullscreen"，如果想只是去除标题栏就后面不用加Fullscreen了，另外，如果想要整个应用都去除标题栏和状态栏，就把这句代码加到&lt;application..标签里面，如果只是想某个activity起作用，这句代码就加到相应的activity上）：</p><p><pre>&lt;?xml version=<font class="Fields">"1.0"</font> encoding=</font><font class="Fields">"utf-8"</font>?&gt;</p><p>&lt;manifest xmlns:android=<font class="Fields">"http:<font class="Comments">//schemas.android.com/apk/res/android</font></p><p>    </font>package=<font class="Fields">"com.android.tutor</p><p>    </font>android:versionCode=<font class="Fields">"1</p><p>    </font>android:versionName=<font class="Fields">"1.0"</font> &gt;</p><p>    &lt;application</p><p>        </font>android:icon=<font class="Fields">"@drawable/icon</p><p>        </font>android:label=<font class="Fields">"@string/app_name"</font> &gt;</p><p>        &lt;activity</p><p>            </font>android:name=<font class="Fields">".OpenGl_Lesson1</p><p>            </font>android:label=<font class="Fields">"@string/app_name</p><p>            </font>android:theme=<font class="Fields">"@android:style/Theme.NoTitleBar.Fullscreen"</font> &gt;</p><p>            &lt;intent-filter&gt;</p><p>                </font>&lt;action android:name=<font class="Fields">"android.intent.action.MAIN"</font> /&gt;</p><p>                </font>&lt;category android:name=<font class="Fields">"android.intent.category.LAUNCHER"</font> /&gt;</p><p>            &lt;/intent-filter&gt;</p><p>        &lt;/activity&gt;</p><p>    &lt;/application&gt;</p><p>    </font>&lt;uses-sdk android:minSdkVersion=<font class="Fields">"7"</font> /&gt;</p><p>&lt;/manifest&gt;</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

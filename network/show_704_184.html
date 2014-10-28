@@ -1,0 +1,64 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>调用系统程序发送带附件的彩信和email_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li class="navcurrentLink"><A href="index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="3G" href="index_177.html">3G</A></h2>
+
+  <h2><A title="WIFI" href="index_178.html">WIFI</A></h2>
+
+  <h2><A title="蓝牙" href="index_179.html">蓝牙</A></h2>
+
+  <h2><A title="HTTP协议" href="index_180.html">HTTP协议</A></h2>
+
+  <h2><A title="Socket" href="index_181.html">Socket</A></h2>
+
+  <h2><A title="HTML与HTML5" href="index_182.html">HTML与HTML5</A></h2>
+
+  <h2><A title="JavaScript" href="index_183.html">JavaScript</A></h2>
+
+  <h2><A title="Email" href="index_184.html">Email</A></h2>
+<UL><li ><A title=Android 本地联络人并向其发邮件（一） href="show_701_184.html">Android 本地联络人并向其发邮件（一）</A> </li><li ><A title=Android 本地联络人并向其发邮件（二） href="show_702_184.html">Android 本地联络人并向其发邮件（二）</A> </li><li ><A title=Android Email程序 href="show_703_184.html">Android Email程序</A> </li><li class="currentLink"><A title=调用系统程序发送带附件的彩信和email href="show_704_184.html">调用系统程序发送带附件的彩信和email</A> </li></UL>
+  <h2><A title="NFC" href="index_185.html">NFC</A></h2>
+
+  <h2><A title="Web Service" href="index_186.html">Web Service</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>调用系统程序发送带附件的彩信和email</H2>
+<div style="line-height:20px; font-size:14px;"><p>以下是我测试通过的代码。</p><p>sendWithChosenClient()能使系统弹出一个选择菜单，选择gmail, 短信或者其它的客户选发送带附件的消息。</p><p>sendWithEmailOnly()可以只调出email客户端，附上附件。</p><p>现在我想只调出短信/彩信发送界面，发送带附件的消息。感觉是如何设置Intent.setType(...)的问题，但是总是试不通。试过的有：</p><p>application/octet-stream</p><p>image/png</p><p>vnd.android-dir/mms-sms</p><p><pre><font class="keyword">private </font><font class="keyword">void </font>sendWithChosenClient() {</p><p>	</font>Intent sendIntent = <font class="keyword">new </font>Intent(Intent.ACTION_SEND);</p><p>	sendIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);</p><p>	<font class="Comments">// for sms/mms only</font></p><p>	</font>sendIntent.putExtra(<font class="Fields">"address"</font>, </font><font class="Fields">"10086"</font>);</p><p>	</font>sendIntent.putExtra(<font class="Fields">"sms_body"</font>, </font><font class="Fields">"See attached picture"</font>);</p><p>	<font class="Comments">// for email only</font></p><p>	</font>String[] mailto = { <font class="Fields">"zx.zhangxiong@gmail.com"</font> </font>};</p><p>	sendIntent.putExtra(Intent.EXTRA_EMAIL, mailto);</p><p>	</font>sendIntent.putExtra(Intent.EXTRA_SUBJECT, <font class="Fields">"sendEmail2"</font>);</p><p>	</font>sendIntent.putExtra(Intent.EXTRA_TEXT, <font class="Fields">"sendEmail2 Text"</font>);</p><p>	<font class="Comments">// attachment</font></p><p>	String fileName = Environment.getExternalStorageDirectory().toString()</p><p>			</font>+ File.separator + <font class="Fields">"tmp"</font> + File.separator + </font><font class="Fields">"viewCapture.png"</font>;</p><p>	</font>String url = <font class="Fields">"file:<font class="Comments">//"</font> + fileName;</font></p><p>	sendIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse(url));</p><p>	</font>sendIntent.setType(<font class="Fields">"image/png"</font>);</p><p>	startActivity(sendIntent);</p><p>}</p><p><font class="keyword">private </font><font class="keyword">void </font>sendWithEmailOnly() {</p><p>	</font>Intent sendIntent = <font class="keyword">new </font>Intent(Intent.ACTION_SEND);</p><p>	sendIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);</p><p>	</font>String[] mailto = { <font class="Fields">"zx.zhangxiong@gmail.com"</font> </font>};</p><p>	sendIntent.putExtra(Intent.EXTRA_EMAIL, mailto);</p><p>	</font>sendIntent.putExtra(Intent.EXTRA_SUBJECT, <font class="Fields">"sendEmail2"</font>);</p><p>	</font>sendIntent.putExtra(Intent.EXTRA_TEXT, <font class="Fields">"sendEmail2 Text"</font>);</p><p>	String fileName = Environment.getExternalStorageDirectory().toString()</p><p>			</font>+ File.separator + <font class="Fields">"tmp"</font> + File.separator + </font><font class="Fields">"viewCapture.png"</font>;</p><p>	</font>String url = <font class="Fields">"file:<font class="Comments">//"</font> + fileName;</font></p><p>	sendIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse(url));</p><p>	</font>sendIntent.setType(<font class="Fields">"application/octet-stream"</font>);</p><p>	startActivity(sendIntent);</p><p>}</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

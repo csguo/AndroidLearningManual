@@ -1,0 +1,58 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android保存图片到数据库_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li class="navcurrentLink"><A href="index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="ContentProvider" href="index_170.html">ContentProvider</A></h2>
+
+  <h2><A title="Preferences" href="index_171.html">Preferences</A></h2>
+
+  <h2><A title="SQLite" href="index_172.html">SQLite</A></h2>
+
+  <h2><A title="SD卡" href="index_173.html">SD卡</A></h2>
+
+  <h2><A title="数据库" href="index_174.html">数据库</A></h2>
+<UL><li ><A title=Android 数据存取之Databases href="show_401_174.html">Android 数据存取之Databases</A> </li><li ><A title=Android教程之SQlite数据库操作 href="show_402_174.html">Android教程之SQlite数据库操作</A> </li><li ><A title=Android 数据库一次创建多个表（一） href="show_403_174.html">Android 数据库一次创建多个表（一）</A> </li><li ><A title=Android 数据库一次创建多个表（二） href="show_404_174.html">Android 数据库一次创建多个表（二）</A> </li><li ><A title=Android 数据库经验总结 href="show_405_174.html">Android 数据库经验总结</A> </li><li ><A title=创建数据库的时候就将数据库保存到SDcard href="show_406_174.html">创建数据库的时候就将数据库保存到SDcard</A> </li><li class="currentLink"><A title=Android保存图片到数据库 href="show_407_174.html">Android保存图片到数据库</A> </li><li ><A title=Android中访问已有的SQLite数据库 href="show_408_174.html">Android中访问已有的SQLite数据库</A> </li><li ><A title=关于Android SQLite database存储到sdcard上的问题 href="show_409_174.html">关于Android SQLite database存储到sdcard上的问题</A> </li></UL>
+  <h2><A title="URI" href="index_175.html">URI</A></h2>
+
+  <h2><A title="MediaStore" href="index_176.html">MediaStore</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android保存图片到数据库</H2>
+<div style="line-height:20px; font-size:14px;"><p>我给大家介绍把图片保存到数据库的方法。</p><p>方法一：</p><p><pre><font class="keyword">public </font><font class="keyword">void </font>saveIcon(Bitmap icon) {</p><p>	<font class="keyword">if </font>(icon == </font><font class="keyword">null</font>) {</p><p>		<font class="keyword">return</font>;</font></p><p>	}</p><p>	<font class="Comments">// 最终图标要保存到浏览器的内部数据库中，系统程序均保存为SQLite格式，Browser也不例外，因为图片是二进制的所以使用字节数组存储数据库的</font></p><p>	<font class="Comments">// BLOB类型</font></p><p>	<font class="keyword">final </font>ByteArrayOutputStream os = </font><font class="keyword">new </font>ByteArrayOutputStream();</p><p>	<font class="Comments">// 将Bitmap压缩成PNG编码，质量为100%存储</font></p><p>	icon.compress(Bitmap.CompressFormat.PNG, 100, os);</p><p>	<font class="Comments">// 构造SQLite的Content对象，这里也可以使用raw</font></p><p>	</font>ContentValues values = <font class="keyword">new </font>ContentValues();</p><p>	<font class="Comments">// 写入数据库的Browser.BookmarkColumns.TOUCH_ICON字段</font></p><p>	values.put(Browser.BookmarkColumns.TOUCH_ICON, os.toByteArray());</p><p>	DBUtil.update(....);<font class="Comments">//调用更新或者插入到数据库的方法</font></p><p>}</p><p></pre></p><p>方法二：如果数据表入口时一个content:URI</p><p><pre><font class="Comments">// Save the name and description of an image in a ContentValues map.</font></p><p>ContentValues values = <font class="keyword">new </font>ContentValues(3);</p><p>values.put(Media.DISPLAY_NAME, <font class="Fields">"road_trip_1"</font>);</p><p>values.put(Media.DESCRIPTION, <font class="Fields">"Day 1, trip to Los Angeles"</font>);</p><p>values.put(Media.MIME_TYPE, <font class="Fields">"image/jpeg"</font>);</p><p><font class="Comments">// Add a new record without the bitmap, but with the values just set.</font></p><p><font class="Comments">// insert() returns the URI of the new record.</font></p><p>Uri uri = getContentResolver().insert(Media.EXTERNAL_CONTENT_URI,</p><p>		values);</p><p><font class="Comments">// Now get a handle to the file for that record, and save the data into</font></p><p><font class="Comments">// it.</font></p><p><font class="Comments">// Here, sourceBitmap is a Bitmap object representing the file to save</font></p><p><font class="Comments">// to the database.</font></p><p><font class="keyword">try </font>{</p><p>	OutputStream outStream = getContentResolver().openOutputStream(uri);</p><p>	sourceBitmap.compress(Bitmap.CompressFormat.JPEG, 50, outStream);</p><p>	outStream.close();</p><p></font>} <font class="keyword">catch </font>(Exception e) {</p><p>	</font>Log.e(TAG, <font class="Fields">"exception <font class="keyword">while </font>writing image"</font>, e);</p><p>}</p><p></pre></p><p></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

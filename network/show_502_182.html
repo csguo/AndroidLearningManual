@@ -1,0 +1,64 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>HttpClient和URLConnection两种下载HTML_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li class="navcurrentLink"><A href="index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="3G" href="index_177.html">3G</A></h2>
+
+  <h2><A title="WIFI" href="index_178.html">WIFI</A></h2>
+
+  <h2><A title="蓝牙" href="index_179.html">蓝牙</A></h2>
+
+  <h2><A title="HTTP协议" href="index_180.html">HTTP协议</A></h2>
+
+  <h2><A title="Socket" href="index_181.html">Socket</A></h2>
+
+  <h2><A title="HTML与HTML5" href="index_182.html">HTML与HTML5</A></h2>
+<UL><li ><A title=Android TextView中显示HTML和图片 href="show_501_182.html">Android TextView中显示HTML和图片</A> </li><li class="currentLink"><A title=HttpClient和URLConnection两种下载HTML href="show_502_182.html">HttpClient和URLConnection两种下载HTML</A> </li><li ><A title=webview与HTML加载自适应问题解决方案 href="show_503_182.html">webview与HTML加载自适应问题解决方案</A> </li><li ><A title=Android中构建HTML5应用 href="show_504_182.html">Android中构建HTML5应用</A> </li><li ><A title=Android下的另一个开发选择——HTML5 href="show_505_182.html">Android下的另一个开发选择——HTML5</A> </li><li ><A title=Android与iOS：谁更适合HTML 5？ href="show_506_182.html">Android与iOS：谁更适合HTML 5？</A> </li><li ><A title=Android and HTML5 开发手机应用(转载) href="show_507_182.html">Android and HTML5 开发手机应用(转载)</A> </li><li ><A title=HTML 5是不是解决跨平台问题的终极密钥 href="show_508_182.html">HTML 5是不是解决跨平台问题的终极密钥</A> </li><li ><A title=HTML5能取代Android和iOS应用程序吗？(转载) href="show_509_182.html">HTML5能取代Android和iOS应用程序吗？(转载)</A> </li><li ><A title=Android webkit HTML5 video研究 href="show_510_182.html">Android webkit HTML5 video研究</A> </li><li ><A title=将HTML5封装成android应用APK文件若干方法 href="show_511_182.html">将HTML5封装成android应用APK文件若干方法</A> </li><li ><A title=七个特点告诉你 HTML5技术到底怎么样 href="show_512_182.html">七个特点告诉你 HTML5技术到底怎么样</A> </li><li ><A title=十大中间工具和HTML5技术应用解析 href="show_513_182.html">十大中间工具和HTML5技术应用解析</A> </li></UL>
+  <h2><A title="JavaScript" href="index_183.html">JavaScript</A></h2>
+
+  <h2><A title="Email" href="index_184.html">Email</A></h2>
+
+  <h2><A title="NFC" href="index_185.html">NFC</A></h2>
+
+  <h2><A title="Web Service" href="index_186.html">Web Service</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>HttpClient和URLConnection两种下载HTML</H2>
+<div style="line-height:20px; font-size:14px;"><p>我们下面要用两种方法来下载html,这两种方法分别采用HttpClient和URLConnection，好像是HttpClient方式比较稳定，一般都能下载到，但是URLConnection在EDGE网络下经常下不到数据。我们还是来看看代码吧：</p><p><pre><font class="keyword">public </font>String getHTML(String url) {</p><p>	<font class="keyword">try </font>{</p><p>		</font>URL newUrl = <font class="keyword">new </font>URL(url);</p><p>		URLConnection connect = newUrl.openConnection();</p><p>		</font>connect.setRequestProperty(<font class="Fields">"User-Agent"</font>,</p><p>				<font class="Fields">"Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)"</font>);</p><p>		</font>DataInputStream dis = <font class="keyword">new </font>DataInputStream(connect.getInputStream());</p><p>		</font>BufferedReader in = <font class="keyword">new </font>BufferedReader(</font><font class="keyword">new </font>InputStreamReader(dis,</p><p>				<font class="Fields">"UTF-8"</font>));</p><p>		<font class="Comments">// 目标页面编码为UTF-8</font></p><p>		</font>String html = <font class="Fields">""</font>;</p><p>		</font>String readLine = <font class="keyword">null</font>;</p><p>		<font class="keyword">while </font>((readLine = in.readLine()) != </font><font class="keyword">null</font>) {</p><p>			html = html + readLine;</p><p>		}</p><p>		in.close();</p><p>		<font class="keyword">return </font>html;</p><p>	</font>} <font class="keyword">catch </font>(MalformedURLException me) {</p><p>	</font>} <font class="keyword">catch </font>(IOException ioe) {</p><p>	}</p><p>	<font class="keyword">return </font><font class="keyword">null</font>;</p><p>}</p><p></pre></p><p>大家要记住的一个事，那就是这句话content = new String(content.getBytes("ISO-8859-1"),"UTF-8");我们大家一定要记住，我们要是有中文的话，就是utf-8。大家可千万要记住了。有了这个菜不会出现乱码。</p><p><pre><font class="keyword">public </font>String getHTML(String url) {</p><p>	<font class="keyword">try </font>{</p><p>		</font>URL newUrl = <font class="keyword">new </font>URL(url);</p><p>		URLConnection connect = newUrl.openConnection();</p><p>		</font>connect.setRequestProperty(<font class="Fields">"User-Agent"</font>,</p><p>				<font class="Fields">"Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)"</font>);</p><p>		</font>DataInputStream dis = <font class="keyword">new </font>DataInputStream(connect.getInputStream());</p><p>		</font>BufferedReader in = <font class="keyword">new </font>BufferedReader(</font><font class="keyword">new </font>InputStreamReader(dis,</p><p>				<font class="Fields">"UTF-8"</font>));</p><p>		<font class="Comments">// 目标页面编码为UTF-8</font></p><p>		</font>String html = <font class="Fields">""</font>;</p><p>		</font>String readLine = <font class="keyword">null</font>;</p><p>		<font class="keyword">while </font>((readLine = in.readLine()) != </font><font class="keyword">null</font>) {</p><p>			html = html + readLine;</p><p>		}</p><p>		in.close();</p><p>		<font class="keyword">return </font>html;</p><p>	</font>} <font class="keyword">catch </font>(MalformedURLException me) {</p><p>	</font>} <font class="keyword">catch </font>(IOException ioe) {</p><p>	}</p><p>	<font class="keyword">return </font><font class="keyword">null</font>;</p><p>}</p><p></pre></p><p>大家看见了吧，我们的第二种方法也是有utf-8的，这句话在代码中是非常重要的。BufferedReader in = new BufferedReader(new InputStreamReader(dis,"UTF-8"));，虽然这两个方法非常简单的，但是有的时候也会犯一下很低级的错误哦。就比如我就是容易爱把中文的utf-8给忘记。大家可不要走我的老路呀。大家要是有更好的方法，我们可以发帖进行交流。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

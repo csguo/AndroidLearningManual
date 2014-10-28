@@ -1,0 +1,111 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>在SurfaceView中照样使用Animation(上)_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li class="navcurrentLink"><A href="index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="用户界面之view(视图)" href="index_123.html">用户界面之view(视图)</A></h2>
+
+  <h2><A title="用户界面之Layout(布局)" href="index_124.html">用户界面之Layout(布局)</A></h2>
+
+  <h2><A title="用户界面之TextView(文本视图)" href="index_125.html">用户界面之TextView(文本视图)</A></h2>
+
+  <h2><A title="用户界面之EditText(编辑视图)" href="index_126.html">用户界面之EditText(编辑视图)</A></h2>
+
+  <h2><A title="用户界面之Button(按钮)" href="index_127.html">用户界面之Button(按钮)</A></h2>
+
+  <h2><A title="用户界面之Dialog(对话框)" href="index_128.html">用户界面之Dialog(对话框)</A></h2>
+
+  <h2><A title="用户界面之ListView(列表视图)" href="index_129.html">用户界面之ListView(列表视图)</A></h2>
+
+  <h2><A title="用户界面之Adapter(适配器)" href="index_130.html">用户界面之Adapter(适配器)</A></h2>
+
+  <h2><A title="用户界面之Menu(菜单)" href="index_131.html">用户界面之Menu(菜单)</A></h2>
+
+  <h2><A title="用户界面之Notification(通知栏)" href="index_132.html">用户界面之Notification(通知栏)</A></h2>
+
+  <h2><A title="NotificationImageView(图像视图)" href="index_133.html">NotificationImageView(图像视图)</A></h2>
+
+  <h2><A title="用户界面之GridView(格视图)" href="index_134.html">用户界面之GridView(格视图)</A></h2>
+
+  <h2><A title="用户界面之ProgressBar(进度条)" href="index_135.html">用户界面之ProgressBar(进度条)</A></h2>
+
+  <h2><A title="用户界面之Checkbox(复选框)" href="index_136.html">用户界面之Checkbox(复选框)</A></h2>
+
+  <h2><A title="用户界面之ScrollView(滚动视图)" href="index_137.html">用户界面之ScrollView(滚动视图)</A></h2>
+
+  <h2><A title="用户界面之Gallery(长廊视图)" href="index_138.html">用户界面之Gallery(长廊视图)</A></h2>
+
+  <h2><A title="用户界面之ActionBar(导航栏)" href="index_139.html">用户界面之ActionBar(导航栏)</A></h2>
+
+  <h2><A title="用户界面之PopupWindow(弹出窗口)" href="index_140.html">用户界面之PopupWindow(弹出窗口)</A></h2>
+
+  <h2><A title="用户界面之RatingBar(评分栏)" href="index_141.html">用户界面之RatingBar(评分栏)</A></h2>
+
+  <h2><A title="用户界面之Spinner" href="index_142.html">用户界面之Spinner</A></h2>
+
+  <h2><A title="用户界面之SeekBar(搜索bar)" href="index_143.html">用户界面之SeekBar(搜索bar)</A></h2>
+
+  <h2><A title="用户界面之TabHost(分割栏)" href="index_144.html">用户界面之TabHost(分割栏)</A></h2>
+
+  <h2><A title="用户界面之SlidingDrawer(抽屉)" href="index_145.html">用户界面之SlidingDrawer(抽屉)</A></h2>
+
+  <h2><A title="用户界面之ViewFlipper" href="index_146.html">用户界面之ViewFlipper</A></h2>
+
+  <h2><A title="用户界面之SurfaceView" href="index_147.html">用户界面之SurfaceView</A></h2>
+<UL><li ><A title=SurfaceView的基本应用 href="show_2401_147.html">SurfaceView的基本应用</A> </li><li ><A title=SurfaceView使用示例（一） href="show_2402_147.html">SurfaceView使用示例（一）</A> </li><li ><A title=SurfaceView使用示例（二） href="show_2403_147.html">SurfaceView使用示例（二）</A> </li><li ><A title=SurfaceView双缓冲应用 href="show_2404_147.html">SurfaceView双缓冲应用</A> </li><li ><A title=SurfaceView运行机制详解 href="show_2405_147.html">SurfaceView运行机制详解</A> </li><li ><A title=剖析SurfaceView！Callback以及SurfaceHolder href="show_2406_147.html">剖析SurfaceView！Callback以及SurfaceHolder</A> </li><li ><A title=Android surfaceView与View的区别 href="show_2407_147.html">Android surfaceView与View的区别</A> </li><li ><A title=自定义SurfaceView href="show_2408_147.html">自定义SurfaceView</A> </li><li class="currentLink"><A title=在SurfaceView中照样使用Animation(上) href="show_2409_147.html">在SurfaceView中照样使用Animation(上)</A> </li><li ><A title=在SurfaceView中照样使用Animation(中) href="show_2410_147.html">在SurfaceView中照样使用Animation(中)</A> </li><li ><A title=在SurfaceView中照样使用Animation(下) href="show_2411_147.html">在SurfaceView中照样使用Animation(下)</A> </li><li ><A title=在SurfaceView中添加组件！并交互数据 href="show_2412_147.html">在SurfaceView中添加组件！并交互数据</A> </li><li ><A title=SurfaceView设置透明背景 href="show_2413_147.html">SurfaceView设置透明背景</A> </li></UL>
+  <h2><A title="用户界面之Splash" href="index_148.html">用户界面之Splash</A></h2>
+
+  <h2><A title="用户界面之Toast" href="index_149.html">用户界面之Toast</A></h2>
+
+  <h2><A title="用户界面之AlarmManager" href="index_150.html">用户界面之AlarmManager</A></h2>
+
+  <h2><A title="用户界面之Fragment" href="index_151.html">用户界面之Fragment</A></h2>
+
+  <h2><A title="用户界面之WebView(网络视图)" href="index_152.html">用户界面之WebView(网络视图)</A></h2>
+
+  <h2><A title="Android用户界面之Widget(小组件)" href="index_153.html">Android用户界面之Widget(小组件)</A></h2>
+
+  <h2><A title="Android用户界面之theme和style" href="index_154.html">Android用户界面之theme和style</A></h2>
+
+  <h2><A title="Android用户界面之多语言" href="index_155.html">Android用户界面之多语言</A></h2>
+
+  <h2><A title="Android用户界面之界面特效" href="index_156.html">Android用户界面之界面特效</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>在SurfaceView中照样使用Animation(上)</H2>
+<div style="line-height:20px; font-size:14px;"><p>之前我给大家介绍了一张13帧的png的图，利用设置可视区域的方式来实现动画效果，但是这些属于我们自己来实现动画的方式，其实Android给我们的有两类自定义动画方式:</p><p>第一类：Frame By Frame 帧动画（不推荐游戏开发中使用）</p><p>所谓帧动画，就是顺序播放事先做好的图像,类似于放电影；</p><p>分析： 此种方式类似我之前的那种利用设置可视区域的方式来实现动画效果，不仅类似而且还不如！所以此种方式在此不予分析；</p><p>第二类：Tween Animation 渐变动画</p><p>即通过对对象不断做图像变换(平移、缩放、旋转)产生动画效果！实现方式其实就是预先定义一组指令，这些指令指定了图形变换的类型、触发时间、持续时间。这些指令可以是以 XML 文件方式定义，也可以是以源代码方式定义。程序沿着时间线执行这些指令就可以实现动画 效果。</p><p>总结：那么在Android游戏开发中我们优先选用两种方式：第一种设置可视区域的方式来实现动画效果(帧动画),需要童鞋们手动实现,那么在之前我的博文【Android2D游戏开发之四】中已经有了相应的源码!大家可以去下载研究；那么这里就主要为大家详细分析 Tween Animation！</p><p>在讲述SurfaceView添加动画之前，我们先来看看在View中如何实现Tween Animation以及Tween 中的四种效果;</p><p>MyViewAnimation .java</p><p><pre>  </p><p><font class="keyword">import </font>android.content.Context;</p><p><font class="keyword">import </font>android.graphics.Bitmap;</p><p><font class="keyword">import </font>android.graphics.BitmapFactory;</p><p><font class="keyword">import </font>android.graphics.Canvas;</p><p><font class="keyword">import </font>android.graphics.Color;</p><p><font class="keyword">import </font>android.graphics.Paint;</p><p><font class="keyword">import </font>android.view.KeyEvent;</p><p><font class="keyword">import </font>android.view.View;</p><p><font class="keyword">import </font>android.view.animation.AlphaAnimation;</p><p><font class="keyword">import </font>android.view.animation.Animation;</p><p><font class="keyword">import </font>android.view.animation.RotateAnimation;</p><p><font class="keyword">import </font>android.view.animation.ScaleAnimation;</p><p><font class="keyword">import </font>android.view.animation.TranslateAnimation;</p><p><font class="Comments">/**</font></p><p> <font class="Comments">* @AlphaAnimation 渐变透明度动画效果</font></p><p> <font class="Comments">* @ScaleAnimation 渐变尺寸伸缩动画效果</font></p><p> <font class="Comments">* @TranslateAnimation 画面转换位置移动动画效果</font></p><p> <font class="Comments">* @RotateAnimation 画面转移旋转动画效果</font></p><p> <font class="Comments">*/</font></p><p><font class="keyword">public </font><font class="keyword">class </font>MyViewAnimation </font><font class="keyword">extends </font>View {</p><p>	<font class="keyword">private </font>Pa</font><font class="keyword">int </font>paint;</p><p>	<font class="keyword">private </font>Bitmap bmp;</p><p>	<font class="keyword">private </font><font class="keyword">int </font>x = 50;</p><p>	<font class="keyword">private </font>Animation mAlphaAnimation;</p><p>	<font class="keyword">private </font>Animation mScaleAnimation;</p><p>	<font class="keyword">private </font>Animation mTranslateAnimation;</p><p>	<font class="keyword">private </font>Animation mRotateAnimation;</p><p>	<font class="keyword">public </font>MyViewAnimation(Context context) {</p><p>		<font class="keyword">super</font>(context);</p><p>		</font>pa<font class="keyword">int </font>= </font><font class="keyword">new </font>Paint();</p><p>		</font>paint.setAntiAlias(<font class="keyword">true</font>);</p><p>		bmp = BitmapFactory.decodeResource(getResources(), R.drawable.icon);</p><p>		<font class="keyword">this</font>.setFocusable(</font><font class="keyword">true</font>);<font class="Comments">// 只有当该View获得焦点时才会调用onKeyDown方法</font></p><p>	}</p><p>	@Override</p><p>	<font class="keyword">protected </font><font class="keyword">void </font>onDraw(Canvas canvas) {</p><p>		<font class="keyword">super</font>.onDraw(canvas);</p><p>		canvas.drawColor(Color.BLACK);</p><p>		paint.setColor(Color.WHITE);</p><p>		</font>canvas.drawText(<font class="Fields">"Himi"</font>, x, 50, pa<font class="keyword">int</font>);<font class="Comments">// 备注1</font></p><p>		</font>canvas.drawText(<font class="Fields">"方向键↑ 渐变透明度动画效果"</font>, 80, <font class="keyword">this</font>.getHeight() - 80, pa</font><font class="keyword">int</font>);</p><p>		</font>canvas.drawText(<font class="Fields">"方向键↓ 渐变尺寸伸缩动画效果"</font>, 80, <font class="keyword">this</font>.getHeight() - 60, pa</font><font class="keyword">int</font>);</p><p>		</font>canvas.drawText(<font class="Fields">"方向键← 画面转换位置移动动画效果"</font>, 80, <font class="keyword">this</font>.getHeight() - 40, pa</font><font class="keyword">int</font>);</p><p>		</font>canvas.drawText(<font class="Fields">"方向键→ 画面转移旋转动画效果"</font>, 80, <font class="keyword">this</font>.getHeight() - 20, pa</font><font class="keyword">int</font>);</p><p>		</font>canvas.drawBitmap(bmp, <font class="keyword">this</font>.getWidth() / 2 - bmp.getWidth() / 2,</p><p>				<font class="keyword">this</font>.getHeight() / 2 - bmp.getHeight() / 2, pa</font><font class="keyword">int</font>);</p><p>		x += 1;</p><p>	}</p><p>	<font class="keyword">public </font><font class="keyword">boolean </font>onKeyDown(</font><font class="keyword">int </font>keyCode, KeyEvent event) {</p><p>		<font class="keyword">if </font>(keyCode == KeyEvent.KEYCODE_DPAD_UP) {<font class="Comments">// 渐变透明度动画效果</font></p><p>			</font>mAlphaAnimation = <font class="keyword">new </font>AlphaAnimation(0.1f, 1.0f);</p><p>			<font class="Comments">// 第一个参数fromAlpha 为动画开始时候透明度</font></p><p>			<font class="Comments">// 第二个参数toAlpha 为动画结束时候透明度</font></p><p>			<font class="Comments">// 注意：取值范围[0-1];[完全透明-完全不透明]</font></p><p>			mAlphaAnimation.setDuration(3000);</p><p>			<font class="Comments">// <font class="Comments">//设置时间持续时间为3000 毫秒=3秒</font></p><p>			<font class="keyword">this</font>.startAnimation(mAlphaAnimation);</p><p>		</font>} <font class="keyword">else </font><font class="keyword">if </font>(keyCode == KeyEvent.KEYCODE_DPAD_DOWN) {<font class="Comments">// 渐变尺寸伸缩动画效果</font></p><p>			</font>mScaleAnimation = <font class="keyword">new </font>ScaleAnimation(0.0f, 1.5f, 0.0f, 1.5f,</p><p>					Animation.RELATIVE_TO_PARENT, 0.5f,</p><p>					Animation.RELATIVE_TO_PARENT, 0.0f);</p><p>			<font class="Comments">// 第一个参数fromX为动画起始时X坐标上的伸缩尺寸</font></p><p>			<font class="Comments">// 第二个参数toX为动画结束时X坐标上的伸缩尺寸</font></p><p>			<font class="Comments">// 第三个参数fromY为动画起始时Y坐标上的伸缩尺寸</font></p><p>			<font class="Comments">// 第四个参数toY 为动画结束时Y 坐标上的伸缩尺寸</font></p><p>			<font class="Comments">// 注意：</font></p><p>			<font class="Comments">// 0.0表示收缩到没有</font></p><p>			<font class="Comments">// 1.0表示正常无伸缩</font></p><p>			<font class="Comments">// 值小于1.0表示收缩</font></p><p>			<font class="Comments">// 值大于1.0表示放大</font></p><p>			<font class="Comments">// -----我这里1-4参数表明是起始图像大小不变，动画终止的时候图像被放大1.5倍</font></p><p>			<font class="Comments">// 第五个参数pivotXType 为动画在X 轴相对于物件位置类型</font></p><p>			<font class="Comments">// 第六个参数pivotXValue 为动画相对于物件的X 坐标的开始位置</font></p><p>			<font class="Comments">// 第七个参数pivotXType 为动画在Y 轴相对于物件位置类型</font></p><p>			<font class="Comments">// 第八个参数pivotYValue 为动画相对于物件的Y 坐标的开始位置</font></p><p>			<font class="Comments">// 提示：位置类型有三种,每种效果大家自己尝试哈~这里偷下懒~</font></p><p>			<font class="Comments">// 毕竟亲眼看到效果的区别才记忆深刻~</font></p><p>			<font class="Comments">// Animation.ABSOLUTE</font></p><p>			<font class="Comments">// 、Animation.RELATIVE_TO_SELF、Animation.RELATIVE_TO_PARENT</font></p><p>			mScaleAnimation.setDuration(2000);</p><p>			<font class="keyword">this</font>.startAnimation(mScaleAnimation);</p><p>		</font>} <font class="keyword">else </font><font class="keyword">if </font>(keyCode == KeyEvent.KEYCODE_DPAD_LEFT) {<font class="Comments">// 画面转换位置移动动画效果</font></p><p>			</font>mTranslateAnimation = <font class="keyword">new </font>TranslateAnimation(0, 100, 0, 100);</p><p>			<font class="Comments">// 第一个参数fromXDelta为动画起始时X坐标上的移动位置</font></p><p>			<font class="Comments">// 第二个参数toXDelta为动画结束时X坐标上的移动位置</font></p><p>			<font class="Comments">// 第三个参数fromYDelta为动画起始时Y坐标上的移动位置</font></p><p>			<font class="Comments">// 第四个参数toYDelta 为动画结束时Y 坐标上的移动位置</font></p><p>			mTranslateAnimation.setDuration(2000);</p><p>			<font class="keyword">this</font>.startAnimation(mTranslateAnimation);</p><p>		</font>} <font class="keyword">else </font><font class="keyword">if </font>(keyCode == KeyEvent.KEYCODE_DPAD_RIGHT) {<font class="Comments">// 画面转移旋转动画效果</font></p><p>			</font>mRotateAnimation = <font class="keyword">new </font>RotateAnimation(0.0f, 360.0f,</p><p>					Animation.RELATIVE_TO_SELF, 0.5f,</p><p>					Animation.RELATIVE_TO_SELF, 0.5f);</p><p>			<font class="Comments">// 第一个参数fromDegrees为动画起始时的旋转角度</font></p><p>			<font class="Comments">// 第二个参数toDegrees 为动画旋转到的角度</font></p><p>			<font class="Comments">// 第三个参数pivotXType 为动画在X 轴相对于物件位置类型</font></p><p>			<font class="Comments">// 第四个参数pivotXValue 为动画相对于物件的X 坐标的开始位置</font></p><p>			<font class="Comments">// 第五个参数pivotXType 为动画在Y 轴相对于物件位置类型</font></p><p>			<font class="Comments">// 第六个参数pivotYValue 为动画相对于物件的Y 坐标的开始位置</font></p><p>			mRotateAnimation.setDuration(3000);</p><p>			<font class="keyword">this</font>.startAnimation(mRotateAnimation);</p><p>		}</p><p>		<font class="keyword">return </font><font class="keyword">super</font>.onKeyDown(keyCode, event);</p><p>	}</p><p>}</p><p></pre></p><p>OK,对于Tween Animation下的每种动画效果的实例化的每个参数都解释的很详细了！其实动画的实现不光用代码可以实现，在xml中注册实现也是可以的，这里就不多写了，大家可以自己去尝试写一下，那么在view中我们播放一种特效动画，只要实例化其对象，然后设置下参数，然后startAnimation()就好了，步骤很简单，只是每个动画实例化的参数确有着千变万化的改法，这些我也没法子一一来给大家演示，大家可以自己改改参数看看实际的效果！当然对于每种动画我们不光有设置播放的时候，还有一些属性和方法可以调用，比如Animation.restart()重放动画，getTransformation()此方法返回假，说明动画完成等等很多属性。</p><p>顺便先解释下MyViewAnimation.java 类中onDraw()方法里的（备注1）!其实这里我是想跟大家说明下Android Animation实现机制。                                         </p><p>【启动任意一种动画效果之前 和 之后 的对比图】</p><p><img src="../img/view_surfaceview/09_surfaceview.jpg"></p><p>很明显、"Himi"字样在动画开始前和开始后出现了移动，而且在MyViewAnimation.java中我没有使用Runnable接口，也没有调用刷新的函数，那么我来给各位童鞋解释下原因：动画的每种变换其实内部都是一次矩阵运算。在Android中，Canvas类中包含当前矩阵，当调用Canvas.drawBitmap (bmp, x, y, Paint) 绘制时，android 会先把 bmp 做一次矩阵运算，然后将运算的结果显示在 Canvas 上，然后不断修改 Canvas 的矩阵并刷新屏幕，View里的对象就会不停的做图形变换，动画就形成了。还有一点提醒大家：动画的播放是对整个游戏画布进行的操作，这一点要知道哟~那么下面就要给大家介绍如何在我们的SurfaceView中运用Tween Animation!（由于字数限制，请看中文和下文）</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+  
+   </P>
+</DIV></BODY></HTML>
+

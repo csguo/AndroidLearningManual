@@ -1,0 +1,64 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>测试Android作为客户端使用socket网络编程连接到数据库_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li class="navcurrentLink"><A href="index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="3G" href="index_177.html">3G</A></h2>
+
+  <h2><A title="WIFI" href="index_178.html">WIFI</A></h2>
+
+  <h2><A title="蓝牙" href="index_179.html">蓝牙</A></h2>
+
+  <h2><A title="HTTP协议" href="index_180.html">HTTP协议</A></h2>
+
+  <h2><A title="Socket" href="index_181.html">Socket</A></h2>
+<UL><li ><A title=Android 浅谈Socket（一） href="show_401_181.html">Android 浅谈Socket（一）</A> </li><li ><A title=Android 浅谈Socket（二） href="show_402_181.html">Android 浅谈Socket（二）</A> </li><li ><A title=Socket编程(多线程、双向通信) href="show_403_181.html">Socket编程(多线程、双向通信)</A> </li><li ><A title=Android开发之socket通信向PC机发信息获取本机IP href="show_404_181.html">Android开发之socket通信向PC机发信息获取本机IP</A> </li><li ><A title=Http和Socket区别 href="show_405_181.html">Http和Socket区别</A> </li><li ><A title=PC客户端与Android服务端的Socket同步通信（一） href="show_406_181.html">PC客户端与Android服务端的Socket同步通信（一）</A> </li><li ><A title=PC客户端与Android服务端的Socket同步通信（二） href="show_407_181.html">PC客户端与Android服务端的Socket同步通信（二）</A> </li><li ><A title=PC客户端与Android服务端的Socket同步通信（三） href="show_408_181.html">PC客户端与Android服务端的Socket同步通信（三）</A> </li><li ><A title=Android解析socket流 href="show_409_181.html">Android解析socket流</A> </li><li ><A title=Android 实例Socket发送Http请求 href="show_410_181.html">Android 实例Socket发送Http请求</A> </li><li ><A title=Android socket和seversocket的用法 href="show_411_181.html">Android socket和seversocket的用法</A> </li><li ><A title=Android与PC的socket通信 href="show_412_181.html">Android与PC的socket通信</A> </li><li class="currentLink"><A title=测试Android作为客户端使用socket网络编程连接到数据库 href="show_413_181.html">测试Android作为客户端使用socket网络编程连接到数据库</A> </li></UL>
+  <h2><A title="HTML与HTML5" href="index_182.html">HTML与HTML5</A></h2>
+
+  <h2><A title="JavaScript" href="index_183.html">JavaScript</A></h2>
+
+  <h2><A title="Email" href="index_184.html">Email</A></h2>
+
+  <h2><A title="NFC" href="index_185.html">NFC</A></h2>
+
+  <h2><A title="Web Service" href="index_186.html">Web Service</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>测试Android作为客户端使用socket网络编程连接到数据库</H2>
+<div style="line-height:20px; font-size:14px;"><p>client：代码如下：</p><p><pre><font class="keyword">public </font><font class="keyword">class </font>client </font><font class="keyword">extends </font>Activity {</p><p>	Button cx;</p><p>	String line;</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onCreate(Bundle savedInstanceState) {</p><p>		<font class="keyword">super</font>.onCreate(savedInstanceState);</p><p>		setContentView(R.layout.main);</p><p>		cx = (Button) findViewById(R.id.cx);</p><p>		<font class="keyword">try </font>{</p><p>			</font>Socket socket = <font class="keyword">new </font>Socket(<font class="Fields">"连接到服务器上的IP地址"</font>, 30000);</p><p>			<font class="Comments">// 将Socket对应的输入流包装</font></p><p>			</font>BufferedReader br = <font class="keyword">new </font>BufferedReader(</font><font class="keyword">new </font>InputStreamReader(</p><p>					socket.getInputStream()));</p><p>			line = br.readLine();</p><p>			br.close();</p><p>			socket.close();</p><p>		</font>} <font class="keyword">catch </font>(IOException e) {</p><p>			e.printStackTrace();</p><p>		}</p><p>		</font>cx.setOnClickListener(<font class="keyword">new </font>MyClickListener());</p><p>	}</p><p>	<font class="Comments">// 输出来自服务器的消息</font></p><p>	<font class="keyword">class </font>MyClickListener </font><font class="keyword">implements </font>View.OnClickListener {</p><p>		<font class="keyword">public </font><font class="keyword">void </font>onClick(View args) {</p><p>			</font>Toast.makeText(client.<font class="keyword">this</font>, line, Toast.LENGTH_LONG).show();</p><p></p><p>		}</p><p>	}</p><p>}</p><p></pre></p><p>Server（仅测试）:</p><p>用hibernate连接到数据库，进行数据的查询，然后返回给客户端 </p><p><pre><font class="keyword">public </font><font class="keyword">class </font>simpleServer {</p><p>	<font class="keyword">public </font><font class="keyword">static </font><font class="keyword">void </font>main(String[] args) </font><font class="keyword">throws </font>IOException {</p><p>		</font>Login stu = <font class="keyword">new </font>Login(); <font class="Comments">// 实例化JavaBean</font></p><p>		</font>Session se = <font class="keyword">null</font>;</p><p>		se = connUitl.getSession();</p><p>		</font>stu = (Login) se.get(Login.<font class="keyword">class</font>, 1);</p><p>		<font class="Comments">// 创建一个ServerSocket，用于监听客户端Socket的连接请求</font></p><p>		</font>ServerSocket ss = <font class="keyword">new </font>ServerSocket(30000);</p><p>		<font class="Comments">// 采用循环，不断接收来自客户端的请求</font></p><p>		<font class="keyword">while </font>(</font><font class="keyword">true</font>) {</p><p>			<font class="Comments">// 每当接收到客户端Socket请求，服务器端也对应产生一个Socket</font></p><p>			Socket s = ss.accept();</p><p>			<font class="keyword">if </font>(stu == </font><font class="keyword">null</font>) {</p><p>				</font>System.<font class="Fields">out</font>.println(</font><font class="Fields">"无此信息"</font>);</p><p>				OutputStream os = s.getOutputStream();</p><p>				</font>os.write(<font class="Fields">"无此信息"</font>.getBytes(</font><font class="Fields">"utf-8"</font>));</p><p>				os.close();</p><p>				s.close();</p><p>			</font>} <font class="keyword">else </font>{</p><p>				</font>System.<font class="Fields">out</font>.println(</font><font class="Fields">"信息如下："</font>);</p><p>				<font class="keyword">int </font>id = stu.getId();</p><p>				String name = stu.getName();</p><p>				</font>byte[] n = name.getBytes(<font class="Fields">"utf-8"</font>);</p><p>				String password = stu.getPassword();</p><p>				</font>byte[] p = password.getBytes(<font class="Fields">"utf-8"</font>);</p><p>				OutputStream os_id = s.getOutputStream();</p><p>				OutputStream os_n = s.getOutputStream();</p><p>				OutputStream os_p = s.getOutputStream();</p><p>				</font>os_id.write(<font class="Fields">"1"</font>.getBytes(</font><font class="Fields">"utf-8"</font>));</p><p>				os_n.write(n);</p><p>				os_p.write(p);</p><p>				os_id.close();</p><p>				os_n.close();</p><p>				os_p.close();</p><p>				s.close();</p><p>			}</p><p>			se.close();</p><p>		}</p><p>	}</p><p>}</p><p></pre></p><p>数据库连接工具：</p><p><pre><font class="keyword">public </font><font class="keyword">class </font>ConnUitl {</p><p>	<font class="keyword">private </font><font class="keyword">static </font>SessionFactory sf;</p><p>	<font class="keyword">static </font>{</p><p>		</font>Configuration cf = <font class="keyword">new </font>Configuration().configure();</p><p>		sf = cf.buildSessionFactory();</p><p>	}</p><p>	<font class="keyword">public </font><font class="keyword">static </font>Session getSession() {</p><p>		<font class="keyword">return </font>sf.openSession();</p><p>	}</p><p>}</p><p></pre></p><p>使用socket进行android网络编程，连接到数据库，很不方便，一般会采用HttpClient来实现android客户端编程</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

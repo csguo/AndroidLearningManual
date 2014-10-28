@@ -1,0 +1,60 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 浅谈Sensor工作流程（二）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li class="navcurrentLink"><A href="index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Launcher" href="index_207.html">Launcher</A></h2>
+
+  <h2><A title="电话系统RIL" href="index_208.html">电话系统RIL</A></h2>
+
+  <h2><A title="进程间通信" href="index_209.html">进程间通信</A></h2>
+
+  <h2><A title="内部sensor系统" href="index_210.html">内部sensor系统</A></h2>
+<UL><li ><A title=Android 浅谈Sensor工作流程（一） href="show_301_210.html">Android 浅谈Sensor工作流程（一）</A> </li><li class="currentLink"><A title=Android 浅谈Sensor工作流程（二） href="show_302_210.html">Android 浅谈Sensor工作流程（二）</A> </li><li ><A title=Android 浅谈Sensor工作流程（三） href="show_303_210.html">Android 浅谈Sensor工作流程（三）</A> </li><li ><A title=Android 浅谈Sensor工作流程（四） href="show_304_210.html">Android 浅谈Sensor工作流程（四）</A> </li><li ><A title=Android 浅谈Sensor工作流程（五） href="show_305_210.html">Android 浅谈Sensor工作流程（五）</A> </li><li ><A title=Sensor传感器源码的阅读与应用开发简单实例 href="show_306_210.html">Sensor传感器源码的阅读与应用开发简单实例</A> </li></UL>
+  <h2><A title="内部surface系统" href="index_211.html">内部surface系统</A></h2>
+
+  <h2><A title="启动流程" href="index_212.html">启动流程</A></h2>
+
+  <h2><A title="源码编译" href="index_213.html">源码编译</A></h2>
+
+  <h2><A title="状态栏" href="index_214.html">状态栏</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 浅谈Sensor工作流程（二）</H2>
+<div style="line-height:20px; font-size:14px;"><p>代码最后是一些 native 方法:</p><p><pre><font class="keyword">private </font><font class="keyword">static </font>native </font><font class="keyword">void </font>nativeClassInit();<font class="Comments">//SensorManager 构造函数里调用</font></p><p><font class="keyword">private </font><font class="keyword">static </font>native </font><font class="keyword">int </font>sensors_module_init();<font class="Comments">//SensorManager 构造函数里调用</font></p><p><font class="keyword">private </font><font class="keyword">static </font>native </font><font class="keyword">int </font>sensors_module_get_next_sensor(Sensor sensor, intnext);</p><p><font class="Comments">//SensorManager 构造函数里调用</font></p><p><font class="Comments">// Used within this module from outside SensorManager, don't make private</font></p><p><font class="keyword">static </font>native </font><font class="keyword">int </font>sensors_data_init();<font class="Comments">//SensorThread 构造里调用</font></p><p><font class="keyword">static </font>native </font><font class="keyword">int </font>sensors_data_uninit();<font class="Comments">//SensorThread 析构里调用</font></p><p><font class="keyword">static </font>native </font><font class="keyword">int </font>sensors_data_open(FileDescriptor fd); <font class="Comments">//SensorThread 的 run()循环调用</font></p><p><font class="keyword">static </font>native </font><font class="keyword">int </font>sensors_data_close();<font class="Comments">//SensorThread 的 run()循环调用</font></p><p><font class="keyword">static </font>native </font><font class="keyword">int </font>sensors_data_poll(</font><font class="keyword">float</font>[] values, </font><font class="keyword">int</font>[] status, </font><font class="keyword">long</font>[] timestamp);</p><p><font class="Comments">//SensorThread的run()循环调用</font></p><p><font class="Comments">//SensorManager 与 IsensorService 的关系</font></p><p><font class="Comments">//SensorManager 调用 IsensorService 其实只是调用了 service 的方法来控制 thread 是 Lock</font></p><p><font class="keyword">void </font>startLocked(ISensorService service) {</p><p>	ParcelFileDescriptor fd = service.getDataChanel();</p><p>}</p><p></pre></p><p>或者打开　</p><p><pre>　</p><p>mSensorService.enableSensor(l, name, handle, delay);</p><p>IsensorService的实例是这么获得的</p><p>mSensorService = ISensorService.Stub.asInterface(ServiceManager.getService(Context.SENSOR_SERVICE));</p><p></pre></p><p>sensorService 是通过 aidl 定义的</p><p><pre><font class="keyword">interface </font>ISensorService{</p><p>	ParcelFileDescriptor getDataChanel();</p><p>	<font class="keyword">boolean </font>enableSensor(IBinder listener, String name, </font><font class="keyword">int </font>sensor, </font><font class="keyword">int </font>enable);</p><p>}</p><p><font class="keyword">class </font>SensorService </font><font class="keyword">extends </font>ISensorService.Stub {</p><p>}</p><p></pre></p><p>service最终被manager调到走的是android的标准流程我们不care,我们想知道的其实就是enableSensor的实现</p><p><pre><font class="keyword">if </font>(enable == SENSOR_DISABLE) {</p><p>	mBatteryStats.noteStopSensor(uid, sensor);</p><p></font>} <font class="keyword">else </font>{</p><p>	mBatteryStats.noteStartSensor(uid, sensor);</p><p>}</p><p><font class="Comments">//看是不是能打开 sensor</font></p><p><font class="keyword">if </font>(enable!=SENSOR_DISABLE && !_sensors_control_activate(sensor, </font><font class="keyword">true</font>)) {</p><p>	</font>Log.w(TAG, <font class="Fields">"could not enable sensor "</font> + sensor);</p><p>	<font class="keyword">return </font><font class="keyword">false</font>;</p><p>}</p><p><font class="Comments">//如果 sensor 打开了 我们要监听状态还要对外面报告状态变化</font></p><p><font class="keyword">if </font>(l == </font><font class="keyword">null</font> && enable!=SENSOR_DISABLE) {</p><p>	</font>l = <font class="keyword">new </font>Listener(binder);</p><p>	binder.linkToDeath(l, 0);</p><p>	mListeners.add(l);</p><p>	mListeners.notify();</p><p>}</p><p><font class="Comments">//如果 sensor 被关闭了 我们要取消监听并且告诉外面关闭了传感</font></p><p><font class="keyword">if </font>(enable != SENSOR_DISABLE) {</p><p>	l.addSensor(sensor, enable);</p><p></font>} <font class="keyword">else </font>{</p><p>	l.removeSensor(sensor);</p><p>	deactivateIfUnused(sensor);</p><p>	<font class="keyword">if </font>(l.mSensors == 0) {</p><p>		mListeners.remove(l);</p><p>		binder.unlinkToDeath(l, 0);</p><p>		mListeners.notify();</p><p>	}</p><p>}</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

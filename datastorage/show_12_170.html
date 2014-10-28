@@ -1,0 +1,58 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android中的ContentResolver应用_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li class="navcurrentLink"><A href="index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="ContentProvider" href="index_170.html">ContentProvider</A></h2>
+<UL><li ><A title=Android系统数据共享 href="show_1_170.html">Android系统数据共享</A> </li><li ><A title=Android 数据存储ContentProvider href="show_2_170.html">Android 数据存储ContentProvider</A> </li><li ><A title=Android Content Provider（一） href="show_3_170.html">Android Content Provider（一）</A> </li><li ><A title=Android Content Provider（二） href="show_4_170.html">Android Content Provider（二）</A> </li><li ><A title=Android Content Provider（三） href="show_5_170.html">Android Content Provider（三）</A> </li><li ><A title=Android 内容提供器Content Providers（一） href="show_6_170.html">Android 内容提供器Content Providers（一）</A> </li><li ><A title=Android 内容提供器Content Providers（二） href="show_7_170.html">Android 内容提供器Content Providers（二）</A> </li><li ><A title=Android 内容提供器Content Providers（三） href="show_8_170.html">Android 内容提供器Content Providers（三）</A> </li><li ><A title=Android中ContentProvider和ContentResolver使用入门 href="show_9_170.html">Android中ContentProvider和ContentResolver使用入门</A> </li><li ><A title=Android 应用程序之间数据共享—ContentProvider href="show_10_170.html">Android 应用程序之间数据共享—ContentProvider</A> </li><li ><A title=Android 使用ContentProvider共享数据 href="show_11_170.html">Android 使用ContentProvider共享数据</A> </li><li class="currentLink"><A title=Android中的ContentResolver应用 href="show_12_170.html">Android中的ContentResolver应用</A> </li></UL>
+  <h2><A title="Preferences" href="index_171.html">Preferences</A></h2>
+
+  <h2><A title="SQLite" href="index_172.html">SQLite</A></h2>
+
+  <h2><A title="SD卡" href="index_173.html">SD卡</A></h2>
+
+  <h2><A title="数据库" href="index_174.html">数据库</A></h2>
+
+  <h2><A title="URI" href="index_175.html">URI</A></h2>
+
+  <h2><A title="MediaStore" href="index_176.html">MediaStore</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android中的ContentResolver应用</H2>
+<div style="line-height:20px; font-size:14px;"><p>Android应用程序可以使用文件或SqlLite数据库来存储数据。Content Provider提供了一种多应用间数据共享的方式，比如：联系人信息可以被多个应用程序访问。Content Provider是个实现了一组用于提供其他应用程序存取数据的标准方法的类。</p><p>应用程序可以在Content Provider中执行如下操作：</p><p><pre>查询数据</p><p>修改数据</p><p>添加数据</p><p>删除数据</p><p></pre></p><p>标准的Content Provider：</p><p>Android提供了一些已经在系统中实现的标准Content Provider，比如联系人信息，图片库等等，你可以用这些Content Provider来访问设备上存储的联系人信息，图片等等。</p><p>查询记录：</p><p>在Content Provider中使用的查询字符串有别于标准的SQL查询。很多诸如select， add， delete， modify等操作我们都使用一种特殊的URI来进行，这种URI由3个部分组成， “content：//”， 代表数据的路径，和一个可选的标识数据的ID。以下是一些示例URI：</p><p>content：//media/internal/images 这个URI将返回设备上存储的所有图片</p><p>content：//contacts/people/ 这个URI将返回设备上的所有联系人信息</p><p>content：//contacts/people/45 这个URI返回单个结果（联系人信息中ID为45的联系人记录）</p><p>尽管这种查询字符串格式很常见，但是它看起来还是有点令人迷惑。为此，Android提供一系列的帮助类（在android.provider包下），里面包含了很多以类变量形式给出的查询字符串，这种方式更容易让我们理解一点，参见下例：</p><p><pre>MediaStore.Images.Media.INTERNAL_CONTENT_URI</p><p>Contacts.People.CONTENT_URI</p><p></pre></p><p>因此，如上面content：//contacts/people/45这个URI就可以写成如下形式：</p><p><pre>Uri person = ContentUris.withAppendedId（People.CONTENT_URI， 45）；</p><p></pre></p><p>然后执行数据查询：</p><p><pre>Cursor cur = managedQuery（person， null， null， null）；</p><p></pre></p><p>这个查询返回一个包含所有数据字段的游标，我们可以通过迭代这个游标来获取所有的数据：</p><p><pre><font class="keyword">public </font><font class="keyword">class </font>ContentProviderDemo </font><font class="keyword">extends </font>Activity {</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onCreate(Bundle savedInstanceState) {</p><p>		<font class="keyword">super</font>.onCreate(savedInstanceState);</p><p>		setContentView(R.layout.main);</p><p>		displayRecords();</p><p>	}</p><p>	<font class="keyword">private </font><font class="keyword">void </font>displayRecords() {</p><p>		<font class="Comments">// 该数组中包含了所有要返回的字段</font></p><p>		</font>String columns[] = <font class="keyword">new </font>String[] { People.NAME, People.NUMBER </font>};</p><p>		Uri mContacts = People.CONTENT_URI;</p><p>		Cursor cur = managedQuery(mContacts, columns, <font class="Comments">// 要返回的数据字段</font></p><p>				<font class="keyword">null</font>, <font class="Comments">// WHERE子句</font></p><p>				<font class="keyword">null</font>, <font class="Comments">// WHERE 子句的参数</font></p><p>				<font class="keyword">null<font class="Comments">// Order-by子句</font></p><p>		);</p><p>		<font class="keyword">if </font>(cur.moveToFirst()) {</p><p>			</font>String name = <font class="keyword">null</font>;</p><p>			</font>String phoneNo = <font class="keyword">null</font>;</p><p>			do {</p><p>				<font class="Comments">// 获取字段的值</font></p><p>				name = cur.getString(cur.getColumnIndex(People.NAME));</p><p>				phoneNo = cur.getString(cur.getColumnIndex(People.NUMBER));</p><p>				</font>Toast.makeText(<font class="keyword">this</font>, name + <font class="Fields">" "</font> + phoneNo, Toast.LENGTH_LONG)</p><p>						.show();</p><p>			</font>} <font class="keyword">while </font>(cur.moveToNext());</p><p>		}</p><p>	}</p><p>}</p><p></pre></p><p></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

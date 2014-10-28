@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android里的BitMap（二）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li class="navcurrentLink"><A href="index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Android多媒体功能" href="index_196.html">Android多媒体功能</A></h2>
+
+  <h2><A title="Android多媒体之2D" href="index_197.html">Android多媒体之2D</A></h2>
+
+  <h2><A title="Android多媒体之3D" href="index_198.html">Android多媒体之3D</A></h2>
+
+  <h2><A title="Android多媒体之Bitmap" href="index_199.html">Android多媒体之Bitmap</A></h2>
+<UL><li ><A title=Android Bitmap类相关学习 href="show_302_199.html">Android Bitmap类相关学习</A> </li><li ><A title=Android里的BitMap（一） href="show_303_199.html">Android里的BitMap（一）</A> </li><li class="currentLink"><A title=Android里的BitMap（二） href="show_304_199.html">Android里的BitMap（二）</A> </li><li ><A title=Android里的BitMap（三） href="show_305_199.html">Android里的BitMap（三）</A> </li><li ><A title=Android里的BitMap（四） href="show_306_199.html">Android里的BitMap（四）</A> </li><li ><A title=Android bitmap内存溢出（一） href="show_307_199.html">Android bitmap内存溢出（一）</A> </li><li ><A title=Android bitmap内存溢出（二） href="show_308_199.html">Android bitmap内存溢出（二）</A> </li><li ><A title=Android 避免bitmap内存限制 href="show_309_199.html">Android 避免bitmap内存限制</A> </li><li ><A title=Bitmap导致的OOM终极解决方案 href="show_310_199.html">Bitmap导致的OOM终极解决方案</A> </li><li ><A title=Bitmap的用法（浅谈） href="show_311_199.html">Bitmap的用法（浅谈）</A> </li><li ><A title=Android 两种方法获取Bitmap href="show_312_199.html">Android 两种方法获取Bitmap</A> </li><li ><A title=Android整合两个Bitmap href="show_313_199.html">Android整合两个Bitmap</A> </li><li ><A title=通过纯RGB数据流生成Bitmap对象 href="show_314_199.html">通过纯RGB数据流生成Bitmap对象</A> </li><li ><A title=Bitmap总结 href="show_315_199.html">Bitmap总结</A> </li></UL>
+  <h2><A title="Android多媒体之Canvas" href="index_200.html">Android多媒体之Canvas</A></h2>
+
+  <h2><A title="Android多媒体之Drawable" href="index_201.html">Android多媒体之Drawable</A></h2>
+
+  <h2><A title="Android多媒体之gif" href="index_202.html">Android多媒体之gif</A></h2>
+
+  <h2><A title="Android多媒体之MediaStore" href="index_203.html">Android多媒体之MediaStore</A></h2>
+
+  <h2><A title="Android多媒体之动画" href="index_204.html">Android多媒体之动画</A></h2>
+
+  <h2><A title="Android多媒体之分辨率" href="index_205.html">Android多媒体之分辨率</A></h2>
+
+  <h2><A title="Android多媒体之分屏幕" href="index_206.html">Android多媒体之分屏幕</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android里的BitMap（二）</H2>
+<div style="line-height:20px; font-size:14px;"><p style="color:#3333FF;">得到网路图片</p><p>* 定义网络图片对应的BufferedInputStream</p><p><pre><font class="Comments">//图片的链接地址 </font></p><p>String icoURI = <font class="Fields">"http:<font class="Comments">//202.140.96.134:8080/FS-RSS/img/RN.png"</font>; </font></p><p>URL imgURL = <font class="keyword">new </font>URL(iu); </p><p>URLConnection conn = imgURL.openConnection(); </p><p>conn.connect(); </p><p>InputStream is = conn.getInputStream(); </p><p>BufferedInputStream bis = <font class="keyword">new </font>BufferedInputStream(is); </p><p></pre></p><p>下载之</p><p><pre>Bitmap bmp = BitmapFactory.decodeStream(bis);</p><p></pre></p><p>关闭Stream</p><p><pre>bis.close(); </p><p>is.close(); </p><p></pre></p><p>位图是我们开发中最常用的资源，毕竟一个漂亮的界面对用户是最有吸引力的。</p><p>1. 从资源中获取位图</p><p>可以使用BitmapDrawable或者BitmapFactory来获取资源中的位图。</p><p>当然，首先需要获取资源：</p><p><pre>Resources res = getResources();</p><p></pre></p><p>使用BitmapDrawable获取位图</p><p>1.使用BitmapDrawable (InputStream is)构造一个BitmapDrawable；</p><p>2.使用BitmapDrawable类的getBitmap()获取得到位图；</p><p><pre><font class="Comments">// 读取InputStream并得到位图</font></p><p>InputStream is = res.openRawResource(R.drawable.pic180);</p><p>BitmapDrawable bmpDraw = <font class="keyword">new </font>BitmapDrawable(is);</p><p>Bitmap bmp = bmpDraw.getBitmap();</p><p></pre></p><p>或者采用下面的方式：</p><p><pre>BitmapDrawable bmpDraw = (BitmapDrawable)res.getDrawable(R.drawable.pic180);</p><p>Bitmap bmp = bmpDraw.getBitmap();</p><p></pre></p><p>使用BitmapFactory获取位图</p><p>（Creates Bitmap objects from various sources, including files, streams, and byte-arrays.）</p><p>使用BitmapFactory类decodeStream(InputStream is)解码位图资源，获取位图。</p><p>Bitmap bmp=BitmapFactory.decodeResource(res, R.drawable.pic180);</p><p>BitmapFactory的所有函数都是static，这个辅助类可以通过资源ID、路径、文件、数据流等方式来获取位图。以上方法在编程的时候可以自由选择，在Android SDK中说明可以支持的图片格式如下：png (preferred), jpg (acceptable), gif (discouraged)，和bmp（Android SDK Support Media Format）。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

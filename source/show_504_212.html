@@ -1,0 +1,60 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 开机动画启动过程详解_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li class="navcurrentLink"><A href="index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Launcher" href="index_207.html">Launcher</A></h2>
+
+  <h2><A title="电话系统RIL" href="index_208.html">电话系统RIL</A></h2>
+
+  <h2><A title="进程间通信" href="index_209.html">进程间通信</A></h2>
+
+  <h2><A title="内部sensor系统" href="index_210.html">内部sensor系统</A></h2>
+
+  <h2><A title="内部surface系统" href="index_211.html">内部surface系统</A></h2>
+
+  <h2><A title="启动流程" href="index_212.html">启动流程</A></h2>
+<UL><li ><A title=从开机到android平台启动的学习路线 href="show_501_212.html">从开机到android平台启动的学习路线</A> </li><li ><A title=讲讲Android的启动 href="show_502_212.html">讲讲Android的启动</A> </li><li ><A title=Android 初始化流程 href="show_503_212.html">Android 初始化流程</A> </li><li class="currentLink"><A title=Android 开机动画启动过程详解 href="show_504_212.html">Android 开机动画启动过程详解</A> </li><li ><A title=Android poweroff 流程 href="show_505_212.html">Android poweroff 流程</A> </li><li ><A title=Android arm linux kernel启动流程（一） href="show_506_212.html">Android arm linux kernel启动流程（一）</A> </li><li ><A title=Android arm linux kernel启动流程（二） href="show_507_212.html">Android arm linux kernel启动流程（二）</A> </li><li ><A title=Android arm linux kernel启动流程（三） href="show_508_212.html">Android arm linux kernel启动流程（三）</A> </li><li ><A title=Android arm linux kernel启动流程（四） href="show_509_212.html">Android arm linux kernel启动流程（四）</A> </li><li ><A title=Android arm linux kernel启动流程（五） href="show_510_212.html">Android arm linux kernel启动流程（五）</A> </li></UL>
+  <h2><A title="源码编译" href="index_213.html">源码编译</A></h2>
+
+  <h2><A title="状态栏" href="index_214.html">状态栏</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 开机动画启动过程详解</H2>
+<div style="line-height:20px; font-size:14px;"><p>Android 开机会出现3个画面： </p><p>1. Linux 系统启动，出现Linux小企鹅画面(reboot)(Android 1.5及以上版本已经取消加载图片)； </p><p>2. Android平台启动初始化，出现"A N D R I O D"文字字样画面； </p><p>3. Android平台图形系统启动，出现含闪动的ANDROID字样的动画图片(start)。 </p><p style="color:#3333FF;">1、开机图片(Linux小企鹅) (Android 1.5及以上版本已经取消加载图片)； </p><p>Linux Kernel引导启动后，加载该图片。 </p><p>logo.c中定义nologo,在fb_find_logo(int depth)函数中根据nologo的值判断是否需要加载相应图片。 </p><p>代码如下： </p><p><pre><font class="keyword">static </font><font class="keyword">int </font>nologo; </p><p>module_param(nologo, bool, 0); </p><p>MODULE_PARM_DESC(nologo, <font class="Fields">"Disables startup logo"</font>); </p><p>/* logo<font class="Fields">'s are marked __initdata. Use __init_refok to tell </p><p><font class="Comments">* modpost that it is intended that this function uses data </font></p><p><font class="Comments">* marked __initdata. </font></p><p><font class="Comments">*/ </font></p><p>const struct linux_logo * __init_refok fb_find_logo(<font class="keyword">int </font>depth) </p><p>{ </p><p>	const struct linux_logo *logo = NULL;</p><p>	<font class="keyword">if </font>(nologo) </p><p>	<font class="keyword">return </font>NULL; </p><p>	......</p><p>} </p><p></pre></p><p>相关代码： </p><p><pre>/kernel/drivers/video/fbmem.c </p><p>/kernel/drivers/video/logo/logo.c </p><p>/kernel/drivers/video/logo/Kconfig </p><p>/kernel/include/linux/linux_logo.h </p><p></pre></p><p style="color:#3333FF;">2、开机文字("A N D R I O D") </p><p>Android 系统启动后，init.c中main()调用load_565rle_image()函数读取/initlogo.rle（一张565 rle压缩的位图），如果读取成功，则在/dev/graphics/fb0显示Logo图片；如果读取失败，则将/dev/tty0设为TEXT模式， 并打开/dev/tty0，输出文本“A N D R I O D”字样。 </p><p>定义加载图片文件名称 </p><p><pre><font class="Comments">//=============Android.mk====================== </font></p><p>LOCAL_PATH:= $(call my-dir) </p><p>include $(CLEAR_VARS) </p><p>LOCAL_SRC_FILES:= \ </p><p>bootanimation_main.cpp \ </p><p>BootAnimation.cpp </p><p></font> need <font class="Fields">"-lrt"</font> on Linux simulator to pick up clock_gettime </p><p>ifeq ($(TARGET_SIMULATOR),<font class="keyword">true</font>) </p><p>ifeq ($(HOST_OS),linux) </p><p>LOCAL_LDLIBS += -lrt </p><p>end<font class="keyword">if </font></p><p>end<font class="keyword">if </font></p><p>LOCAL_SHARED_LIBRARIES := \ </p><p>libcutils \ </p><p>libutils \ </p><p>libui \ </p><p>libcorecg \ </p><p>libsgl \ </p><p>libEGL \ </p><p>libGLESv1_CM \ </p><p>libmedia   </p><p>LOCAL_C_INCLUDES := \ </p><p>$(call include-path-for, corecg graphics) </p><p>LOCAL_MODULE:= bootanimation </p><p>include $(BUILD_EXECUTABLE) </p><p><font class="Comments">//========================================== </font></p><p></pre></p><p>相关代码： </p><p><pre>/system/core/init/init.c  </p><p>/system/core/init/init.h </p><p>/system/core/init/init.rc </p><p>/system/core/init/logo.c </p><p></pre></p><p>*.rle文件的制作步骤: </p><p>a. 使用GIMP或者Advanced Batch Converter软件，将图象转换为RAW格式； </p><p>b. 使用android自带的rgb2565工具，将RAW格式文件转换为RLE格式(如：rgb2565 -rle &lt; initlogo.raw &gt; initlogo.rle)。 </p><p style="color:#3333FF;">3、开机动画(闪动的ANDROID字样的动画图片) </p><p>Android 1.5版本：Android的系统登录动画类似于Windows系统的滚动条，是由前景和背景两张PNG图片组成，这两张图片存在于手机或模拟器 /system/framework /framework-res.apk文件当中，对应原文件位于/frameworks/base/core/res/assets/images/。前 景图片（android-logo-mask.png）上的Android文字部分镂空，背景图片（android-logo-shine.png）则是 简单的纹理。系统登录时，前景图片在最上层显示，程序代码（BootAnimation.android()）控制背景图片连续滚动，透过前景图片文字镂 空部分滚动显示背景纹理，从而实现动画效果。 </p><p>相关代码： </p><p><pre>/frameworks/base/libs/surfaceflinger/BootAnimation.h </p><p>/frameworks/base/libs/surfaceflinger/BootAnimation.cpp </p><p>/frameworks/base/core/res/assets/images/android-logo-mask.png  Android默认的前景图片，文字部分镂空，大小256×64 </p><p>/frameworks/base/core/res/assets/images/android-logo-shine.png Android默认的背景图片，有动感效果，大小512×64 </p><p></pre></p><p>Android 1.6及以上版本： </p><p>init.c解析init.rc（其中定义服务：“service bootanim /system/bin/bootanimation”），bootanim 服务由SurfaceFlinger.readyToRun()（property_set("ctl.start", "bootanim");）执行开机动画、bootFinished()（property_set("ctl.stop", "bootanim");）执行停止开机动画。 </p><p>BootAnimation.h和BootAnimation.cpp文件放到了/frameworks/base/cmds /bootanimation目录下了，增加了一个入口文件bootanimation_main.cpp。Android.mk文件中可以看到，将开机 动画从原来的SurfaceFlinger里提取出来了，生成可执行文件：bootanimation。Android.mk代码如下： </p><p><pre>//=============Android.mk====================== </p><p>LOCAL_PATH:= $(call my-dir) </p><p>include $(CLEAR_VARS) </p><p>LOCAL_SRC_FILES:= \ </p><p>bootanimation_main.cpp \ </p><p>BootAnimation.cpp </p><p> need "-lrt" on Linux simulator to pick up clock_gettime </p><p>ifeq ($(TARGET_SIMULATOR),true) </p><p>ifeq ($(HOST_OS),linux) </p><p>LOCAL_LDLIBS += -lrt </p><p>endif </p><p>endif </p><p>LOCAL_SHARED_LIBRARIES := \ </p><p>libcutils \ </p><p>libutils \ </p><p>libui \ </p><p>libcorecg \ </p><p>libsgl \ </p><p>libEGL \ </p><p>libGLESv1_CM \ </p><p>libmedia   </p><p>LOCAL_C_INCLUDES := \ </p><p>$(call include-path-for, corecg graphics) </p><p>LOCAL_MODULE:= bootanimation </p><p>include $(BUILD_EXECUTABLE) </p><p>//========================================== </p><p></pre></p><p>（1）adb shell后，可以直接运行“bootanimation”来重新看开机动画，它会一直处于动画状态，而不会停止。 </p><p>（2）adb shell后，命令“setprop ctl.start bootanim”执行开机动画；命令“getprop ctl.start bootanim”停止开机动画。这两句命令分别对应SurfaceFlinger.cpp的两句语 句：property_set("ctl.start", "bootanim");和property_set("ctl.stop", "bootanim"); </p><p>相关文件：</p><p><pre>/frameworks/base/cmds/bootanimation/BootAnimation.h </p><p>/frameworks/base/cmds/bootanimation/BootAnimation.cpp </p><p>/frameworks/base/cmds/bootanimation/bootanimation_main.cpp </p><p>/system/core/init/init.c </p><p>/system/core/rootdir/init.rc </p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

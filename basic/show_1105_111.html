@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android中怎样嵌入C语言（五）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li class="navcurrentLink"><A href="index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="开发基础" href="index_100.html">开发基础</A></h2>
+
+  <h2><A title="开发环境搭建" href="index_101.html">开发环境搭建</A></h2>
+
+  <h2><A title="模拟器" href="index_102.html">模拟器</A></h2>
+
+  <h2><A title="Resource" href="index_103.html">Resource</A></h2>
+
+  <h2><A title="Manifest" href="index_104.html">Manifest</A></h2>
+
+  <h2><A title="ADB" href="index_105.html">ADB</A></h2>
+
+  <h2><A title="DDMS" href="index_106.html">DDMS</A></h2>
+
+  <h2><A title="Logcat(日志)" href="index_107.html">Logcat(日志)</A></h2>
+
+  <h2><A title="打包" href="index_108.html">打包</A></h2>
+
+  <h2><A title="文件处理" href="index_109.html">文件处理</A></h2>
+
+  <h2><A title="底层基础" href="index_111.html">底层基础</A></h2>
+<UL><li ><A title=Android中怎样嵌入C语言（一） href="show_1101_111.html">Android中怎样嵌入C语言（一）</A> </li><li ><A title=Android中怎样嵌入C语言（二） href="show_1102_111.html">Android中怎样嵌入C语言（二）</A> </li><li ><A title=Android中怎样嵌入C语言（三） href="show_1103_111.html">Android中怎样嵌入C语言（三）</A> </li><li ><A title=Android中怎样嵌入C语言（四） href="show_1104_111.html">Android中怎样嵌入C语言（四）</A> </li><li class="currentLink"><A title=Android中怎样嵌入C语言（五） href="show_1105_111.html">Android中怎样嵌入C语言（五）</A> </li><li ><A title=Android中怎样嵌入C语言（六） href="show_1106_111.html">Android中怎样嵌入C语言（六）</A> </li></UL>
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android中怎样嵌入C语言（五）</H2>
+<div style="line-height:20px; font-size:14px;"><p>3.编辑.c文件实现native方法。</p><p>com_hello_jnitest_Nadd.c文件：</p><p><pre>include &lt;stdlib.h&gt;</p><p>include "com_hello_jnitest_Nadd.h"</p><p>JNIEXPORT jint JNICALL Java_com_hello_jnitest_Nadd_nadd(JNIEnv * env, jobject c, jint a, jint b)</p><p>{</p><p>	return (a+b);</p><p>}</p><p></pre></p><p>4.编译.c文件生存动态库。</p><p><pre>arm-none-linux-gnueabi-gcc -I/home/a/work/android/jdk1.6.0_17/include -I/home/a/work/android/jdk1.6.0_17/include/linux -fpic -c com_hello_jnitest_Nadd.c</p><p>arm-none-linux-gnueabi-ld -T/home/a/CodeSourcery/Sourcery_G++_Lite/arm-none-linux-gnueabi/lib/ldscripts/armelf_linux_eabi.xsc -share -o libNadd.so com_hello_jnitest_Nadd.o</p><p></pre></p><p>得到libNadd.so文件。</p><p>以上在ubuntu中完成。</p><p>5.将相应的动态库文件push到avd的system/lib中:adb push libNadd.so /system/lib。若提示Read-only file system错误，运行adb remount命令，即可。</p><p><pre>Adb push libNadd.so /system/lib</p><p></pre></p><p>6.在eclipsh中运行原应用程序即可。以上在windows中完成。对于一中生成的so文件也可采用二中的方法编译进apk包中。只需在工程文件夹中建libs\armeabi文件夹（其他文件夹名无效，只建立libs文件夹也无效），然后将so文件拷入，编译工程即可。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

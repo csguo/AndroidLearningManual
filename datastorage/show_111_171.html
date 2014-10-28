@@ -1,0 +1,58 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>SharedPreferences与Preferences_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li class="navcurrentLink"><A href="index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="ContentProvider" href="index_170.html">ContentProvider</A></h2>
+
+  <h2><A title="Preferences" href="index_171.html">Preferences</A></h2>
+<UL><li ><A title=Android API-SharedPreferences href="show_101_171.html">Android API-SharedPreferences</A> </li><li ><A title=Android SharedPreferences用法 href="show_102_171.html">Android SharedPreferences用法</A> </li><li ><A title=Android SharedPreferences用法（二） href="show_103_171.html">Android SharedPreferences用法（二）</A> </li><li ><A title=Android preferenceActivity用法 href="show_104_171.html">Android preferenceActivity用法</A> </li><li ><A title=Android 首选项框架ListPreference（一） href="show_105_171.html">Android 首选项框架ListPreference（一）</A> </li><li ><A title=Android 首选项框架ListPreference（二） href="show_106_171.html">Android 首选项框架ListPreference（二）</A> </li><li ><A title=Android 首选项框架ListPreference（三） href="show_107_171.html">Android 首选项框架ListPreference（三）</A> </li><li ><A title=Android 首选项框架ListPreference（四） href="show_108_171.html">Android 首选项框架ListPreference（四）</A> </li><li ><A title=Android 首选项框架ListPreference（五） href="show_109_171.html">Android 首选项框架ListPreference（五）</A> </li><li ><A title=Android之SharedPreferences href="show_110_171.html">Android之SharedPreferences</A> </li><li class="currentLink"><A title=SharedPreferences与Preferences href="show_111_171.html">SharedPreferences与Preferences</A> </li><li ><A title=onSaveInstanceState和onRestoreInstanceState的用处 href="show_112_171.html">onSaveInstanceState和onRestoreInstanceState的用处</A> </li><li ><A title=用SharedPreferences获取其他应用中用SharedPreferences保存的数据 href="show_113_171.html">用SharedPreferences获取其他应用中用SharedPreferences保存的数据</A> </li><li ><A title=PreferenceActivity 参数设置UI的使用 href="show_114_171.html">PreferenceActivity 参数设置UI的使用</A> </li><li ><A title=Android 让浏览器全屏显示 href="show_115_171.html">Android 让浏览器全屏显示</A> </li><li ><A title=Android EditTextPreference href="show_116_171.html">Android EditTextPreference</A> </li><li ><A title=Android下获取开机时间 href="show_117_171.html">Android下获取开机时间</A> </li><li ><A title=是否记住密码功能 href="show_118_171.html">是否记住密码功能</A> </li><li ><A title=在Activity中获取PreferenceActivity设置的值 href="show_119_171.html">在Activity中获取PreferenceActivity设置的值</A> </li><li ><A title=Android 完美解决自定义preference与ActivityGroup UI更新的问题 href="show_120_171.html">Android 完美解决自定义preference与ActivityGroup UI更新的问题</A> </li><li ><A title=Android 自定义 SeekBarPreference href="show_121_171.html">Android 自定义 SeekBarPreference</A> </li></UL>
+  <h2><A title="SQLite" href="index_172.html">SQLite</A></h2>
+
+  <h2><A title="SD卡" href="index_173.html">SD卡</A></h2>
+
+  <h2><A title="数据库" href="index_174.html">数据库</A></h2>
+
+  <h2><A title="URI" href="index_175.html">URI</A></h2>
+
+  <h2><A title="MediaStore" href="index_176.html">MediaStore</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>SharedPreferences与Preferences</H2>
+<div style="line-height:20px; font-size:14px;"><p style="color:#3333FF;">SharedPreferences 的用法</p><p>2 个activity 之间的数据传递除了可以他通过intent 来传递,还可以使用SharedPreferences 来共享数据的方式SharedPreferences 用法很简单。</p><p>在A 中设置</p><p><pre>Editor sharedata = getSharedPreferences(<font class="Fields">"data"</font>, 0).edit();</p><p>sharedata.putString(<font class="Fields">"item"</font>,</font><font class="Fields">"hello getSharedPreferences"</font>);</p><p>sharedata.commit();</p><p></pre></p><p>B 中获取</p><p><pre>SharedPreferences sharedata = getSharedPreferences(<font class="Fields">"data"</font>, 0);</p><p>String data = sharedata.getString(<font class="Fields">"item"</font>, <font class="keyword">null</font>);</p><p>Log.v(<font class="Fields">"cola"</font>,</font><font class="Fields">"data="</font>+data);</p><p></pre></p><p style="color:#3333FF;">Android数据存取之Preferences</p><p>一般的应用程序都会提供“设置”或者“首选项”的这样的界面，那么这些设置最后就可以 通过</p><p>Preferences 来保存，而程序员不需要知道它到底以什么形式保存的，保存在了什么地方。</p><p>在Android 系统中，文件的形式保存在/data/data/PACKAGE_NAME /shared_prefs 目录下.</p><p style="color:#3333FF;">数据读取</p><p><pre>String PREFS_NAME = <font class="Fields">"Note.sample.roiding.com"</font>;</p><p>SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);</p><p><font class="keyword">boolean </font>silent = settings.getBoolean(<font class="Fields">"silentMode"</font>, </font><font class="keyword">false</font>);</p><p>String hello = settings.getString(<font class="Fields">"hello"</font>, </font><font class="Fields">"Hi"</font>);</p><p></pre></p><p>SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);</p><p>通过名称，得到一个SharedPreferences,这个Preferences是共享的,共享的范围据现在同一个Package中</p><p style="color:#3333FF;">数据写入</p><p><pre>String PREFS_NAME = <font class="Fields">"Note.sample.roiding.com"</font>;</p><p>SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);</p><p>SharedPreferences.Editor editor = settings.edit();</p><p>editor.putBoolean(<font class="Fields">"silentMode"</font>, <font class="keyword">true</font>);</p><p>editor.putString(<font class="Fields">"hello"</font>, </font><font class="Fields">"Hello~"</font>);</p><p>editor.commit();</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

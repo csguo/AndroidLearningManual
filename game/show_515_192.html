@@ -1,0 +1,60 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>【Android2D游戏开发十五】游戏触屏事件的性能优化笔记！_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li class="navcurrentLink"><A href="index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="游戏开发须知" href="index_187.html">游戏开发须知</A></h2>
+
+  <h2><A title="游戏策划、设计分析" href="index_188.html">游戏策划、设计分析</A></h2>
+
+  <h2><A title="Android OpenGL学习" href="index_190.html">Android OpenGL学习</A></h2>
+
+  <h2><A title="Android游戏开发之旅" href="index_191.html">Android游戏开发之旅</A></h2>
+
+  <h2><A title="Android2D游戏开发" href="index_192.html">Android2D游戏开发</A></h2>
+<UL><li ><A title=【Android2D游戏开发之一】设置全屏以及绘画简单的图形 href="show_501_192.html">【Android2D游戏开发之一】设置全屏以及绘画简单的图形</A> </li><li ><A title=【Android2D游戏开发之二】剖析游戏开发用view还是sarfaceView？ href="show_502_192.html">【Android2D游戏开发之二】剖析游戏开发用view还是sarfaceView？</A> </li><li ><A title=【Android2D游戏开发之三】剖析 SurfaceView ！ Callback以及SurfaceHol href="show_503_192.html">【Android2D游戏开发之三】剖析 SurfaceView ！ Callback以及SurfaceHol</A> </li><li ><A title=【Android2D游戏开发之四】Android 游戏框架（游戏角色行走demo) href="show_504_192.html">【Android2D游戏开发之四】Android 游戏框架（游戏角色行走demo)</A> </li><li ><A title=【Android2D游戏开发之五】游戏注册界面,两个Activity切换交互 href="show_505_192.html">【Android2D游戏开发之五】游戏注册界面,两个Activity切换交互</A> </li><li ><A title=【Android2D游戏开发之六】在SurfaceView中添加组件！并交互数据 href="show_506_192.html">【Android2D游戏开发之六】在SurfaceView中添加组件！并交互数据</A> </li><li ><A title=【Android2D游戏开发之七】游戏开发样式!再剖析SurfaceView组件 href="show_507_192.html">【Android2D游戏开发之七】游戏开发样式!再剖析SurfaceView组件</A> </li><li ><A title=【Android2D游戏开发之八】游戏音频 href="show_508_192.html">【Android2D游戏开发之八】游戏音频</A> </li><li ><A title=【Android2D游戏开发之九】触屏Bug解决方案及禁止横竖屏切换! href="show_509_192.html">【Android2D游戏开发之九】触屏Bug解决方案及禁止横竖屏切换!</A> </li><li ><A title=【Android2D游戏开发之十】详细剖析Android Traceview效率检视工具 href="show_510_192.html">【Android2D游戏开发之十】详细剖析Android Traceview效率检视工具</A> </li><li ><A title=【Android2D游戏开发十一】手把手让你爱上Android “9妹” href="show_511_192.html">【Android2D游戏开发十一】手把手让你爱上Android “9妹”</A> </li><li ><A title=【Android2D游戏开发十二】详解SharedPreference,FIle将数据存到SD卡 href="show_512_192.html">【Android2D游戏开发十二】详解SharedPreference,FIle将数据存到SD卡</A> </li><li ><A title=【Android2D游戏开发十三】详解SQLite，并把数据库文件存SD卡中-2 href="show_513_192.html">【Android2D游戏开发十三】详解SQLite，并把数据库文件存SD卡中-2</A> </li><li ><A title=【Android2D游戏开发十四】在SurfaceView中照样使用Animation(下) href="show_514_192.html">【Android2D游戏开发十四】在SurfaceView中照样使用Animation(下)</A> </li><li class="currentLink"><A title=【Android2D游戏开发十五】游戏触屏事件的性能优化笔记！ href="show_515_192.html">【Android2D游戏开发十五】游戏触屏事件的性能优化笔记！</A> </li><li ><A title=【Android2D游戏开发十六】详解Gesture 手势操作！实现切换图片 href="show_516_192.html">【Android2D游戏开发十六】详解Gesture 手势操作！实现切换图片</A> </li><li ><A title=【Android2D游戏开发十七】输入法手势技术,自定义手势玩游戏 href="show_517_192.html">【Android2D游戏开发十七】输入法手势技术,自定义手势玩游戏</A> </li><li ><A title=【Android2D游戏开发十八】解放手指,利用传感器开发游戏！ href="show_518_192.html">【Android2D游戏开发十八】解放手指,利用传感器开发游戏！</A> </li><li ><A title=【Android2D游戏开发十九】(必看篇)剖析Back与Home键及异常处理 href="show_519_192.html">【Android2D游戏开发十九】(必看篇)剖析Back与Home键及异常处理</A> </li><li ><A title=【Android2D游戏开发二十】物理游戏之重力系统开发 href="show_520_192.html">【Android2D游戏开发二十】物理游戏之重力系统开发</A> </li><li ><A title=【Android2D游戏开发二十一】Android设备谎言分辨率的解决方案 href="show_521_192.html">【Android2D游戏开发二十一】Android设备谎言分辨率的解决方案</A> </li><li ><A title=【Android游戏开发二十二】详解游戏中如何灵活实现动画播放! href="show_522_192.html">【Android游戏开发二十二】详解游戏中如何灵活实现动画播放!</A> </li><li ><A title=【Android游戏开发二十三】自定义【通用】ListView适配器 href="show_523_192.html">【Android游戏开发二十三】自定义【通用】ListView适配器</A> </li><li ><A title=【Android游戏开发二十四】360°平滑游戏摇杆 href="show_524_192.html">【Android游戏开发二十四】360°平滑游戏摇杆</A> </li><li ><A title=【Android游戏开发二十五】Android平台使用《贝赛尔曲线》！ href="show_525_192.html">【Android游戏开发二十五】Android平台使用《贝赛尔曲线》！</A> </li><li ><A title=【Android游戏开发二十六】追加简述SurfaceView 与 GLSurfaceView效 href="show_526_192.html">【Android游戏开发二十六】追加简述SurfaceView 与 GLSurfaceView效</A> </li></UL>
+  <h2><A title="Android经典实例教程解析" href="index_193.html">Android经典实例教程解析</A></h2>
+
+  <h2><A title="Android游戏开发实例" href="index_194.html">Android游戏开发实例</A></h2>
+
+  <h2><A title="Libgdx游戏引擎" href="index_195.html">Libgdx游戏引擎</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>【Android2D游戏开发十五】游戏触屏事件的性能优化笔记！</H2>
+<div style="line-height:20px; font-size:14px;"><p>先上一段代码大家来看一下：</p><p><pre><font class="keyword">import </font>android.app.Activity;</p><p><font class="keyword">import </font>android.os.Bundle;</p><p><font class="keyword">import </font>android.util.Log;</p><p><font class="keyword">import </font>android.view.MotionEvent;</p><p><font class="keyword">import </font>android.view.Window;</p><p><font class="keyword">import </font>android.view.WindowManager;</p><p><font class="keyword">public </font><font class="keyword">class </font>MainActivity </font><font class="keyword">extends </font>Activity {</p><p>	<font class="keyword">private </font>Object object;</p><p>	<font class="keyword">private </font><font class="keyword">final </font><font class="keyword">int </font>TIME = 50;<font class="Comments">// 备注1</font></p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onCreate(Bundle savedInstanceState) {</p><p>		<font class="keyword">super</font>.onCreate(savedInstanceState);</p><p>		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,</p><p>				WindowManager.LayoutParams.FLAG_FULLSCREEN);</p><p>		<font class="keyword">this</font>.requestWindowFeature(Window.FEATURE_NO_TITLE);</p><p>		setContentView(R.layout.main);</p><p>		</font>object = <font class="keyword">new </font>Object();</p><p>	}</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">boolean </font>onTouchEvent(MotionEvent event) {</p><p>		<font class="keyword">if </font>(event.getAction() == MotionEvent.ACTION_DOWN) {</p><p>			</font>Log.v(<font class="Fields">"android"</font>, </font><font class="Fields">"ACTION_DOWN"</font>);</p><p>		</font>} <font class="keyword">else </font><font class="keyword">if </font>(event.getAction() == MotionEvent.ACTION_UP) {</p><p>			</font>Log.v(<font class="Fields">"android"</font>, </font><font class="Fields">"ACTION_UP"</font>);</p><p>		</font>} <font class="keyword">else </font><font class="keyword">if </font>(event.getAction() == MotionEvent.ACTION_MOVE) {</p><p>			</font>Log.v(<font class="Fields">"android"</font>, </font><font class="Fields">"ACTION_MOVE"</font>);</p><p>		}</p><p>		<font class="keyword">synchronized </font>(object) {<font class="Comments">// 备注2</font></p><p>			<font class="keyword">try </font>{</p><p>				object.wait(TIME);</p><p>			</font>} <font class="keyword">catch </font>(InterruptedException e) {</p><p>				<font class="Comments">// TODO Auto-generated catch block</font></p><p>				e.printStackTrace();</p><p>			}</p><p>		}</p><p>		<font class="keyword">return </font><font class="keyword">true</font>;<font class="Comments">// 这里一定要返回</font><font class="keyword">true</font>！原因请看【Android2D游戏开发之九】</font></p><p>	}</p><p>}</p><p></pre></p><p>代码很清晰呵呵，主要就是备注2的地方：</p><p>一：前言：各位童鞋肯定都知道在模拟器中，我们的鼠标当点击一次模拟器屏幕然后释放，先触发ACTION_DOWN然后ACTION_UP；如果是在屏幕上移动那么才会触发 ACTION_MOVE 的动作；OK，很对。但是你要知道，这只是模拟器！！！！！</p><p>二：真机与模拟器的区别：   当我们的小用户（说到用户我就想起“我叫MT”中的暗夜男那句经典台词：亲爱的客户，我是嫩爹！）咳咳，回到话题；当我们的用户在玩我们的游戏的时候，尤其是RPG这种类型的，用户肯定需要会长时间的去触屏按我们的虚拟按键，比如我们会在屏幕上画上一个虚拟方向盘类似这样子~那么其实 ACTION_MOVE 这个事件会被Android一直在响应！！</p><p>三： 为什么会一直响应 ACTION_MOVE 这个动作呢？ 如果用户没有移动手指而是静止不动也会一直响应？      </p><p>原因有两点：第一点是因为，Android对于触屏事件很敏感！第二点：虽然我们的手指感觉是静止没有移动，其实事实不是如此！当我们的手指触摸到手机屏幕上之后，感觉静止没动，其实手指在不停的微颤抖震动。不信你试试静止下手指，是不是微微动？</p><p>我们就要分析了，如果ACTION_MOVE此时间一直被Android os一直不停的响应并处理，无疑对我们游戏的性能增加了不少的负担!比如我们游戏线程绘图时间每次用了100ms,那么当手指触摸屏幕，这短暂的0.1秒内大概会产生10个左右的MotionEvent,并且系统会尽可能快的把这些event发给监听线程，这样的话在这一段时间内cpu就会忙于处理onTouchEvent从而杯具点的话会造成画面一卡一卡的。 </p><p>那么我们其实根本用不着按键响应这么多次，而是需要在我们每次绘图后，或者绘图前接受一次用户按键就OK了，这样能让帧率不至于下降的太厉害不是么？！so~我们要控制这个时间，让他慢下来，随着我们的绘图时间一起来合作~这样就能减不少系统线程的负担。备注2:可能有的童鞋会问为什么不用sleep()的方法，其实如果我们只是想让线程休眠指定时间的话可以用sleep()函数，但是这个没有资源锁的限制。而Object的wait,notify方法通常用在时间不定的条件限制等待，并且必须写在同步代码块中。so~还有童鞋会问，为什么不用当前类的object来使用：this.wait(),而是new一个object来：synchronized中的Object表示Object调用wait必须拥有该对象的监视锁，当前我们有了object的锁，就要用object调用wait~</p><p>备注1：这里的变量大家都知道其实是我们设置的休眠的时间，那么这里我想拿出来跟大家说下关于这个时间的定值，在上文我也有说过我们的游戏中只要按键跟我们的绘图线程的时间一样即可，当然这里是个我们的理想时间！如果我们游戏中有人物的帧，那么我们可以来根据人物帧数来当成设定这个睡眠时间也是相当合适的，毕竟人物一帧说明逻辑执行了一遍了呵呵~这个还是根据大家游戏的情况而定吧~</p><p>注意：Object.wait(long timeout)这个方法也需要慎用！          </p><p>原因是因为测试发现：这个睡眠的时间其实比你规定的时间要略微的长一些,不过我们合理控制好时间还是没问题的。</p><p>补充1.看到有童鞋问//备注2这里能不能用this，也就是当前的object，答案是可以的，但是要注意最好不要这样用，原因是如果当其他地方也需要与当前的Object进行同步的话有可能出现死锁情况！用一个新的object的原因也就是可以让代码中该干什么就干什么，互不影响，    </p><p>2.//备注2这里其实我们可以对其优化,毕竟一个Object比较浪费，我们其实只需要一个字节就足够了，so~我们可以这样定义一个：byte[] lock = new byte[0]; 这样可以算是最优了~</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

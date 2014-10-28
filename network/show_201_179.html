@@ -1,0 +1,64 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 初频蓝牙开发_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li class="navcurrentLink"><A href="index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="3G" href="index_177.html">3G</A></h2>
+
+  <h2><A title="WIFI" href="index_178.html">WIFI</A></h2>
+
+  <h2><A title="蓝牙" href="index_179.html">蓝牙</A></h2>
+<UL><li class="currentLink"><A title=Android 初频蓝牙开发 href="show_201_179.html">Android 初频蓝牙开发</A> </li><li ><A title=讲解Android蓝牙开发技术 href="show_202_179.html">讲解Android蓝牙开发技术</A> </li><li ><A title=蓝牙 V1.11.22.02.13.0 href="show_203_179.html">蓝牙 V1.11.22.02.13.0</A> </li><li ><A title=Android蓝牙API之BluetoothAdapter类使用 href="show_204_179.html">Android蓝牙API之BluetoothAdapter类使用</A> </li><li ><A title=Android 深入的研究一下蓝牙 href="show_205_179.html">Android 深入的研究一下蓝牙</A> </li><li ><A title=Android--BluetoothServerSocket href="show_206_179.html">Android--BluetoothServerSocket</A> </li><li ><A title=Android-BluetoothSocket建立有关蓝牙通讯的套接字 href="show_207_179.html">Android-BluetoothSocket建立有关蓝牙通讯的套接字</A> </li><li ><A title=Android手机蓝牙控制智能小车机器人 href="show_208_179.html">Android手机蓝牙控制智能小车机器人</A> </li><li ><A title=开关蓝牙 不提示-工程模式 href="show_209_179.html">开关蓝牙 不提示-工程模式</A> </li><li ><A title=蓝牙实现自动配对 href="show_210_179.html">蓝牙实现自动配对</A> </li><li ><A title=怎么让蓝牙可以支持所有类型文件的发送 href="show_211_179.html">怎么让蓝牙可以支持所有类型文件的发送</A> </li></UL>
+  <h2><A title="HTTP协议" href="index_180.html">HTTP协议</A></h2>
+
+  <h2><A title="Socket" href="index_181.html">Socket</A></h2>
+
+  <h2><A title="HTML与HTML5" href="index_182.html">HTML与HTML5</A></h2>
+
+  <h2><A title="JavaScript" href="index_183.html">JavaScript</A></h2>
+
+  <h2><A title="Email" href="index_184.html">Email</A></h2>
+
+  <h2><A title="NFC" href="index_185.html">NFC</A></h2>
+
+  <h2><A title="Web Service" href="index_186.html">Web Service</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 初频蓝牙开发</H2>
+<div style="line-height:20px; font-size:14px;"><p>Android对于蓝牙开发从2.0版本的sdk才开始支持，而且模拟器不支持，测试至少需要两部手机，所以制约了很多技术人员的开发。</p><p>首先，要操作蓝牙，先要在AndroidManifest.xml里加入权限</p><p><pre>&lt;uses-permission android:nameusespermission android:name=<font class="Fields">"android.permission.BLUETOOTH_ADMIN"</font> /&gt; </p><p>&lt;uses-permission android:nameuses-permission android:name=<font class="Fields">"android.permission.BLUETOOTH"</font> /&gt;</p><p></pre></p><p>然后，看下api，Android所有关于蓝牙开发的类都在android.bluetooth包下，如下图，只有8个类</p><p>而我们需要用到了就只有几个而已：</p><p>1.BluetoothAdapter 顾名思义，蓝牙适配器，直到我们建立bluetoothSocket连接之前，都要不断操作它</p><p>BluetoothAdapter里的方法很多，常用的有以下几个：</p><p><pre>cancelDiscovery()根据字面意思，是取消发现，也就是说当我们正在搜索设备的时候调用这个方法将不再继续搜索</p><p>disable()关闭蓝牙</p><p>enable()打开蓝牙，这个方法打开蓝牙不会弹出提示，更多的时候我们需要问下用户是否打开，以下这两行代码同样是打开蓝牙，不过会提示用户：</p><p>Intemtenabler=new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);   </p><p>startActivityForResult(enabler,reCode);//同startActivity(enabler);</p><p>getAddress()获取本地蓝牙地址</p><p>getDefaultAdapter()获取默认BluetoothAdapter，实际上，也只有这一种方法获取BluetoothAdapter</p><p>getName()获取本地蓝牙名称</p><p>getRemoteDevice(String address)根据蓝牙地址获取远程蓝牙设备</p><p>getState()获取本地蓝牙适配器当前状态（感觉可能调试的时候更需要）</p><p>isDiscovering()判断当前是否正在查找设备，是返回true</p><p>isEnabled()判断蓝牙是否打开，已打开返回true，否则，返回false</p><p>listenUsingRfcommWithServiceRecord(String name,UUID uuid)根据名称，UUID创建并返回   BluetoothServerSocket，这是创建BluetoothSocket服务器端的第一步</p><p>startDiscovery()开始搜索，这是搜索的第一步</p><p></pre></p><p>2.BluetoothDevice看名字就知道，这个类描述了一个蓝牙设备</p><p>createRfcommSocketToServiceRecord(UUIDuuid)根据UUID创建并返回一个BluetoothSocket</p><p>这个方法也是我们获取BluetoothDevice的目的——创建BluetoothSocket</p><p>这个类其他的方法，如getAddress(),getName(),同BluetoothAdapter</p><p>3.BluetoothServerSocket如果去除了Bluetooth相信大家一定再熟悉不过了，既然是Socket，方法就应该都差不多，</p><p>这个类一种只有三个方法</p><p>两个重载的accept(),accept(inttimeout)两者的区别在于后面的方法指定了过时时间，需要注意的是，执行这两个方法的时候，直到接收到了客户端的请求（或是过期之后），都会阻塞线程，应该放在新线程里运行！</p><p>还有一点需要注意的是，这两个方法都返回一个BluetoothSocket，最后的连接也是服务器端与客户端的两个BluetoothSocket的连接</p><p>close()这个就不用说了吧，翻译一下——关闭！</p><p>4.BluetoothSocket,跟BluetoothServerSocket相对，是客户端</p><p>一共5个方法，不出意外，都会用到：</p><p><pre>close() 关闭</p><p>connect()连接</p><p>getInptuStream()获取输入流</p><p>getOutputStream()获取输出流</p><p>getRemoteDevice()获取远程设备，这里指的是获取bluetoothSocket指定连接的那个远程蓝牙设备</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

@@ -1,0 +1,70 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 删除联系人分组_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li class="navcurrentLink"><A href="index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="设备信息" href="index_157.html">设备信息</A></h2>
+
+  <h2><A title="摄像头" href="index_158.html">摄像头</A></h2>
+
+  <h2><A title="通讯录" href="index_159.html">通讯录</A></h2>
+<UL><li ><A title=Android 通讯录选择联系人 href="show_201_159.html">Android 通讯录选择联系人</A> </li><li ><A title=Android 通讯录查询（一） href="show_202_159.html">Android 通讯录查询（一）</A> </li><li ><A title=Android 通讯录查询（二） href="show_203_159.html">Android 通讯录查询（二）</A> </li><li ><A title=Android 查询联系人信息 href="show_204_159.html">Android 查询联系人信息</A> </li><li ><A title=Android 获得联系人信息 href="show_205_159.html">Android 获得联系人信息</A> </li><li ><A title=Android 手机联系人操作 href="show_206_159.html">Android 手机联系人操作</A> </li><li class="currentLink"><A title=Android 删除联系人分组 href="show_207_159.html">Android 删除联系人分组</A> </li><li ><A title=详解Android中的通信录模型 href="show_208_159.html">详解Android中的通信录模型</A> </li><li ><A title=Android 用PhoneLookup读取电话号码 href="show_209_159.html">Android 用PhoneLookup读取电话号码</A> </li></UL>
+  <h2><A title="电话" href="index_160.html">电话</A></h2>
+
+  <h2><A title="短信" href="index_161.html">短信</A></h2>
+
+  <h2><A title="传感器" href="index_162.html">传感器</A></h2>
+
+  <h2><A title="定位" href="index_163.html">定位</A></h2>
+
+  <h2><A title="视频系统" href="index_164.html">视频系统</A></h2>
+
+  <h2><A title="音频系统" href="index_165.html">音频系统</A></h2>
+
+  <h2><A title="铃声" href="index_166.html">铃声</A></h2>
+
+  <h2><A title="音量" href="index_167.html">音量</A></h2>
+
+  <h2><A title="录音" href="index_168.html">录音</A></h2>
+
+  <h2><A title="输入法" href="index_169.html">输入法</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 删除联系人分组</H2>
+<div style="line-height:20px; font-size:14px;"><p>要删除某一个分组，其实对于Android,比我们想象中的要简单许多。在这里只是简单的说一下用法。</p><p>在操作联系人的ContactsProvider2源码中，</p><p><pre><font class="keyword">protected </font><font class="keyword">int </font>deleteInTransaction(Uri uri, String selection, String[] selectionArgs) {</p><p>	<font class="keyword">if </font>(VERBOSE_LOGGING) {</p><p>		</font>Log.v(TAG, <font class="Fields">"deleteInTransaction: "</font>; + uri);</p><p>	}</p><p>	flushTransactionalChanges();</p><p>	<font class="keyword">final </font><font class="keyword">boolean </font>callerIsSyncAdapter =</p><p>	</font>readBooleanQueryParameter(uri, ContactsContract.CALLER_IS_SYNCADAPTER, <font class="keyword">false</font>);</p><p>	<font class="keyword">final </font><font class="keyword">int </font>match = sUriMatcher.match(uri);</p><p>	<font class="keyword">switch </font>(match) {</p><p>		<font class="keyword">case </font>GROUPS_ID: {</p><p>			mSyncToNetwork |= !callerIsSyncAdapter;</p><p>			<font class="keyword">return </font>deleteGroup(uri, ContentUris.parseId(uri), callerIsSyncAdapter);</p><p>		}</p><p>		<font class="keyword">case </font>GROUPS: {</p><p>			<font class="keyword">int </font>numDeletes = 0;</p><p>			</font>Cursor c = mDb.query(Tables.GROUPS, <font class="keyword">new </font>String[]{Groups._ID</font>},</p><p>			</font>appendAccountToSelection(uri, selection), selectionArgs, <font class="keyword">null</font>, </font><font class="keyword">null</font>, </font><font class="keyword">null</font>);</p><p>			<font class="keyword">try </font>{</p><p>			<font class="keyword">while </font>(c.moveToNext()) {</p><p>			numDeletes += deleteGroup(uri, c.getLong(0), callerIsSyncAdapter);</p><p>			}</p><p>			} finally {</p><p></p><p>			c.close();</p><p>			}</p><p>			<font class="keyword">if </font>(numDeletes &gt; 0) {</p><p>			mSyncToNetwork |= !callerIsSyncAdapter;</p><p>		}</p><p>		<font class="keyword">return </font>numDeletes;</p><p>		}</p><p>		<font class="keyword">default</font>: {</p><p>			</font>mSyncToNetwork = <font class="keyword">true</font>;</p><p>			<font class="keyword">return </font>mLegacyApiSupport.delete(uri, selection, selectionArgs);</p><p>		}</p><p>	}</p><p>}</p><p></pre></p><p>我们可以看到删除分组的地方是方法deleteGroup(uri, ContentUris.parseId(uri), callerIsSyncAdapter);其中uri就是我们要操作的uri，这里组是 ContactsContract.Groups.CONTENT_URI,ContentUris.parseId(uri)是要删除的分组id，而 callerIsSyncAdapter则表示是否是直接删除Groups表的数据，还是标记该分组的deleted和dirty字段为1来表示已删除 (实际删除是在同步联系人的时候进行的)。</p><p>deleteGroup方法源代码</p><p><pre><font class="keyword">public </font><font class="keyword">int </font>deleteGroup(Uri uri, </font><font class="keyword">long </font>groupId, </font><font class="keyword">boolean </font>callerIsSyncAdapter) {</p><p>	mGroupIdCache.clear();</p><p>	<font class="keyword">final </font><font class="keyword">long </font>groupMembershipMimetypeId = mDbHelper</p><p>			.getMimeTypeId(GroupMembership.CONTENT_ITEM_TYPE);</p><p></p><p>	</font>mDb.delete(Tables.DATA, DataColumns.MIMETYPE_ID + <font class="Fields">"=</p><p>			</font>+ groupMembershipMimetypeId + <font class="Fields">" AND</p><p>			</font>+ GroupMembership.GROUP_ROW_ID + <font class="Fields">"="</font> + groupId, <font class="keyword">null</font>);</p><p>	<font class="keyword">try </font>{</p><p>		<font class="keyword">if </font>(callerIsSyncAdapter) {</p><p>			<font class="keyword">return </font>mDb.delete(Tables.GROUPS, Groups._ID + <font class="Fields">"="</font> + groupId,</p><p>					<font class="keyword">null</font>);</p><p>		</font>} <font class="keyword">else </font>{</p><p>			mValues.clear();</p><p>			mValues.put(Groups.DELETED, 1);</p><p>			mValues.put(Groups.DIRTY, 1);</p><p>			<font class="keyword">return </font>mDb.update(Tables.GROUPS, mValues, Groups._ID + <font class="Fields">"=</p><p>					</font>+ groupId, <font class="keyword">null</font>);</p><p>		}</p><p>	} finally {</p><p>		</font>mVisibleTouched = <font class="keyword">true</font>;</p><p>	}</p><p>}</p><p></pre></p><p>可见，我们虽然提供的uri是Groups.CONTENT_URI，实际上android为我们进行了两步操作：</p><p>1.根据我们提供的分组delId，删除Data表中的表示分组关系的那条数据，即Data.MIMETYPE是GroupMemberShip.CONTENT_ITEM_TYPE,data1等于delId的那条数据。这样就删除了联系人与该分组的关系。</p><p>2.如果callerIsSyncAdapter=true，则删除Groups表Groups._ID为delId的数据，这样就删除了该分组;否则，标记改组数据为已删除，数据需要同步，实际删除操作在同步联系人时进行。</p><p><pre>ContentResolver cr = mContext.getContentResolver();</p><p></pre></p><p>于是，我们删除一个分组的时候，如果想删除某一分组关系，可以不提供callerIsSyncAdapter参数(默认为false),表示标记删除Groups表对应组数据，删除对应的Data表数据。</p><p><pre></font>cr.delete(Groups.CONTENT_URI,Groups._ID+<font class="Fields">"="</font>+groupID,<font class="keyword">null</font>);</p><p></pre></p><p>提供callerIsSyncAdapter参数，表示表示删除Groups表对应组数据，删除对应的Data表数据。</p><p><pre></font>cr.delete(Uri.parse(ContactsContract.RawContacts.CONTENT_URI.toString() +<font class="Fields">"?"</font> + ContactsContract.CALLER_IS_SYNCADAPTER+</font><font class="Fields">"=<font class="keyword">true</font>"</font>),Groups._ID+</font><font class="Fields">"="</font>+groupID,</font><font class="keyword">null</font>)</p><p></pre></p><p>如果要删除某一个联系人与某一个分组的关系，根据源代码只需要这样做：</p><p><pre></font>cr.delete(DATA.CONTENT_URI, Datas.MIMETYPE + <font class="Fields">"="</font> +GroupMembership.CONTENT_ITEM_TYPE + </font><font class="Fields">" AND "</font> +GroupMembership.GROUP_ROW_ID + </font><font class="Fields">"="</font> groupId, <font class="keyword">null</font>);</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

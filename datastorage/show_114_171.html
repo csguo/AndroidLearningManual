@@ -1,0 +1,58 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>PreferenceActivity 参数设置UI的使用_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li class="navcurrentLink"><A href="index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="ContentProvider" href="index_170.html">ContentProvider</A></h2>
+
+  <h2><A title="Preferences" href="index_171.html">Preferences</A></h2>
+<UL><li ><A title=Android API-SharedPreferences href="show_101_171.html">Android API-SharedPreferences</A> </li><li ><A title=Android SharedPreferences用法 href="show_102_171.html">Android SharedPreferences用法</A> </li><li ><A title=Android SharedPreferences用法（二） href="show_103_171.html">Android SharedPreferences用法（二）</A> </li><li ><A title=Android preferenceActivity用法 href="show_104_171.html">Android preferenceActivity用法</A> </li><li ><A title=Android 首选项框架ListPreference（一） href="show_105_171.html">Android 首选项框架ListPreference（一）</A> </li><li ><A title=Android 首选项框架ListPreference（二） href="show_106_171.html">Android 首选项框架ListPreference（二）</A> </li><li ><A title=Android 首选项框架ListPreference（三） href="show_107_171.html">Android 首选项框架ListPreference（三）</A> </li><li ><A title=Android 首选项框架ListPreference（四） href="show_108_171.html">Android 首选项框架ListPreference（四）</A> </li><li ><A title=Android 首选项框架ListPreference（五） href="show_109_171.html">Android 首选项框架ListPreference（五）</A> </li><li ><A title=Android之SharedPreferences href="show_110_171.html">Android之SharedPreferences</A> </li><li ><A title=SharedPreferences与Preferences href="show_111_171.html">SharedPreferences与Preferences</A> </li><li ><A title=onSaveInstanceState和onRestoreInstanceState的用处 href="show_112_171.html">onSaveInstanceState和onRestoreInstanceState的用处</A> </li><li ><A title=用SharedPreferences获取其他应用中用SharedPreferences保存的数据 href="show_113_171.html">用SharedPreferences获取其他应用中用SharedPreferences保存的数据</A> </li><li class="currentLink"><A title=PreferenceActivity 参数设置UI的使用 href="show_114_171.html">PreferenceActivity 参数设置UI的使用</A> </li><li ><A title=Android 让浏览器全屏显示 href="show_115_171.html">Android 让浏览器全屏显示</A> </li><li ><A title=Android EditTextPreference href="show_116_171.html">Android EditTextPreference</A> </li><li ><A title=Android下获取开机时间 href="show_117_171.html">Android下获取开机时间</A> </li><li ><A title=是否记住密码功能 href="show_118_171.html">是否记住密码功能</A> </li><li ><A title=在Activity中获取PreferenceActivity设置的值 href="show_119_171.html">在Activity中获取PreferenceActivity设置的值</A> </li><li ><A title=Android 完美解决自定义preference与ActivityGroup UI更新的问题 href="show_120_171.html">Android 完美解决自定义preference与ActivityGroup UI更新的问题</A> </li><li ><A title=Android 自定义 SeekBarPreference href="show_121_171.html">Android 自定义 SeekBarPreference</A> </li></UL>
+  <h2><A title="SQLite" href="index_172.html">SQLite</A></h2>
+
+  <h2><A title="SD卡" href="index_173.html">SD卡</A></h2>
+
+  <h2><A title="数据库" href="index_174.html">数据库</A></h2>
+
+  <h2><A title="URI" href="index_175.html">URI</A></h2>
+
+  <h2><A title="MediaStore" href="index_176.html">MediaStore</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>PreferenceActivity 参数设置UI的使用</H2>
+<div style="line-height:20px; font-size:14px;"><p>Android为了方便管理SharedPreferences，为我们提供了一个很简洁高效的PreferenceActivity。通过继承PreferenceActivity这个类，我们很轻松的就能实现一个程序参数设置的UI界面。</p><p>具体步骤如下：</p><p>1.添加Preference的布局，在 /res/xml/目录下添加一个settings.xml文件，内容如下：</p><p><pre>&lt;?xml version=<font class="Fields">"1.0"</font> encoding=</font><font class="Fields">"utf-8"</font>?&gt;</p><p>&lt;referenceScreen xmlns:android=<font class="Fields">"http:<font class="Comments">//schemas.android.com/apk/res/android</font></p><p>        </font>android:title=<font class="Fields">"Settings"</font>&gt;</p><p>        </font>&lt;CheckBoxPreference android:title=<font class="Fields">"android with google</p><p>                </font>android:key=<font class="Fields">"android"</font>&gt;&lt;/CheckBoxPreference&gt;</p><p>        </font>&lt;referenceCategory android:title=<font class="Fields">"eoe"</font>&gt;</p><p>                </font>&lt;ListPreference android:title=<font class="Fields">"eoeList</p><p>                        </font>android:summary=<font class="Fields">"Set eoe Options"</font> android:key=</font><font class="Fields">"eoe</p><p>                        </font>android:dialogTitle=<font class="Fields">"Choose eoe Options"</font> android:entries=</font><font class="Fields">"@array/androidBook</p><p>                        </font>android:entryValues=<font class="Fields">"@array/androidBook"</font>&gt;&lt;/ListPreference&gt;</p><p>        &lt;/PreferenceCategory&gt;</p><p>&lt;/PreferenceScreen&gt;</p><p></pre></p><p>2. 生成一个SettingsActivity继承自PreferenceActivity。</p><p><pre><font class="keyword">public </font><font class="keyword">class </font>SettingsActivity </font><font class="keyword">extends </font>PreferenceActivity {</p><p>	@Override</p><p>	<font class="keyword">protected </font><font class="keyword">void </font>onCreate(Bundle savedInstanceState) {</p><p>		<font class="keyword">super</font>.onCreate(savedInstanceState);</p><p>		addPreferencesFromResource(R.xml.settings);</p><p>	}</p><p>}</p><p></pre></p><p>3.添加R.xml.settings布局文件</p><p>addPreferencesFromResource(R.xml.settings)</p><p>4.当程序运行后，会生成/data/data/[PACKAGE_NAME]/shared_prefs/[PACKAGE_NAME]_preferences.xml 参数配置文件。</p><p>com.eoeandroid.book_preferences.xml</p><p><pre>&lt;?xml version=<font class="Fields">'1.0'</font> encoding=</font><font class="Fields">'utf-8'</font> standalone=</font><font class="Fields">'yes'</font> ?&gt;</p><p>&lt;map&gt;</p><p>	</font>&lt;<font class="keyword">boolean </font>name=<font class="Fields">"android"</font> value=</font><font class="Fields">"</font><font class="keyword">false</font>"</font> /&gt;</p><p>	</font>&lt;string name=<font class="Fields">"eoe"</font>&gt;eoemarket&lt;/string&gt;</p><p>&lt;/map&gt;</p><p></pre></p><p>5.获得SharedPreferences引用</p><p><pre>SharedPreferences sp = getPreferenceManager().getDefaultSharedPreferences(this);</p><p></pre></p><p><img src="../img/data_preference/14_preference.jpg"></p><p><img src="../img/data_preference/14_preference2.jpg"></p><p></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

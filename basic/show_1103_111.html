@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android中怎样嵌入C语言（三）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li class="navcurrentLink"><A href="index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="开发基础" href="index_100.html">开发基础</A></h2>
+
+  <h2><A title="开发环境搭建" href="index_101.html">开发环境搭建</A></h2>
+
+  <h2><A title="模拟器" href="index_102.html">模拟器</A></h2>
+
+  <h2><A title="Resource" href="index_103.html">Resource</A></h2>
+
+  <h2><A title="Manifest" href="index_104.html">Manifest</A></h2>
+
+  <h2><A title="ADB" href="index_105.html">ADB</A></h2>
+
+  <h2><A title="DDMS" href="index_106.html">DDMS</A></h2>
+
+  <h2><A title="Logcat(日志)" href="index_107.html">Logcat(日志)</A></h2>
+
+  <h2><A title="打包" href="index_108.html">打包</A></h2>
+
+  <h2><A title="文件处理" href="index_109.html">文件处理</A></h2>
+
+  <h2><A title="底层基础" href="index_111.html">底层基础</A></h2>
+<UL><li ><A title=Android中怎样嵌入C语言（一） href="show_1101_111.html">Android中怎样嵌入C语言（一）</A> </li><li ><A title=Android中怎样嵌入C语言（二） href="show_1102_111.html">Android中怎样嵌入C语言（二）</A> </li><li class="currentLink"><A title=Android中怎样嵌入C语言（三） href="show_1103_111.html">Android中怎样嵌入C语言（三）</A> </li><li ><A title=Android中怎样嵌入C语言（四） href="show_1104_111.html">Android中怎样嵌入C语言（四）</A> </li><li ><A title=Android中怎样嵌入C语言（五） href="show_1105_111.html">Android中怎样嵌入C语言（五）</A> </li><li ><A title=Android中怎样嵌入C语言（六） href="show_1106_111.html">Android中怎样嵌入C语言（六）</A> </li></UL>
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android中怎样嵌入C语言（三）</H2>
+<div style="line-height:20px; font-size:14px;"><p>3.registerNativeMethods()函数的用途</p><p>应用层级的Java类别透过VM而呼叫到本地函数。一般是仰赖VM去寻找*.so里的本地函数。如果需要连续呼叫很多次，每次都需要寻找一遍，会多花许多时间。此时，组件开发者可以自行将本地函数向VM进行登记。例如，在Android的/system/lib/libmedia_jni.so档案里的代码段如下：</p><p><pre><font class="Comments">//defineLOG_NDEBUG0</font></p><p></font>defineLOG_TAG<font class="Fields">"MediaPlayer-JNI</p><p>staticJNINativeMethodgMethods[]={</p><p>	</font>{<font class="Fields">"setDataSource"</font>,</font><font class="Fields">"(Ljava/lang/String;)V"</font>,</p><p>	(void*)android_media_MediaPlayer_setDataSource},</p><p>	</font>{<font class="Fields">"setDataSource"</font>,</font><font class="Fields">"(Ljava/io/FileDescriptor;JJ)V"</font>,</p><p>	(void*)android_media_MediaPlayer_setDataSourceFD},</p><p>	</font>{<font class="Fields">"prepare"</font>,</font><font class="Fields">"()V"</font>,(void*)android_media_MediaPlayer_prepare</font>},</p><p>	</font>{<font class="Fields">"prepareAsync"</font>,</font><font class="Fields">"()V"</font>,(void*)android_media_MediaPlayer_prepareAsync</font>},</p><p>	</font>{<font class="Fields">"_start"</font>,</font><font class="Fields">"()V"</font>,(void*)android_media_MediaPlayer_start</font>},</p><p>	</font>{<font class="Fields">"_stop"</font>,</font><font class="Fields">"()V"</font>,(void*)android_media_MediaPlayer_stop</font>},</p><p>	</font>{<font class="Fields">"getVideoWidth"</font>,</font><font class="Fields">"()I"</font>,(void*)android_media_MediaPlayer_getVideoWidth</font>},</p><p>	</font>{<font class="Fields">"getVideoHeight"</font>,</font><font class="Fields">"()I"</font>,(void*)android_media_MediaPlayer_getVideoHeight</font>},</p><p>	</font>{<font class="Fields">"seekTo"</font>,</font><font class="Fields">"(I)V"</font>,(void*)android_media_MediaPlayer_seekTo</font>},</p><p>	</font>{<font class="Fields">"_pause"</font>,</font><font class="Fields">"()V"</font>,(void*)android_media_MediaPlayer_pause</font>},</p><p>	</font>{<font class="Fields">"isPlaying"</font>,</font><font class="Fields">"()Z"</font>,(void*)android_media_MediaPlayer_isPlaying</font>},</p><p>	</font>{<font class="Fields">"getCurrentPosition"</font>,</font><font class="Fields">"()I"</font>,(void*)android_media_MediaPlayer_getCurrentPosition</font>},</p><p>	</font>{<font class="Fields">"getDuration"</font>,</font><font class="Fields">"()I"</font>,(void*)android_media_MediaPlayer_getDuration</font>},</p><p>	</font>{<font class="Fields">"_release"</font>,</font><font class="Fields">"()V"</font>,(void*)android_media_MediaPlayer_release</font>},</p><p>	</font>{<font class="Fields">"_reset"</font>,</font><font class="Fields">"()V"</font>,(void*)android_media_MediaPlayer_reset</font>},</p><p>	</font>{<font class="Fields">"setAudioStreamType"</font>,</font><font class="Fields">"(I)V"</font>,(void*)android_media_MediaPlayer_setAudioStreamType</font>},</p><p>	</font>{<font class="Fields">"setLooping"</font>,</font><font class="Fields">"(Z)V"</font>,(void*)android_media_MediaPlayer_setLooping</font>},</p><p>	</font>{<font class="Fields">"setVolume"</font>,</font><font class="Fields">"(FF)V"</font>,(void*)android_media_MediaPlayer_setVolume</font>},</p><p>	</font>{<font class="Fields">"getFrameAt"</font>,</font><font class="Fields">"(I)Landroid/graphics/Bitmap;"</font>,</p><p>	(void*)android_media_MediaPlayer_getFrameAt},</p><p>	</font>{<font class="Fields">"native_setup"</font>,</font><font class="Fields">"(Ljava/lang/Object;)V"</font>,</p><p>	(void*)android_media_MediaPlayer_native_setup},</p><p>	</font>{<font class="Fields">"native_finalize"</font>,</font><font class="Fields">"()V"</font>,(void*)android_media_MediaPlayer_native_finalize</font>},</p><p>};</p><p>staticintregister_android_media_MediaPlayer(JNIEnv*env){</p><p>	returnAndroidRuntime::registerNativeMethods(env,</p><p>	<font class="Fields">"android/media/MediaPlayer"</font>,gMethods,NELEM(gMethods));</p><p>}</p><p>jintJNI_OnLoad(JavaVM* vm,void* reserved){</p><p>	if(register_android_media_MediaPlayer(env)&lt;0){</p><p>		</font>LOGE(<font class="Fields">"ERROR:MediaPlayernativeregistrationfailed\n"</font>);</p><p>		goto bail;</p><p>	}</p><p>}}</p><p></pre></p><p>当VM载入libmedia_jni.so档案时，就呼叫JNI_OnLoad()函数。接着，JNI_OnLoad()呼叫register_android_media_MediaPlayer()函数。此时，就呼叫到AndroidRuntime::registerNativeMethods()函数，向VM(即AndroidRuntime)登记gMethods[]表格所含的本地函数了。简而言之，registerNativeMethods()函数的用途有二：</p><p>(1)更有效率去找到函数。</p><p>(2)可在执行期间进行抽换。由于gMethods[]是一个&lt;名称，函数指针&gt;对照表，在程序执行时，可多次呼叫registerNativeMethods()函数来更换本地函数之指针，而达到弹性抽换本地函数之目的。</p><p>4.Andoird中使用了一种不同传统JavaJNI的方式来定义其native的函数。其中很重要的区别是Andorid使用了一种Java和C函数的映射表数组，并在其中描述了函数的参数和返回值。这个数组的类型是JNINativeMethod，定义如下：</p><p><pre>typedefstruct{</p><p>	constchar*name;/*Java中函数的名字*/</p><p>	constchar*signature;/*描述了函数的参数和返回值*/</p><p>	void*fnPtr;/*函数指针，指向C函数*/</p><p>}JNINativeMethod;</p><p></pre></p><p>其中比较难以理解的是第二个参数，例如：</p><p><pre>"()V"</p><p>"(II)V"</p><p>"(Ljava/lang/String;Ljava/lang/String;)V"</p><p></pre></p><p>实际上这些字符是与函数的参数类型一一对应的。</p><p>"()"中的字符表示参数，后面的则代表返回值。例如"()V"就表示voidFunc();</p><p>"(II)V"表示voidFunc(int,int);</p><p>具体的每一个字符的对应关系如下</p><p><pre>字符Java类型C类型</p><p>Vvoidvoid</p><p>Zjbooleanboolean</p><p>Ijintint</p><p>Jjlonglong</p><p>Djdoubledouble</p><p>Fjfloatfloat</p><p>Bjbytebyte</p><p>Cjcharchar</p><p>Sjshortshort</p><p></pre></p><p>数组则以"["开始，用两个字符表示</p><p><pre>[IjintArrayint[]</p><p>[FjfloatArrayfloat[]</p><p>[BjbyteArraybyte[]</p><p>[CjcharArraychar[]</p><p>[SjshortArrayshort[]</p><p>[DjdoubleArraydouble[]</p><p>[JjlongArraylong[]</p><p>[ZjbooleanArrayboolean[]</p><p></pre></p><p>上面的都是基本类型。如果Java函数的参数是class，则以"L"开头，以";"结尾，中间是用"/"隔开的包及类名。而其对应的C函数名的参数则为jobject。一个例外是String类，其对应的类为jstring</p><p><pre>Ljava/lang/String;Stringjstring</p><p>Ljava/net/Socket;Socketjobject</p><p></pre></p><p>如果JAVA函数位于一个嵌入类，则用$作为类名间的分隔符。</p><p>例如"(Ljava/lang/String;Landroid/os/FileUtils$FileStatus;)Z"</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

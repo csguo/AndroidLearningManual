@@ -1,0 +1,64 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android https访问解决SSL问题及2G3G下proxy_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li class="navcurrentLink"><A href="index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="3G" href="index_177.html">3G</A></h2>
+<UL><li ><A title=3G应用开发之Android href="show_1_177.html">3G应用开发之Android</A> </li><li ><A title=Android编程获取网络连接状态及调用网络配置界面 href="show_2_177.html">Android编程获取网络连接状态及调用网络配置界面</A> </li><li ><A title=如何设置3g网络-APN设置 href="show_3_177.html">如何设置3g网络-APN设置</A> </li><li class="currentLink"><A title=Android https访问解决SSL问题及2G3G下proxy href="show_4_177.html">Android https访问解决SSL问题及2G3G下proxy</A> </li><li ><A title=Android下检测网络状态 3G WIFI href="show_5_177.html">Android下检测网络状态 3G WIFI</A> </li><li ><A title=Wifi与3G切换 href="show_6_177.html">Wifi与3G切换</A> </li><li ><A title=获取wifi和3g状态下流量信息 href="show_7_177.html">获取wifi和3g状态下流量信息</A> </li></UL>
+  <h2><A title="WIFI" href="index_178.html">WIFI</A></h2>
+
+  <h2><A title="蓝牙" href="index_179.html">蓝牙</A></h2>
+
+  <h2><A title="HTTP协议" href="index_180.html">HTTP协议</A></h2>
+
+  <h2><A title="Socket" href="index_181.html">Socket</A></h2>
+
+  <h2><A title="HTML与HTML5" href="index_182.html">HTML与HTML5</A></h2>
+
+  <h2><A title="JavaScript" href="index_183.html">JavaScript</A></h2>
+
+  <h2><A title="Email" href="index_184.html">Email</A></h2>
+
+  <h2><A title="NFC" href="index_185.html">NFC</A></h2>
+
+  <h2><A title="Web Service" href="index_186.html">Web Service</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android https访问解决SSL问题及2G3G下proxy</H2>
+<div style="line-height:20px; font-size:14px;"><p>工程中需要做https访问，于是乎就研究了一番。</p><p>1. 解决证书（SSL）问题，</p><p><pre><font class="keyword">public </font><font class="keyword">class </font>EasySSLSocketFactory </font><font class="keyword">extends </font>SSLSocketFactory {</p><p>	<font class="Comments">// SSLContext sslContext = SSLContext.getInstance("TLS");</font></p><p>	</font>SSLContext sslContext = SSLContext.getInstance(<font class="Fields">"SSL"</font>);</p><p>	<font class="keyword">public </font>EasySSLSocketFactory(KeyStore truststore)</p><p>			<font class="keyword">throws </font>NoSuchAlgorithmException, KeyManagementException,</p><p>			KeyStoreException, UnrecoverableKeyException {</p><p>		<font class="keyword">super</font>(truststore);</p><p>		</font>TrustManager tm = <font class="keyword">new </font>X509TrustManager() {</p><p>			<font class="keyword">public </font><font class="keyword">void </font>checkClientTrusted(X509Certificate[] chain,</p><p>					</font>String authType) <font class="keyword">throws </font>CertificateException {</p><p>			}</p><p></p><p>			<font class="keyword">public </font><font class="keyword">void </font>checkServerTrusted(X509Certificate[] chain,</p><p>					</font>String authType) <font class="keyword">throws </font>CertificateException {</p><p>			}</p><p>			<font class="keyword">public </font>X509Certificate[] getAcceptedIssuers() {</p><p>				<font class="keyword">return </font><font class="keyword">null</font>;</p><p>			}</p><p>		};</p><p>		</font>sslContext.init(<font class="keyword">null</font>, </font><font class="keyword">new </font>TrustManager[] { tm </font>}, </font><font class="keyword">null</font>);</p><p>	}</p><p>	@Override</p><p>	<font class="keyword">public </font>Socket createSocket(Socket socket, String host, </font><font class="keyword">int </font>port,</p><p>			<font class="keyword">boolean </font>autoClose) </font><font class="keyword">throws </font>IOException, UnknownHostException {</p><p>		<font class="keyword">return </font>sslContext.getSocketFactory().createSocket(socket, host, port,</p><p>				autoClose);</p><p>	}</p><p>	@Override</p><p>	<font class="keyword">public </font>Socket createSocket() </font><font class="keyword">throws </font>IOException {</p><p>		<font class="keyword">return </font>sslContext.getSocketFactory().createSocket();</p><p>	}</p><p>}</p><p></pre></p><p>2. 移动网络的参数设置。</p><p><pre>WifiManager wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);</p><p><font class="keyword">if </font>(!wifiManager.isWifiEnabled()) {</p><p>	<font class="Comments">// 获取当前正在使用的APN接入点</font></p><p>	</font>Uri uri = Uri.parse(<font class="Fields">"content:<font class="Comments">//telephony/carriers/preferapn"</font>);</font></p><p>	</font>Cursor mCursor = context.getContentResolver().query(uri, <font class="keyword">null</font>, </font><font class="keyword">null</font>, </font><font class="keyword">null</font>, </font><font class="keyword">null</font>);</p><p>	<font class="keyword">if </font>(mCursor != </font><font class="keyword">null</font> && mCursor.moveToFirst()) {</p><p>		<font class="Comments">// 游标移至第一条记录，当然也只有一条</font></p><p>		</font>String proxyStr = mCursor.getString(mCursor.getColumnIndex(<font class="Fields">"proxy"</font>));</p><p>		<font class="keyword">if </font>(proxyStr != </font><font class="keyword">null</font> && proxyStr.trim().length() &gt; 0) {</p><p>			</font>HttpHost proxy = <font class="keyword">new </font>HttpHost(proxyStr, 80);</p><p>			client.getParams().setParameter(ConnRouteParams.DEFAULT_PROXY, proxy);</p><p>		}</p><p>		mCursor.close();</p><p>	}</p><p>}</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

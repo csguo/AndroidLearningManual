@@ -1,0 +1,60 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android游戏框架 Libgdx 使用入门（四）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li class="navcurrentLink"><A href="index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="游戏开发须知" href="index_187.html">游戏开发须知</A></h2>
+
+  <h2><A title="游戏策划、设计分析" href="index_188.html">游戏策划、设计分析</A></h2>
+
+  <h2><A title="Android OpenGL学习" href="index_190.html">Android OpenGL学习</A></h2>
+
+  <h2><A title="Android游戏开发之旅" href="index_191.html">Android游戏开发之旅</A></h2>
+
+  <h2><A title="Android2D游戏开发" href="index_192.html">Android2D游戏开发</A></h2>
+
+  <h2><A title="Android经典实例教程解析" href="index_193.html">Android经典实例教程解析</A></h2>
+
+  <h2><A title="Android游戏开发实例" href="index_194.html">Android游戏开发实例</A></h2>
+
+  <h2><A title="Libgdx游戏引擎" href="index_195.html">Libgdx游戏引擎</A></h2>
+<UL><li ><A title=Android游戏框架 Libgdx 使用入门（一） href="show_801_195.html">Android游戏框架 Libgdx 使用入门（一）</A> </li><li ><A title=Android游戏框架 Libgdx 使用入门（二） href="show_802_195.html">Android游戏框架 Libgdx 使用入门（二）</A> </li><li ><A title=Android游戏框架 Libgdx 使用入门（三） href="show_803_195.html">Android游戏框架 Libgdx 使用入门（三）</A> </li><li class="currentLink"><A title=Android游戏框架 Libgdx 使用入门（四） href="show_804_195.html">Android游戏框架 Libgdx 使用入门（四）</A> </li><li ><A title=Android游戏框架 Libgdx 使用入门（五） href="show_805_195.html">Android游戏框架 Libgdx 使用入门（五）</A> </li><li ><A title=使用游戏引擎libgdx的工程搭建方法 href="show_806_195.html">使用游戏引擎libgdx的工程搭建方法</A> </li><li ><A title=游戏引擎libgdx中粒子特效的实现 href="show_807_195.html">游戏引擎libgdx中粒子特效的实现</A> </li></UL>
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android游戏框架 Libgdx 使用入门（四）</H2>
+<div style="line-height:20px; font-size:14px;"><p>SpriteBatch：</p><p>Libgdx所提供的纹理渲染器，本质上是OpenGL的简易封装体，具体实现上与XNA中的SpriteBatch类非常近似，每次调用SpriteBatch类都必须以begin函数开头，以end函数结尾.由于Libgdx中SpriteBatch提供的功能还非常有限，所以在完全不懂OpenGL的前提下使用其进行游戏开发或许有一定难度。</p><p>ShaderProgram：</p><p>Libgdx所提供的着色器，在Android环境使用时需要GLES2.0或以上版本才能完整支持的高级渲染功能之一，内部封装着GLES2.0专用的顶点着色与片断着色Shader Model，它的本质作用是对3D对象表面进行渲染处理，此物性能基本取决于GPU（除了Google Nexus系列手机暂未见能完全跑出速度的机型）。</p><p><pre><font class="Comments">//libgdx的ShaderProgram使用</font></p><p><font class="keyword">public </font><font class="keyword">class </font>Main </font><font class="keyword">extends </font>AndroidApplication {</p><p>	<font class="keyword">class </font>TestShader </font><font class="keyword">implements </font>ApplicationListener {</p><p>		ShaderProgram shader;</p><p>		Texture texture;</p><p>		Texture texture2;</p><p>		Mesh mesh;</p><p>		<font class="keyword">public </font><font class="keyword">void </font>create() {</p><p>			<font class="Comments">// 以下命令供GPU使用(不支持GLES2.0就不用跑了)</font></p><p>			</font>String vertexShader = <font class="Fields">"attribute vec4 a_position;</p><p>					</font>+ <font class="Fields">"attribute vec2 a_texCoord"</font> + </font><font class="Fields">"varying vec2 v_texCoord;</p><p>					</font>+ <font class="Fields">"<font class="keyword">void </font>main() "</font> + </font><font class="Fields">"{ "</font> + </font><font class="Fields">" gl_Position = a_position;</p><p>					</font>+ <font class="Fields">" v_texCoord = a_texCoord; "</font> + </font><font class="Fields">"</font>} "</font>;</p><p>			</font>String fragmentShader = <font class="Fields">"</font>ifdef GL_ES</p><p>					</font>+ <font class="Fields">"precision mediump float;</p><p>					</font>+ <font class="Fields">"</font>end<font class="keyword">if </font></p><p>					</font>+ <font class="Fields">"varying vec2 v_texCoord;</p><p>					</font>+ <font class="Fields">"uniform sampler2D s_texture;</p><p>					</font>+ <font class="Fields">"uniform sampler2D s_texture2;</p><p>					</font>+ <font class="Fields">"<font class="keyword">void </font>main()</p><p>					</font>+ <font class="Fields">"{</p><p>					</font>+ <font class="Fields">" gl_FragColor = texture2D( s_texture, v_texCoord ) * texture2D( s_texture2, v_texCoord);</p><p>					</font>+ <font class="Fields">"</font>} "</font>;</p><p>			<font class="Comments">// 构建ShaderProgram</font></p><p>			</font>shader = <font class="keyword">new </font>ShaderProgram(vertexShader, fragmentShader);</p><p>			<font class="Comments">// 构建网格对象</font></p><p>			</font>mesh = <font class="keyword">new </font>Mesh( </font><font class="keyword">true</font> , 4 , 6 , </font><font class="keyword">new </font>VertexAttribute(Usage.Position, 2 ,<font class="Fields">"a_position"</font> ), </font><font class="keyword">new </font>VertexAttribute(Usage.TextureCoordinates), 2 , </font><font class="Fields">"a_texCoord"</font> ));</p><p>			<font class="keyword">float</font>[] vertices = { -0.5f, 0.5f, 0.0f, 0.0f, -0.5f, -0.5f, 0.0f,</p><p>					1.0f, 0.5f, -0.5f, 1.0f, 1.0f, 0.5f, 0.5f, 1.0f, 0.0f };</p><p>			short[] indices = { 0, 1, 2, 0, 2, 3 };</p><p>			<font class="Comments">// 注入定点坐标</font></p><p>			mesh.setVertices(vertices);</p><p>			mesh.setIndices(indices);</p><p>			<font class="Comments">// 以Pixmap生成两个指定内容的Texture</font></p><p>			</font>Pixmap pixmap = <font class="keyword">new </font>Pixmap(256, 256, Format.RGBA8888);</p><p>			pixmap.setColor(1, 1, 1, 1);</p><p>			pixmap.fill();</p><p>			pixmap.setColor(0, 0, 0, 1);</p><p>			pixmap.drawLine(0, 0, 256, 256);</p><p>			pixmap.drawLine(256, 0, 0, 256);</p><p>			</font>texture = <font class="keyword">new </font>Texture(pixmap);</p><p>			pixmap.dispose();</p><p>			</font>pixmap = <font class="keyword">new </font>Pixmap(256, 256, Format.RGBA8888);</p><p>			pixmap.setColor(1, 1, 1, 1);</p><p>			pixmap.fill();</p><p>			pixmap.setColor(0, 0, 0, 1);</p><p>			pixmap.drawLine(128, 0, 128, 256);</p><p>			</font>texture2 = <font class="keyword">new </font>Texture(pixmap);</p><p>			pixmap.dispose();</p><p>		}</p><p>		<font class="keyword">public </font><font class="keyword">void </font>dispose() {</p><p>		}</p><p>		<font class="keyword">public </font><font class="keyword">void </font>pause() {</p><p>		}</p><p>		<font class="keyword">public </font><font class="keyword">void </font>render() {</p><p>			<font class="Comments">// PS:由于使用了ShaderProgram，因此必须配合gl20模式(否则缺少关键opengles接口)</font></p><p>			Gdx.gl20.glViewport(0, 0, Gdx.graphics.getWidth(),</p><p>					Gdx.graphics.getHeight());</p><p>			Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT);</p><p>			Gdx.gl20.glActiveTexture(GL20.GL_TEXTURE0);</p><p>			texture.bind();</p><p>			Gdx.gl20.glActiveTexture(GL20.GL_TEXTURE1);</p><p>			texture2.bind();</p><p>			<font class="Comments">// 开始使用ShaderProgram渲染</font></p><p>			shader.begin();</p><p>			</font>shader.setUniformi(<font class="Fields">"s_texture"</font>, 0);</p><p>			</font>shader.setUniformi(<font class="Fields">"s_texture2"</font>, 1);</p><p>			mesh.render(shader, GL20.GL_TRIANGLES);</p><p>			<font class="Comments">// 结束ShaderProgram渲染</font></p><p>			shader.end();</p><p>		}</p><p>		<font class="keyword">public </font><font class="keyword">void </font>resize(</font><font class="keyword">int </font>width, </font><font class="keyword">int </font>height) {</p><p>		}</p><p>		<font class="keyword">public </font><font class="keyword">void </font>resume() {</p><p>		}</p><p>	}</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onCreate(Bundle bundle) {</p><p>		<font class="keyword">super</font>.onCreate(bundle);</p><p>		<font class="Comments">// 初始化游戏屏幕，并设置是否支持GLES 2.0，如果您对向下兼容没什么需要选择true即可(2.1以上)，否则选择false。</font></p><p></p><p>		</font>initialize(<font class="keyword">new </font>TestShader(), </font><font class="keyword">true</font>);</p><p>	}</p><p>}</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

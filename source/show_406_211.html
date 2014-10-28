@@ -1,0 +1,60 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>SharedClient_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li class="navcurrentLink"><A href="index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Launcher" href="index_207.html">Launcher</A></h2>
+
+  <h2><A title="电话系统RIL" href="index_208.html">电话系统RIL</A></h2>
+
+  <h2><A title="进程间通信" href="index_209.html">进程间通信</A></h2>
+
+  <h2><A title="内部sensor系统" href="index_210.html">内部sensor系统</A></h2>
+
+  <h2><A title="内部surface系统" href="index_211.html">内部surface系统</A></h2>
+<UL><li ><A title=Android 来说说Surface系统(一) href="show_401_211.html">Android 来说说Surface系统(一)</A> </li><li ><A title=Android 来说说Surface系统(二) href="show_402_211.html">Android 来说说Surface系统(二)</A> </li><li ><A title=Android 来说说Surface系统(三) href="show_403_211.html">Android 来说说Surface系统(三)</A> </li><li ><A title=Android 来说说Surface系统(四) href="show_404_211.html">Android 来说说Surface系统(四)</A> </li><li ><A title=SurfaceFlinger中的Layer,LayerDim,LayerBlur,LayerBuffer href="show_405_211.html">SurfaceFlinger中的Layer,LayerDim,LayerBlur,LayerBuffer</A> </li><li class="currentLink"><A title=SharedClient href="show_406_211.html">SharedClient</A> </li></UL>
+  <h2><A title="启动流程" href="index_212.html">启动流程</A></h2>
+
+  <h2><A title="源码编译" href="index_213.html">源码编译</A></h2>
+
+  <h2><A title="状态栏" href="index_214.html">状态栏</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>SharedClient</H2>
+<div style="line-height:20px; font-size:14px;"><p style="color:#3333FF;">06_SharedClient:客户端（Surface）和服务端（Layer）</p><p>SurfaceFlinger在系统启动阶段作为系统服务被加载。应用程序中的每个窗口，对应本地代码中的Surface，而Surface又对应于SurfaceFlinger中的各个Layer，SurfaceFlinger的主要作用是为这些Layer申请内存，根据应用程序的请求管理这些 Layer显示、隐藏、重画等操作，最终由SurfaceFlinger把所有的Layer组合到一起，显示到显示器上。当一个应用程序需要在一个 Surface上进行画图操作时，首先要拿到这个Surface在内存中的起始地址，而这块内存是在SurfaceFlinger中分配的，因为 SurfaceFlinger和应用程序并不是运行在同一个进程中，如何在应用客户端（Surface）和服务端（SurfaceFlinger – Layer）之间传递和同步显示缓冲区？这正是本文要讨论的内容。Surface的创建过程</p><p>我们来看看效果图：</p><p><img src="../img/source_surface/06_Surface01.jpg"></p><p>创建Surface的过程基本上分为两步：</p><p>1. 建立SurfaceSession</p><p>第一步通常只执行一次，目的是创建一个SurfaceComposerClient的实例，JAVA层通过JNI调用本地代码，本地代码创建一个SurfaceComposerClient的实例，SurfaceComposerClient通过ISurfaceComposer接口调用SurfaceFlinger的createConnection，SurfaceFlinger返回一个ISurfaceFlingerClient接口给SurfaceComposerClient，在createConnection的过程中，SurfaceFlinger创建了用于管理缓冲区切换的SharedClient，关于SharedClient我们下面再介绍，最后，本地层把SurfaceComposerClient的实例返回给 JAVA层，完成SurfaceSession的建立。</p><p>2. 利用SurfaceSession创建Surface</p><p>JAVA层通过JNI调用本地代码Surface_Init()，本地代码首先取得第一步创建的SurfaceComposerClient实例，通过SurfaceComposerClient，调用ISurfaceFlingerClient接口的createSurface方法，进入 SurfaceFlinger，SurfaceFlinger根据参数，创建不同类型的Layer，然后调用Layer的setBuffers()方法，为该Layer创建了两个缓冲区，然后返回该Layer的ISurface接口，SurfaceComposerClient使用这个ISurface接口创建一个SurfaceControl实例，并把这个SurfaceControl返回给JAVA层。</p><p><pre><font class="keyword">void </font>SurfaceComposerClient::_init(</p><p>const sp&lt;ISurfaceComposer&gt;& sm, const sp&lt;ISurfaceFlingerClient&gt;& conn)</p><p>{</p><p>	......</p><p>	mClient = conn;</p><p>	<font class="keyword">if </font>(mClient == 0) {</p><p>		mStatus = NO_INIT;</p><p>		<font class="keyword">return</font>;</font></p><p>	}</p><p>	mControlMemory = mClient-&gt;getControlBlock();</p><p>	mSignalServer = sm;</p><p>	mControl = static_cast&lt;SharedClient *&gt;(mControlMemory-&gt;getBase());</p><p>}</p><p></pre></p><p>SharedClient</p><p>在createConnection阶段，SurfaceFlinger创建Client对象：</p><p><pre>sp&lt;ISurfaceFlingerClient&gt; SurfaceFlinger::createConnection()</p><p>{</p><p>	Mutex::Autolock _l(mStateLock);</p><p>	uint32_t token = mTokens.acquire();</p><p>	</font>sp&lt;Client&gt; client = <font class="keyword">new </font>Client(token, </font><font class="keyword">this</font>);</p><p>	<font class="keyword">if </font>(client-&gt;ctrlblk == 0) {</p><p>		mTokens.release(token);</p><p>		<font class="keyword">return </font>0;</p><p>	}</p><p>	status_t err = mClientsMap.add(token, client);</p><p>	<font class="keyword">if </font>(err &lt; 0) {</p><p>		mTokens.release(token);</p><p>		<font class="keyword">return </font>0;</p><p>	}</p><p>	sp&lt;BClient&gt; bclient =</p><p>	<font class="keyword">new </font>BClient(</font><font class="keyword">this</font>, token, client-&gt;getControlBlockMemory());</p><p>	<font class="keyword">return </font>bclient;</p><p>}</p><p></pre></p><p>再进入Client的构造函数中，它分配了4K大小的共享内存，并在这块内存上构建了SharedClient对象：</p><p><pre>Client::Client(ClientID clientID, const sp&lt;SurfaceFlinger&gt;& flinger)</p><p>: ctrlblk(0), cid(clientID), mPid(0), mBitmap(0), mFlinger(flinger)</p><p>{</p><p>	</font>const <font class="keyword">int </font>pgsize = getpagesize();</p><p>	</font>const <font class="keyword">int </font>cblksize = ((sizeof(SharedClient)+(pgsize-1))&~(pgsize-1));</p><p>	</font>mCblkHeap = <font class="keyword">new </font>MemoryHeapBase(cblksize, 0,</p><p>	<font class="Fields">"SurfaceFlinger Client control-block"</font>);</p><p>	ctrlblk = static_cast&lt;SharedClient *&gt;(mCblkHeap-&gt;getBase());</p><p>	<font class="keyword">if </font>(ctrlblk) { <font class="Comments">// construct the shared structure in-place.</font></p><p>		new(ctrlblk) SharedClient;</p><p>	}</p><p>}</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

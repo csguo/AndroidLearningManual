@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android播放Gif动画_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li class="navcurrentLink"><A href="index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Android多媒体功能" href="index_196.html">Android多媒体功能</A></h2>
+
+  <h2><A title="Android多媒体之2D" href="index_197.html">Android多媒体之2D</A></h2>
+
+  <h2><A title="Android多媒体之3D" href="index_198.html">Android多媒体之3D</A></h2>
+
+  <h2><A title="Android多媒体之Bitmap" href="index_199.html">Android多媒体之Bitmap</A></h2>
+
+  <h2><A title="Android多媒体之Canvas" href="index_200.html">Android多媒体之Canvas</A></h2>
+
+  <h2><A title="Android多媒体之Drawable" href="index_201.html">Android多媒体之Drawable</A></h2>
+
+  <h2><A title="Android多媒体之gif" href="index_202.html">Android多媒体之gif</A></h2>
+<UL><li ><A title=Android中播放GIF图片动画 href="show_601_202.html">Android中播放GIF图片动画</A> </li><li class="currentLink"><A title=Android播放Gif动画 href="show_602_202.html">Android播放Gif动画</A> </li><li ><A title=Gif 图片动态加载 href="show_603_202.html">Gif 图片动态加载</A> </li></UL>
+  <h2><A title="Android多媒体之MediaStore" href="index_203.html">Android多媒体之MediaStore</A></h2>
+
+  <h2><A title="Android多媒体之动画" href="index_204.html">Android多媒体之动画</A></h2>
+
+  <h2><A title="Android多媒体之分辨率" href="index_205.html">Android多媒体之分辨率</A></h2>
+
+  <h2><A title="Android多媒体之分屏幕" href="index_206.html">Android多媒体之分屏幕</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android播放Gif动画</H2>
+<div style="line-height:20px; font-size:14px;"><p>在Android 中是不支持直接使用Gif 图片关联播放帧动画，如下动画在Android 中是无法播放的：</p><p><img src="../img/media_gif/02_gif.gif"></p><p>Android提供了另外一种解决的办法，就是使用AnimationDrawable这一函数使其支持逐帧播放，但是如何把gif图片打散开来，成为每一帧的图片呢？下面介绍两种比较不错的软件，可以帮我们打散图片。</p><p>gifsplitter2.0</p><p>使用方法如下：</p><p><img src="../img/media_gif/02_gif2.jpg"></p><p><img src="../img/media_gif/02_gif3.jpg"></p><p>这一软件分割图片都是bmp图片，图片比较大，这里不推荐使用，尽量节省不必要的字节，所以这里推荐使用如下软件</p><p>easygifanimator</p><p>软件下载：动画分割器</p><p>使用方法如下：</p><p><img src="../img/media_gif/02_gif4.jpg"></p><p><img src="../img/media_gif/02_gif5.jpg"></p><p>点击文件将帧文件导出即可</p><p>得到了帧文件后我们可以就编写代码，在res目录下新建anim动画文件夹，写下如下代码</p><p><pre>&lt;?xml version=<font class="Fields">"1.0"</font> encoding=</font><font class="Fields">"UTF-8"</font>?&gt;</p><p>&lt;animation-list xmlns:android=<font class="Fields">"http:<font class="Comments">//schemas.android.com/apk/res/android</font></p><p>    </font>android:oneshot=<font class="Fields">"<font class="keyword">false</font>"</font> &gt;</p><p>    &lt;item</p><p>        </font>android:drawable=<font class="Fields">"@drawable/xiu0</p><p>        </font>android:duration=<font class="Fields">"150"</font>/&gt;</p><p>    &lt;item</p><p>        </font>android:drawable=<font class="Fields">"@drawable/xiu1</p><p>        </font>android:duration=<font class="Fields">"150"</font>/&gt;</p><p>    &lt;item</p><p>        </font>android:drawable=<font class="Fields">"@drawable/xiu2</p><p>        </font>android:duration=<font class="Fields">"150"</font>/&gt;</p><p>    &lt;item</p><p>        </font>android:drawable=<font class="Fields">"@drawable/xiu3</p><p>        </font>android:duration=<font class="Fields">"150"</font>/&gt;</p><p>&lt;/animation-list&gt;</p><p></pre></p><p>对应的item 为顺序的图片从开始到结束，duration为每张逐帧播放间隔，oneshot 为false 代表循环播放，设置为true 即播放一次即停止。</p><p>对应Activity 代码如下编写：</p><p><pre><font class="keyword">import </font>android.app.Activity;</p><p><font class="keyword">import </font>android.graphics.drawable.AnimationDrawable;</p><p><font class="keyword">import </font>android.os.Bundle;</p><p><font class="keyword">import </font>android.view.View;</p><p><font class="keyword">import </font>android.view.View.OnClickListener;</p><p><font class="keyword">import </font>android.widget.ImageView;</p><p><font class="keyword">public </font><font class="keyword">class </font>animActivity </font><font class="keyword">extends </font>Activity </font><font class="keyword">implements </font>OnClickListener {</p><p>	</font>ImageView iv = <font class="keyword">null</font>;</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onCreate(Bundle savedInstanceState) {</p><p>		<font class="keyword">super</font>.onCreate(savedInstanceState);</p><p>		setContentView(R.layout.main);</p><p>		iv = (ImageView) findViewById(R.id.ImageView01);</p><p>		</font>iv.setOnClickListener(<font class="keyword">this</font>);</p><p>	}</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onClick(View v) {</p><p>		</font>AnimationDrawable anim = <font class="keyword">null</font>;</p><p>		Object ob = iv.getBackground();</p><p>		anim = (AnimationDrawable) ob;</p><p>		anim.stop();</p><p>		anim.start();</p><p>	}</p><p>}</p><p></pre></p><p>使用AnimationDrawable 对象获得图片的图片，然后指定这个AnimationDrawable 开始播放动画</p><p>Tip：使用此方法不会默认播放，必须要有事件触发才可播放动画，如上面的通过点击监听触发动画的播放</p><p>那么如何使用图片自动播放呢？我们可以联想一下，ProgressBar 是不是默认的时候就会转，那就是那个圆形的进度条，是的。我们可以对它进行改造合它也可以自动播放，在Values 文件下新建一个styles 文件，编写如下代码 ：</p><p><pre>&lt;?xml version=<font class="Fields">"1.0"</font> encoding=</font><font class="Fields">"UTF-8"</font>?&gt;</p><p>&lt;resources&gt;</p><p>    &lt;style</p><p>        </font>name=<font class="Fields">"animStyle</p><p>        </font>parent=<font class="Fields">"@android:style/Widget.ProgressBar.Large"</font> &gt;</p><p>        </font>&lt;item name=<font class="Fields">"android:indeterminateDrawable"</font>&gt;</p><p>			@anim/test</p><p>        &lt;/item&gt;</p><p>    &lt;/style&gt;</p><p>&lt;/resources&gt;</p><p></pre></p><p>上面样式文件自Widget.ProgressBar.Large 为其设置动画文件，我们在XML中就可以通过设置它的样式使其为我们工作</p><p><pre>&lt;ProgressBar</p><p>    </font>id=<font class="Fields">"@+id/ProgressBar01</p><p>    </font>style=<font class="Fields">"@style/animStyle</p><p>    </font>layout_width=<font class="Fields">"128px</p><p>    </font>layout_height=<font class="Fields">"128px</p><p>    android=""</p><p>    android=""</p><p>    </font>android=<font class="Fields">""</font> &gt;</p><p>&lt;/ProgressBar&gt;</p><p></pre></p><p>OK，就是这么简单，下面看看运行效果：</p><p><img src="../img/media_gif/02_gif6.jpg"></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

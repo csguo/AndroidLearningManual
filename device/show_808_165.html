@@ -1,0 +1,70 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android的Audio系统之六_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li class="navcurrentLink"><A href="index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="设备信息" href="index_157.html">设备信息</A></h2>
+
+  <h2><A title="摄像头" href="index_158.html">摄像头</A></h2>
+
+  <h2><A title="通讯录" href="index_159.html">通讯录</A></h2>
+
+  <h2><A title="电话" href="index_160.html">电话</A></h2>
+
+  <h2><A title="短信" href="index_161.html">短信</A></h2>
+
+  <h2><A title="传感器" href="index_162.html">传感器</A></h2>
+
+  <h2><A title="定位" href="index_163.html">定位</A></h2>
+
+  <h2><A title="视频系统" href="index_164.html">视频系统</A></h2>
+
+  <h2><A title="音频系统" href="index_165.html">音频系统</A></h2>
+<UL><li ><A title=Android Audio框架 href="show_801_165.html">Android Audio框架</A> </li><li ><A title=Android Audio抽象层的接口 href="show_802_165.html">Android Audio抽象层的接口</A> </li><li ><A title=Android的Audio系统之一 href="show_803_165.html">Android的Audio系统之一</A> </li><li ><A title=Android的Audio系统之二 href="show_804_165.html">Android的Audio系统之二</A> </li><li ><A title=Android的Audio系统之三 href="show_805_165.html">Android的Audio系统之三</A> </li><li ><A title=Android的Audio系统之四 href="show_806_165.html">Android的Audio系统之四</A> </li><li ><A title=Android的Audio系统之五 href="show_807_165.html">Android的Audio系统之五</A> </li><li class="currentLink"><A title=Android的Audio系统之六 href="show_808_165.html">Android的Audio系统之六</A> </li><li ><A title=Android的Audio系统之七 href="show_809_165.html">Android的Audio系统之七</A> </li><li ><A title=Android 深入研究MediaRecorder类 href="show_810_165.html">Android 深入研究MediaRecorder类</A> </li><li ><A title=Android 讲述MediaPlayer href="show_811_165.html">Android 讲述MediaPlayer</A> </li></UL>
+  <h2><A title="铃声" href="index_166.html">铃声</A></h2>
+
+  <h2><A title="音量" href="index_167.html">音量</A></h2>
+
+  <h2><A title="录音" href="index_168.html">录音</A></h2>
+
+  <h2><A title="输入法" href="index_169.html">输入法</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android的Audio系统之六</H2>
+<div style="line-height:20px; font-size:14px;"><p style="color:#3333FF;">用桩实现的Audio硬件抽象层</p><p>AudioHardwareStub.h和AudioHardwareStub.cpp是一个Android硬件抽象层的桩实现方式。这个实现不操作实际的硬件和文件，它所进行的是空操作，在系统没有实际的Audio设备时使用这个实现，来保证系统的正常工作。如果使用这个硬件抽象层，实际上Audio系统的输入和输出都将为空。</p><p>AudioHardwareStub.h定义了AudioStreamOutStub 和AudioStreamInStub类的情况</p><p>如下所示：</p><p><pre><font class="keyword">class </font>AudioStreamOutStub : </font><font class="keyword">public </font>AudioStreamOut {  </p><p>public:  </p><p>    </font>virtual status_t set(<font class="keyword">int </font>format, </font><font class="keyword">int </font>channelCount, uint32_t sampleRate);</p><p>    </font>virtual uint32_t sampleRate() const { <font class="keyword">return </font>44100; </font>}</p><p>    </font>virtual size_t bufferSize() const { <font class="keyword">return </font>4096; </font>}</p><p>    </font>virtual <font class="keyword">int </font>channelCount() const { </font><font class="keyword">return </font>2; </font>}</p><p>    </font>virtual <font class="keyword">int </font>format() const { </font><font class="keyword">return </font>AudioSystem::PCM_16_BIT; </font>}</p><p>    </font>virtual uint32_t latency() const { <font class="keyword">return </font>0; </font>}</p><p>    </font>virtual status_t setVolume(<font class="keyword">float </font>volume) { </font><font class="keyword">return </font>NO_ERROR; </font>}</p><p>    virtual ssize_t write(const void* buffer, size_t bytes);</p><p>    virtual status_t standby();</p><p>    </font>virtual status_t dump(<font class="keyword">int </font>fd, const Vector&lt;String16&gt;& args);</p><p>};  </p><p><font class="keyword">class </font>AudioStreamInStub : </font><font class="keyword">public </font>AudioStreamIn {  </p><p>public:  </p><p>    </font>virtual status_t set(<font class="keyword">int </font>format, </font><font class="keyword">int </font>channelCount, uint32_t sampleRate, AudioSystem::audio_in_acoustics acoustics);</p><p>    </font>virtual uint32_t sampleRate() const { <font class="keyword">return </font>8000; </font>}</p><p>    </font>virtual size_t bufferSize() const { <font class="keyword">return </font>320; </font>}</p><p>    </font>virtual <font class="keyword">int </font>channelCount() const { </font><font class="keyword">return </font>1; </font>}</p><p>    </font>virtual <font class="keyword">int </font>format() const { </font><font class="keyword">return </font>AudioSystem::PCM_16_BIT; </font>}</p><p>    </font>virtual status_t setGain(<font class="keyword">float </font>gain) { </font><font class="keyword">return </font>NO_ERROR; </font>}</p><p>    virtual ssize_t read(void* buffer, ssize_t bytes);</p><p>    </font>virtual status_t dump(<font class="keyword">int </font>fd, const Vector&lt;String16&gt;& args);</p><p>    </font>virtual status_t standby() { <font class="keyword">return </font>NO_ERROR; </font>}</p><p>};</p><p></pre></p><p>上面实际上使用了最简单模式，只是用固定的参数（缓冲区大小、采样率、通道数），以及将一些函数直接无错误返回。</p><p>使用AudioHardwareStub类来继承AudioHardwareBase，事实上也就是继承AudioHardwareInterface。</p><p><pre><font class="keyword">class </font>AudioHardwareStub : </font><font class="keyword">public </font> AudioHardwareBase  </p><p>{  </p><p>public:  </p><p>    AudioHardwareStub();</p><p>    virtual ~AudioHardwareStub();</p><p>    virtual status_t initCheck();</p><p>    </font>virtual status_t setVoiceVolume(<font class="keyword">float </font>volume);</p><p>    </font>virtual status_t setMasterVolume(<font class="keyword">float </font>volume);</p><p>    </font>virtual status_t setMicMute(bool state){ mMicMute = state;  <font class="keyword">return </font> NO_ERROR; </font>}</p><p>    </font>virtual status_t getMicMute(bool* state){ *state = mMicMute ; <font class="keyword">return </font>NO_ERROR; </font>}</p><p>    </font>virtual status_t setParameter(const char* key, const char* value)   { <font class="keyword">return </font>NO_ERROR; </font>}</p><p>    virtual AudioStreamOut* openOutputStream( <font class="Comments">//打开输出流</font></p><p>          <font class="keyword">int </font>format=0,  </p><p>          <font class="keyword">int </font>channelCount=0,  </p><p>          uint32_t sampleRate=0,</p><p>          status_t *status=0);</p><p>   virtual AudioStreamIn* openInputStream( <font class="Comments">//打开输入流</font></p><p>          <font class="keyword">int </font>format,  </p><p>          <font class="keyword">int </font>channelCount,  </p><p>          uint32_t sampleRate,</p><p>          status_t *status,</p><p>          AudioSystem::audio_in_acoustics acoustics);</p><p>   <font class="Comments">// …… 省略部分内容</font></p><p>};</p><p></pre></p><p style="color:#3333FF;">AudioFlinger中自带Audio硬件抽象层实现（2）</p><p>在实现过程中，为了保证声音可以输入和输出，这个桩实现的主要内容是实现AudioStreamOutStub和AudioStreamInStub类的读/写函数。实现如下所示：</p><p>ssize_t AudioStreamOutStub::write(const</p><p>void* buffer, size_t bytes)  </p><p>{  </p><p>    usleep(bytes * 1000000 / sizeof(int16_t) /channelCount() / sampleRate());</p><p>    <font class="keyword">return </font>bytes;  </p><p>}  </p><p>ssize_t AudioStreamInStub::read(void* buffer, ssize_t bytes)  </p><p>{  </p><p>    usleep(bytes * 1000000 / sizeof(int16_t) / channelCount() / sampleRate());</p><p>    memset(buffer, 0, bytes);</p><p>    <font class="keyword">return </font>bytes;  </p><p>}</p><p></pre></p><p>由此可见，使用这个接口进行音频的输入和输出时，和真实的设备没有关系，输出和输入都使用延时来完成。对于输出的情况，不会有声音播出，但是返回值表示全部内容已经输出完成；对于输入的情况，将返回全部为0的数据。</p><p>此外，这种实现支持默认的参数，如果用set()函数设置的参数与默认参数不一致，还会返回错误。</p><p style="color:#3333FF;">Android通用的Audio硬件抽象层</p><p>AudioHardwareGeneric.h和AudioHardwareGeneric.cpp是Android通用的一个Audio硬件抽象层。与前面的桩实现不同，这是一个真正能够使用的Audio硬件抽象层，但是它需要Android的一种特殊的声音驱动程序的支持。</p><p>与前面类似，AudioStreamOutGeneric、AudioStreamInGeneric和AudioHardwareGeneric这3个类分别继承Audio硬件抽象层的3个接口。</p><p><pre><font class="keyword">class </font>AudioStreamOutGeneric : </font><font class="keyword">public </font>AudioStreamOut {</p><p>	<font class="Comments">// ...... 通用Audio输出类的接口.</font></p><p>};  </p><p><font class="keyword">class </font>AudioStreamInGeneric : </font><font class="keyword">public </font>AudioStreamIn { </p><p>	<font class="Comments">// ...... 通用Audio输入类的接口</font></p><p>};  </p><p><font class="keyword">class </font>AudioHardwareGeneric : </font><font class="keyword">public </font>AudioHardwareBase  </p><p>{  </p><p>	<font class="Comments">// ...... 通用Audio控制类的接口</font></p><p>};</p><p></pre></p><p>在AudioHardwareGeneric.cpp的实现中，使用的驱动程序是/dev/eac，这是一个非标准程序，定义设备的路径如下所示：</p><p><pre><font class="keyword">static </font>char const * const kAudioDeviceName = <font class="Fields">"/dev/eac"</font>;</p><p></pre></p><p>对于Linux操作系统，这个驱动程序在文件系统中的节点主设备号为10，次设备号自动生成。</p><p>提示：eac是Linux中的一个misc驱动程序，作为Android的通用音频驱动，写设备表示放音，读设备表示录音。</p><p>在AudioHardwareGeneric的构造函数中，打开这个驱动程序的设备节点。</p><p><pre>AudioHardwareGeneric::AudioHardwareGeneric() : mOutput(0), mInput(0),  mFd(-1), mMicMute(<font class="keyword">false</font>)  </p><p>{  </p><p>	mFd = :: open(kAudioDeviceName, O_RDWR); <font class="Comments">//打开通用音频设备的节点</font></p><p>}</p><p></pre></p><p>这个音频设备是一个比较简单的驱动程序，没有很多设置接口，只是用写设备表示录音，读设备表示放音。放音和录音支持的都是16位的PCM。</p><p><pre>ssize_t AudioStreamOutGeneric::write(const</p><p>void* buffer, size_t bytes)  </p><p>{  </p><p>    Mutex::Autolock _l(mLock);</p><p>    <font class="keyword">return </font>ssize_t(::write(mFd, buffer, bytes)); <font class="Comments">//写入硬件设备</font></p><p>}  </p><p>ssize_t AudioStreamInGeneric::read(void* buffer, ssize_t bytes)  </p><p>{  </p><p>    AutoMutex lock(mLock);</p><p>    <font class="keyword">if </font>(mFd &lt; 0) {  </p><p>       <font class="keyword">return </font>NO_INIT;  </p><p>    }  </p><p>    <font class="keyword">return </font>::read(mFd, buffer, bytes); <font class="Comments">// 读取硬件设备</font></p><p>}</p><p></pre></p><p>虽然AudioHardwareGeneric是一个可以真正工作的Audio硬件抽象层，但是这种实现方式非常简单，不支持各种设置，参数也只能使用默认的。而且，这种驱动程序需要在Linux核心加入eac驱动程序的支持。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

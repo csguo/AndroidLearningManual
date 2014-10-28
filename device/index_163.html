@@ -1,0 +1,118 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android学习手册_设备功能</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li class="navcurrentLink"><A href="index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">设备功能</div>
+
+  <h2 ><A title="设备信息" href="index_157.html">设备信息</A></h2>
+
+  <h2 ><A title="摄像头" href="index_158.html">摄像头</A></h2>
+
+  <h2 ><A title="通讯录" href="index_159.html">通讯录</A></h2>
+
+  <h2 ><A title="电话" href="index_160.html">电话</A></h2>
+
+  <h2 ><A title="短信" href="index_161.html">短信</A></h2>
+
+  <h2 ><A title="传感器" href="index_162.html">传感器</A></h2>
+
+  <h2 class="currentLink"><A title="定位" href="index_163.html">定位</A></h2>
+<UL><li class="currentLink"><A title=Android 实现GPS定位（一） href="show_601_163.html">Android 实现GPS定位（一）</A> </li><li ><A title=Android 实现GPS定位（二） href="show_602_163.html">Android 实现GPS定位（二）</A> </li><li ><A title=Android GPS定位 href="show_603_163.html">Android GPS定位</A> </li><li ><A title=Android wifi实现定位（一） href="show_604_163.html">Android wifi实现定位（一）</A> </li><li ><A title=Android wifi实现定位（二） href="show_605_163.html">Android wifi实现定位（二）</A> </li><li ><A title=Android 基站定位源代码 href="show_606_163.html">Android 基站定位源代码</A> </li><li ><A title=Android GPS，WIFI，基站定位集合 href="show_607_163.html">Android GPS，WIFI，基站定位集合</A> </li><li ><A title=Android 使用地图 href="show_608_163.html">Android 使用地图</A> </li><li ><A title=Android 显示查询结果（一） href="show_609_163.html">Android 显示查询结果（一）</A> </li><li ><A title=Android 显示查询结果（二） href="show_610_163.html">Android 显示查询结果（二）</A> </li><li ><A title=Google地图经纬度转换成具体位置 href="show_611_163.html">Google地图经纬度转换成具体位置</A> </li></UL>
+  <h2 ><A title="视频系统" href="index_164.html">视频系统</A></h2>
+
+  <h2 ><A title="音频系统" href="index_165.html">音频系统</A></h2>
+
+  <h2 ><A title="铃声" href="index_166.html">铃声</A></h2>
+
+  <h2 ><A title="音量" href="index_167.html">音量</A></h2>
+
+  <h2 ><A title="录音" href="index_168.html">录音</A></h2>
+
+  <h2 ><A title="输入法" href="index_169.html">输入法</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1>定位</H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 实现GPS定位（一）</H2>
+<P>　　[color=blue]准备工作    要想开发Android程序，我们需要如下三种软件：[code=java]1. Eclipse2. Android SDK3. 开发Android程序的Eclipse 插件[/code]Activity类每一种移动开发环境都有自己的基类。如j2me应用程序</P>
+<P><A title="Android 实现GPS定位（一）" href="show_601_163.html">进入 Android 实现GPS定位（一）</A> </P></DIV>
+
+<DIV>
+<H2>Android 实现GPS定位（二）</H2>
+<P>　　上面的内容的功能看起来非常明显。这个特殊文件定义了一个相关的布局，这就意味着通过一个元素到另一个元素的关系或是它们父元素的关系来描述。对于视图来说，有一些用于布局的方法，但是在本文中只关注于上述的xml</P>
+<P><A title="Android 实现GPS定位（二）" href="show_602_163.html">进入 Android 实现GPS定位（二）</A> </P></DIV>
+
+<DIV>
+<H2>Android GPS定位</H2>
+<P>　　用GPS定位到当前位置要想定位到当前的位置，需要利用手机中的GPS模块。使用GPS首先需要获得LocationManager服务，代码如下：[code=java]LocationManager locationManager = (LocationManager) getSystemService(Cont</P>
+<P><A title="Android GPS定位" href="show_603_163.html">进入 Android GPS定位</A> </P></DIV>
+
+<DIV>
+<H2>Android wifi实现定位（一）</H2>
+<P>　　Android可以借助于gps实现定位，但是很多地方是使用gps无法定位比如在室内，而且gps定位的话速度慢。 下面的代码实现了定位的大致功能[code=java]/*CellIDInfo.java 封装了cellid的信息 */#[Keywords]public #[Keywo</P>
+<P><A title="Android wifi实现定位（一）" href="show_604_163.html">进入 Android wifi实现定位（一）</A> </P></DIV>
+
+<DIV>
+<H2>Android wifi实现定位（二）</H2>
+<P>　　java代码：[code=java]/*WifiInfoManager.java 可获取wifi的信息，目前我只取了当前连接的wifi，没有获取所有能扫描到的wifi信息。 */#[Keywords]import #java.util.ArrayList;#[Keywords]import #android.content.C</P>
+<P><A title="Android wifi实现定位（二）" href="show_605_163.html">进入 Android wifi实现定位（二）</A> </P></DIV>
+
+<DIV>
+<H2>Android 基站定位源代码</H2>
+<P>　　经过几天的调研以及测试，终于解决了联通2G、移动2G、电信3G的基站定位代码。团队里面只有这些机器的制式了。下面就由我来做一个详细的讲解吧。[color=blue]1，相关技术内容Google Android Api里面的TelephonyManage</P>
+<P><A title="Android 基站定位源代码" href="show_606_163.html">进入 Android 基站定位源代码</A> </P></DIV>
+
+<DIV>
+<H2>Android GPS，WIFI，基站定位集合</H2>
+<P>　　集合了gps、wifi、基站定位。其中GPS定位首先是GpsTask类异步返回GPS经纬度信息[code=java]#[Keywords]this#.context = context;#GpsTask gpstask = #[Keywords]new #GpsTask(GpsActivity.#[Keywords]this#, #[Keywo</P>
+<P><A title="Android GPS，WIFI，基站定位集合" href="show_607_163.html">进入 Android GPS，WIFI，基站定位集合</A> </P></DIV>
+
+<DIV>
+<H2>Android 使用地图</H2>
+<P>　　对&quot;&quot;Where Am I&quot;&quot;示例使用地图在下面的例子中，&quot;&quot;Where Am I&quot;&quot;项目将再次被扩展。这次，通过把它转换为一个Map Activity，将可以对它添加地图功能。随着设备位置的改变，地</P>
+<P><A title="Android 使用地图" href="show_608_163.html">进入 Android 使用地图</A> </P></DIV>
+
+<DIV>
+<H2>Android 显示查询结果（一）</H2>
+<P>　　在Google地图上显示查询结果（1）上一节中，服务器端程序已经可以正常返回查询结果。本节将介绍如何从服务器取得该结果并显示在地图上。这一过程主要分为三个步骤：第一，需要获取服务器端的查询结果；第二，实现loa</P>
+<P><A title="Android 显示查询结果（一）" href="show_609_163.html">进入 Android 显示查询结果（一）</A> </P></DIV>
+
+<DIV>
+<H2>Android 显示查询结果（二）</H2>
+<P>　　最后为网页设计好LOGO，添加相应的事件响应（如搜索按钮单击，搜索栏回车等）就可以使用了。完整的首页index.html代码如下。[code=java]  GeoIP 搜索者    #[Comments]//&quot;&quot;# + #[Fields]&quot;&quot;&quot</P>
+<P><A title="Android 显示查询结果（二）" href="show_610_163.html">进入 Android 显示查询结果（二）</A> </P></DIV>
+
+<DIV>
+<H2>Google地图经纬度转换成具体位置</H2>
+<P>　　代码如下：[code=java]#[Keywords]import #java.io.BufferedReader;#[Keywords]import #java.io.InputStream;#[Keywords]import #java.io.InputStreamReader;#[Keywords]import #java.net.HttpURLConnection;#[Keywo</P>
+<P><A title="Google地图经纬度转换成具体位置" href="show_611_163.html">进入 Google地图经纬度转换成具体位置</A> </P></DIV>
+
+</DIV>
+
+<DIV id=footer style="display:none">
+<P align="center"> 
+ 
+ 
+ 
+  </P>
+</DIV></DIV></BODY></HTML>
+

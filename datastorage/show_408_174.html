@@ -1,0 +1,58 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android中访问已有的SQLite数据库_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li class="navcurrentLink"><A href="index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="ContentProvider" href="index_170.html">ContentProvider</A></h2>
+
+  <h2><A title="Preferences" href="index_171.html">Preferences</A></h2>
+
+  <h2><A title="SQLite" href="index_172.html">SQLite</A></h2>
+
+  <h2><A title="SD卡" href="index_173.html">SD卡</A></h2>
+
+  <h2><A title="数据库" href="index_174.html">数据库</A></h2>
+<UL><li ><A title=Android 数据存取之Databases href="show_401_174.html">Android 数据存取之Databases</A> </li><li ><A title=Android教程之SQlite数据库操作 href="show_402_174.html">Android教程之SQlite数据库操作</A> </li><li ><A title=Android 数据库一次创建多个表（一） href="show_403_174.html">Android 数据库一次创建多个表（一）</A> </li><li ><A title=Android 数据库一次创建多个表（二） href="show_404_174.html">Android 数据库一次创建多个表（二）</A> </li><li ><A title=Android 数据库经验总结 href="show_405_174.html">Android 数据库经验总结</A> </li><li ><A title=创建数据库的时候就将数据库保存到SDcard href="show_406_174.html">创建数据库的时候就将数据库保存到SDcard</A> </li><li ><A title=Android保存图片到数据库 href="show_407_174.html">Android保存图片到数据库</A> </li><li class="currentLink"><A title=Android中访问已有的SQLite数据库 href="show_408_174.html">Android中访问已有的SQLite数据库</A> </li><li ><A title=关于Android SQLite database存储到sdcard上的问题 href="show_409_174.html">关于Android SQLite database存储到sdcard上的问题</A> </li></UL>
+  <h2><A title="URI" href="index_175.html">URI</A></h2>
+
+  <h2><A title="MediaStore" href="index_176.html">MediaStore</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android中访问已有的SQLite数据库</H2>
+<div style="line-height:20px; font-size:14px;"><p>1.先将已有的.db文件拷贝到android默认的目录下。</p><p>很多人就在这里挡住了，怎么copy呢？这里就要用到android自带的tools工具了。</p><p>首先，查询默认目录有哪些.db</p><p>[开始 - cmd  -输入adb shell --回车（也可开始 - adb shell）] 这样启动了adb.exe窗口</p><p>ls:显示目录</p><p>cd 目录名 :进入目录，有人问那返回上一目录是什么？回答cd ..（注意cd后有一空隔）    </p><p>通过连续的ls，cd就能看到我们默认db目录是在/data/data/[你的包名]如com.android/databases/    </p><p>好，知道目录径了，下面把我们的.db拷贝到下面。</p><p>[开始 - cmd ]进入普通cmd窗口。</p><p>输入:adb push D:/feiv.db /data/data/com.android/databases/feiv.db [将本地文件拷贝到默认android目录]</p><p>adb pull /data/data/com.android/databases/feiv.db D:/feiv.db  [当然这个是拷出来啦]</p><p>一点注意：是[/data]而不是[data]</p><p>经过上面的操作后，你再在adb.exe窗口里输入ls就能看到刚拷进去的文件了。</p><p>2.好了，有.db了，现在就是在代码里用就可以了。</p><p>用法很多地方也有介绍</p><p>我这里用this.sqliteDb = mcontext.openOrCreateDatabase(DATABASE_NAME, Context.MODE_PRIVATE, null);</p><p>openOrCreateDatabase()这个方法是打开一个db，如果没有的话，则会创建。</p><p>对了，还值得提一点，就是android里用simpleCursorAdapter要求表里字段必须有"_id"这样的字段，不知道Android平台为什么这样设计？不然查询报错。而我们导入进去的表里可能没有含有_id这样的字段，所以必须修改或增加。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

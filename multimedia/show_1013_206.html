@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android横屏启动activity,点击屏幕的单击、双击_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li class="navcurrentLink"><A href="index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Android多媒体功能" href="index_196.html">Android多媒体功能</A></h2>
+
+  <h2><A title="Android多媒体之2D" href="index_197.html">Android多媒体之2D</A></h2>
+
+  <h2><A title="Android多媒体之3D" href="index_198.html">Android多媒体之3D</A></h2>
+
+  <h2><A title="Android多媒体之Bitmap" href="index_199.html">Android多媒体之Bitmap</A></h2>
+
+  <h2><A title="Android多媒体之Canvas" href="index_200.html">Android多媒体之Canvas</A></h2>
+
+  <h2><A title="Android多媒体之Drawable" href="index_201.html">Android多媒体之Drawable</A></h2>
+
+  <h2><A title="Android多媒体之gif" href="index_202.html">Android多媒体之gif</A></h2>
+
+  <h2><A title="Android多媒体之MediaStore" href="index_203.html">Android多媒体之MediaStore</A></h2>
+
+  <h2><A title="Android多媒体之动画" href="index_204.html">Android多媒体之动画</A></h2>
+
+  <h2><A title="Android多媒体之分辨率" href="index_205.html">Android多媒体之分辨率</A></h2>
+
+  <h2><A title="Android多媒体之分屏幕" href="index_206.html">Android多媒体之分屏幕</A></h2>
+<UL><li ><A title=Android icon不同屏幕下尺寸 href="show_1001_206.html">Android icon不同屏幕下尺寸</A> </li><li ><A title=Android手机屏幕的区别 href="show_1002_206.html">Android手机屏幕的区别</A> </li><li ><A title=Android中dip、dp、px、sp和屏幕密度 href="show_1003_206.html">Android中dip、dp、px、sp和屏幕密度</A> </li><li ><A title=Android屏幕切换与生命周期 href="show_1004_206.html">Android屏幕切换与生命周期</A> </li><li ><A title=Android中取得手机屏幕大小 href="show_1005_206.html">Android中取得手机屏幕大小</A> </li><li ><A title=Android设置屏幕亮度的两种方法 href="show_1006_206.html">Android设置屏幕亮度的两种方法</A> </li><li ><A title=保持屏幕长亮的两种方法 href="show_1007_206.html">保持屏幕长亮的两种方法</A> </li><li ><A title=去掉Android的屏幕上的title bar href="show_1008_206.html">去掉Android的屏幕上的title bar</A> </li><li ><A title=实现屏幕截图的代码 href="show_1009_206.html">实现屏幕截图的代码</A> </li><li ><A title=屏幕旋转相关优化 href="show_1010_206.html">屏幕旋转相关优化</A> </li><li ><A title=动态更改屏幕方向 href="show_1011_206.html">动态更改屏幕方向</A> </li><li ><A title=Android 屏幕保护开发思路 href="show_1012_206.html">Android 屏幕保护开发思路</A> </li><li class="currentLink"><A title=Android横屏启动activity,点击屏幕的单击、双击 href="show_1013_206.html">Android横屏启动activity,点击屏幕的单击、双击</A> </li><li ><A title=Android画图避免屏幕闪烁 href="show_1014_206.html">Android画图避免屏幕闪烁</A> </li></UL>
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android横屏启动activity,点击屏幕的单击、双击</H2>
+<div style="line-height:20px; font-size:14px;"><p>横屏启动activity</p><p>方法1：在androidmanyfest.xml的activity中加入属性 android:screenOrientation="landscape"</p><p>方法2：在oncreate中加入如下代码 if(getRequestedOrientation()!=ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE){ setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);}</p><p>屏幕的单击和双击事件</p><p><pre>mGestureDetector = <font class="keyword">new </font>GestureDetector(</font><font class="keyword">new </font>SimpleOnGestureListener(){</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">boolean </font>onDoubleTap(MotionEvent e) {</p><p>		<font class="keyword">return </font><font class="keyword">true</font>;</p><p>	}</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">boolean </font>onSingleTapConfirmed(MotionEvent e) {</p><p>		<font class="keyword">return </font><font class="keyword">true</font>;</p><p>	}</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onLongPress(MotionEvent e) {</p><p>	});</p><p>}</p><p></pre></p><p>大家可不要小看了这么个例子哦，这个例子可是很有用的，点击事件是我们开发中必不可少的一个监听，大家可要用好它哦，新手们也得好好看哦，也不能骄傲，太骄傲了到最后可要给自己填很多麻烦的哦。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

@@ -1,0 +1,64 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android与javascript交互调用_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li class="navcurrentLink"><A href="index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="3G" href="index_177.html">3G</A></h2>
+
+  <h2><A title="WIFI" href="index_178.html">WIFI</A></h2>
+
+  <h2><A title="蓝牙" href="index_179.html">蓝牙</A></h2>
+
+  <h2><A title="HTTP协议" href="index_180.html">HTTP协议</A></h2>
+
+  <h2><A title="Socket" href="index_181.html">Socket</A></h2>
+
+  <h2><A title="HTML与HTML5" href="index_182.html">HTML与HTML5</A></h2>
+
+  <h2><A title="JavaScript" href="index_183.html">JavaScript</A></h2>
+<UL><li ><A title=Android 浅谈webview中的Javascript href="show_601_183.html">Android 浅谈webview中的Javascript</A> </li><li ><A title=Android WebView使用Javascript详解 href="show_602_183.html">Android WebView使用Javascript详解</A> </li><li ><A title=Android WebView加载HTML表单并通过javascript提交（一） href="show_603_183.html">Android WebView加载HTML表单并通过javascript提交（一）</A> </li><li ><A title=Android WebView加载HTML表单并通过javascript提交（二） href="show_604_183.html">Android WebView加载HTML表单并通过javascript提交（二）</A> </li><li ><A title=Android WebView加载HTML表单并通过javascript提交（三） href="show_605_183.html">Android WebView加载HTML表单并通过javascript提交（三）</A> </li><li class="currentLink"><A title=Android与javascript交互调用 href="show_606_183.html">Android与javascript交互调用</A> </li><li ><A title=Android中WebView实现Javascript调用Java类方法 href="show_607_183.html">Android中WebView实现Javascript调用Java类方法</A> </li><li ><A title=Android中采用html页面布局以及调用JavaScript href="show_608_183.html">Android中采用html页面布局以及调用JavaScript</A> </li><li ><A title=JavaScript或PHP检测Android设备 href="show_609_183.html">JavaScript或PHP检测Android设备</A> </li></UL>
+  <h2><A title="Email" href="index_184.html">Email</A></h2>
+
+  <h2><A title="NFC" href="index_185.html">NFC</A></h2>
+
+  <h2><A title="Web Service" href="index_186.html">Web Service</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android与javascript交互调用</H2>
+<div style="line-height:20px; font-size:14px;"><p>我们都知道，手机时代的来临的主要标志是啥？能够方便的接入互联网！互联网展现给我们的方式一般都是网页，网页中又必不可少的拥有javascript，所以说，android提供对javascript的支持那是迫在眉睫了，幸好，android早就给我们提供了无缝连接。让我们可以通过android与javascript进行交互。</p><p>我们的应用很简单，如图：</p><p><img src="../img/network_javascript/06_javascript.png"></p><p>我们有一个输入框，旁边有个按钮，点击按钮就会提示我们输入的内容。当然这只是html中最简单的程序了，但是你将这个程序放入android手机中访问下试试，它是不会进行提示的。要想让其以android的形式提示用户，我们就需要用到android和javascript的交互。对了，这里展示的是一个网页哦，代码如下：</p><p><pre>&lt;html&gt; </p><p>&lt;head&gt; </p><p>&lt;title&gt;js交互android&lt;/title&gt; </p><p>&lt;mce:script type=<font class="Fields">"text/javascript"</font>&gt;&lt;!-- </p><p>function show(){ </p><p>	</font>var a = document.getElementById(<font class="Fields">"text"</font>).value;</p><p>	alert(a);</p><p>} </p><p><font class="Comments">// --&gt;&lt;/mce:script&gt; </font></p><p>&lt;/head&gt; </p><p>&lt;body&gt; </p><p>&lt;form action=<font class="Fields">""</font>&gt; </p><p>	</font>&lt;input type=<font class="Fields">"text"</font> id=</font><font class="Fields">"text"</font> value=</font><font class="Fields">""</font>/&gt;</p><p>	</font>&lt;input type=<font class="Fields">"button"</font> id=</font><font class="Fields">"button"</font> onclick=</font><font class="Fields">"window.chenzheng_java.show()"</font> value=</font><font class="Fields">"clickme"</font>/&gt;</p><p>&lt;/form&gt; </p><p>&lt;/body&gt; </p><p>&lt;/html&gt; </p><p></pre></p><p>再看看我们的activity代码：</p><p><pre><font class="keyword">import </font>android.app.Activity;</p><p><font class="keyword">import </font>android.os.Bundle;</p><p><font class="keyword">import </font>android.os.Handler;</p><p><font class="keyword">import </font>android.util.Log;</p><p><font class="keyword">import </font>android.webkit.JsResult;</p><p><font class="keyword">import </font>android.webkit.WebChromeClient;</p><p><font class="keyword">import </font>android.webkit.WebSettings;</p><p><font class="keyword">import </font>android.webkit.WebView;</p><p><font class="keyword">import </font>android.widget.Toast;</p><p><font class="keyword">public </font><font class="keyword">class </font>JavaScriptActivity </font><font class="keyword">extends </font>Activity {</p><p>	WebView webView;</p><p>	</font>Handler handler = <font class="keyword">new </font>Handler();</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onCreate(Bundle savedInstanceState) {</p><p>		<font class="keyword">super</font>.onCreate(savedInstanceState);</p><p>		setContentView(R.layout.main);</p><p>		webView = (WebView) findViewById(R.id.webView1);</p><p>		<font class="Comments">/**</font></p><p>		 <font class="Comments">* webSettings 保存着WebView中的状态信息。当WebView第一次被创建时，webSetting中</font></p><p>		 <font class="Comments">* 存储的都为默认值。WebSetting和WebView是一一绑定的。如果webView被销毁了，那么</font></p><p>		 <font class="Comments">* 我们再次调用webSetting中的方法时，会抛出异常。</font></p><p>		 <font class="Comments">*/</font></p><p>		WebSettings webSettings = webView.getSettings();</p><p>		</font>webSettings.setJavaScriptEnabled(<font class="keyword">true</font>);</p><p>		</font>webView.loadUrl(<font class="Fields">"file:<font class="Comments">///data/js.html"</font>);</font></p><p>		<font class="Comments">/***</font></p><p>		 <font class="Comments">* webChromeClient是一个比较神奇的东西，其里面提供了一系列的方法，</font></p><p>		 <font class="Comments">* 分别作用于我们的javascript代码调用特定方法时执行，我们一般在其内部 将javascript形式的展示切换为android的形式。</font></p><p>		 <font class="Comments">* 例如：我们重写了onJsAlert方法，那么当页面中需要弹出alert窗口时，便 会执行我们的代码，按照我们的Toast的形式提示用户。</font></p><p>		 <font class="Comments">*/</font></p><p>		<font class="keyword">class </font>MyWebChromeClient </font><font class="keyword">extends </font>WebChromeClient {</p><p>			@Override</p><p>			<font class="keyword">public </font><font class="keyword">boolean </font>onJsAlert(WebView view, String url, String message,</p><p>					JsResult result) {</p><p>				Toast.makeText(getApplicationContext(), message,</p><p>						Toast.LENGTH_LONG).show();</p><p>				<font class="keyword">return </font><font class="keyword">true</font>;</p><p>			}</p><p>		}</p><p>		</font>webView.setWebChromeClient(<font class="keyword">new </font>MyWebChromeClient());</p><p>		/*</p><p>		 <font class="Comments">* 为javascript提供一个回调的接口，这里要注意，一定要在单独的线程中实现,要不会阻塞线程的</font></p><p>		 <font class="Comments">* addJavascriptInterface(Object obj, String interfaceName)</font></p><p>		 <font class="Comments">* obj代表一个java对象，这里我们一般会实现一个自己的类，类里面提供我们要提供给javascript访问的方法</font></p><p>		 <font class="Comments">* interfaceName则是访问我们在obj中声明的方法时候所用到的js对象</font></p><p>		 <font class="Comments">* ，调用模式为window.interfaceName.方法名()</font></p><p>		 <font class="Comments">*/</font></p><p>		</font>webView.addJavascriptInterface(<font class="keyword">new </font>Object() {</p><p>			<font class="keyword">public </font><font class="keyword">void </font>show() {</p><p>				</font>handler.post(<font class="keyword">new </font>Runnable() {</p><p>					@Override</p><p>					<font class="keyword">public </font><font class="keyword">void </font>run() {</p><p>						</font>Log.i(<font class="Fields">"通知"</font>, </font><font class="Fields">"调用了该方法哦"</font>);</p><p>						/*</p><p>						 <font class="Comments">* 通过webView.loadUrl("javascript:xxx")方式就可以调用当前网页中的名称</font></p><p>						 <font class="Comments">* 为xxx的javascript方法</font></p><p>						 <font class="Comments">*/</font></p><p>						</font>webView.loadUrl(<font class="Fields">"javascript:show()"</font>);</p><p>					}</p><p>				});</p><p>			}</p><p>		</font>}, <font class="Fields">"chenzheng_java"</font>);</p><p>	}</p><p>}</p><p></pre></p><p>注意：</p><p>1)为了让WebView从apk文件中加载assets，Android SDK提供了一个schema，前缀为"file:///android_asset/"。WebView遇到这样的schema，就去当前包中的assets目录中找内容。如上面的"file:///android_asset/demo.html"</p><p>2)addJavascriptInterface方法中要绑定的Java对象及方法要运行另外的线程中，不能运行在构造他的线程中，这也是使用Handler的目的。</p><p>3)如果你要访问网络，请在androidManifest.xml中加上权限&lt;uses-permission android:name="android.permission.INTERNET"&gt;&lt;/uses-permission&gt;</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

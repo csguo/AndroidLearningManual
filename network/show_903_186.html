@@ -1,0 +1,64 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android中调用webservice_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li class="navcurrentLink"><A href="index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="3G" href="index_177.html">3G</A></h2>
+
+  <h2><A title="WIFI" href="index_178.html">WIFI</A></h2>
+
+  <h2><A title="蓝牙" href="index_179.html">蓝牙</A></h2>
+
+  <h2><A title="HTTP协议" href="index_180.html">HTTP协议</A></h2>
+
+  <h2><A title="Socket" href="index_181.html">Socket</A></h2>
+
+  <h2><A title="HTML与HTML5" href="index_182.html">HTML与HTML5</A></h2>
+
+  <h2><A title="JavaScript" href="index_183.html">JavaScript</A></h2>
+
+  <h2><A title="Email" href="index_184.html">Email</A></h2>
+
+  <h2><A title="NFC" href="index_185.html">NFC</A></h2>
+
+  <h2><A title="Web Service" href="index_186.html">Web Service</A></h2>
+<UL><li ><A title=Android说说WebService href="show_901_186.html">Android说说WebService</A> </li><li ><A title=Android webservice 理论 href="show_902_186.html">Android webservice 理论</A> </li><li class="currentLink"><A title=Android中调用webservice href="show_903_186.html">Android中调用webservice</A> </li><li ><A title=Android webservice通信之ksoap href="show_904_186.html">Android webservice通信之ksoap</A> </li><li ><A title=Android+webservice的连接 href="show_905_186.html">Android+webservice的连接</A> </li><li ><A title=调用webservice查询手机号归属地信息 href="show_906_186.html">调用webservice查询手机号归属地信息</A> </li><li ><A title=自己真实开发的中调用webservice方法总结（带请求头SoapHeader） href="show_907_186.html">自己真实开发的中调用webservice方法总结（带请求头SoapHeader）</A> </li></UL>
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android中调用webservice</H2>
+<div style="line-height:20px; font-size:14px;"><p>调用 WebService 分以下几步:</p><p>1、指定 WebService 的命名空间和调用方法;</p><p>2、设置调用方法的参数值，如果没有参数，可以省略，设置方法的参数值的代码如下： </p><p><pre>rpc.addProperty(<font class="Fields">"abc"</font>, </font><font class="Fields">"test"</font>); </p><p></pre></p><p>要注意的是，addProperty方法的第1个参数虽然表示调用方法的参数名，但该参数值并不一定与服务端的WebService类中的方法参数名一致，只要设置参数的顺序一致即可。 </p><p>3、生成调用Webservice方法的SOAP请求信息。</p><p><pre>SoapSerializationEnvelope envelope = <font class="keyword">new </font>SoapSerializationEnvelope(SoapEnvelope.VER11); </p><p>envelope.bodyOut = rpc; </p><p>envelope.dotNet = <font class="keyword">false</font>; </p><p><font class="Comments">//这里如果设置为TRUE,那么在服务器端将获取不到参数值(如:将这些数据插入到数据库中的话)</font></p><p>envelope.setOutputSoapObject(rpc); </p><p></pre></p><p>创建SoapSerializationEnvelope对象时需要通过SoapSerializationEnvelope类的构造方法设置SOAP协议的版本号。 该版本号需要根据服务端WebService的版本号设置。 </p><p>在创建SoapSerializationEnvelope对象后，不要忘了设置SOAPSoapSerializationEnvelope类的bodyOut属性， </p><p>该属性的值就是在第一步创建的SoapObject对象。</p><p>4、创建HttpTransportsSE对象。 </p><p>这里不要使用 AndroidHttpTransport ht = new AndroidHttpTransport(URL); 这是一个要过期的类</p><p><pre><font class="keyword">private </font><font class="keyword">static </font>String URL = <font class="Fields">"http:<font class="Comments">//www.webxml.com.cn/webservices/weatherwebservice.asmx"</font>; </font></p><p>HttpTransportSE ht = <font class="keyword">new </font>HttpTransportSE(URL); </p><p>ht.debug = <font class="keyword">true</font>; </p><p></pre></p><p>5、使用call方法调用WebService方法</p><p><pre><font class="keyword">private </font><font class="keyword">static </font>String SOAP_ACTION = <font class="Fields">"http:<font class="Comments">//WebXml.com.cn/getWeatherbyCityName"</font>; </font></p><p>ht.call(SOAP_ACTION, envelope);</p><p></pre></p><p>6、获得WebService方法的返回结果 </p><p>有两种方法： </p><p>使用getResponse方法获得返回数据。 </p><p>使用 bodyIn 及 getProperty。</p><p>7、 这时候执行会出错，提示没有权限访问网络 需要修改 AndroidManifest.xml 文件，赋予相应权限简单来说就是增加下面这行配置：</p><p><pre>&lt;uses-permission android:name=<font class="Fields">"android.permission.INTERNET"</font>&gt;&lt;/uses-permission&gt;</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

@@ -1,0 +1,156 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android学习手册_数据存储</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li class="navcurrentLink"><A href="index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">数据存储</div>
+
+  <h2 ><A title="ContentProvider" href="index_170.html">ContentProvider</A></h2>
+
+  <h2 class="currentLink"><A title="Preferences" href="index_171.html">Preferences</A></h2>
+<UL><li class="currentLink"><A title=Android API-SharedPreferences href="show_101_171.html">Android API-SharedPreferences</A> </li><li ><A title=Android SharedPreferences用法 href="show_102_171.html">Android SharedPreferences用法</A> </li><li ><A title=Android SharedPreferences用法（二） href="show_103_171.html">Android SharedPreferences用法（二）</A> </li><li ><A title=Android preferenceActivity用法 href="show_104_171.html">Android preferenceActivity用法</A> </li><li ><A title=Android 首选项框架ListPreference（一） href="show_105_171.html">Android 首选项框架ListPreference（一）</A> </li><li ><A title=Android 首选项框架ListPreference（二） href="show_106_171.html">Android 首选项框架ListPreference（二）</A> </li><li ><A title=Android 首选项框架ListPreference（三） href="show_107_171.html">Android 首选项框架ListPreference（三）</A> </li><li ><A title=Android 首选项框架ListPreference（四） href="show_108_171.html">Android 首选项框架ListPreference（四）</A> </li><li ><A title=Android 首选项框架ListPreference（五） href="show_109_171.html">Android 首选项框架ListPreference（五）</A> </li><li ><A title=Android之SharedPreferences href="show_110_171.html">Android之SharedPreferences</A> </li><li ><A title=SharedPreferences与Preferences href="show_111_171.html">SharedPreferences与Preferences</A> </li><li ><A title=onSaveInstanceState和onRestoreInstanceState的用处 href="show_112_171.html">onSaveInstanceState和onRestoreInstanceState的用处</A> </li><li ><A title=用SharedPreferences获取其他应用中用SharedPreferences保存的数据 href="show_113_171.html">用SharedPreferences获取其他应用中用SharedPreferences保存的数据</A> </li><li ><A title=PreferenceActivity 参数设置UI的使用 href="show_114_171.html">PreferenceActivity 参数设置UI的使用</A> </li><li ><A title=Android 让浏览器全屏显示 href="show_115_171.html">Android 让浏览器全屏显示</A> </li><li ><A title=Android EditTextPreference href="show_116_171.html">Android EditTextPreference</A> </li><li ><A title=Android下获取开机时间 href="show_117_171.html">Android下获取开机时间</A> </li><li ><A title=是否记住密码功能 href="show_118_171.html">是否记住密码功能</A> </li><li ><A title=在Activity中获取PreferenceActivity设置的值 href="show_119_171.html">在Activity中获取PreferenceActivity设置的值</A> </li><li ><A title=Android 完美解决自定义preference与ActivityGroup UI更新的问题 href="show_120_171.html">Android 完美解决自定义preference与ActivityGroup UI更新的问题</A> </li><li ><A title=Android 自定义 SeekBarPreference href="show_121_171.html">Android 自定义 SeekBarPreference</A> </li></UL>
+  <h2 ><A title="SQLite" href="index_172.html">SQLite</A></h2>
+
+  <h2 ><A title="SD卡" href="index_173.html">SD卡</A></h2>
+
+  <h2 ><A title="数据库" href="index_174.html">数据库</A></h2>
+
+  <h2 ><A title="URI" href="index_175.html">URI</A></h2>
+
+  <h2 ><A title="MediaStore" href="index_176.html">MediaStore</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1>Preferences</H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android API-SharedPreferences</H2>
+<P>　　一、结构[code=java]#[Keywords]public #[Keywords]interface #SharedPreferencesandroid.content.SharedPreferences[/code]二、概述用于访问和修改getSharedPreferences(String, int)返回偏好设置数据(preference d</P>
+<P><A title="Android API-SharedPreferences" href="show_101_171.html">进入 Android API-SharedPreferences</A> </P></DIV>
+
+<DIV>
+<H2>Android SharedPreferences用法</H2>
+<P>　　功能大家在Android开发中 一点有这样的需求 就是需要保存一下与该程序有关的属性设置的问题 比如：window xp 中  的位置为： C:\Program Files 那么在android中是怎样呢？ 那就是：SharedPreferences既然它是用来保</P>
+<P><A title="Android SharedPreferences用法" href="show_102_171.html">进入 Android SharedPreferences用法</A> </P></DIV>
+
+<DIV>
+<H2>Android SharedPreferences用法（二）</H2>
+<P>　　[color=blue]SharedPreferences存储类效率分析SharedPreferences是Android平台上一个轻量级的存储类，主要是保存一些常用的配置比如窗口状态，一般在Activity中重载窗口状态onSaveInstanceState保存一般使用SharedPr</P>
+<P><A title="Android SharedPreferences用法（二）" href="show_103_171.html">进入 Android SharedPreferences用法（二）</A> </P></DIV>
+
+<DIV>
+<H2>Android preferenceActivity用法</H2>
+<P>　　在开发应用程序的过程中我们有很大的机会需要用到参数设置功能，那么在Android应用中，我们如何实现参数设置界面及参数存储呢，下面我们来介绍一下Android中的一个特殊Activity?PreferencesActivity。PreferencesAct</P>
+<P><A title="Android preferenceActivity用法" href="show_104_171.html">进入 Android preferenceActivity用法</A> </P></DIV>
+
+<DIV>
+<H2>Android 首选项框架ListPreference（一）</H2>
+<P>　　ListPreference显然，必须为用户提供UI来查看排序选项列表。该列表将包含每个选项的单选按钮，而且默认(或当前)选项应该被预先选中。要使用Android首选项框架解决此问题，所做的工作非常之少。首先，创建首选项XML文</P>
+<P><A title="Android 首选项框架ListPreference（一）" href="show_105_171.html">进入 Android 首选项框架ListPreference（一）</A> </P></DIV>
+
+<DIV>
+<H2>Android 首选项框架ListPreference（二）</H2>
+<P>　　在本航班场景中，在/res/xml/目录下创建文件flightoptions.xml。然后创建活动类FlightPreferenceActivity，它扩展了android.preference.PreferenceActivity类。接下来调用addPreferencesFromResource()传入R.xml.fli</P>
+<P><A title="Android 首选项框架ListPreference（二）" href="show_106_171.html">进入 Android 首选项框架ListPreference（二）</A> </P></DIV>
+
+<DIV>
+<H2>Android 首选项框架ListPreference（三）</H2>
+<P>　　刚才上边说到我们有一个首选项视图，就是那个FlightPreferenceActivity，在这个例子中我们是通过一个菜单跳转到我们的首选项视图的。就是我们有一个MainActivity 这个MainActivity有一个菜单叫Settings当我们点击这</P>
+<P><A title="Android 首选项框架ListPreference（三）" href="show_107_171.html">进入 Android 首选项框架ListPreference（三）</A> </P></DIV>
+
+<DIV>
+<H2>Android 首选项框架ListPreference（四）</H2>
+<P>　　java代码：[code=java]#@Override#[Keywords]protected #[Keywords]void #onCreate(Bundle savedInstanceState) {	#[Keywords]super#.onCreate(savedInstanceState);	#setContentView(R.layout.main);	#tv = (TextVi</P>
+<P><A title="Android 首选项框架ListPreference（四）" href="show_108_171.html">进入 Android 首选项框架ListPreference（四）</A> </P></DIV>
+
+<DIV>
+<H2>Android 首选项框架ListPreference（五）</H2>
+<P>　　在下边就是我们的AndroidManifest.xml文件了，倒也没啥特别的。[code=java]    #    #        #            #                #                #            #        #        #            #                #   </P>
+<P><A title="Android 首选项框架ListPreference（五）" href="show_109_171.html">进入 Android 首选项框架ListPreference（五）</A> </P></DIV>
+
+<DIV>
+<H2>Android之SharedPreferences</H2>
+<P>　　SharedPreferences是Android平台上一个轻量级的存储类，主要是保存一些常用的配置比如窗口状态，比如我们可以通过SharedPreferences来判断程序是不是第一次运行。下面的实例将用于介绍怎样通过SharedPreferences来判</P>
+<P><A title="Android之SharedPreferences" href="show_110_171.html">进入 Android之SharedPreferences</A> </P></DIV>
+
+<DIV>
+<H2>SharedPreferences与Preferences</H2>
+<P>　　[color=blue]SharedPreferences 的用法2 个activity 之间的数据传递除了可以他通过intent 来传递,还可以使用SharedPreferences 来共享数据的方式SharedPreferences 用法很简单。在A 中设置[code=java]Editor shareda</P>
+<P><A title="SharedPreferences与Preferences" href="show_111_171.html">进入 SharedPreferences与Preferences</A> </P></DIV>
+
+<DIV>
+<H2>onSaveInstanceState和onRestoreInstanceState的用处</H2>
+<P>　　很多不明白Activity类中包含的onSaveInstanceState和onRestoreInstanceState有什么用，首先eoeAndroid声明下使用这两个方法时一定要注意情况和了解Activity的生命周期，否则有的时候  onSaveInstanceState和onRestor</P>
+<P><A title="onSaveInstanceState和onRestoreInstanceState的用处" href="show_112_171.html">进入 onSaveInstanceState和onRestoreInstanceState的用处</A> </P></DIV>
+
+<DIV>
+<H2>用SharedPreferences获取其他应用中用SharedPreferences保存的数据</H2>
+<P>　　1．创建一个要获取的那个应用的上下文[code=java]Context context = createPackageContext(packageName,Context.CONTEXT_IGNORE_SECURITY);[code=java]packageName:要访问的应用的包名。2．获得SharedPreferences[co</P>
+<P><A title="用SharedPreferences获取其他应用中用SharedPreferences保存的数据" href="show_113_171.html">进入 用SharedPreferences获取其他应用中用SharedPreferences保存的数据</A> </P></DIV>
+
+<DIV>
+<H2>PreferenceActivity 参数设置UI的使用</H2>
+<P>　　Android为了方便管理SharedPreferences，为我们提供了一个很简洁高效的PreferenceActivity。通过继承PreferenceActivity这个类，我们很轻松的就能实现一个程序参数设置的UI界面。具体步骤如下：1.添加Preference的布</P>
+<P><A title="PreferenceActivity 参数设置UI的使用" href="show_114_171.html">进入 PreferenceActivity 参数设置UI的使用</A> </P></DIV>
+
+<DIV>
+<H2>Android 让浏览器全屏显示</H2>
+<P>　　分析：只需要在设置界面上增加是否全屏的checkBox，然后BrowserActivity中读取这个值，来设置窗口的Style。 修改： 1. 修改项目下的res/xml文件夹下的browser_preferences.xml文件， 添加 [/code]2. BrowserActivity</P>
+<P><A title="Android 让浏览器全屏显示" href="show_115_171.html">进入 Android 让浏览器全屏显示</A> </P></DIV>
+
+<DIV>
+<H2>Android EditTextPreference</H2>
+<P>　　首选项框架还提供了一种自由格式文本首选项，名为EditTextPreference。此首选项可以用于捕获原始文本，而不是要求用户进行选择。为了演示该首选项，假设一个应用程序为用户生成java代码，是假设此应用程序的一个首选</P>
+<P><A title="Android EditTextPreference" href="show_116_171.html">进入 Android EditTextPreference</A> </P></DIV>
+
+<DIV>
+<H2>Android下获取开机时间</H2>
+<P>　　找了一圈没发现能得到开机启动时间资料，于是乎突发奇想，得到了解决方案。我的思路是：程序里注册个广播接收器，接收开机启动的广播，当程序接到该广播后，写入文件SharedPreferences,当我们程序需要用到开机时间时</P>
+<P><A title="Android下获取开机时间" href="show_117_171.html">进入 Android下获取开机时间</A> </P></DIV>
+
+<DIV>
+<H2>是否记住密码功能</H2>
+<P>　　代码如下：[code=java]#[Tags]/** #[Tags]* 保存账号和密码 #[Tags]* @param isRemember #[Tags]*            是否保存账号和密码 #[Tags]*/#[Keywords]private #[Keywords]void #saveAccAndPass(#[Keywords]boolean</P>
+<P><A title="是否记住密码功能" href="show_118_171.html">进入 是否记住密码功能</A> </P></DIV>
+
+<DIV>
+<H2>在Activity中获取PreferenceActivity设置的值</H2>
+<P>　　一直都以为软件的设置界面都是作者自己写的，今天才发现有个现成的PreferenceActivity可以使用，非常方便。这里介绍如何在Activity中取到PreferenceActivity设置的值，分享给大家。代码如下：[code=java]SharedPrefe</P>
+<P><A title="在Activity中获取PreferenceActivity设置的值" href="show_119_171.html">进入 在Activity中获取PreferenceActivity设置的值</A> </P></DIV>
+
+<DIV>
+<H2>Android 完美解决自定义preference与ActivityGroup UI更新的问题</H2>
+<P>　　之前发过一篇有关于自定义preference在ActivityGroup的包容下出现UI不能更新的问题，当时还以为是Android的一个BUG现在想想真可笑。其实是自己对机制的理解不够深刻，看来以后要多看看源码才行。本篇讲述内容大致为</P>
+<P><A title="Android 完美解决自定义preference与ActivityGroup UI更新的问题" href="show_120_171.html">进入 Android 完美解决自定义preference与ActivityGroup UI更新的问题</A> </P></DIV>
+
+<DIV>
+<H2>Android 自定义 SeekBarPreference</H2>
+<P>　　在做Setting界面时，用Android自带的 PreferenceScreen 时 发现 没有提供 SeekBarPreference（在Android的源代码中有这么一个 SeekBarPreference 但是没有写完，所以到Android2.1为止还不提供这个功能） 所以只能自</P>
+<P><A title="Android 自定义 SeekBarPreference" href="show_121_171.html">进入 Android 自定义 SeekBarPreference</A> </P></DIV>
+
+</DIV>
+
+<DIV id=footer style="display:none">
+<P align="center"> 
+ 
+ 
+ 
+  </P>
+</DIV></DIV></BODY></HTML>
+

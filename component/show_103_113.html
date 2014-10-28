@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android Intent和Intent Filter详解（一）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li class="navcurrentLink"><A href="index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Activity" href="index_112.html">Activity</A></h2>
+
+  <h2><A title="Intent" href="index_113.html">Intent</A></h2>
+<UL><li ><A title=Intents和Intent Filters（理论部分） href="show_101_113.html">Intents和Intent Filters（理论部分）</A> </li><li ><A title=Intents和Intent Filters（实例部分） href="show_102_113.html">Intents和Intent Filters（实例部分）</A> </li><li class="currentLink"><A title=Android Intent和Intent Filter详解（一） href="show_103_113.html">Android Intent和Intent Filter详解（一）</A> </li><li ><A title=Android Intent和Intent Filter详解（二） href="show_104_113.html">Android Intent和Intent Filter详解（二）</A> </li><li ><A title=Android Intent和Intent Filter详解（三） href="show_105_113.html">Android Intent和Intent Filter详解（三）</A> </li><li ><A title=Android Intent和Intent Filter详解（四） href="show_106_113.html">Android Intent和Intent Filter详解（四）</A> </li><li ><A title=Android Intent和Intent Filter详解（五） href="show_107_113.html">Android Intent和Intent Filter详解（五）</A> </li><li ><A title=Android Intent和Bundle机制实例详解 href="show_108_113.html">Android Intent和Bundle机制实例详解</A> </li><li ><A title=Android Intent的几种用法全面总结 href="show_109_113.html">Android Intent的几种用法全面总结</A> </li><li ><A title=Android中Intent中如何传递对象 href="show_110_113.html">Android中Intent中如何传递对象</A> </li><li ><A title=如何调用Google Web Search？ href="show_111_113.html">如何调用Google Web Search？</A> </li></UL>
+  <h2><A title="Service" href="index_114.html">Service</A></h2>
+
+  <h2><A title="Content Provider" href="index_115.html">Content Provider</A></h2>
+
+  <h2><A title="BroadcastReceiver" href="index_116.html">BroadcastReceiver</A></h2>
+
+  <h2><A title="AsyncTask" href="index_117.html">AsyncTask</A></h2>
+
+  <h2><A title="Handler" href="index_118.html">Handler</A></h2>
+
+  <h2><A title="Thread" href="index_119.html">Thread</A></h2>
+
+  <h2><A title="Permission" href="index_120.html">Permission</A></h2>
+
+  <h2><A title="AIDL" href="index_121.html">AIDL</A></h2>
+
+  <h2><A title="Json" href="index_122.html">Json</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android Intent和Intent Filter详解（一）</H2>
+<div style="line-height:20px; font-size:14px;"><p style="color:#3333FF;">Intents and Intent Filters</p><p>三种应用程序基本组件——activity, service和broadcast receiver——是使用称为intent的消息来激活的。Intent消息传递是一种组件间运行时绑定的机制。intent是Intent对象, 它包含了需要做的操作的描述，或者，对于广播来说，包含了正在通知的消息内容。对于向这三种组件发送intent有不同的机制:</p><p>使用Context.startActivity() 或 Activity.startActivityForResult()，传入一个intent来启动一个activity。使用 Activity.setResult()，传入一个intent来从activity中返回结果。</p><p>将intent对象传给Context.startService()来启动一个service或者传消息给一个运行的service. 将intent对象传给 Context.bindService()来绑定一个service。</p><p>将intent对象传给 Context.sendBroadcast()，Context.sendOrderedBroadcast(),或者Context.sendStickyBroadcast()等广播方法,则它们被传给 broadcast receiver。</p><p>在上述三种情况下, android系统会自己找到合适的activity, service, 或者  broadcast receivers来响应intent. 三者的intent相互独立互不干扰。</p><p style="color:#3333FF;">Intent Objects Intent对象</p><p>一个intent对象包含了接受该intent的组件的信息(例如需要的动作和该动作需要的数据)和android系统所需要的信息. 具体的说:</p><p style="color:#3333FF;">组件名称</p><p>为一个ComponentName对象。它是目标组件的完整名(例如"com.example.project.app.FreneticActivity")和应用程序manifest文件设定的包名(例如"com.example.project")的组合。前者的包名部分和后者不一定一样。</p><p>组件名称是可选的. 如果设定了的话, Intent对象会被传给指定的类的一个实例。如果不设定，则android使用其它信息来定位合适的目标。</p><p>组件名称是使用setComponent(), setClass(),或  setClassName()来设定, 使用 getComponent()来获取。</p><p style="color:#3333FF;">Action</p><p>一个字符串, 为请求的动作命名, 或者, 对于broadcast intent, 发生的并且正在被报告的动作。例如:</p><p><pre>常量	目标组件	动作</p><p>ACTION_CALL	activity	发起一个电话呼叫。</p><p>ACTION_EDIT	activity	显示数据给用户来编辑。</p><p>ACTION_MAIN	activity	将该activity作为一个task的第一个activity启动,不传入参数也不期望返回值。</p><p>ACTION_SYNC	activity	将设备上的数据和一个服务器同步。</p><p>ACTION_BATTERY_LOW	broadcast receiver	发出电量不足的警告。</p><p>ACTION_HEADSET_PLUG	broadcast receiver	一个耳机正被插入或者拔出。</p><p>ACTION_SCREEN_ON	broadcast receiver	屏幕被点亮。</p><p>ACTION_TIMEZONE_CHANGED	broadcast receiver	时区设置改变。</p><p></pre></p><p>你也可以定义自己的action字符串用来启动你的应用程序. 自定义的action应该包含应用程序的包名。例如"com.example.project.SHOW_COLOR"。</p><p>action很大程度上决定了intent的另外部分的结构, 就像一个方法名决定了它接受的参数和返回值一样。因此，最好给action一个最能反映其作用的名字。</p><p>一个intent对象中的action是使用getAction()和setAction()来读写的。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

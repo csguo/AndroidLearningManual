@@ -1,0 +1,64 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android-BluetoothSocket建立有关蓝牙通讯的套接字_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li class="navcurrentLink"><A href="index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="3G" href="index_177.html">3G</A></h2>
+
+  <h2><A title="WIFI" href="index_178.html">WIFI</A></h2>
+
+  <h2><A title="蓝牙" href="index_179.html">蓝牙</A></h2>
+<UL><li ><A title=Android 初频蓝牙开发 href="show_201_179.html">Android 初频蓝牙开发</A> </li><li ><A title=讲解Android蓝牙开发技术 href="show_202_179.html">讲解Android蓝牙开发技术</A> </li><li ><A title=蓝牙 V1.11.22.02.13.0 href="show_203_179.html">蓝牙 V1.11.22.02.13.0</A> </li><li ><A title=Android蓝牙API之BluetoothAdapter类使用 href="show_204_179.html">Android蓝牙API之BluetoothAdapter类使用</A> </li><li ><A title=Android 深入的研究一下蓝牙 href="show_205_179.html">Android 深入的研究一下蓝牙</A> </li><li ><A title=Android--BluetoothServerSocket href="show_206_179.html">Android--BluetoothServerSocket</A> </li><li class="currentLink"><A title=Android-BluetoothSocket建立有关蓝牙通讯的套接字 href="show_207_179.html">Android-BluetoothSocket建立有关蓝牙通讯的套接字</A> </li><li ><A title=Android手机蓝牙控制智能小车机器人 href="show_208_179.html">Android手机蓝牙控制智能小车机器人</A> </li><li ><A title=开关蓝牙 不提示-工程模式 href="show_209_179.html">开关蓝牙 不提示-工程模式</A> </li><li ><A title=蓝牙实现自动配对 href="show_210_179.html">蓝牙实现自动配对</A> </li><li ><A title=怎么让蓝牙可以支持所有类型文件的发送 href="show_211_179.html">怎么让蓝牙可以支持所有类型文件的发送</A> </li></UL>
+  <h2><A title="HTTP协议" href="index_180.html">HTTP协议</A></h2>
+
+  <h2><A title="Socket" href="index_181.html">Socket</A></h2>
+
+  <h2><A title="HTML与HTML5" href="index_182.html">HTML与HTML5</A></h2>
+
+  <h2><A title="JavaScript" href="index_183.html">JavaScript</A></h2>
+
+  <h2><A title="Email" href="index_184.html">Email</A></h2>
+
+  <h2><A title="NFC" href="index_185.html">NFC</A></h2>
+
+  <h2><A title="Web Service" href="index_186.html">Web Service</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android-BluetoothSocket建立有关蓝牙通讯的套接字</H2>
+<div style="line-height:20px; font-size:14px;"><p>以前我们都提到了有关Android平台蓝牙的配对、发现、启用等操作，本文开始通过BluetoothSocket类建立有关蓝牙通讯的套接字。从Android 2.0开始支持这一特性，蓝牙和LAN一样通过MAC地址来识别远程设备，建立完通讯连接RFCOMM通道后以输入、输出流方式通讯。</p><p>一、连接设备</p><p>蓝牙通讯分为server服务器端和client客户端，它们之间使用BluetoothSocket 类的不同方法来获取数据。</p><p>1. 作为服务器</p><p>如果一个设备需要和两个或多个设备连接时，就需要作为一个server来传输，在android中提供了BluetoothServerSocket类来处理用户发来的信息，服务器端套接字在接受(accepted) 一个客户发来的BluetoothSocket时作出相应的响应。示例代码如下:</p><p><pre><font class="keyword">private </font><font class="keyword">class </font>AcceptThread </font><font class="keyword">extends </font>Thread {</p><p>	<font class="keyword">private </font><font class="keyword">final </font>BluetoothServerSocket cwjServerSocket;</p><p>	<font class="keyword">public </font>AcceptThread() {</p><p>		</font>BluetoothServerSocket tmp = <font class="keyword">null</font>; <font class="Comments">// 使用一个临时对象代替，因为cwjServerSocket定义为final</font></p><p>		<font class="keyword">try </font>{</p><p>			tmp = myAdapter.listenUsingRfcommWithServiceRecord(NAME,</p><p>					CWJ_UUID); <font class="Comments">// 服务仅监听</font></p><p>		</font>} <font class="keyword">catch </font>(IOException e) {</p><p>		}</p><p>		cwjServerSocket = tmp;</p><p>	}</p><p>	<font class="keyword">public </font><font class="keyword">void </font>run() {</p><p>		</font>BluetoothSocket socket = <font class="keyword">null</font>;</p><p>		<font class="keyword">while </font>(</font><font class="keyword">true</font>) { <font class="Comments">// 保持连接直到异常发生或套接字返回</font></p><p>			<font class="keyword">try </font>{</p><p>				socket = cwjServerSocket.accept(); <font class="Comments">// 如果一个连接同意</font></p><p>			</font>} <font class="keyword">catch </font>(IOException e) {</p><p>				<font class="keyword">break</font>;</p><p>			}</p><p>			<font class="keyword">if </font>(socket != </font><font class="keyword">null</font>) {</p><p>				manageConnectedSocket(socket); <font class="Comments">// 管理一个已经连接的RFCOMM通道在单独的线程。</font></p><p>				cwjServerSocket.close();</p><p>				<font class="keyword">break</font>;</p><p>			}</p><p>		}</p><p>	}</p><p>	<font class="keyword">public </font><font class="keyword">void </font>cancel() { <font class="Comments">// 取消套接字连接，然后线程返回</font></p><p>		<font class="keyword">try </font>{</p><p>			cwjServerSocket.close();</p><p>		</font>} <font class="keyword">catch </font>(IOException e) {</p><p>		}</p><p>	}</p><p>}</p><p></pre></p><p>在这里android开发网提醒大家需要注意的是服务器一般处理多个任务不嫩阻塞，必须使用异步的方法这里我们开了一个线程，目前Android的虚拟机上层没有提供I/O模型，这里我们以后会讲解高负载情况下性能优化解决方案。</p><p>2. 作为客户端</p><p>以便初始化一个连接到远程设备，首先必须获取本地的BluetoothDevice对象，相关的方法在我们Android蓝牙API之BluetoothAdapter类 的两篇文章中有讲到，这里不再赘述，相关的示例代码如下:</p><p><pre><font class="keyword">private </font><font class="keyword">class </font>ConnectThread </font><font class="keyword">extends </font>Thread {</p><p>	<font class="keyword">private </font><font class="keyword">final </font>BluetoothSocket cwjSocket;</p><p>	<font class="keyword">private </font><font class="keyword">final </font>BluetoothDevice cwjDevice;</p><p>	<font class="keyword">public </font>ConnectThread(BluetoothDevice device) {</p><p>		</font>BluetoothSocket tmp = <font class="keyword">null</font>;</p><p>		cwjDevice = device;</p><p>		<font class="keyword">try </font>{</p><p>			tmp = device.createRfcommSocketToServiceRecord(CWJ_UUID); <font class="Comments">// 客户端创建</font></p><p>		</font>} <font class="keyword">catch </font>(IOException e) {</p><p>		}</p><p>		cwjSocket = tmp;</p><p>	}</p><p>	<font class="keyword">public </font><font class="keyword">void </font>run() {</p><p>		myAdapter.cancelDiscovery(); <font class="Comments">// 取消发现远程设备，这样会降低系统性能</font></p><p>		<font class="keyword">try </font>{</p><p>			cwjSocket.connect();</p><p>		</font>} <font class="keyword">catch </font>(IOException connectException) {</p><p>			<font class="keyword">try </font>{</p><p>				cwjSocket.close();</p><p>			</font>} <font class="keyword">catch </font>(IOException closeException) {</p><p>			}</p><p>			<font class="keyword">return</font>;</font></p><p>		}</p><p>		manageConnectedSocket(cwjSocket); <font class="Comments">// 管理一个已经连接的RFCOMM通道在单独的线程。</font></p><p>	}</p><p>	<font class="keyword">public </font><font class="keyword">void </font>cancel() {</p><p>		<font class="keyword">try </font>{</p><p>			cwjSocket.close();</p><p>		</font>} <font class="keyword">catch </font>(IOException e) {</p><p>		}</p><p>	}</p><p>}</p><p></pre></p><p>经过上面的介绍我们可以看到在Android平台上使用蓝牙通讯相对比较方便和简单，有关数据的具体通讯我们将在下次Android蓝牙API之BluetoothSocket类(2) 讲到manageConnectedSocket的具体实现。</p><p>通过前几次的讲解，很多网友相信对Android蓝牙相关开发可以很好的掌握了，通过BluetoothServerSocket可以方便的创建一个蓝牙服务器，使用BluetoothSocket类可以很好的处理连接，今天我们继续上次的内容说下Android下如何管理蓝牙套接字的连接，今天仍然使用BluetoothSocket类，处理具体的数据流。</p><p>在Java上处理数据流很简单，提供了InputSream、OutputSream和字节数组的之间的转化。今天eoeandroid将和大家一起说下处理上次遗留的manageConnectedSocket方法的细节，由于蓝牙传输中可能存在中断，所以为了防止阻塞需要开一个工作者线程，相关的示例代码</p><p><pre><font class="keyword">private </font><font class="keyword">class </font>ConnectedThread </font><font class="keyword">extends </font>Thread {</p><p>	<font class="keyword">private </font><font class="keyword">final </font>BluetoothSocket cwjSocket;</p><p>	<font class="keyword">private </font><font class="keyword">final </font>InputStream cwjInStream;</p><p>	<font class="keyword">private </font><font class="keyword">final </font>OutputStream cwjOutStream;</p><p>	<font class="keyword">public </font>ConnectedThread(BluetoothSocket socket) {</p><p>		cwjSocket = socket;</p><p>		</font>InputStream tmpIn = <font class="keyword">null</font>; <font class="Comments">// 上面定义的为final这是使用temp临时对象</font></p><p>		</font>OutputStream tmpOut = <font class="keyword">null</font>;</p><p>		<font class="keyword">try </font>{</p><p>			tmpIn = socket.getInputStream(); <font class="Comments">// 使用getInputStream作为一个流处理</font></p><p>			tmpOut = socket.getOutputStream();</p><p>		</font>} <font class="keyword">catch </font>(IOException e) {</p><p>		}</p><p>		cwjInStream = tmpIn;</p><p>		cwjOutStream = tmpOut;</p><p>	}</p><p>	<font class="keyword">public </font><font class="keyword">void </font>run() {</p><p>		</font>byte[] buffer = <font class="keyword">new </font>byte[1024];</p><p>		<font class="keyword">int </font>bytes;</p><p>		<font class="keyword">while </font>(</font><font class="keyword">true</font>) {</p><p>			<font class="keyword">try </font>{</p><p>				bytes = cwjInStream.read(buffer);</p><p>				mHandler.obtainMessage(MESSAGE_READ, bytes, -1, buffer)</p><p>						.sendToTarget(); <font class="Comments">// 传递给UI线程</font></p><p>			</font>} <font class="keyword">catch </font>(IOException e) {</p><p>				<font class="keyword">break</font>;</p><p>			}</p><p>		}</p><p>	}</p><p>	<font class="keyword">public </font><font class="keyword">void </font>write(byte[] bytes) {</p><p>		<font class="keyword">try </font>{</p><p>			cwjOutStream.write(bytes);</p><p>		</font>} <font class="keyword">catch </font>(IOException e) {</p><p>		}</p><p>	}</p><p>	<font class="keyword">public </font><font class="keyword">void </font>cancel() {</p><p>		<font class="keyword">try </font>{</p><p>			cwjSocket.close();</p><p>		</font>} <font class="keyword">catch </font>(IOException e) {</p><p>		}</p><p>	}</p><p>}</p><p></pre></p><p>对于具体的连接，我们看到在Android平台上使用了Java标准的输入、输出流操作，BluetoothSocket提供的getInputStream()和getOutputStream()方法可以很好的处理我们具体的数据。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

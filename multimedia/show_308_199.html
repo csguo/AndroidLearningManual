@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android bitmap内存溢出（二）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li class="navcurrentLink"><A href="index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Android多媒体功能" href="index_196.html">Android多媒体功能</A></h2>
+
+  <h2><A title="Android多媒体之2D" href="index_197.html">Android多媒体之2D</A></h2>
+
+  <h2><A title="Android多媒体之3D" href="index_198.html">Android多媒体之3D</A></h2>
+
+  <h2><A title="Android多媒体之Bitmap" href="index_199.html">Android多媒体之Bitmap</A></h2>
+<UL><li ><A title=Android Bitmap类相关学习 href="show_302_199.html">Android Bitmap类相关学习</A> </li><li ><A title=Android里的BitMap（一） href="show_303_199.html">Android里的BitMap（一）</A> </li><li ><A title=Android里的BitMap（二） href="show_304_199.html">Android里的BitMap（二）</A> </li><li ><A title=Android里的BitMap（三） href="show_305_199.html">Android里的BitMap（三）</A> </li><li ><A title=Android里的BitMap（四） href="show_306_199.html">Android里的BitMap（四）</A> </li><li ><A title=Android bitmap内存溢出（一） href="show_307_199.html">Android bitmap内存溢出（一）</A> </li><li class="currentLink"><A title=Android bitmap内存溢出（二） href="show_308_199.html">Android bitmap内存溢出（二）</A> </li><li ><A title=Android 避免bitmap内存限制 href="show_309_199.html">Android 避免bitmap内存限制</A> </li><li ><A title=Bitmap导致的OOM终极解决方案 href="show_310_199.html">Bitmap导致的OOM终极解决方案</A> </li><li ><A title=Bitmap的用法（浅谈） href="show_311_199.html">Bitmap的用法（浅谈）</A> </li><li ><A title=Android 两种方法获取Bitmap href="show_312_199.html">Android 两种方法获取Bitmap</A> </li><li ><A title=Android整合两个Bitmap href="show_313_199.html">Android整合两个Bitmap</A> </li><li ><A title=通过纯RGB数据流生成Bitmap对象 href="show_314_199.html">通过纯RGB数据流生成Bitmap对象</A> </li><li ><A title=Bitmap总结 href="show_315_199.html">Bitmap总结</A> </li></UL>
+  <h2><A title="Android多媒体之Canvas" href="index_200.html">Android多媒体之Canvas</A></h2>
+
+  <h2><A title="Android多媒体之Drawable" href="index_201.html">Android多媒体之Drawable</A></h2>
+
+  <h2><A title="Android多媒体之gif" href="index_202.html">Android多媒体之gif</A></h2>
+
+  <h2><A title="Android多媒体之MediaStore" href="index_203.html">Android多媒体之MediaStore</A></h2>
+
+  <h2><A title="Android多媒体之动画" href="index_204.html">Android多媒体之动画</A></h2>
+
+  <h2><A title="Android多媒体之分辨率" href="index_205.html">Android多媒体之分辨率</A></h2>
+
+  <h2><A title="Android多媒体之分屏幕" href="index_206.html">Android多媒体之分屏幕</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android bitmap内存溢出（二）</H2>
+<div style="line-height:20px; font-size:14px;"><p style="color:#3333FF;">Android堆内存也可自己定义大小</p><p>对于一些大型Android项目或游戏来说在算法处理上没有问题外，影响性能瓶颈的主要是Android自己内存管理机制问题，目前手机厂商对RAM都比较吝啬，对于软件的流畅性来说RAM对性能的影响十分敏感，除了上次eoeAndroid提到的优化Dalvik虚拟机的堆内存分配外，我们还可以强制定义自己软件的对内存大小，我们使用Dalvik提供的 dalvik.system.VMRuntime类来设置最小堆内存为例:</p><p><pre><font class="keyword">private </font><font class="keyword">final </font>static</p><p><font class="keyword">int </font>CWJ_HEAP_SIZE = 6* 1024* 1024 ;</p><p>VMRuntime.getRuntime().setMinimumHeapSize(CWJ_HEAP_SIZE); <font class="Comments">//设置最小heap内存为6MB大小。</font></p><p><font class="keyword">private </font><font class="keyword">final </font><font class="keyword">static </font><font class="keyword">int </font>CWJ_HEAP_SIZE = 6* 1024* 1024 ; </p><p>VMRuntime.getRuntime().setMinimumHeapSize(CWJ_HEAP_SIZE); <font class="Comments">//设置最小heap内存为6MB大小。</font></p><p></pre></p><p>当然对于内存吃紧来说还可以通过手动干涉GC去处理，我们将在下次提到具体应用。</p><p>优化Dalvik虚拟机的堆内存分配。对于Android平台来说，其托管层使用的Dalvik JavaVM从目前的表现来看还有很多地方可以优化处理，比如我们在开发一些大型游戏或耗资源的应用中可能考虑手动干涉GC处理，使用dalvik.system.VMRuntime类提供的setTargetHeapUtilization方法可以增强程序堆内存的处理效率。当然具体原理我们可以参考开源工程，这里我们仅说下使用方法:</p><p><pre><font class="keyword">private </font><font class="keyword">final </font><font class="keyword">static </font>floatTARGET_HEAP_UTILIZATION = 0.75f;</p><p></pre></p><p>在程序onCreate时就可以调用</p><p><pre>VMRuntime.getRuntime().setTargetHeapUtilization(TARGET_HEAP_UTILIZATION);</p><p></pre></p><p>android系统中读取位图Bitmap时.分给虚拟机中图片的堆栈大小只有8M。所以不管是</div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

@@ -1,0 +1,114 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android学习手册_Android组件</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li class="navcurrentLink"><A href="index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">Android组件</div>
+
+  <h2 ><A title="Activity" href="index_112.html">Activity</A></h2>
+
+  <h2 ><A title="Intent" href="index_113.html">Intent</A></h2>
+
+  <h2 class="currentLink"><A title="Service" href="index_114.html">Service</A></h2>
+<UL><li class="currentLink"><A title=Android Service (一) href="show_201_114.html">Android Service (一)</A> </li><li ><A title=Android Service (二) href="show_202_114.html">Android Service (二)</A> </li><li ><A title=Android Service生命周期 href="show_203_114.html">Android Service生命周期</A> </li><li ><A title=Android Service 生命期详解 href="show_204_114.html">Android Service 生命期详解</A> </li><li ><A title=Service的启动与运行 href="show_205_114.html">Service的启动与运行</A> </li><li ><A title=startservice和bindservice详解 href="show_206_114.html">startservice和bindservice详解</A> </li><li ><A title=Android Service 通信 href="show_207_114.html">Android Service 通信</A> </li><li ><A title=Service 与 Thread 的区分详解 href="show_208_114.html">Service 与 Thread 的区分详解</A> </li><li ><A title=判断一个指定的Service是否存在的方法 href="show_209_114.html">判断一个指定的Service是否存在的方法</A> </li><li ><A title=Android Service 代码实例 href="show_210_114.html">Android Service 代码实例</A> </li><li ><A title=Android Service 详解简单音乐播放器 href="show_211_114.html">Android Service 详解简单音乐播放器</A> </li></UL>
+  <h2 ><A title="Content Provider" href="index_115.html">Content Provider</A></h2>
+
+  <h2 ><A title="BroadcastReceiver" href="index_116.html">BroadcastReceiver</A></h2>
+
+  <h2 ><A title="AsyncTask" href="index_117.html">AsyncTask</A></h2>
+
+  <h2 ><A title="Handler" href="index_118.html">Handler</A></h2>
+
+  <h2 ><A title="Thread" href="index_119.html">Thread</A></h2>
+
+  <h2 ><A title="Permission" href="index_120.html">Permission</A></h2>
+
+  <h2 ><A title="AIDL" href="index_121.html">AIDL</A></h2>
+
+  <h2 ><A title="Json" href="index_122.html">Json</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1>Service</H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android Service (一)</H2>
+<P>　　一、Service的概念Service是Android程序中四大基础组件之一，它和Activity一样都是Context的子类，只不过它没有UI界面，是在后台运行的组件。二、Service的生命周期Service对象不能自己启动，需要通过某个Activity、</P>
+<P><A title="Android Service (一)" href="show_201_114.html">进入 Android Service (一)</A> </P></DIV>
+
+<DIV>
+<H2>Android Service (二)</H2>
+<P>　　java代码：[code=java]#[Keywords]public #[Keywords]class #CountService #[Keywords]extends #Service {	#[Keywords]private #[Keywords]boolean #threadDisable;	#[Keywords]private #String activityValue = #[K</P>
+<P><A title="Android Service (二)" href="show_202_114.html">进入 Android Service (二)</A> </P></DIV>
+
+<DIV>
+<H2>Android Service生命周期</H2>
+<P>　　首先创建——开始——销毁，整个流程。真的非常简单，先让大家看一下图先。[code=img]component_service/03_service.jpg[/code]根据上面的按钮所得到方法，大家可以在LogCat中增加一个标签，立即可以看到[code=java]</P>
+<P><A title="Android Service生命周期" href="show_203_114.html">进入 Android Service生命周期</A> </P></DIV>
+
+<DIV>
+<H2>Android Service 生命期详解</H2>
+<P>　　一个从service播放音乐的音乐播放器，应被设置为前台运行，因为用户会明确地注意它的运行．在状态栏中的通知可能会显示当前的歌曲并且允许用户启动一个activity来与音乐播放器交互。[code=java]Notification notific</P>
+<P><A title="Android Service 生命期详解" href="show_204_114.html">进入 Android Service 生命期详解</A> </P></DIV>
+
+<DIV>
+<H2>Service的启动与运行</H2>
+<P>　　有了 Service 类我们如何启动他呢，有两种方法：[code=java]Context.startService()Context.bindService() [/code]1、在同一个应用任何地方调用 startService() 方法就能启动 Service 了，然后系统会回调 Service 类</P>
+<P><A title="Service的启动与运行" href="show_205_114.html">进入 Service的启动与运行</A> </P></DIV>
+
+<DIV>
+<H2>startservice和bindservice详解</H2>
+<P>　　Service的生命周期方法比Activity少一些，只有onCreate, onStart, onDestroy 我们有两种方式启动一个Service,他们对Service生命周期的影响是不一样的。1 通过startService Service会经历 onCreate --&gt; onStart st</P>
+<P><A title="startservice和bindservice详解" href="show_206_114.html">进入 startservice和bindservice详解</A> </P></DIV>
+
+<DIV>
+<H2>Android Service 通信</H2>
+<P>　　如果我们想保持和 Service 的通信，又不想让 Service 随着 Activity 退出而退出呢？你可以先 startService() 然后再 bindService()  .当你不需要绑定的时候就执行 unbindService() 方法，执行这个方法只会触发 Servi</P>
+<P><A title="Android Service 通信" href="show_207_114.html">进入 Android Service 通信</A> </P></DIV>
+
+<DIV>
+<H2>Service 与 Thread 的区分详解</H2>
+<P>　　Thread：Thread 是程序执行的最小单元，它是分配CPU的基本单位。可以用 Thread 来执行一些异步的操作。Service：Service 是android的一种机制，当它运行的时候如果是Local Service，那么对应的 Service 是运行在主进</P>
+<P><A title="Service 与 Thread 的区分详解" href="show_208_114.html">进入 Service 与 Thread 的区分详解</A> </P></DIV>
+
+<DIV>
+<H2>判断一个指定的Service是否存在的方法</H2>
+<P>　　这是一个判断一个指定的Service是否存在的方法。它被用于监视一个Service是否由于已经运转，如果由于各种原因Service已经被停止了。这是在重新启动指定Service。它被用于一个Application中有多个Service。[code=java</P>
+<P><A title="判断一个指定的Service是否存在的方法" href="show_209_114.html">进入 判断一个指定的Service是否存在的方法</A> </P></DIV>
+
+<DIV>
+<H2>Android Service 代码实例</H2>
+<P>　　[color=blue]1、Service本质结构我们还是从Service的根本意义分析入手，服务的本质就是响应客户端请求。要提供服务，就必须建立接收请求，处理请求，应答客服端的框架。我想在Android Service设计者也会无时不刻把这</P>
+<P><A title="Android Service 代码实例" href="show_210_114.html">进入 Android Service 代码实例</A> </P></DIV>
+
+<DIV>
+<H2>Android Service 详解简单音乐播放器</H2>
+<P>　　Service是android系统中的一种组件，它跟Activity的级别差不多，但是他不能自己运行，只能后台运行，并且可以和其他组件进行交互。Service的启动有两种方式：context.startService() 和 context.bindService()。使用</P>
+<P><A title="Android Service 详解简单音乐播放器" href="show_211_114.html">进入 Android Service 详解简单音乐播放器</A> </P></DIV>
+
+</DIV>
+
+<DIV id=footer style="display:none">
+<P align="center"> 
+ 
+ 
+ 
+  </P>
+</DIV></DIV></BODY></HTML>
+

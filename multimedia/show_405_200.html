@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android Bitmap与Canvas_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li class="navcurrentLink"><A href="index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Android多媒体功能" href="index_196.html">Android多媒体功能</A></h2>
+
+  <h2><A title="Android多媒体之2D" href="index_197.html">Android多媒体之2D</A></h2>
+
+  <h2><A title="Android多媒体之3D" href="index_198.html">Android多媒体之3D</A></h2>
+
+  <h2><A title="Android多媒体之Bitmap" href="index_199.html">Android多媒体之Bitmap</A></h2>
+
+  <h2><A title="Android多媒体之Canvas" href="index_200.html">Android多媒体之Canvas</A></h2>
+<UL><li ><A title=Android中的Canvas（一） href="show_401_200.html">Android中的Canvas（一）</A> </li><li ><A title=Android中的Canvas（二） href="show_402_200.html">Android中的Canvas（二）</A> </li><li ><A title=Canvas建立欢迎界面 href="show_403_200.html">Canvas建立欢迎界面</A> </li><li class="currentLink"><A title=Android Bitmap与Canvas href="show_405_200.html">Android Bitmap与Canvas</A> </li><li ><A title=Android Bitmap和Canvas实例（一） href="show_406_200.html">Android Bitmap和Canvas实例（一）</A> </li><li ><A title=Android Bitmap和Canvas实例（二） href="show_407_200.html">Android Bitmap和Canvas实例（二）</A> </li><li ><A title=canvas的save()和restore()用法 href="show_408_200.html">canvas的save()和restore()用法</A> </li><li ><A title=canvas 之save,与restore href="show_409_200.html">canvas 之save,与restore</A> </li><li ><A title=Gridview控件自定义,canvas绘制view,gridview拖动时canvas重绘 href="show_411_200.html">Gridview控件自定义,canvas绘制view,gridview拖动时canvas重绘</A> </li><li ><A title=Canvas、Matrix倒影实例教程 href="show_412_200.html">Canvas、Matrix倒影实例教程</A> </li></UL>
+  <h2><A title="Android多媒体之Drawable" href="index_201.html">Android多媒体之Drawable</A></h2>
+
+  <h2><A title="Android多媒体之gif" href="index_202.html">Android多媒体之gif</A></h2>
+
+  <h2><A title="Android多媒体之MediaStore" href="index_203.html">Android多媒体之MediaStore</A></h2>
+
+  <h2><A title="Android多媒体之动画" href="index_204.html">Android多媒体之动画</A></h2>
+
+  <h2><A title="Android多媒体之分辨率" href="index_205.html">Android多媒体之分辨率</A></h2>
+
+  <h2><A title="Android多媒体之分屏幕" href="index_206.html">Android多媒体之分屏幕</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android Bitmap与Canvas</H2>
+<div style="line-height:20px; font-size:14px;"><p>1. 从资源中获取位图</p><p>可以使用BitmapDrawable或者BitmapFactory来获取资源中的位图。</p><p><pre>Resources res=getResources();</p><p>Resources res=getResources();</p><p></pre></p><p>使用BitmapDrawable (InputStream is)构造一个BitmapDrawable;</p><p><pre>InputStream is = res.openRawResource(R.drawable.pic180);</p><p>BitmapDrawable bmpDraw = <font class="keyword">new </font>BitmapDrawable(is);</p><p>Bitmap bmp = bmpDraw.getBitmap();</p><p></pre></p><p>使用BitmapDrawable类的getBitmap()获取得到位图;</p><p><pre>InputStream is = res.openRawResource(R.drawable.pic180);</p><p>BitmapDrawable bmpDraw = <font class="keyword">new </font>BitmapDrawable(is);</p><p>Bitmap bmp = bmpDraw.getBitmap();</p><p></pre></p><p>2. 获取位图的信息</p><p>要获取位图信息，比如位图大小、像素、density、透明度、颜色格式等。</p><p>3. 显示位图</p><p><pre><font class="Comments">// 获取位图</font></p><p>Bitmap bmp = BitmapFactory.decodeResource(res, R.drawable.pic180);</p><p><font class="Comments">// 转换为BitmapDrawable对象</font></p><p></font>BitmapDrawable bmpDraw = <font class="keyword">new </font>BitmapDrawable(bmp);</p><p><font class="Comments">// 显示位图</font></p><p>ImageView iv2 = (ImageView) findViewById(R.id.ImageView02);</p><p>iv2.setImageDrawable(bmpDraw);</p><p><font class="Comments">// 获取位图</font></p><p>Bitmap bmp = BitmapFactory.decodeResource(res, R.drawable.pic180);</p><p><font class="Comments">// 转换为BitmapDrawable对象</font></p><p></font>BitmapDrawable bmpDraw = <font class="keyword">new </font>BitmapDrawable(bmp);</p><p><font class="Comments">// 显示位图</font></p><p>ImageView iv2 = (ImageView) findViewById(R.id.ImageView02);</p><p>iv2.setImageDrawable(bmpDraw);</p><p><font class="Comments">// 使用Canvas类显示位图</font></p><p><font class="Comments">// 这儿采用一个继承自View的子类Panel，在子类的OnDraw中显示</font></p><p>@Override</p><p><font class="keyword">public </font><font class="keyword">void </font>onCreate(Bundle savedInstanceState) {</p><p>	<font class="keyword">super</font>.onCreate(savedInstanceState);</p><p>	</font>setContentView(<font class="keyword">new </font>Panel(</font><font class="keyword">this</font>));</p><p>}</p><p></p><p><font class="keyword">class </font>Panel </font><font class="keyword">extends </font>View {</p><p>	<font class="keyword">public </font>Panel(Context context) {</p><p>		<font class="keyword">super</font>(context);</p><p>	}</p><p></p><p>	<font class="keyword">public </font><font class="keyword">void </font>onDraw(Canvas canvas) {</p><p>		Bitmap bmp = BitmapFactory.decodeResource(getResources(),</p><p>				R.drawable.pic180);</p><p>		canvas.drawColor(Color.BLACK);</p><p>		</font>canvas.drawBitmap(bmp, 10, 10, <font class="keyword">null</font>);</p><p>	}</p><p>}</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

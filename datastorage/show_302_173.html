@@ -1,0 +1,58 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android SQLite的数据库文件存储在SD卡中（二）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li class="navcurrentLink"><A href="index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="ContentProvider" href="index_170.html">ContentProvider</A></h2>
+
+  <h2><A title="Preferences" href="index_171.html">Preferences</A></h2>
+
+  <h2><A title="SQLite" href="index_172.html">SQLite</A></h2>
+
+  <h2><A title="SD卡" href="index_173.html">SD卡</A></h2>
+<UL><li ><A title=Android SQLite的数据库文件存储在SD卡中（一） href="show_301_173.html">Android SQLite的数据库文件存储在SD卡中（一）</A> </li><li class="currentLink"><A title=Android SQLite的数据库文件存储在SD卡中（二） href="show_302_173.html">Android SQLite的数据库文件存储在SD卡中（二）</A> </li><li ><A title=Android 如何获取SDCard 内存（一） href="show_303_173.html">Android 如何获取SDCard 内存（一）</A> </li><li ><A title=Android 如何获取SDCard 内存（二） href="show_304_173.html">Android 如何获取SDCard 内存（二）</A> </li><li ><A title=Android SDCard的容量大小 href="show_305_173.html">Android SDCard的容量大小</A> </li><li ><A title=Android 查看SDCard还有多少存储空间 href="show_306_173.html">Android 查看SDCard还有多少存储空间</A> </li><li ><A title=Android获取外部和内部存储空间总大小和可用大小 href="show_307_173.html">Android获取外部和内部存储空间总大小和可用大小</A> </li><li ><A title=Android 读写SD卡的权限设置 href="show_308_173.html">Android 读写SD卡的权限设置</A> </li><li ><A title=Android 检测目录是否存在，不存在则创建 href="show_309_173.html">Android 检测目录是否存在，不存在则创建</A> </li><li ><A title=Android 在SD卡上保存图片 href="show_310_173.html">Android 在SD卡上保存图片</A> </li><li ><A title=Android Http下载文件到手机内存与SDCard href="show_311_173.html">Android Http下载文件到手机内存与SDCard</A> </li><li ><A title=Android 程序私有文件（TXT）操作类 href="show_312_173.html">Android 程序私有文件（TXT）操作类</A> </li><li ><A title=Android SD卡里的文件夹功能 href="show_313_173.html">Android SD卡里的文件夹功能</A> </li><li ><A title=Android从SD卡导入数据库.db文件至APK href="show_314_173.html">Android从SD卡导入数据库.db文件至APK</A> </li></UL>
+  <h2><A title="数据库" href="index_174.html">数据库</A></h2>
+
+  <h2><A title="URI" href="index_175.html">URI</A></h2>
+
+  <h2><A title="MediaStore" href="index_176.html">MediaStore</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android SQLite的数据库文件存储在SD卡中（二）</H2>
+<div style="line-height:20px; font-size:14px;"><p>一种存储默认系统路径/data-data-com.himi-databases下,另外一种则是保存在了/sdcard-himi下，生成数据库文件demo.db</p><p>那么这里两种实现方式大概步骤和区别说下：</p><p>如果我们使用默认系统路径存储数据库文件：</p><p>第一步：新建一个类继承SQLiteOpenHelper;写一个构造，重写两个函数！</p><p>第二步：在新建的类中的onCreate(SQLiteDatabase db) 方法中创建一个表；</p><p>第三步：在进行删除数据、添加数据等操作的之前我们要得到数据库读写句柄得到一个数据库实例；</p><p>注意： 继承写这个辅助类，是为了在我们没有数据库的时候自动为我们生成一个数据库，并且生成数据库文件，这里也同时创建了一张表，因为我们在onCreate里是在数据库中创建一张表的操作；这里还要注意在我们new 这个我们这个MySQLiteOpenHelper 类实例对象的时候并没有创建数据库哟~！而是在我们调用 MySQLiteOpenHelper ..getWritableDatabase() 这个方法得到数据库读写句柄的时候，android 会分析是否已经有了数据库，如果没有会默认为我们创建一个数据库并且在系统路径data-data-com.himi-databases下生成himi.db 文件!</p><p>(如果我们使用sd卡存储数据库文件，就没有必要写这个类了，而是我们自己Open自己的文件得到一个数据库,西西,反而方便~ )</p><p>如果我们需要把数据库文件存储到SD卡中：</p><p>第一步：确认模拟器存在SD卡，关于SD卡的两种创建方法</p><p>第二步：（备注1）先创建SD卡目录和路径已经我们的数据库文件！这里不像上面默认路径中的那样，如果没有数据库会默认系统路径生成一个数据库和一个数据库文件！我们必须手动创建数据库文件！</p><p>第三步：在进行删除数据、添加数据等操作的之前我们要得到数据库读写句柄得到一个数据库实例；(备注2)此时的创建也不是像系统默认创建，而是我们通过打开第一步创建好的文件得到数据库实例。这里仅仅是创建一个数据库！！！！</p><p>第四步：在进行删除数据、添加数据等操作的之前我们还要创建一个表！</p><p>第五步：在配置文件AndroidMainfest.xml 声明写入SD卡的权限，上一篇已经介绍权限了，不知道的自己去看下吧。</p><p>有些童鞋不理解什么默认路径方式中就有表？那是因为我们在它默认给我们创建数据库的时候我们有创建表的操作，就是MySQLiteOpenHelper类中的onCreate()方法里的操作！所以我们如果要在进行删除数据、添加数据等操作的之前还要创建一个表，创建表的方法都是一样的。</p><p>总结：不管哪种方式我们都要-创建数据库-创建表-然后进行操作！</p><p>在Android中查询数据是通过Cursor类来实现的，当我们使用SQLiteDatabase.query()方法时，会得到一个Cursor对象，Cursor指向的就是每一条数据。它提供了很多有关查询的方法，具体方法如下：</p><p>以下是方法和说明：</p><p><pre>move  以当前的位置为参考，将Cursor移动到指定的位置，成功返回true, 失败返回false。</p><p>moveToPosition  将Cursor移动到指定的位置，成功返回true,失败返回false。</p><p>moveToNext将Cursor向前移动一个位置，成功返回true,失败返回false。</p><p>moveToLast  将Cursor向后移动一个位置，成功返回true,失败返回 false。</p><p>movetoFirst将Cursor移动到第一行，成功返回true,失败返回false。</p><p>isBeforeFirst  返回Cursor是否指向第一项数据之前。</p><p>isAfterLast返回Cursor是否指向最后一项数据之后。</p><p>isClosed返回Cursor是否关闭。</p><p>isFirst  返回Cursor是否指向第一项数据。</p><p>isLast返回Cursor是否指向最后一项数据。</p><p>isNull返回指定位置的值是否为null。</p><p>getCount 返回总的数据项数。</p><p>getInt  返回当前行中指定的索引数据。</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

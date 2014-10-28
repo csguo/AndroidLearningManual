@@ -1,0 +1,70 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 通过MediaRecorder进行手机录音_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li class="navcurrentLink"><A href="index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="设备信息" href="index_157.html">设备信息</A></h2>
+
+  <h2><A title="摄像头" href="index_158.html">摄像头</A></h2>
+
+  <h2><A title="通讯录" href="index_159.html">通讯录</A></h2>
+
+  <h2><A title="电话" href="index_160.html">电话</A></h2>
+
+  <h2><A title="短信" href="index_161.html">短信</A></h2>
+
+  <h2><A title="传感器" href="index_162.html">传感器</A></h2>
+
+  <h2><A title="定位" href="index_163.html">定位</A></h2>
+
+  <h2><A title="视频系统" href="index_164.html">视频系统</A></h2>
+
+  <h2><A title="音频系统" href="index_165.html">音频系统</A></h2>
+
+  <h2><A title="铃声" href="index_166.html">铃声</A></h2>
+
+  <h2><A title="音量" href="index_167.html">音量</A></h2>
+
+  <h2><A title="录音" href="index_168.html">录音</A></h2>
+<UL><li class="currentLink"><A title=Android 通过MediaRecorder进行手机录音 href="show_1101_168.html">Android 通过MediaRecorder进行手机录音</A> </li><li ><A title=Android中的录音效果 href="show_1102_168.html">Android中的录音效果</A> </li><li ><A title=电话录音示范源代码 href="show_1103_168.html">电话录音示范源代码</A> </li><li ><A title=如何解决Android录音失真具体的方案 href="show_1104_168.html">如何解决Android录音失真具体的方案</A> </li></UL>
+  <h2><A title="输入法" href="index_169.html">输入法</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 通过MediaRecorder进行手机录音</H2>
+<div style="line-height:20px; font-size:14px;"><p>直接给上个详细的解说代码：</p><p><pre><font class="keyword">import </font>java.io.IOException;</p><p><font class="keyword">import </font>android.app.Activity;</p><p><font class="keyword">import </font>android.media.MediaRecorder;</p><p><font class="keyword">import </font>android.os.Bundle;</p><p><font class="Comments">/**</font></p><p> <font class="Comments">* @description 对通过android系统手机进行录音的一点说明测试</font></p><p> <font class="Comments">*/</font></p><p><font class="keyword">public </font><font class="keyword">class </font>MediaRecordActivity </font><font class="keyword">extends </font>Activity {</p><p>	MediaRecorder mediaRecorder;</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onCreate(Bundle savedInstanceState) {</p><p>		<font class="keyword">super</font>.onCreate(savedInstanceState);</p><p>		setContentView(R.layout.main);</p><p>		</font>mediaRecorder = <font class="keyword">new </font>MediaRecorder();</p><p>		record();</p><p>	}</p><p>	<font class="Comments">/**</font></p><p>	 <font class="Comments">* 开始录制</font></p><p>	 <font class="Comments">*/</font></p><p>	<font class="keyword">private </font><font class="keyword">void </font>record() {</p><p>		<font class="Comments">/**</font></p><p>		 <font class="Comments">* mediaRecorder.setAudioSource设置声音来源。</font></p><p>		 <font class="Comments">* MediaRecorder.AudioSource这个内部类详细的介绍了声音来源。</font></p><p>		 <font class="Comments">* 该类中有许多音频来源，不过最主要使用的还是手机上的麦克风，MediaRecorder.AudioSource.MIC</font></p><p>		 <font class="Comments">*/</font></p><p>		mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);</p><p>		<font class="Comments">/**</font></p><p>		 <font class="Comments">* mediaRecorder.setOutputFormat代表输出文件的格式。该语句必须在setAudioSource之后，</font></p><p>		 <font class="Comments">* 在prepare之前。</font></p><p>		 <font class="Comments">* OutputFormat内部类，定义了音频输出的格式，主要包含MPEG_4、THREE_GPP、RAW_AMR……等。</font></p><p>		 <font class="Comments">*/</font></p><p>		mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);</p><p>		<font class="Comments">/**</font></p><p>		 <font class="Comments">* mediaRecorder.setAddioEncoder()方法可以设置音频的编码</font></p><p>		 <font class="Comments">* AudioEncoder内部类详细定义了两种编码：AudioEncoder.DEFAULT、AudioEncoder.AMR_NB</font></p><p>		 <font class="Comments">*/</font></p><p>		mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.DEFAULT);</p><p>		<font class="Comments">/**</font></p><p>		 <font class="Comments">* 设置录音之后，保存音频文件的位置</font></p><p>		 <font class="Comments">*/</font></p><p>		</font>mediaRecorder.setOutputFile(<font class="Fields">"file:<font class="Comments">///sdcard/myvido/a.3pg"</font>);</font></p><p>		<font class="Comments">/**</font></p><p>		 <font class="Comments">* 调用start开始录音之前，一定要调用prepare方法。</font></p><p>		 <font class="Comments">*/</font></p><p>		<font class="keyword">try </font>{</p><p>			mediaRecorder.prepare();</p><p>			mediaRecorder.start();</p><p>		</font>} <font class="keyword">catch </font>(IllegalStateException e) {</p><p>			e.printStackTrace();</p><p>		</font>} <font class="keyword">catch </font>(IOException e) {</p><p>			e.printStackTrace();</p><p>		}</p><p>	}</p><p>	<font class="Comments">/***</font></p><p>	 <font class="Comments">* 此外，还有和MediaRecorder有关的几个参数与方法，我们一起来看一下： sampleRateInHz</font></p><p>	 <font class="Comments">* :音频的采样频率，每秒钟能够采样的次数，采样率越高，音质越高。</font></p><p>	 <font class="Comments">* 给出的实例是44100、22050、11025但不限于这几个参数。例如要采集低质量的音频就可以使用4000、8000等低采样率</font></p><p>	 <font class="Comments">* </font></p><p>	 <font class="Comments">* channelConfig ：声道设置：android支持双声道立体声和单声道。MONO单声道，STEREO立体声</font></p><p>	 <font class="Comments">* </font></p><p>	 <font class="Comments">* recorder.stop();停止录音 recorder.reset(); 重置录音 ，会重置到setAudioSource这一步</font></p><p>	 <font class="Comments">* recorder.release(); 解除对录音资源的占用</font></p><p>	 <font class="Comments">*/</font></p><p>}</p><p></pre></p><p>这里，一定要注意一点，那就是如果我们想要录音的话，那么首先得添加录音权限到AndroidManiferst.xml中：</p><p><pre>&lt;uses-permission android:name="android.permission.RECORD_AUDIO"&gt;&lt;/uses-permission&gt;</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

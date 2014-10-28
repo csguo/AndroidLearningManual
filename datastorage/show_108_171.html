@@ -1,0 +1,58 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 首选项框架ListPreference（四）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li class="navcurrentLink"><A href="index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="ContentProvider" href="index_170.html">ContentProvider</A></h2>
+
+  <h2><A title="Preferences" href="index_171.html">Preferences</A></h2>
+<UL><li ><A title=Android API-SharedPreferences href="show_101_171.html">Android API-SharedPreferences</A> </li><li ><A title=Android SharedPreferences用法 href="show_102_171.html">Android SharedPreferences用法</A> </li><li ><A title=Android SharedPreferences用法（二） href="show_103_171.html">Android SharedPreferences用法（二）</A> </li><li ><A title=Android preferenceActivity用法 href="show_104_171.html">Android preferenceActivity用法</A> </li><li ><A title=Android 首选项框架ListPreference（一） href="show_105_171.html">Android 首选项框架ListPreference（一）</A> </li><li ><A title=Android 首选项框架ListPreference（二） href="show_106_171.html">Android 首选项框架ListPreference（二）</A> </li><li ><A title=Android 首选项框架ListPreference（三） href="show_107_171.html">Android 首选项框架ListPreference（三）</A> </li><li class="currentLink"><A title=Android 首选项框架ListPreference（四） href="show_108_171.html">Android 首选项框架ListPreference（四）</A> </li><li ><A title=Android 首选项框架ListPreference（五） href="show_109_171.html">Android 首选项框架ListPreference（五）</A> </li><li ><A title=Android之SharedPreferences href="show_110_171.html">Android之SharedPreferences</A> </li><li ><A title=SharedPreferences与Preferences href="show_111_171.html">SharedPreferences与Preferences</A> </li><li ><A title=onSaveInstanceState和onRestoreInstanceState的用处 href="show_112_171.html">onSaveInstanceState和onRestoreInstanceState的用处</A> </li><li ><A title=用SharedPreferences获取其他应用中用SharedPreferences保存的数据 href="show_113_171.html">用SharedPreferences获取其他应用中用SharedPreferences保存的数据</A> </li><li ><A title=PreferenceActivity 参数设置UI的使用 href="show_114_171.html">PreferenceActivity 参数设置UI的使用</A> </li><li ><A title=Android 让浏览器全屏显示 href="show_115_171.html">Android 让浏览器全屏显示</A> </li><li ><A title=Android EditTextPreference href="show_116_171.html">Android EditTextPreference</A> </li><li ><A title=Android下获取开机时间 href="show_117_171.html">Android下获取开机时间</A> </li><li ><A title=是否记住密码功能 href="show_118_171.html">是否记住密码功能</A> </li><li ><A title=在Activity中获取PreferenceActivity设置的值 href="show_119_171.html">在Activity中获取PreferenceActivity设置的值</A> </li><li ><A title=Android 完美解决自定义preference与ActivityGroup UI更新的问题 href="show_120_171.html">Android 完美解决自定义preference与ActivityGroup UI更新的问题</A> </li><li ><A title=Android 自定义 SeekBarPreference href="show_121_171.html">Android 自定义 SeekBarPreference</A> </li></UL>
+  <h2><A title="SQLite" href="index_172.html">SQLite</A></h2>
+
+  <h2><A title="SD卡" href="index_173.html">SD卡</A></h2>
+
+  <h2><A title="数据库" href="index_174.html">数据库</A></h2>
+
+  <h2><A title="URI" href="index_175.html">URI</A></h2>
+
+  <h2><A title="MediaStore" href="index_176.html">MediaStore</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 首选项框架ListPreference（四）</H2>
+<div style="line-height:20px; font-size:14px;"><p>java代码：</p><p><pre>@Override</p><p><font class="keyword">protected </font><font class="keyword">void </font>onCreate(Bundle savedInstanceState) {</p><p>	<font class="keyword">super</font>.onCreate(savedInstanceState);</p><p>	setContentView(R.layout.main);</p><p>	tv = (TextView) findViewById(R.id.text1);</p><p>	setOptionText();</p><p>}</p><p><font class="Comments">// 创建菜单，这个菜单我们在XML文件中定义 这里加载进来就OK</font></p><p>@Override</p><p><font class="keyword">public </font><font class="keyword">boolean </font>onCreateOptionsMenu(Menu menu) {</p><p>	MenuInflater inflater = getMenuInflater();</p><p>	<font class="Comments">// 加载我们的菜单文件</font></p><p>	inflater.inflate(R.menu.mainmenu, menu);</p><p>	<font class="keyword">return </font><font class="keyword">true</font>;</p><p>}</p><p><font class="Comments">// 菜单选项事件</font></p><p>@Override</p><p><font class="keyword">public </font><font class="keyword">boolean </font>onOptionsItemSelected(MenuItem item) {</p><p>	<font class="keyword">if </font>(item.getItemId() == R.id.menu_prefs) {</p><p>		<font class="Comments">// 当我们点击 Settings 菜单的时候就会跳转到我们的 首选项视图，也就是我们的</font></p><p>		<font class="Comments">// FlightPreferenceActivity Intent intent = new</font></p><p>		<font class="Comments">// Intent().setClass(this,</font></p><p>		<font class="Comments">// xiaohang.zhimeng.FlightPreferenceActivity.class);</font></p><p>		<font class="Comments">// 因为我们要接收上一个Activity 就是我们的首选项视图 返回的数据，所以这里用</font></p><p>		<font class="Comments">// startActivityForResult()方法启动我们的首选项视图</font></p><p>		<font class="Comments">// 参数一：我们要跳转到哪里</font></p><p>		<font class="Comments">// 参数二：回传码</font></p><p>		<font class="keyword">this</font>.startActivityForResult(intent, 0);</p><p>	</font>} <font class="keyword">else </font><font class="keyword">if </font>(item.getItemId() == R.id.menu_quit) {</p><p>		<font class="Comments">// 当我们点击Quit菜单退出应用程序 finish();</font></p><p>	}</p><p>	<font class="keyword">return </font><font class="keyword">true</font>;</p><p>}</p><p><font class="Comments">// 此方法用来 接收我们上一个Activity 也就是我们的首选项视图 返回的数据，因为我们可能会修改数据</font></p><p>@Override</p><p><font class="keyword">protected </font><font class="keyword">void </font>onActivityResult(</font><font class="keyword">int </font>requestCode, </font><font class="keyword">int </font>resultCode, Intent data) {</p><p>	<font class="keyword">super</font>.onActivityResult(requestCode, resultCode, data);</p><p>	setOptionText();</p><p>}</p><p><font class="Comments">// 这个方法就是用来设置我们 MainActivity 上的TextView的值(就是我们首选项的值)</font></p><p><font class="keyword">private </font><font class="keyword">void </font>setOptionText() {</p><p>	/*</p><p>	 <font class="Comments">* 这个方法比较有意思了 第一个参数：用来指定我们存储我们首选项值的文件的名称 格式就是</font></p><p>	 <font class="Comments">* 包名_preferences,大家可以看到我的包名就是xiaohang.zhimeng 这里如果你不按照这个格式写 比如你不写你当前包名</font></p><p>	 <font class="Comments">* 写成别的，也会生成 当前包名_preferences 这个文件 写或不写它就在那里 第二个参数：打开模式</font></p><p>	 <font class="Comments">*/</font></p><p>	SharedPreferences prefs = getSharedPreferences(</p><p>			<font class="Fields">"xiaohang.zhimeng_preferences"</font>, 0);</p><p>	<font class="Comments">// 这个方法大家去看文档，否则我会越写越乱</font></p><p>	String option = prefs.getString(</p><p>			<font class="keyword">this</font>.getResources().getString(</p><p>					R.string.selected_flight_sort_option),</p><p>			<font class="keyword">this</font>.getResources().getString(</p><p>					R.string.flight_sort_option_default_value));</p><p>	<font class="Comments">// 得到我们首选项 所有选项的文本</font></p><p>	</font>String[] optionText = <font class="keyword">this</font>.getResources().getStringArray(</p><p>			R.array.flight_sort_options);</p><p>	<font class="Comments">// 设置我们 TextView要显示的值</font></p><p>	</font>tv.setText(<font class="Fields">"option value is "</font> + option + </font><font class="Fields">"(</p><p>			</font>+ optionText[Integer.parseInt(option)] + <font class="Fields">")"</font>);</p><p>}</p><p></pre></p><p></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

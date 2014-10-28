@@ -1,0 +1,60 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android Framework研究之IPC（二）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li class="navcurrentLink"><A href="index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Launcher" href="index_207.html">Launcher</A></h2>
+
+  <h2><A title="电话系统RIL" href="index_208.html">电话系统RIL</A></h2>
+
+  <h2><A title="进程间通信" href="index_209.html">进程间通信</A></h2>
+<UL><li ><A title=Android Framework研究之IPC（一） href="show_201_209.html">Android Framework研究之IPC（一）</A> </li><li class="currentLink"><A title=Android Framework研究之IPC（二） href="show_202_209.html">Android Framework研究之IPC（二）</A> </li><li ><A title=Android Binder与进程间通信（一） href="show_203_209.html">Android Binder与进程间通信（一）</A> </li><li ><A title=Android Binder与进程间通信（二） href="show_204_209.html">Android Binder与进程间通信（二）</A> </li><li ><A title=Android 创建AIDL href="show_205_209.html">Android 创建AIDL</A> </li><li ><A title=来学习Android的IPC href="show_206_209.html">来学习Android的IPC</A> </li><li ><A title=在linux下谈谈Android的IPC href="show_207_209.html">在linux下谈谈Android的IPC</A> </li><li ><A title=Android的binder机制研究（C++部分）（一） href="show_208_209.html">Android的binder机制研究（C++部分）（一）</A> </li><li ><A title=Android的binder机制研究（C++部分）（二） href="show_209_209.html">Android的binder机制研究（C++部分）（二）</A> </li><li ><A title=Android的binder机制研究（C++部分）（三） href="show_210_209.html">Android的binder机制研究（C++部分）（三）</A> </li><li ><A title=Android的binder机制研究（C++部分）（四） href="show_211_209.html">Android的binder机制研究（C++部分）（四）</A> </li><li ><A title=Android的binder机制研究（C++部分）（五） href="show_212_209.html">Android的binder机制研究（C++部分）（五）</A> </li></UL>
+  <h2><A title="内部sensor系统" href="index_210.html">内部sensor系统</A></h2>
+
+  <h2><A title="内部surface系统" href="index_211.html">内部surface系统</A></h2>
+
+  <h2><A title="启动流程" href="index_212.html">启动流程</A></h2>
+
+  <h2><A title="源码编译" href="index_213.html">源码编译</A></h2>
+
+  <h2><A title="状态栏" href="index_214.html">状态栏</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android Framework研究之IPC（二）</H2>
+<div style="line-height:20px; font-size:14px;"><p>对于Android的IPC来说，除了Handler和Looper之外，还有另外一种简便的方法来实现多线程的通信，那就是AsyncTask。 </p><p>AsyncTask是一个异步的方法，它允许背景运算并把结果更新到前台的UI线程之上。要实现一个AsyncTask主要有4个步骤，但并不是每一个步骤都是必需的，接下来我们就看看这四个具体的步骤：</p><p>这四个步骤是：</p><p>(1)onPreExecute() 执行背景运算前任务的初始化；</p><p>(2)doInBackground(Params...)这是AsyncTask最核心的函数，即是做背景运算；它在第一步完成之后被调用，通常在这步中还会调用方法publishProgress(Progress...)将运算结果更新到UI主线程上；</p><p>(3)onProgressUpdate(Progress...)是在publishProgress(Progress...)调用之后被执行的，需要注意到是这步执行的时间是未定的，通常在这一步中会更新相关UI；</p><p>(4)onPostExecute(Result)这一步同样是和UI相关，将运算结果Result当作参数传递给UI。</p><p>大家可能已经注意到AsyncTask除了四大步之外，还有三个重要的参数：AsyncTask&lt;Params, Progress, Result&gt;。三个参数为通用类型，Params是传给任务初始化的参数，Progress是做背景运算过程中和UI交互的参数，Result是背景运算传递给UI的结果。</p><p>利用好这四大步和三个参数，我们可以方便的写出一个Demo：</p><p><pre><font class="keyword">import </font>java.io.InputStream;</p><p><font class="keyword">import </font>java.net.MalformedURLException;</p><p><font class="keyword">import </font>java.net.URL;</p><p><font class="keyword">import </font>java.net.URLConnection;</p><p><font class="keyword">import </font>android.app.Activity;</p><p><font class="keyword">import </font>android.os.AsyncTask;</p><p><font class="keyword">import </font>android.os.Bundle;</p><p><font class="keyword">import </font>android.widget.ProgressBar;</p><p><font class="keyword">public </font><font class="keyword">class </font>myAsyncTask </font><font class="keyword">extends </font>Activity {</p><p>	<font class="keyword">static </font>ProgressBar pb;</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onCreate(Bundle savedInstanceState) {</p><p>		<font class="keyword">super</font>.onCreate(savedInstanceState);</p><p>		setContentView(R.layout.main);</p><p>		pb = (ProgressBar) findViewById(R.id.ProgressBar01);</p><p>		</font>Download dl = <font class="keyword">new </font>Download();</p><p>		dl.execute();</p><p>	}</p><p>	<font class="keyword">public </font><font class="keyword">class </font>Download </font><font class="keyword">extends </font>AsyncTask&lt;Void, Integer, Void&gt; {</p><p>		@Override</p><p>		<font class="keyword">protected </font>Void doInBackground(Void... params) {</p><p>			<font class="keyword">int </font>totalSize = 0;</p><p>			</font>InputStream recevier = <font class="keyword">null</font>;</p><p>			<font class="keyword">try </font>{</p><p>				</font>URL myUrl = <font class="keyword">new </font>URL(<font class="Fields">"http:<font class="Comments">//www.eoeandroid.com/"</font>);</font></p><p>				URLConnection urlConn = myUrl.openConnection();</p><p>				totalSize = urlConn.getContentLength();</p><p>				recevier = urlConn.getInputStream();</p><p>				</font>byte[] b = <font class="keyword">new </font>byte[256];</p><p>				<font class="keyword">int </font>length = 0;</p><p>				ength += recevier.read(b);</p><p>				<font class="keyword">while </font>(length &lt; totalSize) {</p><p>					length += recevier.read(b);</p><p>					</font>publishProgress((<font class="keyword">int</font>) (length * 100 / totalSize));</p><p>				}</p><p>				recevier.close();</p><p>			</font>} <font class="keyword">catch </font>(MalformedURLException e) {</p><p>				e.printStackTrace();</p><p>			</font>} <font class="keyword">catch </font>(Exception ex) {</p><p>				ex.printStackTrace();</p><p>			}</p><p>			<font class="keyword">return </font><font class="keyword">null</font>;</p><p>		}</p><p>		<font class="keyword">protected </font><font class="keyword">void </font>onProgressUpdate(Integer... progress) {</p><p>			pb.setProgress(progress[0]);</p><p>		}</p><p>	}</p><p>}</p><p></pre></p><p>在这个Demo中只有第二和第三步，只有第二个参数params，是一个整型参量，把下载数据包的进度更新给UI Progressbar显示。</p><p>另外，使用AsyncTask需要注意以下几点：</p><p>1. AsyncTask的实例只能在UI线程中创建；</p><p>2. dl.execute()方法只能在UI线程中调用，并且只能调用一次，否则会抛异常。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

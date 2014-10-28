@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android开发中实现跨进程通讯的AIDL接口_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li class="navcurrentLink"><A href="index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Activity" href="index_112.html">Activity</A></h2>
+
+  <h2><A title="Intent" href="index_113.html">Intent</A></h2>
+
+  <h2><A title="Service" href="index_114.html">Service</A></h2>
+
+  <h2><A title="Content Provider" href="index_115.html">Content Provider</A></h2>
+
+  <h2><A title="BroadcastReceiver" href="index_116.html">BroadcastReceiver</A></h2>
+
+  <h2><A title="AsyncTask" href="index_117.html">AsyncTask</A></h2>
+
+  <h2><A title="Handler" href="index_118.html">Handler</A></h2>
+
+  <h2><A title="Thread" href="index_119.html">Thread</A></h2>
+
+  <h2><A title="Permission" href="index_120.html">Permission</A></h2>
+
+  <h2><A title="AIDL" href="index_121.html">AIDL</A></h2>
+<UL><li ><A title=什么是AIDL服务 href="show_901_121.html">什么是AIDL服务</A> </li><li ><A title=Android 初谈AIDL服务 href="show_902_121.html">Android 初谈AIDL服务</A> </li><li ><A title=Android 使用【AIDL】调用外部服务 href="show_903_121.html">Android 使用【AIDL】调用外部服务</A> </li><li class="currentLink"><A title=Android开发中实现跨进程通讯的AIDL接口 href="show_904_121.html">Android开发中实现跨进程通讯的AIDL接口</A> </li><li ><A title=Android 跨进程通信（一） href="show_905_121.html">Android 跨进程通信（一）</A> </li><li ><A title=Android 跨进程通信（二） href="show_906_121.html">Android 跨进程通信（二）</A> </li><li ><A title=通过AIDL调用Service href="show_907_121.html">通过AIDL调用Service</A> </li></UL>
+  <h2><A title="Json" href="index_122.html">Json</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android开发中实现跨进程通讯的AIDL接口</H2>
+<div style="line-height:20px; font-size:14px;"><p>在Android开发中，每个应用程序都可以有自己的进程。在写UI应用的时候，经常要用到Service。在不同的进程中，怎样传递对象呢? </p><p>显然，Java中不允许跨进程内存共享。因此传递对象，只能把对象拆分成操作系统能理解的简单形式，以达到跨界对象访问的目的。在J2EE中，采用RMI的方式，可以通过序列化传递对象。在Android中，则采用AIDL的方式。理论上AIDL可以传递Bundle，实际上做起来却比较麻烦。</p><p>AIDL(AndRoid接口描述语言)是一种接口描述语言，编译器可以通过aidl文件生成一段代码，通过预先定义的接口达到两个进程内部通信进程的目的。如果需要在一个Activity中，访问另一个Service中的某个对象，需要先将对象转化成AIDL可识别的参数(可能是多个参数)，然后使用AIDL来传递这些参数， 在消息的接收端，使用这些参数组装成自己需要的对象。</p><p>AIDL的IPC的机制和COM或CORBA类似，是基于接口的，但它是轻量级的。它使用代理类在客户端和实现层间传递值。如果要使用AIDL，需要完成2件事情: </p><p><pre>(1) 引入AIDL的相关类。</p><p>(2) 调用aidl产生的class。</p><p></pre></p><p>Android开发中实现跨进程通讯的具体步骤如下:</p><p>1、创建AIDL文件, 在这个文件里面定义接口，该接口定义了可供客户端访问的方法和属性。 如: ITaskBinder.adil </p><p><pre><font class="keyword">interface </font>ITaskBinder {</p><p>	<font class="keyword">boolean </font>isTaskRunning();</p><p>	<font class="keyword">void </font>stopRunningTask();</p><p>	<font class="keyword">void </font>registerCallback(ITaskCallback cb);</p><p>	<font class="keyword">void </font>unregisterCallback(ITaskCallback cb);</p><p>}</p><p></pre></p><p>其中: ITaskCallback在文件ITaskCallback.aidl中定义:</p><p><pre><font class="keyword">interface </font>ITaskCallback {</p><p>	<font class="keyword">void </font>actionPerformed(</font><font class="keyword">int </font>actionId);</p><p>}</p><p></pre></p><p>注意:理论上，参数可以传递基本数据类型和String，还有就是Bundle的派生类，不过在Eclipse中，目前的ADT不支持Bundle做为参数，据说用Ant编译可以，我没做尝试。</p><p>2、Android开发中编译AIDL文件，用Ant的话，可能需要手动，使用Eclipse plugin的话，可以根据adil文件自动生产java文件并编译，不需要人为介入。</p><p>3、在Java文件中，实现AIDL中定义的接口。</p><p>编译器会根据AIDL接口，产生一个JAVA接口。这个接口有一个名为Stub的内部抽象类，它继承扩展了接口并实现了远程调用需要的几个方法。接下来就需要自己去实现自定义的几个接口了。</p><p>ITaskBinder.aidl中接口的实现, 在MyService.java中接口以内嵌类的方式实现:</p><p><pre><font class="keyword">private </font><font class="keyword">final </font>ITaskBinder.Stub mBinder = </font><font class="keyword">new </font>ITaskBinder.Stub() {</p><p>	<font class="keyword">public </font><font class="keyword">void </font>stopRunningTask() {</p><p>	}</p><p>	<font class="keyword">public </font><font class="keyword">boolean </font>isTaskRunning() {</p><p>		<font class="keyword">return </font><font class="keyword">false</font>;</p><p>	}</p><p>	<font class="keyword">public </font><font class="keyword">void </font>registerCallback(ITaskCallback cb) {</p><p>		<font class="keyword">if </font>(cb != </font><font class="keyword">null</font>)</p><p>			mCallbacks.register(cb);</p><p>	}</p><p>	<font class="keyword">public </font><font class="keyword">void </font>unregisterCallback(ITaskCallback cb) {</p><p>		<font class="keyword">if </font>(cb != </font><font class="keyword">null</font>)</p><p>			mCallbacks.unregister(cb);</p><p>	}</p><p>};</p><p></pre></p><p>在MyActivity.java中ITaskCallback.aidl接口实现:</p><p><pre><font class="keyword">private </font>ITaskCallback mCallback = </font><font class="keyword">new </font>ITaskCallback.Stub() {</p><p>	<font class="keyword">public </font><font class="keyword">void </font>actionPerformed(</font><font class="keyword">int </font>id) {</p><p>		</font>printf(<font class="Fields">"callback id="</font> + id);</p><p>	}</p><p>};</p><p></pre></p><p>4、向客户端提供接口ITaskBinder，如果写的是service，扩展该Service并重载onBind()方法来返回一个实现上述接口的类的实例。这个地方返回的mBinder，就是上面通过内嵌了定义的那个。(MyService.java):</p><p><pre><font class="keyword">public </font>IBinder onBind(Intent t) {</p><p>	</font>printf(<font class="Fields">"service on bind"</font>);</p><p>	<font class="keyword">return </font>mBinder;</p><p>}</p><p></pre></p><p>在Activity中，可以通过Binder定义的接口，来进行远程调用。</p><p>5、在服务器端回调客户端的函数。</p><p>前提是当客户端获取的IBinder接口的时候,要去注册回调函数，只有这样，服务器端才知道该调用那些函数在:MyService.java中:</p><p><pre><font class="keyword">void </font>callback(</font><font class="keyword">int </font>val) {</p><p>	<font class="keyword">final </font><font class="keyword">int </font>N = mCallbacks.beginBroadcast();</p><p>	<font class="keyword">for </font>(</font><font class="keyword">int </font>i = 0; i &lt; N; i++) {</p><p>		<font class="keyword">try </font>{</p><p>			mCallbacks.getBroadcastItem(i).actionPerformed(val);</p><p>		</font>} <font class="keyword">catch </font>(RemoteException e) {</p><p>			<font class="Comments">// The RemoteCallbackList will take care of removing</font></p><p>			<font class="Comments">// the dead object for us.</font></p><p>		}</p><p>		mCallbacks.finishBroadcast();</p><p>	}</p><p>}</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

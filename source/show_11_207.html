@@ -1,0 +1,60 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 深入研究拖放功能Launcher（三）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li class="navcurrentLink"><A href="index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Launcher" href="index_207.html">Launcher</A></h2>
+<UL><li ><A title=Android Launcher 分析（一） href="show_1_207.html">Android Launcher 分析（一）</A> </li><li ><A title=Android Launcher 分析（二） href="show_2_207.html">Android Launcher 分析（二）</A> </li><li ><A title=Android Launcher 分析（三） href="show_3_207.html">Android Launcher 分析（三）</A> </li><li ><A title=Android 启动唯一的Launcher href="show_4_207.html">Android 启动唯一的Launcher</A> </li><li ><A title=Launcher之文件夹美化 href="show_5_207.html">Launcher之文件夹美化</A> </li><li ><A title=关于使用Eclipse调试Launcher的完美解决方法 href="show_6_207.html">关于使用Eclipse调试Launcher的完美解决方法</A> </li><li ><A title=提取Launcher中的WorkSapce，可以左右滑动切换屏幕页面的类 href="show_7_207.html">提取Launcher中的WorkSapce，可以左右滑动切换屏幕页面的类</A> </li><li ><A title=使用ViewPager实现高仿launcher拖动效果 href="show_8_207.html">使用ViewPager实现高仿launcher拖动效果</A> </li><li ><A title=Android 深入研究拖放功能Launcher（一） href="show_9_207.html">Android 深入研究拖放功能Launcher（一）</A> </li><li ><A title=Android 深入研究拖放功能Launcher（二） href="show_10_207.html">Android 深入研究拖放功能Launcher（二）</A> </li><li class="currentLink"><A title=Android 深入研究拖放功能Launcher（三） href="show_11_207.html">Android 深入研究拖放功能Launcher（三）</A> </li><li ><A title=Android 深入研究拖放功能Launcher（四） href="show_12_207.html">Android 深入研究拖放功能Launcher（四）</A> </li><li ><A title=Android 深入研究拖放功能Launcher（五） href="show_13_207.html">Android 深入研究拖放功能Launcher（五）</A> </li><li ><A title=Android 深入研究拖放功能Launcher（六） href="show_14_207.html">Android 深入研究拖放功能Launcher（六）</A> </li><li ><A title=Android 在launcher 2.1上实现2.2的屏幕标记 href="show_15_207.html">Android 在launcher 2.1上实现2.2的屏幕标记</A> </li></UL>
+  <h2><A title="电话系统RIL" href="index_208.html">电话系统RIL</A></h2>
+
+  <h2><A title="进程间通信" href="index_209.html">进程间通信</A></h2>
+
+  <h2><A title="内部sensor系统" href="index_210.html">内部sensor系统</A></h2>
+
+  <h2><A title="内部surface系统" href="index_211.html">内部surface系统</A></h2>
+
+  <h2><A title="启动流程" href="index_212.html">启动流程</A></h2>
+
+  <h2><A title="源码编译" href="index_213.html">源码编译</A></h2>
+
+  <h2><A title="状态栏" href="index_214.html">状态栏</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 深入研究拖放功能Launcher（三）</H2>
+<div style="line-height:20px; font-size:14px;"><p>到这里，拖放开始处理的框框基本清楚，但是DragView的创建和显示还有必要进一步深究</p><p><pre>DragView dragView = mDragView = new DragView(mContext, b, registrationX, registrationY, textureLeft, textureTop, textureWidth, textureHeight);</p><p></pre></p><p>函数参数说明：</p><p><pre>mContext = launcher</p><p>b = 根据拖放源view创建的大小一致的bitmap对象</p><p>registrationX = 手指点击位置与拖放源view 坐标x方向的偏移</p><p>registrationY = 手指点击位置与拖放源view 坐标y方向的偏移</p><p>textureLeft = 0;</p><p>textureTop = 0;</p><p>textureWidth = b.getWidth();</p><p>textureHeight = b.getHeight();</p><p><font class="Comments">// 函数体</font></p><p><font class="keyword">super</font>(context);</p><p><font class="Comments">// 获取window管理器</font></p><p>mWindowManager = WindowManagerImpl.getDefault();</p><p><font class="Comments">// 一个动画，开始拖放时显示</font></p><p>mTween = <font class="keyword">new </font>SymmetricalLinearTween(</font><font class="keyword">false</font>, 110 /* ms duration */, </font><font class="keyword">this</font>);</p><p><font class="Comments">// 对源b 做一个缩放产生一个新的bitmap对象</font></p><p>Matrix scale = <font class="keyword">new </font>Matrix();</p><p><font class="keyword">float </font>scaleFactor = width;</p><p>scaleFactor = mScale = (scaleFactor + DRAG_SCALE) / scaleFactor;</p><p>scale.setScale(scaleFactor, scaleFactor);</p><p>mBitmap = Bitmap.createBitmap(bitmap, left, top, width, height, scale,</p><p>		<font class="keyword">true</font>);</p><p><font class="Comments">// The point in our scaled bitmap that the touch events are located</font></p><p>mRegistrationX = registrationX + (DRAG_SCALE / 2);</p><p>mRegistrationY = registrationY + (DRAG_SCALE / 2);</p><p></pre></p><p>其实函数很简单，就是记录一些参数，然后对view图片做一个缩放处理，并且准备一个tween动画，在长按桌面图标后图标跳跃到手指上显示该动画，了解这些，有助于理解函数dragView.show</p><p><pre><font class="Comments">// windowToken来自与workspace.onattchtowindow时候获取的view</font></p><p><font class="Comments">// 所有attch的window标识，有这个参数，可以把dragview添加到</font></p><p><font class="Comments">// workspace所属的同一个window对象</font></p><p><font class="Comments">// touchX,手指点击在屏幕的位置x</font></p><p><font class="Comments">// touchy,手指点击在屏幕的位置y</font></p><p><font class="keyword">public </font><font class="keyword">void </font>show(IBinder windowToken, </font><font class="keyword">int </font>touchX, </font><font class="keyword">int </font>touchY) {</p><p>	WindowManager.LayoutParams lp;</p><p>	<font class="keyword">int </font>pixelFormat;</p><p>	pixelFormat = PixelFormat.TRANSLUCENT;</p><p>	<font class="Comments">// 布局参数值的注意的是view位置参数，</font></p><p>	<font class="Comments">// x=touchX-mRegistrationX=touchX-(registrationX + (DRAG_SCALE /</font></p><p>	<font class="Comments">// 2))=手指点击位置-view坐标与手指点击位置偏差加上缩放值</font></p><p>	</font>lp = <font class="keyword">new </font>WindowManager.LayoutParams(</p><p>			ViewGroup.LayoutParams.WRAP_CONTENT,</p><p>			ViewGroup.LayoutParams.WRAP_CONTENT, touchX - mRegistrationX,</p><p>			touchY - mRegistrationY,</p><p>			WindowManager.LayoutParams.TYPE_APPLICATION_SUB_PANEL,</p><p>			WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN</p><p>					| WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS</p><p>			/* | WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM */,</p><p>			pixelFormat);</p><p>	<font class="Comments">// lp.token = mStatusBarView.getWindowToken();</font></p><p>	lp.gravity = Gravity.LEFT | Gravity.TOP;</p><p>	lp.token = windowToken;</p><p>	</font>lp.setTitle(<font class="Fields">"DragView"</font>);</p><p>	mLayoutParams = lp;</p><p>	<font class="Comments">// dragview的父类是Window,也就是说dragview可以拖放到屏幕的任意位置</font></p><p>	</font>mWindowManager.addView(<font class="keyword">this</font>, lp);</p><p>	mAnimationScale = 1.0f / mScale;</p><p>	<font class="Comments">// 播放开始拖动动画(直观感觉是图标变大了)</font></p><p>	</font>mTween.start(<font class="keyword">true</font>);</p><p>}</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

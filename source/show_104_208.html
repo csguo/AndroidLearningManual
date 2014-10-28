@@ -1,0 +1,60 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android RIL 调试（一）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li class="navcurrentLink"><A href="index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Launcher" href="index_207.html">Launcher</A></h2>
+
+  <h2><A title="电话系统RIL" href="index_208.html">电话系统RIL</A></h2>
+<UL><li ><A title=Android RIL结构分析与移植一 href="show_101_208.html">Android RIL结构分析与移植一</A> </li><li ><A title=Android RIL结构分析与移植二 href="show_102_208.html">Android RIL结构分析与移植二</A> </li><li ><A title=Android RIL结构分析与移植三 href="show_103_208.html">Android RIL结构分析与移植三</A> </li><li class="currentLink"><A title=Android RIL 调试（一） href="show_104_208.html">Android RIL 调试（一）</A> </li><li ><A title=Android RIL 调试（二） href="show_105_208.html">Android RIL 调试（二）</A> </li><li ><A title=Android 中的telephony（一） href="show_106_208.html">Android 中的telephony（一）</A> </li><li ><A title=Android 中的telephony（二） href="show_107_208.html">Android 中的telephony（二）</A> </li><li ><A title=Android 中的telephony（三） href="show_108_208.html">Android 中的telephony（三）</A> </li></UL>
+  <h2><A title="进程间通信" href="index_209.html">进程间通信</A></h2>
+
+  <h2><A title="内部sensor系统" href="index_210.html">内部sensor系统</A></h2>
+
+  <h2><A title="内部surface系统" href="index_211.html">内部surface系统</A></h2>
+
+  <h2><A title="启动流程" href="index_212.html">启动流程</A></h2>
+
+  <h2><A title="源码编译" href="index_213.html">源码编译</A></h2>
+
+  <h2><A title="状态栏" href="index_214.html">状态栏</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android RIL 调试（一）</H2>
+<div style="line-height:20px; font-size:14px;"><p style="color:#3333FF;">1. 所要了解的一些源码及脚本文件：</p><p><pre>Android/hardware/ril/reference_ril/ (reference_ril.c)</p><p>Android/hardware/ril/rild</p><p>Android/extern/ppp/pppd</p><p>Android/extern/ppp/chat</p><p>Android/data/etc/apn-conf-sdk.xml</p><p>Android/system/core/rootdir/etc/ppp/init.gprs-pppd</p><p>Android/system/core/rootdir/etc/ppp/peers/cmnet</p><p>Android/system/core/rootdir/etc/ppp/chat/cmtc-isp</p><p>Android/vendor/xxxxx/xxxx/system.prop</p><p></pre></p><p>reference_ril.c：RIL的一些AT命令操作，通过一些onRequest接口操作，对不同的硬件，需作一些修改调整。</p><p>apn-conf-sdk.xml：以下是一个例子，有些不支持的APN，需要自己加上去，否则在log 中会出现类似：No APN found for carrier： 46xxx， 的错误.一般移动的TD USIM是46007，有些是46000。</p><p><pre>&lt;apns version=<font class="Fields">"6"</font>&gt;</p><p>	</font>&lt;apn carrier=<font class="Fields">"Android</p><p>		</font>mcc=<font class="Fields">"310</p><p>		</font>mnc=<font class="Fields">"995</p><p>		</font>apn=<font class="Fields">"internet</p><p>		</font>user=<font class="Fields">"*</p><p>		</font>server=<font class="Fields">"*</p><p>		</font>password=<font class="Fields">"*</p><p>		</font>mmsc=<font class="Fields">"<font class="keyword">null</font></p><p>		/&gt;</p><p>	</font>&lt;apn carrier=<font class="Fields">"TelKila</p><p>		</font>mcc=<font class="Fields">"310</p><p>		</font>mnc=<font class="Fields">"260</p><p>		</font>apn=<font class="Fields">"internet</p><p>		</font>user=<font class="Fields">"*</p><p>		</font>server=<font class="Fields">"*</p><p>		</font>password=<font class="Fields">"*</p><p>		</font>mmsc=<font class="Fields">"<font class="keyword">null</font></p><p>		/&gt;</p><p>	</font>&lt;apn carrier=<font class="Fields">"CMCC</p><p>		</font>mcc=<font class="Fields">"460</p><p>		</font>mnc=<font class="Fields">"00</p><p>		</font>apn=<font class="Fields">"cmnet</p><p>		</font>user=<font class="Fields">"*</p><p>		</font>server=<font class="Fields">"*</p><p>		</font>password=<font class="Fields">"*</p><p>		</font>mmsc=<font class="Fields">"<font class="keyword">null</font></p><p>		/&gt;</p><p>	</font>&lt;apn carrier=<font class="Fields">"CHINA MOBILE</p><p>		</font>mcc=<font class="Fields">"460</p><p>		</font>mnc=<font class="Fields">"07</p><p>		</font>apn=<font class="Fields">"cmnet</p><p>		</font>user=<font class="Fields">"*</p><p>		</font>server=<font class="Fields">"*</p><p>		</font>password=<font class="Fields">"*</p><p>		</font>mmsc=<font class="Fields">"<font class="keyword">null</font>"</font>/&gt;</p><p>&lt;/apns&gt;</p><p></pre></p><p>init.gprs-pppd: 调用pppd GPRS拨号的初始化脚本。</p><p><pre>PPPD_PID=</p><p>/system/bin/setprop <font class="Fields">"net.gprs.ppp-exit"</font> </p><p>/system/bin/log -t pppd <font class="Fields">"Starting pppd</p><p>/system/xbin/pppd call cmnet $*</p><p>PPPD_EXIT=$?</p><p>PPPD_PID=$!</p><p>/system/bin/log -t pppd <font class="Fields">"pppd exited with $PPPD_EXIT</p><p>/system/bin/setprop <font class="Fields">"net.gprs.ppp-exit"</font> </font><font class="Fields">"$PPPD_EXIT</p><p></pre></p><p>cmnet：pppd拨号option脚本：</p><p><pre>/dev/ttyACM2</p><p>921600</p><p>nocrtscts</p><p>nocdtrcts</p><p>local</p><p>usepeerdns</p><p>defaultroute</p><p>noipdefault</p><p>ipcp-accept-local</p><p>ipcp-accept-remote</p><p>user cmnet</p><p>password cmnet</p><p>lock</p><p>nodetach</p><p>connect <font class="Fields">"/system/xbin/chat -v -t 50 -f /system/etc/ppp/chat/cmtc-isp</p><p>cmtc-isp：</p><p>ABORT <font class="Fields">'BUSY</p><p>ABORT <font class="Fields">'NO CARRIER</p><p>ABORT <font class="Fields">'ERROR</p><p>ABORT <font class="Fields">'+CME ERROR: 100</p><p><font class="Fields">""</font> AT</p><p>OK AT+CGDCONT=1,<font class="Fields">"IP"</font>,</font><font class="Fields">"CMNET</p><p>OK AT+CGEQREQ=1,2,128,384,0,0,0,0,<font class="Fields">"0E0"</font>,</font><font class="Fields">"0E0"</font>,,0,0</p><p>OK AT</p><p>OK AT</p><p>OK ATS0=0</p><p>OK AT</p><p>OK AT</p><p>OK ATDT*98*1</p><p>CONNECT</p><p>system.prop</p><p>rild.libpath=/system/lib/libreference-ril.so</p><p>rild.libargs=-d /dev/ttyACM0	</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

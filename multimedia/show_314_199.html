@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>通过纯RGB数据流生成Bitmap对象_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li class="navcurrentLink"><A href="index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Android多媒体功能" href="index_196.html">Android多媒体功能</A></h2>
+
+  <h2><A title="Android多媒体之2D" href="index_197.html">Android多媒体之2D</A></h2>
+
+  <h2><A title="Android多媒体之3D" href="index_198.html">Android多媒体之3D</A></h2>
+
+  <h2><A title="Android多媒体之Bitmap" href="index_199.html">Android多媒体之Bitmap</A></h2>
+<UL><li ><A title=Android Bitmap类相关学习 href="show_302_199.html">Android Bitmap类相关学习</A> </li><li ><A title=Android里的BitMap（一） href="show_303_199.html">Android里的BitMap（一）</A> </li><li ><A title=Android里的BitMap（二） href="show_304_199.html">Android里的BitMap（二）</A> </li><li ><A title=Android里的BitMap（三） href="show_305_199.html">Android里的BitMap（三）</A> </li><li ><A title=Android里的BitMap（四） href="show_306_199.html">Android里的BitMap（四）</A> </li><li ><A title=Android bitmap内存溢出（一） href="show_307_199.html">Android bitmap内存溢出（一）</A> </li><li ><A title=Android bitmap内存溢出（二） href="show_308_199.html">Android bitmap内存溢出（二）</A> </li><li ><A title=Android 避免bitmap内存限制 href="show_309_199.html">Android 避免bitmap内存限制</A> </li><li ><A title=Bitmap导致的OOM终极解决方案 href="show_310_199.html">Bitmap导致的OOM终极解决方案</A> </li><li ><A title=Bitmap的用法（浅谈） href="show_311_199.html">Bitmap的用法（浅谈）</A> </li><li ><A title=Android 两种方法获取Bitmap href="show_312_199.html">Android 两种方法获取Bitmap</A> </li><li ><A title=Android整合两个Bitmap href="show_313_199.html">Android整合两个Bitmap</A> </li><li class="currentLink"><A title=通过纯RGB数据流生成Bitmap对象 href="show_314_199.html">通过纯RGB数据流生成Bitmap对象</A> </li><li ><A title=Bitmap总结 href="show_315_199.html">Bitmap总结</A> </li></UL>
+  <h2><A title="Android多媒体之Canvas" href="index_200.html">Android多媒体之Canvas</A></h2>
+
+  <h2><A title="Android多媒体之Drawable" href="index_201.html">Android多媒体之Drawable</A></h2>
+
+  <h2><A title="Android多媒体之gif" href="index_202.html">Android多媒体之gif</A></h2>
+
+  <h2><A title="Android多媒体之MediaStore" href="index_203.html">Android多媒体之MediaStore</A></h2>
+
+  <h2><A title="Android多媒体之动画" href="index_204.html">Android多媒体之动画</A></h2>
+
+  <h2><A title="Android多媒体之分辨率" href="index_205.html">Android多媒体之分辨率</A></h2>
+
+  <h2><A title="Android多媒体之分屏幕" href="index_206.html">Android多媒体之分屏幕</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>通过纯RGB数据流生成Bitmap对象</H2>
+<div style="line-height:20px; font-size:14px;"><p>GOOGLE对于图像的读取处理，已经封装了Bitmap类和BitmapFactory类，可以说囊括了许多种读取图片数据的方式，但是如果我们只有纯RGB数据（byte[]）和位图宽和高又如何将数据上屏显示呢?</p><p>查看SDK文档，虽然没有关于byte[]数组的构建BITMAP对象的API</p><p>但是有[url=file:///C:/Program%20Files/android-sdk-windows/docs/reference/android/graphics/Bitmap.htmlcreateBitmap(int[], int, int, android.graphics.Bitmap.Config)]createBitmap[/url](int[] colors, int width, int height, Bitmap.Config config) 这个方法</p><p>于是就有了思路，就是将byte[]数组转化为int[]数组,以下是本人封装的一个类用以实现通过byte[]数据流构建BITMAP的对象：</p><p><pre><font class="keyword">public </font><font class="keyword">class </font>MyBitmap {</p><p>	<font class="keyword">static </font><font class="keyword">public </font>Bitmap createMyBitmap(byte[] data, </font><font class="keyword">int </font>width, </font><font class="keyword">int </font>height) {</p><p>		<font class="keyword">int</font>[] colors = convertByteToColor(data);</p><p>		<font class="keyword">if </font>(colors == </font><font class="keyword">null</font>) {</p><p>			<font class="keyword">return </font><font class="keyword">null</font>;</p><p>		}</p><p>		Bitmap bmp = Bitmap.createBitmap(colors, 0, width, width, height,</p><p>				Bitmap.Config.ARGB_8888);</p><p>		<font class="keyword">return </font>bmp;</p><p>	}</p><p>	<font class="Comments">// 将一个byte数转成int</font></p><p>	<font class="Comments">// 实现这个函数的目的是为了将byte数当成无符号的变量去转化成int</font></p><p>	<font class="keyword">public </font><font class="keyword">static </font><font class="keyword">int </font>convertByteToInt(byte data) {</p><p>		<font class="keyword">int </font>heightBit = (</font><font class="keyword">int</font>) ((data &gt;&gt; 4) & 0x0F);</p><p>		<font class="keyword">int </font>lowBit = (</font><font class="keyword">int</font>) (0x0F & data);</p><p>		<font class="keyword">return </font>heightBit * 16 + lowBit;</p><p>	}</p><p>	<font class="Comments">// 将纯RGB数据数组转化成int像素数组</font></p><p>	<font class="keyword">public </font><font class="keyword">static </font><font class="keyword">int</font>[] convertByteToColor(byte[] data) {</p><p>		<font class="keyword">int </font>size = data.length;</p><p>		<font class="keyword">if </font>(size == 0) {</p><p>			<font class="keyword">return </font><font class="keyword">null</font>;</p><p>		}</p><p>		<font class="keyword">int </font>arg = 0;</p><p>		<font class="keyword">if </font>(size % 3 != 0) {</p><p>			arg = 1;</p><p>		}</p><p>		<font class="Comments">// 一般情况下data数组的长度应该是3的倍数，这里做个兼容，多余的RGB数据用黑色0XFF000000填充</font></p><p>		<font class="keyword">int</font>[] color = </font><font class="keyword">new </font><font class="keyword">int</font>[size / 3 + arg];</p><p>		<font class="keyword">int </font>red, green, blue;</p><p>		<font class="keyword">if </font>(arg == 0) {</p><p>			<font class="keyword">for </font>(</font><font class="keyword">int </font>i = 0; i &lt; color.length; ++i) {</p><p>				red = convertByteToInt(data[i * 3]);</p><p>				green = convertByteToInt(data[i * 3 + 1]);</p><p>				blue = convertByteToInt(data[i * 3 + 2]);</p><p>				<font class="Comments">// 获取RGB分量值通过按位或生成int的像素值</font></p><p>				color = (red &lt;&lt; 16) | (green &lt;&lt; 8) | blue | 0xFF000000;</p><p>			}</p><p>		</font>} <font class="keyword">else </font>{</p><p>			<font class="keyword">for </font>(</font><font class="keyword">int </font>i = 0; i &lt; color.length - 1; ++i) {</p><p>				red = convertByteToInt(data[i * 3]);</p><p>				green = convertByteToInt(data[i * 3 + 1]);</p><p>				blue = convertByteToInt(data[i * 3 + 2]);</p><p>				color = (red &lt;&lt; 16) | (green &lt;&lt; 8) | blue | 0xFF000000;</p><p>			}</p><p>			color[color.length - 1] = 0xFF000000;</p><p>		}</p><p>		<font class="keyword">return </font>color;</p><p>	}</p><p>}</p><p></pre></p><p>以下是测试效果图：</p><p><img src="../img/media_bitmap/14_bitmap.jpg"></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

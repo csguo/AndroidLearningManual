@@ -1,0 +1,58 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>apk反编译问题总结_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li class="navcurrentLink"><A href="index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Android基础之运行原理和机制" href="index_215.html">Android基础之运行原理和机制</A></h2>
+
+  <h2><A title="Android高级篇之Android优化" href="index_216.html">Android高级篇之Android优化</A></h2>
+
+  <h2><A title="Android高级篇之编译及反编译" href="index_217.html">Android高级篇之编译及反编译</A></h2>
+<UL><li ><A title=Android 程序反编译 href="show_201_217.html">Android 程序反编译</A> </li><li ><A title=Android反编译工具Apktool使用 href="show_202_217.html">Android反编译工具Apktool使用</A> </li><li ><A title=Android命令行编译方法,不用Eclipse IDE href="show_203_217.html">Android命令行编译方法,不用Eclipse IDE</A> </li><li ><A title=Android反编译小结 href="show_204_217.html">Android反编译小结</A> </li><li ><A title=反编译APK文件 href="show_205_217.html">反编译APK文件</A> </li><li ><A title=无需eclipse无需ant,直接在android源码中混淆编译 href="show_206_217.html">无需eclipse无需ant,直接在android源码中混淆编译</A> </li><li class="currentLink"><A title=apk反编译问题总结 href="show_207_217.html">apk反编译问题总结</A> </li><li ><A title=Android如何防止apk程序被反编译 href="show_208_217.html">Android如何防止apk程序被反编译</A> </li><li ><A title=Android反编译和防止反编译的方法 href="show_209_217.html">Android反编译和防止反编译的方法</A> </li><li ><A title=构建Android自动编译持续集成系统 href="show_210_217.html">构建Android自动编译持续集成系统</A> </li><li ><A title=跟我一起学【ANT build.xml】 href="show_211_217.html">跟我一起学【ANT build.xml】</A> </li><li ><A title=linux 下 使用shell 控制ant批量打包 href="show_212_217.html">linux 下 使用shell 控制ant批量打包</A> </li></UL>
+  <h2><A title="Android高级篇之加密解密" href="index_218.html">Android高级篇之加密解密</A></h2>
+
+  <h2><A title="Android高级篇之Android 安全" href="index_219.html">Android高级篇之Android 安全</A></h2>
+
+  <h2><A title="Android高级篇之算法" href="index_220.html">Android高级篇之算法</A></h2>
+
+  <h2><A title="Android高级篇之解锁教程" href="index_221.html">Android高级篇之解锁教程</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>apk反编译问题总结</H2>
+<div style="line-height:20px; font-size:14px;"><p>今天反编译一个apk，遇到了很多问题，查了好几个文档，现在把前人的一些经验和自己碰到的问题记录下来，作一个总结，与大家分享，希望对大家有帮助。</p><p style="color:#3333FF;">一、找到apk中的class.dex：</p><p>把apk文件改名为.zip，然后解压缩其中的class.dex文件，它就是java文件编译再通过dx工具打包成的。</p><p style="color:#3333FF;">二、得到java源文件</p><p>工具准备：</p><p>1、把dex文件反编译为jar文件的工具。（dex2jar）</p><p>http://code.google.com/p/dex2jar/downloads/list </p><p>2、把jar反编译为java的工具。（JD-GUI）</p><p>http://java.decompiler.free.fr/?q=jdgui</p><p>反编译步骤：</p><p>1、把class.dex拷贝到dex2jar.bat所在目录，直接拖动class.dex到dex2jar.bat，生成classes.dex.dex2jar.jar。</p><p>或者：1.在cmd下进入dex2jar.bat所在路径，然后输入“dex2jar.bat XXX”，XXX指的是你要反编译的apk中的classes.dex文件所在路径及名称，比如：我的dex2jar.bat在D:\Android\apk_decode\dex2jar-0.0.7-SNAPSHOT路径下, classes.dex在D:\Android下，所以： 你进入dex2jar.bat路径下后，输入dex2jar.bat D:\Android\classes.dex，这样会生成一个jar文件。</p><p>2.用rar解压出jar文件中的class文件，然后用jad或DJ Java Decompiler反编译工具将.class文件反编译成.java文件。</p><p>3、运行JD-GUI工具（它是绿色无须安装的），打开上面的jar文件，在File下有个Save JAR Source，它可以生成src源代码。</p><p style="color:#3333FF;">三、上面操作只能得到class文件，下面利用Google提供的apktool得到xml文件。</p><p>1. 下载apktool，可以去Google的官方下载，地址：http://code.google.com/p/android-apktool/得，apktool-1.0.0.tar.bz2和apktool-install-windows-2.1_r01-1.zip两个包都要下。解压apktool-1.0.0.tar.bz2得到apktool.jar放到 C:\Windows ，解压apktool-install-windows.zip到任意文件夹(例如E盘根目录)。（我是两个包解压后都放在C:\Windows下）</p><p>2. Win+R 运行CMD，用cd命令转到apktool-install-windows所在文件夹，输入apktool看看。会列出一些帮助的话就成功了（解释d为加压 第一个路径为你的apk所在的位置。第二个是要输出的位置）。</p><p>在这一步中我碰到这样一个问题：</p><p><pre>Exception in thread "main" java.lang.UnsupportedClassVersionError: Bad version n</p><p>umber in .class file</p><p>at java.lang.ClassLoader.defineClass1(Native Method)</p><p>at java.lang.ClassLoader.defineClass(ClassLoader.java:620)</p><p>at java.security.SecureClassLoader.defineClass(SecureClassLoader.java:12</p><p>4)</p><p>at java.net.URLClassLoader.defineClass(URLClassLoader.java:260)</p><p>at java.net.URLClassLoader.access$100(URLClassLoader.java:56)</p><p>at java.net.URLClassLoader$1.run(URLClassLoader.java:195)</p><p>at java.security.AccessController.doPrivileged(Native Method)</p><p>at java.net.URLClassLoader.findClass(URLClassLoader.java:188)</p><p>at java.lang.ClassLoader.loadClass(ClassLoader.java:306)</p><p>at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:268)</p><p>at java.lang.ClassLoader.loadClass(ClassLoader.java:251)</p><p>at java.lang.ClassLoader.loadClassInternal(ClassLoader.java:319)</p><p></pre></p><p>版本问题，装了个jre6，在360中的软件管家可以找到的，记得装完后配置path路径，果然，ok。</p><p>继续:</p><p><pre>apktool d e:\a.apk（apk路径）ABC（文件夹名称）。</p><p></pre></p><p>这时当前目录下生成 ABC文件夹，里面就是我们想要的东东了。</p><p style="color:#3333FF;">四、将“二”中得到的java文件和“三”中得到的xml文件组合成一个android工程，即可得到完整的apk源码。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

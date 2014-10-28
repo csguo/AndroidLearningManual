@@ -1,0 +1,70 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 输入法框梳理_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li class="navcurrentLink"><A href="index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="设备信息" href="index_157.html">设备信息</A></h2>
+
+  <h2><A title="摄像头" href="index_158.html">摄像头</A></h2>
+
+  <h2><A title="通讯录" href="index_159.html">通讯录</A></h2>
+
+  <h2><A title="电话" href="index_160.html">电话</A></h2>
+
+  <h2><A title="短信" href="index_161.html">短信</A></h2>
+
+  <h2><A title="传感器" href="index_162.html">传感器</A></h2>
+
+  <h2><A title="定位" href="index_163.html">定位</A></h2>
+
+  <h2><A title="视频系统" href="index_164.html">视频系统</A></h2>
+
+  <h2><A title="音频系统" href="index_165.html">音频系统</A></h2>
+
+  <h2><A title="铃声" href="index_166.html">铃声</A></h2>
+
+  <h2><A title="音量" href="index_167.html">音量</A></h2>
+
+  <h2><A title="录音" href="index_168.html">录音</A></h2>
+
+  <h2><A title="输入法" href="index_169.html">输入法</A></h2>
+<UL><li ><A title=输入法框架 href="show_1201_169.html">输入法框架</A> </li><li class="currentLink"><A title=Android 输入法框梳理 href="show_1202_169.html">Android 输入法框梳理</A> </li><li ><A title=Android 调用输入法 href="show_1203_169.html">Android 调用输入法</A> </li><li ><A title=Android 输入法手势程序源码 href="show_1204_169.html">Android 输入法手势程序源码</A> </li></UL>
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 输入法框梳理</H2>
+<div style="line-height:20px; font-size:14px;"><p>/frameworks/base/services/java/InputMethodManagerService.java</p><p>这是整个系统当中，一切与输入法有关的地方的总控制中心。它通过管理下面三个模块来实现系统的输入法框架。</p><p>1、/frameworks/base/services/java/WindowManagerService</p><p>负责显示输入法，接收用户事件。</p><p>2、/frameworks/base/core/java/android.inputmethodservice/InputMethodService</p><p>输入法内部逻辑，键盘布局，选词等，最终把选出的字符通过commitText提交出来。要做一个像搜狗输入法这样的东西的话，主要就是在这里做文章。</p><p>3、InputManager</p><p>由UI控件（View,TextView,EditText等）调用，用来操作输入法。比如，打开，关闭，切换输入法等。</p><p>下面说一下InputMethodManagerService这个控制中心是怎么样与三个模块交互的。</p><p>1、与WindowManagerSerivce的交互。</p><p>首先，InputMethodManagerService在初始化时，会调用IWindowManager.Stub.asInterface(ServiceManager.getService(Context.WINDOW_SERVICE))，得到IWindowManager这个代理，然后通过IWindowManager与WindowManagerService交互。比如下面这些操作：</p><p>调用mIWindowManager.addWindowToken(mCurToken, WindowManager.LayoutParams.TYPE_INPUT_METHOD)，让WindowManagerService显示输入法界面。</p><p>调用mIWindowManager.removeWindowToken(mCurToken)让输入法界面关闭。</p><p>调用mIWindowManager.inputMethodClientHasFocus(client)判断输入法是否聚焦。</p><p>2、与InputMethodService的交互。</p><p>InputMethodManagerService在内部维护着一个ArrayList&lt;InputMethodInfo&gt; mMethodList。这个列表会在服务启动时通过PackageManager查询当前系统中的输入法程序来得到。与之对应的，每一个输入法程序的AndroidManifest.xml中都会有一个Service，而每个Service中都会有标记来告诉系统，自己是个输入法程序。下面这个是我从系统自带的例子Samples/SoftKeyboard/AndroidManifest.xml中的取出来的：</p><p><pre>&lt;manifest xmlns:android=<font class="Fields">"http:<font class="Comments">//schemas.android.com/apk/res/android</font></p><p>    </font>package=<font class="Fields">"com.example.android.softkeyboard"</font> &gt;</p><p>    </font>&lt;application android:label=<font class="Fields">"@string/ime_name"</font> &gt;</p><p>        &lt;service</p><p>            </font>android:name=<font class="Fields">"SoftKeyboard</p><p>            </font>android:permission=<font class="Fields">"android.permission.BIND_INPUT_METHOD"</font> &gt;</p><p>            &lt;intent-filter&gt;</p><p>                </font>&lt;action android:name=<font class="Fields">"android.view.InputMethod"</font> /&gt;</p><p>            &lt;/intent-filter&gt;</p><p>            &lt;meta-data</p><p>                </font>android:name=<font class="Fields">"android.view.im</p><p>                </font>android:resource=<font class="Fields">"@xml/method"</font> /&gt;</p><p>        &lt;/service&gt;</p><p>    &lt;/application&gt;</p><p>&lt;/manifest&gt;</p><p></pre></p><p>另外，InputMethodManagerService内部还有一个PackageReceiver，当系统中有程序的安装、删除、重启等事件发生时，会更新mMethodList。InputMethodManagerService打开，关闭，切换输入法时，其实就是在操作mMethodList中某个InputMethodInfo。把InputMethodInfo中的代表某个输入法的InputMethodService启动或者销毁，就实现了输入法的打开和关闭。</p><p>3、与InputMethodManager的交互</p><p>InputMethodManager中会包含一个IInputMethodManager，这个东西就是InputMethodManagerService的代理，打开关闭输入法这些操作就是由InputMethodManager中的某些方法调用IInputMethodManager中相应的方法来实现的。比如：</p><p><pre>mService.getInputMethodList()获取输入法列表。</p><p>mService.updateStatusIcon(imeToken, packageName, iconId)更新输入法图标，即屏幕上方状态栏中的输入法图标。</p><p>mService.finishInput(mClient)隐藏当前输入法。这所以不说关闭输入法，是因为输入法服务启动起来以后，只有在系统关闭或者切换输入法时才会关闭。</p><p>mService.showSoftInput(mClient, flags, resultReceiver)打开当前输入法。</p><p></pre></p><p>分别介绍完三大模块之后，再介绍两个东西，输入法的实现和怎么样调用输入法。</p><p>1、以系统的SoftKeyboard为例，实现一个输入法至少需要Keyboard,KeyboardView,CandidateView,SoftKeyboard这四个东西。</p><p>CandidateView负责显示软键盘上面的那个候选区域。</p><p>Keyboard负责解析并保存键盘布局，并提供选词算法，供程序运行当中使用。其中键盘布局是以XML文件存放在资源当中的。比如我们在汉字输入法下，按下b、a两个字母。Keyboard就负责把这两个字母变成爸、把、巴等显示在CandidateView上。</p><p>KeyboardView负责显示，就是我们看到的按键。</p><p>上面这两人东西合起来，组成了InputView，就是我们看到的软键盘。</p><p>SoftKeyboard继承了InputMethodService，启动一个输入法，其实就是启动一个InputMethodService，当SoftKeyboard输入法被使用时，启动就会启动SoftKeyboard这个Service。InputMethodService中管理着一个继承自Dialog的SoftInputWindow，而SoftInputWindow里面就包括了InputView和CandidateView这两个东西。</p><p>2、怎么样调用输入法呢？</p><p>说起这个东西，很自然地想起EditText来，我们团队跟踪过这个Widget，EditText本身很简单，主要的代码在TextView和View当中。这两个Widget本身又很复杂，杂在一起说不清楚。这里我就把我们团队以前做过的一个小例子拿进来做参考，说明一下如何从一个View上调用输入法和如何接收输入法传过来的字符串。</p><p>小例子的起源来自于我们要做一个浏览器，需要在SurfaceView来在Canvas上面绘制自己需要的东西，开启自己的主控制循环线程，事件处理等。比如我要在SurfaceView上绘制输入浏览器中的按钮、文本、图片、输入框等，当然这些和ImageView,TextView没有关系，都是用自己的UI引擎来做的。最后所有问题都解决了，却在输入框上卡壳了。因为要实现输入，得调用EditText，否则就必须自己去和EditText一样连接输入法。以前找过相关资料，看网上也有人碰到过这个问题，但都没有答案。最后，还是团队中一个很牛的娃给解决了。代码很简单，不出二十行，但没资料，View的源码又太庞大，费的劲却是只有我们团队的人才能体会得到的。。。这里佩服张老二同学一下，没有他的努力，就没有下面这二十多行很重要很重要的源码的诞生。</p><p>首先，定义一个继承自BaseInputConnection的类。</p><p><pre><font class="keyword">public </font><font class="keyword">class </font>MyBaseInputConnection </font><font class="keyword">extends </font>BaseInputConnection {</p><p>	<font class="keyword">public </font>MyBaseInputConnection(View targetView, </font><font class="keyword">boolean </font>fullEditor) {</p><p>		<font class="keyword">super</font>(targetView, fullEditor);</p><p>	}</p><p>	<font class="keyword">public </font><font class="keyword">static </font>String tx = <font class="Fields">""</font>;</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">boolean </font>commitText(CharSequence text, </font><font class="keyword">int </font>newCursorPosition) {</p><p>		<font class="Comments">// 输入法程序就是通过调用这个方法把最终结果输出来的。</font></p><p>		tx = text.toString();</p><p>		<font class="keyword">return </font><font class="keyword">true</font>;</p><p>	}</p><p>}</p><p></pre></p><p>BaseInputConnection相当于一个InputMethodService和View之间的一个通道。每当InputMethodService产生一个结果时，都会调用BaseInputConnection的commitText方法，把结果传递出来。</p><p><pre><font class="keyword">public </font><font class="keyword">class </font>MyView </font><font class="keyword">extends </font>SurfaceView {</p><p>	<font class="Comments">//得到InputMethodManager。</font></p><p>	InputMethodManager input = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);</p><p>	</font>ResultReceiver receiver = <font class="keyword">new </font>ResultReceiver(</font><font class="keyword">new </font>Handler() {<font class="Comments">//定义事件处理器。</font></p><p>		<font class="keyword">public </font><font class="keyword">void </font>handleMessage(Message msg) {</font>}</p><p>	});</p><p>	</p><p>	</font>input.showSoftInput(<font class="keyword">this</font>, 0, mRR);<font class="Comments">//在你想呼出输入法的时候，调用这一句。</font></p><p>	<font class="Comments">//这个方法继承自View。把自定义的BaseInputConnection通道传递给InputMethodService。</font></p><p>	@Override</p><p>	<font class="keyword">public </font>InputConnection onCreateInputConnection(EditorInfo outAttrs) {</p><p>		<font class="keyword">return </font><font class="keyword">new </font>MyBaseInputConnection(</font><font class="keyword">this</font>, </font><font class="keyword">false</font>);</p><p>	}</p><p>}</p><p></pre></p><p>低级界面上面，自己调用输入法并接收输入法的输出结果，就是这样的。</p><p>通过这个问题，可以看出WebView上面的输入法是如何实现的。简单来说，WebView就是一个ViewGroup，它里面有两层，上层是一个EditText，下层是浏览器页面。当浏览器的输入框被用户点中，需要显示输入法时，就把上层EditText的位置移到浏览器的输入框的位置，高速好EditText的大小和样式后，让EditText和浏览器页面融为一体，效果就很好了。</p><p>通常来说，这个方式应该比自己调用输入法要好些。可以少做很多事。不过，如果产品经理是个很有想像力的人的话，你就不能满足他设计出来的有可能极端变态却非常炫的输入效果了。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

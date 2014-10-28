@@ -1,0 +1,70 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 怎样获得手机信息（一）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li class="navcurrentLink"><A href="index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="设备信息" href="index_157.html">设备信息</A></h2>
+<UL><li ><A title=Android 信息类 href="show_1_157.html">Android 信息类</A> </li><li class="currentLink"><A title=Android 怎样获得手机信息（一） href="show_2_157.html">Android 怎样获得手机信息（一）</A> </li><li ><A title=Android 怎样获得手机信息（二） href="show_3_157.html">Android 怎样获得手机信息（二）</A> </li><li ><A title=Android 怎样获得手机信息（三） href="show_4_157.html">Android 怎样获得手机信息（三）</A> </li><li ><A title=Android 怎样获得手机信息（四） href="show_5_157.html">Android 怎样获得手机信息（四）</A> </li><li ><A title=Android 怎样获得手机信息（五） href="show_6_157.html">Android 怎样获得手机信息（五）</A> </li><li ><A title=获取系统和应用程序PackageManager href="show_7_157.html">获取系统和应用程序PackageManager</A> </li><li ><A title=Android手机号码获取问题 href="show_8_157.html">Android手机号码获取问题</A> </li><li ><A title=Android 获取联网信息 href="show_9_157.html">Android 获取联网信息</A> </li></UL>
+  <h2><A title="摄像头" href="index_158.html">摄像头</A></h2>
+
+  <h2><A title="通讯录" href="index_159.html">通讯录</A></h2>
+
+  <h2><A title="电话" href="index_160.html">电话</A></h2>
+
+  <h2><A title="短信" href="index_161.html">短信</A></h2>
+
+  <h2><A title="传感器" href="index_162.html">传感器</A></h2>
+
+  <h2><A title="定位" href="index_163.html">定位</A></h2>
+
+  <h2><A title="视频系统" href="index_164.html">视频系统</A></h2>
+
+  <h2><A title="音频系统" href="index_165.html">音频系统</A></h2>
+
+  <h2><A title="铃声" href="index_166.html">铃声</A></h2>
+
+  <h2><A title="音量" href="index_167.html">音量</A></h2>
+
+  <h2><A title="录音" href="index_168.html">录音</A></h2>
+
+  <h2><A title="输入法" href="index_169.html">输入法</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 怎样获得手机信息（一）</H2>
+<div style="line-height:20px; font-size:14px;"><p>1.手机信息查看助手可行性分析</p><p>开始进入编写程序前，需要对需求的功能做一些可行性分析，以做到有的放矢，如果有些无法实现的功能，可以尽快调整。</p><p>这里分析一下项目需要的功能，主要是信息查看和信息收集，如版本信息、硬件信息等，这些都可以通过读取系统文件或者运行系统命令获取，而像获取安装的软件信息和运行时信息则需要通过API提供的接口获取。实现API接口不是什么问题，主要把精力集中在如何实现运行系统命令，获取其返回的结果功能实现上。具体实现代码如下所示：</p><p><pre><font class="keyword">import </font>java.io.File;</p><p><font class="keyword">import </font>java.io.IOException;</p><p><font class="keyword">import </font>java.io.InputStream;</p><p><font class="keyword">public </font><font class="keyword">class </font>CMDExecute {</p><p>	<font class="keyword">public </font><font class="keyword">synchronized </font>String run(String[] cmd, String workdirectory)</p><p>			<font class="keyword">throws </font>IOException {</p><p>		</font>String result = <font class="Fields">""</font>;</p><p>		<font class="keyword">try </font>{</p><p>			</font>ProcessBuilder builder = <font class="keyword">new </font>ProcessBuilder(cmd);</p><p>			</font>InputStream in = <font class="keyword">null</font>;</p><p>			<font class="Comments">// 设置一个路径</font></p><p>			<font class="keyword">if </font>(workdirectory != </font><font class="keyword">null</font>) {</p><p>				</font>builder.directory(<font class="keyword">new </font>File(workdirectory));</p><p>				</font>builder.redirectErrorStream(<font class="keyword">true</font>);</p><p>				Process process = builder.start();</p><p>				in = process.getInputStream();</p><p>				</font>byte[] re = <font class="keyword">new </font>byte[1024];</p><p></p><p>				<font class="keyword">while </font>(in.read(re) != -1)</p><p>					</font>result = result + <font class="keyword">new </font>String(re);</p><p>			}</p><p>			<font class="keyword">if </font>(in != </font><font class="keyword">null</font>) {</p><p>				in.close();</p><p>			}</p><p>		</font>} <font class="keyword">catch </font>(Exception ex) {</p><p>			ex.printStackTrace();</p><p>		}</p><p>		<font class="keyword">return </font>result;</p><p>	}</p><p>}</p><p></pre></p><p>1.2 手机信息查看助手功能实现</p><p>1.2.1 手机信息查看助手主界面</p><p>按照预设的规划，将4类信息的查看入口放在主界面上，其布局文件为main.xml，基本上是用一个列表组件组成的，实现代码如下所示：</p><p>在这里main.xml中使用的是LinearLayout布局，其中放置了一个ListView组件。</p><p><pre>&lt;?xml version=<font class="Fields">"1.0"</font> encoding=</font><font class="Fields">"utf-8"</font>?&gt;</p><p>&lt;LinearLayout xmlns:android=<font class="Fields">"http:<font class="Comments">//schemas.android.com/apk/res/android</font></p><p>    </font>android:layout_width=<font class="Fields">"fill_parent</p><p>    </font>android:layout_height=<font class="Fields">"fill_parent</p><p>    </font>android:orientation=<font class="Fields">"vertical"</font> &gt;</p><p>    &lt;ListView</p><p>        </font>android:id=<font class="Fields">"@+id/itemlist</p><p>        </font>android:layout_width=<font class="Fields">"fill_parent</p><p>        </font>android:layout_height=<font class="Fields">"fill_parent"</font> /&gt;</p><p></p><p>&lt;/LinearLayout&gt;</p><p></pre></p><p>1.2.2 查看系统信息实现</p><p>当在运行的主界面单击第一行时，也就是“系统信息”这一行，将执行代码如下：</p><p><pre><font class="keyword">case </font>0:</p><p>intent.setClass(eoeInfosAssistant.<font class="keyword">this</font>, System.</font><font class="keyword">class</font>);</p><p>startActivity(intent);</p><p><font class="keyword">break</font>;</p><p></pre></p><p>代码运行后将显示系统(System)这个界面，这就是查看系统信息的主界面，其和主界面差不多，也就是列表显示几个需要查看的系统信息。</p><p>1.2.2.1 操作系统版本</p><p>单击图界面第一行“操作系统版本”项，则会打开一个新的界面，其对应的是ShowInfo.java文件，然后需要显示该设备的操作系统版本信息，而这个信息在/proc/version中有，可以直接调用。在可行性分析中给出的CMDExencute类来调用系统的cat命令获取该文件的内容，实现代码如下：</p><p><pre><font class="keyword">public </font><font class="keyword">static </font>String fetch_version_info() {</p><p>	</font>String result = <font class="keyword">null</font>;</p><p>	</font>CMDExecute cmdexe = <font class="keyword">new </font>CMDExecute();</p><p>	<font class="keyword">try </font>{</p><p>		</font>String[] args = { <font class="Fields">"/system/bin/cat"</font>, </font><font class="Fields">"/proc/version"</font> </font>};</p><p>		</font>result = cmdexe.run(args, <font class="Fields">"system/bin/"</font>);</p><p>	</font>} <font class="keyword">catch </font>(IOException ex) {</p><p>		ex.printStackTrace();</p><p>	}</p><p>	<font class="keyword">return </font>result;</p><p>}</p><p></pre></p><p>上述代码使用的是CMDExecute类，调用系统的“"/system/bin/cat"”工具，获取“"/proc/version"”中内容。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

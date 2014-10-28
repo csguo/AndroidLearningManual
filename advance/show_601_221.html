@@ -1,0 +1,58 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 说说亮屏锁和键盘锁_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li class="navcurrentLink"><A href="index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Android基础之运行原理和机制" href="index_215.html">Android基础之运行原理和机制</A></h2>
+
+  <h2><A title="Android高级篇之Android优化" href="index_216.html">Android高级篇之Android优化</A></h2>
+
+  <h2><A title="Android高级篇之编译及反编译" href="index_217.html">Android高级篇之编译及反编译</A></h2>
+
+  <h2><A title="Android高级篇之加密解密" href="index_218.html">Android高级篇之加密解密</A></h2>
+
+  <h2><A title="Android高级篇之Android 安全" href="index_219.html">Android高级篇之Android 安全</A></h2>
+
+  <h2><A title="Android高级篇之算法" href="index_220.html">Android高级篇之算法</A></h2>
+
+  <h2><A title="Android高级篇之解锁教程" href="index_221.html">Android高级篇之解锁教程</A></h2>
+<UL><li class="currentLink"><A title=Android 说说亮屏锁和键盘锁 href="show_601_221.html">Android 说说亮屏锁和键盘锁</A> </li><li ><A title=点亮屏幕和屏幕解锁 href="show_602_221.html">点亮屏幕和屏幕解锁</A> </li><li ><A title=特殊代码 href="show_603_221.html">特殊代码</A> </li><li ><A title=Android屏幕锁定代码，同时分享基于Rexsee通过js快速实现 href="show_604_221.html">Android屏幕锁定代码，同时分享基于Rexsee通过js快速实现</A> </li></UL>
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 说说亮屏锁和键盘锁</H2>
+<div style="line-height:20px; font-size:14px;"><p>Android中的两把锁 – WalkLock and KeyguardLock 详细分析。</p><p>WalkLock – 顾名思义 唤醒锁 点亮屏幕用的。</p><p>KeyguardLock – 顾名思义 键盘锁 解锁键盘用的。</p><p>详细介绍：</p><p style="color:#3333FF;">1：WalkLock 唤醒锁</p><p>WalkLock真的能点亮屏幕吗？</p><p>答案是肯定的。可是有时候为什么不点亮屏幕，这个就是参数设置的问题了。</p><p><pre>PowerManager.newWakeLock(PowerManager.FULL_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP, "Gank");</p><p>PowerManager.FULL_WAKE_LOCK //这个参数是手机点亮的程度，（什么Cpu，屏幕亮度，键盘灯）</p><p>PowerManager.ACQUIRE_CAUSES_WAKEUP //关键是这个参数的理解。 </p><p></pre></p><p>WalkLock点亮屏幕并非真的去点亮了屏幕，你可以理解为，它通过Android组件（Activity）去点亮了屏幕。</p><p>假如一个通知想去点亮屏幕，问题来了，它能点亮吗？ 肯定不行。</p><p>不过拥有这个PowerManager.ACQUIRE_CAUSES_WAKEU参数，你就可以点亮屏幕了。它使WalkLock不再依赖组件就可以点亮屏幕了。</p><p>WalkLock如何获得屏幕的状态？</p><p>PowerManager.isScreenOn()方法；这个方法返回true: 屏幕是唤醒的返回false:屏幕是休眠的。</p><p>WalkLock唤醒和休眠的方法？</p><p>WalkLock.aquire() 在屏幕休眠的状态下唤醒屏幕。</p><p>WalkLock.release() 在屏幕点亮的状态下，使屏幕休眠。</p><p>WalkLock.release()这个方法有个需要注意的地方。例如：WalkLockA对象先唤醒了屏幕再使屏幕休眠。</p><p>屏幕本身就是唤醒状态，WalkLockA对象没有唤醒过屏幕，WalkLockA对象如果尝试使屏幕休眠。会产生一个异常 UnLock Sreen。</p><p style="color:#3333FF;">2:KeyguardLock 键盘锁</p><p>KeyguardLock获得当前屏幕是否解锁？</p><p>KeygroundManager.inKeyguardRestrictedInputMode() 返回true表示键盘锁住， 返回false表示键盘解锁中。</p><p>KeyguardLock给屏幕解锁和上锁。</p><p>KeyguardLock.disableKeyguard()解锁键盘。</p><p>KeyguardLock.reenableKeyguard()锁键盘。</p><p>KeyguardLock没有上面唤醒锁的问题，就是无论你键盘是否由KeyguardLockA解锁，你调用KeyguardLockA对象的reenableKeyguard（）方法都不会有异常。</p><p>这两把锁一些概念性的理解，假如你认为你获得了一个键盘锁对象，你就可以锁屏幕了。这个就大错特错了。</p><p>你锁不了其他程序打开的屏幕（如果可以的话，一个for循环一直锁你屏幕，你哭都没眼泪）。</p><p>你可以控制自己的锁，别想着别人的锁。</p><p style="color:#3333FF;">最后总结下用法：</p><p>一般这两把锁都是配合使用的，你解锁屏幕的时候肯定不希望屏幕漆黑一片。关闭键盘锁的时候希望屏幕也同时休眠。</p><p style="color:#3333FF;">问题：</p><p>1：我尝试手动关闭屏幕，可是总继续亮那么一小会。</p><p>2：如果手机自动关闭屏幕的话，不会有这个问题。</p><p>主要代码展示：</p><p><pre>KeyguardManager keyguardManager = (KeyguardManager) <font class="keyword">this</font></p><p>		.getSystemService(Context.KEYGUARD_SERVICE);</p><p>KeyguardLock keyguardLock = keyguardManager.newKeyguardLock(<font class="Fields">"随便写点啥都行"</font>);</p><p>keyguardLock.disableKeyguard();</p><p><font class="Comments">/**</font></p><p> <font class="Comments">* 点亮屏幕</font></p><p> <font class="Comments">*/</font></p><p><font class="keyword">private </font><font class="keyword">void </font>lightScreen() {</p><p>	</font>PowerManager powerManager = (PowerManager) <font class="keyword">this</font></p><p>			.getSystemService(Context.POWER_SERVICE);</p><p>	WakeLock wakeLock = powerManager.newWakeLock(</p><p>			PowerManager.FULL_WAKE_LOCK</p><p>					</font>| PowerManager.ACQUIRE_CAUSES_WAKEUP, <font class="Fields">""</font>);</p><p>	wakeLock.acquire();</p><p>}</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

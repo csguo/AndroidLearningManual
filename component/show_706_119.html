@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 线程间的通信_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li class="navcurrentLink"><A href="index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Activity" href="index_112.html">Activity</A></h2>
+
+  <h2><A title="Intent" href="index_113.html">Intent</A></h2>
+
+  <h2><A title="Service" href="index_114.html">Service</A></h2>
+
+  <h2><A title="Content Provider" href="index_115.html">Content Provider</A></h2>
+
+  <h2><A title="BroadcastReceiver" href="index_116.html">BroadcastReceiver</A></h2>
+
+  <h2><A title="AsyncTask" href="index_117.html">AsyncTask</A></h2>
+
+  <h2><A title="Handler" href="index_118.html">Handler</A></h2>
+
+  <h2><A title="Thread" href="index_119.html">Thread</A></h2>
+<UL><li ><A title=线程的基础知识 href="show_701_119.html">线程的基础知识</A> </li><li ><A title=Android 线程学习 href="show_702_119.html">Android 线程学习</A> </li><li ><A title=Android开发之旅：进程与线程 href="show_703_119.html">Android开发之旅：进程与线程</A> </li><li ><A title=线程和进程的区别 href="show_704_119.html">线程和进程的区别</A> </li><li ><A title=创建线程的两种方式 href="show_705_119.html">创建线程的两种方式</A> </li><li class="currentLink"><A title=Android 线程间的通信 href="show_706_119.html">Android 线程间的通信</A> </li><li ><A title=Android线程间通信的Message机制 href="show_707_119.html">Android线程间通信的Message机制</A> </li><li ><A title=Activity与Thread之间的通讯 href="show_708_119.html">Activity与Thread之间的通讯</A> </li><li ><A title=Android 线程交互+修改Button样式（一） href="show_709_119.html">Android 线程交互+修改Button样式（一）</A> </li><li ><A title=Android 线程交互+修改Button样式（二） href="show_710_119.html">Android 线程交互+修改Button样式（二）</A> </li><li ><A title=Android 多线程下载 href="show_711_119.html">Android 多线程下载</A> </li></UL>
+  <h2><A title="Permission" href="index_120.html">Permission</A></h2>
+
+  <h2><A title="AIDL" href="index_121.html">AIDL</A></h2>
+
+  <h2><A title="Json" href="index_122.html">Json</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 线程间的通信</H2>
+<div style="line-height:20px; font-size:14px;"><p>Andriod提供了Handler和Looper来满足线程间的通信。例如一个子线程从网络上下载了一副图片，当它下载完成后会发送消息给主线程，这个消息是通过绑定在主线程的Handler来传递的。</p><p>在Android，这里的线程分为有消息循环的线程和没有消息循环的线程，有消息循环的线程一般都会有一个Looper，这个事android的新概念。我们的主线程（UI线程）就是一个消息循环的线程。针对这种消息循环的机制，我们引入一个新的机制Handle，我们有消息循环，就要往消息循环里面发送相应的消息，自定义消息一般都会有自己对应的处理，消息的发送和清除，消息的的处理，把这些都封装在Handle里面，注意Handle只是针对那些有Looper的线程，不管是UI线程还是子线程，只要你有Looper，我就可以往你的消息队列里面添加东西，并做相应的处理。</p><p>但是这里还有一点，就是只要是关于UI相关的东西，就不能放在子线程中，因为子线程是不能操作UI的，只能进行数据、系统等其他非UI的操作。</p><p>在Android，这里的线程分为有消息循环的线程和没有消息循环的线程，有消息循环的线程一般都会有一个Looper，这个是android的新概念。我们的主线程（UI线程）就是一个消息循环的线程。针对这种消息循环的机制，我们引入一个新的机制Handler，我们有消息循环，就要往消息循环里面发送相应的消息，自定义消息一般都会有自己对应的处理，消息的发送和清除，把这些都封装在Handler里面，注意Handler只是针对那些有Looper的线程，不管是UI线程还是子线程，只要你有Looper，我就可以往你的消息队列里面添加东西，并做相应的处理。</p><p>但是这里还有一点，就是只要是关于UI相关的东西，就不能放在子线程中，因为子线程是不能操作UI的，只能进行数据、系统等其他非UI的操作。</p><p>一个Handler的创建它就会被绑定到这个线程的消息队列中，如果是在主线程创建的，那就不需要写代码来创建消息队列了，默认的消息队列会在主线程被创建。但是如果是在子线程的话，就必须在创建Handler之前先初始化线程的消息队列。如下面的代码：</p><p><pre><font class="keyword">class </font>ChildThread </font><font class="keyword">extends </font>Thread {</p><p>	<font class="keyword">public </font><font class="keyword">void </font>run() {</p><p>		/*</p><p>		 <font class="Comments">* 创建 handler前先初始化Looper.</font></p><p>		 <font class="Comments">*/</font></p><p>		Looper.prepare();</p><p>		/*</p><p>		 <font class="Comments">* 在子线程创建handler，所以会绑定到子线程的消息队列中</font></p><p>		 <font class="Comments">*/</font></p><p>		</font>mChildHandler = <font class="keyword">new </font>Handler() {</p><p></p><p>			<font class="keyword">public </font><font class="keyword">void </font>handleMessage(Message msg) {</p><p></p><p>				/*</p><p>				 <font class="Comments">* Do some expensive operations there.</font></p><p>				 <font class="Comments">*/</font></p><p>			}</p><p>		};</p><p>		/*</p><p>		 <font class="Comments">* 启动该线程的消息队列</font></p><p>		 <font class="Comments">*/</font></p><p>		Looper.loop();</p><p>	}</p><p>}</p><p></pre></p><p>当Handler收到消息后，就会运行handleMessage(…)的回调函数，可以在里面做一些耗时的操作。</p><p>最后完成了操作要结束子线程时，记得调用quit()来结束消息循环队列。</p><p><pre>mChildHandler.getLooper().quit(); </p><p></pre></p><p>下面是一个线程间通信的小例子：</p><p><img src="../img/component_thread/06_thread.png"></p><p><pre><font class="keyword">public </font><font class="keyword">class </font>MainThread </font><font class="keyword">extends </font>Activity {</p><p>	<font class="keyword">private </font><font class="keyword">static </font><font class="keyword">final </font>String TAG = <font class="Fields">"MainThread"</font>;</p><p>	<font class="keyword">private </font>Handler mMainHandler, mChildHandler;</p><p>	<font class="keyword">private </font>TextView info;</p><p>	<font class="keyword">private </font>Button msgBtn;</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onCreate(Bundle savedInstanceState) {</p><p>		<font class="keyword">super</font>.onCreate(savedInstanceState);</p><p>		setContentView(R.layout.main);</p><p>		info = (TextView) findViewById(R.id.info);</p><p>		msgBtn = (Button) findViewById(R.id.msgBtn);</p><p>		</font>mMainHandler = <font class="keyword">new </font>Handler() {</p><p>			@Override</p><p>			<font class="keyword">public </font><font class="keyword">void </font>handleMessage(Message msg) {</p><p>				</font>Log.i(TAG, <font class="Fields">"Got an incoming message from the child thread -</p><p>						+ (String) msg.obj);</p><p>				<font class="Comments">// 接收子线程的消息</font></p><p>				info.setText((String) msg.obj);</p><p>			}</p><p>		};</p><p>		<font class="keyword">new </font>ChildThread().start();</p><p>		</font>msgBtn.setOnClickListener(<font class="keyword">new </font>OnClickListener() {</p><p>			@Override</p><p>			<font class="keyword">public </font><font class="keyword">void </font>onClick(View v) {</p><p>				<font class="keyword">if </font>(mChildHandler != </font><font class="keyword">null</font>) {</p><p>					<font class="Comments">// 发送消息给子线程</font></p><p>					Message childMsg = mChildHandler.obtainMessage();</p><p>					childMsg.obj = mMainHandler.getLooper().getThread()</p><p>							.getName()</p><p>							</font>+ <font class="Fields">" says Hello"</font>;</p><p>					mChildHandler.sendMessage(childMsg);</p><p>					</font>Log.i(TAG, <font class="Fields">"Send a message to the child thread -</p><p>							+ (String) childMsg.obj);</p><p>				}</p><p>			}</p><p>		});</p><p>	}</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onDestroy() {</p><p>　　　　<font class="keyword">super</font>.onDestroy();</p><p>		</font>Log.i(TAG, <font class="Fields">"Stop looping the child thread</font><font class="Fields">'s message queue"</font>);</p><p>		mChildHandler.getLooper().quit();</p><p>	}</p><p>	<font class="keyword">class </font>ChildThread </font><font class="keyword">extends </font>Thread {</p><p>		<font class="keyword">private </font><font class="keyword">static </font><font class="keyword">final </font>String CHILD_TAG = <font class="Fields">"ChildThread"</font>;</p><p>		<font class="keyword">public </font><font class="keyword">void </font>run() {</p><p>			<font class="keyword">this</font>.setName(<font class="Fields">"ChildThread"</font>);</p><p>			<font class="Comments">// 初始化消息循环队列，需要在Handler创建之前</font></p><p>			Looper.prepare();</p><p>			</font>mChildHandler = <font class="keyword">new </font>Handler() {</p><p>				@Override</p><p>				<font class="keyword">public </font><font class="keyword">void </font>handleMessage(Message msg) {</p><p>					Log.i(CHILD_TAG,</p><p>							<font class="Fields">"Got an incoming message from the main thread - </p><p>									+ (String) msg.obj);</p><p>					<font class="keyword">try </font>{</p><p>						<font class="Comments">// 在子线程中可以做一些耗时的工作</font></p><p>						sleep(100);</p><p>						Message toMain = mMainHandler.obtainMessage();</p><p>						</font>toMain.obj = <font class="Fields">"This is</p><p>								</font>+ <font class="keyword">this</font>.getLooper().getThread().getName()</p><p>								</font>+ <font class="Fields">". Did you send me \"</font></font><font class="Fields">" + (String) msg.obj</p><p>								</font>+ <font class="Fields">"\"</font>?</font><font class="Fields">";</p><p>						mMainHandler.sendMessage(toMain);</p><p>						</font>Log.i(CHILD_TAG, <font class="Fields">"Send a message to the main thread -</p><p>								+ (String) toMain.obj);</p><p>					</font>} <font class="keyword">catch </font>(InterruptedException e) {</p><p>						e.printStackTrace();</p><p>					}</p><p>				}</p><p></p><p>			};</p><p>			</font>Log.i(CHILD_TAG, <font class="Fields">"Child handler is bound to -</p><p>					+ mChildHandler.getLooper().getThread().getName());</p><p></p><p>			<font class="Comments">// 启动子线程消息循环队列</font></p><p>			Looper.loop();</p><p>		}</p><p>	}</p><p>}</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

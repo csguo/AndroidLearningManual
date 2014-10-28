@@ -1,0 +1,58 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android Http下载文件到手机内存与SDCard_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li class="navcurrentLink"><A href="index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="ContentProvider" href="index_170.html">ContentProvider</A></h2>
+
+  <h2><A title="Preferences" href="index_171.html">Preferences</A></h2>
+
+  <h2><A title="SQLite" href="index_172.html">SQLite</A></h2>
+
+  <h2><A title="SD卡" href="index_173.html">SD卡</A></h2>
+<UL><li ><A title=Android SQLite的数据库文件存储在SD卡中（一） href="show_301_173.html">Android SQLite的数据库文件存储在SD卡中（一）</A> </li><li ><A title=Android SQLite的数据库文件存储在SD卡中（二） href="show_302_173.html">Android SQLite的数据库文件存储在SD卡中（二）</A> </li><li ><A title=Android 如何获取SDCard 内存（一） href="show_303_173.html">Android 如何获取SDCard 内存（一）</A> </li><li ><A title=Android 如何获取SDCard 内存（二） href="show_304_173.html">Android 如何获取SDCard 内存（二）</A> </li><li ><A title=Android SDCard的容量大小 href="show_305_173.html">Android SDCard的容量大小</A> </li><li ><A title=Android 查看SDCard还有多少存储空间 href="show_306_173.html">Android 查看SDCard还有多少存储空间</A> </li><li ><A title=Android获取外部和内部存储空间总大小和可用大小 href="show_307_173.html">Android获取外部和内部存储空间总大小和可用大小</A> </li><li ><A title=Android 读写SD卡的权限设置 href="show_308_173.html">Android 读写SD卡的权限设置</A> </li><li ><A title=Android 检测目录是否存在，不存在则创建 href="show_309_173.html">Android 检测目录是否存在，不存在则创建</A> </li><li ><A title=Android 在SD卡上保存图片 href="show_310_173.html">Android 在SD卡上保存图片</A> </li><li class="currentLink"><A title=Android Http下载文件到手机内存与SDCard href="show_311_173.html">Android Http下载文件到手机内存与SDCard</A> </li><li ><A title=Android 程序私有文件（TXT）操作类 href="show_312_173.html">Android 程序私有文件（TXT）操作类</A> </li><li ><A title=Android SD卡里的文件夹功能 href="show_313_173.html">Android SD卡里的文件夹功能</A> </li><li ><A title=Android从SD卡导入数据库.db文件至APK href="show_314_173.html">Android从SD卡导入数据库.db文件至APK</A> </li></UL>
+  <h2><A title="数据库" href="index_174.html">数据库</A></h2>
+
+  <h2><A title="URI" href="index_175.html">URI</A></h2>
+
+  <h2><A title="MediaStore" href="index_176.html">MediaStore</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android Http下载文件到手机内存与SDCard</H2>
+<div style="line-height:20px; font-size:14px;"><p>Android网络应用的开发，http的下载是常用到的功能，因此开发了一个工具类供使用，提供了从网络上下载文件到手机内存和SDCard的功能。主要包括下载网络文件（包括文本文件和音频文件）存储到本地和下载文本文件获取内容显示。希望能对大家有用。先对工具类做些简要的介绍。</p><p>访问Internet和保存文件到SDCard上，首先要在mainifest.xml文件中加上下面的权限。</p><p><pre>&lt;uses-permission android:name=<font class="Fields">"android.permission.INTERNET"</font>/&gt;</p><p>&lt;uses-permission android:name=<font class="Fields">"android.permission.WRITE_EXTERNAL_STORAGE"</font>/&gt;</p><p>&lt;uses-permission android:name=<font class="Fields">"android.permission.MOUNT_UNMOUNT_FILESYSTEMS"</font>/&gt;</p><p></pre></p><p>在工具类中提供了一个 构造函数，其中需要传递Context参数，有助于现实提示信息：</p><p><pre><font class="keyword">public </font>PTTJDownLoadUtil(Context c) {</p><p>	<font class="keyword">if </font>(c != </font><font class="keyword">null</font>) {</p><p>		<font class="keyword">this</font>.c = c;</p><p>	</font>} <font class="keyword">else </font>{</p><p>		</font>Log.w(ERROTAG, <font class="Fields">"上下文为空"</font>);</p><p>	}</p><p>}</p><p></pre></p><p>gettextfilestring(String url)获取文本文件内容：</p><p><pre><font class="keyword">public </font>String gettextfilestring(String url) {</p><p>	InputStream input = getinputStream(url);</p><p>	</font>StringBuffer sb = <font class="keyword">new </font>StringBuffer(<font class="Fields">""</font>);</p><p>	</font>BufferedReader bfr = <font class="keyword">new </font>BufferedReader(</font><font class="keyword">new </font>InputStreamReader(input));</p><p>	</font>String line = <font class="Fields">""</font>;</p><p>	<font class="keyword">try </font>{</p><p>		<font class="keyword">while </font>((line = bfr.readLine()) != </font><font class="keyword">null</font>) {</p><p>			sb.append(line);</p><p>		}</p><p>	</font>} <font class="keyword">catch </font>(IOException e) {</p><p>		</font>toasterror(<font class="Fields">"流文件读写错误"</font>);</p><p>		e.printStackTrace();</p><p>	} finally {</p><p>		<font class="keyword">try </font>{</p><p>			bfr.close();</p><p>		</font>} <font class="keyword">catch </font>(IOException e) {</p><p>			</font>toasterror(<font class="Fields">"流文件未能正常关闭"</font>);</p><p>			e.printStackTrace();</p><p>		}</p><p>	}</p><p>	<font class="keyword">return </font>sb.toString();</p><p>}</p><p></pre></p><p>downFiletoDecive(String url,String filename)方法下载文件到设备内存，下载的文件在应用的路径file下：</p><p><pre><font class="keyword">public </font><font class="keyword">void </font>downFiletoDecive(String url, String filename) {</p><p>	<font class="keyword">if </font>((url != </font><font class="keyword">null</font> && !<font class="Fields">""</font>.equals(url))</p><p>			</font>&& (filename != <font class="keyword">null</font> && !<font class="Fields">""</font>.equals(filename))) {</p><p>		InputStream input = getinputStream(url);</p><p>		</font>FileOutputStream outStream = <font class="keyword">null</font>;</p><p>		<font class="keyword">try </font>{</p><p>			outStream = c.openFileOutput(filename,</p><p>					Context.MODE_WORLD_READABLE</p><p>							| Context.MODE_WORLD_WRITEABLE);</p><p>			<font class="keyword">int </font>temp = 0;</p><p>			</font>byte[] data = <font class="keyword">new </font>byte[1024];</p><p>			<font class="keyword">while </font>((temp = input.read(data)) != -1) {</p><p>				outStream.write(data, 0, temp);</p><p>			}</p><p>		</font>} <font class="keyword">catch </font>(FileNotFoundException e) {</p><p>			</font>toasterror(<font class="Fields">"请传入正确的上下文"</font>);</p><p>			e.printStackTrace();</p><p>		</font>} <font class="keyword">catch </font>(IOException e) {</p><p>			</font>toastemessage(<font class="Fields">"读写错误"</font>);</p><p>			e.printStackTrace();</p><p>		} finally {</p><p>			<font class="keyword">try </font>{</p><p>				outStream.flush();</p><p>				outStream.close();</p><p>			</font>} <font class="keyword">catch </font>(IOException e) {</p><p>				</font>toasterror(<font class="Fields">"流文件未能正常关闭"</font>);</p><p>				e.printStackTrace();</p><p>			}</p><p>		}</p><p>	}</p><p>	</font>toastemessage(<font class="Fields">"下载成功"</font>);</p><p>}</p><p></pre></p><p>downFiletoSDCard(String url,String path,String filename)下载文件到SDCard中，自定义保存路径：</p><p><pre><font class="keyword">public </font><font class="keyword">void </font>downFiletoSDCard(String url, String path, String filename) {</p><p>	<font class="keyword">if </font>((url != </font><font class="keyword">null</font> && !<font class="Fields">""</font>.equals(url)) && (path != </font><font class="keyword">null</font>)</p><p>			</font>&& (filename != <font class="keyword">null</font> && !<font class="Fields">""</font>.equals(filename))) {</p><p>		InputStream input = getinputStream(url);</p><p>		downloader(input, path, filename);</p><p>	</font>} <font class="keyword">else </font>{</p><p>		/*</p><p>		 <font class="Comments">* 对不合发的参数做处理</font></p><p>		 <font class="Comments">*/</font></p><p>		<font class="keyword">if </font>(url == </font><font class="keyword">null</font> || <font class="Fields">""</font>.equals(url)) {</p><p>			</font>toasterror(<font class="Fields">"url不能为空或为“”"</font>);</p><p>		}</p><p>		<font class="keyword">if </font>(path == </font><font class="keyword">null</font>) {</p><p>			</font>toasterror(<font class="Fields">"path不能为空"</font>);</p><p>		}</p><p>		<font class="keyword">if </font>(filename == </font><font class="keyword">null</font> || <font class="Fields">""</font>.equals(filename)) {</p><p>			</font>toasterror(<font class="Fields">"filename不能为空"</font>);</p><p>		}</p><p>	}</p><p>}       </p><p></pre></p><p></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

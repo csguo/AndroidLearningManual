@@ -1,0 +1,58 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android SD卡里的文件夹功能_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li class="navcurrentLink"><A href="index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="ContentProvider" href="index_170.html">ContentProvider</A></h2>
+
+  <h2><A title="Preferences" href="index_171.html">Preferences</A></h2>
+
+  <h2><A title="SQLite" href="index_172.html">SQLite</A></h2>
+
+  <h2><A title="SD卡" href="index_173.html">SD卡</A></h2>
+<UL><li ><A title=Android SQLite的数据库文件存储在SD卡中（一） href="show_301_173.html">Android SQLite的数据库文件存储在SD卡中（一）</A> </li><li ><A title=Android SQLite的数据库文件存储在SD卡中（二） href="show_302_173.html">Android SQLite的数据库文件存储在SD卡中（二）</A> </li><li ><A title=Android 如何获取SDCard 内存（一） href="show_303_173.html">Android 如何获取SDCard 内存（一）</A> </li><li ><A title=Android 如何获取SDCard 内存（二） href="show_304_173.html">Android 如何获取SDCard 内存（二）</A> </li><li ><A title=Android SDCard的容量大小 href="show_305_173.html">Android SDCard的容量大小</A> </li><li ><A title=Android 查看SDCard还有多少存储空间 href="show_306_173.html">Android 查看SDCard还有多少存储空间</A> </li><li ><A title=Android获取外部和内部存储空间总大小和可用大小 href="show_307_173.html">Android获取外部和内部存储空间总大小和可用大小</A> </li><li ><A title=Android 读写SD卡的权限设置 href="show_308_173.html">Android 读写SD卡的权限设置</A> </li><li ><A title=Android 检测目录是否存在，不存在则创建 href="show_309_173.html">Android 检测目录是否存在，不存在则创建</A> </li><li ><A title=Android 在SD卡上保存图片 href="show_310_173.html">Android 在SD卡上保存图片</A> </li><li ><A title=Android Http下载文件到手机内存与SDCard href="show_311_173.html">Android Http下载文件到手机内存与SDCard</A> </li><li ><A title=Android 程序私有文件（TXT）操作类 href="show_312_173.html">Android 程序私有文件（TXT）操作类</A> </li><li class="currentLink"><A title=Android SD卡里的文件夹功能 href="show_313_173.html">Android SD卡里的文件夹功能</A> </li><li ><A title=Android从SD卡导入数据库.db文件至APK href="show_314_173.html">Android从SD卡导入数据库.db文件至APK</A> </li></UL>
+  <h2><A title="数据库" href="index_174.html">数据库</A></h2>
+
+  <h2><A title="URI" href="index_175.html">URI</A></h2>
+
+  <h2><A title="MediaStore" href="index_176.html">MediaStore</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android SD卡里的文件夹功能</H2>
+<div style="line-height:20px; font-size:14px;"><p>对于初次使用Android系统的新手来说，当打开SD开一看，里面那些林林总总的文件夹总会让自己不知所措，有些看文件夹名称，还能猜到点作用来，但是大部分的都不知道是做什么的。</p><p>1、.android_secure 是官方app2sd的产物，删了之后装到sd卡中的软件就无法使用了。</p><p>2、.Bluetooth 顾名思义，用蓝牙之后就会有这个。</p><p>3、.mobo 顾名思义，Moboplayer的缓存文件。</p><p>4、.QQ 顾名思义，QQ的缓存文件。</p><p>5、.quickoffice 顾名思义，quickoffice的缓存文件。</p><p>6、.switchpro 顾名思义，switchprowidget(多键开关)的缓存文件。</p><p>7、.ucdlres 顾名思义，UC迅雷的缓存文件。</p><p>8、albumart 音乐专辑封面的缓存文件夹。</p><p>9、albums 相册缩略图的缓存文件夹。</p><p>10、Android 比较重要的文件夹，里面是一些程序数据，比如google map的地图缓存。</p><p>11、backups 一些备份文件，比如联系人导出到SD卡时会导入到此文件夹。</p><p>12、baidu 顾名思义，掌上百度、百度输入法之类程序的缓存文件夹。</p><p>13、bugtogo 系统出现问题的时候会形成一些报告文件，存放于此文件夹。</p><p>14、cmp 个人初步判断是音乐的缓存文件夹。</p><p>15、data 同样是缓存数据的文件夹，与Android性质类似。</p><p>16、DCIM 相机的缓存文件夹。</p><p>17、documents Documents To Go 的相关文件夹。</p><p>18、etouch 易行的缓存文件夹。</p><p>19、extracted androzip等解压缩软件默认的解压目录。</p><p>20、gameloft 顾名思义，gameloft游戏数据包存放的文件夹。</p><p>21、handcent 顾名思义handcent(超级短信)数据文件夹。</p><p>22、handyCurrency 货币汇率相关的文件夹，装了handycalc(科学计算器)之后才会有。</p><p>23、ireader 顾名思义，ireader的缓存文件夹。</p><p>24、KingReader 顾名思义，开卷有益的缓存文件夹。</p><p>25、LazyList Applanet(黑市场)的缓存目录，也许和其他程序也有关，暂时不太清楚。</p><p>26、LOST.DIR 卡上丢失或出错的文件会跑这里，此目录无用，删了会自动生成。</p><p>27、moji 顾名思义，墨迹天气的缓存目录。</p><p>28、MusicFolders poweramp产生的缓存文件夹。</p><p>29、openfeint 顾名思义，openfeint的缓存文件夹。</p><p>30、Picstore 图片浏览软件建立的一个目录。</p><p>31、Playlists 播放列表的缓存文件夹。</p><p>32、renren 顾名思义，人人网客户端的缓存文件夹。</p><p>33、screenshot 貌似是截屏图片保存的目录，不过我不记得自己装过screenshot这个软件。</p><p>34、ShootMe 顾名思义，shootme截屏后图片文件保存的目录。</p><p>35、SmartpixGames Smartpix Games出品游戏的缓存文件夹，比如Jewellust。</p><p>36、sogou 顾名思义，搜狗拼音的缓存文件夹。</p><p>37、SpeedSoftware RE文件管理器的缓存文件夹。</p><p>38、SystemAppBackup SystemApp remove(深度卸载)备份系统文件后，备份文件保存的目录。</p><p>39、TalkingFriends talking tom(会说话的tom猫)录制的视频文件所保存的目录。</p><p>40、Tencent 顾名思义，腾讯软件的缓存目录，比如QQ。(与上面的.QQ文件夹并不相同)</p><p>41、TitaniumBackup 顾名思义，钛备份备份的程序所保存的目录。</p><p>42、TunnyBrowser 感觉是海豚浏览器的缓存目录，但不知道为什么叫这个名字，金枪鱼浏览器.....</p><p>43、UCDLFiles UC迅雷下载文件的保存目录。</p><p>44、UCDownloads UC浏览器下载文件的保存目录。</p><p>45、VIE Vignette(晕影相机)的缓存目录。</p><p>46、V"PN 顾名思义，V|PN数据的缓存目录。(“|”为了反和谐)</p><p>47、yd_historys 有道词典搜索历史的缓存目录。</p><p>48、yd_speech 有道词典单词发音的缓存目录。</p><p>49、youmicache 删掉后还会自动生成，悠米广告的缓存目录，广告程序内嵌在其他程序中。</p><p>50、Glu Glu系列游戏的资料包存放地。如3D猎鹿人等。</p><p>51、apadqq-images QQ for pad 的缓存目录。</p><p>52、DunDef 地牢守护者的数据包。</p><p>53、KuwoMusic 顾名思义，酷我音乐的相关文件夹。</p><p>54、MxBrowser 遨游的缓存目录。</p><p>55、Camera360 顾名思义，camera360的缓存目录。</p><p>56、TTPod 顾名思义，天天动听的缓存目录。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

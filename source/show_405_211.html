@@ -1,0 +1,60 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>SurfaceFlinger中的Layer,LayerDim,LayerBlur,LayerBuffer_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li class="navcurrentLink"><A href="index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Launcher" href="index_207.html">Launcher</A></h2>
+
+  <h2><A title="电话系统RIL" href="index_208.html">电话系统RIL</A></h2>
+
+  <h2><A title="进程间通信" href="index_209.html">进程间通信</A></h2>
+
+  <h2><A title="内部sensor系统" href="index_210.html">内部sensor系统</A></h2>
+
+  <h2><A title="内部surface系统" href="index_211.html">内部surface系统</A></h2>
+<UL><li ><A title=Android 来说说Surface系统(一) href="show_401_211.html">Android 来说说Surface系统(一)</A> </li><li ><A title=Android 来说说Surface系统(二) href="show_402_211.html">Android 来说说Surface系统(二)</A> </li><li ><A title=Android 来说说Surface系统(三) href="show_403_211.html">Android 来说说Surface系统(三)</A> </li><li ><A title=Android 来说说Surface系统(四) href="show_404_211.html">Android 来说说Surface系统(四)</A> </li><li class="currentLink"><A title=SurfaceFlinger中的Layer,LayerDim,LayerBlur,LayerBuffer href="show_405_211.html">SurfaceFlinger中的Layer,LayerDim,LayerBlur,LayerBuffer</A> </li><li ><A title=SharedClient href="show_406_211.html">SharedClient</A> </li></UL>
+  <h2><A title="启动流程" href="index_212.html">启动流程</A></h2>
+
+  <h2><A title="源码编译" href="index_213.html">源码编译</A></h2>
+
+  <h2><A title="状态栏" href="index_214.html">状态栏</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>SurfaceFlinger中的Layer,LayerDim,LayerBlur,LayerBuffer</H2>
+<div style="line-height:20px; font-size:14px;"><p>应用程序中不同类型的Surface,在FrameWorks本地层的SurfaceFlinger中，分别对应着不同的Layer类，本文主要是讨论这几种Layer的实现和差异。</p><p>效果图：</p><p><img src="../img/source_surface/05_Layer01.jpg"></p><p>Layer对应普通的窗口。</p><p>LayerDim 会使他后面的窗口产生一个变暗的透明效果。 </p><p>LayerBlur在LayerDim的基础上，背景会产生模糊的效果。 </p><p style="color:#3333FF;">创建Layer</p><p>默认地，创建普通的窗口Surface，在SurfaceFlinger中会创建Layer类，如果想创建LayerDim或LayerBlur，应用程序需要在绑定View之前设置一下窗口的标志位：</p><p>创建LayerDim效果：</p><p><pre>@Override</p><p><font class="keyword">protected </font><font class="keyword">void </font>onCreate(Bundle icicle) {</p><p>	<font class="keyword">super</font>.onCreate(icicle);</p><p>	<font class="Comments">// 该系统模糊任何窗户后面这一个。</font></p><p>	getWindow().setFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND, WindowManager.LayoutParams.FLAG_DIM_BEHIND);</p><p>	......</p><p>	setContentView(......);</p><p>}</p><p></pre></p><p>创建LayerBlur效果：</p><p><pre>@Override</p><p><font class="keyword">protected </font><font class="keyword">void </font>onCreate(Bundle icicle) {</p><p>	<font class="keyword">super</font>.onCreate(icicle);</p><p>	getWindow().setFlags(WindowManager.LayoutParams.FLAG_BLUR_BEHIND, WindowManager.LayoutParams.FLAG_BLUR_BEHIND);</p><p>	......</p><p>	setContentView(......);</p><p>}</p><p></pre></p><p>相应地，在SufaceFlinger中，会根据Java层传入的标志，创建不同的Layer:</p><p><pre>sp&lt;ISurface&gt; SurfaceFlinger::createSurface(ClientID clientId, <font class="keyword">int </font>pid, const String8& name, ISurfaceFlingerClient::surface_data_t* params, DisplayID d, uint32_t w, uint32_t h, PixelFormat format, uint32_t flags)</p><p>{</p><p>	sp&lt;LayerBaseClient&gt; layer;</p><p>	sp&lt;LayerBaseClient::Surface&gt; surfaceHandle;</p><p>	......</p><p>	<font class="keyword">switch </font>(flags & eFXSurfaceMask) {</p><p>		<font class="keyword">case </font>eFXSurfaceNormal:</p><p>			<font class="keyword">if </font>(UNLIKELY(flags & ePushBuffers)) {</p><p>				layer = createPushBuffersSurfaceLocked(client, d, id,</p><p>				w, h, flags);</p><p>			</font>} <font class="keyword">else </font>{</p><p>				layer = createNormalSurfaceLocked(client, d, id,</p><p>				w, h, flags, format);</p><p>			}</p><p>		<font class="keyword">break</font>;</p><p>		<font class="keyword">case </font>eFXSurfaceBlur:</p><p>			layer = createBlurSurfaceLocked(client, d, id, w, h, flags);</p><p>		<font class="keyword">break</font>;</p><p>		<font class="keyword">case </font>eFXSurfaceDim:</p><p>			layer = createDimSurfaceLocked(client, d, id, w, h, flags);</p><p>		<font class="keyword">break</font>;</p><p>	}</p><p>	<font class="keyword">if </font>(layer != 0) {</p><p>		layer-&gt;setName(name);</p><p>		setTransactionFlags(eTransactionNeeded);</p><p>		surfaceHandle = layer-&gt;getSurface();</p><p>		........</p><p>	}</p><p>	<font class="keyword">return </font>surfaceHandle;</p><p>}</p><p></pre></p><p>Layer类的静态结构</p><p>下面的图展示了Layer类之间的继承关系：</p><p><img src="../img/source_surface/05_Layer02.jpg"></p><p>所有的Layer都继承了LayerBaseClient，SurfaceFlinger统一通过LayerBaseClient类访问其他的派生Layer类。</p><p>LayerBaseClient的内嵌类Surface继承了ISurface接口，ISurface用于和SurfaceFlinger的客户端交互。</p><p>Layer和LayerBuffer都有各自的内嵌类：SurfaceLayer、SurfaceLayerBuffer，继承了LayerBaseClient的内嵌类Surface。 </p><p>LayerBuffer还有另外的内嵌类：Source，并且派生出另外两个内嵌类：BufferSource、OverlaySource。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

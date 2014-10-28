@@ -1,0 +1,71 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android学习手册_Android高级进阶</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li class="navcurrentLink"><A href="index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">Android高级进阶</div>
+
+  <h2 ><A title="Android基础之运行原理和机制" href="index_215.html">Android基础之运行原理和机制</A></h2>
+
+  <h2 ><A title="Android高级篇之Android优化" href="index_216.html">Android高级篇之Android优化</A></h2>
+
+  <h2 ><A title="Android高级篇之编译及反编译" href="index_217.html">Android高级篇之编译及反编译</A></h2>
+
+  <h2 ><A title="Android高级篇之加密解密" href="index_218.html">Android高级篇之加密解密</A></h2>
+
+  <h2 ><A title="Android高级篇之Android 安全" href="index_219.html">Android高级篇之Android 安全</A></h2>
+
+  <h2 ><A title="Android高级篇之算法" href="index_220.html">Android高级篇之算法</A></h2>
+
+  <h2 class="currentLink"><A title="Android高级篇之解锁教程" href="index_221.html">Android高级篇之解锁教程</A></h2>
+<UL><li class="currentLink"><A title=Android 说说亮屏锁和键盘锁 href="show_601_221.html">Android 说说亮屏锁和键盘锁</A> </li><li ><A title=点亮屏幕和屏幕解锁 href="show_602_221.html">点亮屏幕和屏幕解锁</A> </li><li ><A title=特殊代码 href="show_603_221.html">特殊代码</A> </li><li ><A title=Android屏幕锁定代码，同时分享基于Rexsee通过js快速实现 href="show_604_221.html">Android屏幕锁定代码，同时分享基于Rexsee通过js快速实现</A> </li></UL>
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1>Android高级篇之解锁教程</H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 说说亮屏锁和键盘锁</H2>
+<P>　　Android中的两把锁 – WalkLock and KeyguardLock 详细分析。WalkLock – 顾名思义 唤醒锁 点亮屏幕用的。KeyguardLock – 顾名思义 键盘锁 解锁键盘用的。详细介绍：[color=blue]1：WalkLock 唤醒锁WalkLock真的能</P>
+<P><A title="Android 说说亮屏锁和键盘锁" href="show_601_221.html">进入 Android 说说亮屏锁和键盘锁</A> </P></DIV>
+
+<DIV>
+<H2>点亮屏幕和屏幕解锁</H2>
+<P>　　下面的代码可以用来点亮屏幕。[code=java]PowerManager pm = (PowerManager)getSystemService(POWER_SERVICE);mWakelock = pm.newWakeLock(PowerManager.ACQUIRE_CAUSES_WAKEUP PowerManager.SCREEN_DIM_WAKE_LOCK, </P>
+<P><A title="点亮屏幕和屏幕解锁" href="show_602_221.html">进入 点亮屏幕和屏幕解锁</A> </P></DIV>
+
+<DIV>
+<H2>特殊代码</H2>
+<P>　　以下代码为特殊代码，通过拨号程序拨相应号码来实现相应功能。[code=java]显示IMEI: *#06#开启语音拨号记录 *#*#8351#*#*关闭语音拨号记录 *#*#8350#*#*手机信息/设置 *#*#4636#*#*现场测试 *#*#7262626#*#*PUK解锁 </P>
+<P><A title="特殊代码" href="show_603_221.html">进入 特殊代码</A> </P></DIV>
+
+<DIV>
+<H2>Android屏幕锁定代码，同时分享基于Rexsee通过js快速实现</H2>
+<P>　　Android锁屏时会先调用onPause()；解锁时调用onResume，读入保存的应用程序的资源。如果运行程序时已经锁屏，应用程序会先调用onCreate(),然后onResume(),再则onPause()。取消锁屏：[code=java]KeyguardManager mKey</P>
+<P><A title="Android屏幕锁定代码，同时分享基于Rexsee通过js快速实现" href="show_604_221.html">进入 Android屏幕锁定代码，同时分享基于Rexsee通过js快速实现</A> </P></DIV>
+
+</DIV>
+
+<DIV id=footer style="display:none">
+<P align="center"> 
+ 
+ 
+ 
+  </P>
+</DIV></DIV></BODY></HTML>
+

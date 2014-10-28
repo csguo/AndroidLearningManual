@@ -1,0 +1,70 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android AudioManager类控制音量（二）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li class="navcurrentLink"><A href="index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="设备信息" href="index_157.html">设备信息</A></h2>
+
+  <h2><A title="摄像头" href="index_158.html">摄像头</A></h2>
+
+  <h2><A title="通讯录" href="index_159.html">通讯录</A></h2>
+
+  <h2><A title="电话" href="index_160.html">电话</A></h2>
+
+  <h2><A title="短信" href="index_161.html">短信</A></h2>
+
+  <h2><A title="传感器" href="index_162.html">传感器</A></h2>
+
+  <h2><A title="定位" href="index_163.html">定位</A></h2>
+
+  <h2><A title="视频系统" href="index_164.html">视频系统</A></h2>
+
+  <h2><A title="音频系统" href="index_165.html">音频系统</A></h2>
+
+  <h2><A title="铃声" href="index_166.html">铃声</A></h2>
+
+  <h2><A title="音量" href="index_167.html">音量</A></h2>
+<UL><li ><A title=Android AudioManager类控制音量（一） href="show_1001_167.html">Android AudioManager类控制音量（一）</A> </li><li class="currentLink"><A title=Android AudioManager类控制音量（二） href="show_1002_167.html">Android AudioManager类控制音量（二）</A> </li><li ><A title=音量控制 href="show_1003_167.html">音量控制</A> </li><li ><A title=Android 获取麦克风音量 href="show_1004_167.html">Android 获取麦克风音量</A> </li><li ><A title=Android 音量seekbar制作 href="show_1005_167.html">Android 音量seekbar制作</A> </li><li ><A title=怎么样监听Android 音量键 href="show_1006_167.html">怎么样监听Android 音量键</A> </li></UL>
+  <h2><A title="录音" href="index_168.html">录音</A></h2>
+
+  <h2><A title="输入法" href="index_169.html">输入法</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android AudioManager类控制音量（二）</H2>
+<div style="line-height:20px; font-size:14px;"><p style="color:#3333FF;">2、AudioManagerActivity</p><p>程序入口处，和主要逻辑代码的处理，程序开头以(AudioManager)getSystemService(AUDIO_SERVICE);取得AudioManager对象。然后再利用该对象来对铃声进行调整。声明了一个返回 ImageButton 的方法，用来处理各自按钮点击所执行的不同事件和对图片的状态进行调整设置。以下把代码提供给大家：</p><p><pre><font class="keyword">import </font>android.app.Activity;</p><p><font class="keyword">import </font>android.media.AudioManager;</p><p><font class="keyword">import </font>android.os.Bundle;</p><p><font class="keyword">import </font>android.view.View;</p><p><font class="keyword">import </font>android.view.View.OnClickListener;</p><p><font class="keyword">import </font>android.widget.ImageButton;</p><p><font class="keyword">import </font>android.widget.ImageView;</p><p><font class="keyword">import </font>android.widget.ProgressBar;</p><p><font class="keyword">public </font><font class="keyword">class </font>AudioManagerActivity </font><font class="keyword">extends </font>Activity {</p><p>	<font class="Comments">// 音量变量</font></p><p>	<font class="keyword">private </font><font class="keyword">int </font>volume = 0;</p><p>	<font class="Comments">// 声音模式</font></p><p>	<font class="keyword">private </font><font class="keyword">int </font>mode;</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onCreate(Bundle savedInstanceState) {</p><p>		<font class="keyword">super</font>.onCreate(savedInstanceState);</p><p>		setContentView(R.layout.main);</p><p>		findview();</p><p>		<font class="Comments">// 通过getStreamVolume 获得当前音量大小</font></p><p>		volume = viewHolder.audiomanage</p><p>				.getStreamVolume(AudioManager.STREAM_RING);</p><p>		<font class="Comments">// 把当前音量的值 设置给进度条</font></p><p>		viewHolder.myProgressBar.setProgress(volume);</p><p>		<font class="Comments">// 得到当前的声音模式</font></p><p>		mode = viewHolder.audiomanage.getRingerMode();</p><p>		setImageState();</p><p>		viewHolder.downButton = btnListener(viewHolder.downButton);</p><p>		viewHolder.upButton = btnListener(viewHolder.upButton);</p><p>		viewHolder.muteButton = btnListener(viewHolder.muteButton);</p><p>		viewHolder.normalButton = btnListener(viewHolder.normalButton);</p><p>		viewHolder.vibrateButton = btnListener(viewHolder.vibrateButton);</p><p>	}</p><p>	<font class="Comments">// 找到控件</font></p><p>	<font class="keyword">void </font>findview() {</p><p>		viewHolder.downButton = (ImageButton) findViewById(R.id.downButton);</p><p>		viewHolder.upButton = (ImageButton) findViewById(R.id.upButton);</p><p>		viewHolder.muteButton = (ImageButton) findViewById(R.id.muteButton);</p><p>		viewHolder.normalButton = (ImageButton) findViewById(R.id.normalButton);</p><p>		viewHolder.vibrateButton = (ImageButton) findViewById(R.id.vibrateButton);</p><p>		viewHolder.myImageView = (ImageView) findViewById(R.id.myImage);</p><p>		viewHolder.myProgressBar = (ProgressBar) findViewById(R.id.myProgress);</p><p>		viewHolder.audiomanage = (AudioManager) getSystemService(AUDIO_SERVICE);</p><p>	}</p><p>	<font class="Comments">// 按钮 的单击事件</font></p><p>	ImageButton btnListener(ImageButton b) {</p><p>		</font>b.setOnClickListener(<font class="keyword">new </font>OnClickListener() {</p><p>			@Override</p><p>			<font class="keyword">public </font><font class="keyword">void </font>onClick(View v) {</p><p>				<font class="keyword">switch </font>(v.getId()) {</p><p>				<font class="keyword">case </font>R.id.downButton:</p><p>					viewHolder.audiomanage.adjustVolume(</p><p>							AudioManager.ADJUST_LOWER, 0);</p><p>					volume = viewHolder.audiomanage</p><p>							.getStreamVolume(AudioManager.STREAM_RING);</p><p>					viewHolder.myProgressBar.setProgress(volume);</p><p>					mode = viewHolder.audiomanage.getRingerMode();</p><p>					setImageState();</p><p>					<font class="keyword">break</font>;</p><p>				<font class="keyword">case </font>R.id.upButton:</p><p>					viewHolder.audiomanage.adjustVolume(</p><p>							AudioManager.ADJUST_RAISE, 0);</p><p>					volume = viewHolder.audiomanage</p><p>							.getStreamVolume(AudioManager.STREAM_RING);</p><p>					viewHolder.myProgressBar.setProgress(volume);</p><p>					mode = viewHolder.audiomanage.getRingerMode();</p><p>					setImageState();</p><p>					<font class="keyword">break</font>;</p><p>				<font class="keyword">case </font>R.id.muteButton:</p><p>					viewHolder.audiomanage</p><p>							.setRingerMode(AudioManager.RINGER_MODE_SILENT);</p><p>					volume = viewHolder.audiomanage</p><p>							.getStreamVolume(AudioManager.STREAM_RING);</p><p>					viewHolder.myProgressBar.setProgress(volume);</p><p>					viewHolder.myImageView.setImageDrawable(getResources()</p><p>							.getDrawable(R.drawable.mute));</p><p>					<font class="keyword">break</font>;</p><p>				<font class="keyword">case </font>R.id.normalButton:</p><p>					viewHolder.audiomanage</p><p>							.setRingerMode(AudioManager.RINGER_MODE_NORMAL);</p><p>					volume = viewHolder.audiomanage</p><p>							.getStreamVolume(AudioManager.STREAM_RING);</p><p>					viewHolder.myProgressBar.setProgress(volume);</p><p>					viewHolder.myImageView.setImageDrawable(getResources()</p><p>							.getDrawable(R.drawable.normal));</p><p>					<font class="keyword">break</font>;</p><p>				<font class="keyword">case </font>R.id.vibrateButton:</p><p>					viewHolder.audiomanage</p><p>							.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);</p><p>					volume = viewHolder.audiomanage</p><p>							.getStreamVolume(AudioManager.STREAM_RING);</p><p>					viewHolder.myProgressBar.setProgress(volume);</p><p>					viewHolder.myImageView.setImageDrawable(getResources()</p><p>							.getDrawable(R.drawable.vibrate));</p><p>					<font class="keyword">break</font>;</p><p>				}</p><p>			}</p><p>		});</p><p>		<font class="keyword">return </font>b;</p><p>	}</p><p>	<font class="Comments">// 设置图片状态</font></p><p>	<font class="keyword">void </font>setImageState() {</p><p>		<font class="keyword">if </font>(mode == AudioManager.RINGER_MODE_NORMAL) {</p><p>			viewHolder.myImageView.setImageDrawable(getResources().getDrawable(</p><p>					R.drawable.normal));</p><p>		</font>} <font class="keyword">else </font><font class="keyword">if </font>(mode == AudioManager.RINGER_MODE_SILENT) {</p><p>			viewHolder.myImageView.setImageDrawable(getResources().getDrawable(</p><p>					R.drawable.mute));</p><p>		</font>} <font class="keyword">else </font><font class="keyword">if </font>(mode == AudioManager.RINGER_MODE_VIBRATE) {</p><p>			viewHolder.myImageView.setImageDrawable(getResources().getDrawable(</p><p>					R.drawable.vibrate));</p><p>		}</p><p>	}</p><p>}</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

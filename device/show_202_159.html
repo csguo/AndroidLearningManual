@@ -1,0 +1,70 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 通讯录查询（一）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li class="navcurrentLink"><A href="index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="设备信息" href="index_157.html">设备信息</A></h2>
+
+  <h2><A title="摄像头" href="index_158.html">摄像头</A></h2>
+
+  <h2><A title="通讯录" href="index_159.html">通讯录</A></h2>
+<UL><li ><A title=Android 通讯录选择联系人 href="show_201_159.html">Android 通讯录选择联系人</A> </li><li class="currentLink"><A title=Android 通讯录查询（一） href="show_202_159.html">Android 通讯录查询（一）</A> </li><li ><A title=Android 通讯录查询（二） href="show_203_159.html">Android 通讯录查询（二）</A> </li><li ><A title=Android 查询联系人信息 href="show_204_159.html">Android 查询联系人信息</A> </li><li ><A title=Android 获得联系人信息 href="show_205_159.html">Android 获得联系人信息</A> </li><li ><A title=Android 手机联系人操作 href="show_206_159.html">Android 手机联系人操作</A> </li><li ><A title=Android 删除联系人分组 href="show_207_159.html">Android 删除联系人分组</A> </li><li ><A title=详解Android中的通信录模型 href="show_208_159.html">详解Android中的通信录模型</A> </li><li ><A title=Android 用PhoneLookup读取电话号码 href="show_209_159.html">Android 用PhoneLookup读取电话号码</A> </li></UL>
+  <h2><A title="电话" href="index_160.html">电话</A></h2>
+
+  <h2><A title="短信" href="index_161.html">短信</A></h2>
+
+  <h2><A title="传感器" href="index_162.html">传感器</A></h2>
+
+  <h2><A title="定位" href="index_163.html">定位</A></h2>
+
+  <h2><A title="视频系统" href="index_164.html">视频系统</A></h2>
+
+  <h2><A title="音频系统" href="index_165.html">音频系统</A></h2>
+
+  <h2><A title="铃声" href="index_166.html">铃声</A></h2>
+
+  <h2><A title="音量" href="index_167.html">音量</A></h2>
+
+  <h2><A title="录音" href="index_168.html">录音</A></h2>
+
+  <h2><A title="输入法" href="index_169.html">输入法</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 通讯录查询（一）</H2>
+<div style="line-height:20px; font-size:14px;"><p>这次主要要做的就是根据姓名来查找电话，并且加强对通讯录的理解。</p><p>以前做一些用到数据库的东西的时候，可能光看代码也是不好联系起各个数据之间的关系，所以我先想到的还是数据库。幸运的是，它还真是一个数据库。</p><p>Android里面内置的是SQLite的数据库，虽然对数据库不怎么了解，但关系型数据库，基本操作也就那些，而且基本都一样，所以就直接用呗。</p><p>用命令行下的adb shell进入Android的模拟器，进入data/data目录下面，这里面就是安装的一些应用程序。找啊找，里面有一个com.android.providers.contacts，怎么看都是一个通讯录相关的程序，进入这个目录下，里面有一个databases，就它了，再进去就可以看到有个contacts2.db的文件。</p><p>用sqlite3打开这个数据库文件。查看里面的表。里面表很多，不过看两遍后发现表的名字很熟悉，像什么data,raw_contacts,contacts,minetypes等，前面几个都是我们上次说的那几个所谓的数据模型，它们还真是数据库。</p><p><img src="../img/device_contact/02_contact.jpg"></p><p>查询一下data表里面的所有信息，可以发现里面的信息联系起来就都是我们通讯录里面的名片。虽然不是一条显示全部，但每个名字每个电话，每个E-mail都有，而且都是分开显示的。现在对于这个应该就有点感觉了。</p><p><img src="../img/device_contact/02_contact2.jpg"></p><p>再看一下表的结构，用”.schema” 命令后会看到，类似如下的信息：</p><p><pre>.schema data</p><p>CREATE TABLE data (</p><p>_id INTEGER PRIMARY KEY AUTOINCREMENT,</p><p>package_id INTEGER REFERENCES package(_id),</p><p>mimetype_id INTEGER REFERENCES mimetype(_id) NOT NULL,</p><p>raw_contact_idINTEGER REFERENCES raw_contacts(_id) NOT NULL,</p><p>is_primary INTEGER NOT NULL DEFAULT 0,</p><p>is_super_primary INTEGER NOT NULL DEFAULT 0,</p><p>data_version INTEGER NOT NULL DEFAULT 0,</p><p></p><p>data1 TEXT,</p><p>data2 TEXT,</p><p>data3 TEXT,</p><p>data4 TEXT,</p><p>data5 TEXT,</p><p>data6 TEXT,</p><p>data7 TEXT,</p><p>data8 TEXT,</p><p>data9 TEXT,</p><p>data10 TEXT,</p><p>data11 TEXT,</p><p>data12 TEXT,</p><p>data13 TEXT,</p><p>data14 TEXT,</p><p>data15 TEXT,</p><p></p><p>data_sync1 TEXT,</p><p>data_sync2 TEXT,</p><p>data_sync3 TEXT,</p><p>data_sync4 TEXT );</p><p></pre></p><p>下面还有点索引和触发器的信息就不看了，结合查询的数据看一下。其中“_id”就是表的一个自增id字段。第二个package_id暂时没用到，数据里面全是空。第三个字段minetype_id应该就是MIMETYPE了(其实还是有点不一样的)。后的raw_contact_id就是名片的ID。再看后的data1，data2等字段，每条数据中的这几项都不大相同，准确的说，minetype_id字段不同的数据data1,data2 等字段的数据就不同。</p><p>现在应该就有一个概念了，以前说的MIMETYPE的值确定Data.DATA1等的值的类型的意思就是在data数据库中通过mimetype_id的值就可以确定data1,data2等字段的真正意义。也就是说在data数据库中通过minetype_id的值可以确定那一条数据到底是存储的姓名，还是电话，还是E-mail或者其它。</p><p>这样一来，如果我们要查询某个特定的数据的时候就可以直接查询data表里面的data1，data2这类字段的值，而唯一的必要条件就是在where条件语句里面将minetype_id赋为对应的值。这样就有了一个统一的数据访问方法。而且可以通过这个表查到所以想要的数据。</p><p>所以如果想要通过姓名查找一个人的电话就可以这样了，先通过设置MIMETYPE 为</p><p><pre>ContactsContract.CommonDataKinds.StructuredName.DISPLAY_NAME </p><p>//查找姓名所对应的 RAW_CONTACT_ID 。再将MIMETYPE 设置为</p><p>ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE</p><p>//查找上面找到的 RAW_CONTACT_ID 所对应的电话就可以了。</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

@@ -1,0 +1,60 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android游戏框架 Libgdx 使用入门（二）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li class="navcurrentLink"><A href="index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="游戏开发须知" href="index_187.html">游戏开发须知</A></h2>
+
+  <h2><A title="游戏策划、设计分析" href="index_188.html">游戏策划、设计分析</A></h2>
+
+  <h2><A title="Android OpenGL学习" href="index_190.html">Android OpenGL学习</A></h2>
+
+  <h2><A title="Android游戏开发之旅" href="index_191.html">Android游戏开发之旅</A></h2>
+
+  <h2><A title="Android2D游戏开发" href="index_192.html">Android2D游戏开发</A></h2>
+
+  <h2><A title="Android经典实例教程解析" href="index_193.html">Android经典实例教程解析</A></h2>
+
+  <h2><A title="Android游戏开发实例" href="index_194.html">Android游戏开发实例</A></h2>
+
+  <h2><A title="Libgdx游戏引擎" href="index_195.html">Libgdx游戏引擎</A></h2>
+<UL><li ><A title=Android游戏框架 Libgdx 使用入门（一） href="show_801_195.html">Android游戏框架 Libgdx 使用入门（一）</A> </li><li class="currentLink"><A title=Android游戏框架 Libgdx 使用入门（二） href="show_802_195.html">Android游戏框架 Libgdx 使用入门（二）</A> </li><li ><A title=Android游戏框架 Libgdx 使用入门（三） href="show_803_195.html">Android游戏框架 Libgdx 使用入门（三）</A> </li><li ><A title=Android游戏框架 Libgdx 使用入门（四） href="show_804_195.html">Android游戏框架 Libgdx 使用入门（四）</A> </li><li ><A title=Android游戏框架 Libgdx 使用入门（五） href="show_805_195.html">Android游戏框架 Libgdx 使用入门（五）</A> </li><li ><A title=使用游戏引擎libgdx的工程搭建方法 href="show_806_195.html">使用游戏引擎libgdx的工程搭建方法</A> </li><li ><A title=游戏引擎libgdx中粒子特效的实现 href="show_807_195.html">游戏引擎libgdx中粒子特效的实现</A> </li></UL>
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android游戏框架 Libgdx 使用入门（二）</H2>
+<div style="line-height:20px; font-size:14px;"><p>代码如下：</p><p><pre><font class="keyword">public </font><font class="keyword">void </font>render() {</p><p>	<font class="Comments">// 清屏</font></p><p>	Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);</p><p>	<font class="Comments">// 初始化绘图调用</font></p><p>	spriteBatch.begin();</p><p>	<font class="Comments">// 绘制精灵到游戏屏幕</font></p><p>	sprite.draw(spriteBatch);</p><p>	<font class="Comments">// 结束绘图调用</font></p><p>	spriteBatch.end();</p><p>}</p><p><font class="keyword">public </font><font class="keyword">void </font>dispose() {</p><p>	<font class="Comments">// 释放占用的资源</font></p><p>	spriteBatch.dispose();</p><p>	texture.dispose();</p><p>}</p><p><font class="keyword">public </font><font class="keyword">void </font>resume() {</p><p>}</p><p><font class="keyword">public </font><font class="keyword">void </font>pause() {</p><p>}</p><p><font class="keyword">public </font><font class="keyword">void </font>resize(</font><font class="keyword">int </font>width, </font><font class="keyword">int </font>height) {</p><p>}</p><p><font class="keyword">public </font><font class="keyword">void </font>onCreate(Bundle bundle) {</p><p>	<font class="keyword">super</font>.onCreate(bundle);</p><p>	<font class="Comments">// 初始化游戏屏幕，并设置是否支持GLES 2.0，如果您对向下兼容没什么需要选择true即可(2.1以上)，否则选择false。</font></p><p>	</font>initialize(<font class="keyword">new </font>TestSprite(), </font><font class="keyword">true</font>);</p><p>}</p><p></pre></p><p>Pixmap:</p><p>Libgdx所提供的像素级图像渲染用类，由于Libgdx目前以JNI方式自带图像解码器，所以我们可以直接将Pixmap理解为一个Android中 Bitmap的替代者，两者间实现细节虽有差别，但具体作用却大同小异。Pixmap支持Alpha、LuminanceAlpha、RGB565、 RGBA4444、RGB888、RGBA8888等五种图像彩色模式，支持png、jpg、bmp等三种图像文件的读取和加载。一般来说，Pixmap 必须和Texture混用才能真正显示画面。不过在事实上，Libgdx的Texture里已经内置有Pixmap了。</p><p><pre><font class="Comments">// Libgdx的Pixmap使用</font></p><p><font class="keyword">public </font><font class="keyword">class </font>Main </font><font class="keyword">extends </font>AndroidApplication {</p><p>	<font class="keyword">class </font>TestPixmap </font><font class="keyword">implements </font>ApplicationListener {</p><p>		<font class="Comments">// 准备绘图用SpriteBatch</font></p><p>		SpriteBatch spriteBatch;</p><p>		<font class="Comments">// Pixmap是Libgdx提供的针对opengl像素操作的上级封装，它可以凭空构建一个像素贴图，</font></p><p>		<font class="Comments">// 但是它的现实必须通过Texture。</font></p><p>		Pixmap pixmap;</p><p>		<font class="Comments">// 准备Texture</font></p><p>		Texture texture;</p><p>		<font class="keyword">public </font><font class="keyword">void </font>create() {</p><p>			<font class="Comments">// 构建SpriteBatch</font></p><p>			</font>spriteBatch = <font class="keyword">new </font>SpriteBatch();</p><p>			<font class="Comments">// 构建Pixmap(在Android环境使用internal加载模式时，文件必须放置于assets文件夹下)</font></p><p>			</font>pixmap = <font class="keyword">new </font>Pixmap(Gdx.files.internal(<font class="Fields">"myPixmap.png"</font>));</p><p>			<font class="Comments">// 绘制一个蓝方块到Ball图像之上</font></p><p>			pixmap.setColor(Color.BLUE.r, Color.BLUE.g, Color.BLUE.b,</p><p>					Color.BLUE.a);</p><p>			pixmap.drawRectangle(15, 15, 40, 40);</p><p>			<font class="Comments">// 以指定Pixmap构建Texture</font></p><p>			</font>texture = <font class="keyword">new </font>Texture(pixmap);</p><p>			<font class="Comments">// 注入Texture后的pixmap已经没用，可以注销</font></p><p>			pixmap.dispose();</p><p>		}</p><p>		<font class="keyword">public </font><font class="keyword">void </font>dispose() {</p><p>			spriteBatch.dispose();</p><p>			texture.dispose();</p><p>		}</p><p>		<font class="keyword">public </font><font class="keyword">void </font>pause() {</p><p>		}</p><p>		<font class="keyword">public </font><font class="keyword">void </font>render() {</p><p>			<font class="Comments">// 清屏</font></p><p>			Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);</p><p>			<font class="Comments">// 初始化绘图调用</font></p><p>			spriteBatch.begin();</p><p>			<font class="Comments">// 绘制精灵到游戏屏幕</font></p><p>			spriteBatch.draw(texture, 100, 180);</p><p>			<font class="Comments">// 结束绘图调用</font></p><p>			spriteBatch.end();</p><p>		}</p><p>		<font class="keyword">public </font><font class="keyword">void </font>resize(</font><font class="keyword">int </font>width, </font><font class="keyword">int </font>height) {</p><p>		}</p><p>		<font class="keyword">public </font><font class="keyword">void </font>resume() {</p><p>		}</p><p>	}</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onCreate(Bundle bundle) {</p><p>		<font class="keyword">super</font>.onCreate(bundle);</p><p>		<font class="Comments">// 初始化游戏屏幕，并设置是否支持GLES 2.0，如果您对向下兼容没什么需要选择true即可(2.1以上)，否则选择false。</font></p><p>		</font>initialize(<font class="keyword">new </font>TestPixmap(), </font><font class="keyword">true</font>);</p><p>	}</p><p>}</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

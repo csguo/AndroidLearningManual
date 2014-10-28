@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android Sensor2D感应实例_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li class="navcurrentLink"><A href="index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Android多媒体功能" href="index_196.html">Android多媒体功能</A></h2>
+
+  <h2><A title="Android多媒体之2D" href="index_197.html">Android多媒体之2D</A></h2>
+<UL><li ><A title=Android 2D绘图 href="show_101_197.html">Android 2D绘图</A> </li><li ><A title=2D学习之Bitmap href="show_102_197.html">2D学习之Bitmap</A> </li><li ><A title=2D学习之Canvas href="show_103_197.html">2D学习之Canvas</A> </li><li ><A title=2D学习之Paint href="show_104_197.html">2D学习之Paint</A> </li><li ><A title=Android 2D Frame动画 href="show_105_197.html">Android 2D Frame动画</A> </li><li ><A title=Android 2D引擎实例 href="show_106_197.html">Android 2D引擎实例</A> </li><li class="currentLink"><A title=Android Sensor2D感应实例 href="show_107_197.html">Android Sensor2D感应实例</A> </li></UL>
+  <h2><A title="Android多媒体之3D" href="index_198.html">Android多媒体之3D</A></h2>
+
+  <h2><A title="Android多媒体之Bitmap" href="index_199.html">Android多媒体之Bitmap</A></h2>
+
+  <h2><A title="Android多媒体之Canvas" href="index_200.html">Android多媒体之Canvas</A></h2>
+
+  <h2><A title="Android多媒体之Drawable" href="index_201.html">Android多媒体之Drawable</A></h2>
+
+  <h2><A title="Android多媒体之gif" href="index_202.html">Android多媒体之gif</A></h2>
+
+  <h2><A title="Android多媒体之MediaStore" href="index_203.html">Android多媒体之MediaStore</A></h2>
+
+  <h2><A title="Android多媒体之动画" href="index_204.html">Android多媒体之动画</A></h2>
+
+  <h2><A title="Android多媒体之分辨率" href="index_205.html">Android多媒体之分辨率</A></h2>
+
+  <h2><A title="Android多媒体之分屏幕" href="index_206.html">Android多媒体之分屏幕</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android Sensor2D感应实例</H2>
+<div style="line-height:20px; font-size:14px;"><p>有关android游戏开发中的Sensor感应示例今天我们将一起来讨论，对于目前最新的Android2.2平台而言仍然没有具体的感应判断逻辑，下面我们一起定义下常用的感应动作事件。首先eoeAndroid提醒大家由于是三轴的立体空间感应所以相对于轨迹球、导航键的上下左右外，还提供了前后的感应，所以我们定义最基本的六种空间方向。</p><p><pre><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>CWJ_UP = 0;</p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>CWJ_DOWN = 1;</p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>CWJ_LEFT = 2;</p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>CWJ_RIGHT = 4;</p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>CWJ_FORWARD = 8; <font class="Comments">//向前</font></p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>CWJ_BACKWARD = 16; <font class="Comments">//向后</font></p><p></pre></p><p>下面我们做精确的角度旋转修正值定义，我们用到yaw、pitch和roll，相信学过3D开发的网友不会对这些陌生的，我们就把他们对应为绕y、x、z轴的角度好了，如果你们没有学过3D相关的知识这里eoeAndroid推荐大家可以通过Cube例子自定义Render来观察这三个值对应立方体的旋转角度。</p><p>Yaw在(0,0,0)中， 以xOz的坐标平面中围绕y轴旋转，如果是负角则我们定义为CWJ_YAW_LEFT 即往左边倾斜，同理我们定义如下:</p><p><pre><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>CWJ_YAW_LEFT = 0;</p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>CWJ_YAW_RIGHT = 1;</p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>CWJ_PITCH_UP = 2;</p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>CWJ_PITCH_DOWN = 4;</p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>CWJ_ROLL_LEFT = 8;</p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>CWJ_ROLL_RIGHT = 16;</p><p></pre></p><p>我们通过加速感应器可以获得SensorEvent的四个值，今天eoeAndroid给大家一个简单示例，不考虑其他因素，在public int accuracy 、public Sensor sensor 、public long timestamp和public final float[] values 中，我们获取values的浮点数组来判断方向。</p><p><pre><font class="keyword">int </font>eoeAndroid = CWJ_UP; <font class="Comments">// 向上</font></p><p><font class="keyword">float </font>ax = values[0];</p><p><font class="keyword">float </font>ay = values[1];</p><p><font class="keyword">float </font>az = values[2];</p><p><font class="keyword">float </font>absx = Math.abs(ax);</p><p><font class="keyword">float </font>absy = Math.abs(ay);</p><p><font class="keyword">float </font>absz = Math.abs(az);</p><p><font class="keyword">if </font>(absx &gt; absy && absx &gt; absz) {</p><p>	<font class="keyword">if </font>(ax &gt; 0) {</p><p>		eoeAndroid = CWJ_RIGHT;</p><p>	</font>} <font class="keyword">else </font>{</p><p>		eoeAndroid = CWJ_LEFT;</p><p>	}</p><p></font>} <font class="keyword">else </font><font class="keyword">if </font>(absy &gt; absx && absy &gt; absz) {</p><p>	<font class="keyword">if </font>(ay &gt; 0) {</p><p>		eoeAndroid = CWJ_FORWARD;</p><p>	</font>} <font class="keyword">else </font>{</p><p>		eoeAndroid = CWJ_BACKWARD;</p><p>	}</p><p></font>} <font class="keyword">else </font><font class="keyword">if </font>(absz &gt; absx && absz &gt; absy) {</p><p>	<font class="keyword">if </font>(az &gt; 0) {</p><p>		eoeAndroid = CWJ_UP;</p><p>	</font>} <font class="keyword">else </font>{</p><p>		eoeAndroid = CWJ_DOWN;</p><p>	}</p><p></font>} <font class="keyword">else </font>{</p><p>	eoeAndroid = CWJ_UNKNOWN;</p><p>}</p><p>}</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

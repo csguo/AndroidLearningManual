@@ -1,0 +1,59 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android下获取开机时间_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li class="navcurrentLink"><A href="index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="ContentProvider" href="index_170.html">ContentProvider</A></h2>
+
+  <h2><A title="Preferences" href="index_171.html">Preferences</A></h2>
+<UL><li ><A title=Android API-SharedPreferences href="show_101_171.html">Android API-SharedPreferences</A> </li><li ><A title=Android SharedPreferences用法 href="show_102_171.html">Android SharedPreferences用法</A> </li><li ><A title=Android SharedPreferences用法（二） href="show_103_171.html">Android SharedPreferences用法（二）</A> </li><li ><A title=Android preferenceActivity用法 href="show_104_171.html">Android preferenceActivity用法</A> </li><li ><A title=Android 首选项框架ListPreference（一） href="show_105_171.html">Android 首选项框架ListPreference（一）</A> </li><li ><A title=Android 首选项框架ListPreference（二） href="show_106_171.html">Android 首选项框架ListPreference（二）</A> </li><li ><A title=Android 首选项框架ListPreference（三） href="show_107_171.html">Android 首选项框架ListPreference（三）</A> </li><li ><A title=Android 首选项框架ListPreference（四） href="show_108_171.html">Android 首选项框架ListPreference（四）</A> </li><li ><A title=Android 首选项框架ListPreference（五） href="show_109_171.html">Android 首选项框架ListPreference（五）</A> </li><li ><A title=Android之SharedPreferences href="show_110_171.html">Android之SharedPreferences</A> </li><li ><A title=SharedPreferences与Preferences href="show_111_171.html">SharedPreferences与Preferences</A> </li><li ><A title=onSaveInstanceState和onRestoreInstanceState的用处 href="show_112_171.html">onSaveInstanceState和onRestoreInstanceState的用处</A> </li><li ><A title=用SharedPreferences获取其他应用中用SharedPreferences保存的数据 href="show_113_171.html">用SharedPreferences获取其他应用中用SharedPreferences保存的数据</A> </li><li ><A title=PreferenceActivity 参数设置UI的使用 href="show_114_171.html">PreferenceActivity 参数设置UI的使用</A> </li><li ><A title=Android 让浏览器全屏显示 href="show_115_171.html">Android 让浏览器全屏显示</A> </li><li ><A title=Android EditTextPreference href="show_116_171.html">Android EditTextPreference</A> </li><li class="currentLink"><A title=Android下获取开机时间 href="show_117_171.html">Android下获取开机时间</A> </li><li ><A title=是否记住密码功能 href="show_118_171.html">是否记住密码功能</A> </li><li ><A title=在Activity中获取PreferenceActivity设置的值 href="show_119_171.html">在Activity中获取PreferenceActivity设置的值</A> </li><li ><A title=Android 完美解决自定义preference与ActivityGroup UI更新的问题 href="show_120_171.html">Android 完美解决自定义preference与ActivityGroup UI更新的问题</A> </li><li ><A title=Android 自定义 SeekBarPreference href="show_121_171.html">Android 自定义 SeekBarPreference</A> </li></UL>
+  <h2><A title="SQLite" href="index_172.html">SQLite</A></h2>
+
+  <h2><A title="SD卡" href="index_173.html">SD卡</A></h2>
+
+  <h2><A title="数据库" href="index_174.html">数据库</A></h2>
+
+  <h2><A title="URI" href="index_175.html">URI</A></h2>
+
+  <h2><A title="MediaStore" href="index_176.html">MediaStore</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android下获取开机时间</H2>
+<div style="line-height:20px; font-size:14px;"><p>找了一圈没发现能得到开机启动时间资料，于是乎突发奇想，得到了解决方案。</p><p>我的思路是：程序里注册个广播接收器，接收开机启动的广播，当程序接到该广播后，写入文件SharedPreferences,当我们程序需要用到开机时间时，再从SharedPreferences中读取信息。</p><p>废话不多说,下面上大家喜欢的源码！</p><p>AndroidManifest.xml</p><p><pre>&lt;receiver android:name=<font class="Fields">".receiver.BootUpReceiver"</font>&gt;   </p><p>&lt;intent-filter&gt;   </p><p>  </font>&lt;action android:name=<font class="Fields">"android.intent.action.BOOT_COMPLETED"</font> /&gt;</p><p>&lt;/intent-filter&gt;   </p><p>&lt;/receiver&gt;  </p><p></pre></p><p>Receiver文件，记录开机时间</p><p><pre><font class="keyword">public </font><font class="keyword">class </font>BootUpReceiver </font><font class="keyword">extends </font>BroadcastReceiver {</p><p>	<font class="keyword">private </font>SharedPreferences sharedPreferences;<font class="Comments">// 配置文件</font></p><p>	<font class="keyword">private </font>Editor editor;<font class="Comments">// 更改配置文件的类实例</font></p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onReceive(Context context, Intent intent) {</p><p>		<font class="keyword">if </font>(intent.getAction().equals(Intent.ACTION_BOOT_COMPLETED)) {</p><p>			</font>sharedPreferences = context.getSharedPreferences(<font class="Fields">"这是存储文件的名字"</font>,</p><p>					Context.MODE_PRIVATE);</p><p>			editor = sharedPreferences.edit();</p><p>			</font>editor.putLong(<font class="Fields">"存储时间的key"</font>, <font class="keyword">new </font>Date().getTime());</p><p>			editor.commit();<font class="Comments">// 别忘了提交哦</font></p><p>		}</p><p>
+	}</p><p>}</p><p></pre></p><p>读取开机时间 </p><p><pre><font class="Comments">/**</font></p><p> <font class="Comments">* Description : 获取开机的时间</font></p><p> <font class="Comments">* @return String 秒数</font></p><p> <font class="Comments">*/</font></p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">long </font>getUpTime(Activity context) {</p><p>	SharedPreferences sharedPreferences = context.getSharedPreferences(</p><p>			<font class="Fields">"这是存储文件的名字"</font>, Context.MODE_PRIVATE);</p><p>	<font class="keyword">long </font>seconds = sharedPreferences.getLong(<font class="Fields">"存储时间的key"</font>,</p><p>			<font class="keyword">new </font>Date().getTime());</p><p>	<font class="keyword">return </font>seconds;</p><p>}</p><p></pre></p><p>效果：</p><p><img src="../img/data_preference/17_preference.jpg"></p><p><img src="../img/data_preference/17_preference2.png"></p><p>开机日期是写入文件的，下面的开机总共时间是根据当前时间算出来的。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

@@ -1,0 +1,58 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>常用的Intent的URI及示例_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li class="navcurrentLink"><A href="index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="ContentProvider" href="index_170.html">ContentProvider</A></h2>
+
+  <h2><A title="Preferences" href="index_171.html">Preferences</A></h2>
+
+  <h2><A title="SQLite" href="index_172.html">SQLite</A></h2>
+
+  <h2><A title="SD卡" href="index_173.html">SD卡</A></h2>
+
+  <h2><A title="数据库" href="index_174.html">数据库</A></h2>
+
+  <h2><A title="URI" href="index_175.html">URI</A></h2>
+<UL><li ><A title=Content Provider 基础之URI href="show_501_175.html">Content Provider 基础之URI</A> </li><li ><A title=URIs的结构 href="show_502_175.html">URIs的结构</A> </li><li ><A title=用URIs读取数据 href="show_503_175.html">用URIs读取数据</A> </li><li class="currentLink"><A title=常用的Intent的URI及示例 href="show_504_175.html">常用的Intent的URI及示例</A> </li><li ><A title=SMS Media查询常用Uri href="show_505_175.html">SMS Media查询常用Uri</A> </li><li ><A title=Android：软件的安装和卸载源码解析 href="show_506_175.html">Android：软件的安装和卸载源码解析</A> </li><li ><A title=Android 获取一个apk的信息 href="show_507_175.html">Android 获取一个apk的信息</A> </li><li ><A title=Android 用APN来获取手机号 href="show_508_175.html">Android 用APN来获取手机号</A> </li></UL>
+  <h2><A title="MediaStore" href="index_176.html">MediaStore</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>常用的Intent的URI及示例</H2>
+<div style="line-height:20px; font-size:14px;"><p>以下是常用到的Intent的URI及其示例，包含了大部分应用中用到的共用Intent。</p><p>一、打开一个网页，类别是Intent.ACTION_VIEW</p><p><pre>Uri uri = Uri.parse(<font class="Fields">"http:<font class="Comments">//blog.3gstdy.com/"</font>);</font></p><p>Intent intent = <font class="keyword">new </font>Intent(Intent.ACTION_VIEW, uri);</p><p></pre></p><p>二、打开地图并定位到一个点</p><p><pre>Uri uri = Uri.parse(<font class="Fields">"geo:52.76,-79.0342″</font>);</p><p>Intent intent = <font class="keyword">new </font>Intent(Intent.ACTION_VIEW, uri);</p><p></pre></p><p> 三、打开拨号界面 ,类型是Intent.ACTION_DIAL</p><p><pre>Uri uri = Uri.parse(<font class="Fields">"tel:10086″</font>);</p><p>Intent intent = <font class="keyword">new </font>Intent(Intent.ACTION_DIAL, uri);</p><p></pre></p><p>四、直接拨打电话,与三不同的是，这个直接拨打电话，而不是打开拨号界面</p><p><pre>Uri uri = Uri.parse(<font class="Fields">"tel:10086″</font>);</p><p>Intent intent = <font class="keyword">new </font>Intent(Intent.ACTION_CALL, uri);</p><p></pre></p><p>五、卸载一个应用，Intent的类别是Intent.ACTION_DELETE</p><p><pre>Uri uri = Uri.fromParts(<font class="Fields">"package"</font>, </font><font class="Fields">"xxx"</font>, <font class="keyword">null</font>);</p><p>Intent intent = <font class="keyword">new </font>Intent(Intent.ACTION_DELETE, uri);</p><p></pre></p><p>六、安装应用程序,Intent的类别是Intent.ACTION_PACKAGE_ADDED</p><p><pre>Uri uri = Uri.fromParts(<font class="Fields">"package"</font>, </font><font class="Fields">"xxx"</font>, <font class="keyword">null</font>);</p><p>Intent intent = <font class="keyword">new </font>Intent(Intent.ACTION_PACKAGE_ADDED, uri);</p><p></pre></p><p>七、播放音频文件</p><p><pre>Uri uri = Uri.parse(<font class="Fields">"file:<font class="Comments">///sdcard/download/everything.mp3″</font>);</font></p><p>Intent intent = <font class="keyword">new </font>Intent(Intent.ACTION_VIEW, uri);</p><p>intent.setType(<font class="Fields">"audio/mp3″</font>);</p><p></pre></p><p>八、打开发邮件界面</p><p><pre>Uri uri= Uri.parse(<font class="Fields">"mailto:admin@3gstdy.com"</font>);</p><p>Intent intent = <font class="keyword">new </font>Intent(Intent.ACTION_SENDTO, uri);</p><p></pre></p><p>九、发邮件,与八不同这里是将邮件发送出去，</p><p><pre>Intent intent = <font class="keyword">new </font>Intent(Intent.ACTION_SEND);</p><p>String[] tos = { <font class="Fields">"admin@3gstdy.com"</font> </font>};</p><p>String[] ccs = { <font class="Fields">"webmaster@3gstdy.com"</font> </font>};</p><p>intent.putExtra(Intent.EXTRA_EMAIL, tos);</p><p>intent.putExtra(Intent.EXTRA_CC, ccs);</p><p>intent.putExtra(Intent.EXTRA_TEXT, <font class="Fields">"I come from http:<font class="Comments">//blog.3gstdy.com"</font>);</font></p><p>intent.putExtra(Intent.EXTRA_SUBJECT, <font class="Fields">"http:<font class="Comments">//blog.3gstdy.com"</font>);intent.setType(</font><font class="Fields">"message/rfc882″</font>);</font></p><p>Intent.createChooser(intent, <font class="Fields">"Choose Email Client"</font>)</p><p></pre></p><p>十、路径规划</p><p><pre>Uri uri = Uri.parse(<font class="Fields">"http:<font class="Comments">//maps.google.com/maps?f=d&saddr=startLat%20startLng&daddr=endLat%20endLng&hl=en"</font>);</font></p><p>Intent it = <font class="keyword">new </font>Intent(Intent.ACTION_VIEW, uri);</p><p>startActivity(it);</p><p></pre></p><p></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

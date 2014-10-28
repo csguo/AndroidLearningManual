@@ -1,0 +1,70 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 显示查询结果（一）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li class="navcurrentLink"><A href="index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="设备信息" href="index_157.html">设备信息</A></h2>
+
+  <h2><A title="摄像头" href="index_158.html">摄像头</A></h2>
+
+  <h2><A title="通讯录" href="index_159.html">通讯录</A></h2>
+
+  <h2><A title="电话" href="index_160.html">电话</A></h2>
+
+  <h2><A title="短信" href="index_161.html">短信</A></h2>
+
+  <h2><A title="传感器" href="index_162.html">传感器</A></h2>
+
+  <h2><A title="定位" href="index_163.html">定位</A></h2>
+<UL><li ><A title=Android 实现GPS定位（一） href="show_601_163.html">Android 实现GPS定位（一）</A> </li><li ><A title=Android 实现GPS定位（二） href="show_602_163.html">Android 实现GPS定位（二）</A> </li><li ><A title=Android GPS定位 href="show_603_163.html">Android GPS定位</A> </li><li ><A title=Android wifi实现定位（一） href="show_604_163.html">Android wifi实现定位（一）</A> </li><li ><A title=Android wifi实现定位（二） href="show_605_163.html">Android wifi实现定位（二）</A> </li><li ><A title=Android 基站定位源代码 href="show_606_163.html">Android 基站定位源代码</A> </li><li ><A title=Android GPS，WIFI，基站定位集合 href="show_607_163.html">Android GPS，WIFI，基站定位集合</A> </li><li ><A title=Android 使用地图 href="show_608_163.html">Android 使用地图</A> </li><li class="currentLink"><A title=Android 显示查询结果（一） href="show_609_163.html">Android 显示查询结果（一）</A> </li><li ><A title=Android 显示查询结果（二） href="show_610_163.html">Android 显示查询结果（二）</A> </li><li ><A title=Google地图经纬度转换成具体位置 href="show_611_163.html">Google地图经纬度转换成具体位置</A> </li></UL>
+  <h2><A title="视频系统" href="index_164.html">视频系统</A></h2>
+
+  <h2><A title="音频系统" href="index_165.html">音频系统</A></h2>
+
+  <h2><A title="铃声" href="index_166.html">铃声</A></h2>
+
+  <h2><A title="音量" href="index_167.html">音量</A></h2>
+
+  <h2><A title="录音" href="index_168.html">录音</A></h2>
+
+  <h2><A title="输入法" href="index_169.html">输入法</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 显示查询结果（一）</H2>
+<div style="line-height:20px; font-size:14px;"><p>在Google地图上显示查询结果（1）</p><p>上一节中，服务器端程序已经可以正常返回查询结果。本节将介绍如何从服务器取得该结果并显示在地图上。这一过程主要分为三个步骤：第一，需要获取服务器端的查询结果；第二，实现loadGeoInfo()接口；第三，显示查询结果等其他工作。</p><p>1．获取服务器端的查询结果</p><p>本程序将使用流行的AJAX技术取得查询结果，一方面减少了流量，另一方面由于加载速度快，还可以增强用户体验。当然Google Maps API在这里也提供了相当便捷的使用AJAX的方法，完全没有必要使用其他AJAX的应用程序框架。在Google Maps API中，异步调用有两种方法，一种是使用GXmlHttp对象，另一种是使用GDownloadUrl()函数。</p><p>（1）使用GXmlHttp对象</p><p>创建GXmlHttp对象使用AJAX和直接创建XmlHttpRequest对象基本没有区别，使用十分灵活。由于Google封装时已经考虑到了浏览器的兼容性，所以GXmlHttp相对普通XmlHttpRequest的优势在于可以直接在不同浏览器上直接使用。目前GXmlHttp不仅可以支持Internet Explorer、Firefox和Opera等流行的浏览器，在Safari、Konquorer等用户群比较少的浏览器上都可以得到比较好的支持。下面仅给出一段模版形式的代码以供参考。</p><p><pre><font class="Comments">//创建GXmlHttp对象 </font></p><p>var request = GXmlHttp.create();</p><p><font class="Comments">//打开GXmlHttp，这里可以设置的参数有三个 </font></p><p><font class="Comments">//第一个参数：获取方法，判断是使用GET方法还是POST方法 </font></p><p><font class="Comments">//第二个参数：需获取的文件名 </font></p><p><font class="Comments">//第三个参数：获取模式，异步为真，同步为假 </font></p><p></font>request.open(<font class="Fields">"GET"</font>, </font><font class="Fields">"myfile.txt"</font>, <font class="keyword">true</font>);</p><p><font class="Comments">//回调函数，可以用function(){…}直接在此调用 </font></p><p><font class="Comments">//也可以预先定义函数XXX()，在此赋值 </font></p><p>request.onreadystatechange=XXX request.onreadystatechange = function() {</p><p>	<font class="Comments">//判断状态，可根据不同的状态做不同的响应，本例中只捕捉了完全加载的状态4 </font></p><p>	<font class="keyword">if </font>(request.readyState == 4) { </p><p>		alert(request.responseText);</p><p>	} </p><p>} </p><p><font class="Comments">//发送信息 </font></p><p></font>request.send(<font class="keyword">null</font>);</p><p></pre></p><p>（2）使用GDownloadUrl()函数</p><p>GDownloadUrl()函数应该说是一个简化版的异步处理函数，只能使用GET方法，不判断加载状态，只是在完全加载后调用回调函数。虽然GDownloadUrl()函数功能有限，但是因为其使用非常简单，所以应用也相当广泛。GDownloadUrl()调用方法如下。</p><p><pre>GDownloadUrl(url, onload)</p><p></pre></p><p>第一个参数即为需要用GET方法获取的URL，第二个参数onload是完全加载后的回调函数。</p><p>在本例IP地理位置可视化查询中，GDownloadUrl()已经完全符合要求，故在此使用GDownloadUrl()函数。获取服务器数据的函数getGeoInfo()如下。</p><p><pre>function getGeoInfo(q) {</p><p>	<font class="Comments">//q为待查信息 </font></p><p>	</font>GDownloadUrl(<font class="Fields">"search.php?q="</font>+q, function(data) {</p><p>		<font class="Comments">//直接用eval执行返回的Javascript字符串 </font></p><p>		eval(data);</p><p>	}); </p><p>}</p><p></pre></p><p>2．实现loadGeoInfo()接口</p><p>loadGeoInfo()接口需要实现在Google地图上定位目标IP，添加信息窗口显示其详细信息等功能。</p><p><pre>function loadGeoInfo(q, ip, country_code, country_code3, country, region, city, latitude, longitude) {</p><p>	<font class="Comments">//新的信息窗口中的内容 </font></p><p>	</font>var info = <font class="Fields">"&lt;div align=\"</font>left\</font><font class="Fields">" style=\"</font>overflow:X;font-size:12px\</font><font class="Fields">"&gt;"</font></p><p>			</font>+ <font class="Fields">"&lt;span style=\"</font>font-size:14px\</font><font class="Fields">"&gt;&lt;strong&gt;"</font> + q</p><p>			</font>+ <font class="Fields">"&lt;/strong&gt;&lt;/span&gt;&lt;br /&gt;"</font> + </font><font class="Fields">"&lt;strong&gt;IP:&lt;/strong&gt;  "</font> + ip</p><p>			</font>+ <font class="Fields">"&lt;br /&gt;"</font> + </font><font class="Fields">"&lt;strong&gt;国家:&lt;/strong&gt;  "</font> + coun<font class="keyword">try </font>+ </font><font class="Fields">"&lt;br /&gt;"</font></p><p>			</font>+ <font class="Fields">"&lt;strong&gt;代码:&lt;/strong&gt;  "</font> + country_code + </font><font class="Fields">"("</font> + country_code3 + </font><font class="Fields">")"</font></p><p>			</font>+ <font class="Fields">"&lt;br /&gt;"</font> + </font><font class="Fields">"&lt;strong&gt;省份:&lt;/strong&gt;  "</font> + city + </font><font class="Fields">"&lt;br /&gt;"</font> + </font><font class="Fields">"&lt;strong&gt;城市:&lt;/strong&gt;  "</font></p><p>			</font>+ region + <font class="Fields">"&lt;br /&gt;"</font> + </font><font class="Fields">"&lt;strong&gt;经度:&lt;/strong&gt;  "</font> + longitude + </font><font class="Fields">"&lt;br /&gt;"</font></p><p>			</font>+ <font class="Fields">"&lt;strong&gt;纬度:&lt;/strong&gt;  "</font> + latitude + </font><font class="Fields">"&lt;br /&gt;"</font> + </font><font class="Fields">"&lt;/div&gt;"</font>;</p><p>	<font class="Comments">//移动地图中心到新的位置 </font></p><p>	</font>var po<font class="keyword">int </font>= </font><font class="keyword">new </font>GLatLng(latitude, longitude);</p><p>	</font>map.panTo(po<font class="keyword">int</font>);</p><p>	<font class="Comments">//如果创建了marker地标，则关闭当前的信息窗口并移除地标 </font></p><p>	if(marker) {</p><p>		map.closeInfoWindow();</p><p>		map.removeOverlay(marker);</p><p>	} </p><p>	<font class="Comments">//创建新的地标 </font></p><p>	</font>marker = <font class="keyword">new </font>GMarker(po</font><font class="keyword">int</font>);</p><p>	map.addOverlay(marker);</p><p>	<font class="Comments">//显示信息窗口 </font></p><p>	marker.openInfoWindowHtml(info);</p><p>}</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

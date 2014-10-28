@@ -1,0 +1,64 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>webview与HTML加载自适应问题解决方案_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li class="navcurrentLink"><A href="index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="3G" href="index_177.html">3G</A></h2>
+
+  <h2><A title="WIFI" href="index_178.html">WIFI</A></h2>
+
+  <h2><A title="蓝牙" href="index_179.html">蓝牙</A></h2>
+
+  <h2><A title="HTTP协议" href="index_180.html">HTTP协议</A></h2>
+
+  <h2><A title="Socket" href="index_181.html">Socket</A></h2>
+
+  <h2><A title="HTML与HTML5" href="index_182.html">HTML与HTML5</A></h2>
+<UL><li ><A title=Android TextView中显示HTML和图片 href="show_501_182.html">Android TextView中显示HTML和图片</A> </li><li ><A title=HttpClient和URLConnection两种下载HTML href="show_502_182.html">HttpClient和URLConnection两种下载HTML</A> </li><li class="currentLink"><A title=webview与HTML加载自适应问题解决方案 href="show_503_182.html">webview与HTML加载自适应问题解决方案</A> </li><li ><A title=Android中构建HTML5应用 href="show_504_182.html">Android中构建HTML5应用</A> </li><li ><A title=Android下的另一个开发选择——HTML5 href="show_505_182.html">Android下的另一个开发选择——HTML5</A> </li><li ><A title=Android与iOS：谁更适合HTML 5？ href="show_506_182.html">Android与iOS：谁更适合HTML 5？</A> </li><li ><A title=Android and HTML5 开发手机应用(转载) href="show_507_182.html">Android and HTML5 开发手机应用(转载)</A> </li><li ><A title=HTML 5是不是解决跨平台问题的终极密钥 href="show_508_182.html">HTML 5是不是解决跨平台问题的终极密钥</A> </li><li ><A title=HTML5能取代Android和iOS应用程序吗？(转载) href="show_509_182.html">HTML5能取代Android和iOS应用程序吗？(转载)</A> </li><li ><A title=Android webkit HTML5 video研究 href="show_510_182.html">Android webkit HTML5 video研究</A> </li><li ><A title=将HTML5封装成android应用APK文件若干方法 href="show_511_182.html">将HTML5封装成android应用APK文件若干方法</A> </li><li ><A title=七个特点告诉你 HTML5技术到底怎么样 href="show_512_182.html">七个特点告诉你 HTML5技术到底怎么样</A> </li><li ><A title=十大中间工具和HTML5技术应用解析 href="show_513_182.html">十大中间工具和HTML5技术应用解析</A> </li></UL>
+  <h2><A title="JavaScript" href="index_183.html">JavaScript</A></h2>
+
+  <h2><A title="Email" href="index_184.html">Email</A></h2>
+
+  <h2><A title="NFC" href="index_185.html">NFC</A></h2>
+
+  <h2><A title="Web Service" href="index_186.html">Web Service</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>webview与HTML加载自适应问题解决方案</H2>
+<div style="line-height:20px; font-size:14px;"><p>前几天项目遇到了webview加载HTML的时候，网页拖动右边有空白的现象，找了很多方案，都没解决，我研究了一下，其实很简单，特把方法列出来，供大家参考一下，希望能对大家有所帮助。</p><p>先看效果图</p><p>怎么拖都不会动，同时加 有对网页放大和缩小的功能。</p><p><img src="../img/network_html/03_html.jpg"></p><p><img src="../img/network_html/03_html2.jpg"></p><p>先把代码拿出来，HTML的我是PHP写的，</p><p><pre>&lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"&gt;</p><p>&lt;html&gt;</p><p>&lt;head&gt;</p><p>	&lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8"&gt;</p><p>	&lt;title&gt;&lt;? echo $arr['subject'];?&gt;&lt;/title&gt;</p><p>	&lt;style type="text/css"&gt;</p><p>		&lt;!--</p><p>		*{ margin:0; padding:0}</p><p>		body{</p><p>			margin-left:0;</p><p>			margin-right:0;</p><p>		}</p><p>		.STYLE1 {color: 006699; font-weight:bold}</p><p>		--&gt;</p><p>	&lt;/style&gt;</p><p>&lt;/head&gt;</p><p>&lt;body&gt;</p><p>&lt;table width="98%" border="0" cellspacing="2" cellpadding="2"&gt;</p><p>  &lt;tr&gt;</p><p>    &lt;td &gt;&lt;span class="STYLE1"&gt;&lt;? echo $arr['subject'];?&gt;&lt;/span&gt;&lt;/td&gt;</p><p>  &lt;/tr&gt;</p><p>  &lt;tr&gt;</p><p>    &lt;td &gt;作者:&lt;? echo $arr[author];?&gt;  时间:&lt;? echo tranTime($arr[postdate]);?&gt;&lt;/td&gt;</p><p>  &lt;/tr&gt;</p><p>  &lt;tr&gt;</p><p>    &lt;td&gt;&lt;? echo $content;?&gt;&lt;/td&gt;</p><p>  &lt;/tr&gt;</p><p>&lt;/table&gt;</p><p>&lt;/body&gt;</p><p>&lt;/html&gt;</p><p></pre></p><p>跟一般的写法没什么两样，其中上面加载PHP的我省略掉了，相信大家能看明白。</p><p>下面是JAVA代码：</p><p><pre>String url=<font class="Fields">"http:<font class="Comments">//www.dengwei1999.com/newslist.php?id=8"</font>;</font></p><p>wv = (WebView) findViewById(R.id.webView1);</p><p>wv.setVisibility(WebView.VISIBLE);</p><p>WebSettings ws = wv.getSettings();</p><p><font class="Comments">//ws.setUseWideViewPort(true);</font></p><p>ws.setJavaScriptEnabled(<font class="keyword">true</font>);</p><p>wv.addJavascriptInterface(<font class="keyword">new </font>ContactsPlugin(), <font class="Fields">"contactsAction"</font>);</p><p><font class="Comments">//设置可以支持缩放</font></p><p>wv.getSettings().setSupportZoom(<font class="keyword">true</font>);   </p><p><font class="Comments">//设置默认缩放方式尺寸是far  </font></p><p>wv.getSettings().setDefaultZoom(WebSettings.ZoomDensity.FAR);  </p><p><font class="Comments">//设置出现缩放工具   </font></p><p>wv.getSettings().setBuiltInZoomControls(<font class="keyword">true</font>);</p><p>wv.loadUrl(url);</p><p></pre></p><p>就这样就可以实现了，是不是很简单。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

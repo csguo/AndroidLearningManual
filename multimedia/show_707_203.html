@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>07_Android音乐资源管理与播放（二）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li class="navcurrentLink"><A href="index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Android多媒体功能" href="index_196.html">Android多媒体功能</A></h2>
+
+  <h2><A title="Android多媒体之2D" href="index_197.html">Android多媒体之2D</A></h2>
+
+  <h2><A title="Android多媒体之3D" href="index_198.html">Android多媒体之3D</A></h2>
+
+  <h2><A title="Android多媒体之Bitmap" href="index_199.html">Android多媒体之Bitmap</A></h2>
+
+  <h2><A title="Android多媒体之Canvas" href="index_200.html">Android多媒体之Canvas</A></h2>
+
+  <h2><A title="Android多媒体之Drawable" href="index_201.html">Android多媒体之Drawable</A></h2>
+
+  <h2><A title="Android多媒体之gif" href="index_202.html">Android多媒体之gif</A></h2>
+
+  <h2><A title="Android多媒体之MediaStore" href="index_203.html">Android多媒体之MediaStore</A></h2>
+<UL><li ><A title=Android多媒体分析（一）MediaScanner href="show_701_203.html">Android多媒体分析（一）MediaScanner</A> </li><li ><A title=Android多媒体分析（二）MediaStore href="show_702_203.html">Android多媒体分析（二）MediaStore</A> </li><li ><A title=Android多媒体分析（三）通过MediaStore获取Audio信息 href="show_703_203.html">Android多媒体分析（三）通过MediaStore获取Audio信息</A> </li><li ><A title=Android多媒体分析（四）AudioManager href="show_704_203.html">Android多媒体分析（四）AudioManager</A> </li><li ><A title=Android多媒体分析（五）音乐播放器实例 href="show_705_203.html">Android多媒体分析（五）音乐播放器实例</A> </li><li ><A title=Android 音乐资源管理与播放（一） href="show_706_203.html">Android 音乐资源管理与播放（一）</A> </li><li class="currentLink"><A title=07_Android音乐资源管理与播放（二） href="show_707_203.html">07_Android音乐资源管理与播放（二）</A> </li></UL>
+  <h2><A title="Android多媒体之动画" href="index_204.html">Android多媒体之动画</A></h2>
+
+  <h2><A title="Android多媒体之分辨率" href="index_205.html">Android多媒体之分辨率</A></h2>
+
+  <h2><A title="Android多媒体之分屏幕" href="index_206.html">Android多媒体之分屏幕</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>07_Android音乐资源管理与播放（二）</H2>
+<div style="line-height:20px; font-size:14px;"><p>MediaStore与音乐信息查询</p><p>MediaScanner将扫描媒体文件获得的信息全部存储在MediaStore数据库中。MediaStore是基于SQLite数据库系统的，通过ContentProvider方式，程序可以对MediaStore数据库进行增删查改等操作。</p><p>MediaStore的数据库文件位于/data/data/com.android.providers/databases,通常可以发现两个数据库文件</p><p>internal.db：对应内部存储空间的媒体数据库文件；</p><p>external-xxxxxxxx.db：对应外部存储空间的媒体数据文件，由于同一个手机终端可能使用多个SD卡，针对每一个SD卡，OPhone平台都会生成对应的媒体数据库文件。</p><p>两个数据库文件除了管理的文件所存储的位置不同外，没有其他区别。本文后续将默认以外部存储为例进行介绍。</p><p>使用SQLite命令打开数据库文件，可以看到Android多媒体数据库的基本结构:</p><p><pre>&gt;sqlite3external-xxx.db</p><p>&gt;.tables</p><p>&gt;.schema</p><p></pre></p><p>感兴趣的读者可以自己查看，本文不再一一列举。</p><p>MediaStore类是Android平台的多媒体数据库，它包含了音频，视频，图片等所有多媒体文件信息。本文将重点介绍如何管理和获取音频信息，视频和图片等信息的获取与管理与音频类似。</p><p>MediaStore以ContentProvider的形式向外提供媒体数据库信息。通过Android平台提供的ContentProvider接口，可以方便的访问数据库信息。</p><p><pre><font class="keyword">public </font>Cursorquery(Contexctx c, Uri _uri, String[] prjs, String selections,</p><p>		String[] selectArgs, String order) {</p><p>	ContentResolverresolver = ctx.getContentResolver();</p><p>	<font class="keyword">if </font>(resolver == </font><font class="keyword">null</font>) {</p><p>		<font class="keyword">return </font><font class="keyword">null</font>;</p><p>	}</p><p>	returnresolver.query(_uri, prjs, selections, selectArgs, order);</p><p>}</p><p></pre></p><p>_uri：指明要查询的数据库名称加上表的名称，从MediaStore中我们可以找到相应信息的参数，具体请参考SDK开发文档。</p><p><pre>prjs:指定查询数据库表中的哪几列，返回的游标中将包括相应的信息。Null则返回所有信息。</p><p>selection:指定查询条件</p><p>selectionArgs：参数selection里有？这个符号时，这里可以以实际值代替这个问号。如果selection这个没有？的话，那么这个String数组可以为null</p><p>order：指定查询结果的排列顺序</p><p></pre></p><p>MediaStore.Audio.Media类定义了媒体数据库中的歌曲信息</p><p>MediaStore.Audio.Artists类定义了媒体数据库中的歌手信息</p><p>MediaStore.Audio.Albums类定义了媒体数据库中的专辑信息</p><p>MediaStore.Audio.Playlists类定义了媒体数据库中的播放列表信息</p><p>读者可以通过OPhoneSDK开发文档找到详细的信息，结合ContentProvider的查询接口，可以获取所有媒体信息。</p><p>MediaPlayer与音乐播放MediaPlayer是Android多媒体编程中最核心的类。它提供了一个多媒体播放器常用的基本操作如播放，暂停，停止，获取文件播放长度等等。它向下通过JNI封装，获取系统提供的多媒体播放能力。</p><p>MeidaPlayer提供了设计良好的多媒体接口，播放一个音频文件的步骤非常简单：</p><p>1.创建播放器：newMediaPlayer()</p><p>2.设置音频源：setDataSource(Audio_PATH)</p><p>3.准备音频源：prepare()</p><p>4.播放音频：start()</p><p>5.停止播放：stop()</p><p>6.释放资源：release();</p><p>其他MediaPlayer常用接口例如pause(),getDuration(),seekTo()等，大家可以自己查阅SDK文档，这里不在一一介绍。</p><p>音频的播放过程也就是MediaPlayer对象的状态转换过程。深入理解MediaPlayer的状态机是灵活驾驭Android多媒体编程的基础。读者在AndroidSDK开发文档中可以查看到MediaPlayer的状态转换图。程序有必要监听这些变化，判断播放器所处的状态，Android平台提供了多种监听器，来监视MediaPlayer的状态变化：</p><p><pre>MediaPlayer.OnBufferingUpdateListener</p><p>MediaPlayer.OnCompletionListener</p><p>MediaPlayer.OnErrorListener</p><p>MediaPlayer.OnPreparedListener</p><p>MediaPlayer.OnSeekCompleteListener</p><p></pre></p><p>Android平台可以从资源文件、文件系统和网络三种方式来播放多媒体文件。无论使用哪种播放方式，基本的流程都是类似的。</p><p style="color:#3333FF;">从资源文件播放</p><p>多媒体文件可以放在资源文件夹/res/raw目录下，然后通过MediaPlayer.create(Contextctx,intfile)方法创建MediaPlayer对象，获得MediaPlayer对象后直接调用start()方法即可播放音乐。</p><p style="color:#3333FF;">从文件系统播放</p><p>从文件系统播放音乐，需要使用new操作符创建MediaPlayer对象。获得MediaPlayer对象之后，需要依次调用setDataSource()和prepare()方法，以便设置数据源，让播放器完成准备工作，然后调用start()方法播放音乐。</p><p style="color:#3333FF;">从网络播放</p><p>Android平台支持在线播放媒体音乐，通过progressdownload的方式播放在线音频资源。Progressdownload的支持由底层的OpenCore多媒体库提供支持，应用开发者不必关心具体实现细节，只需要设置网络音频资源的地址，就可以完成在线播放的工作，极大提高了开发效率。由于从网络下载播放音频资源需要较长的时间，在准备音频资源的时候，需要使用prepareAsync()方法，这个方法是异步执行的，不会阻塞程序的主进程。MediaPlayer通过MediaPlayer.OnPreparedListener通知MediaPlayer的准备状态。</p><p>在特定的情况下，程序需要通过代理服务器访问在线资源，例如，通过APNCMWAP访问网络时，需要设置CMWAP的代理地址（10.0.0.172:80）。Android平台提供了非常方便的解决方案，使开发者可以非常简单的通知OpenCore使用指定的代理来访问网络音频资源：在网络媒体的url后，通过“x-http-proxy”指定代理服务器地址。另外，由于Android平台支持MultiPDP，可以同时建立多个APN连接，所以开发者必须指明哪个连接端口需要使用代理服务器，通过“x-net-interface”指定连接端口，下面的程序简单说明了通过</div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

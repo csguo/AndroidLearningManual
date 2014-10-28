@@ -1,0 +1,58 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 数据存取之Databases_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li class="navcurrentLink"><A href="index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="ContentProvider" href="index_170.html">ContentProvider</A></h2>
+
+  <h2><A title="Preferences" href="index_171.html">Preferences</A></h2>
+
+  <h2><A title="SQLite" href="index_172.html">SQLite</A></h2>
+
+  <h2><A title="SD卡" href="index_173.html">SD卡</A></h2>
+
+  <h2><A title="数据库" href="index_174.html">数据库</A></h2>
+<UL><li class="currentLink"><A title=Android 数据存取之Databases href="show_401_174.html">Android 数据存取之Databases</A> </li><li ><A title=Android教程之SQlite数据库操作 href="show_402_174.html">Android教程之SQlite数据库操作</A> </li><li ><A title=Android 数据库一次创建多个表（一） href="show_403_174.html">Android 数据库一次创建多个表（一）</A> </li><li ><A title=Android 数据库一次创建多个表（二） href="show_404_174.html">Android 数据库一次创建多个表（二）</A> </li><li ><A title=Android 数据库经验总结 href="show_405_174.html">Android 数据库经验总结</A> </li><li ><A title=创建数据库的时候就将数据库保存到SDcard href="show_406_174.html">创建数据库的时候就将数据库保存到SDcard</A> </li><li ><A title=Android保存图片到数据库 href="show_407_174.html">Android保存图片到数据库</A> </li><li ><A title=Android中访问已有的SQLite数据库 href="show_408_174.html">Android中访问已有的SQLite数据库</A> </li><li ><A title=关于Android SQLite database存储到sdcard上的问题 href="show_409_174.html">关于Android SQLite database存储到sdcard上的问题</A> </li></UL>
+  <h2><A title="URI" href="index_175.html">URI</A></h2>
+
+  <h2><A title="MediaStore" href="index_176.html">MediaStore</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 数据存取之Databases</H2>
+<div style="line-height:20px; font-size:14px;"><p>在Android平台上可以操作数据库，这是第一次接触Android时的惊艳之一。在Android平台上，绑定了SQLite数据库，这个数据库系统也是极具性格的，它的最大的应用场景是嵌入式系统。</p><p>如果有JDBC的经验，那么在这里会容易的多。Android中操作数据库首先要通过一个类：android.database.sqlite.SQLiteOpenHelper。它封装了如何打开一个数据库，其中当然也包含如果数据库不存在 就创建这样的逻辑。</p><p>看一个例子：</p><p><pre><font class="keyword">public </font><font class="keyword">class </font>DatabaseHelper </font><font class="keyword">extends </font>SQLiteOpenHelper {</p><p>	<font class="keyword">private </font><font class="keyword">static </font><font class="keyword">final </font>String DATABASE_NAME = <font class="Fields">"com.roiding.simple.note"</font>;</p><p>	<font class="keyword">private </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>DATABASE_VERSION = 1;</p><p>	<font class="keyword">private </font><font class="keyword">static </font><font class="keyword">final </font>String NOTES_TABLE_NAME = <font class="Fields">"notes"</font>;</p><p>	DatabaseHelper(Context context) {</p><p>		<font class="keyword">super</font>(context, DATABASE_NAME, </font><font class="keyword">null</font>, DATABASE_VERSION);</p><p>	}</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onCreate(SQLiteDatabase db) {</p><p>		</font>db.execSQL(<font class="Fields">"CREATE TABLE "</font> + NOTES_TABLE_NAME</p><p>				</font>+ <font class="Fields">" (id integer primary key autoincrement, name text);"</font>);</p><p>	}</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onUpgrade(SQLiteDatabase db, </font><font class="keyword">int </font>oldVersion, </font><font class="keyword">int </font>newVersion) {</p><p>		</font>db.execSQL(<font class="Fields">"DROP TABLE IF EXISTS notes"</font>);</p><p>		onCreate(db);</p><p>	}	</p><p>}</p><p></pre></p><p>这里面，如下的语句需要解释：</p><p><pre>super(context, DATABASE_NAME, null, DATABASE_VERSION)</p><p></pre></p><p>数据库连接的初始化，中间的那个null，是一个CursorFactory参数，没有仔细研究这个参数，暂时置空吧。</p><p>public void onCreate(SQLiteDatabase db)</p><p>这里面的onCreate是指数据库onCreate时，而不是DatabaseHelper的onCreate。也就是说，如果已经指定 database已经存在，那</div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

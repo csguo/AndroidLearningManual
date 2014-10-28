@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Handler 基础认识_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li class="navcurrentLink"><A href="index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Activity" href="index_112.html">Activity</A></h2>
+
+  <h2><A title="Intent" href="index_113.html">Intent</A></h2>
+
+  <h2><A title="Service" href="index_114.html">Service</A></h2>
+
+  <h2><A title="Content Provider" href="index_115.html">Content Provider</A></h2>
+
+  <h2><A title="BroadcastReceiver" href="index_116.html">BroadcastReceiver</A></h2>
+
+  <h2><A title="AsyncTask" href="index_117.html">AsyncTask</A></h2>
+
+  <h2><A title="Handler" href="index_118.html">Handler</A></h2>
+<UL><li class="currentLink"><A title=Handler 基础认识 href="show_601_118.html">Handler 基础认识</A> </li><li ><A title=Android Handler的使用(一) href="show_602_118.html">Android Handler的使用(一)</A> </li><li ><A title=Android Handler的使用(二) href="show_603_118.html">Android Handler的使用(二)</A> </li><li ><A title=Android GWES之Android消息系统 href="show_604_118.html">Android GWES之Android消息系统</A> </li><li ><A title=用Handler更新进度条ProgressBar href="show_605_118.html">用Handler更新进度条ProgressBar</A> </li><li ><A title=在Android的Notification中显示进度条 href="show_606_118.html">在Android的Notification中显示进度条</A> </li><li ><A title=通过线程改变界面button的内容 href="show_607_118.html">通过线程改变界面button的内容</A> </li><li ><A title=5秒钟自动更新Title href="show_608_118.html">5秒钟自动更新Title</A> </li></UL>
+  <h2><A title="Thread" href="index_119.html">Thread</A></h2>
+
+  <h2><A title="Permission" href="index_120.html">Permission</A></h2>
+
+  <h2><A title="AIDL" href="index_121.html">AIDL</A></h2>
+
+  <h2><A title="Json" href="index_122.html">Json</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Handler 基础认识</H2>
+<div style="line-height:20px; font-size:14px;"><p style="color:#3333FF;">Handler的定义:</p><p>主要接受子线程发送的数据, 并用此数据配合主线程更新UI。</p><p>解释: 当应用程序启动时，Android首先会开启一个主线程 (也就是UI线程) , 主线程为管理界面中的UI控件，进行事件分发，比如说，你要是点击一个 Button ，Android会分发事件到Button上，来响应你的操作。  </p><p>如果此时需要一个耗时的操作，例如:联网读取数据，或者读取本地较大的一个文件的时候，你不能把这些操作放在主线程中，如果你放在主线程中的话，界面会出现假死现象，如果5秒钟还没有完成的话，会收到Android系统的一个错误提示  "强制关闭"。  这个时候我们需要把这些耗时的操作，放在一个子线程中,因为子线程涉及到UI更新，Android主线程是线程不安全的，也就是说，更新UI只能在主线程中更新，子线程中操作是危险的。 </p><p>这个时候，Handler就出现了。来解决这个复杂的问题，由于Handler运行在主线程中(UI线程中)，它与子线程可以通过Message对象来传递数据，这个时候，Handler就承担着接受子线程传过来的(子线程用sedMessage()方法传弟)Message对象，(里面包含数据)，把这些消息放入主线程队列中，配合主线程进行更新UI。</p><p style="color:#3333FF;">Handler 概念解释：</p><p>handler类允许你发送消息和处理线程消息队列中的消息及runnable对象。handler实例都是与一个线程和该线程的消息队列一起使用，一旦创建了一个新的handler实例，系统就把该实例与一个线程和该线程的消息队列捆绑起来，这将可以发送消息和runnable对象给该消息队列，并在消息队列出口处处理它们。</p><p>handler类有两种主要用途：1。按照时间计划，在未来某时刻，对处理一个消息或执行某个runnable实例。2。把一个对另外线程对象的操作请求放入消息队列中，从而避免线程间冲突。</p><p>时间类消息通过如下方法使用： post(Runnable), postAtTime(Runnable, long), postDelayed(Runnable, long), sendEmptyMessage(int), sendMessage(Message), sendMessageAtTime(Message, long), and sendMessageDelayed(Message, long) </p><p>methods.post之类函数可以传输一个runnable对象给消息队列，并在到达消息队列后被调用。sendmessage之类函数可以传送一个包含数据的message对象，该message对象可以被Handler类的handleMessage(Message) 方法所处理。</p><p>post之类函数和sendmessage之类的函数都可以指定消息的执行时机，是立即执行、稍后一段时间执行，还是在某个确定时刻执行。这可以用来实现超时、消息或其他时间相关的操作。</p><p>当一个进程启动时，主线程独立执行一个消息队列，该队列管理着应用顶层的对象（如：activities、broadcast receivers等等）和所有创建的窗口。你可以创建自己的一个线程，并通过handler来与主线程进行通信。这可以通过在新的线程中调用主线程的handler的post和sendmessage操作来实现。</p><p>HandlerThread/Looper & MessageQueue & Message的关系：</p><p>handler负责将需要传递的信息封装成Message，通过handler对象的sendMessage()来将消息传递给Looper，由Looper将Message放入MessageQueue中。当Looper对象看到MessageQueue中含有Message，就将其广播出去。该handler 对象收到该消息后，调用相应的handler对象的handleMessage()方法对其进行处理。</p><p style="color:#3333FF;">Handler一些特点</p><p>handler可以分发Message对象和Runnable对象到主线程中，每个Handler实例,都会绑定到创建他的线程中(一般是位于主线程)，它有两个作用: </p><p>(1):  安排消息或Runnable 在某个主线程中某个地方执行。</p><p>(2)安排一个动作在不同的线程中执行。</p><p style="color:#3333FF;">Handler中分发消息的一些方法</p><p><pre>post(Runnable)</p><p>postAtTime(Runnable,long)</p><p>postDelayed(Runnable long)</p><p>sendEmptyMessage(int)</p><p>sendMessage(Message)</p><p>sendMessageAtTime(Message,long)</p><p>sendMessageDelayed(Message,long)</p><p></pre></p><p>以上post类方法允许你排列一个Runnable对象到主线程队列中,</p><p>sendMessage类方法, 允许你安排一个带数据的Message对象到队列中，等待更新.</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

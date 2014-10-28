@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android Intent和Intent Filter详解（四）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li class="navcurrentLink"><A href="index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Activity" href="index_112.html">Activity</A></h2>
+
+  <h2><A title="Intent" href="index_113.html">Intent</A></h2>
+<UL><li ><A title=Intents和Intent Filters（理论部分） href="show_101_113.html">Intents和Intent Filters（理论部分）</A> </li><li ><A title=Intents和Intent Filters（实例部分） href="show_102_113.html">Intents和Intent Filters（实例部分）</A> </li><li ><A title=Android Intent和Intent Filter详解（一） href="show_103_113.html">Android Intent和Intent Filter详解（一）</A> </li><li ><A title=Android Intent和Intent Filter详解（二） href="show_104_113.html">Android Intent和Intent Filter详解（二）</A> </li><li ><A title=Android Intent和Intent Filter详解（三） href="show_105_113.html">Android Intent和Intent Filter详解（三）</A> </li><li class="currentLink"><A title=Android Intent和Intent Filter详解（四） href="show_106_113.html">Android Intent和Intent Filter详解（四）</A> </li><li ><A title=Android Intent和Intent Filter详解（五） href="show_107_113.html">Android Intent和Intent Filter详解（五）</A> </li><li ><A title=Android Intent和Bundle机制实例详解 href="show_108_113.html">Android Intent和Bundle机制实例详解</A> </li><li ><A title=Android Intent的几种用法全面总结 href="show_109_113.html">Android Intent的几种用法全面总结</A> </li><li ><A title=Android中Intent中如何传递对象 href="show_110_113.html">Android中Intent中如何传递对象</A> </li><li ><A title=如何调用Google Web Search？ href="show_111_113.html">如何调用Google Web Search？</A> </li></UL>
+  <h2><A title="Service" href="index_114.html">Service</A></h2>
+
+  <h2><A title="Content Provider" href="index_115.html">Content Provider</A></h2>
+
+  <h2><A title="BroadcastReceiver" href="index_116.html">BroadcastReceiver</A></h2>
+
+  <h2><A title="AsyncTask" href="index_117.html">AsyncTask</A></h2>
+
+  <h2><A title="Handler" href="index_118.html">Handler</A></h2>
+
+  <h2><A title="Thread" href="index_119.html">Thread</A></h2>
+
+  <h2><A title="Permission" href="index_120.html">Permission</A></h2>
+
+  <h2><A title="AIDL" href="index_121.html">AIDL</A></h2>
+
+  <h2><A title="Json" href="index_122.html">Json</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android Intent和Intent Filter详解（四）</H2>
+<div style="line-height:20px; font-size:14px;"><p style="color:#3333FF;">Using intent matching 使用intent匹配</p><p>intent和intent filter相匹配，不仅为了寻找并启动一个目标组件，也是为了寻找设备上组件的信息。例如，android系统启动了应用程序启动器，该程序位于屏幕的顶层，显示了用户可以启动的程序，这是通过查找设备上所有的action为"android.intent.action.MAIN"，category为"android.intent.category.LAUNCHER"的intent filter所在的activity实现的。然后它显示了这些activity的图标和标题。类似的，它通过寻找 "android.intent.category.HOME"的filter来定位主屏幕程序。</p><p>应用程序可以用相同的方式来使用intent匹配。PackageManager有一组query...()方法来寻找接受某个特定intent的所有组件，还有一系列resolve...()方法来决定响应一个intent的最佳组件。例如，queryIntentActivities()返回一个activity列表，这些activity可以执行传入的intent。类似的还有queryIntentServices()和queryIntentBroadcastReceivers()。</p><p style="color:#3333FF;">Note Pad Example 例子:记事本</p><p>记事本示例程序让用户可以浏览一个笔记列表，查看，编辑，删除和增加笔记。这一节关注该程序定义的intent filter。</p><p>在其manifest文件中, 记事本程序定义了三个activity, 每个有至少一个intent filter。它还定义了一个content provider来管理笔记数据。</p><p>manifest 文件如下:</p><p><pre>&lt;manifest xmlns:android=<font class="Fields">"http:<font class="Comments">//schemas.android.com/apk/res/android"</font> package=</font><font class="Fields">"eoe.demo"</font>&gt;</font></p><p>&lt;application android:icon=<font class="Fields">"@drawable/app_notes</p><p>	</font>android:label=<font class="Fields">"@string/app_name"</font> &gt;</p><p>&lt;provider android:name=<font class="Fields">"NotePadProvider</p><p>	</font>android:authorities=<font class="Fields">"com.google.provider.NotePad"</font> /&gt;</p><p>&lt;activity android:name=<font class="Fields">"NotesList"</font> android:label=</font><font class="Fields">"@string/title_notes_list"</font>&gt;</p><p>	&lt;intent-filter&gt;</p><p>		</font>&lt;action android:name=<font class="Fields">"android.intent.action.MAIN"</font> /&gt;</p><p>		</font>&lt;category android:name=<font class="Fields">"android.intent.category.LAUNCHER"</font> /&gt;</p><p>	&lt;/intent-filter&gt;</p><p>	&lt;intent-filter&gt;</p><p>		</font>&lt;action android:name=<font class="Fields">"android.intent.action.VIEW"</font> /&gt;</p><p>		</font>&lt;action android:name=<font class="Fields">"android.intent.action.EDIT"</font> /&gt;</p><p>		</font>&lt;action android:name=<font class="Fields">"android.intent.action.PICK"</font> /&gt;</p><p>		</font>&lt;category android:name=<font class="Fields">"android.intent.category.DEFAULT"</font> /&gt;</p><p>		</font>&lt;data android:mimeType=<font class="Fields">"vnd.android.cursor.dir/vnd.google.note"</font> /&gt;</p><p>	&lt;/intent-filter&gt;</p><p>	&lt;intent-filter&gt;</p><p>		</font>&lt;action android:name=<font class="Fields">"android.intent.action.GET_CONTENT"</font> /&gt;</p><p>		</font>&lt;category android:name=<font class="Fields">"android.intent.category.DEFAULT"</font> /&gt;</p><p>		</font>&lt;data android:mimeType=<font class="Fields">"vnd.android.cursor.item/vnd.google.note"</font> /&gt;</p><p>	&lt;/intent-filter&gt;</p><p>&lt;/activity&gt;</p><p>&lt;activity android:name=<font class="Fields">"NoteEditor</p><p>	</font>android:theme=<font class="Fields">"@android:style/Theme.Light</p><p>	</font>android:label=<font class="Fields">"@string/title_note"</font> &gt;</p><p>	</font>&lt;intent-filter android:label=<font class="Fields">"@string/resolve_edit"</font>&gt;</p><p>		</font>&lt;action android:name=<font class="Fields">"android.intent.action.VIEW"</font> /&gt;</p><p>		</font>&lt;action android:name=<font class="Fields">"android.intent.action.EDIT"</font> /&gt;</p><p>		</font>&lt;action android:name=<font class="Fields">"com.android.notepad.action.EDIT_NOTE"</font> /&gt;</p><p>		</font>&lt;category android:name=<font class="Fields">"android.intent.category.DEFAULT"</font> /&gt;</p><p>		</font>&lt;data android:mimeType=<font class="Fields">"vnd.android.cursor.item/vnd.google.note"</font> /&gt;</p><p>	&lt;/intent-filter&gt;</p><p>	&lt;intent-filter&gt;</p><p>		</font>&lt;action android:name=<font class="Fields">"android.intent.action.INSERT"</font> /&gt;</p><p>		</font>&lt;category android:name=<font class="Fields">"android.intent.category.DEFAULT"</font> /&gt;</p><p>		</font>&lt;data android:mimeType=<font class="Fields">"vnd.android.cursor.dir/vnd.google.note"</font> /&gt;</p><p>	&lt;/intent-filter&gt;</p><p>&lt;/activity&gt;</p><p>&lt;activity android:name=<font class="Fields">"TitleEditor</p><p>	</font>android:label=<font class="Fields">"@string/title_edit_title</p><p>	</font>android:theme=<font class="Fields">"@android:style/Theme.Dialog"</font>&gt;</p><p>	</font>&lt;intent-filter android:label=<font class="Fields">"@string/resolve_title"</font>&gt;</p><p>		</font>&lt;action android:name=<font class="Fields">"com.android.notepad.action.EDIT_TITLE"</font> /&gt;</p><p>		</font>&lt;category android:name=<font class="Fields">"android.intent.category.DEFAULT"</font> /&gt;</p><p>		</font>&lt;category android:name=<font class="Fields">"android.intent.category.ALTERNATIVE"</font> /&gt;</p><p>		</font>&lt;category android:name=<font class="Fields">"android.intent.category.SELECTED_ALTERNATIVE"</font> /&gt;</p><p>		</font>&lt;data android:mimeType=<font class="Fields">"vnd.android.cursor.item/vnd.google.note"</font> /&gt;</p><p>	&lt;/intent-filter&gt;</p><p>&lt;/activity&gt;</p><p>&lt;/application&gt;</p><p>&lt;/manifest&gt;</p><p></pre></p><p>第一个activity，NoteList，和其它activity不同，因为它操作一个笔记的目录(笔记列表)，而不是一个单独的笔记。它一般作为该程序的初始界面。它可以做以下三件事:</p><p><pre>&lt;intent-filter&gt;</p><p>	</font>&lt;action android:name=<font class="Fields">"android.intent.action.MAIN"</font> /&gt;</p><p>	</font>&lt;category android:name=<font class="Fields">"android.intent.category.LAUNCHER"</font> /&gt;</p><p>&lt;/intent-filter&gt;</p><p></pre></p><p>该filter声明了记事本应用程序的主入口。标准的MAIN action是一个不需要任何其它信息(例如数据等)的程序入口，LAUNCHER category表示该入口应该在应用程序启动器中列出。</p><p><pre>&lt;intent-filter&gt;</p><p>	</font>&lt;action android:name=<font class="Fields">"android.intent.action.VIEW"</font> /&gt;</p><p>	</font>&lt;action android:name=<font class="Fields">"android.intent.action.EDIT"</font> /&gt;</p><p>	</font>&lt;action android:name=<font class="Fields">"android.intent.action.PICK"</font> /&gt;</p><p>	</font>&lt;category android:name=<font class="Fields">"android.intent.category.DEFAULT"</font> /&gt;</p><p>	</font>&lt;data android:mimeType=<font class="Fields">"vnd.android.cursor.dir/vnd.google.note"</font> /&gt;</p><p>&lt;/intent-filter&gt; </p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

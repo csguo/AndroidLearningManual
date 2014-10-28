@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android Resource介绍和使用_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li class="navcurrentLink"><A href="index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="开发基础" href="index_100.html">开发基础</A></h2>
+
+  <h2><A title="开发环境搭建" href="index_101.html">开发环境搭建</A></h2>
+
+  <h2><A title="模拟器" href="index_102.html">模拟器</A></h2>
+
+  <h2><A title="Resource" href="index_103.html">Resource</A></h2>
+<UL><li class="currentLink"><A title=Android Resource介绍和使用 href="show_301_103.html">Android Resource介绍和使用</A> </li><li ><A title=Resource Types href="show_302_103.html">Resource Types</A> </li></UL>
+  <h2><A title="Manifest" href="index_104.html">Manifest</A></h2>
+
+  <h2><A title="ADB" href="index_105.html">ADB</A></h2>
+
+  <h2><A title="DDMS" href="index_106.html">DDMS</A></h2>
+
+  <h2><A title="Logcat(日志)" href="index_107.html">Logcat(日志)</A></h2>
+
+  <h2><A title="打包" href="index_108.html">打包</A></h2>
+
+  <h2><A title="文件处理" href="index_109.html">文件处理</A></h2>
+
+  <h2><A title="底层基础" href="index_111.html">底层基础</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android Resource介绍和使用</H2>
+<div style="line-height:20px; font-size:14px;"><p style="color:#3333FF;">1、相关文件夹介绍</p><p>在Android项目文件夹里面，主要的资源文件是放在res文件夹里面的。assets文件夹是存放不进行编译加工的原生文件，即该文件夹里面的文件不会像xml，java文件被预编译，可以存放一些图片，html，js, css等文件。在后面会介绍如何读取assets文件夹的资源！</p><p>res文件夹里面的多个文件夹的各自介绍(来自网上的Android开发指南中文版内容)：</p><p>目录Directory	资源类型Resource Types</p><p style="color:#3333FF;">res/anim/	</p><p>XML文件，它们被编译进逐帧动画（frame by frame animation）或补间动画(tweened animation)对象</p><p style="color:#3333FF;">res/drawable/	</p><p>.png、.9.png、.jpg文件，它们被编译进以下的Drawable资源子类型中：</p><p>要获得这种类型的一个资源，可以使用Resource.getDrawable(id)</p><p>位图文件</p><p>9-patches（可变尺寸的位图）</p><p>为了获取资源类型，使用mContext.getResources().getDrawable(R.drawable.imageId)</p><p>注意：放在这里的图像资源可能会被aapt工具自动地进行无损压缩优化。比如，一个真彩色但并不需要256色的PNG可能会被转换为一个带调色板的8位PNG。这使得同等质量的图片占用更少的资源。所以我们得意识到这些放在该目录下的二进制图像在生成时可能会发生变化。如果你想读取一个图像位流并转换成一个位图(bitmap)，请把图像文件放在res/raw/目录下，这样可以避免被自动优化。</p><p style="color:#3333FF;">res/layout/</p><p>被编译为屏幕布局(或屏幕的一部分)的XML文件。参见布局声明(Declaring Layout)</p><p style="color:#3333FF;">res/values/</p><p>可以被编译成很多种类型的资源的XML文件。</p><p>注意: 不像其他的res/文件夹，它可以保存任意数量的文件，这些文件保存了要创建资源的描述，而不是资源本身。XML元素类型控制这些资源应该放在R类的什么地方。</p><p>尽管这个文件夹里的文件可以任意命名，不过下面使一些比较典型的文件（文件命名的惯例是将元素类型包含在该名称之中）：</p><p>array.xml 定义数组</p><p>colors.xml 定义color drawable和颜色的字符串值(color string values)。使用Resource.getDrawable()和Resources.getColor()分别获得这些资源。</p><p>dimens.xml定义尺寸值(dimension value)。使用Resources.getDimension()获得这些资源。</p><p>strings.xml定义字符串(string)值。使用Resources.getString()或者Resources.getText()获取这些资源。getText()会保留在UI字符串上应用的丰富的文本样式。</p><p>styles.xml 定义样式(style)对象。</p><p style="color:#3333FF;">res/xml/</p><p>任意的XML文件，在运行时可以通过调用Resources.getXML()读取。</p><p>res/raw/</p><p>直接复制到设备中的任意文件。它们无需编译，添加到你的应用程序编译产生的压缩文件中。要使用这些资源，可以调用Resources.openRawResource()，参数是资源的ID，即R.raw.somefilename。</p><p style="color:#3333FF;">2.自动生成的R </p><p>class在项目文件夹的gen文件夹里面有个R.java，我们平常引用的资源主要引用这个类的变量。</p><p>注意：R类是自动生成的，并且它不能被手动修改。当资源发生变动时，它会自动修改。</p><p style="color:#3333FF;">3. 在代码中使用资源下面是一个引用资源的语法：</p><p>R.resource_type.resource_name 或者 android.R.resource_type.resource_name</p><p>其中resource_type是R的子类，保存资源的一个特定类型。resource_name是在XML文件定义的资源的name属性，或者有其他文件类型为资源定义的文件名（不包含扩展名，这指的是drawable文件夹里面的icon.png类似的文件，name=icon）。 Android包含了很多标准资源，如屏幕样式和按钮背景。要在代码中引用这些资源，你必须使用android进行限定，如android.R.drawable.button_background。</p><p>下面是官方给出的一些在代码中使用已编译资源的正确和错误用法的例子：</p><p><pre><font class="Comments">// Load a background for the current screen from a drawable resource.</font></p><p><font class="keyword">this</font>.getWindow().setBackgroundDrawableResource(R.drawable.my_background_image); </p><p><font class="Comments">// WRONG Sending a string resource reference into a  </font></p><p><font class="Comments">// method that expects a string.</font></p><p><font class="keyword">this</font>.getWindow().setTitle(R.string.main_title); </p><p><font class="Comments">// RIGHT Need to get the title from the Resources wrapper. </font></p><p><font class="keyword">this</font>.getWindow().setTitle(Resources.getText(R.string.main_title));</p><p><font class="Comments">// Load a custom layout for the current screen.</font></p><p>setContentView(R.layout.main_screen);</p><p><font class="Comments">// Set a slide in animation for a ViewFlipper object. </font></p><p></font>mFlipper.setInAnimation(AnimationUtils.loadAnimation(<font class="keyword">this</font>,</p><p>		R.anim.hyperspace_in));</p><p><font class="Comments">// Set the text on a TextView object. </font></p><p>TextView msgTextView = (TextView)findViewByID(R.id.msg);</p><p>msgTextView.setText(R.string.hello_message);</p><p></pre></p><p>查了SDK Doc，才明白为什么window.setTitle要先Resources.getText，原来setTitle的参数是CharSequence，Resources.getText(int)返回的是CharSequence；而其他setText的参数有的是CharSequence，有的是int（这就是Resources变量值）。</p><p>同时官方还给了两个使用系统资源的例子：</p><p><pre><font class="Comments">//在屏幕上显示标准应用程序的图标</font></p><p><font class="keyword">public </font><font class="keyword">class </font>MyActivity </font><font class="keyword">extends </font>Activity {</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onStart() {</p><p>		requestScreenFeatures(FEATURE_BADGE_IMAGE);</p><p>		<font class="keyword">super</font>.onStart();</p><p>		setBadgeResource(android.R.drawable.sym_def_app_icon);</p><p>	}</p><p>}</p><p><font class="Comments">//应用系统定义的标准"绿色背景"视觉处理 </font></p><p><font class="keyword">public </font><font class="keyword">class </font>MyActivity </font><font class="keyword">extends </font>Activity</p><p>  <font class="keyword">public </font><font class="keyword">void </font>onStart() { </p><p>      <font class="keyword">super</font>.onStart();</p><p>      setTheme(android.R.style.Theme_Black);</p><p>  }</p><p>} </p><p></pre></p><p>4. xml文件内引用资源1) 引用自定义的资源</p><p><pre>android:text="@string/hello"</p><p></pre></p><p>这里使用"@"前缀引入对一个资源的引用--在@[package:]type/name形式中后面的文本是资源的名称。在这种情况下，我们不需要指定包名，因为我们引用的是我们自己包中的资源。type是xml子节点名，name是xml属性名：</p><p><pre>&lt;?xml version="1.0" encoding="utf-8"?&gt;</p><p>&lt;resources&gt; </p><p>    &lt;string name="hello"&gt;Hello World, HelloDemo!&lt;/string&gt;</p><p>&lt;/resources&gt; </p><p></pre></p><p>2) 引用系统资源</p><p><pre>android:textColor="@android:color/opaque_red" 指定package: android</p><p></pre></p><p>3) 引用主题属性</p><p>另外一种资源值允许你引用当前主题中的属性的值。这个属性值只能在样式资源和XML属性中使用；它允许你通过将它们改变为当前主题提供的标准变化来改变UI元素的外观，而不是提供具体的值。</p><p><pre>android:textColor="?android:textDisabledColor"</p><p></pre></p><p>注意，这和资源引用非常类似，除了我们使用一个"?"前缀代替了"@"。当你使用这个标记时，你就提供了属性资源的名称，它将会在主题中被查找--因为资源工具知道需要的属性资源，所以你不需要显示声明这个类型(如果声明，其形式就是?android:attr/android:textDisabledColor)。除了使用这个资源的标识符来查询主题中的值代替原始的资源，其命名语法和"@"形式一致：?[namespace:]type/name，这里类型可选。</p><p>5. 替换资源（为了可替换的资源和配置）个人理解这个替换资源主要用于适应多种规格的屏幕，以及国际化。对于这部分的内容，请参考http://androidappdocs.appspot.com/guide/topics/resources/resources-i18n.html，以后再研究！ </p><p>6. Color Value语法：</p><p><pre>&lt;color name="color_name"&gt;color_value&lt;/color&gt; </p><p>可以保存在res/values/colors.xml (文件名可以任意)。</p><p>xml引用：android:textColor="@color/color_name"</p><p>Java引用： int color = Resources.getColor(R.color.color_name)</p><p></pre></p><p>其中color_value有以下格式（A代表Alpha通道）：</p><p><pre>RGB</p><p>ARGB</p><p>RRGGBB</p><p>AARRGGBB</p><p></pre></p><p>xml示例(声明两个颜色，第一个不透明，第二个透明色)：</p><p><pre>&lt;?xml version="1.0" encoding="utf-8"?&gt;</p><p>&lt;resources&gt; </p><p>    &lt;color name="opaque_red"&gt;f00&lt;/color&gt;</p><p>    &lt;color name="translucent_red"&gt;80ff0000&lt;/color&gt;</p><p>&lt;/resources&gt; </p><p></pre></p><p>7.Color Drawables语法：</p><p><pre>&lt;drawable name="color_name"&gt;color_value&lt;/drawable&gt; </p><p></pre></p><p>可以保存在res/values/colors.xml。</p><p>xml引用：android:background="@drawable/color_name"</p><p>java引用：Drawable redDrawable = Resources.getDrawable(R.drawable.color_name)</p><p>color_name和上面的一样。个人认为，一般情况下使用color属性，当需要用到paintDrawable时才使用drawable属性。</p><p>xml示例：</p><p><pre>&lt;?xml version="1.0" encoding="utf-8"?&gt;</p><p>&lt;resources&gt; </p><p>    &lt;drawable name="opaque_red"&gt;f00&lt;/drawable&gt;</p><p>    &lt;drawable name="translucent_red"&gt;80ff0000&lt;/drawable&gt;</p><p>&lt;/resources&gt; </p><p></pre></p><p>8. 图片一般放在res/drawable/里面。官方提示png (preferred), jpg (acceptable), gif (discouraged)，看来一般使用png格式比较好！</p><p>xml引用 @[package:]drawable/some_file</p><p>java引用 R.drawable.some_file 引用是不带扩展名</p><p>9. dimension语法：</p><p><pre>&lt;dimen name="dimen_name"&gt;dimen_value单位&lt;/dimen&gt; </p><p></pre></p><p>一般保存为res/values/dimen.xml。</p><p>度量单位：</p><p>px(象素): 屏幕实际的象素，常说的分辨率1024*768pixels，就是横向1024px, 纵向768px，不同设备显示效果相同。</p><p>in(英寸): 屏幕的物理尺寸, 每英寸等于2.54厘米。</p><p>mm(毫米): 屏幕的物理尺寸。</p><p>pt(点) : 屏幕的物理尺寸。1/72英寸。</p><p>dp/dip : 与密度无关的象素，一种基于屏幕密度的抽象单位。在每英寸160点的显示器上，1dp = 1px。但dp和px的比例会随着屏幕密度的变化而改变，不同设备有不同的显示效果。设置宽度或者高度等属性时，推荐使用dp(dip)作为单位</p><p>sp : 与刻度无关的象素，主要用于字体显示best for textsize，作为和文字相关大小单位。</p><p>XML: android:textSize="@dimen/some_name"</p><p>Java: float dimen = Resources.getDimen(R.dimen.some_name)</p><p>xml示例：</p><p><pre>&lt;?xml version="1.0" encoding="utf-8"?&gt;</p><p>&lt;resources&gt; </p><p>    &lt;dimen name="one_pixel"&gt;1px&lt;/dimen&gt;</p><p>    &lt;dimen name="double_density"&gt;2dp&lt;/dimen&gt; </p><p>    &lt;dimen name="sixteen_sp"&gt;16sp&lt;/dimen&gt;</p><p>&lt;/resources&gt; </p><p></pre></p><p>10. string下面是官方给出的正确/错误的例子:</p><p><pre>//不使用转义符则需要用双引号包住整个string</p><p>&lt;string name="good_example"&gt;"This'll work"&lt;/string&gt; </p><p>//使用转义符 </p><p>&lt;string name="good_example_2"&gt;This\'ll also work&lt;/string&gt;</p><p>//错误</p><p>&lt;string name="bad_example"&gt;This won't work!&lt;/string&gt; </p><p>//错误 不可使用html转义字符</p><p>&lt;string name="bad_example_2"&gt;XML encodings won&apos;t work either!&lt;/string&gt; </p><p></pre></p><p>对于带格式的string，例如在字符串中某些文字设置颜色，可以使用html标签。对于这类型的string，需要进行某些处理，在xml里面不可以被其他资源引用。官方给了一个例子来对比普通string和带格式string的使用：</p><p><pre>&lt;?xml version="1.0" encoding="utf-8"?&gt;</p><p>&lt;resources&gt; </p><p>    &lt;string name="simple_welcome_message"&gt;Welcome!&lt;/string&gt;</p><p>    &lt;string name="styled_welcome_message"&gt;We are &lt;b&gt;&lt;i&gt;so&lt;/i&gt;&lt;/b&gt; glad to see you.&lt;/string&gt;</p><p>&lt;/resources&gt; </p><p></pre></p><p>Xml代码</p><p><pre>&lt;TextView</p><p>    android:layout_width="fill_parent" </p><p>    android:layout_height="wrap_content"</p><p>    android:textAlign="center"</p><p>    android:text="@string/simple_welcome_message"/&gt; </p><p></pre></p><p>Java代码</p><p><pre><font class="Comments">// Assign a styled string resource to a TextView on the current screen.</font></p><p>CharSequence str = getString(R.string.styled_welcome_message);</p><p>TextView tv = (TextView)findViewByID(R.id.text);</p><p>tv.setText(str);</p><p></pre></p><p>另外对于带风格/格式的string的处理，就麻烦一点点。官方给了一个例子：</p><p><pre>&lt;?xml version="1.0" encoding="utf-8"?&gt;</p><p>&lt;resources&gt; </p><p>  &lt;string name="search_results_resultsTextFormat"&gt;%1$d results for &lt;b&gt;&amp;quot;%2$s&amp;quot;&lt;/b&gt;&lt;/string&gt;</p><p>&lt;/resources&gt; </p><p></pre></p><p>这里的%1$d是个十进制数字，%2$s是字符串。当我们把某个字符串赋值给%2$s之前，需要用htmlEncode(String)函数处理那个字符串：</p><p><pre><font class="Comments">//title是我们想赋值给%2$s的字符串</font></p><p>String escapedTitle = TextUtil.htmlEncode(title); </p><p></pre></p><p>然后用String.format() 来实现赋值，接着用fromHtml(String) 得到格式化后的string：</p><p><pre>String resultsTextFormat = getContext().getResources().getString(R.string.search_results_resultsTextFormat);</p><p>String resultsText = String.format(resultsTextFormat, count, escapedTitle);</p><p>CharSequence styledResults = Html.fromHtml(resultsText); </p><p></pre></p><p>11. assets文件夹资源的访问assets文件夹里面的文件都是保持原始的文件格式，需要用AssetManager以字节流的形式读取文件。</p><p>1. 先在Activity里面调用getAssets()来获取AssetManager引用。</p><p>2. 再用AssetManager的open(String fileName, int accessMode)方法则指定读取的文件以及访问模式就能得到输入流InputStream。 </p><p>3. 然后就是用已经open file 的inputStream读取文件，读取完成后记得inputStream.close()。</p><p>4.调用AssetManager.close()关闭AssetManager。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

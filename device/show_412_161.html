@@ -1,0 +1,71 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>系统短信库的一些用法_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li class="navcurrentLink"><A href="index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="设备信息" href="index_157.html">设备信息</A></h2>
+
+  <h2><A title="摄像头" href="index_158.html">摄像头</A></h2>
+
+  <h2><A title="通讯录" href="index_159.html">通讯录</A></h2>
+
+  <h2><A title="电话" href="index_160.html">电话</A></h2>
+
+  <h2><A title="短信" href="index_161.html">短信</A></h2>
+<UL><li ><A title=Android sms讲解 href="show_401_161.html">Android sms讲解</A> </li><li ><A title=Android 发送和接收短信实例（一） href="show_402_161.html">Android 发送和接收短信实例（一）</A> </li><li ><A title=Android 发送和接收短信实例（二） href="show_403_161.html">Android 发送和接收短信实例（二）</A> </li><li ><A title=Android 发送和接收短信实例（三） href="show_404_161.html">Android 发送和接收短信实例（三）</A> </li><li ><A title=Android 监听SMS消息 href="show_405_161.html">Android 监听SMS消息</A> </li><li ><A title=Android 追踪和确认SMS消息传递 href="show_406_161.html">Android 追踪和确认SMS消息传递</A> </li><li ><A title=Android 读取短信 href="show_407_161.html">Android 读取短信</A> </li><li ><A title=Android SMS小结 href="show_408_161.html">Android SMS小结</A> </li><li ><A title=短信的收发及在android模拟器之间实践（一） href="show_409_161.html">短信的收发及在android模拟器之间实践（一）</A> </li><li ><A title=短信的收发及在android模拟器之间实践（二） href="show_410_161.html">短信的收发及在android模拟器之间实践（二）</A> </li><li ><A title=如何在你的程序中嵌入收发短信功能 href="show_411_161.html">如何在你的程序中嵌入收发短信功能</A> </li><li class="currentLink"><A title=系统短信库的一些用法 href="show_412_161.html">系统短信库的一些用法</A> </li><li ><A title=在Android中发送短信和彩信 href="show_413_161.html">在Android中发送短信和彩信</A> </li><li ><A title=怎么编写代码实现拦截一些网络垃圾短信 href="show_414_161.html">怎么编写代码实现拦截一些网络垃圾短信</A> </li><li ><A title=Android调用系统短信Intent时将预填接收号码 href="show_415_161.html">Android调用系统短信Intent时将预填接收号码</A> </li><li ><A title=Android广播监听短信并显示内容 href="show_416_161.html">Android广播监听短信并显示内容</A> </li></UL>
+  <h2><A title="传感器" href="index_162.html">传感器</A></h2>
+
+  <h2><A title="定位" href="index_163.html">定位</A></h2>
+
+  <h2><A title="视频系统" href="index_164.html">视频系统</A></h2>
+
+  <h2><A title="音频系统" href="index_165.html">音频系统</A></h2>
+
+  <h2><A title="铃声" href="index_166.html">铃声</A></h2>
+
+  <h2><A title="音量" href="index_167.html">音量</A></h2>
+
+  <h2><A title="录音" href="index_168.html">录音</A></h2>
+
+  <h2><A title="输入法" href="index_169.html">输入法</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>系统短信库的一些用法</H2>
+<div style="line-height:20px; font-size:14px;"><p>1、查询所有短信，按发件人进行分组</p><p><pre>Cursor mCursor = managedQuery(</p><p>	</font>Uri.parse(<font class="Fields">"content:<font class="Comments">//sms"</font>),</font></p><p>	<font class="keyword">new </font>String[] { <font class="Fields">"_id,address,date,read,status,type,body,count(address) as </p><p>			</font>+ <font class="Fields">"totleCount from (select _id,substr(address,4) as address,date,read,status,type,body</p><p>			</font>+ <font class="Fields">"from sms where address like \"</font>+86%\</font><font class="Fields">" union select _id,address,date,read,status,type,body</p><p>			</font>+ <font class="Fields">"from sms where address not like \"</font>+86%\</font><font class="Fields">") r group by r.address order by r.date desc --"</font> </font>},</p><p>	<font class="keyword">null</font>, </font><font class="keyword">null</font>, </font><font class="keyword">null</font>);</p><p></pre></p><p>2、删除一个联系人的所有短信会话,包括+86的号码</p><p><pre><font class="Comments">/**</font></p><p> <font class="Comments">* 删除一个联系人的所有短信会话,包括+86的号码</font></p><p> <font class="Comments">* </font></p><p> <font class="Comments">* @param phone</font></p><p> <font class="Comments">*/</font></p><p><font class="keyword">public </font><font class="keyword">int </font>deleteMsgSession(Context context, String phone) {</p><p>	</font>String phoneBytitle = <font class="Fields">""</font>;</p><p>	<font class="keyword">if </font>(!phone.startsWith(<font class="Fields">"+86"</font>)) {</p><p>		</font>phoneBytitle = <font class="Fields">"+86"</font> + phone;</p><p>	</font>} <font class="keyword">else </font>{</p><p>		phoneBytitle = phone.substring(3);</p><p>	}</p><p>	Cursor cursor = context.getContentResolver().query(</p><p>			</font>Uri.parse(<font class="Fields">"content:<font class="Comments">//sms"</font>),</font></p><p>			<font class="keyword">new </font>String[] { <font class="Fields">"distinct thread_id"</font> </font>},</p><p>			<font class="Fields">"address = ? or address = ?"</font>,</p><p>			<font class="keyword">new </font>String[] { phone, phoneBytitle </font>}, </font><font class="keyword">null</font>);</p><p>	</font>List&lt;String&gt; list = <font class="keyword">new </font>ArrayList&lt;String&gt;();</p><p>	<font class="keyword">if </font>(</font><font class="keyword">null</font> != cursor) {</p><p>		<font class="keyword">if </font>(cursor.moveToFirst()) {</p><p>			do {</p><p>				<font class="keyword">int </font>thread_id = cursor.getInt(0);</p><p>				list.add(String.valueOf(thread_id));</p><p></p><p>			</font>} <font class="keyword">while </font>(cursor.moveToNext());</p><p>		}</p><p>	}</p><p>	<font class="keyword">if </font>(</font><font class="keyword">null</font> != cursor) {</p><p>		cursor.close();</p><p>		</font>cursor = <font class="keyword">null</font>;</p><p>	}</p><p>	<font class="keyword">int </font>size = list.size();</p><p>	<font class="keyword">if </font>(size == 0) {</p><p>		<font class="keyword">return </font>-1;</p><p>	</font>} <font class="keyword">else </font>{</p><p>		<font class="keyword">int </font>num = 0;</p><p>		<font class="keyword">for </font>(</font><font class="keyword">int </font>i = 0; i &lt; size; i++) {</p><p>			<font class="keyword">int </font>res = context.getContentResolver()</p><p>					</font>.delete(Uri.parse(<font class="Fields">"content:<font class="Comments">//sms/conversations/</font></p><p>							</font>+ list.get(i)), <font class="keyword">null</font>, </font><font class="keyword">null</font>);</p><p>			num = num + res;</p><p>		}</p><p>		<font class="Comments">// System.out.println("sms_num:" + num);</font></p><p>		<font class="keyword">return </font>num;</p><p>	}</p><p>}</p><p></pre></p><p>3、向系统库插入短信、版本不同插入的字段有所区别</p><p><pre><font class="Comments">/**</font></p><p> <font class="Comments">* 将发送的短信保存到系统短信库中</font></p><p> <font class="Comments">*/</font></p><p><font class="keyword">private </font><font class="keyword">void </font>foreverSendMsg(String content) {</p><p>	</font>ContentValues values = <font class="keyword">new </font>ContentValues();</p><p>	<font class="Comments">// 系统SDK的版本号</font></p><p>	String sdkVersion = android.os.Build.VERSION.SDK;</p><p>	<font class="keyword">try </font>{</p><p>		<font class="Comments">// 发送时间</font></p><p>
+		</font>values.put(<font class="Fields">"date"</font>, System.currentTimeMillis());</p><p>		<font class="Comments">// 阅读状态</font></p><p>		</font>values.put(<font class="Fields">"read"</font>, 1);</p><p>		<font class="Comments">// 送达号码</font></p><p>		</font>values.put(<font class="Fields">"address"</font>, phoneNumberTextView.getText().toString());</p><p>		<font class="Comments">// 送达内容</font></p><p>		</font>values.put(<font class="Fields">"body"</font>, content);</p><p></p><p>		<font class="Comments">// SDK为2.1时，插入的字段</font></p><p>		<font class="keyword">if </font>(ConstValue.SDK_VERSION == Integer.valueOf(sdkVersion)) {</p><p>			</font>values.put(<font class="Fields">"status"</font>, -1);</p><p>			</font>values.put(<font class="Fields">"type"</font>, 2);</p><p>			<font class="Comments">// values.put("locked", 0);</font></p><p>		</font>} <font class="keyword">else </font>{</p><p>			<font class="Comments">// 设置可见</font></p><p>			</font>values.put(<font class="Fields">"seen"</font>, 1);</p><p>		}</p><p></p><p>		getContentResolver()</p><p>				</font>.insert(Uri.parse(<font class="Fields">"content:<font class="Comments">//sms/sent"</font>), values);</font></p><p>	</font>} <font class="keyword">catch </font>(Exception e) {</p><p>		e.printStackTrace();</p><p>	} finally {</p><p>		</font>values = <font class="keyword">null</font>;</p><p>	}</p><p>}</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

@@ -1,0 +1,70 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 追踪和确认SMS消息传递_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li class="navcurrentLink"><A href="index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="设备信息" href="index_157.html">设备信息</A></h2>
+
+  <h2><A title="摄像头" href="index_158.html">摄像头</A></h2>
+
+  <h2><A title="通讯录" href="index_159.html">通讯录</A></h2>
+
+  <h2><A title="电话" href="index_160.html">电话</A></h2>
+
+  <h2><A title="短信" href="index_161.html">短信</A></h2>
+<UL><li ><A title=Android sms讲解 href="show_401_161.html">Android sms讲解</A> </li><li ><A title=Android 发送和接收短信实例（一） href="show_402_161.html">Android 发送和接收短信实例（一）</A> </li><li ><A title=Android 发送和接收短信实例（二） href="show_403_161.html">Android 发送和接收短信实例（二）</A> </li><li ><A title=Android 发送和接收短信实例（三） href="show_404_161.html">Android 发送和接收短信实例（三）</A> </li><li ><A title=Android 监听SMS消息 href="show_405_161.html">Android 监听SMS消息</A> </li><li class="currentLink"><A title=Android 追踪和确认SMS消息传递 href="show_406_161.html">Android 追踪和确认SMS消息传递</A> </li><li ><A title=Android 读取短信 href="show_407_161.html">Android 读取短信</A> </li><li ><A title=Android SMS小结 href="show_408_161.html">Android SMS小结</A> </li><li ><A title=短信的收发及在android模拟器之间实践（一） href="show_409_161.html">短信的收发及在android模拟器之间实践（一）</A> </li><li ><A title=短信的收发及在android模拟器之间实践（二） href="show_410_161.html">短信的收发及在android模拟器之间实践（二）</A> </li><li ><A title=如何在你的程序中嵌入收发短信功能 href="show_411_161.html">如何在你的程序中嵌入收发短信功能</A> </li><li ><A title=系统短信库的一些用法 href="show_412_161.html">系统短信库的一些用法</A> </li><li ><A title=在Android中发送短信和彩信 href="show_413_161.html">在Android中发送短信和彩信</A> </li><li ><A title=怎么编写代码实现拦截一些网络垃圾短信 href="show_414_161.html">怎么编写代码实现拦截一些网络垃圾短信</A> </li><li ><A title=Android调用系统短信Intent时将预填接收号码 href="show_415_161.html">Android调用系统短信Intent时将预填接收号码</A> </li><li ><A title=Android广播监听短信并显示内容 href="show_416_161.html">Android广播监听短信并显示内容</A> </li></UL>
+  <h2><A title="传感器" href="index_162.html">传感器</A></h2>
+
+  <h2><A title="定位" href="index_163.html">定位</A></h2>
+
+  <h2><A title="视频系统" href="index_164.html">视频系统</A></h2>
+
+  <h2><A title="音频系统" href="index_165.html">音频系统</A></h2>
+
+  <h2><A title="铃声" href="index_166.html">铃声</A></h2>
+
+  <h2><A title="音量" href="index_167.html">音量</A></h2>
+
+  <h2><A title="录音" href="index_168.html">录音</A></h2>
+
+  <h2><A title="输入法" href="index_169.html">输入法</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 追踪和确认SMS消息传递</H2>
+<div style="line-height:20px; font-size:14px;"><p>为了追踪发出的SMS消息的传送和成功送达，实现并注册Broadcast Receiver来监听你在sendTextMessage方法中传入的PendingIntent的动作。</p><p>第一个PendingIntent参数，sentIntent，当消息发送成功或发送失败时触发。Broadcast Receiver接收到这个Intent时得到的结果值将是下面中的一个：</p><p>1)Activity.RESULT_OK</p><p>表示成功发送。</p><p>2)SmsManager.RESULT_ERROR_GENERIC_FAILURE</p><p>表示一个未指定的失败。</p><p>3)SmsManager.RESULT_ERROR_RADIO_OFF</p><p>表示无线连接关闭。</p><p>4)SmsManager.RESULT_ERROR_NULL_PDU</p><p>表示一个PDU失败。</p><p>第二个PendingIntent参数，deliveryIntent，仅在当目标用户接收到你的SMS消息后触发。</p><p>接下来的代码片段显示了发送一个SMS短信和监视短信的传送和成功送达的典型代码：</p><p><pre></font>String SENT_SMS_ACTION = <font class="Fields">"SENT_SMS_ACTION"</font>;</p><p></font>String DELIVERED_SMS_ACTION = <font class="Fields">"DELIVERED_SMS_ACTION"</font>;</p><p><font class="Comments">// 创造sentIntent参数</font></p><p></font>Intent sentIntent = <font class="keyword">new </font>Intent(SENT_SMS_ACTION);</p><p>PendingIntent sentPI = PendingIntent.getBroadcast(getApplicationContext(),0,sentIntent,0);</p><p><font class="Comments">// 创造deliveryIntent参数</font></p><p></font>Intent deliveryIntent = <font class="keyword">new </font>Intent(DELIVERED_SMS_ACTION);</p><p>PendingIntent deliverPI = PendingIntent.getBroadcast(getApplicationContext(),0,deliveryIntent,0);</p><p><font class="Comments">// 登记广播接收器</font></p><p></font>registerReceiver(<font class="keyword">new </font>BroadcastReceiver() {</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onReceive(Context _context, Intent _intent) {</p><p>	<font class="keyword">switch </font>(getResultCode()) {</p><p>	<font class="keyword">case </font>Activity.RESULT_OK:</p><p>	[… send success actions … ];</p><p>	<font class="keyword">break</font>;</p><p>	<font class="keyword">case </font>SmsManager.RESULT_ERROR_GENERIC_FAILURE:</p><p>	[… generic failure actions … ];</p><p>	<font class="keyword">break</font>;</p><p>	<font class="keyword">case </font>SmsManager.RESULT_ERROR_RADIO_OFF:</p><p>	[… radio off failure actions … ];</p><p>	<font class="keyword">break</font>;</p><p>	<font class="keyword">case </font>SmsManager.RESULT_ERROR_NULL_PDU:</p><p>	</font>[… <font class="keyword">null</font> PDU failure actions … ];</p><p>	<font class="keyword">break</font>;</p><p>	}</p><p>	}</p><p></font>},<font class="keyword">new </font>IntentFilter(SENT_SMS_ACTION));</p><p></p><p></font>registerReceiver(<font class="keyword">new </font>BroadcastReceiver() {</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onReceive(Context _context, Intent _intent) {</p><p>		[… SMS delivered actions … ]</p><p>	}</p><p></font>},<font class="keyword">new </font>IntentFilter(DELIVERED_SMS_ACTION));</p><p><font class="Comments">// 发送信息时</font></p><p></font>smsManager.sendTextMessage(sendTo, <font class="keyword">null</font>, myMessage, sentPI, deliverPI);</p><p></pre></p><p>监视发出的SMS消息</p><p>Android调试支持在多个模拟器实例之间发送SMS消息。从一个模拟器发送一个SMS到另一个，指定目标模拟器的端口号作为发送新消息的"to"地址。</p><p>Android会自动地将你的消息发送到目标模拟器实例上，在那里，消息会像一般SMS一样被处理。</p><p>确认短信的大小</p><p>SMS消息一般限制在160个字符，所以，更大的消息需要分解成一系列细小部分。SMS Manager包含divideMessage方法，它接收一个字符串并将其分解成一个消息数组，其中的每个字符串都小于允许的长度。使用sendMultipartTextMessage来发送消息数组，如下面的片段所示：</p><p><pre>ArrayList&lt;String&gt; messageArray = smsManager.divideMessage(myMessage);</p><p>ArrayList&lt;PendingIntent&gt; sentIntents = <font class="keyword">new </font>ArrayList&lt;PendingIntent&gt;();</p><p><font class="keyword">for </font>(</font><font class="keyword">int </font>i = 0; i &lt; messageArray.size(); i++)</p><p>	sentIntents.add(sentPI);</p><p>smsManager.sendMultipartTextMessage(sendTo,<font class="keyword">null</font>,messageArray,sentIntents, </font><font class="keyword">null</font>); </p><p></pre></p><p>sendMultipartTextMessage方法中的sentIntent和deliveryIntent参数是ArrayList类型，它可以为每个消息部分指定不同的PendingIntent。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

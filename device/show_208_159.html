@@ -1,0 +1,70 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>详解Android中的通信录模型_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li class="navcurrentLink"><A href="index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="设备信息" href="index_157.html">设备信息</A></h2>
+
+  <h2><A title="摄像头" href="index_158.html">摄像头</A></h2>
+
+  <h2><A title="通讯录" href="index_159.html">通讯录</A></h2>
+<UL><li ><A title=Android 通讯录选择联系人 href="show_201_159.html">Android 通讯录选择联系人</A> </li><li ><A title=Android 通讯录查询（一） href="show_202_159.html">Android 通讯录查询（一）</A> </li><li ><A title=Android 通讯录查询（二） href="show_203_159.html">Android 通讯录查询（二）</A> </li><li ><A title=Android 查询联系人信息 href="show_204_159.html">Android 查询联系人信息</A> </li><li ><A title=Android 获得联系人信息 href="show_205_159.html">Android 获得联系人信息</A> </li><li ><A title=Android 手机联系人操作 href="show_206_159.html">Android 手机联系人操作</A> </li><li ><A title=Android 删除联系人分组 href="show_207_159.html">Android 删除联系人分组</A> </li><li class="currentLink"><A title=详解Android中的通信录模型 href="show_208_159.html">详解Android中的通信录模型</A> </li><li ><A title=Android 用PhoneLookup读取电话号码 href="show_209_159.html">Android 用PhoneLookup读取电话号码</A> </li></UL>
+  <h2><A title="电话" href="index_160.html">电话</A></h2>
+
+  <h2><A title="短信" href="index_161.html">短信</A></h2>
+
+  <h2><A title="传感器" href="index_162.html">传感器</A></h2>
+
+  <h2><A title="定位" href="index_163.html">定位</A></h2>
+
+  <h2><A title="视频系统" href="index_164.html">视频系统</A></h2>
+
+  <h2><A title="音频系统" href="index_165.html">音频系统</A></h2>
+
+  <h2><A title="铃声" href="index_166.html">铃声</A></h2>
+
+  <h2><A title="音量" href="index_167.html">音量</A></h2>
+
+  <h2><A title="录音" href="index_168.html">录音</A></h2>
+
+  <h2><A title="输入法" href="index_169.html">输入法</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>详解Android中的通信录模型</H2>
+<div style="line-height:20px; font-size:14px;"><p>Android中的通信录操作给人的第一感觉就是晕，不知道怎么去用。可以看下这张图：</p><p><img src="../img/device_contact/08_contact.png"></p><p>这幅图的意思是：操作通信录本质是去操作合适的ContentProvider，通过合适的ContentProvider去操作通讯录。</p><p>1：要想熟练的操作合适的ContentProvider，就必须要掌握一个类ContactsContract（2.0开始使用）。</p><p>现在可以思考一个新问题：Android中的联系人信息是如何存储的？</p><p>Android中的联系人信息都是存储在一个叫contacts2.db的数据库中。数据库的路径是：/data/data/com.android.provider.contacts/databases/contacts2.db（在这里推荐一个sqlite的查看工具：http://www.sqliteexpert.com/ 个人版是免费的）</p><p>继续思考一个新问题：这个数据库是如何来存储联系人信息的？</p><p>根据官方的文档：通信录是一个3层的数据存储模型（初看挺牛的，说穿了就是3张表）</p><p>我又画了一张图比较形象的反应这个“3层模型”。</p><p><img src="../img/device_contact/08_contact2.png"></p><p>第一层：Data层，每种独立的数据类型占一行。具体哪些独立的数据可以占一行，可以在mimetypes这张表中找到，原生Android的系统一共12种，例如name,phone,email ect..</p><p>第二层：RawContracts层，由Data层的多条数据组合成一个完整的联系人信息。</p><p>第三层：Contracts层，这一层主要注意与第二层的区别。大部分情况下这两层的数据时指同一个联系人的信息，即他们俩是一一对应的关系，但是有些特殊情况，这个我是查了一些老外的论坛加上自己的理解，例如，我做一个本地通信录和网络上的通信录同步的时候，可能有一个人他在本地存在，他在网络上也存在，这个时候Android就可以识别他们，认为他们两个其实是指同一个人。 （这种情况我没有试出来，我感觉这个其实是Android创造了这个概念之后，留给我们开发自己去实现的。）</p><p>上面说过“要想熟练的操作合适的ContentProvider，就必须要掌握一个类ContactsContract”，那么这个ContactsContract类是干什么的呢？</p><p>说穿了这个类就是去解释和翻译这个contacts2.db数据库的。 </p><p>这个类超大6000+行代码， 但是确没有什么操作代码，几乎都是来解释contacts2.db数据库的。</p><p>这个类中有很多的内部接口和内部类，用来翻译一些表。 例如Data内部类，RawContacts内部类，等等。</p><p>下面我以一个实际的例子讲解一下操作过程：</p><p>问题：我有一个电话号码，现在想去查找这个电话号码主人的姓名。</p><p>第一步：我要确定用哪一个ContentProvider去查询，这个时候肯定想到去用含有电话号码的ContentProvider去查询电话号码所在的Contacts_ID。</p><p>第二步：通过Contacts_ID找到对应的Raw_Contacts_ID。</p><p>第三步：通过Raw_Contacts_ID找到对应的联系人姓名。</p><p>确定了操作步骤之后，肯定是去看文档了，谁也不能猜出来含有电话号码ContentProvider_URI.</p><p>通过查询文档： If you need to look up a contact by the phone number, use PhoneLookup.CONTENT_FILTER_URI, which is optimized for this purpose.</p><p>我们确定了URI之后就可以开始编写代码了。</p><p><pre><font class="keyword">public </font>String lookupNameByPhoneNumber(Context context, String phoneNumber) {</p><p>	Uri uri = Uri.withAppendedPath(</p><p>			ContactsContract.PhoneLookup.CONTENT_FILTER_URI,</p><p>			Uri.encode(phoneNumber));</p><p>	Cursor cursor = context.getContentResolver().query(uri,</p><p>			<font class="keyword">new </font>String[] { ContactsContract.PhoneLookup.DISPLAY_NAME </font>},</p><p>			<font class="keyword">null</font>, </font><font class="keyword">null</font>, </font><font class="keyword">null</font>);</p><p>	</font>String name = <font class="keyword">null</font>;</p><p>	<font class="keyword">if </font>(cursor == </font><font class="keyword">null</font>) {</p><p>		</font>name = <font class="keyword">null</font>;</p><p>	}</p><p>	<font class="keyword">try </font>{</p><p>		<font class="keyword">if </font>(cursor.moveToFirst()) {</p><p>			name = cursor.getColumnName(0);</p><p>		}</p><p>	} finally {</p><p>		cursor.close();</p><p>	}</p><p>	<font class="keyword">return </font>name;</p><p>}</p><p></pre></p><p>看完这段代码，你可能想去问，第二步跟第三步跑哪里去了。这两步其实已经被封装在Resoler的query方法中了。如果真要我们编写这两部的话，那我们还不如不用ContentProvider来的轻松。</p><p>最后再来说下真机上的通信录模型，真机上的通信录其实就是原生通信录的扩展。增加一些东西。</p><p>最重要的一点，原生数据库里有的表，表字段，触发器，视图或索引，在真机上肯定也有。</p><p>如果想自己做一个通信录，也肯定要在原生的通信录上扩展，只能增加，不能减少。</p><p>想问为什么？</p><p>如果你少两张表的话，可能一些系统功能就崩溃了。</p><p>这就不符合google的目的了，我提供了一些功能，你可以使用修改，但是你别删除，所以google火了。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

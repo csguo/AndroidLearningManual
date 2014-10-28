@@ -1,0 +1,64 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android NFC 开发教程之一_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li class="navcurrentLink"><A href="index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="3G" href="index_177.html">3G</A></h2>
+
+  <h2><A title="WIFI" href="index_178.html">WIFI</A></h2>
+
+  <h2><A title="蓝牙" href="index_179.html">蓝牙</A></h2>
+
+  <h2><A title="HTTP协议" href="index_180.html">HTTP协议</A></h2>
+
+  <h2><A title="Socket" href="index_181.html">Socket</A></h2>
+
+  <h2><A title="HTML与HTML5" href="index_182.html">HTML与HTML5</A></h2>
+
+  <h2><A title="JavaScript" href="index_183.html">JavaScript</A></h2>
+
+  <h2><A title="Email" href="index_184.html">Email</A></h2>
+
+  <h2><A title="NFC" href="index_185.html">NFC</A></h2>
+<UL><li class="currentLink"><A title=Android NFC 开发教程之一 href="show_801_185.html">Android NFC 开发教程之一</A> </li><li ><A title=Android NFC 开发教程之二 href="show_802_185.html">Android NFC 开发教程之二</A> </li><li ><A title=Android NFC 开发教程之三 href="show_803_185.html">Android NFC 开发教程之三</A> </li><li ><A title=Android学习笔记之NFC近距离无线通讯技术（Dean） href="show_804_185.html">Android学习笔记之NFC近距离无线通讯技术（Dean）</A> </li><li ><A title=Android中NFC功能流程图解析及代码演示 href="show_805_185.html">Android中NFC功能流程图解析及代码演示</A> </li><li ><A title=关于NFC的android开发 href="show_806_185.html">关于NFC的android开发</A> </li></UL>
+  <h2><A title="Web Service" href="index_186.html">Web Service</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android NFC 开发教程之一</H2>
+<div style="line-height:20px; font-size:14px;"><p>Near Field Communication (NFC)为一短距离无线通信技术，通常有效通讯距离为4厘米以内。NFC工作频率为13.65兆赫兹，通信速率为106kbit/秒到848kbit/秒。</p><p>NFC通信总是由一个发起者(initiator)和一个接受者(target)组成。通常initiator 主动发送电磁场(RF)可以为被动式接受者(passive target)提供电源。其工作的基本原理和收音机类似。正是由于被动式接受者可以通过发起者提供电源，因此target 可以有非常简单的形式,比如标签，卡，sticker 的形式。</p><p>NFC 也支持点到点的通信(peer to peer) 此时参与通信的双方都有电源支持。</p><p>和其它无线通信方式如Bluetooth相比，NFC 支持的通信带宽和距离要小的多，但是它成本低，如价格标签可能只有几分钱，也不需要配对，搜寻设备等，通信双方可以在靠近的瞬间完成交互。</p><p>在Android NFC 应用中，Android手机通常是作为通信中的发起者，也就是作为NFC 的读写器。Android手机也可以模拟作为NFC通信的接受者且从Android 2.3.3起也支持P2P通信。</p><p>Android对NFC的支持主要在 android.nfc 和android.nfc.tech 两个包中。</p><p>android.nfc 包中主要类如下：</p><p>1、NfcManager 可以用来管理Android设备中指出的所有NFC Adapter，但由于大部分Android设备只支持一个NFC Adapter，可以直接使用getDefaultAapater 来获取系统支持的Adapter。</p><p>2、NfcAdapter为一NFC Adapter对象，可以用来定义一个Intent使系统在检测到NFC Tag时通知你定义的Activity，并提供用来注册forground tag 消息发送的方法等。</p><p>3、NdefMessage 和NdefRecord NDEF 为NFC forum 定义的数据格式。</p><p>4、Tag代表一个被动式Tag对象，可以代表一个标签，卡片，钥匙扣等。当Android设备检测到一个Tag时，会创建一个Tag对象，将其放在Intent对象，然后发送到相应的Activity。</p><p>android.nfc.tech 中则定义了可以对Tag进行的读写操作的类，这些类按照其使用的技术类型可以分成不同的类如：NfcA, NfcB, NfcF,以及MifareClassic 等。</p><p>常见的Tag为Mifare ，后面的例子将以这种Tag 为例介绍NFC读写方法。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

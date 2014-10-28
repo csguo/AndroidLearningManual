@@ -1,0 +1,58 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android preferenceActivity用法_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li class="navcurrentLink"><A href="index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="ContentProvider" href="index_170.html">ContentProvider</A></h2>
+
+  <h2><A title="Preferences" href="index_171.html">Preferences</A></h2>
+<UL><li ><A title=Android API-SharedPreferences href="show_101_171.html">Android API-SharedPreferences</A> </li><li ><A title=Android SharedPreferences用法 href="show_102_171.html">Android SharedPreferences用法</A> </li><li ><A title=Android SharedPreferences用法（二） href="show_103_171.html">Android SharedPreferences用法（二）</A> </li><li class="currentLink"><A title=Android preferenceActivity用法 href="show_104_171.html">Android preferenceActivity用法</A> </li><li ><A title=Android 首选项框架ListPreference（一） href="show_105_171.html">Android 首选项框架ListPreference（一）</A> </li><li ><A title=Android 首选项框架ListPreference（二） href="show_106_171.html">Android 首选项框架ListPreference（二）</A> </li><li ><A title=Android 首选项框架ListPreference（三） href="show_107_171.html">Android 首选项框架ListPreference（三）</A> </li><li ><A title=Android 首选项框架ListPreference（四） href="show_108_171.html">Android 首选项框架ListPreference（四）</A> </li><li ><A title=Android 首选项框架ListPreference（五） href="show_109_171.html">Android 首选项框架ListPreference（五）</A> </li><li ><A title=Android之SharedPreferences href="show_110_171.html">Android之SharedPreferences</A> </li><li ><A title=SharedPreferences与Preferences href="show_111_171.html">SharedPreferences与Preferences</A> </li><li ><A title=onSaveInstanceState和onRestoreInstanceState的用处 href="show_112_171.html">onSaveInstanceState和onRestoreInstanceState的用处</A> </li><li ><A title=用SharedPreferences获取其他应用中用SharedPreferences保存的数据 href="show_113_171.html">用SharedPreferences获取其他应用中用SharedPreferences保存的数据</A> </li><li ><A title=PreferenceActivity 参数设置UI的使用 href="show_114_171.html">PreferenceActivity 参数设置UI的使用</A> </li><li ><A title=Android 让浏览器全屏显示 href="show_115_171.html">Android 让浏览器全屏显示</A> </li><li ><A title=Android EditTextPreference href="show_116_171.html">Android EditTextPreference</A> </li><li ><A title=Android下获取开机时间 href="show_117_171.html">Android下获取开机时间</A> </li><li ><A title=是否记住密码功能 href="show_118_171.html">是否记住密码功能</A> </li><li ><A title=在Activity中获取PreferenceActivity设置的值 href="show_119_171.html">在Activity中获取PreferenceActivity设置的值</A> </li><li ><A title=Android 完美解决自定义preference与ActivityGroup UI更新的问题 href="show_120_171.html">Android 完美解决自定义preference与ActivityGroup UI更新的问题</A> </li><li ><A title=Android 自定义 SeekBarPreference href="show_121_171.html">Android 自定义 SeekBarPreference</A> </li></UL>
+  <h2><A title="SQLite" href="index_172.html">SQLite</A></h2>
+
+  <h2><A title="SD卡" href="index_173.html">SD卡</A></h2>
+
+  <h2><A title="数据库" href="index_174.html">数据库</A></h2>
+
+  <h2><A title="URI" href="index_175.html">URI</A></h2>
+
+  <h2><A title="MediaStore" href="index_176.html">MediaStore</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android preferenceActivity用法</H2>
+<div style="line-height:20px; font-size:14px;"><p>在开发应用程序的过程中我们有很大的机会需要用到参数设置功能，那么在Android应用中，我们如何实现参数设置界面及参数存储呢，下面我们来介绍一下Android中的一个特殊Activity?PreferencesActivity。PreferencesActivity是Android中专门用来实现程序设置界面及参数存储的一个Activity，我们用一个实例来简介如何使用PreferencesActivity。</p><p>以此为例我们来介绍一下如何实现这个界面。首先建立一个xml来描述这个界面，文件为res/xml/preferences.xml</p><p><pre>&lt;?xml version=<font class="Fields">"1.0"</font> encoding=</font><font class="Fields">"utf-8"</font>?&gt;</p><p>&lt;PreferenceScreen xmlns:android=<font class="Fields">"http:<font class="Comments">//schemas.android.com/apk/res/android"</font> &gt;</font></p><p>    </font>&lt;PreferenceCategory android:title=<font class="Fields">"PreferenceCategory 1"</font> &gt;</p><p>        &lt;CheckBoxPreference</p><p>            </font>android:defaultValue=<font class="Fields">"<font class="keyword">true</font></p><p>            </font>android:key=<font class="Fields">"CheckBox1</p><p>            </font>android:summaryOff=<font class="Fields">"某功能: 关闭</p><p>            </font>android:summaryOn=<font class="Fields">"某功能: 开启</p><p>            </font>android:title=<font class="Fields">"CheckBox"</font> /&gt;</p><p>    &lt;/PreferenceCategory&gt;</p><p>    </font>&lt;PreferenceCategory android:title=<font class="Fields">"PreferenceCategory 2"</font> &gt;</p><p>        </font>&lt;PreferenceScreen android:title=<font class="Fields">"二级PreferenceScreen"</font> &gt;</p><p>            &lt;CheckBoxPreference</p><p>                </font>android:defaultValue=<font class="Fields">"<font class="keyword">true</font></p><p>                </font>android:key=<font class="Fields">"CheckBox2</p><p>                </font>android:summaryOff=<font class="Fields">"某功能: 关闭</p><p>                </font>android:summaryOn=<font class="Fields">"某功能: 开启</p><p>                </font>android:title=<font class="Fields">"CheckBox"</font> /&gt;</p><p>        &lt;/PreferenceScreen&gt;</p><p>    &lt;/PreferenceCategory&gt;</p><p>    </font>&lt;PreferenceCategory android:title=<font class="Fields">"PreferenceCategory 3"</font> &gt;</p><p>        &lt;ListPreference</p><p>            </font>android:dialogTitle=<font class="Fields">"ListPreference</p><p>            </font>android:entries=<font class="Fields">"@array/entries_list_preference</p><p>            </font>android:entryValues=<font class="Fields">"@array/entriesvalue_list_preference</p><p>            </font>android:key=<font class="Fields">"ListPreference</p><p>            </font>android:summary=<font class="Fields">"ListPreference测试</p><p>            </font>android:title=<font class="Fields">"ListPreference"</font> /&gt;</p><p>        &lt;EditTextPreference</p><p>            </font>android:dialogTitle=<font class="Fields">"输入设置</p><p>            </font>android:key=<font class="Fields">"EditTextPreference</p><p>            </font>android:summary=<font class="Fields">"点击输入</p><p>            </font>android:title=<font class="Fields">"EditTextPreference"</font> /&gt;</p><p>        &lt;RingtonePreference</p><p>            </font>android:key=<font class="Fields">"RingtonePreference</p><p>            </font>android:summary=<font class="Fields">"选择铃声</p><p>            </font>android:title=<font class="Fields">"RingtonePreference"</font> /&gt;</p><p>    &lt;/PreferenceCategory&gt;</p><p>&lt;/PreferenceScreen&gt;</p><p></pre></p><p>这个例子中包括了PreferenceActivity中常见的几种组件，以下为具体介绍及用法：</p><p>PreferenceScreen：设置页面，可嵌套形成二级设置页面，用Title参数设置标题。</p><p>PreferenceCategory：某一类相关的设置，可用Title参数设置标题。</p><p>CheckBoxPreference：是一个CheckBox设置，只有两种值，true或false，可用Title参数设置标题，用summaryOn和summaryOff参数来设置控件选中和未选中时的提示。</p><p>ListPreference：下拉框选择控件，用Title参数设置标题，用Summary参数设置说明，点击后出现下拉框，用dialogTitle设置下拉框的标题，下拉框内显示的内容和具体的值需要在res/values/array.xml中设置两个array来表示。图中的array.xml设置如下：</p><p><pre>&lt;?xml version=<font class="Fields">"1.0"</font> encoding=</font><font class="Fields">"utf-8"</font>?&gt;</p><p>&lt;resources&gt;</p><p>&lt;string-array name=<font class="Fields">"entries_list_preference"</font>&gt;</p><p>	&lt;item&gt;test1&lt;/item&gt;</p><p>	&lt;item&gt;test2&lt;/item&gt;</p><p>	&lt;item&gt;test3&lt;/item&gt;</p><p>&lt;/string-array&gt;</p><p>&lt;string-array name=<font class="Fields">"entriesvalue_list_preference"</font>&gt;</p><p>	&lt;item&gt;1&lt;/item&gt;</p><p>	&lt;item&gt;2&lt;/item&gt;</p><p>	&lt;item&gt;3&lt;/item&gt;</p><p>&lt;/string-array&gt;</p><p>&lt;/resources&gt;</p><p></pre></p><p>EditTextPreference：输入框控件，点击后可输入字符串设置。用Title参数设置标题，Summary参数设置说明，dialogTitle参数设置输入框的标题。</p><p>RingtonePreference：铃声选择框，点击后可选择系统铃声。Title参数设置标题，Summary参数设置说明，dialogTitle参数设置铃声选择框的标题。</p><p>以上是PreferenceActivity的xml描述，那么在程序中我们只需要新建一个继承自PreferenceActivity的Activity，然后在主程序中调用就可以了。这个PreferenceActivity中的设置存储是完全自动的，你不需要再用代码去实现设置的存储，PreferenceActivity创建后会自动创建一个配置文件/data/data/you_package_name /shared_prefs/you_package_name_you_xml_name.xml。上例中自动生成的配置文件如下：</p><p><pre>&lt;?xml version=<font class="Fields">'1.0'</font> encoding=</font><font class="Fields">'utf-8'</font> standalone=</font><font class="Fields">'yes'</font> ?&gt;</p><p>&lt;map&gt;</p><p>	</font>&lt;string name=<font class="Fields">"EditTextPreference"</font>&gt;12332312&lt;/string&gt;</p><p>	</font>&lt;string name=<font class="Fields">"ListPreference"</font>&gt;2&lt;/string&gt;</p><p>	</font>&lt;string name=<font class="Fields">"RingtonePreference"</font>&gt;content:<font class="Comments">//settings/system/ringtone&lt;/string&gt;</font></p><p>	</font>&lt;<font class="keyword">boolean </font>name=<font class="Fields">"CheckBox1"</font> value=</font><font class="Fields">"</font><font class="keyword">true</font>"</font> /&gt;</p><p>	</font>&lt;<font class="keyword">boolean </font>name=<font class="Fields">"CheckBox2"</font> value=</font><font class="Fields">"</font><font class="keyword">true</font>"</font> /&gt;</p><p>&lt;/map&gt;</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

@@ -1,0 +1,64 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android TextView中显示HTML和图片_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li class="navcurrentLink"><A href="index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="3G" href="index_177.html">3G</A></h2>
+
+  <h2><A title="WIFI" href="index_178.html">WIFI</A></h2>
+
+  <h2><A title="蓝牙" href="index_179.html">蓝牙</A></h2>
+
+  <h2><A title="HTTP协议" href="index_180.html">HTTP协议</A></h2>
+
+  <h2><A title="Socket" href="index_181.html">Socket</A></h2>
+
+  <h2><A title="HTML与HTML5" href="index_182.html">HTML与HTML5</A></h2>
+<UL><li class="currentLink"><A title=Android TextView中显示HTML和图片 href="show_501_182.html">Android TextView中显示HTML和图片</A> </li><li ><A title=HttpClient和URLConnection两种下载HTML href="show_502_182.html">HttpClient和URLConnection两种下载HTML</A> </li><li ><A title=webview与HTML加载自适应问题解决方案 href="show_503_182.html">webview与HTML加载自适应问题解决方案</A> </li><li ><A title=Android中构建HTML5应用 href="show_504_182.html">Android中构建HTML5应用</A> </li><li ><A title=Android下的另一个开发选择——HTML5 href="show_505_182.html">Android下的另一个开发选择——HTML5</A> </li><li ><A title=Android与iOS：谁更适合HTML 5？ href="show_506_182.html">Android与iOS：谁更适合HTML 5？</A> </li><li ><A title=Android and HTML5 开发手机应用(转载) href="show_507_182.html">Android and HTML5 开发手机应用(转载)</A> </li><li ><A title=HTML 5是不是解决跨平台问题的终极密钥 href="show_508_182.html">HTML 5是不是解决跨平台问题的终极密钥</A> </li><li ><A title=HTML5能取代Android和iOS应用程序吗？(转载) href="show_509_182.html">HTML5能取代Android和iOS应用程序吗？(转载)</A> </li><li ><A title=Android webkit HTML5 video研究 href="show_510_182.html">Android webkit HTML5 video研究</A> </li><li ><A title=将HTML5封装成android应用APK文件若干方法 href="show_511_182.html">将HTML5封装成android应用APK文件若干方法</A> </li><li ><A title=七个特点告诉你 HTML5技术到底怎么样 href="show_512_182.html">七个特点告诉你 HTML5技术到底怎么样</A> </li><li ><A title=十大中间工具和HTML5技术应用解析 href="show_513_182.html">十大中间工具和HTML5技术应用解析</A> </li></UL>
+  <h2><A title="JavaScript" href="index_183.html">JavaScript</A></h2>
+
+  <h2><A title="Email" href="index_184.html">Email</A></h2>
+
+  <h2><A title="NFC" href="index_185.html">NFC</A></h2>
+
+  <h2><A title="Web Service" href="index_186.html">Web Service</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android TextView中显示HTML和图片</H2>
+<div style="line-height:20px; font-size:14px;"><p>Android中如何显示本地HTML：</p><p><pre><font class="Comments">// one</font></p><p>webview = (WebView) findViewById(R.id.webview);</p><p>webview.getSettings().setJavaScriptEnabled(<font class="keyword">true</font>);</p><p>webview.loadUrl(<font class="Fields">"content:<font class="Comments">//com.android.htmlfileprovider/sdcard/index.html"</font>);</font></p><p><font class="Comments">// two</font></p><p>Uri uri = Uri.parse(<font class="Fields">"content:<font class="Comments">//com.android.htmlfileprovider/sdcard/01.htm"</font>);</font></p><p>Intent intent = <font class="keyword">new </font>Intent();</p><p>intent.setData(uri);</p><p>intent.setClassName(<font class="Fields">"com.android.htmlviewer"</font>,</font><font class="Fields">"com.android.htmlviewer.HTMLViewerActivity"</font>);</p><p>startActivity(intent);</p><p><font class="Comments">// three</font></p><p>String encoding = <font class="Fields">"UTF-8"</font>;</p><p>String mimeType = <font class="Fields">"text/html"</font>;</p><p><font class="keyword">final </font>String html = <font class="Fields">"锟斤拷锟斤拷google"</font> + </font><font class="Fields">"锟斤拷锟斤拷google"</font>;</p><p>mWebView.loadDataWithBaseURL(<font class="Fields">"file:<font class="Comments">//"</font>, html, mimeType, encoding, </font><font class="Fields">"about:blank"</font>);</font></p><p></pre></p><p>Android开发：TextView中显示HTML和图片</p><p>最近有人咨询我如何在TextView中显示 html标签内的图片，大家都知道，在TextView中显示HTML内容的方法如下所示：</p><p>1 TextView description=(TextView)findViewById(R.id.description);</p><p>2 description.setText(Html.fromHtml(item.getDescription()));</p><p>如果HTML中有图片的话，显示出来的图片会被一个小框取代，那么怎么样才能看到图片呢？查看了一下API，android.text.Html还还有 另一个方法：Html.fromHtml(String source,ImageGetter imageGetter,TagHandler tagHandler)，这个方法使用如下所示：</p><p><pre>ImageGetter imgGetter = <font class="keyword">new </font>Html.ImageGetter() {</p><p>	<font class="keyword">public </font>Drawable getDrawable(String source) {</p><p>		</font>Drawable drawable = <font class="keyword">null</font>;</p><p>		</font>Log.d(<font class="Fields">"Image Path"</font>, source);</p><p>		URL url;</p><p>		<font class="keyword">try </font>{</p><p>			</font>url = <font class="keyword">new </font>URL(source);</p><p>			</font>drawable = Drawable.createFromStream(url.openStream(), <font class="Fields">""</font>);</p><p>		</font>} <font class="keyword">catch </font>(Exception e) {</p><p>			<font class="keyword">return </font><font class="keyword">null</font>;</p><p>		}</p><p>		drawable.setBounds(0, 0, drawable.getIntrinsicWidth(),</p><p>				drawable.getIntrinsicHeight());</p><p>		<font class="keyword">return </font>drawable;</p><p>	}</p><p>};</p><p>TextView description = (TextView) findViewById(R.id.description);</p><p>description.setText(Html.fromHtml(item.getDescription(), imgGetter, <font class="keyword">null</font>));</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

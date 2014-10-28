@@ -1,0 +1,60 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 浅谈Sensor工作流程（五）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li class="navcurrentLink"><A href="index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Launcher" href="index_207.html">Launcher</A></h2>
+
+  <h2><A title="电话系统RIL" href="index_208.html">电话系统RIL</A></h2>
+
+  <h2><A title="进程间通信" href="index_209.html">进程间通信</A></h2>
+
+  <h2><A title="内部sensor系统" href="index_210.html">内部sensor系统</A></h2>
+<UL><li ><A title=Android 浅谈Sensor工作流程（一） href="show_301_210.html">Android 浅谈Sensor工作流程（一）</A> </li><li ><A title=Android 浅谈Sensor工作流程（二） href="show_302_210.html">Android 浅谈Sensor工作流程（二）</A> </li><li ><A title=Android 浅谈Sensor工作流程（三） href="show_303_210.html">Android 浅谈Sensor工作流程（三）</A> </li><li ><A title=Android 浅谈Sensor工作流程（四） href="show_304_210.html">Android 浅谈Sensor工作流程（四）</A> </li><li class="currentLink"><A title=Android 浅谈Sensor工作流程（五） href="show_305_210.html">Android 浅谈Sensor工作流程（五）</A> </li><li ><A title=Sensor传感器源码的阅读与应用开发简单实例 href="show_306_210.html">Sensor传感器源码的阅读与应用开发简单实例</A> </li></UL>
+  <h2><A title="内部surface系统" href="index_211.html">内部surface系统</A></h2>
+
+  <h2><A title="启动流程" href="index_212.html">启动流程</A></h2>
+
+  <h2><A title="源码编译" href="index_213.html">源码编译</A></h2>
+
+  <h2><A title="状态栏" href="index_214.html">状态栏</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 浅谈Sensor工作流程（五）</H2>
+<div style="line-height:20px; font-size:14px;"><p>代码：</p><p><pre>struct sensors_data_device_t {</p><p>	struct hw_device_t common;</p><p>	<font class="Comments">/**</font></p><p>	<font class="Comments">* Prepare to read sensor data.</font></p><p>	<font class="Comments">*</font></p><p>	<font class="Comments">* This routine does NOT take ownership of the fd</font></p><p>	<font class="Comments">* and must not close it. Typically this routine would</font></p><p>	<font class="Comments">* use a duplicate of the fd parameter.</font></p><p>	<font class="Comments">*</font></p><p>	<font class="Comments">* @param fd from sensors_control_open.</font></p><p>	<font class="Comments">*</font></p><p>	<font class="Comments">* @return 0 if successful, &lt; 0 on error</font></p><p>	<font class="Comments">*/</font></p><p>	<font class="keyword">int </font>(*data_open)(struct sensors_data_device_t *dev, </font><font class="keyword">int </font>fd);</p><p>	<font class="Comments">/**</font></p><p>	<font class="Comments">* Caller has completed using the sensor data.</font></p><p>	<font class="Comments">* The caller will not be blocked in sensors_data_poll</font></p><p>	<font class="Comments">* when this routine is called.</font></p><p>	<font class="Comments">*</font></p><p>	<font class="Comments">* @return 0 if successful, &lt; 0 on error</font></p><p>	<font class="Comments">*/</font></p><p>	<font class="keyword">int </font>(*data_close)(struct sensors_data_device_t *dev);</p><p>	<font class="Comments">/**</font></p><p>	<font class="Comments">* Return sensor data for one of the enabled sensors.</font></p><p>	<font class="Comments">*</font></p><p>	<font class="Comments">* @return sensor handle for the returned data, 0x7FFFFFFF when</font></p><p>	<font class="Comments">* sensors_control_device_t.wake() is called and -errno on error</font></p><p>	<font class="Comments">*</font></p><p>	<font class="Comments">*/</font></p><p>	<font class="keyword">int </font>(*poll)(struct sensors_data_device_t *dev,</p><p>	sensors_data_t* data);</p><p>};</p><p></pre></p><p>最后一组函数</p><p><pre><font class="Comments">/** convenience API for opening and closing a device */</font></p><p><font class="keyword">static </font>inline </font><font class="keyword">int </font>sensors_control_open(const struct hw_module_t* module,</p><p>struct sensors_control_device_t** device) {</p><p>	<font class="keyword">return </font>module-&gt;methods-&gt;open(module,</p><p>	SENSORS_HARDWARE_CONTROL, (struct hw_device_t**)device);</p><p>}</p><p><font class="keyword">static </font>inline </font><font class="keyword">int </font>sensors_control_close(struct sensors_control_device_t* device) {</p><p>	<font class="keyword">return </font>device-&gt;common.close(&device-&gt;common);</p><p>}</p><p><font class="keyword">static </font>inline </font><font class="keyword">int </font>sensors_data_open(const struct hw_module_t* module,</p><p>struct sensors_data_device_t** device) {</p><p>	<font class="keyword">return </font>module-&gt;methods-&gt;open(module,</p><p>	SENSORS_HARDWARE_DATA, (struct hw_device_t**)device);</p><p>}</p><p><font class="keyword">static </font>inline </font><font class="keyword">int </font>sensors_data_close(struct sensors_data_device_t* device) {</p><p>	<font class="keyword">return </font>device-&gt;common.close(&device-&gt;common);</p><p>}</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

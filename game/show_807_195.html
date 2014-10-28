@@ -1,0 +1,60 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>游戏引擎libgdx中粒子特效的实现_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li class="navcurrentLink"><A href="index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="游戏开发须知" href="index_187.html">游戏开发须知</A></h2>
+
+  <h2><A title="游戏策划、设计分析" href="index_188.html">游戏策划、设计分析</A></h2>
+
+  <h2><A title="Android OpenGL学习" href="index_190.html">Android OpenGL学习</A></h2>
+
+  <h2><A title="Android游戏开发之旅" href="index_191.html">Android游戏开发之旅</A></h2>
+
+  <h2><A title="Android2D游戏开发" href="index_192.html">Android2D游戏开发</A></h2>
+
+  <h2><A title="Android经典实例教程解析" href="index_193.html">Android经典实例教程解析</A></h2>
+
+  <h2><A title="Android游戏开发实例" href="index_194.html">Android游戏开发实例</A></h2>
+
+  <h2><A title="Libgdx游戏引擎" href="index_195.html">Libgdx游戏引擎</A></h2>
+<UL><li ><A title=Android游戏框架 Libgdx 使用入门（一） href="show_801_195.html">Android游戏框架 Libgdx 使用入门（一）</A> </li><li ><A title=Android游戏框架 Libgdx 使用入门（二） href="show_802_195.html">Android游戏框架 Libgdx 使用入门（二）</A> </li><li ><A title=Android游戏框架 Libgdx 使用入门（三） href="show_803_195.html">Android游戏框架 Libgdx 使用入门（三）</A> </li><li ><A title=Android游戏框架 Libgdx 使用入门（四） href="show_804_195.html">Android游戏框架 Libgdx 使用入门（四）</A> </li><li ><A title=Android游戏框架 Libgdx 使用入门（五） href="show_805_195.html">Android游戏框架 Libgdx 使用入门（五）</A> </li><li ><A title=使用游戏引擎libgdx的工程搭建方法 href="show_806_195.html">使用游戏引擎libgdx的工程搭建方法</A> </li><li class="currentLink"><A title=游戏引擎libgdx中粒子特效的实现 href="show_807_195.html">游戏引擎libgdx中粒子特效的实现</A> </li></UL>
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>游戏引擎libgdx中粒子特效的实现</H2>
+<div style="line-height:20px; font-size:14px;"><p>在libgdx引擎中，有一个专门用于生成粒子特效的小工具，叫做particle-editor，利用该工具可以方便的生成一个适用于libgdx的粒子特效脚本文件。打开工具，如下图所示：</p><p><img src="../img/games_dev/07_libgdx2.jpg"></p><p>(注：可以点击open，选择一张图片作为粒子，然后设置各个参数，在此不做详述)</p><p>点击左下角Save按钮，将该特效的脚本文件保存在本地中，例如我们保存为particle.p，保存完成后，可以看到该脚本文件的内容。好了，下面我们将把这个粒子特效加入到我们的程序中。</p><p>1.将particle.p和你所选择的图片复制到资源的data目录下。（注：需要将particle.p中最后图片的位置修改为当前目录）</p><p>2.新建类HelloParticle。代码如下</p><p><pre><font class="keyword">public </font><font class="keyword">class </font>HelloParticle </font><font class="keyword">implements </font>ApplicationListener {</p><p>	SpriteBatch spriteBatch;</p><p>	ParticleEffect particle;</p><p>	<font class="keyword">public </font><font class="keyword">void </font>create() {</p><p>		</font>spriteBatch = <font class="keyword">new </font>SpriteBatch();</p><p>		</font>particle = <font class="keyword">new </font>ParticleEffect();</p><p>		</font>particle.load(Gdx.files.internal(<font class="Fields">"data/particle.p"</font>),</p><p>				</font>Gdx.files.internal(<font class="Fields">"data/"</font>));</p><p>		particle.start();</p><p>		particle.setPosition(100, 100);</p><p>	}</p><p>	<font class="keyword">public </font><font class="keyword">void </font>resume() {</p><p>	}</p><p>	<font class="keyword">public </font><font class="keyword">void </font>render() {</p><p>		<font class="keyword">int </font>centerX = Gdx.graphics.getWidth() / 2;</p><p>		<font class="keyword">int </font>centerY = Gdx.graphics.getHeight() / 2;</p><p>		Gdx.graphics.getGL10().glClear(GL10.GL_COLOR_BUFFER_BIT);</p><p>		spriteBatch.begin();</p><p>		spriteBatch.setColor(Color.WHITE);</p><p>		particle.draw(spriteBatch, Gdx.graphics.getDeltaTime());</p><p>		spriteBatch.end();</p><p>	}</p><p>	<font class="keyword">public </font><font class="keyword">void </font>resize(</font><font class="keyword">int </font>width, </font><font class="keyword">int </font>height) {</p><p>		spriteBatch.getProjectionMatrix().setToOrtho2D(0, 0, width, height);</p><p>	}</p><p>	<font class="keyword">public </font><font class="keyword">void </font>pause() {</p><p>	}</p><p>	<font class="keyword">public </font><font class="keyword">void </font>dispose() {</p><p>	}</p><p>}</p><p></pre></p><p>3.在main方法中启动。</p><p><pre><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">void </font>main (String[] argv) {</p><p>	<font class="keyword">new </font>JoglApplication(</font><font class="keyword">new </font>HelloParticle(), <font class="Fields">"Hello World"</font>, 480, 320, </font><font class="keyword">false</font>);</p><p>}</p><p></pre></p><p>好了，下面是运行效果：</p><p><img src="../img/games_dev/07_libgdx.jpg"></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

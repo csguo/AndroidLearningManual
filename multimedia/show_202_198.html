@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 3D绘图基本概念（二）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li class="navcurrentLink"><A href="index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Android多媒体功能" href="index_196.html">Android多媒体功能</A></h2>
+
+  <h2><A title="Android多媒体之2D" href="index_197.html">Android多媒体之2D</A></h2>
+
+  <h2><A title="Android多媒体之3D" href="index_198.html">Android多媒体之3D</A></h2>
+<UL><li ><A title=Android 3D绘图基本概念（一） href="show_201_198.html">Android 3D绘图基本概念（一）</A> </li><li class="currentLink"><A title=Android 3D绘图基本概念（二） href="show_202_198.html">Android 3D绘图基本概念（二）</A> </li><li ><A title=Android 3D坐标（一） href="show_203_198.html">Android 3D坐标（一）</A> </li><li ><A title=Android 3D坐标（二） href="show_204_198.html">Android 3D坐标（二）</A> </li><li ><A title=Android中3D效果 href="show_205_198.html">Android中3D效果</A> </li><li ><A title=Android3D旋转 href="show_206_198.html">Android3D旋转</A> </li><li ><A title=Android 3d页面跳转（一） href="show_207_198.html">Android 3d页面跳转（一）</A> </li><li ><A title=Android 3d页面跳转（二） href="show_208_198.html">Android 3d页面跳转（二）</A> </li><li ><A title=Android 3d页面跳转（三） href="show_209_198.html">Android 3d页面跳转（三）</A> </li><li ><A title=ApiDemo上面的一个图片3D旋转效果 href="show_210_198.html">ApiDemo上面的一个图片3D旋转效果</A> </li><li ><A title=浅谈Android 3D旋转 href="show_211_198.html">浅谈Android 3D旋转</A> </li><li ><A title=简单实现3d旋转动画 href="show_212_198.html">简单实现3d旋转动画</A> </li><li ><A title=Android 3D相册 href="show_213_198.html">Android 3D相册</A> </li></UL>
+  <h2><A title="Android多媒体之Bitmap" href="index_199.html">Android多媒体之Bitmap</A></h2>
+
+  <h2><A title="Android多媒体之Canvas" href="index_200.html">Android多媒体之Canvas</A></h2>
+
+  <h2><A title="Android多媒体之Drawable" href="index_201.html">Android多媒体之Drawable</A></h2>
+
+  <h2><A title="Android多媒体之gif" href="index_202.html">Android多媒体之gif</A></h2>
+
+  <h2><A title="Android多媒体之MediaStore" href="index_203.html">Android多媒体之MediaStore</A></h2>
+
+  <h2><A title="Android多媒体之动画" href="index_204.html">Android多媒体之动画</A></h2>
+
+  <h2><A title="Android多媒体之分辨率" href="index_205.html">Android多媒体之分辨率</A></h2>
+
+  <h2><A title="Android多媒体之分屏幕" href="index_206.html">Android多媒体之分屏幕</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 3D绘图基本概念（二）</H2>
+<div style="line-height:20px; font-size:14px;"><p>[clor=blue]Render (渲染）</p><p>我们已定义好了多边形，下面就要了解如和使用OpenGL ES的API来绘制（渲染）这个多边形了。OpenGL ES提供了两类方法来绘制一个空间几何图形：</p><p><pre><font class="keyword">public </font><font class="keyword">abstract </font><font class="keyword">void </font>glDrawArrays(</font><font class="keyword">int </font>mode, </font><font class="keyword">int </font>first, </font><font class="keyword">int </font>count) </p><p></pre></p><p>使用VetexBuffer来绘制，顶点的顺序由vertexBuffer中的顺序指定。</p><p><pre><font class="keyword">public </font><font class="keyword">abstract </font><font class="keyword">void </font>glDrawElements(</font><font class="keyword">int </font>mode, </font><font class="keyword">int </font>count, </font><font class="keyword">int </font>type, Buffer indices) </p><p></pre></p><p>可以重新定义顶点的顺序，顶点的顺序由indices Buffer指定。</p><p>前面我们已定义里顶点数组，因此我们将采用glDrawElements来绘制多边形。</p><p>同样的顶点，可以定义的几何图形可以有所不同，比如三个顶点，可以代表三个独立的点，也可以表示一个三角形，这就需要使用mode来指明所需绘制的几何图形的基本类型。</p><p><pre><font class="keyword">import </font>java.nio.ByteBuffer;</p><p><font class="keyword">import </font>java.nio.ByteOrder;</p><p><font class="keyword">import </font>java.nio.FloatBuffer;</p><p><font class="keyword">import </font>java.nio.ShortBuffer;</p><p><font class="keyword">import </font>javax.microedition.khronos.opengles.GL10;</p><p><font class="keyword">public </font><font class="keyword">class </font>Square {</p><p>	<font class="Comments">// Our vertices.</font></p><p>	<font class="keyword">private </font><font class="keyword">float </font>vertices[] = { -1.0f, 1.0f, 0.0f, <font class="Comments">// 0, Top Left</font></p><p>			-1.0f, -1.0f, 0.0f, <font class="Comments">// 1, Bottom Left</font></p><p>			1.0f, -1.0f, 0.0f, <font class="Comments">// 2, Bottom Right</font></p><p>			1.0f, 1.0f, 0.0f, <font class="Comments">// 3, Top Right</font></p><p>	};</p><p>	<font class="Comments">// The order we like to connect them.</font></p><p>	<font class="keyword">private </font>short[] indices = { 0, 1, 2, 0, 2, 3 </font>};</p><p>	<font class="Comments">// Our vertex buffer.</font></p><p>	<font class="keyword">private </font>FloatBuffer vertexBuffer;</p><p>	<font class="Comments">// Our index buffer.</font></p><p>	<font class="keyword">private </font>ShortBuffer indexBuffer;</p><p>	<font class="keyword">public </font>Square() {</p><p>		<font class="Comments">// a float is 4 bytes, therefore we</font></p><p>		<font class="Comments">// multiply the number if</font></p><p>		<font class="Comments">// vertices with 4.</font></p><p>		ByteBuffer vbb = ByteBuffer.allocateDirect(vertices.length * 4);</p><p>		vbb.order(ByteOrder.nativeOrder());</p><p>		vertexBuffer = vbb.asFloatBuffer();</p><p>		vertexBuffer.put(vertices);</p><p>		vertexBuffer.position(0);</p><p>		<font class="Comments">// short is 2 bytes, therefore we multiply</font></p><p>		<font class="Comments">// the number if</font></p><p>		<font class="Comments">// vertices with 2.</font></p><p>		ByteBuffer ibb = ByteBuffer.allocateDirect(indices.length * 2);</p><p>		ibb.order(ByteOrder.nativeOrder());</p><p>		indexBuffer = ibb.asShortBuffer();</p><p>		indexBuffer.put(indices);</p><p>		indexBuffer.position(0);</p><p>	}</p><p>	<font class="Comments">/**</font></p><p>	 <font class="Comments">* This function draws our square on screen.</font></p><p>	 <font class="Comments">* @param gl</font></p><p>	 <font class="Comments">*/</font></p><p>	<font class="keyword">public </font><font class="keyword">void </font>draw(GL10 gl) {</p><p>		<font class="Comments">// Counter-clockwise winding.</font></p><p>		gl.glFrontFace(GL10.GL_CCW);</p><p>		<font class="Comments">// Enable face culling.</font></p><p>		gl.glEnable(GL10.GL_CULL_FACE);</p><p>		<font class="Comments">// What faces to remove with the face culling.</font></p><p>		gl.glCullFace(GL10.GL_BACK);</p><p>		<font class="Comments">// Enabled the vertices buffer for writing</font></p><p>		<font class="Comments">// and to be used during</font></p><p>		<font class="Comments">// rendering.</font></p><p>		gl.glEnableClientState(GL10.GL_VERTEX_ARRAY);</p><p>		<font class="Comments">// Specifies the location and data format of</font></p><p>		<font class="Comments">// an array of vertex</font></p><p>		<font class="Comments">// coordinates to use when rendering.</font></p><p>		gl.glVertexPointer(3, GL10.GL_FLOAT, 0, vertexBuffer);</p><p>		gl.glDrawElements(GL10.GL_TRIANGLES, indices.length,</p><p>				GL10.GL_UNSIGNED_SHORT, indexBuffer);</p><p>		<font class="Comments">// Disable the vertices buffer.</font></p><p>		gl.glDisableClientState(GL10.GL_VERTEX_ARRAY);</p><p>		<font class="Comments">// Disable face culling.</font></p><p>		gl.glDisable(GL10.GL_CULL_FACE);</p><p>	}</p><p>}</p><p></pre></p><p>在OpenGLRenderer 中添加Square成员变量并初始化：</p><p><pre><font class="Comments">// Initialize our square.</font></p><p></font>Square square = <font class="keyword">new </font>Square(); </p><p></pre></p><p>并在public void onDrawFrame(GL10 gl) 添加</p><p><pre><font class="Comments">// Draw our square.</font></p><p>square.draw(gl);</p><p></pre></p><p>来绘制这个正方形，编译运行，什么也没显示，这是为什么呢？这是因为OpenGL ES从当前位置开始渲染，缺省坐标为(0,0,0)，和View port 的坐标一样，相当于把画面放在眼前，对应这种情况OpenGL不会渲染离view Port很近的画面，因此我们需要将画面向后退一点距离：</p><p><pre><font class="Comments">// Translates 4 units into the screen.</font></p><p>gl.glTranslatef(0, 0, -4);</p><p></pre></p><p>在编译运行，这次倒是有显示了，当正方形迅速后移直至看不见，这是因为每次调用onDrawFrame时，每次都再向后移动4个单位，需要加上重置Matrix的代码。</p><p><pre><font class="Comments">// Replace the current matrix with the identity matrix</font></p><p>gl.glLoadIdentity();</p><p></pre></p><p>最终onDrawFrame的代码如下：</p><p><pre><font class="keyword">public </font><font class="keyword">void </font>onDrawFrame(GL10 gl) {</p><p>	<font class="Comments">// Clears the screen and depth buffer.</font></p><p>	gl.glClear(GL10.GL_COLOR_BUFFER_BIT |</p><p>	GL10.GL_DEPTH_BUFFER_BIT);</p><p>	gl.glLoadIdentity();</p><p>	gl.glTranslatef(0, 0, -4);</p><p>	<font class="Comments">// Draw our square.</font></p><p>	square.draw(gl); <font class="Comments">// ( NEW )</font></p><p>} </p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

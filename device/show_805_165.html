@@ -1,0 +1,70 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android的Audio系统之三_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li class="navcurrentLink"><A href="index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="设备信息" href="index_157.html">设备信息</A></h2>
+
+  <h2><A title="摄像头" href="index_158.html">摄像头</A></h2>
+
+  <h2><A title="通讯录" href="index_159.html">通讯录</A></h2>
+
+  <h2><A title="电话" href="index_160.html">电话</A></h2>
+
+  <h2><A title="短信" href="index_161.html">短信</A></h2>
+
+  <h2><A title="传感器" href="index_162.html">传感器</A></h2>
+
+  <h2><A title="定位" href="index_163.html">定位</A></h2>
+
+  <h2><A title="视频系统" href="index_164.html">视频系统</A></h2>
+
+  <h2><A title="音频系统" href="index_165.html">音频系统</A></h2>
+<UL><li ><A title=Android Audio框架 href="show_801_165.html">Android Audio框架</A> </li><li ><A title=Android Audio抽象层的接口 href="show_802_165.html">Android Audio抽象层的接口</A> </li><li ><A title=Android的Audio系统之一 href="show_803_165.html">Android的Audio系统之一</A> </li><li ><A title=Android的Audio系统之二 href="show_804_165.html">Android的Audio系统之二</A> </li><li class="currentLink"><A title=Android的Audio系统之三 href="show_805_165.html">Android的Audio系统之三</A> </li><li ><A title=Android的Audio系统之四 href="show_806_165.html">Android的Audio系统之四</A> </li><li ><A title=Android的Audio系统之五 href="show_807_165.html">Android的Audio系统之五</A> </li><li ><A title=Android的Audio系统之六 href="show_808_165.html">Android的Audio系统之六</A> </li><li ><A title=Android的Audio系统之七 href="show_809_165.html">Android的Audio系统之七</A> </li><li ><A title=Android 深入研究MediaRecorder类 href="show_810_165.html">Android 深入研究MediaRecorder类</A> </li><li ><A title=Android 讲述MediaPlayer href="show_811_165.html">Android 讲述MediaPlayer</A> </li></UL>
+  <h2><A title="铃声" href="index_166.html">铃声</A></h2>
+
+  <h2><A title="音量" href="index_167.html">音量</A></h2>
+
+  <h2><A title="录音" href="index_168.html">录音</A></h2>
+
+  <h2><A title="输入法" href="index_169.html">输入法</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android的Audio系统之三</H2>
+<div style="line-height:20px; font-size:14px;"><p style="color:#3333FF;">AudioFlinger本地代码</p><p>AudioFlinger是Audio系统的中间层，在系统中起到服务作用，它主要作为libmedia提供的Audio部分接口的实现，其代码路径为：</p><p>1.frameworks/base/libs/audioflinger</p><p>AudioFlinger的核心文件是AudioFlinger.h和AudioFlinger.cpp，提供了类AudioFlinger，这个类是一个IAudioFlinger的实现，其主要接口如下所示：</p><p><pre><font class="keyword">class </font>AudioFlinger : </font><font class="keyword">public </font>BnAudioFlinger, </font><font class="keyword">public </font>IBinder::DeathRecipient  </p><p>{  </p><p>	public:</p><p>    <font class="Comments">// …… 省略部分内容</font></p><p>    virtual sp&lt;IAudioTrack&gt; createTrack(</p><p>	   <font class="Comments">// 获得音频输出接口（Track）</font></p><p>		pid_t pid,</p><p>		<font class="keyword">int </font>streamType,  </p><p>		uint32_t sampleRate,</p><p>		<font class="keyword">int </font>format, </p><p>		<font class="keyword">int </font>channelCount,  </p><p>		<font class="keyword">int </font>frameCount,  </p><p>		uint32_t flags,</p><p>		const sp&lt;IMemory&gt;& sharedBuffer, status_t *status);</p><p>    <font class="Comments">// …… 省略部分内容</font></p><p>    </font>virtual status_t setMasterVolume(<font class="keyword">float </font>value);</p><p>    virtual status_t setMasterMute(bool muted);</p><p>    </font>virtual status_t setStreamVolume(<font class="keyword">int </font>stream, </font><font class="keyword">float </font>value);</p><p>    </font>virtual status_t setStreamMute(<font class="keyword">int </font>stream, bool muted);</p><p></p><p>    </font>virtual status_t setRouting(<font class="keyword">int </font>mode, uint32_t routes, uint32_t mask);</p><p>    </font>virtual uint32_t getRouting(<font class="keyword">int </font>mode) const;</p><p>    </font>virtual status_t setMode(<font class="keyword">int </font>mode);</p><p>    </font>virtual <font class="keyword">int </font>getMode() const;</p><p>    virtual sp&lt;IAudioRecord&gt; openRecord(<font class="Comments">// 获得音频输出接口（Record）</font></p><p>		pid_t pid,</p><p>		<font class="keyword">int </font>streamType,  </p><p>		uint32_t sampleRate,</p><p>		<font class="keyword">int </font>format,  </p><p>		<font class="keyword">int </font>channelCount,  </p><p>		<font class="keyword">int </font>frameCount,  </p><p>		uint32_t flags,</p><p>		status_t *status);</p><p>}</p><p></pre></p><p>AudioFlinger主要提供createTrack()创建音频的输出设备IAudioTrack，openRecord()创建音频的输入设备IAudioRecord。另外包含的就是一个get/set接口，用于控制。</p><p>AudioFlinger构造函数片段如下所示：</p><p><pre>AudioFlinger::AudioFlinger()  </p><p>{  </p><p>    mHardwareStatus = AUDIO_HW_IDLE;</p><p>    mAudioHardware = AudioHardwareInterface::create();</p><p>    mHardwareStatus = AUDIO_HW_INIT;</p><p>    <font class="keyword">if </font>(mAudioHardware-&gt;initCheck() == NO_ERROR) {  </p><p>            mHardwareStatus = AUDIO_HW_OUTPUT_OPEN;</p><p>            status_t status;</p><p>            AudioStreamOut *hwOutput =</p><p>            mAudioHardware-&gt;openOutputStream(AudioSystem::PCM_16_BIT, 0, 0, &status);</p><p>            mHardwareStatus = AUDIO_HW_IDLE;</p><p></p><p>    <font class="keyword">if </font>(hwOutput) {  </p><p>            </font>mHardwareMixerThread = <font class="keyword">new </font>MixerThread(</font><font class="keyword">this</font>, hwOutput,AudioSystem::AUDIO_OUTPUT_HARDWARE);</p><p>    </font>} <font class="keyword">else </font>{  </p><p>            </font>LOGE(<font class="Fields">"Failed to initialize hardware output stream, status: %d"</font>, status);</p><p>    }  </p><p>    <font class="Comments">// …… 省略部分内容</font></p><p>    </font>mAudioRecordThread = <font class="keyword">new </font>AudioRecordThread(mAudioHardware, </font><font class="keyword">this</font>);</p><p>    <font class="keyword">if </font>(mAudioRecordThread != 0) {  </p><p>            </font>mAudioRecordThread-&gt;run(<font class="Fields">"AudioRecordThread"</font>, PRIORITY_URGENT_AUDIO);</p><p>    </font>}<font class="keyword">else </font>{  </p><p>            </font>LOGE(<font class="Fields">"Couldn</font><font class="Fields">'t even initialize the stubbed audio hardware!"</font>);</p><p>    }  </p><p>}</p><p></pre></p><p>从工作的角度看，AudioFlinger在初始化之后，首先获得放音设备，然后为混音器（Mixer）建立线程，接着建立放音设备线程，在线程中获得放音设备。</p><p>在AudioFlinger的AudioResampler.h中定义了一个音频重取样器工具类，如下所示：</p><p><pre><font class="keyword">class </font>AudioResampler {  </p><p>	public:</p><p>	enum src_quality {</p><p>        DEFAULT=0,</p><p>        LOW_QUALITY=1,  <font class="Comments">// 线性差值算法</font></p><p>        MED_QUALITY=2,  <font class="Comments">// 立方差值算法</font></p><p>        HIGH_QUALITY=3  <font class="Comments">// fixed multi-tap FIR算法</font></p><p>    };  </p><p>    <font class="keyword">static </font>AudioResampler* create(</font><font class="keyword">int </font>bitDepth, </font><font class="keyword">int </font>inChannelCount, <font class="Comments">// 静态地创建函数</font></p><p>                    </font>int32_t sampleRate, <font class="keyword">int </font>quality=DEFAULT);</p><p>    virtual ~AudioResampler();</p><p>    </font>virtual <font class="keyword">void </font>init() = 0;</p><p>    </font>virtual <font class="keyword">void </font>setSampleRate(int32_t inSampleRate); <font class="Comments">// 设置重采样率</font></p><p>    </font>virtual <font class="keyword">void </font>setVolume(int16_t left, int16_t right); <font class="Comments">// 设置音量</font></p><p>    </font>virtual <font class="keyword">void </font>resample(int32_t* out, size_t outFrameCount,  AudioBufferProvider* provider) = 0;</p><p>};</p><p></pre></p><p>这个音频重取样工具包含3种质量：低等质量（LOW_QUALITY）将使用线性差值算法实现；中等质量（MED_QUALITY）将使用立方差值算法实现；高等质量（HIGH_ QUALITY）将使用FIR（有限阶滤波器）实现。AudioResampler中的AudioResamplerOrder1是线性实现，AudioResamplerCubic.*文件提供立方实现方式，AudioResamplerSinc.*提供FIR实现。</p><p>AudioMixer.h和AudioMixer.cpp中实现的是一个Audio系统混音器，它被AudioFlinger调用，一般用于在声音输出之前的处理，提供多通道处理、声音缩放、重取样。AudioMixer调用了AudioResampler。</p><p>提示： AudioFlinger本身的实现通过调用下层的Audio硬件抽象层的接口来实现具体的功能，各个接口之间具有对应关系。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

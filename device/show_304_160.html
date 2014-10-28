@@ -1,0 +1,70 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Andriod 解析通话处理流程（四）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li class="navcurrentLink"><A href="index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="设备信息" href="index_157.html">设备信息</A></h2>
+
+  <h2><A title="摄像头" href="index_158.html">摄像头</A></h2>
+
+  <h2><A title="通讯录" href="index_159.html">通讯录</A></h2>
+
+  <h2><A title="电话" href="index_160.html">电话</A></h2>
+<UL><li ><A title=Andriod 解析通话处理流程（一） href="show_301_160.html">Andriod 解析通话处理流程（一）</A> </li><li ><A title=Andriod 解析通话处理流程（二） href="show_302_160.html">Andriod 解析通话处理流程（二）</A> </li><li ><A title=Andriod 解析通话处理流程（三） href="show_303_160.html">Andriod 解析通话处理流程（三）</A> </li><li class="currentLink"><A title=Andriod 解析通话处理流程（四） href="show_304_160.html">Andriod 解析通话处理流程（四）</A> </li><li ><A title=Andriod 解析通话处理流程（五） href="show_305_160.html">Andriod 解析通话处理流程（五）</A> </li><li ><A title=Android 主被动获取打接电话状态 href="show_306_160.html">Android 主被动获取打接电话状态</A> </li><li ><A title=Android 设置铃声+震动 href="show_307_160.html">Android 设置铃声+震动</A> </li><li ><A title=Android 删除未接来电通知 href="show_308_160.html">Android 删除未接来电通知</A> </li><li ><A title=Android 监听电话状态并自动接听来电 href="show_309_160.html">Android 监听电话状态并自动接听来电</A> </li></UL>
+  <h2><A title="短信" href="index_161.html">短信</A></h2>
+
+  <h2><A title="传感器" href="index_162.html">传感器</A></h2>
+
+  <h2><A title="定位" href="index_163.html">定位</A></h2>
+
+  <h2><A title="视频系统" href="index_164.html">视频系统</A></h2>
+
+  <h2><A title="音频系统" href="index_165.html">音频系统</A></h2>
+
+  <h2><A title="铃声" href="index_166.html">铃声</A></h2>
+
+  <h2><A title="音量" href="index_167.html">音量</A></h2>
+
+  <h2><A title="录音" href="index_168.html">录音</A></h2>
+
+  <h2><A title="输入法" href="index_169.html">输入法</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Andriod 解析通话处理流程（四）</H2>
+<div style="line-height:20px; font-size:14px;"><p>第四部分：gprs拨号上网的通路原理。 </p><p>上层java程序调用gprs流程： </p><p><pre>=&gt;PhoneApp.java</p><p>onCreate()</p><p></font>PhoneFactory.makeDefaultPhones(<font class="keyword">this</font>);</p><p></font>phone = <font class="keyword">new </font>GSMPhone(context, </font><font class="keyword">new </font>SimulatedCommands(), sPhoneNotifier);</p><p></font>mDataConnection = <font class="keyword">new </font>DataConnectionTracker (</font><font class="keyword">this</font>);</p><p>createAllPdpList();<font class="Comments">//建立缺省pdpconnection</font></p><p></font>pdp = <font class="keyword">new </font>PdpConnection(phone);</p><p></font>dataLink = <font class="keyword">new </font>PppLink(phone.mDataConnection);</p><p></font>dataLink.setOnLinkChange(<font class="keyword">this</font>, EVENT_LINK_STATE_CHANGED, </font><font class="keyword">null</font>);</p><p><font class="Comments">//某个条件触发执行 </font></p><p>trySetupData(String reason)</p><p>setupData(reason);</p><p>pdp = findFreePdp();</p><p>Message msg = obtainMessage();</p><p>msg.what = EVENT_DATA_SETUP_COMPLETE;</p><p>msg.obj = reason;</p><p>pdp.connect(apn, msg);</p><p>phone.mCM.setupDefaultPDP(apn.apn, apn.user, apn.password,</p><p>obtainMessage(EVENT_SETUP_PDP_DONE));</p><p><font class="Comments">//收到EVENT_SETUP_PDP_DONE消息 </font></p><p>=&gt;pdpconnection.java</p><p>handleMessage()</p><p><font class="keyword">case </font>EVENT_SETUP_PDP_DONE: </p><p>	dataLink.connect();<font class="Comments">//dataLink是pppLink.java</font></p><p>	SystemService.start(SERVICE_PPPD_GPRS);<font class="Comments">//启动pppd_grps服务</font></p><p>	poll.what = EVENT_POLL_DATA_CONNECTION;</p><p>	sendMessageDelayed(poll, POLL_SYSFS_MILLIS);<font class="Comments">//启动轮询，看是否成功连接gprscheckPPP()<font class="Comments">//每隔5秒轮询，看是否连接成功，或断开</font></p><p>	<font class="Comments">//如果已经连接 </font></p><p>	mLinkChangeRegistrant.notifyResult(LinkState.LINK_UP);</p><p><font class="Comments">//执行到pdpconnection.handleMessage() </font></p><p><font class="keyword">case </font>EVENT_LINK_STATE_CHANGED:</p><p>	onLinkStateChanged(ls);</p><p><font class="keyword">case </font>LINK_UP: </p><p>	notifySuccess(onConnectCompleted);</p><p>	onCompleted.sendToTarget();</p><p><font class="Comments">//执行dataConnectionTracker.java的handleMessage() </font></p><p><font class="keyword">case </font>EVENT_DATA_SETUP_COMPLETE:</p><p>	notifyDefaultData(reason);</p><p>	setupDnsProperties();</p><p>	setState(State.CONNECTED);</p><p>	phone.notifyDataConnection(reason);</p><p>	startNetStatPoll();</p><p>	resetPollStats();</p><p></pre></p><p>1、读取发送出去的包数和接受到的包数 </p><p>2、如果发送的数据包且没有收到应答包数n大于等于看门狗追踪的限定包数。 </p><p>2.1、开始轮询pdp context list，尝试恢复网络连接 </p><p>2.2、如果轮询24次后还没有联通网络则停止网络状态轮询，进行一次ping实验。 </p><p>2.2.1、如果ping成功则，重新进行网络状态轮询，否则发送EVENT_START_RECOVERY事件。</p><p>// reset reconnect timer </p><p>nextReconnectDelay = RECONNECT_DELAY_INITIAL_MILLIS; </p><p>着重c++部分代码的角度分析</p><p><pre>＝&gt;DataConnectionTracker.java</p><p>	trySetupData(String reason)</p><p>	setupData(reason);</p><p>＝&gt;PdpConnection.java</p><p>	pdp.connect(apn, msg);</p><p>=&gt;RIL.JAVA</p><p>	phone.mCM.setupDefaultPDP(apn.apn, apn.user, apn.password,</p><p>	obtainMessage(EVENT_SETUP_PDP_DONE));</p><p>	send(rr);</p><p>	<font class="Comments">//send socket to RIL </font></p><p>	<font class="Comments">//enter c++ layer </font></p><p>=&gt;ril.cpp</p><p>	</font>processCommandsCallback (<font class="keyword">int </font>fd, short flags, </font><font class="keyword">void </font>*param)</p><p>	processCommandBuffer(p_record, recordlen);</p><p>	status = p.readInt32(&request);</p><p>	pRI-&gt;pCI = &(s_commands[request]);</p><p>	pRI-&gt;pCI-&gt;dispatchFunction(p, pRI);</p><p>	dispatchStrings();</p><p>	s_callbacks.onRequest(pRI-&gt;pCI-&gt;requestNumber, pStrings, datalen, pRI);</p><p>=&gt;reference-ril.c</p><p>	onRequest();</p><p>	requestSetupDefaultPDP(data, datalen, t);</p><p>	</font>err = write_at_to_data_channel(<font class="Fields">"ATD*99***1</font>"</font>,1);</p><p>	<font class="Comments">//after a while.get "connect" from data channel,so need to send socket message to java layer. </font></p><p>	p.writeInt32 (RESPONSE_SOLICITED);</p><p>	p.writeInt32 (pRI-&gt;token);<font class="Comments">//the serial No in the request list.</font></p><p>	errorOffset = p.dataPosition();</p><p>	p.writeInt32 (e);</p><p>	<font class="keyword">if </font>(e == RIL_E_SUCCESS) { </p><p>	/* process response on success */</p><p>	ret = pRI-&gt;pCI-&gt;responseFunction(p, response, responselen);</p><p>	</font>/* <font class="keyword">if </font>an error occurred, rewind and mark it */</p><p>	<font class="keyword">if </font>(ret != 0) { </p><p>	p.setDataPosition(errorOffset);</p><p>	p.writeInt32 (ret);</p><p>	} </p><p>	} </p><p>	sendResponse(p);</p><p>	sendResponseRaw(p.data(), p.dataSize());</p><p>	</font>ret = blockingWrite(fd, (<font class="keyword">void </font>*)&header, sizeof(header));</p><p>	blockingWrite(fd, data, dataSize);</p><p>=&gt;RIL.JAVA</p><p>	RILReceiver.run();</p><p>	length = readRilMessage(is, buffer);</p><p>	p = Parcel.obtain();</p><p>	p.unmarshall(buffer, 0, length);</p><p>	p.setDataPosition(0);</p><p>	processResponse(p);</p><p>	processSolicited (p);</p><p>	serial = p.readInt();</p><p>	error = p.readInt();</p><p>	rr = findAndRemoveRequestFromList(serial);</p><p>	ret = responseStrings(p);</p><p>	<font class="keyword">if </font>(rr.mResult != </font><font class="keyword">null</font>) { </p><p>		</font>AsyncResult.forMessage(rr.mResult, ret, <font class="keyword">null</font>);</p><p>		rr.mResult.sendToTarget();</p><p>	} </p><p>=&gt;pdpConnection.java</p><p>	handleMessage()</p><p>	<font class="keyword">case </font>EVENT_SETUP_PDP_DONE: </p><p>	...</p><p>	dataLink.connect();</p><p>=&gt;pppLink.java</p><p>	</font>SystemProperties.set(PROPERTY_PPPD_EXIT_CODE, <font class="Fields">""</font>);</p><p>	SystemService.start(SERVICE_PPPD_GPRS);<font class="Comments">//启动pppd_grps服务</font></p><p>	poll.what = EVENT_POLL_DATA_CONNECTION;</p><p>	sendMessageDelayed(poll, POLL_SYSFS_MILLIS);</p><p>	dataConnection.state = State.CONNECTING;</p><p>	handleMessage()</p><p>	<font class="keyword">case </font>EVENT_POLL_DATA_CONNECTION </p><p>	checkPPP();</p><p>	<font class="keyword">if </font>(ArrayUtils.equals(mCheckPPPBuffer, UP_ASCII_STRING, UP_ASCII_STRING.length) </p><p>			|| ArrayUtils.equals(mCheckPPPBuffer, UNKNOWN_ASCII_STRING,</p><p>	UNKNOWN_ASCII_STRING.length) && dataConnection.state == State.CONNECTING)</p><p>	<font class="keyword">if </font>(mLinkChangeRegistrant != </font><font class="keyword">null</font>) { </p><p>		mLinkChangeRegistrant.notifyResult(LinkState.LINK_UP);</p><p>	}</p><p>=&gt;pdpConnection.java</p><p>	handleMessage()</p><p>	<font class="keyword">case </font>EVENT_LINK_STATE_CHANGED: </p><p>		DataLink.LinkState ls = (DataLink.LinkState) ar.result;</p><p>		onLinkStateChanged(ls);</p><p>	<font class="keyword">case </font>LINK_UP: </p><p>		notifySuccess(onConnectCompleted);</p><p>		AsyncResult.forMessage(onCompleted);</p><p>		onCompleted.sendToTarget();</p><p>=&gt;DataConnectionTracker.java</p><p>	handleMessage()</p><p>	<font class="keyword">case </font>EVENT_DATA_SETUP_COMPLETE: </p><p>		</font>... SystemProperties.set(<font class="Fields">"gsm.defaultpdpcontext.active"</font>, </font><font class="Fields">"<font class="keyword">true</font>"</font>);</p><p>		notifyDefaultData(reason);</p><p>		setupDnsProperties();</p><p>	<font class="Comments">//设置dns，gw，我们的实现方式是在pppd中设置的，不用pppd拨号的适用。 </font></p><p>	setState(State.CONNECTED);</p><p>	phone.notifyDataConnection(reason);</p><p>	</font>mNotifier.notifyDataConnection(<font class="keyword">this</font>, reason);</p><p>＝&gt;DefaultPhoneNotifier.java</p><p>	</font>mRegis<font class="keyword">try </font>= ITelephonyRegistry.Stub.asInterface(ServiceManager.getService(</p><p>		<font class="Fields">"telephony.registry"</font>));构造函数中初始化了mRegis<font class="keyword">try </font>mRegistry.notifyDataConnection(convertDataState(sender.getDataConnectionState()), sender.isDataConnectivityPossible(), reason, sender.getActiveApn(), </p><p>		</font>sender.getInterfaceName(<font class="keyword">null</font>));</p><p>		startNetStatPoll();</p><p>	} </p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

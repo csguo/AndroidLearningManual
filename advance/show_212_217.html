@@ -1,0 +1,58 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>linux 下 使用shell 控制ant批量打包_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li class="navcurrentLink"><A href="index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Android基础之运行原理和机制" href="index_215.html">Android基础之运行原理和机制</A></h2>
+
+  <h2><A title="Android高级篇之Android优化" href="index_216.html">Android高级篇之Android优化</A></h2>
+
+  <h2><A title="Android高级篇之编译及反编译" href="index_217.html">Android高级篇之编译及反编译</A></h2>
+<UL><li ><A title=Android 程序反编译 href="show_201_217.html">Android 程序反编译</A> </li><li ><A title=Android反编译工具Apktool使用 href="show_202_217.html">Android反编译工具Apktool使用</A> </li><li ><A title=Android命令行编译方法,不用Eclipse IDE href="show_203_217.html">Android命令行编译方法,不用Eclipse IDE</A> </li><li ><A title=Android反编译小结 href="show_204_217.html">Android反编译小结</A> </li><li ><A title=反编译APK文件 href="show_205_217.html">反编译APK文件</A> </li><li ><A title=无需eclipse无需ant,直接在android源码中混淆编译 href="show_206_217.html">无需eclipse无需ant,直接在android源码中混淆编译</A> </li><li ><A title=apk反编译问题总结 href="show_207_217.html">apk反编译问题总结</A> </li><li ><A title=Android如何防止apk程序被反编译 href="show_208_217.html">Android如何防止apk程序被反编译</A> </li><li ><A title=Android反编译和防止反编译的方法 href="show_209_217.html">Android反编译和防止反编译的方法</A> </li><li ><A title=构建Android自动编译持续集成系统 href="show_210_217.html">构建Android自动编译持续集成系统</A> </li><li ><A title=跟我一起学【ANT build.xml】 href="show_211_217.html">跟我一起学【ANT build.xml】</A> </li><li class="currentLink"><A title=linux 下 使用shell 控制ant批量打包 href="show_212_217.html">linux 下 使用shell 控制ant批量打包</A> </li></UL>
+  <h2><A title="Android高级篇之加密解密" href="index_218.html">Android高级篇之加密解密</A></h2>
+
+  <h2><A title="Android高级篇之Android 安全" href="index_219.html">Android高级篇之Android 安全</A></h2>
+
+  <h2><A title="Android高级篇之算法" href="index_220.html">Android高级篇之算法</A></h2>
+
+  <h2><A title="Android高级篇之解锁教程" href="index_221.html">Android高级篇之解锁教程</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>linux 下 使用shell 控制ant批量打包</H2>
+<div style="line-height:20px; font-size:14px;"><p>附件中提供了三个文件</p><p>1、build.xml 为 ant 生成android apk的脚本，里面包含了编译，生成dex文件，资源打包，生成release包，添加签名等步骤，看代码就知道了。</p><p>2、buildProjectHome.properties 主要是于项目相关的一些路径配置，告诉ant在去哪找资源文件。</p><p>3、build.properties 文件主要是android sdk、jdk，以及使用的debug.kestore( release.kestore)的一些配置。</p><p>前提条件：linux下要配置sdk，jdk，ant环境。</p><p>其中：</p><p>build.properties中主要修改   </p><p>1、android.sdk.home （你的android linux sdk 根路径）</p><p>2、external-map-libs（当前是用的googlemap包）</p><p>3、jdk.home         （jdk）  </p><p>如果有需求的话，应该更改你的debug.keystore密码，确定你的jdk，sdk路径下都有配置里面的几个文件。</p><p>build.xml 如果使用debug.kestore基本上不用改。</p><p>buildProjectHome.properties 文件内主要修改：</p><p>1、project.home   当前工程所在路径。</p><p>2、project.name   工程名。</p><p>tips：如果使用了第三方包，请放在工程根目录下的libs文件夹里面（不是lib哦）。</p><p>基本上就ok完事了。</p><p>至于批量打包，在shell下使用如下代码：</p><p><pre>for  (( i=0; i&lt;$excuteTimes; i++ ))</p><p>do</p><p>如果这里有svn更新操作的话，也可以加上更新操作代码</p><p>build</p><p>ant</p><p>copy</p><p>echo "copy file "</p><p>if [ -d /home/evans/thinking/ ]; then</p><p>echo ""</p><p>else</p><p>$(mkdir -p /home/evans/thinking/ )</p><p>fi </p><p>打完包以后将当前目录下的后缀为.apk文件复制到thinking目录下</p><p>$(cp $projectName/bin/*.apk /home/evans/thinking/)</p><p>echo "copy success!"</p><p>done</p><p></pre></p><p>将这三个文件修改好以后，复制到你的工程目录下面，在命令行输入ant运行。</p><p>如果build.xml里面有变量未使用到也没关系，会以字符原样输出。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

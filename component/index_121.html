@@ -1,0 +1,94 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android学习手册_Android组件</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li class="navcurrentLink"><A href="index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">Android组件</div>
+
+  <h2 ><A title="Activity" href="index_112.html">Activity</A></h2>
+
+  <h2 ><A title="Intent" href="index_113.html">Intent</A></h2>
+
+  <h2 ><A title="Service" href="index_114.html">Service</A></h2>
+
+  <h2 ><A title="Content Provider" href="index_115.html">Content Provider</A></h2>
+
+  <h2 ><A title="BroadcastReceiver" href="index_116.html">BroadcastReceiver</A></h2>
+
+  <h2 ><A title="AsyncTask" href="index_117.html">AsyncTask</A></h2>
+
+  <h2 ><A title="Handler" href="index_118.html">Handler</A></h2>
+
+  <h2 ><A title="Thread" href="index_119.html">Thread</A></h2>
+
+  <h2 ><A title="Permission" href="index_120.html">Permission</A></h2>
+
+  <h2 class="currentLink"><A title="AIDL" href="index_121.html">AIDL</A></h2>
+<UL><li class="currentLink"><A title=什么是AIDL服务 href="show_901_121.html">什么是AIDL服务</A> </li><li ><A title=Android 初谈AIDL服务 href="show_902_121.html">Android 初谈AIDL服务</A> </li><li ><A title=Android 使用【AIDL】调用外部服务 href="show_903_121.html">Android 使用【AIDL】调用外部服务</A> </li><li ><A title=Android开发中实现跨进程通讯的AIDL接口 href="show_904_121.html">Android开发中实现跨进程通讯的AIDL接口</A> </li><li ><A title=Android 跨进程通信（一） href="show_905_121.html">Android 跨进程通信（一）</A> </li><li ><A title=Android 跨进程通信（二） href="show_906_121.html">Android 跨进程通信（二）</A> </li><li ><A title=通过AIDL调用Service href="show_907_121.html">通过AIDL调用Service</A> </li></UL>
+  <h2 ><A title="Json" href="index_122.html">Json</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1>AIDL</H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>什么是AIDL服务</H2>
+<P>　　跨进程访问（AIDL服务）Android系统中的进程之间不能共享内存，因此，需要提供一些机制在不同进程之间进行数据通信。我们知道4个Android应用程序组件中的3个（Activity、Broadcast和Content Provider）都可以进行跨</P>
+<P><A title="什么是AIDL服务" href="show_901_121.html">进入 什么是AIDL服务</A> </P></DIV>
+
+<DIV>
+<H2>Android 初谈AIDL服务</H2>
+<P>　　使用bindService方法来绑定AIDL服务。其中需要使用Intent对象指定AIDL服务的ID，也就是标签中android:name属性的值。在绑定时需要一个ServiceConnection对象。创建ServiceConnection对象的过程中如果绑定成功，系统</P>
+<P><A title="Android 初谈AIDL服务" href="show_902_121.html">进入 Android 初谈AIDL服务</A> </P></DIV>
+
+<DIV>
+<H2>Android 使用【AIDL】调用外部服务</H2>
+<P>　　在Android 中有一种服务说是服务其实倒不如说是一个接口，这个接口名为：Android Interface Definition Language ，这个接口可提供跨进程访问服务，英文缩写为:AIDL。此种服务的好处在于，多个应用程序之间建立共同</P>
+<P><A title="Android 使用【AIDL】调用外部服务" href="show_903_121.html">进入 Android 使用【AIDL】调用外部服务</A> </P></DIV>
+
+<DIV>
+<H2>Android开发中实现跨进程通讯的AIDL接口</H2>
+<P>　　在Android开发中，每个应用程序都可以有自己的进程。在写UI应用的时候，经常要用到Service。在不同的进程中，怎样传递对象呢? 显然，Java中不允许跨进程内存共享。因此传递对象，只能把对象拆分成操作系统能理解的简</P>
+<P><A title="Android开发中实现跨进程通讯的AIDL接口" href="show_904_121.html">进入 Android开发中实现跨进程通讯的AIDL接口</A> </P></DIV>
+
+<DIV>
+<H2>Android 跨进程通信（一）</H2>
+<P>　　一. 概述：跨进程通信（AIDL），主要实现进程（应用）间数据共享功能。二. 实现流程：1. 服务器端实现：（1）目录结构，如下图：[code=img]component_aidl/05_aidl.jpg[/code]（2）实现*.aidl文件：A. IAIDLService.</P>
+<P><A title="Android 跨进程通信（一）" href="show_905_121.html">进入 Android 跨进程通信（一）</A> </P></DIV>
+
+<DIV>
+<H2>Android 跨进程通信（二）</H2>
+<P>　　2. 客户端实现：（1）目录结构，如下图：[code=img]component_aidl/06_aidl.jpg[/code]（2）将服务器端的IAIDLService.aidl，Person.aidl和Person.java文件拷贝到本工程中，如上图所示：（3）res/layout/main.xml实</P>
+<P><A title="Android 跨进程通信（二）" href="show_906_121.html">进入 Android 跨进程通信（二）</A> </P></DIV>
+
+<DIV>
+<H2>通过AIDL调用Service</H2>
+<P>　　在网上找的一些关于service的例子都比较简单，都是通过startService(&quot;&quot;action&quot;&quot;)启动service，然后通过stopService(&quot;&quot;service&quot;&quot;)停止service。只能启动和停止service没有发</P>
+<P><A title="通过AIDL调用Service" href="show_907_121.html">进入 通过AIDL调用Service</A> </P></DIV>
+
+</DIV>
+
+<DIV id=footer style="display:none">
+<P align="center"> 
+ 
+ 
+ 
+  </P>
+</DIV></DIV></BODY></HTML>
+

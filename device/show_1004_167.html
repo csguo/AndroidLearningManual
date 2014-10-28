@@ -1,0 +1,70 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 获取麦克风音量_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li class="navcurrentLink"><A href="index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="设备信息" href="index_157.html">设备信息</A></h2>
+
+  <h2><A title="摄像头" href="index_158.html">摄像头</A></h2>
+
+  <h2><A title="通讯录" href="index_159.html">通讯录</A></h2>
+
+  <h2><A title="电话" href="index_160.html">电话</A></h2>
+
+  <h2><A title="短信" href="index_161.html">短信</A></h2>
+
+  <h2><A title="传感器" href="index_162.html">传感器</A></h2>
+
+  <h2><A title="定位" href="index_163.html">定位</A></h2>
+
+  <h2><A title="视频系统" href="index_164.html">视频系统</A></h2>
+
+  <h2><A title="音频系统" href="index_165.html">音频系统</A></h2>
+
+  <h2><A title="铃声" href="index_166.html">铃声</A></h2>
+
+  <h2><A title="音量" href="index_167.html">音量</A></h2>
+<UL><li ><A title=Android AudioManager类控制音量（一） href="show_1001_167.html">Android AudioManager类控制音量（一）</A> </li><li ><A title=Android AudioManager类控制音量（二） href="show_1002_167.html">Android AudioManager类控制音量（二）</A> </li><li ><A title=音量控制 href="show_1003_167.html">音量控制</A> </li><li class="currentLink"><A title=Android 获取麦克风音量 href="show_1004_167.html">Android 获取麦克风音量</A> </li><li ><A title=Android 音量seekbar制作 href="show_1005_167.html">Android 音量seekbar制作</A> </li><li ><A title=怎么样监听Android 音量键 href="show_1006_167.html">怎么样监听Android 音量键</A> </li></UL>
+  <h2><A title="录音" href="index_168.html">录音</A></h2>
+
+  <h2><A title="输入法" href="index_169.html">输入法</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 获取麦克风音量</H2>
+<div style="line-height:20px; font-size:14px;"><p>Android上有一些很有趣的应用，例如《吹裙子》、《吹气球》之类的。利用的是实时获取麦克风输入音量，然后进行相应的处理。录音过程中怎样获得声音的大小呢？网上也不少人问如何处理这个事情，也有一些解答，不过都没有实际的代码。简单摸索了一下，写了个小 Demo 试了试，果然可以。给大家共享一下。</p><p>不解释代码了，大家看注释。</p><p><pre><font class="keyword">import </font>android.media.AudioFormat;</p><p><font class="keyword">import </font>android.media.AudioRecord;</p><p><font class="keyword">import </font>android.media.MediaRecorder;</p><p><font class="keyword">import </font>android.util.Log;</p><p><font class="keyword">public </font><font class="keyword">class </font>RecordThread </font><font class="keyword">extends </font>Thread {</p><p>	<font class="keyword">private </font>AudioRecord ar;</p><p>	<font class="keyword">private </font><font class="keyword">int </font>bs;</p><p>	<font class="keyword">private </font><font class="keyword">static </font><font class="keyword">int </font>SAMPLE_RATE_IN_HZ = 8000;</p><p>	<font class="keyword">private </font><font class="keyword">boolean </font>isRun = </font><font class="keyword">false</font>;</p><p>	<font class="keyword">public </font>RecordThread() {</p><p>		<font class="keyword">super</font>();</p><p>		bs = AudioRecord.getMinBufferSize(SAMPLE_RATE_IN_HZ,</p><p>				AudioFormat.CHANNEL_CONFIGURATION_MONO,</p><p>				AudioFormat.ENCODING_PCM_16BIT);</p><p>		</font>ar = <font class="keyword">new </font>AudioRecord(MediaRecorder.AudioSource.MIC, SAMPLE_RATE_IN_HZ,</p><p>				AudioFormat.CHANNEL_CONFIGURATION_MONO,</p><p>				AudioFormat.ENCODING_PCM_16BIT, bs);</p><p>	}</p><p>	<font class="keyword">public </font><font class="keyword">void </font>run() {</p><p>		<font class="keyword">super</font>.run();</p><p>		ar.startRecording();</p><p>		<font class="Comments">// 用于读取的 </font></p><p>		</font>Buffer byte[] buffer = <font class="keyword">new </font>byte[bs];</p><p>		</font>isRun = <font class="keyword">true</font>;</p><p>		<font class="keyword">while </font>(isRun) { </p><p>			<font class="keyword">int </font>r = ar.read(buffer, 0, bs); </p><p>			<font class="keyword">int </font>v = 0; </p><p>			<font class="Comments">// 将 buffer 内容取出，进行平方和运算 </font></p><p>			<font class="keyword">for </font>(</font><font class="keyword">int </font>i = 0; i &lt; buffer.length; i++) { </p><p>				<font class="Comments">// 这里没有做运算的优化，为了更加清晰的展示代码 </font></p><p>				v += buffer[i] * buffer[i];</p><p>			} </p><p>			<font class="Comments">// 平方和除以数据总长度，得到音量大小。可以获取白噪声值，然后对实际采样进行标准化。 </font></p><p>			<font class="Comments">// 如果想利用这个数值进行操作，建议用 sendMessage 将其抛出，在 Handler 里进行处理。 </font></p><p>			</font>Log.d(<font class="Fields">"spl"</font>, String.valueOf(v / (<font class="keyword">float</font>) r));</p><p>		} </p><p>		ar.stop();</p><p>	}</p><p>	<font class="keyword">public </font><font class="keyword">void </font>pause() {</p><p>		<font class="Comments">// 在调用本线程的 Activity 的 onPause 里调用，以便 Activity 暂停时释放麦克风</font></p><p>		</font>isRun = <font class="keyword">false</font>;</p><p>	}</p><p>	<font class="keyword">public </font><font class="keyword">void </font>start() {</p><p>		<font class="Comments">// 在调用本线程的 Activity 的 onResume 里调用，以便 Activity 恢复后继续获取麦克风输入音量</font></p><p>		<font class="keyword">if </font>(!isRun) {</p><p>			<font class="keyword">super</font>.start();</p><p>		}</p><p>	}</p><p>}</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

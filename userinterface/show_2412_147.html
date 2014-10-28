@@ -1,0 +1,111 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>在SurfaceView中添加组件！并交互数据_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li class="navcurrentLink"><A href="index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="用户界面之view(视图)" href="index_123.html">用户界面之view(视图)</A></h2>
+
+  <h2><A title="用户界面之Layout(布局)" href="index_124.html">用户界面之Layout(布局)</A></h2>
+
+  <h2><A title="用户界面之TextView(文本视图)" href="index_125.html">用户界面之TextView(文本视图)</A></h2>
+
+  <h2><A title="用户界面之EditText(编辑视图)" href="index_126.html">用户界面之EditText(编辑视图)</A></h2>
+
+  <h2><A title="用户界面之Button(按钮)" href="index_127.html">用户界面之Button(按钮)</A></h2>
+
+  <h2><A title="用户界面之Dialog(对话框)" href="index_128.html">用户界面之Dialog(对话框)</A></h2>
+
+  <h2><A title="用户界面之ListView(列表视图)" href="index_129.html">用户界面之ListView(列表视图)</A></h2>
+
+  <h2><A title="用户界面之Adapter(适配器)" href="index_130.html">用户界面之Adapter(适配器)</A></h2>
+
+  <h2><A title="用户界面之Menu(菜单)" href="index_131.html">用户界面之Menu(菜单)</A></h2>
+
+  <h2><A title="用户界面之Notification(通知栏)" href="index_132.html">用户界面之Notification(通知栏)</A></h2>
+
+  <h2><A title="NotificationImageView(图像视图)" href="index_133.html">NotificationImageView(图像视图)</A></h2>
+
+  <h2><A title="用户界面之GridView(格视图)" href="index_134.html">用户界面之GridView(格视图)</A></h2>
+
+  <h2><A title="用户界面之ProgressBar(进度条)" href="index_135.html">用户界面之ProgressBar(进度条)</A></h2>
+
+  <h2><A title="用户界面之Checkbox(复选框)" href="index_136.html">用户界面之Checkbox(复选框)</A></h2>
+
+  <h2><A title="用户界面之ScrollView(滚动视图)" href="index_137.html">用户界面之ScrollView(滚动视图)</A></h2>
+
+  <h2><A title="用户界面之Gallery(长廊视图)" href="index_138.html">用户界面之Gallery(长廊视图)</A></h2>
+
+  <h2><A title="用户界面之ActionBar(导航栏)" href="index_139.html">用户界面之ActionBar(导航栏)</A></h2>
+
+  <h2><A title="用户界面之PopupWindow(弹出窗口)" href="index_140.html">用户界面之PopupWindow(弹出窗口)</A></h2>
+
+  <h2><A title="用户界面之RatingBar(评分栏)" href="index_141.html">用户界面之RatingBar(评分栏)</A></h2>
+
+  <h2><A title="用户界面之Spinner" href="index_142.html">用户界面之Spinner</A></h2>
+
+  <h2><A title="用户界面之SeekBar(搜索bar)" href="index_143.html">用户界面之SeekBar(搜索bar)</A></h2>
+
+  <h2><A title="用户界面之TabHost(分割栏)" href="index_144.html">用户界面之TabHost(分割栏)</A></h2>
+
+  <h2><A title="用户界面之SlidingDrawer(抽屉)" href="index_145.html">用户界面之SlidingDrawer(抽屉)</A></h2>
+
+  <h2><A title="用户界面之ViewFlipper" href="index_146.html">用户界面之ViewFlipper</A></h2>
+
+  <h2><A title="用户界面之SurfaceView" href="index_147.html">用户界面之SurfaceView</A></h2>
+<UL><li ><A title=SurfaceView的基本应用 href="show_2401_147.html">SurfaceView的基本应用</A> </li><li ><A title=SurfaceView使用示例（一） href="show_2402_147.html">SurfaceView使用示例（一）</A> </li><li ><A title=SurfaceView使用示例（二） href="show_2403_147.html">SurfaceView使用示例（二）</A> </li><li ><A title=SurfaceView双缓冲应用 href="show_2404_147.html">SurfaceView双缓冲应用</A> </li><li ><A title=SurfaceView运行机制详解 href="show_2405_147.html">SurfaceView运行机制详解</A> </li><li ><A title=剖析SurfaceView！Callback以及SurfaceHolder href="show_2406_147.html">剖析SurfaceView！Callback以及SurfaceHolder</A> </li><li ><A title=Android surfaceView与View的区别 href="show_2407_147.html">Android surfaceView与View的区别</A> </li><li ><A title=自定义SurfaceView href="show_2408_147.html">自定义SurfaceView</A> </li><li ><A title=在SurfaceView中照样使用Animation(上) href="show_2409_147.html">在SurfaceView中照样使用Animation(上)</A> </li><li ><A title=在SurfaceView中照样使用Animation(中) href="show_2410_147.html">在SurfaceView中照样使用Animation(中)</A> </li><li ><A title=在SurfaceView中照样使用Animation(下) href="show_2411_147.html">在SurfaceView中照样使用Animation(下)</A> </li><li class="currentLink"><A title=在SurfaceView中添加组件！并交互数据 href="show_2412_147.html">在SurfaceView中添加组件！并交互数据</A> </li><li ><A title=SurfaceView设置透明背景 href="show_2413_147.html">SurfaceView设置透明背景</A> </li></UL>
+  <h2><A title="用户界面之Splash" href="index_148.html">用户界面之Splash</A></h2>
+
+  <h2><A title="用户界面之Toast" href="index_149.html">用户界面之Toast</A></h2>
+
+  <h2><A title="用户界面之AlarmManager" href="index_150.html">用户界面之AlarmManager</A></h2>
+
+  <h2><A title="用户界面之Fragment" href="index_151.html">用户界面之Fragment</A></h2>
+
+  <h2><A title="用户界面之WebView(网络视图)" href="index_152.html">用户界面之WebView(网络视图)</A></h2>
+
+  <h2><A title="Android用户界面之Widget(小组件)" href="index_153.html">Android用户界面之Widget(小组件)</A></h2>
+
+  <h2><A title="Android用户界面之theme和style" href="index_154.html">Android用户界面之theme和style</A></h2>
+
+  <h2><A title="Android用户界面之多语言" href="index_155.html">Android用户界面之多语言</A></h2>
+
+  <h2><A title="Android用户界面之界面特效" href="index_156.html">Android用户界面之界面特效</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>在SurfaceView中添加组件！并交互数据</H2>
+<div style="line-height:20px; font-size:14px;"><p>各位童鞋请你们注意：surfaceview中确实有 onDraw这个方法，但是surfaceview不会自己去调用！</p><p>而我代码中的ondraw 也好 draw 也好，都是我自己定义的一个方法。放在线程中不断调用的，一定要注意！</p><p>1.因为我们的SurfaceView是个View对于添加的组件其实也是View，如果我们只是一味的想在SurfaceView中添加View组件其实是错误的思想，当然我一开始也是想着直接在SurfaceView中定义或者去使用组件，但是结果肯定是不成功的。</p><p>2.既然第一条肯定是错误的，那么我们就应该想到把我们的SurfaceView和组件都放在一个Layout里面，毕竟我们的的SurfaceView也是一个view和其他组件一同放在我们的layout里，那么这样一来肯定就能完成在SurfaceView中添加组件的目的啦。</p><p>好、下面来看代码吧：先放上Xml 代码:</p><p><pre>&lt;?xml version=<font class="Fields">"1.0"</font> encoding=</font><font class="Fields">"utf-8"</font>?&gt;</p><p>&lt;LinearLayout xmlns:android=<font class="Fields">"http:<font class="Comments">//schemas.android.com/apk/res/android</font></p><p>    </font>android:layout_width=<font class="Fields">"fill_parent</p><p>    </font>android:layout_height=<font class="Fields">"fill_parent</p><p>    </font>android:orientation=<font class="Fields">"vertical"</font> &gt;</p><p>    &lt;LinearLayout</p><p>        </font>android:layout_width=<font class="Fields">"wrap_content</p><p>        </font>android:layout_height=<font class="Fields">"wrap_content</p><p>        </font>android:layout_gravity=<font class="Fields">"center</p><p>        </font>android:orientation=<font class="Fields">"horizontal"</font> &gt;</p><p>        &lt;TextView</p><p>            </font>android:id=<font class="Fields">"@+id/textview</p><p>            </font>android:layout_width=<font class="Fields">"fill_parent</p><p>            </font>android:layout_height=<font class="Fields">"fill_parent</p><p>            </font>android:gravity=<font class="Fields">"center_horizontal</p><p>            </font>android:text=<font class="Fields">"This is Android</p><p>            </font>android:textColor=<font class="Fields">"</font>00FF00</p><p>            </font>android:textSize=<font class="Fields">"32sp"</font> /&gt;</p><p>    &lt;/LinearLayout&gt;</p><p>    &lt;FrameLayout</p><p>        </font>android:layout_width=<font class="Fields">"fill_parent</p><p>        </font>android:layout_height=<font class="Fields">"wrap_content</p><p>        </font>android:layout_weight=<font class="Fields">"1"</font> &gt;</p><p>        &lt;com.Android.MySurfaceView</p><p>            </font>android:id=<font class="Fields">"@+id/view3d</p><p>            </font>android:layout_width=<font class="Fields">"fill_parent</p><p>            </font>android:layout_height=<font class="Fields">"fill_parent"</font> /&gt;</p><p>    &lt;/FrameLayout&gt;</p><p>    &lt;LinearLayout</p><p>        </font>android:layout_width=<font class="Fields">"wrap_content</p><p>        </font>android:layout_height=<font class="Fields">"wrap_content</p><p>        </font>android:layout_gravity=<font class="Fields">"center</p><p>        </font>android:orientation=<font class="Fields">"horizontal"</font> &gt;</p><p>        &lt;Button</p><p>            </font>android:id=<font class="Fields">"@+id/button1</p><p>            </font>android:layout_width=<font class="Fields">"wrap_content</p><p>            </font>android:layout_height=<font class="Fields">"wrap_content</p><p>            </font>android:text=<font class="Fields">"Android Button_1"</font> /&gt;</p><p>        &lt;Button</p><p>            </font>android:id=<font class="Fields">"@+id/button2</p><p>            </font>android:layout_width=<font class="Fields">"wrap_content</p><p>            </font>android:layout_height=<font class="Fields">"wrap_content</p><p>            </font>android:text=<font class="Fields">"Android Button_2"</font> /&gt;</p><p>    &lt;/LinearLayout&gt;</p><p>&lt;/LinearLayout&gt; </p><p></pre></p><p>以上代码很简单，都是一些布局方式和各个组件一些属性及显示方式的设定，当然主要看如何对我们的SurfaceView如何注册在xml中的，那么每个组件都有id这样为了对后面其交互数据用到，因为我们要对每个组件操作，所以这里都索引了id方面从R文件中取出其对象。那么，xml我们定义好了，看看代码中如何实现的，这里先说下Activity类中代码：</p><p><pre><font class="keyword">import </font>android.app.Activity;</p><p><font class="keyword">import </font>android.os.Bundle;</p><p><font class="keyword">import </font>android.view.View;</p><p><font class="keyword">import </font>android.view.Window;</p><p><font class="keyword">import </font>android.view.WindowManager;</p><p><font class="keyword">import </font>android.view.View.OnClickListener;</p><p><font class="keyword">import </font>android.widget.Button;</p><p><font class="keyword">import </font>android.widget.TextView;</p><p><font class="keyword">public </font><font class="keyword">class </font>MainActivity </font><font class="keyword">extends </font>Activity </font><font class="keyword">implements </font>OnClickListener {</p><p>	<font class="keyword">private </font>Button button1, button2;</p><p>	<font class="keyword">private </font>TextView tv;</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onCreate(Bundle savedInstanceState) {</p><p>		<font class="keyword">super</font>.onCreate(savedInstanceState);</p><p>		<font class="keyword">this</font>.requestWindowFeature(Window.FEATURE_NO_TITLE);<font class="Comments">// 隐去标题（应用的名字)</font></p><p>		<font class="Comments">// 此设定必须要写在setContentView之前，否则会有异常）</font></p><p>		<font class="keyword">this</font>.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,</p><p>				WindowManager.LayoutParams.FLAG_FULLSCREEN);</p><p>		setContentView(R.layout.main); <font class="Comments">// 要先显示,然后再对其组件取出、处理操作</font></p><p>		tv = (TextView) findViewById(R.id.textview);</p><p>		button1 = (Button) findViewById(R.id.button1);</p><p>		</font>button1.setOnClickListener(<font class="keyword">this</font>);<font class="Comments">// 这里是监听按键，因为本类使用了OnClickListener接口</font></p><p>		button2 = (Button) findViewById(R.id.button2);</p><p>		</font>button2.setOnClickListener(<font class="keyword">this</font>);</p><p>		/*</p><p>		 <font class="Comments">* 其实大家也可以不用本类使用接口，可以内部类来完成。 以下是不使用OnClickListener接口的绑定监听方式;</font></p><p>		 <font class="Comments">* button2.setOnClickListener(new OnClickListener() {</font></p><p>		 <font class="Comments">* @Override public void onClick(View v) { //这里处理按键操作</font></p><p>		 <font class="Comments">* } });</font></p><p>		 <font class="Comments">*/</font></p><p>	}</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onClick(View v) {</p><p>		<font class="keyword">if </font>(v == button1) {</p><p>			</font>MySurfaceView.button_str = <font class="Fields">"button 1被触发"</font>;</p><p>			</font>tv.setText(<font class="Fields">"button 1被触发"</font>);</p><p>		</font>} <font class="keyword">else </font><font class="keyword">if </font>(v == button2) {</p><p>			</font>MySurfaceView.button_str = <font class="Fields">"button 2被触发"</font>;</p><p>			</font>tv.setText(<font class="Fields">"button 2被触发"</font>);</p><p>		}</p><p>	}</p><p>}</p><p></pre></p><p>该有的备注在代码后面都备注了，MySurfaceView.button_str，这个是自己的SurfaceView中定义的一个static 的变量用来交互数据用到；在那么下面就要看我们的SurfaceView，当在Xml注册需要注意什么了，我半天的时候都花在了这里！！！一定要引起注意，这也是在SurfaceView中并显示组件完成最重要的一步。先分析：1.SurfaceView类的创建和实现等等和之前都是一样的，该怎么去写还怎么去写，但是！构造函数一定要注意！</p><p><pre><font class="Comments">/* </font></p><p> <font class="Comments">* public MySurfaceView(Context context) { super(context); }//备注1（这里一定要引起注意，仔细看下文对备注1的解释 ） </font></p><p> <font class="Comments">*/  </font></p><p><font class="keyword">public </font>MySurfaceView(Context context, AttributeSet attrs) {<font class="Comments">//备注1</font>}  </font></p><p></pre></p><p>这里解释下备注1：  这里有两个构造函数，当然我们用哪个都是可以的，但是在此时我们需要明确我们到底要使用哪个。一个参数的构造函数：如果是new出来的此类实例肯定是没有问题，但是我们为了能在显示SurfaceView同时显示别的组件，所以把自定义的SurfaceView也当作组件注册在了main——xml中，所以这里需要注意，当在xml中注册的就必须加上这种含有两个构造函数的构造方法，xml初始化的时候会调用两个参数的这个构造方法，（当时这个问题困扰了半天的研究时间，最后在一个群友的帮助下才发现是这里出了问题） </p><p>那么含有两个构造参数的方法里第二个参数指的自定义的组件的一些属性,就像长宽一样，你可以给组件属性,就是通过这个来传递的！那么在SurfaceView 中并一同显示组件也就到底完结了，回顾下，一共分为3步，</p><p>1.将我们的SurfaceView 作为一个组件view 和其他组件一同放置到布局中，当然布局的方式和显示的方式大家自己随自己喜欢定义！</p><p>2.在我们的SurfaceView中一定要使用两个构造函数的构造函数，一定！一定！ 就这里有区别，别的还是该怎么处理就怎么处理，就是构造函数换了 </p><p>3.交互数据，对其按键的绑定在activity中完成，别把view绑定在咱们的SurfaceView中啊，否则报错、这里说下为什么要在activity中去绑定按键处理，而不是在我们的surfaceview中去绑定：其实根据xml中定义button时的id我们可以通过R.id索引取到button，不管在activity中还是我们的surfaceview中都可以取到。</p><p>但是！绑定button这一步如果在surfaceview中去写就一定报错，原因我解释下；我们在xml中定义我们的surfaceview和组件button、textview等等的时候他们是同一级别的！！而不是把button包含在surfaceview里，所以虽然在surfaceview中可以根据id索引到button但绑定的时候是无法找到button的，只有我们的activitysetContentView(R.layout.main); 显示的button，所以只能在显示它的activity中去绑定，这里需要注意下；</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+  
+   </P>
+</DIV></BODY></HTML>
+

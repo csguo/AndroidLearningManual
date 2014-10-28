@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Log图文详解(Log.v,Log.d,Log.i,Log.w,Log.e)_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li class="navcurrentLink"><A href="index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="开发基础" href="index_100.html">开发基础</A></h2>
+
+  <h2><A title="开发环境搭建" href="index_101.html">开发环境搭建</A></h2>
+
+  <h2><A title="模拟器" href="index_102.html">模拟器</A></h2>
+
+  <h2><A title="Resource" href="index_103.html">Resource</A></h2>
+
+  <h2><A title="Manifest" href="index_104.html">Manifest</A></h2>
+
+  <h2><A title="ADB" href="index_105.html">ADB</A></h2>
+
+  <h2><A title="DDMS" href="index_106.html">DDMS</A></h2>
+
+  <h2><A title="Logcat(日志)" href="index_107.html">Logcat(日志)</A></h2>
+<UL><li class="currentLink"><A title=Log图文详解(Log.v,Log.d,Log.i,Log.w,Log.e) href="show_701_107.html">Log图文详解(Log.v,Log.d,Log.i,Log.w,Log.e)</A> </li><li ><A title=Android的LogCat的使用 href="show_702_107.html">Android的LogCat的使用</A> </li><li ><A title=Android的生成日志文件 href="show_703_107.html">Android的生成日志文件</A> </li></UL>
+  <h2><A title="打包" href="index_108.html">打包</A></h2>
+
+  <h2><A title="文件处理" href="index_109.html">文件处理</A></h2>
+
+  <h2><A title="底层基础" href="index_111.html">底层基础</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Log图文详解(Log.v,Log.d,Log.i,Log.w,Log.e)</H2>
+<div style="line-height:20px; font-size:14px;"><p>在Android群里，经常会有人问我,Android　Log是怎么用的，今天我就把从网上以及SDK里东拼西凑过来，让大家先一睹为快，希望对大家入门Android　Log有一定的帮助。android.util.Log常用的方法有以下5个：Log.v()、Log.d()、Log.i()、Log.w()以及 Log.e()。根据首字母对应VERBOSE，DEBUG,INFO, WARN，ERROR。1、Log.v 的调试颜色为黑色的，任何消息都会输出，这里的v代表verbose啰嗦的意思，平时使用就是Log.v("","");2、Log.d的输出颜色是蓝色的，仅输出debug调试的意思，但他会输出上层的信息，过滤起来可以通过DDMS的Logcat标签来选择.3、Log.i的输出为绿色，一般提示性的消息information，它不会输出Log.v和Log.d的信息，但会显示i、w和e的信息4、Log.w的意思为橙色，可以看作为warning警告，一般需要我们注意优化Android代码，同时选择它后还会输出Log.e的信息。5、Log.e为红色，可以想到error错误，这里仅显示红色的错误信息，这些错误就需要我们认真的分析，查看栈的信息了。下面是我做的一个简单的LogDemo(Step By Step):Step 1:准备工作(打开LogCat视窗)。启动Eclipse,在Window-&gt;Show View会出来一个对话框，当我们点击Ok按钮时，会在控制台窗口出现LogCat视窗。如下图：<img src="../img/basic_logcat/01_logcat.gif"><img src="../img/basic_logcat/01_logcat2.gif">Step 2:新建一个Android工程，命名为LogDemo。Step 3:设计UI界面，我们在这里就加了一个Button按钮(点击按钮出现Log日志信息)。Main.xml代码如下:<pre>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"    android:orientation="vertical"    android:layout_width="fill_parent"    android:layout_height="fill_parent"    &gt;&lt;TextView      android:layout_width="fill_parent"     android:layout_height="wrap_content"     android:text="@string/hello"    /&gt;&lt;Button android:id="@+id/bt" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Presse Me Look Log"/&gt;&lt;/LinearLayout&gt;</pre>Step 4:设计主类LogDemo.java,代码如下:<pre><font class="keyword">import </font>android.app.Activity;</font><font class="keyword">import </font>android.os.Bundle;</font><font class="keyword">import </font>android.util.Log;</font><font class="keyword">import </font>android.view.View;</font><font class="keyword">import </font>android.widget.Button;</font><font class="keyword">public </font><font class="keyword">class </font>LogDemo </font><font class="keyword">extends </font>Activity {	</font><font class="keyword">private </font><font class="keyword">static </font><font class="keyword">final </font>String ACTIVITY_TAG = <font class="Fields">"LogDemo"</font>;	</font><font class="keyword">private </font>Button bt;	</font><font class="keyword">public </font><font class="keyword">void </font>onCreate(Bundle savedInstanceState) {		</font><font class="keyword">super</font>.onCreate(savedInstanceState);		</font>setContentView(R.layout.main);		<font class="Comments">// 通过findViewById找到Button资源		</font>bt = (Button) findViewById(R.id.bt);		<font class="Comments">// 增加事件响应		</font>bt.setOnClickListener(</font><font class="keyword">new </font>Button.OnClickListener() {			</font>@Override			</font><font class="keyword">public </font><font class="keyword">void </font>onClick(View v) {				</font>Log.v(LogDemo.ACTIVITY_TAG, </font><font class="Fields">"This is Verbose."</font>);				</font>Log.d(LogDemo.ACTIVITY_TAG, </font><font class="Fields">"This is Debug."</font>);				</font>Log.i(LogDemo.ACTIVITY_TAG, </font><font class="Fields">"This is Information"</font>);				</font>Log.w(LogDemo.ACTIVITY_TAG, </font><font class="Fields">"This is Warnning."</font>);				</font>Log.e(LogDemo.ACTIVITY_TAG, </font><font class="Fields">"This is Error."</font>);			</font>}		</font>});	</font>}</font>}</pre>Step 5:运行LogDemo工程，效果如下:<img src="../img/basic_logcat/01_logcat3.gif">当我们点击按钮时，会触发事件，在Logcat视窗下有如下效果:<img src="../img/basic_logcat/01_logcat4.gif"></font></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

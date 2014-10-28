@@ -1,0 +1,60 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android游戏框架 Libgdx 使用入门（一）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li class="navcurrentLink"><A href="index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="游戏开发须知" href="index_187.html">游戏开发须知</A></h2>
+
+  <h2><A title="游戏策划、设计分析" href="index_188.html">游戏策划、设计分析</A></h2>
+
+  <h2><A title="Android OpenGL学习" href="index_190.html">Android OpenGL学习</A></h2>
+
+  <h2><A title="Android游戏开发之旅" href="index_191.html">Android游戏开发之旅</A></h2>
+
+  <h2><A title="Android2D游戏开发" href="index_192.html">Android2D游戏开发</A></h2>
+
+  <h2><A title="Android经典实例教程解析" href="index_193.html">Android经典实例教程解析</A></h2>
+
+  <h2><A title="Android游戏开发实例" href="index_194.html">Android游戏开发实例</A></h2>
+
+  <h2><A title="Libgdx游戏引擎" href="index_195.html">Libgdx游戏引擎</A></h2>
+<UL><li class="currentLink"><A title=Android游戏框架 Libgdx 使用入门（一） href="show_801_195.html">Android游戏框架 Libgdx 使用入门（一）</A> </li><li ><A title=Android游戏框架 Libgdx 使用入门（二） href="show_802_195.html">Android游戏框架 Libgdx 使用入门（二）</A> </li><li ><A title=Android游戏框架 Libgdx 使用入门（三） href="show_803_195.html">Android游戏框架 Libgdx 使用入门（三）</A> </li><li ><A title=Android游戏框架 Libgdx 使用入门（四） href="show_804_195.html">Android游戏框架 Libgdx 使用入门（四）</A> </li><li ><A title=Android游戏框架 Libgdx 使用入门（五） href="show_805_195.html">Android游戏框架 Libgdx 使用入门（五）</A> </li><li ><A title=使用游戏引擎libgdx的工程搭建方法 href="show_806_195.html">使用游戏引擎libgdx的工程搭建方法</A> </li><li ><A title=游戏引擎libgdx中粒子特效的实现 href="show_807_195.html">游戏引擎libgdx中粒子特效的实现</A> </li></UL>
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android游戏框架 Libgdx 使用入门（一）</H2>
+<div style="line-height:20px; font-size:14px;"><p>Libgdx是一款支持2D与3D游戏开发的游戏类库，兼容大多数微机平台(标准JavaSE实现，能运行在Mac、Linux、Windows等系统)与Android平台(Android1.5以上即可使用，Android2.1以上可满功率发挥)，</p><p>Libgdx由audio、files、graphics、math、physics、scenes、utils这些主要类库所组成，它们分别对应了Libgdx中的音频操作，文件读取，2D/3D渲染，Libgdx绘图相关运算，Box2D封装，2D/3D游戏组件(3D部分目前无组件)，以及 Libgdx内置工具类。</p><p>Libgdx主要构成如下所示：</p><p>下面开始，我将就Libgdx的具体实现，开始讲解如何正确使用Libgdx类库。</p><p>不过在正式开始之前，我们首先还得讲讲Gdx类。</p><p style="color:#3333FF;">关于Libgdx中的Gdx类：</p><p>单从表面上看，Gdx类占用空间不足2KB，甚至不具备一行可以被直接执行的函数，并没什么重要好说。</p><p>然而，真实的Gdx却是Libgdx类库运行的核心所在，没有它你将寸步难行，不单运行Graphics、Input、Files、Audio、AndroidApplication等Libgdx关键部分所必需的实例会在Libgdx初始化时注入Gdx中对应的graphics、input、files、audio、app等静态变量里面，就连Libgdx对OpenGL接口(或OpenGLES，视Libgdx运行平台而定，以下统称OpenGL)的GL10、GL11、GL20、GLCommon等封装类也会在Graphics实例化时分别注入到gl10、gl11、gl20、gl这四个同样位于Gdx的静态变量当中(在Graphics中也会继续保留它们的引用，因此无论你执行Gdx.graphics.getGL10还是Gdx.gl10，其实都在调用同一个静态变量)。事实上，如果你想不使用Gdx而正常运行Libgdx，那么除了重构源码，就再没有任何办法可想了。</p><p>PS:如果你不清楚自己究竟在什么环境使用Libgdx，其实也不必强分gl10或gl11，大可以通过Gdx.gl方式调用Libgdx中对于OpenGL接口的默认封装(执行某些非多版本共有接口时，依旧需要使用对应版本专属gl)。</p><p>想要使用Libgdx，却不明白Gdx是干什么用的，那么一切就都是空谈。</p><p>下面开始，我将具体讲解Libgdx中的图像处理与游戏组件部分：</p><p style="color:#3333FF;">关于Libgdx的图像处理部分：</p><p style="color:#3333FF;">Mesh:</p><p>本质上讲，Libgdx中所有可见的3D物体首先都是一个Mesh(网格，或者说三维网格形式的高级图元)。Mesh是如何生成的呢?众所周知，数学上讲的立体几何由点、线、面三部分组成，无论多么复杂的图像也可以分解为无数细小的这三部分，或者说可以由非常基础的N个这三部分所组合而成;到了3D游戏开发时，当我们要构建复杂的3D图像，首先会以一系列有序的vertices(顶点)构成这些具体的点、线、三角要素，即构成绘图基本图元(Primitives)，再将基本图元组合成更完整的高级图元也就是具体3D对象。因此，如果对Mesh概念进行简单的理解，其实它就是一个象征完整图像的基本图元集合体，Libgdx先让我们把一个个细分的vertices组成基本图元，再由Mesh类将基本图元制成更加复杂的高级图元展示出来。</p><p>具体可见Libgdx作者提供的returntomarchfeld示例，基本效果如下图所示：</p><p>PS:如果对此类认识不足，可以去玩玩模拟人生，下个修改器尝试编辑角色或物品造型后就懂了</p><p style="color:#3333FF;">Texture:</p><p>Libgdx所提供的游戏纹理用类，其实质可理解为保存在显存中的Image，它以贴图的方式通过OpenGL将图片显示到游戏界面之上。Libgdx的纹理可以直接从指定文件路径加载，也可以通过它提供的Pixmap类凭空创建(它的Texture(int width, int height, Format format)构造内部直接调用了Pixmap，不是必须在外部生成Pixmap后注入)。另外在加载Texture时，个人建议通过Libgdx提供的TextureDict.loadTexture函数调用，该方法内部提供了Texture缓存管理，能够避免无意义的资源重复加载。此外，Texture通常会与TextureRegion类配套使用，利用TextureRegion包装Texture后，再利用SpriteBatch进行绘制，可以很方便的修订Texture为我们需要的显示范围。还有，Libgdx中Sprite类为TextureRegion子类，因此能够将Sprite当作TextureRegion来使用，只是Sprite类比TextureRegion有所扩展。不过Libgdx的SpriteCache类并没有继承Sprite或TextureRegion，所以起不到TextureRegion的作用，只能构建一组静态贴图集合罢了，特此说明。</p><p><pre><font class="Comments">// Libgdx的Texture与Sprite使用</font></p><p><font class="keyword">public </font><font class="keyword">class </font>Main </font><font class="keyword">extends </font>AndroidApplication {</p><p>	<font class="keyword">class </font>TestSprite </font><font class="keyword">implements </font>ApplicationListener {</p><p>		<font class="Comments">// 准备绘图用SpriteBatch</font></p><p>		SpriteBatch spriteBatch;</p><p>		<font class="Comments">// 准备游戏精灵</font></p><p>		Sprite sprite;</p><p>		<font class="Comments">// 准备图片加载用Texture</font></p><p>		Texture texture;</p><p>		<font class="keyword">public </font><font class="keyword">void </font>create() {</p><p>			<font class="Comments">// 构建SpriteBatch</font></p><p>			</font>spriteBatch = <font class="keyword">new </font>SpriteBatch();</p><p>			<font class="Comments">// 构建Texture，图像宽与高大小都必须为2的整数次幂，否则提示异常</font></p><p>			<font class="Comments">// PS:在Android环境使用Libgdx的internal加载时必须文件必须位于assets目录下</font></p><p>			</font>texture = <font class="keyword">new </font>Texture(Gdx.files.internal(<font class="Fields">"mySprite.png"</font>));</p><p>			<font class="Comments">// 以指定Texture构建Sprite</font></p><p>			</font>sprite = <font class="keyword">new </font>Sprite(texture);</p><p>		}</p><p>	}</p><p>}</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android Intent的几种用法全面总结_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li class="navcurrentLink"><A href="index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Activity" href="index_112.html">Activity</A></h2>
+
+  <h2><A title="Intent" href="index_113.html">Intent</A></h2>
+<UL><li ><A title=Intents和Intent Filters（理论部分） href="show_101_113.html">Intents和Intent Filters（理论部分）</A> </li><li ><A title=Intents和Intent Filters（实例部分） href="show_102_113.html">Intents和Intent Filters（实例部分）</A> </li><li ><A title=Android Intent和Intent Filter详解（一） href="show_103_113.html">Android Intent和Intent Filter详解（一）</A> </li><li ><A title=Android Intent和Intent Filter详解（二） href="show_104_113.html">Android Intent和Intent Filter详解（二）</A> </li><li ><A title=Android Intent和Intent Filter详解（三） href="show_105_113.html">Android Intent和Intent Filter详解（三）</A> </li><li ><A title=Android Intent和Intent Filter详解（四） href="show_106_113.html">Android Intent和Intent Filter详解（四）</A> </li><li ><A title=Android Intent和Intent Filter详解（五） href="show_107_113.html">Android Intent和Intent Filter详解（五）</A> </li><li ><A title=Android Intent和Bundle机制实例详解 href="show_108_113.html">Android Intent和Bundle机制实例详解</A> </li><li class="currentLink"><A title=Android Intent的几种用法全面总结 href="show_109_113.html">Android Intent的几种用法全面总结</A> </li><li ><A title=Android中Intent中如何传递对象 href="show_110_113.html">Android中Intent中如何传递对象</A> </li><li ><A title=如何调用Google Web Search？ href="show_111_113.html">如何调用Google Web Search？</A> </li></UL>
+  <h2><A title="Service" href="index_114.html">Service</A></h2>
+
+  <h2><A title="Content Provider" href="index_115.html">Content Provider</A></h2>
+
+  <h2><A title="BroadcastReceiver" href="index_116.html">BroadcastReceiver</A></h2>
+
+  <h2><A title="AsyncTask" href="index_117.html">AsyncTask</A></h2>
+
+  <h2><A title="Handler" href="index_118.html">Handler</A></h2>
+
+  <h2><A title="Thread" href="index_119.html">Thread</A></h2>
+
+  <h2><A title="Permission" href="index_120.html">Permission</A></h2>
+
+  <h2><A title="AIDL" href="index_121.html">AIDL</A></h2>
+
+  <h2><A title="Json" href="index_122.html">Json</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android Intent的几种用法全面总结</H2>
+<div style="line-height:20px; font-size:14px;"><p>Intent应该算是Android中特有的东西。你可以在Intent中指定程序要执行的动作（比如：view,edit,dial），以及程序执行到该动作时所需要的资料。都指定好后，只要调用startActivity()，Android系统会自动寻找最符合你指定要求的应用程序，并执行该程序。</p><p>下面列出几种Intent的用法</p><p>显示网页:</p><p><pre>Uri uri = Uri.parse(<font class="Fields">"http:<font class="Comments">//www.google.com"</font>);</font></p><p>Intent it  = <font class="keyword">new </font>Intent(Intent.ACTION_VIEW,uri);</p><p>startActivity(it);</p><p></pre></p><p>显示地图:</p><p><pre>Uri uri = Uri.parse(<font class="Fields">"geo:38.899533,-77.036476"</font>);</p><p>Intent it = <font class="keyword">new </font>Intent(Intent.Action_VIEW,uri);</p><p>startActivity(it);</p><p></pre></p><p>路径规划:</p><p><pre>Uri uri = Uri.parse(<font class="Fields">"http:<font class="Comments">//maps.google.com/maps?f=d&saddr=startLat%20startLng&daddr=endLat%20endLng&hl=en"</font>);</font></p><p>Intent it = <font class="keyword">new </font>Intent(Intent.ACTION_VIEW,URI);</p><p>startActivity(it);</p><p></pre></p><p>拨打电话:</p><p>调用拨号程序</p><p><pre>Uri uri = Uri.parse(<font class="Fields">"tel:xxxxxx"</font>);</p><p>Intent it = <font class="keyword">new </font>Intent(Intent.ACTION_DIAL, uri);  </p><p>startActivity(it);  </p><p>Uri uri = Uri.parse(<font class="Fields">"tel.xxxxxx"</font>);</p><p>Intent it =<font class="keyword">new </font>Intent(Intent.ACTION_CALL,uri);</p><p></pre></p><p>要使用这个必须在配置文件中加入&lt;uses-permission id="android.permission.CALL_PHONE" /&gt;</p><p>发送SMS/MMS</p><p>调用发送短信的程序</p><p><pre>Intent it = <font class="keyword">new </font>Intent(Intent.ACTION_VIEW);   </p><p>it.putExtra(<font class="Fields">"sms_body"</font>, </font><font class="Fields">"The SMS text"</font>);   </p><p>it.setType(<font class="Fields">"vnd.android-dir/mms-sms"</font>);   </p><p>startActivity(it);  </p><p></pre></p><p>发送短信</p><p><pre>Uri uri = Uri.parse(<font class="Fields">"smsto:0800000123"</font>);   </p><p>Intent it = <font class="keyword">new </font>Intent(Intent.ACTION_SENDTO, uri);   </p><p>it.putExtra(<font class="Fields">"sms_body"</font>, </font><font class="Fields">"The SMS text"</font>);   </p><p>startActivity(it); </p><p></pre></p><p>发送彩信</p><p><pre>Uri uri = Uri.parse(<font class="Fields">"content:<font class="Comments">//media/external/images/media/23"</font>);   </font></p><p>Intent it = <font class="keyword">new </font>Intent(Intent.ACTION_SEND);   </p><p>it.putExtra(<font class="Fields">"sms_body"</font>, </font><font class="Fields">"some text"</font>);   </p><p>it.putExtra(Intent.EXTRA_STREAM, uri);   </p><p>it.setType(<font class="Fields">"image/png"</font>);   </p><p>startActivity(it);</p><p></pre></p><p>发送Email</p><p><pre>Uri uri = Uri.parse(<font class="Fields">"mailto:xxx@abc.com"</font>);</p><p>Intent it = <font class="keyword">new </font>Intent(Intent.ACTION_SENDTO, uri);</p><p>startActivity(it);</p><p>Intent it = <font class="keyword">new </font>Intent(Intent.ACTION_SEND);   </p><p>it.putExtra(Intent.EXTRA_EMAIL, <font class="Fields">"me@abc.com"</font>);   </p><p>it.putExtra(Intent.EXTRA_TEXT, <font class="Fields">"The email body text"</font>);   </p><p>it.setType(<font class="Fields">"text/plain"</font>);   </p><p>startActivity(Intent.createChooser(it, <font class="Fields">"Choose Email Client"</font>));  </p><p>Intent it=<font class="keyword">new </font>Intent(Intent.ACTION_SEND);     </p><p>String[] tos={<font class="Fields">"me@abc.com"</font></font>};     </p><p>String[] ccs={<font class="Fields">"you@abc.com"</font></font>};     </p><p>it.putExtra(Intent.EXTRA_EMAIL, tos);     </p><p>it.putExtra(Intent.EXTRA_CC, ccs);     </p><p>it.putExtra(Intent.EXTRA_TEXT, <font class="Fields">"The email body text"</font>);     </p><p>it.putExtra(Intent.EXTRA_SUBJECT, <font class="Fields">"The email subject text"</font>);     </p><p>it.setType(<font class="Fields">"message/rfc822"</font>);     </p><p>startActivity(Intent.createChooser(it, <font class="Fields">"Choose Email Client"</font>));</p><p></pre></p><p>添加附件</p><p><pre>Intent it = <font class="keyword">new </font>Intent(Intent.ACTION_SEND);   </p><p>it.putExtra(Intent.EXTRA_SUBJECT, <font class="Fields">"The email subject text"</font>);   </p><p>it.putExtra(Intent.EXTRA_STREAM, <font class="Fields">"file:<font class="Comments">///sdcard/mysong.mp3"</font>);   </font></p><p>sendIntent.setType(<font class="Fields">"audio/mp3"</font>);   </p><p>startActivity(Intent.createChooser(it, <font class="Fields">"Choose Email Client"</font>));</p><p></pre></p><p>播放多媒体</p><p><pre>Intent it = <font class="keyword">new </font>Intent(Intent.ACTION_VIEW);</p><p>Uri uri = Uri.parse(<font class="Fields">"file:<font class="Comments">///sdcard/song.mp3"</font>);</font></p><p>it.setDataAndType(uri, <font class="Fields">"audio/mp3"</font>);</p><p>startActivity(it);</p><p>Uri uri = Uri.withAppendedPath(MediaStore.Audio.Media.INTERNAL_CONTENT_URI, <font class="Fields">"1"</font>);   </p><p>Intent it = <font class="keyword">new </font>Intent(Intent.ACTION_VIEW, uri);   </p><p>startActivity(it);  </p><p></pre></p><p>Uninstall 程序</p><p><pre>Uri uri = Uri.fromParts(<font class="Fields">"package"</font>, strPackageName, <font class="keyword">null</font>);   </p><p>Intent it = <font class="keyword">new </font>Intent(Intent.ACTION_DELETE, uri);   </p><p>startActivity(it);</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

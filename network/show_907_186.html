@@ -1,0 +1,64 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>自己真实开发的中调用webservice方法总结（带请求头SoapHeader）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li class="navcurrentLink"><A href="index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="3G" href="index_177.html">3G</A></h2>
+
+  <h2><A title="WIFI" href="index_178.html">WIFI</A></h2>
+
+  <h2><A title="蓝牙" href="index_179.html">蓝牙</A></h2>
+
+  <h2><A title="HTTP协议" href="index_180.html">HTTP协议</A></h2>
+
+  <h2><A title="Socket" href="index_181.html">Socket</A></h2>
+
+  <h2><A title="HTML与HTML5" href="index_182.html">HTML与HTML5</A></h2>
+
+  <h2><A title="JavaScript" href="index_183.html">JavaScript</A></h2>
+
+  <h2><A title="Email" href="index_184.html">Email</A></h2>
+
+  <h2><A title="NFC" href="index_185.html">NFC</A></h2>
+
+  <h2><A title="Web Service" href="index_186.html">Web Service</A></h2>
+<UL><li ><A title=Android说说WebService href="show_901_186.html">Android说说WebService</A> </li><li ><A title=Android webservice 理论 href="show_902_186.html">Android webservice 理论</A> </li><li ><A title=Android中调用webservice href="show_903_186.html">Android中调用webservice</A> </li><li ><A title=Android webservice通信之ksoap href="show_904_186.html">Android webservice通信之ksoap</A> </li><li ><A title=Android+webservice的连接 href="show_905_186.html">Android+webservice的连接</A> </li><li ><A title=调用webservice查询手机号归属地信息 href="show_906_186.html">调用webservice查询手机号归属地信息</A> </li><li class="currentLink"><A title=自己真实开发的中调用webservice方法总结（带请求头SoapHeader） href="show_907_186.html">自己真实开发的中调用webservice方法总结（带请求头SoapHeader）</A> </li></UL>
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>自己真实开发的中调用webservice方法总结（带请求头SoapHeader）</H2>
+<div style="line-height:20px; font-size:14px;"><p>调用webservice总结：</p><p>1.加入第三方的jar包 Ksoap2-android-XXX。</p><p>2.访问响应的webservice的网站，查看响应的信息，得到nameSpace，methodName，url，soapAction。</p><p>3.如果request信息还有带有SoapHander的。那么就要封装：依据参数封装。</p><p><pre>Element[] header = <font class="keyword">new </font>Element[1]; </p><p>header[0] = <font class="keyword">new </font>Element().createElement(nameSpace, <font class="Fields">"SoapHeader"</font>); </p><p>Element userName = <font class="keyword">new </font>Element().createElement(nameSpace, <font class="Fields">"UserID"</font>); </p><p>userName.addChild(Node.TEXT, UserID); </p><p>header[0].addChild(Node.ELEMENT, userName); </p><p>Element pass = <font class="keyword">new </font>Element().createElement(nameSpace, <font class="Fields">"PassWord"</font>); </p><p>pass.addChild(Node.TEXT, PassWord); </p><p>header[0].addChild(Node.ELEMENT, pass); </p><p></pre></p><p>4.封装request信息的SoapBody</p><p><pre><font class="Comments">// 指定WebService的命名空间和调用的方法名</font></p><p>SoapObject  soapObject=<font class="keyword">new </font>SoapObject(nameSpace, methodName);</p><p><font class="Comments">//处理soap12:Body数据部分</font></p><p>soapObject.addProperty(<font class="Fields">"loginName"</font>,username);</p><p>soapObject.addProperty(<font class="Fields">"password"</font>,password);</p><p></pre></p><p>5.指定SoapSerializationEnvelope信息</p><p><pre>SoapSerializationEnvelopeenvelope=<font class="keyword">new </font>SoapSerializationEnvelope(SoapEnvelope.VER11);</p><p><font class="Comments">//SoapEnvelope.VER11 表示使用的soap协议的版本号 1.1 或者是1.2</font></p><p>envelope.headerOut=header;</p><p>envelope.bodyOut=soapObject;</p><p>envelope.dotNet = <font class="keyword">true</font>; <font class="Comments">//指定webservice的类型的（java，PHP，dotNet）</font></p><p>envelope.setOutputSoapObject(soapObject); </p><p></pre></p><p>6.指定HttpTransportSE</p><p><pre>HttpTransportSE ht = <font class="keyword">new </font>HttpTransportSE(url); </p><p></pre></p><p>7.访问webservice服务器</p><p><pre>ht.call(soapAction, envelope);</p><p></pre></p><p>8.两种方式获取服务器返回的信息</p><p><pre>envelope.getResponse();</p><p>envelope.bodyIn;</p><p></pre></p><p>两者的区别：Webservice开发的时候一般情况下大家接受webservice服务器返回值的时候都是使用 </p><p>SoapObject soapObject = (SoapObject) envelope.getResponse();这个来接受返回</p><p>来的值，但这种方法往往会产生java.lang.ClassCastException: org.ksoap2.</p><p>serialization.SoapPrimitive这样的错误。</p><p>在服务器端返回值是String类型的数值的时候使用SoapObject soapObject = (SoapObject) envelope.getResponse()会产生java.lang.ClassCastException: org.ksoap2.serialization.SoapPrimitive这样的错误。</p><p>使用SoapObject result = (SoapObject)envelope.bodyIn和 Object object = envelope.getResponse();就可以解决这种错误。 如果服务器返回值的类型是byte[]的时候，使用Object object = envelope.getResponse();和SoapObject result = (SoapObject)envelope.bodyIn;</p><p>都不会发生错误现象，但是在使用Object object = envelope.getResponse();取回来的值在使用base64进行解码和编码的时候会报出错误。如果使用SoapObject result = (SoapObject)envelope.bodyIn;就可以完整的将byte[]进行解码和编码，</p><p><pre>byte[] ops = Base64.decode(result.getProperty(0).toString());</p><p>SoapObject result=(SoapObject) envelope.bodyIn;</p><p>String str=result.getProperty(0).toString()；</p><p></pre></p><p>或者是</p><p><pre>Object result=(Object) reqVo.envelope.getResponse();</p><p>String str=result.toString();</p><p></pre></p><p>9.解析字符串str获取客户端想要的信息</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

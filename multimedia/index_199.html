@@ -1,0 +1,129 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android学习手册_多媒体</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li class="navcurrentLink"><A href="index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">多媒体</div>
+
+  <h2 ><A title="Android多媒体功能" href="index_196.html">Android多媒体功能</A></h2>
+
+  <h2 ><A title="Android多媒体之2D" href="index_197.html">Android多媒体之2D</A></h2>
+
+  <h2 ><A title="Android多媒体之3D" href="index_198.html">Android多媒体之3D</A></h2>
+
+  <h2 class="currentLink"><A title="Android多媒体之Bitmap" href="index_199.html">Android多媒体之Bitmap</A></h2>
+<UL><li class="currentLink"><A title=Android Bitmap类相关学习 href="show_302_199.html">Android Bitmap类相关学习</A> </li><li ><A title=Android里的BitMap（一） href="show_303_199.html">Android里的BitMap（一）</A> </li><li ><A title=Android里的BitMap（二） href="show_304_199.html">Android里的BitMap（二）</A> </li><li ><A title=Android里的BitMap（三） href="show_305_199.html">Android里的BitMap（三）</A> </li><li ><A title=Android里的BitMap（四） href="show_306_199.html">Android里的BitMap（四）</A> </li><li ><A title=Android bitmap内存溢出（一） href="show_307_199.html">Android bitmap内存溢出（一）</A> </li><li ><A title=Android bitmap内存溢出（二） href="show_308_199.html">Android bitmap内存溢出（二）</A> </li><li ><A title=Android 避免bitmap内存限制 href="show_309_199.html">Android 避免bitmap内存限制</A> </li><li ><A title=Bitmap导致的OOM终极解决方案 href="show_310_199.html">Bitmap导致的OOM终极解决方案</A> </li><li ><A title=Bitmap的用法（浅谈） href="show_311_199.html">Bitmap的用法（浅谈）</A> </li><li ><A title=Android 两种方法获取Bitmap href="show_312_199.html">Android 两种方法获取Bitmap</A> </li><li ><A title=Android整合两个Bitmap href="show_313_199.html">Android整合两个Bitmap</A> </li><li ><A title=通过纯RGB数据流生成Bitmap对象 href="show_314_199.html">通过纯RGB数据流生成Bitmap对象</A> </li><li ><A title=Bitmap总结 href="show_315_199.html">Bitmap总结</A> </li></UL>
+  <h2 ><A title="Android多媒体之Canvas" href="index_200.html">Android多媒体之Canvas</A></h2>
+
+  <h2 ><A title="Android多媒体之Drawable" href="index_201.html">Android多媒体之Drawable</A></h2>
+
+  <h2 ><A title="Android多媒体之gif" href="index_202.html">Android多媒体之gif</A></h2>
+
+  <h2 ><A title="Android多媒体之MediaStore" href="index_203.html">Android多媒体之MediaStore</A></h2>
+
+  <h2 ><A title="Android多媒体之动画" href="index_204.html">Android多媒体之动画</A></h2>
+
+  <h2 ><A title="Android多媒体之分辨率" href="index_205.html">Android多媒体之分辨率</A></h2>
+
+  <h2 ><A title="Android多媒体之分屏幕" href="index_206.html">Android多媒体之分屏幕</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1>Android多媒体之Bitmap</H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android Bitmap类相关学习</H2>
+<P>　　我们现在说的这个类是非常重要的，不管你做什么都都得用到Bitmap类，我们就来看看，Bitmap类都有哪些是必须要掌握的，Paint类是我们必须要掌握的。p.setAlpha(0x80);括号里的0x00表示的就是完全透明。要是0xff那就表</P>
+<P><A title="Android Bitmap类相关学习" href="show_302_199.html">进入 Android Bitmap类相关学习</A> </P></DIV>
+
+<DIV>
+<H2>Android里的BitMap（一）</H2>
+<P>　　Bitmap 相关1. Bitmap比较特别 因为其不可创建 而只能借助于BitmapFactory 而根据图像来源又可分以下几种情况：* png图片 如：R.drawable.tianjin[code=java]Bitmap bmp = BitmapFactory.decodeResource(#[Keywords]</P>
+<P><A title="Android里的BitMap（一）" href="show_303_199.html">进入 Android里的BitMap（一）</A> </P></DIV>
+
+<DIV>
+<H2>Android里的BitMap（二）</H2>
+<P>　　[color=blue]得到网路图片* 定义网络图片对应的BufferedInputStream[code=java]#[Comments]//图片的链接地址 String icoURI = #[Fields]&quot;&quot;http:#[Comments]//202.140.96.134:8080/FS-RSS/img/RN.png&quot;</P>
+<P><A title="Android里的BitMap（二）" href="show_304_199.html">进入 Android里的BitMap（二）</A> </P></DIV>
+
+<DIV>
+<H2>Android里的BitMap（三）</H2>
+<P>　　2. 获取位图的信息要获取位图信息，比如位图大小、像素、density、透明度、颜色格式等，获取得到Bitmap就迎刃而解了，这些信息在Bitmap的手册中，这里只是辅助说明以下2点：*在Bitmap中对RGB颜色格式使用Bitmap.Conf</P>
+<P><A title="Android里的BitMap（三）" href="show_305_199.html">进入 Android里的BitMap（三）</A> </P></DIV>
+
+<DIV>
+<H2>Android里的BitMap（四）</H2>
+<P>　　6.图片水印的生成方法生成水印的过程。其实分为三个环节：第一，载入原始图片；第二，载入水印图片；第三，保存新的图片。[code=java]/* #[Tags]* create the bitmap from a byte array #[Tags]* @param src the bit</P>
+<P><A title="Android里的BitMap（四）" href="show_306_199.html">进入 Android里的BitMap（四）</A> </P></DIV>
+
+<DIV>
+<H2>Android bitmap内存溢出（一）</H2>
+<P>　　Android 中用bitmap 时很容易内存溢出，报如下错误：[code=java]Java.lang.OutOfMemoryError : bitmap size exceeds VM budget[/code]主要是加上这段：[code=java]BitmapFactory.Options options = #[Keywords]new #</P>
+<P><A title="Android bitmap内存溢出（一）" href="show_307_199.html">进入 Android bitmap内存溢出（一）</A> </P></DIV>
+
+<DIV>
+<H2>Android bitmap内存溢出（二）</H2>
+<P>　　[color=blue]Android堆内存也可自己定义大小对于一些大型Android项目或游戏来说在算法处理上没有问题外，影响性能瓶颈的主要是Android自己内存管理机制问题，目前手机厂商对RAM都比较吝啬，对于软件的流畅性来说RAM</P>
+<P><A title="Android bitmap内存溢出（二）" href="show_308_199.html">进入 Android bitmap内存溢出（二）</A> </P></DIV>
+
+<DIV>
+<H2>Android 避免bitmap内存限制</H2>
+<P>　　在编写Android程序的时候，我们总是难免会碰到OOM（OUT OF MEMORY）的错误，那么这个错误究竟是怎么来的呢，可以先看一下这篇文章ANDROID BITMAP内存限制OOM,OUT OF MEMORY。这里，我使用Gallery来举例，在模拟器中</P>
+<P><A title="Android 避免bitmap内存限制" href="show_309_199.html">进入 Android 避免bitmap内存限制</A> </P></DIV>
+
+<DIV>
+<H2>Bitmap导致的OOM终极解决方案</H2>
+<P>　　相机越来越好，相片也越来越大，而手机应用程序所分配的内存有限，所以在读相片的时候，如果代码写得不好，经常导致OOM。信息如下：[code=java]java.lang.OutOfMemoryError: bitmap size exceeds VM budget [/code]</P>
+<P><A title="Bitmap导致的OOM终极解决方案" href="show_310_199.html">进入 Bitmap导致的OOM终极解决方案</A> </P></DIV>
+
+<DIV>
+<H2>Bitmap的用法（浅谈）</H2>
+<P>　　需求：从服务器下载一张图片，显示在ImageView控件上，并将该图片保存在移动设备的SD上。步骤：（一）获得输入流[code=java]#[Comments]// urlPath:服务器路径;#[Keywords]public #InputStream getUrlInputStream(St</P>
+<P><A title="Bitmap的用法（浅谈）" href="show_311_199.html">进入 Bitmap的用法（浅谈）</A> </P></DIV>
+
+<DIV>
+<H2>Android 两种方法获取Bitmap</H2>
+<P>　　第一种方法 [code=java]#[Comments]//得到Resources对象 Resources r = #[Keywords]this#.getContext().getResources(); #[Comments]//以数据流的方式读取资源 Inputstream is = r.openRawResource(R.drawable.my_ba</P>
+<P><A title="Android 两种方法获取Bitmap" href="show_312_199.html">进入 Android 两种方法获取Bitmap</A> </P></DIV>
+
+<DIV>
+<H2>Android整合两个Bitmap</H2>
+<P>　　有时候会遇到这样的需求，将两个bitmap对象整合并保存为一张图片，代码如下：[code=java]#[Keywords]private #Bitmap toConformBitmap(Bitmap background, Bitmap foreground) {	#[Keywords]if #(background == #[Ke</P>
+<P><A title="Android整合两个Bitmap" href="show_313_199.html">进入 Android整合两个Bitmap</A> </P></DIV>
+
+<DIV>
+<H2>通过纯RGB数据流生成Bitmap对象</H2>
+<P>　　GOOGLE对于图像的读取处理，已经封装了Bitmap类和BitmapFactory类，可以说囊括了许多种读取图片数据的方式，但是如果我们只有纯RGB数据（byte[]）和位图宽和高又如何将数据上屏显示呢?查看SDK文档，虽然没有关于byte</P>
+<P><A title="通过纯RGB数据流生成Bitmap对象" href="show_314_199.html">进入 通过纯RGB数据流生成Bitmap对象</A> </P></DIV>
+
+<DIV>
+<H2>Bitmap总结</H2>
+<P>　　加载图片方法总结（注意：getResources()其实是myContext.getResources()）1.适用于背景[code=java]#[Keywords]private #Bitmap score_bar_bg = BitmapFactory.decodeResource(getResources(), R.drawable.score_bar</P>
+<P><A title="Bitmap总结" href="show_315_199.html">进入 Bitmap总结</A> </P></DIV>
+
+</DIV>
+
+<DIV id=footer style="display:none">
+<P align="center"> 
+ 
+ 
+ 
+  </P>
+</DIV></DIV></BODY></HTML>
+

@@ -1,0 +1,58 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 调试原理_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li class="navcurrentLink"><A href="index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Android基础之运行原理和机制" href="index_215.html">Android基础之运行原理和机制</A></h2>
+<UL><li ><A title=Android设计平台原理 href="show_1_215.html">Android设计平台原理</A> </li><li ><A title=Android应用程序基本原理 href="show_2_215.html">Android应用程序基本原理</A> </li><li ><A title=图解Android应用程序构建原理 href="show_3_215.html">图解Android应用程序构建原理</A> </li><li ><A title=Android手机内存的运行机制 href="show_4_215.html">Android手机内存的运行机制</A> </li><li ><A title=Android开发之虚拟机原理与内存分配 href="show_5_215.html">Android开发之虚拟机原理与内存分配</A> </li><li ><A title=Android进程管理机制及优化 href="show_6_215.html">Android进程管理机制及优化</A> </li><li ><A title=Android消息处理系统原理 href="show_7_215.html">Android消息处理系统原理</A> </li><li class="currentLink"><A title=Android 调试原理 href="show_8_215.html">Android 调试原理</A> </li><li ><A title=Andoird GDI之基本原理及其总体框架 href="show_9_215.html">Andoird GDI之基本原理及其总体框架</A> </li></UL>
+  <h2><A title="Android高级篇之Android优化" href="index_216.html">Android高级篇之Android优化</A></h2>
+
+  <h2><A title="Android高级篇之编译及反编译" href="index_217.html">Android高级篇之编译及反编译</A></h2>
+
+  <h2><A title="Android高级篇之加密解密" href="index_218.html">Android高级篇之加密解密</A></h2>
+
+  <h2><A title="Android高级篇之Android 安全" href="index_219.html">Android高级篇之Android 安全</A></h2>
+
+  <h2><A title="Android高级篇之算法" href="index_220.html">Android高级篇之算法</A></h2>
+
+  <h2><A title="Android高级篇之解锁教程" href="index_221.html">Android高级篇之解锁教程</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 调试原理</H2>
+<div style="line-height:20px; font-size:14px;"><p style="color:#3333FF;">一、adb的介绍: </p><p>adb(Android Debug Bridge)包括三个部分：</p><p>1)adb client, 运行在PC上(为DDMS，即IDE工作)。</p><p>2)adb daemon(守护进程), 运行于Emulator(为与Emulator中的VM交互工作)。</p><p>3)adb server(服务进程), 运行在PC(任务管理器上有)，管理着adb client和adb daemon的通信.server与client通信的端口是是5037。</p><p>adb server会与emulator交互的，使用的端口有两个，一个是5554专门用于与Emulator实例的连接，那么数据可以从Emulator转发给IDE控制台了，另一个则是5555，专门与adb daemon连接为后面调试使用。</p><p>PS:Emulator/Device占用两个(一组)端口，一个为偶数的5554，一个奇数的5555。</p><p>如果还开启其他的Emulator，则使用的另一组端口是5556，5557，一直到5585。</p><p>adb server开启时就是通过查找5555-5585之间端口来建立与模拟器的连接的，建立连接后就可以用adb的相关命令了。</p><p>如果您安装了ADT就基本不需要adb的命令了(因为DDMS会调用ADB进行透明操作)。</p><p>关于本机的端口使用情况可以使用netstat [-a] [-n]来查询验证一下。</p><p style="color:#3333FF;">二、观察一组数据：</p><p>在开启仿真器时有一些打印：</p><p><pre>[2009-06-06 14:04:16 - Helloworld] Android Launch!</p><p>[2009-06-06 14:04:17 - Helloworld] adb is running normally.</p><p>[2009-06-06 14:04:17 - Helloworld] Performing com.android.hello.Helloworld activity launch</p><p>[2009-06-06 14:04:17 - Helloworld] Automatic Target Mode: Preferred AVD 'lab' is not available. Launching new emulator.</p><p>[2009-06-06 14:04:17 - Helloworld] Launching a new emulator with Virtual Device 'lab'</p><p>[2009-06-06 14:04:24 - Helloworld] New emulator found: emulator-5554</p><p>[2009-06-06 14:04:24 - Helloworld] Waiting for HOME ('android.process.acore') to be launched...</p><p>[2009-06-06 14:05:45 - Helloworld] HOME is up on device 'emulator-5554'</p><p>[2009-06-06 14:05:45 - Helloworld] Uploading Helloworld.apk onto device 'emulator-5554'</p><p>[2009-06-06 14:05:45 - Helloworld] Installing Helloworld.apk...</p><p></pre></p><p>每一行都基本表示一个命令在执行，emulator-5554是仿真器的初始端口了。</p><p>最后一句等于命令：adb -s emulator-5554 install helloworld.apk</p><p>如果报了类似以下的错误，那得(加个-r)重装，因为该App已经在该Emulator下运行了。</p><p><pre>DDM dispatch reg wait timeout</p><p>Can't dispatch DDM chunk 52454151: no handler defined</p><p>Can't dispatch DDM chunk 48454c4f: no handler defined</p><p></pre></p><p>网上没有看到这个错误因此顺便提下解决方法：</p><p><pre>adb -s emulator-5554 install -r helloworld.apk</p><p></pre></p><p style="color:#3333FF;">三,了解下DDMS:(都是adb的命令相当的功能)</p><p>DDMS有几个界面：</p><p>1)Devices：可以查看到当前运行的Emulator和其内运行的应用。</p><p>2)Emulator control，即仿真器的硬件设置项等：</p><p>设置当前注册的网络状态(Home,Roaming,UnRegistered,Searching)</p><p>数据业务的速度设置：有GSM,GPRS,EDGE,UMTS,HSDPA(3.5G?)</p><p>还有载入KML或NMEA文件来模拟GPS数据。</p><p>3)还可以查询Threads,Heap,File Explorer、重启adb,抓屏等，其他都是在调用adb。</p><p>4)关于Logcat</p><p>从Windows-&gt;Prereference-&gt;android-&gt;DDMS-&gt;Loggin Level进行设置打印等级，</p><p>不过默认下只打印入口线程的信息，射频和Tapi的动作信息要通过adb Logcat -b radio打开。</p><p>Log默认被写入到手机的/data/anr/traces.txt文件中。</p><p style="color:#3333FF;">四，Debug面板</p><p>这个面板对于熟悉Eclipse的用户来说应该不用看了。</p><p>通过以下三步将自己的应用或将已经跑起来的应用加入调试列表：</p><p>1)选择Devices列表中Your app。</p><p>2)选择臭虫按钮将该程序加载进调试状态。</p><p>3)OK,加断点吧。不过源代码要最新的否则断点不起作用。</p><p style="color:#3333FF;">五、DDMS如何让IDE的调试工作起来呢?</p><p>1)有几个组成:</p><p>一个是adb(Android Debug Bridge)参考第一部分，它起到调试桥的作用。</p><p>另一类是运行在Device/Emulator端的adb daemon, VM, debugger, your Applicatioin。</p><p>通过下面句话就可以理解它们的关系：</p><p>一个App跑在一个进程中，这个进程又被一个VM绑定，都是一对一的，但VM与Emulator显然是多对一的。</p><p>那调试时debugger从VM中拿到栈线程进程等信息，而daemon的作用仅仅是被DDMS用于建立一条连接(看下面)。</p><p>最后一类则是运行在PC上的DDMS debugger。</p><p>这个debugger是IDE的调试器，你可以改成另一个调试器。</p><p>DDMS是Dalvik Debug Monitor Service，负责建立调试的作用，它仅有两个Service，其他的功能都是通过ADB client.让IDE与Emulator交互起来的。</p><p>2)开启IDE时，DDMS会建立一个Device monitoring service用于监控Emulator,因为可以开启多个Emulator嘛。</p><p>如果找到一个Emulator，那么DDMS才会再开启另一个Service叫VM Monitoring Sevice用于监控该Emulator下的VM; </p><p>第一部分提到adb有三个部分，其中的adb client可以多个实例的，DDMS的Service通过从ADB Client与ADb server的交互结果来维护自身的数据。</p><p>如果VM Monitor找到Emulator的一个VM，那么DDMS会利用ADB获取目标VM的进程ID。</p><p>同时通过client与daemon建立起与vm的debugger的新连接，注意新连接的交互端口是从8600开始的(n个的话端口是8659+n),这条新连接可以让DDMS获得与VM的实际交互。</p><p>剩下的就是DDMS把拿到的数据再扔给ide的debugger(它们之间默认通过8700端口，可更改，因为与VM的交互端口从8600开始使用的话可能会不够的)。</p><p>这样IDE的Debug视图就能正确工作了。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

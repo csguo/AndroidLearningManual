@@ -1,0 +1,64 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android中WebView实现Javascript调用Java类方法_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li class="navcurrentLink"><A href="index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="3G" href="index_177.html">3G</A></h2>
+
+  <h2><A title="WIFI" href="index_178.html">WIFI</A></h2>
+
+  <h2><A title="蓝牙" href="index_179.html">蓝牙</A></h2>
+
+  <h2><A title="HTTP协议" href="index_180.html">HTTP协议</A></h2>
+
+  <h2><A title="Socket" href="index_181.html">Socket</A></h2>
+
+  <h2><A title="HTML与HTML5" href="index_182.html">HTML与HTML5</A></h2>
+
+  <h2><A title="JavaScript" href="index_183.html">JavaScript</A></h2>
+<UL><li ><A title=Android 浅谈webview中的Javascript href="show_601_183.html">Android 浅谈webview中的Javascript</A> </li><li ><A title=Android WebView使用Javascript详解 href="show_602_183.html">Android WebView使用Javascript详解</A> </li><li ><A title=Android WebView加载HTML表单并通过javascript提交（一） href="show_603_183.html">Android WebView加载HTML表单并通过javascript提交（一）</A> </li><li ><A title=Android WebView加载HTML表单并通过javascript提交（二） href="show_604_183.html">Android WebView加载HTML表单并通过javascript提交（二）</A> </li><li ><A title=Android WebView加载HTML表单并通过javascript提交（三） href="show_605_183.html">Android WebView加载HTML表单并通过javascript提交（三）</A> </li><li ><A title=Android与javascript交互调用 href="show_606_183.html">Android与javascript交互调用</A> </li><li class="currentLink"><A title=Android中WebView实现Javascript调用Java类方法 href="show_607_183.html">Android中WebView实现Javascript调用Java类方法</A> </li><li ><A title=Android中采用html页面布局以及调用JavaScript href="show_608_183.html">Android中采用html页面布局以及调用JavaScript</A> </li><li ><A title=JavaScript或PHP检测Android设备 href="show_609_183.html">JavaScript或PHP检测Android设备</A> </li></UL>
+  <h2><A title="Email" href="index_184.html">Email</A></h2>
+
+  <h2><A title="NFC" href="index_185.html">NFC</A></h2>
+
+  <h2><A title="Web Service" href="index_186.html">Web Service</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android中WebView实现Javascript调用Java类方法</H2>
+<div style="line-height:20px; font-size:14px;"><p>为了方便网页和Android应用的交互，Android系统提供了WebView中JavaScript网页脚本调用Java类方法的机制。只要调用addJavascriptInterface方法即可映射一个Java对象到JavaScript对象上。</p><p>1、映射Java对象到JavaScript对象上</p><p><pre>mWebView = (WebView) findViewById(R.id.wv_content);</p><p>mWebView.setVerticalScrollbarOverlay(<font class="keyword">true</font>);</p><p><font class="keyword">final </font>WebSettings settings = mWebView.getSettings();</p><p>settings.setSupportZoom(<font class="keyword">true</font>);</p><p><font class="Comments">//WebView启用Javascript脚本执行</font></p><p>settings.setJavaScriptEnabled(<font class="keyword">true</font>);</p><p>settings.setJavaScriptCanOpenWindowsAutomatically(<font class="keyword">true</font>);</p><p><font class="Comments">//映射Java对象到一个名为”js2java“的Javascript对象上</font></p><p><font class="Comments">//JavaScript中可以通过"window.js2java"来调用Java对象的方法</font></p><p>mWebView.addJavascriptInterface(<font class="keyword">new </font>JSInvokeClass(), <font class="Fields">"HTMLOUT"</font>);</p><p><font class="Comments">/**网页Javascript调用接口**/</font></p><p><font class="keyword">class </font>JSInvokeClass {</p><p>    <font class="keyword">public </font><font class="keyword">void </font>back() {</p><p>        activity.finish();</p><p>    }</p><p>}</p><p></pre></p><p>2、JavaScript调用Java对象示例</p><p>这里才是最关键的地方所在了，下面是通过javascript来调用java中的方法，也就是JSInvokeClass中的back方法，</p><p><pre>window.HTMLOUT.back();</p><p></pre></p><p>但是上面的方法放在哪里呢？</p><p>如何去执行喃？</p><p>请看：</p><p><pre>mWebView.loadUrl(<font class="Fields">"javascript:window.HTMLOUT.back();"</font>);</p><p></pre></p><p>当然如果想传参数怎么办？</p><p>不要急，首先在JSInvokeClass.back方法处，申明一个代参数的方法就行了：</p><p><pre><font class="Comments">/**网页Javascript调用接口**/</font></p><p><font class="keyword">class </font>JSInvokeClass {</p><p>    <font class="keyword">public </font><font class="keyword">void </font>back() {</p><p>        activity.finish();</p><p>    }</p><p>   <font class="keyword">public </font><font class="keyword">void </font>showHtml(String html)</p><p>  {</p><p>    </font>Log.e(<font class="Fields">"Html:"</font>+html);</p><p>  }</p><p>}</p><p></pre></p><p>然后通过 javascript调用就行了，</p><p><pre>mWebView.loadUrl("javascript:window.HTMLOUT.showHtml(document.documentElement.innerHTML);");</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

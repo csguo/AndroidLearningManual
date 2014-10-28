@@ -1,0 +1,58 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 读写SD卡的权限设置_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li class="navcurrentLink"><A href="index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="ContentProvider" href="index_170.html">ContentProvider</A></h2>
+
+  <h2><A title="Preferences" href="index_171.html">Preferences</A></h2>
+
+  <h2><A title="SQLite" href="index_172.html">SQLite</A></h2>
+
+  <h2><A title="SD卡" href="index_173.html">SD卡</A></h2>
+<UL><li ><A title=Android SQLite的数据库文件存储在SD卡中（一） href="show_301_173.html">Android SQLite的数据库文件存储在SD卡中（一）</A> </li><li ><A title=Android SQLite的数据库文件存储在SD卡中（二） href="show_302_173.html">Android SQLite的数据库文件存储在SD卡中（二）</A> </li><li ><A title=Android 如何获取SDCard 内存（一） href="show_303_173.html">Android 如何获取SDCard 内存（一）</A> </li><li ><A title=Android 如何获取SDCard 内存（二） href="show_304_173.html">Android 如何获取SDCard 内存（二）</A> </li><li ><A title=Android SDCard的容量大小 href="show_305_173.html">Android SDCard的容量大小</A> </li><li ><A title=Android 查看SDCard还有多少存储空间 href="show_306_173.html">Android 查看SDCard还有多少存储空间</A> </li><li ><A title=Android获取外部和内部存储空间总大小和可用大小 href="show_307_173.html">Android获取外部和内部存储空间总大小和可用大小</A> </li><li class="currentLink"><A title=Android 读写SD卡的权限设置 href="show_308_173.html">Android 读写SD卡的权限设置</A> </li><li ><A title=Android 检测目录是否存在，不存在则创建 href="show_309_173.html">Android 检测目录是否存在，不存在则创建</A> </li><li ><A title=Android 在SD卡上保存图片 href="show_310_173.html">Android 在SD卡上保存图片</A> </li><li ><A title=Android Http下载文件到手机内存与SDCard href="show_311_173.html">Android Http下载文件到手机内存与SDCard</A> </li><li ><A title=Android 程序私有文件（TXT）操作类 href="show_312_173.html">Android 程序私有文件（TXT）操作类</A> </li><li ><A title=Android SD卡里的文件夹功能 href="show_313_173.html">Android SD卡里的文件夹功能</A> </li><li ><A title=Android从SD卡导入数据库.db文件至APK href="show_314_173.html">Android从SD卡导入数据库.db文件至APK</A> </li></UL>
+  <h2><A title="数据库" href="index_174.html">数据库</A></h2>
+
+  <h2><A title="URI" href="index_175.html">URI</A></h2>
+
+  <h2><A title="MediaStore" href="index_176.html">MediaStore</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 读写SD卡的权限设置</H2>
+<div style="line-height:20px; font-size:14px;"><p>在Android中，要模拟SD卡，要首先使用adb的mksdcard命令来建立SD卡的镜像，如何建立，大家上网查一下吧，应该很容易找到，这里不说这个问题。</p><p>但是在应用程序执行起来以后，我们可以看到sdcard的执行权限很有问题.懂Linux的人都知道，这样的权限是无法在SD开中写入内容的，也就无法建立目录.Android中对sd卡的读写权限问题。</p><p>但是，我们在adb shell命令中，依然可以在sdcard中建立目录，写入文件.这倒是也是见鬼的事情。但是，如果你想把权限更改成777，命令行并不报错，再使用ls -l查看一下，权限依然没有改变过来.我们急中生智，使用su命令将自己变成root用户，在使用chmod 777 sdcard来改变权限，发现结果依然无效。</p><p>网上多有介绍，在Android的manifest.xml文档中加入下面的声名：</p><p><pre>&lt;uses-permission android:name=<font class="Fields">"android.permission.WRITE_EXTERNAL_STORAGE"</font>/&gt;</p><p>&lt;uses-permission android:name=<font class="Fields">"android.permission.MOUNT_UNMOUNT_FILESYSTEMS"</font>/&gt;</p><p></pre></p><p>试验之后，大多数人发现依然无效.没有人再把问题叙述得更详细些，不知道是什么样的心态?我的一个弟兄终于找到了问题所在.</p><p><pre>&lt;?xml version=<font class="Fields">"1.0"</font> encoding=</font><font class="Fields">"utf-8"</font>?&gt;</p><p>&lt;manifest xmlns:android=<font class="Fields">"http:<font class="Comments">//schemas.android.com/apk/res/android</font></p><p>    </font>package=<font class="Fields">"byd.eagle</p><p>    </font>android:versionCode=<font class="Fields">"1</p><p>    </font>android:versionName=<font class="Fields">"1.0"</font> &gt;</p><p>    </font>&lt;uses-permission android:name=<font class="Fields">"android.permission.WRITE_EXTERNAL_STORAGE"</font> /&gt;</p><p>    </font>&lt;uses-permission android:name=<font class="Fields">"android.permission.MOUNT_UNMOUNT_FILESYSTEMS"</font> /&gt;</p><p>    &lt;application</p><p>        </font>android:icon=<font class="Fields">"@drawable/icon</p><p>        </font>android:label=<font class="Fields">"@string/app_name"</font> &gt;</p><p>        &lt;activity</p><p>            </font>android:name=<font class="Fields">".EagleBackup</p><p>            </font>android:label=<font class="Fields">"@string/app_name"</font> &gt;</p><p>            </font>&lt;uses-permission android:name=<font class="Fields">"android.permission.WRITE_EXTERNAL_STORAGE"</font> /&gt;</p><p>            &lt;intent-filter&gt;</p><p>                </font>&lt;action android:name=<font class="Fields">"android.intent.action.MAIN"</font> /&gt;</p><p>                </font>&lt;category android:name=<font class="Fields">"android.intent.category.LAUNCHER"</font> /&gt;</p><p>            &lt;/intent-filter&gt;</p><p>        &lt;/activity&gt;</p><p>    &lt;/application&gt;</p><p>    </font>&lt;uses-sdk android:minSdkVersion=<font class="Fields">"8"</font> /&gt;</p><p>&lt;/manifest&gt;</p><p></pre></p><p>注意一下uses-permission在manifest.xml中的位置，这是解决问题的关键。</p><p>那么我们再来写个试验程序：</p><p><pre><font class="keyword">public </font><font class="keyword">class </font>TestMakePath </font><font class="keyword">extends </font>Activity {</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onCreate(Bundle savedInstanceState) {</p><p>		<font class="keyword">super</font>.onCreate(savedInstanceState);</p><p>		setContentView(R.layout.main);</p><p>		<font class="keyword">try </font>{</p><p>			</font>Log.v(<font class="Fields">"EagleTag"</font>, </font><font class="Fields">".......hahhha"</font>);</p><p>			</font>Log.v(<font class="Fields">"EagleTag"</font>, Environment.getExternalStorageState());</p><p>			</font>File tPath = <font class="keyword">new </font>File(<font class="Fields">"/mnt/sdcard/tmp1"</font>);</p><p>			<font class="keyword">if </font>(tPath.canRead())</p><p>				</font>Log.v(<font class="Fields">"EagleTag"</font>, </font><font class="Fields">"very bad"</font>);</p><p>			<font class="keyword">if </font>(tPath.canWrite())</p><p>				</font>Log.v(<font class="Fields">"EagleTag"</font>, </font><font class="Fields">"very good"</font>);</p><p>			</font>File tPathSon = <font class="keyword">new </font>File(<font class="Fields">"/mnt/sdcard/tmp1/good"</font>);</p><p></p><p>			tPathSon.mkdirs();</p><p>		</font>} <font class="keyword">catch </font>(Exception e) {</p><p>			</font>Log.v(<font class="Fields">"EagleTag"</font>, </font><font class="Fields">"file　create　error"</font>);</p><p>		}</p><p>	}</p><p>}</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

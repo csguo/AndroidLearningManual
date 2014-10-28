@@ -1,0 +1,60 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 中的telephony（二）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li class="navcurrentLink"><A href="index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Launcher" href="index_207.html">Launcher</A></h2>
+
+  <h2><A title="电话系统RIL" href="index_208.html">电话系统RIL</A></h2>
+<UL><li ><A title=Android RIL结构分析与移植一 href="show_101_208.html">Android RIL结构分析与移植一</A> </li><li ><A title=Android RIL结构分析与移植二 href="show_102_208.html">Android RIL结构分析与移植二</A> </li><li ><A title=Android RIL结构分析与移植三 href="show_103_208.html">Android RIL结构分析与移植三</A> </li><li ><A title=Android RIL 调试（一） href="show_104_208.html">Android RIL 调试（一）</A> </li><li ><A title=Android RIL 调试（二） href="show_105_208.html">Android RIL 调试（二）</A> </li><li ><A title=Android 中的telephony（一） href="show_106_208.html">Android 中的telephony（一）</A> </li><li class="currentLink"><A title=Android 中的telephony（二） href="show_107_208.html">Android 中的telephony（二）</A> </li><li ><A title=Android 中的telephony（三） href="show_108_208.html">Android 中的telephony（三）</A> </li></UL>
+  <h2><A title="进程间通信" href="index_209.html">进程间通信</A></h2>
+
+  <h2><A title="内部sensor系统" href="index_210.html">内部sensor系统</A></h2>
+
+  <h2><A title="内部surface系统" href="index_211.html">内部surface系统</A></h2>
+
+  <h2><A title="启动流程" href="index_212.html">启动流程</A></h2>
+
+  <h2><A title="源码编译" href="index_213.html">源码编译</A></h2>
+
+  <h2><A title="状态栏" href="index_214.html">状态栏</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 中的telephony（二）</H2>
+<div style="line-height:20px; font-size:14px;"><p>函数readerLoop运行在一个单独的读线程里面，负责从modem中读取数据。读到的数据可分为三种类型：网络端传入的事件；modem对当前AT command的部分响应；modem对当前AT command的全部响应。对第三种类型的数据(AT command的全部响应），读线程唤醒(pthread_cond_signal）睡眠状态的主线程。</p><p style="color:#3333FF;">第二部分 Java代码</p><p>Android中，telephony相关的java代码主要在下列目录中：</p><p>1. frameworks/base/telephony/java/android/telephony</p><p>2. frameworks/base/telephony/java/com/android/internal/telephony</p><p>3. frameworks/base/services/java/com/android/server/TelephonyRegistry.java</p><p>4. packages/apps/Phone</p><p>其中，目录1中的代码提供Android telephony的公开接口，任何具有权限的第三方应用都可使用，如接口类TelephonyManager。</p><p>目录2/3中的代码提供一系列内部接口，目前第三方应用还不能使用。当前似乎只有packages/apps/Phone能够使用</p><p>目录4是一个特殊应用，或者理解为一个平台内部进程。其他应用通过intent方式调用这个进程的服务。</p><p>TelephonyManager主要使用两个服务来访问telephony功能：</p><p>1.ITelephony，提供与telephony 进行操作，交互的接口，在packages/apps/Phone中由PhoneInterfaceManager.java实现。</p><p>2.ITelephonyRegistry,提供登记telephony事件的接口。由frameworks/base/services/java/com/android/server/TelephonyRegistry.java实现。</p><p>interface CommandsInterface 描述了对电话的所有操作接口，如命令， 查询状态，以及电话事件监听等</p><p>class BaseCommands是CommandsInterface的直接派生类，实现了电话事件的处理(发送message给对应的handler)。</p><p>而class RIL又派生自BaseCommands。RIL负责实际实现CommandsInterface中的接口方法。RIL通过Socket和rild守护进程进行通讯。对于每一个命令接口方法，如acceptCall，或者状态查询，将它转换成对应的RIL_REQUEST_XXX，发送给rild。线程RILReceiver监听socket,当有数据上报时，读取该数据并处理。读取的数据有两种，</p><p>1. 电话事件，RIL_UNSOL_xxx, RIL读取相应数据后，发送message给对应的handler (详见函数processUnsolicited)。</p><p>2. 命令的异步响应。(详见函数processSolicited)。</p><p>interface Phone描述了对电话的所有操作接口。 </p><p>PhoneBase直接从Phone派生而来。而另外两个类，CDMAPhone和GSMPhone，又从PhoneBase派生而来，分别代表对CDMA和GSM的操作。</p><p>PhoneProxy也从Phone直接派生而来。当当前不需要区分具体是CDMA Phone还是GSM Phone时，可使用PhoneProxy。</p><p>抽象类Call代表一个call，有两个派生类CdmaCall和GsmCall。</p><p>interface PhoneNotifier定义电话事件的通知方法DefaultPhoneNotifier从PhoneNotifier派生而来。在其方法实现中，通过调用service ITelephonyRegistry来发布电话事件。</p><p>service ITelephonyRegistey由frameworks/base/services/java/com/android/server/TelephonyRegistry.java实现。这个类通过广播intent，从而触发对应的broadcast receiver。</p><p>在PhoneApp创建时，</p><p>sPhoneNotifier = new DefaultPhoneNotifier();</p><p>...</p><p>sCommandsInterface = new RIL(context, networkMode, cdmaSubscription);</p><p>然后根据当前phone是cdma还是gsm,创建对应的phone，如</p><p><pre>sProxyPhone = new PhoneProxy(new GSMPhone(context,sCommandsInterface, sPhoneNotifier));</p><p></pre></p><p>下面我们来研究一个电话打出去的流程。</p><p><pre>TwelveKeyDialer.java, onKeyUp()</p><p>TwelveKeyDialer.java, placeCall()</p><p>OutgoingCallBroadcaster.java, onCreate()</p><p>sendOrderedBroadcast(broadcastIntent, PERMISSION,</p><p>new OutgoingCallReceiver(), null, Activity.RESULT_OK, number, null);</p><p>OutgoingCallBroadcaster.java, OutgoingCallReceiver</p><p>doReceive -&gt; context.startActivity(newIntent);</p><p>InCallScreen.java, onCreate/onNewIntent</p><p>InCallScreen.java, placeCall</p><p>PhoneUtils.java, placeCall</p><p>GSMPhone.java, dial</p><p>GsmCallTracker.java, dial</p><p>RIL.java, dial</p><p>RILRequest rr = RILRequest.obtain(RIL_REQUEST_DIAL, result);</p><p>...</p><p>send(rr);</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

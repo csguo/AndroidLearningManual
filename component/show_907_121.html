@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>通过AIDL调用Service_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li class="navcurrentLink"><A href="index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Activity" href="index_112.html">Activity</A></h2>
+
+  <h2><A title="Intent" href="index_113.html">Intent</A></h2>
+
+  <h2><A title="Service" href="index_114.html">Service</A></h2>
+
+  <h2><A title="Content Provider" href="index_115.html">Content Provider</A></h2>
+
+  <h2><A title="BroadcastReceiver" href="index_116.html">BroadcastReceiver</A></h2>
+
+  <h2><A title="AsyncTask" href="index_117.html">AsyncTask</A></h2>
+
+  <h2><A title="Handler" href="index_118.html">Handler</A></h2>
+
+  <h2><A title="Thread" href="index_119.html">Thread</A></h2>
+
+  <h2><A title="Permission" href="index_120.html">Permission</A></h2>
+
+  <h2><A title="AIDL" href="index_121.html">AIDL</A></h2>
+<UL><li ><A title=什么是AIDL服务 href="show_901_121.html">什么是AIDL服务</A> </li><li ><A title=Android 初谈AIDL服务 href="show_902_121.html">Android 初谈AIDL服务</A> </li><li ><A title=Android 使用【AIDL】调用外部服务 href="show_903_121.html">Android 使用【AIDL】调用外部服务</A> </li><li ><A title=Android开发中实现跨进程通讯的AIDL接口 href="show_904_121.html">Android开发中实现跨进程通讯的AIDL接口</A> </li><li ><A title=Android 跨进程通信（一） href="show_905_121.html">Android 跨进程通信（一）</A> </li><li ><A title=Android 跨进程通信（二） href="show_906_121.html">Android 跨进程通信（二）</A> </li><li class="currentLink"><A title=通过AIDL调用Service href="show_907_121.html">通过AIDL调用Service</A> </li></UL>
+  <h2><A title="Json" href="index_122.html">Json</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>通过AIDL调用Service</H2>
+<div style="line-height:20px; font-size:14px;"><p>在网上找的一些关于service的例子都比较简单，都是通过startService("action")启动service，然后通过stopService("service")停止service。只能启动和停止service没有发挥service的功能。下面我通过介绍关于AIDL启动service来控制音乐播放的例子来说明通过前台控制service的使用。</p><p>1.在工程的包中一个后缀为aidl的文件：</p><p><pre>IMusicControlService.aidl</p><p></pre></p><p>package com.androidmanual.androidstud2.service;--------包名一定要和当前工程的包名一样哦！</p><p><pre><font class="keyword">interface </font>IMusicControlService</p><p>{</p><p>	voidplayMusic();--------&gt;播放音乐</p><p>	voidstopMusic();-------&gt;停止播放音乐</p><p>}</p><p></pre></p><p>点击保存后，在gen/上述包名的目录下就创建了一个IMusicControlService.java文件了</p><p>2.在res/layout目录下创建布局文件：</p><p>startserviceactivity.xml</p><p><pre>&lt;?xml version=<font class="Fields">"1.0"</font> encoding=</font><font class="Fields">"utf-8"</font>?&gt;</p><p>&lt;LinearLayout xmlns:android=<font class="Fields">"http:<font class="Comments">//schemas.android.com/apk/res/android</font></p><p>    </font>android:layout_width=<font class="Fields">"fill_parent</p><p>    </font>android:layout_height=<font class="Fields">"fill_parent</p><p>    </font>android:orientation=<font class="Fields">"vertical"</font> &gt;</p><p>    &lt;TextView</p><p>        </font>android:id=<font class="Fields">"@+id/tv_main</p><p>        </font>android:layout_width=<font class="Fields">"fill_parent</p><p>        </font>android:layout_height=<font class="Fields">"wrap_content</p><p>        </font>android:text=<font class="Fields">"@string/hello</p><p>        </font>android:textSize=<font class="Fields">"18px"</font> /&gt;</p><p>    &lt;Button</p><p>        </font>android:id=<font class="Fields">"@+id/btn_play</p><p>        </font>android:layout_width=<font class="Fields">"wrap_content</p><p>        </font>android:layout_height=<font class="Fields">"wrap_content</p><p>        </font>android:text=<font class="Fields">"播放音乐"</font> /&gt;</p><p>    &lt;Button</p><p>        </font>android:id=<font class="Fields">"@+id/btn_stop</p><p>        </font>android:layout_width=<font class="Fields">"wrap_content</p><p>        </font>android:layout_height=<font class="Fields">"wrap_content</p><p>        </font>android:text=<font class="Fields">"停止播放"</font> /&gt;</p><p>&lt;/LinearLayout&gt;</p><p></pre></p><p>3.创建一个service类，在该类的内部实例化IMusicControlService中的playMusic()和stopMusic()接口</p><p><pre><font class="keyword">private </font><font class="keyword">final </font>IMusicControlService.Stub binder = </font><font class="keyword">new </font>IMusicControlService.Stub() {</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>playMusic() </font><font class="keyword">throws </font>RemoteException {</p><p>		</font>player = MediaPlayer.create(ControlMusicService.<font class="keyword">this</font>,</p><p>				R.raw.shanghaitan);</p><p>		player.start();</p><p>	}</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>stopMusic() </font><font class="keyword">throws </font>RemoteException {</p><p>		<font class="keyword">if </font>(player.isPlaying()) {</p><p>			player.stop();</p><p>		}</p><p>	}</p><p>};</p><p></pre></p><p>在该类的onBind()方法中返回上面实例的binder，即returnbinder;</p><p>4.创建StartServiceActivity类继承Activity类，在该类中通过ServiceConnection和后台的service连接</p><p><pre><font class="keyword">private </font><font class="keyword">final </font>ServiceConnection serviceConnection = </font><font class="keyword">new </font>ServiceConnection() {</p><p>	<font class="Comments">// 第一次连接service时会调用这个方法</font></p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onServiceConnected(ComponentName name, IBinder service) {</p><p>		iMusicControlService = IMusicControlService.Stub</p><p>				.asInterface(service);</p><p>	}</p><p>	<font class="Comments">// service断开的时候会调用这个方法</font></p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onServiceDisconnected(ComponentName name) {</p><p>		<font class="Comments">// TODO Auto-generated method stub</font></p><p>		</font>System.<font class="Fields">out</font>.println(</font><font class="Fields">"service unconntection"</font>);</p><p>		</font>iMusicControlService = <font class="keyword">null</font>;</p><p>	}</p><p>};</p><p></pre></p><p>在oncreate方法中绑定service：</p><p><pre>Intent intent= <font class="keyword">new </font>Intent();</p><p>intent.setClass(StartServiceActivity.this,ControlMusicService.class);</p><p>bindService(intent,serviceConnection,Context.BIND_AUTO_CREATE);</p><p></pre></p><p>在点击playmusic按钮被点击时，执行如下代码：</p><p><pre>iMusicControlService.playMusic();</p><p></pre></p><p>在点击stopmusic按钮被点击时，执行如下代码：</p><p><pre>iMusicControlService.stopMusic();</p><p>unbindService(serviceConnection);</p><p></pre></p><p>好了这样就通过在Activity中通过aidl控制service了。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

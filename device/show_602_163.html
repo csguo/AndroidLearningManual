@@ -1,0 +1,70 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 实现GPS定位（二）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li class="navcurrentLink"><A href="index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="设备信息" href="index_157.html">设备信息</A></h2>
+
+  <h2><A title="摄像头" href="index_158.html">摄像头</A></h2>
+
+  <h2><A title="通讯录" href="index_159.html">通讯录</A></h2>
+
+  <h2><A title="电话" href="index_160.html">电话</A></h2>
+
+  <h2><A title="短信" href="index_161.html">短信</A></h2>
+
+  <h2><A title="传感器" href="index_162.html">传感器</A></h2>
+
+  <h2><A title="定位" href="index_163.html">定位</A></h2>
+<UL><li ><A title=Android 实现GPS定位（一） href="show_601_163.html">Android 实现GPS定位（一）</A> </li><li class="currentLink"><A title=Android 实现GPS定位（二） href="show_602_163.html">Android 实现GPS定位（二）</A> </li><li ><A title=Android GPS定位 href="show_603_163.html">Android GPS定位</A> </li><li ><A title=Android wifi实现定位（一） href="show_604_163.html">Android wifi实现定位（一）</A> </li><li ><A title=Android wifi实现定位（二） href="show_605_163.html">Android wifi实现定位（二）</A> </li><li ><A title=Android 基站定位源代码 href="show_606_163.html">Android 基站定位源代码</A> </li><li ><A title=Android GPS，WIFI，基站定位集合 href="show_607_163.html">Android GPS，WIFI，基站定位集合</A> </li><li ><A title=Android 使用地图 href="show_608_163.html">Android 使用地图</A> </li><li ><A title=Android 显示查询结果（一） href="show_609_163.html">Android 显示查询结果（一）</A> </li><li ><A title=Android 显示查询结果（二） href="show_610_163.html">Android 显示查询结果（二）</A> </li><li ><A title=Google地图经纬度转换成具体位置 href="show_611_163.html">Google地图经纬度转换成具体位置</A> </li></UL>
+  <h2><A title="视频系统" href="index_164.html">视频系统</A></h2>
+
+  <h2><A title="音频系统" href="index_165.html">音频系统</A></h2>
+
+  <h2><A title="铃声" href="index_166.html">铃声</A></h2>
+
+  <h2><A title="音量" href="index_167.html">音量</A></h2>
+
+  <h2><A title="录音" href="index_168.html">录音</A></h2>
+
+  <h2><A title="输入法" href="index_169.html">输入法</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 实现GPS定位（二）</H2>
+<div style="line-height:20px; font-size:14px;"><p>上面的内容的功能看起来非常明显。这个特殊文件定义了一个相关的布局，这就意味着通过一个元素到另一个元素的关系或是它们父元素的关系来描述。对于视图来说，有一些用于布局的方法，但是在本文中只关注于上述的xml文件。</p><p>RealtiveLayout中包含了一个填充整个屏幕的文本框（也就是我们的LocateMe activity）。这个LocateMe activity在默认情况下是全屏的，因此，文本框将继承这个属性，并且文本框将在屏幕的左上角显示。另外，必须为这个XML文件设置一个引用数，以便Android可以在源代码中找到它。在默认情况下，这些引用数被保存在R.Java中，代码如下：</p><p><pre><font class="keyword">public </font><font class="keyword">final </font><font class="keyword">class </font>R {</p><p>	<font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">class </font>layout {</p><p>		<font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>main = 0x7f030001;</p><p>	}</p><p>}</p><p></pre></p><p>Android实例、这个演示应用程序将演示了用户的当前的经度和纬度。onCreate构造方法将和上面的例子基本相同，除了在其中加入了键盘处理，现在让我们看一下onKeyDown的代码。</p><p><pre><font class="keyword">public </font><font class="keyword">boolean </font>onKeyDown(</font><font class="keyword">int </font>keyCode, KeyEvent event) {</p><p>	<font class="keyword">if </font>(keyCode != KeyEvent.KEYCODE_DPAD_CENTER || m_bLoading) {</p><p>		<font class="keyword">return </font><font class="keyword">true</font>;</p><p>	}</p><p>	</font>m_bLoading = <font class="keyword">true</font>;</p><p>	getLocation();</p><p>	<font class="keyword">return </font><font class="keyword">true</font>;</p><p>}</p><p></pre></p><p>下面让我们来解释一下这段代码，首先，这段代码检查了当前被按下的键，但还没有开始处理。而是在getLocation方法中处理这一切的。然后，将装载flag标志以及调用getLocation方法，下面是getLocation方法的代码。</p><p><pre><font class="keyword">private </font><font class="keyword">void </font>getLocation() {</p><p>	Location loc;</p><p>	LocationManager locMan;</p><p>	LocationProvider locPro;</p><p>	List&lt;LocationProvider&gt; proList;</p><p>	setContentView(R.layout.laoding);</p><p>	locMan = (LocationManager) getSystemService(LOCATION_SERVICE);</p><p>	proList = locMan.getProviders();</p><p>	locPro = proList.get(0);</p><p>	loc = locMan.getCurrentLocation(locPro.getName());</p><p>	</font>Lat = (<font class="keyword">float</font>) loc.getLatitude();</p><p>	</font>Lon = (<font class="keyword">float</font>) loc.getLongitude();</p><p>	CreateView();</p><p>	setContentView(customView);</p><p>}</p><p></pre></p><p>目前我们可以使用位置管理器和位置提供者进行getCurrentLocation的调用。这个方法返回本机的当前位置的一个快照，这个快照将以Location对象形式提供。在手持设备中，我们可以获得当前位置的经度和纬度。现在，使用这个虚拟的手持设备，我们可以获得这个例子程序的最终结果： 建立了显示一个定制的视图。</p><p>使用定制视图在最简单的窗体中，一个Android中的视图仅仅需要重载一个onDraw方法。定制视图可以是复杂的3D实现或是非常简单的文本形式。下面的CreateView方法列出了上面看到的内容。</p><p><pre><font class="keyword">public </font><font class="keyword">void </font>CreateView() {</p><p>	</font>customView = <font class="keyword">new </font>CustomView(</font><font class="keyword">this</font>);</p><p>}</p><p></pre></p><p>这个方法简单地调用了CustomView对象的构造方法。CustomView类的定义如下：</p><p><pre><font class="keyword">public </font><font class="keyword">class </font>CustomView </font><font class="keyword">extends </font>View {</p><p>	LocateMe overlord;</p><p>	<font class="keyword">public </font>CustomView(LocateMe pCtx) {</p><p>		<font class="keyword">super</font>(pCtx);</p><p>		overlord = pCtx;</p><p>	}</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onDraw(Canvas cvs) {</p><p>		</font>Pa<font class="keyword">int </font>p = </font><font class="keyword">new </font>Paint();</p><p>		</font>String sLat = <font class="Fields">"Latitude: "</font> + overlord.getLat();</p><p>		</font>String sLon = <font class="Fields">"Longitude: "</font> + overlord.getLon();</p><p>		cvs.drawText(sLat, 32, 32, p);</p><p>		cvs.drawText(sLon, 32, 44, p);</p><p>	}</p><p>}</p><p></pre></p><p>这个定制的Android视图获得了经度和违度的测试数据，并将这些数据显示在屏幕上。这要求一个指向LocateMe的指针，Activity类是整个应用程序的核心。它的两个方法是构造方法和onDraw方法。这个构造方法调用了超类的构造方法以及引起了Activity指针的中断。onDraw方法将建立一个新的Paint对象（这个对象封装了颜色、透明度以及其他的主题信息），这个对象将会访问颜色主题。在本程序中，安装了用于显示的字符串，并使用画布指针将它们画到屏幕上。这个和我们了解的J2ME游戏的画布看起来非常类似。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

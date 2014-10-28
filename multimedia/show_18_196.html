@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>基于stagefright 的 OMXCodec与OMX事件处理流程_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li class="navcurrentLink"><A href="index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Android多媒体功能" href="index_196.html">Android多媒体功能</A></h2>
+<UL><li ><A title=Android Media架构 href="show_1_196.html">Android Media架构</A> </li><li ><A title=Android 媒体库（一） href="show_2_196.html">Android 媒体库（一）</A> </li><li ><A title=Android 媒体库（二） href="show_3_196.html">Android 媒体库（二）</A> </li><li ><A title=Android 媒体库（三） href="show_4_196.html">Android 媒体库（三）</A> </li><li ><A title=Android 媒体库（四） href="show_5_196.html">Android 媒体库（四）</A> </li><li ><A title=Android 媒体库（五） href="show_6_196.html">Android 媒体库（五）</A> </li><li ><A title=Android 媒体库（六） href="show_7_196.html">Android 媒体库（六）</A> </li><li ><A title=Android 媒体库（七） href="show_8_196.html">Android 媒体库（七）</A> </li><li ><A title=Android 媒体库（八） href="show_9_196.html">Android 媒体库（八）</A> </li><li ><A title=Android OpenMax多媒体引擎（一） href="show_10_196.html">Android OpenMax多媒体引擎（一）</A> </li><li ><A title=Android OpenMax多媒体引擎（二） href="show_11_196.html">Android OpenMax多媒体引擎（二）</A> </li><li ><A title=Android OpenMax多媒体引擎（三） href="show_12_196.html">Android OpenMax多媒体引擎（三）</A> </li><li ><A title=Android 多媒体框架源码全面解析 href="show_13_196.html">Android 多媒体框架源码全面解析</A> </li><li ><A title=Android多媒体模块代码分析 href="show_14_196.html">Android多媒体模块代码分析</A> </li><li ><A title=Android多媒体功能之AudioRecorder音频录制实现，Rexsee源码分享 href="show_15_196.html">Android多媒体功能之AudioRecorder音频录制实现，Rexsee源码分享</A> </li><li ><A title=Android2.X新的多媒体框架Stagefright讨论 href="show_16_196.html">Android2.X新的多媒体框架Stagefright讨论</A> </li><li ><A title=Android Framework下StageFright框架流程解读 href="show_17_196.html">Android Framework下StageFright框架流程解读</A> </li><li class="currentLink"><A title=基于stagefright 的 OMXCodec与OMX事件处理流程 href="show_18_196.html">基于stagefright 的 OMXCodec与OMX事件处理流程</A> </li><li ><A title=Android如何获取多媒体文件信息 href="show_19_196.html">Android如何获取多媒体文件信息</A> </li><li ><A title=通过路径获取媒体文件信息 href="show_20_196.html">通过路径获取媒体文件信息</A> </li></UL>
+  <h2><A title="Android多媒体之2D" href="index_197.html">Android多媒体之2D</A></h2>
+
+  <h2><A title="Android多媒体之3D" href="index_198.html">Android多媒体之3D</A></h2>
+
+  <h2><A title="Android多媒体之Bitmap" href="index_199.html">Android多媒体之Bitmap</A></h2>
+
+  <h2><A title="Android多媒体之Canvas" href="index_200.html">Android多媒体之Canvas</A></h2>
+
+  <h2><A title="Android多媒体之Drawable" href="index_201.html">Android多媒体之Drawable</A></h2>
+
+  <h2><A title="Android多媒体之gif" href="index_202.html">Android多媒体之gif</A></h2>
+
+  <h2><A title="Android多媒体之MediaStore" href="index_203.html">Android多媒体之MediaStore</A></h2>
+
+  <h2><A title="Android多媒体之动画" href="index_204.html">Android多媒体之动画</A></h2>
+
+  <h2><A title="Android多媒体之分辨率" href="index_205.html">Android多媒体之分辨率</A></h2>
+
+  <h2><A title="Android多媒体之分屏幕" href="index_206.html">Android多媒体之分屏幕</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>基于stagefright 的 OMXCodec与OMX事件处理流程</H2>
+<div style="line-height:20px; font-size:14px;"><p>学习了解Mutilmedia Framework有一段时间了，今天闲下来稍微整理整理。OMXCodec.cpp类属于libstagefright，在整个MM PF相当OMX的适配层，供awesomeplayer调用，而OMX.cpp，OMXNoteInstance.cpp等相当于OpenMax中的OpenMax IL,首先讲下OMXCodec与OMX callback事件的处理流程。先看整个流程的时序图吧：</p><p><img src="../img/media_media/18_media.jpg"></p><p>从时序图看，首先我们要建立个OMXCodecObserver,该类是OMXCodec的内部类，在create函数中被创建，并把对应的OMXCodec加入都自己的观察范围内，具体代码如下：</p><p><pre>framework/base/media/libstagefright/OMXCodec.cpp</p><p>sp&lt;MediaSource&gt; OMXCodec::Create(</p><p>	const sp&lt;IOMX&gt; &omx,</p><p>	const sp&lt;MetaData&gt; &meta, bool createEncoder,</p><p>	const sp&lt;MediaSource&gt; &source,</p><p>	const char *matchComponentName,</p><p>	uint32_t flags) {</p><p>	.....</p><p>	 </font>sp&lt;OMXCodecObserver&gt; observer = <font class="keyword">new </font>OMXCodecObserver;</p><p>	...............</p><p>	observer-&gt;setCodec(codec);</p><p>	...................</p><p>}</p><p></pre></p><p>其次初始化它的callback事件和事件的派发处理函数</p><p>OMX主要的callback事件有哪些呢？在framework/base/media/libstagefright/omx/OMXNodeInstance.cpp中的kCallbacks函数有如下定义：</p><p><pre><font class="Comments">// static</font></p><p>OMX_CALLBACKTYPE OMXNodeInstance::kCallbacks = {</p><p>    &OnEvent, &OnEmptyBufferDone, &OnFillBufferDone</p><p>};</p><p></pre></p><p>callback在哪定义呢？看framework/base/media/libstagefright/omx/OMX.cpp中的</p><p><pre>status_t OMX::allocateNode(</p><p>.......................       </p><p>    </font>OMXNodeInstance *instance = <font class="keyword">new </font>OMXNodeInstance(</font><font class="keyword">this</font>, observer);</p><p>    OMX_COMPONENTTYPE *handle;</p><p>    OMX_ERRORTYPE err = mMaster-&gt;makeComponentInstance(</p><p>            name, &OMXNodeInstance::kCallbacks,</p><p>            instance, &handle);</p><p>..............</p><p>mDispatchers.add(*node, <font class="keyword">new </font>CallbackDispatcher(instance));</p><p>...................</p><p>}</p><p></pre></p><p>即每个component对应一组callback事件。</p><p>这些callback由哪些函数返回呢？具体的定义在framework/base/media/libstagefright/openmax/OMX_Core.h</p><p><pre>callback EventHandler()</p><p>define OMX_SendCommand(                                  </p><p>	 hComponent,</p><p>	 Cmd,</p><p>	 nParam,</p><p>	 pCmdData)</p><p> ((OMX_COMPONENTTYPE*)hComponent)-&gt;SendCommand(</p><p>	 hComponent,</p><p>	 Cmd,</p><p>	 nParam,</p><p>	 pCmdData)</p><p>EmptyBufferDone call back.</p><p>define OMX_EmptyThisBuffer(                              </p><p>        hComponent,</p><p>        pBuffer)</p><p>    ((OMX_COMPONENTTYPE*)hComponent)-&gt;EmptyThisBuffer(</p><p>        hComponent,</p><p>        pBuffer) /* Macro End */</p><p>FillBufferDone call back</p><p>define OMX_FillThisBuffer(                               </p><p>        hComponent,</p><p>        pBuffer)</p><p>    ((OMX_COMPONENTTYPE*)hComponent)-&gt;FillThisBuffer(</p><p>        hComponent,</p><p>        pBuffer) /* Macro End */</p><p></pre></p><p>有了callback事件，如何dispatch呢？其实我们在allocateNote函数已经定义好了我们的dispatch函数</p><p><pre>mDispatchers.add(*node, <font class="keyword">new </font>CallbackDispatcher(instance));</p><p></pre></p><p>有了oberser, callback event , callbackdispatcher，那么一个callback event如何从OMX传到OMXCodec呢？下面我们以emptybuffer流程来具体看下，时序图如下：</p><p><img src="../img/media_media/18_media2.jpg"></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

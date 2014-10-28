@@ -1,0 +1,58 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 带ListView的音乐播放器_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li class="navcurrentLink"><A href="index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="ContentProvider" href="index_170.html">ContentProvider</A></h2>
+
+  <h2><A title="Preferences" href="index_171.html">Preferences</A></h2>
+
+  <h2><A title="SQLite" href="index_172.html">SQLite</A></h2>
+
+  <h2><A title="SD卡" href="index_173.html">SD卡</A></h2>
+
+  <h2><A title="数据库" href="index_174.html">数据库</A></h2>
+
+  <h2><A title="URI" href="index_175.html">URI</A></h2>
+
+  <h2><A title="MediaStore" href="index_176.html">MediaStore</A></h2>
+<UL><li ><A title=Android教程之MediaStore href="show_601_176.html">Android教程之MediaStore</A> </li><li ><A title=Android平台中应该如何获取音乐文件的信息 href="show_602_176.html">Android平台中应该如何获取音乐文件的信息</A> </li><li ><A title=MusicPlayer中，根据uri或者id从mediastore中得到全路径文件名 href="show_603_176.html">MusicPlayer中，根据uri或者id从mediastore中得到全路径文件名</A> </li><li ><A title=Android中使用Thumbnails批量加载sdcard中的缩略图片 href="show_604_176.html">Android中使用Thumbnails批量加载sdcard中的缩略图片</A> </li><li ><A title=一些获得缩略图的封装 href="show_605_176.html">一些获得缩略图的封装</A> </li><li class="currentLink"><A title=Android 带ListView的音乐播放器 href="show_606_176.html">Android 带ListView的音乐播放器</A> </li></UL>
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 带ListView的音乐播放器</H2>
+<div style="line-height:20px; font-size:14px;"><p>带ListView的音乐播放器</p><p>[功能]</p><p>今天说的是：通过MediaStore 来得到目标的Uri 在把之传入MediaPlay 然后再播放</p><p>所以会有2个重点：</p><p><pre>* 列出emulator 的所有音乐文件　　</p><p>* 音乐播放器</p><p></pre></p><p>1. 构建界面：main.xml</p><p>写道：1 Button 用于音乐播放控制(暂停/继续)；1 TextView 用于显示目标Uri；1 ListView 用于列出所有音乐文件</p><p><pre>：</p><p>&lt;?xml version=<font class="Fields">"1.0"</font> encoding=</font><font class="Fields">"utf-8"</font>?&gt;</p><p>&lt;LinearLayout xmlns:android=<font class="Fields">"http:<font class="Comments">//schemas.android.com/apk/res/android</font></p><p>    </font>android:layout_width=<font class="Fields">"fill_parent</p><p>    </font>android:layout_height=<font class="Fields">"fill_parent</p><p>    </font>android:orientation=<font class="Fields">"vertical"</font> &gt;</p><p>    &lt;LinearLayout</p><p>        </font>android:layout_width=<font class="Fields">"fill_parent</p><p>        </font>android:layout_height=<font class="Fields">"wrap_content</p><p>        </font>android:orientation=<font class="Fields">"horizontal"</font> &gt;</p><p>        &lt;Button</p><p>            </font>android:id=<font class="Fields">"@+id/cmd</p><p>            </font>android:layout_width=<font class="Fields">"wrap_content</p><p>            </font>android:layout_height=<font class="Fields">"wrap_content</p><p>            </font>android:text=<font class="Fields">"Prepare"</font> /&gt;</p><p>        &lt;TextView</p><p>            </font>android:id=<font class="Fields">"@+id/name</p><p>            </font>android:layout_width=<font class="Fields">"fill_parent</p><p>            </font>android:layout_height=<font class="Fields">"wrap_content</p><p>            </font>android:text=<font class="Fields">"NAME"</font> /&gt;</p><p>    &lt;/LinearLayout&gt;</p><p>    &lt;ListView</p><p>        </font>android:id=<font class="Fields">"@+id/list</p><p>        </font>android:layout_width=<font class="Fields">"fill_parent</p><p>        </font>android:layout_height=<font class="Fields">"wrap_content"</font> /&gt;</p><p>&lt;/LinearLayout&gt;</p><p></pre></p><p>2. 列出所有音乐文件 并转入 adapter</p><p><pre>：</p><p>Cursor c = getContentResolver().query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, <font class="keyword">null</font>, </font><font class="keyword">null</font>, </font><font class="keyword">null</font>, </font><font class="keyword">null</font>);</p><p>String[] from = { MediaStore.Audio.AudioColumns.TITLE, MediaStore.Audio.AudioColumns.ARTIST };</p><p><font class="keyword">int</font>[] to = { android.R.id.text1, android.R.id.text2 </font>};</p><p><font class="keyword">final </font>CursorAdapter adapter = </font><font class="keyword">new </font>SimpleCursorAdapter(</font><font class="keyword">this</font>, android.R.layout.simple_list_item_2, c, from, to);</p><p>Cursor c = getContentResolver().query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, <font class="keyword">null</font>, </font><font class="keyword">null</font>, </font><font class="keyword">null</font>, </font><font class="keyword">null</font>);</p><p>String[] from = { MediaStore.Audio.AudioColumns.TITLE, MediaStore.Audio.AudioColumns.ARTIST };</p><p><font class="keyword">int</font>[] to = { android.R.id.text1, android.R.id.text2 </font>};</p><p><font class="keyword">final </font>CursorAdapter adapter = </font><font class="keyword">new </font>SimpleCursorAdapter(</font><font class="keyword">this</font>, android.R.layout.simple_list_item_2, c, from, to);</p><p></pre></p><p>3. 使用之</p><p><pre>list.setAdapter(adapter);</p><p>list.setAdapter(adapter);</p><p></pre></p><p>4. 与音乐播放有关的功能</p><p><pre><font class="Comments">//1. 定义   </font></p><p>MediaPlayer mp;   </p><p><font class="Comments">//2. 初始化   </font></p><p>mp = <font class="keyword">new </font>MediaPlayer();   </p><p><font class="Comments">//3. 暂停   </font></p><p>mp.pause();   </p><p><font class="Comments">//4. 继续   </font></p><p>mp.start();   </p><p><font class="Comments">//5. 判断是否正在播放   </font></p><p>mp.isPlaying()   </p><p><font class="Comments">//6.使用目标Uri   </font></p><p>mp.release();   </p><p>mp = MediaPlayer.create(<font class="keyword">this</font>, uri);   </p><p><font class="Comments">//1. 定义   </font></p><p>MediaPlayer mp;   </p><p><font class="Comments">//2. 初始化   </font></p><p>mp = <font class="keyword">new </font>MediaPlayer();   </p><p><font class="Comments">//3. 暂停   </font></p><p>mp.pause();   </p><p><font class="Comments">//4. 继续   </font></p><p>mp.start();   </p><p><font class="Comments">//5. 判断是否正在播放   </font></p><p>mp.isPlaying()   </p><p><font class="Comments">//6.使用目标Uri   </font></p><p>mp.release();   </p><p>mp = MediaPlayer.create(<font class="keyword">this</font>, uri);  </p><p></pre></p><p>5. 单击ListView中某个Item 会播放目标音乐资源</p><p><pre><font class="keyword">public </font><font class="keyword">void </font>playMusic(</font><font class="keyword">long </font>arg3) </font><font class="keyword">throws </font>IllegalArgumentException,</p><p>		IllegalStateException, IOException {</p><p>	Uri uri = Uri.withAppendedPath(</p><p>			MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,</p><p>			String.valueOf(arg3));</p><p>	TextView tv = (TextView) findViewById(R.id.name);</p><p>	tv.setText(uri.toString());</p><p>	mp.release();</p><p>	</font>mp = MediaPlayer.create(<font class="keyword">this</font>, uri);</p><p>	mp.start();</p><p>	</font>list.setOnItemClickListener(<font class="keyword">new </font>OnItemClickListener() {</p><p>		@Override</p><p>		<font class="keyword">public </font><font class="keyword">void </font>onItemClick(AdapterView arg0, View arg1, </font><font class="keyword">int </font>arg2,</p><p>				<font class="keyword">long </font>arg3) {</p><p>			<font class="keyword">try </font>{</p><p>				playMusic(arg3);</p><p>			</font>} <font class="keyword">catch </font>(IllegalArgumentException e) {</p><p>				e.printStackTrace();</p><p>			</font>} <font class="keyword">catch </font>(IllegalStateException e) {</p><p>				e.printStackTrace();</p><p>			</font>} <font class="keyword">catch </font>(IOException e) {</p><p>				e.printStackTrace();</p><p>			}</p><p>		}</p><p>	});</p><p>}</p><p></pre></p><p>因为这是个音乐播放器界面，也没什么特别之处，就此略过只有一个关于所有音乐文件的ListView</p><p></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

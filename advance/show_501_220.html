@@ -1,0 +1,58 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 快速排序算法_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li class="navcurrentLink"><A href="index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Android基础之运行原理和机制" href="index_215.html">Android基础之运行原理和机制</A></h2>
+
+  <h2><A title="Android高级篇之Android优化" href="index_216.html">Android高级篇之Android优化</A></h2>
+
+  <h2><A title="Android高级篇之编译及反编译" href="index_217.html">Android高级篇之编译及反编译</A></h2>
+
+  <h2><A title="Android高级篇之加密解密" href="index_218.html">Android高级篇之加密解密</A></h2>
+
+  <h2><A title="Android高级篇之Android 安全" href="index_219.html">Android高级篇之Android 安全</A></h2>
+
+  <h2><A title="Android高级篇之算法" href="index_220.html">Android高级篇之算法</A></h2>
+<UL><li class="currentLink"><A title=Android 快速排序算法 href="show_501_220.html">Android 快速排序算法</A> </li><li ><A title=Android 连连看算法 href="show_502_220.html">Android 连连看算法</A> </li><li ><A title=Android五子棋算法简单实现 href="show_503_220.html">Android五子棋算法简单实现</A> </li><li ><A title=16位Alpha混合的简单算法 href="show_504_220.html">16位Alpha混合的简单算法</A> </li><li ><A title=颜色半透明混色算法 href="show_505_220.html">颜色半透明混色算法</A> </li><li ><A title=Gallery3D 各个界面范围算法 href="show_506_220.html">Gallery3D 各个界面范围算法</A> </li><li ><A title=计算几何常用算法 href="show_507_220.html">计算几何常用算法</A> </li></UL>
+  <h2><A title="Android高级篇之解锁教程" href="index_221.html">Android高级篇之解锁教程</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 快速排序算法</H2>
+<div style="line-height:20px; font-size:14px;"><p>今天就和大家一起学习一下排序的算法，别的就不多说了，代码给大家看看。</p><p><pre><font class="keyword">import </font>java.io.BufferedReader;</p><p><font class="keyword">import </font>java.io.IOException;</p><p><font class="keyword">import </font>java.io.InputStreamReader;</p><p><font class="keyword">import </font>java.util.LinkedList;</p><p><font class="keyword">import </font>java.util.List;</p><p><font class="keyword">import </font>java.util.Scanner;</p><p><font class="keyword">public </font><font class="keyword">class </font>Partition01 {</p><p>	<font class="keyword">public </font><font class="keyword">static </font><font class="keyword">int </font>data[];</p><p>	<font class="keyword">public </font><font class="keyword">static </font><font class="keyword">void </font>main(String[] args) {</p><p>		</font>System.out.print(<font class="Fields">"请输入数组元素的大小："</font>);</p><p>		String str;</p><p>		</font>Scanner in = <font class="keyword">new </font>Scanner(System.in);</p><p>		<font class="keyword">int </font>number = in.nextInt();</p><p>		</font>data = <font class="keyword">new </font><font class="keyword">int</font>[number];</p><p>		</font>System.<font class="Fields">out</font>.println(</font><font class="Fields">"请输入"</font> + number + </font><font class="Fields">"个数组元素(每输入一个元素后按回车)"</font>);</p><p>		</font>BufferedReader br = <font class="keyword">new </font>BufferedReader(</font><font class="keyword">new </font>InputStreamReader(System.in));</p><p>		<font class="keyword">for </font>(</font><font class="keyword">int </font>i = 0; i &lt; number; i++) {</p><p>			<font class="keyword">try </font>{</p><p>				str = br.readLine();</p><p>				data[i] = Integer.parseInt(str);</p><p>			</font>} <font class="keyword">catch </font>(IOException e) {</p><p>				e.printStackTrace();</p><p>			}</p><p>		}</p><p>		</font>System.<font class="Fields">out</font>.println(</font><font class="Fields">"=========数组排序前的元素========="</font>);</p><p>		printInfo();</p><p>		QuickSort(0, number - 1);</p><p>		</font>System.<font class="Fields">out</font>.println();</p><p>		</font>System.<font class="Fields">out</font>.println(</font><font class="Fields">"=========数组排序后的元素========="</font>);</p><p>		printInfo();</p><p>	}</p><p>	<font class="Comments">// 取得基准位置</font></p><p>	</font>@SuppressWarnings(<font class="Fields">"unchecked"</font>)</p><p>	<font class="keyword">public </font><font class="keyword">static </font><font class="keyword">int </font>getPivotpos(</font><font class="keyword">int </font>low, </font><font class="keyword">int </font>high) {</p><p>		<font class="keyword">int </font>pivotpos = low;</p><p>		<font class="keyword">int </font>pivot = data[low];</p><p>		<font class="keyword">for </font>(</font><font class="keyword">int </font>i = low + 1; i &lt;= high; i++) { <font class="Comments">// 检测整个序列，进行划分</font></p><p>			<font class="keyword">if </font>(data[i] &lt; pivot) {</p><p>				pivotpos++;</p><p>				<font class="keyword">if </font>(pivotpos != i) {</p><p>					swap(pivotpos, i); <font class="Comments">// 小于基准的交换到左侧去</font></p><p>				}</p><p>			}</p><p>		}</p><p>		data[low] = data[pivotpos];</p><p>		data[pivotpos] = pivot; <font class="Comments">// 将基准元素就位</font></p><p>		<font class="keyword">return </font>pivotpos; <font class="Comments">// 返回基准元素位置</font></p><p>	}</p><p>	/*</p><p>	 <font class="Comments">* 对数组元素进行排序，使各元素按排序码非递减有序，把参加排序的数组元素分成两部分，排在 它左边的元素的排序码都小于它，而右边的都大于或等于它.</font></p><p>	 <font class="Comments">*/</font></p><p>	<font class="keyword">public </font><font class="keyword">static </font><font class="keyword">void </font>QuickSort(</font><font class="keyword">int </font>left, </font><font class="keyword">int </font>right) {</p><p>		<font class="keyword">if </font>(left &lt; right) { <font class="Comments">// 元素序列长度大于1时</font></p><p>			<font class="keyword">int </font>pivotpos = getPivotpos(left, right); <font class="Comments">// 划分</font></p><p>			QuickSort(left, pivotpos - 1); <font class="Comments">// 对左侧的元素施行同样的处理</font></p><p>			QuickSort(pivotpos + 1, right); <font class="Comments">// 对右侧的元素施行同样的处理</font></p><p>		}</p><p>	}</p><p>	<font class="Comments">// 交换数据</font></p><p>	<font class="keyword">public </font><font class="keyword">static </font><font class="keyword">void </font>swap(</font><font class="keyword">int </font>i, </font><font class="keyword">int </font>j) {</p><p>		<font class="keyword">int </font>temp = data[i];</p><p>		data[i] = data[j];</p><p>		data[j] = temp;</p><p>	}</p><p>	<font class="Comments">// 输出显示数组元素</font></p><p>	<font class="keyword">public </font><font class="keyword">static </font><font class="keyword">void </font>printInfo() {</p><p>		<font class="keyword">for </font>(</font><font class="keyword">int </font>i = 0; i &lt; data.length; i++) {</p><p>			</font>System.out.print(data[i] + <font class="Fields">"\t"</font>);</p><p>		}</p><p>	}</p><p>}</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 3D坐标（一）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li class="navcurrentLink"><A href="index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Android多媒体功能" href="index_196.html">Android多媒体功能</A></h2>
+
+  <h2><A title="Android多媒体之2D" href="index_197.html">Android多媒体之2D</A></h2>
+
+  <h2><A title="Android多媒体之3D" href="index_198.html">Android多媒体之3D</A></h2>
+<UL><li ><A title=Android 3D绘图基本概念（一） href="show_201_198.html">Android 3D绘图基本概念（一）</A> </li><li ><A title=Android 3D绘图基本概念（二） href="show_202_198.html">Android 3D绘图基本概念（二）</A> </li><li class="currentLink"><A title=Android 3D坐标（一） href="show_203_198.html">Android 3D坐标（一）</A> </li><li ><A title=Android 3D坐标（二） href="show_204_198.html">Android 3D坐标（二）</A> </li><li ><A title=Android中3D效果 href="show_205_198.html">Android中3D效果</A> </li><li ><A title=Android3D旋转 href="show_206_198.html">Android3D旋转</A> </li><li ><A title=Android 3d页面跳转（一） href="show_207_198.html">Android 3d页面跳转（一）</A> </li><li ><A title=Android 3d页面跳转（二） href="show_208_198.html">Android 3d页面跳转（二）</A> </li><li ><A title=Android 3d页面跳转（三） href="show_209_198.html">Android 3d页面跳转（三）</A> </li><li ><A title=ApiDemo上面的一个图片3D旋转效果 href="show_210_198.html">ApiDemo上面的一个图片3D旋转效果</A> </li><li ><A title=浅谈Android 3D旋转 href="show_211_198.html">浅谈Android 3D旋转</A> </li><li ><A title=简单实现3d旋转动画 href="show_212_198.html">简单实现3d旋转动画</A> </li><li ><A title=Android 3D相册 href="show_213_198.html">Android 3D相册</A> </li></UL>
+  <h2><A title="Android多媒体之Bitmap" href="index_199.html">Android多媒体之Bitmap</A></h2>
+
+  <h2><A title="Android多媒体之Canvas" href="index_200.html">Android多媒体之Canvas</A></h2>
+
+  <h2><A title="Android多媒体之Drawable" href="index_201.html">Android多媒体之Drawable</A></h2>
+
+  <h2><A title="Android多媒体之gif" href="index_202.html">Android多媒体之gif</A></h2>
+
+  <h2><A title="Android多媒体之MediaStore" href="index_203.html">Android多媒体之MediaStore</A></h2>
+
+  <h2><A title="Android多媒体之动画" href="index_204.html">Android多媒体之动画</A></h2>
+
+  <h2><A title="Android多媒体之分辨率" href="index_205.html">Android多媒体之分辨率</A></h2>
+
+  <h2><A title="Android多媒体之分屏幕" href="index_206.html">Android多媒体之分屏幕</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 3D坐标（一）</H2>
+<div style="line-height:20px; font-size:14px;"><p style="color:#3333FF;">Coordinate System坐标系</p><p>OpenGL使用了右手坐标系统，右手坐标系判断方法：在空间直角坐标系中，让右手拇指指向x轴的正方向，食指指向y轴的正方向，如果中指能指向z轴的正方向，则称这个坐标系为右手直角坐标系。</p><p>效果图：</p><p><img src="../img/media_3d/03_3d.png"></p><p style="color:#3333FF;">Translate平移变换</p><p>方法public abstract void glTranslatef (float x, float y, float z) 用于坐标平移变换。就是使用的坐标的平移变换，可以进行多次平移变换，其结果为多个平移矩阵的累计结果，矩阵的顺序不重要，可以互换。</p><p><img src="../img/media_3d/03_3d2.png"></p><p style="color:#3333FF;">Rotate旋转</p><p>方法public abstract void glRotatef(float angle, float x, float y, float z)用来实现选择坐标变换，单位为角度。 </p><p>(x,y,z)定义旋转的参照矢量方向。多次旋转的顺序非常重要。</p><p><img src="../img/media_3d/03_3d3.png"></p><p>比如你选择一个骰子，首先按下列顺序选择3次：</p><p><pre>gl.glRotatef(90f, 1.0f, 0.0f, 0.0f);</p><p>gl.glRotatef(90f, 0.0f, 1.0f, 0.0f);</p><p>gl.glRotatef(90f, 0.0f, 0.0f, 1.0f); </p><p></pre></p><p>效果图：</p><p><img src="../img/media_3d/03_3d4.png"></p><p>然后打算逆向旋转回原先的初始状态，需要有如下旋转：</p><p><pre>gl.glRotatef(90f, 0.0f, 0.0f, -1.0f);</p><p>gl.glRotatef(90f, 0.0f, -1.0f, 0.0f);</p><p>gl.glRotatef(90f, -1.0f, 0.0f, 0.0f);</p><p></pre></p><p><img src="../img/media_3d/03_3d5.png"></p><p>或者如下旋转：</p><p><pre> </p><p>gl.glRotatef(90f, 0.0f, 0.0f, -1.0f);</p><p>gl.glRotatef(90f, 0.0f, -1.0f, 0.0f);</p><p>gl.glRotatef(90f, -1.0f, 0.0f, 0.0f);</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

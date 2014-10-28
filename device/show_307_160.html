@@ -1,0 +1,70 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 设置铃声+震动_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li class="navcurrentLink"><A href="index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="设备信息" href="index_157.html">设备信息</A></h2>
+
+  <h2><A title="摄像头" href="index_158.html">摄像头</A></h2>
+
+  <h2><A title="通讯录" href="index_159.html">通讯录</A></h2>
+
+  <h2><A title="电话" href="index_160.html">电话</A></h2>
+<UL><li ><A title=Andriod 解析通话处理流程（一） href="show_301_160.html">Andriod 解析通话处理流程（一）</A> </li><li ><A title=Andriod 解析通话处理流程（二） href="show_302_160.html">Andriod 解析通话处理流程（二）</A> </li><li ><A title=Andriod 解析通话处理流程（三） href="show_303_160.html">Andriod 解析通话处理流程（三）</A> </li><li ><A title=Andriod 解析通话处理流程（四） href="show_304_160.html">Andriod 解析通话处理流程（四）</A> </li><li ><A title=Andriod 解析通话处理流程（五） href="show_305_160.html">Andriod 解析通话处理流程（五）</A> </li><li ><A title=Android 主被动获取打接电话状态 href="show_306_160.html">Android 主被动获取打接电话状态</A> </li><li class="currentLink"><A title=Android 设置铃声+震动 href="show_307_160.html">Android 设置铃声+震动</A> </li><li ><A title=Android 删除未接来电通知 href="show_308_160.html">Android 删除未接来电通知</A> </li><li ><A title=Android 监听电话状态并自动接听来电 href="show_309_160.html">Android 监听电话状态并自动接听来电</A> </li></UL>
+  <h2><A title="短信" href="index_161.html">短信</A></h2>
+
+  <h2><A title="传感器" href="index_162.html">传感器</A></h2>
+
+  <h2><A title="定位" href="index_163.html">定位</A></h2>
+
+  <h2><A title="视频系统" href="index_164.html">视频系统</A></h2>
+
+  <h2><A title="音频系统" href="index_165.html">音频系统</A></h2>
+
+  <h2><A title="铃声" href="index_166.html">铃声</A></h2>
+
+  <h2><A title="音量" href="index_167.html">音量</A></h2>
+
+  <h2><A title="录音" href="index_168.html">录音</A></h2>
+
+  <h2><A title="输入法" href="index_169.html">输入法</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 设置铃声+震动</H2>
+<div style="line-height:20px; font-size:14px;"><p>有时候一些通讯软件需要这些个功能，比如说收到短信，通知等，要求手机发出铃声，或震动，或发光以提示用户知晓。往往手机都是有默认设置的，比如说用户开启了铃声+震动；只铃声不震动；完全静音等等...</p><p>这个时候就需要有一个规则了，起码软件的设置不能跟系统的冲突吧，中间的一些逻辑是要处理好的！之前做过的软件中有这么个需求，而且代码是我负责的，所以总结一下。</p><p>思路：</p><p>1. 软件应该有个自己的设置配置文件，用以保存，自己的软件的提醒规则。</p><p>2. 遵从系统的设置，比如说：系统是完全静音的，人家想睡觉啦，你软件虽然是铃声震动全开，也得乖乖闭嘴。</p><p>3. 如果有需要提醒了，先获取系统的配置，然后做逻辑判断给予什么样的提醒。</p><p><pre><font class="Comments">// 首先需要接收一个Notification的参数</font></p><p><font class="keyword">private </font><font class="keyword">void </font>setAlarmParams(Notification notification) {</p><p>	<font class="Comments">// AudioManager provides access to volume and ringer mode control.</font></p><p>	<font class="Comments">// AudioManager volMgr = (AudioManager)</font></p><p>	<font class="Comments">// mAppContext.getSystemService(Context.AUDIO_SERVICE);</font></p><p>	<font class="keyword">switch </font>(volMgr.getRingerMode()) {</p><p>	<font class="Comments">// 获取系统设置的铃声模式</font></p><p>	<font class="keyword">case </font>AudioManager.RINGER_MODE_SILENT:</p><p>		<font class="Comments">// 静音模式，值为0，这时候不震动，不响铃</font></p><p>		</font>notification.sound = <font class="keyword">null</font>;</p><p>		</font>notification.vibrate = <font class="keyword">null</font>;</p><p>		<font class="keyword">break</font>;</p><p>	<font class="keyword">case </font>AudioManager.RINGER_MODE_VIBRATE:</p><p>		<font class="Comments">// 震动模式，值为1，这时候震动，不响铃</font></p><p>		</font>notification.sound = <font class="keyword">null</font>;</p><p>		notification.defaults |= Notification.DEFAULT_VIBRATE;</p><p>		<font class="keyword">break</font>;</p><p>	<font class="keyword">case </font>AudioManager.RINGER_MODE_NORMAL:</p><p>		<font class="Comments">// 常规模式，值为2，分两种情况：1_响铃但不震动，2_响铃+震动</font></p><p>		</font>Uri ringTone = <font class="keyword">null</font>;</p><p>		<font class="Comments">// 获取软件的设置</font></p><p>		SharedPreferences sp = PreferenceManager</p><p>				.getDefaultSharedPreferences(mAppContext);</p><p>		<font class="keyword">if </font>(!sp.contains(SystemUtil.KEY_RING_TONE)) {</p><p>			<font class="Comments">// 如果没有生成配置文件，那么既有铃声又有震动</font></p><p>			notification.defaults |= Notification.DEFAULT_VIBRATE;</p><p>			notification.defaults |= Notification.DEFAULT_SOUND;</p><p>		</font>} <font class="keyword">else </font>{</p><p>			</font>String ringFile = sp.getString(SystemUtil.KEY_RING_TONE, <font class="keyword">null</font>);</p><p>			<font class="keyword">if </font>(ringFile == </font><font class="keyword">null</font>) {</p><p>				<font class="Comments">// 无值，为空，不播放铃声</font></p><p>				</font>ringTone = <font class="keyword">null</font>;</p><p>			</font>} <font class="keyword">else </font><font class="keyword">if </font>(!TextUtils.isEmpty(ringFile)) {</p><p>				<font class="Comments">// 有铃声：1，默认2自定义，都返回一个uri</font></p><p>				ringTone = Uri.parse(ringFile);</p><p>			}</p><p>			notification.sound = ringTone;</p><p>			<font class="keyword">boolean </font>vibrate = sp.getBoolean(</p><p>					</font>SystemUtil.KEY_NEW_MAIL_VIBRATE, <font class="keyword">true</font>);</p><p>			<font class="keyword">if </font>(vibrate == </font><font class="keyword">false</font>) {</p><p>				<font class="Comments">// 如果软件设置不震动，那么就不震动了</font></p><p>				</font>notification.vibrate = <font class="keyword">null</font>;</p><p>			</font>} <font class="keyword">else </font>{</p><p>				<font class="Comments">// 否则就是需要震动，这时候要看系统是怎么设置的：不震动=0;震动=1；仅在静音模式下震动=2；</font></p><p>				<font class="keyword">if </font>(volMgr</p><p>						.getVibrateSetting(AudioManager.VIBRATE_TYPE_RINGER) == AudioManager.VIBRATE_SETTING_OFF) {</p><p>					<font class="Comments">// 不震动</font></p><p>					</font>notification.vibrate = <font class="keyword">null</font>;</p><p>				</font>} <font class="keyword">else </font><font class="keyword">if </font>(volMgr</p><p>						.getVibrateSetting(AudioManager.VIBRATE_TYPE_RINGER) == AudioManager.VIBRATE_SETTING_ONLY_SILENT) {</p><p>					<font class="Comments">// 只在静音时震动</font></p><p>					</font>notification.vibrate = <font class="keyword">null</font>;</p><p>				</font>} <font class="keyword">else </font>{</p><p>					<font class="Comments">// 震动</font></p><p>					notification.defaults |= Notification.DEFAULT_VIBRATE;</p><p>				}</p><p>			}</p><p>		}</p><p>		notification.flags |= Notification.FLAG_SHOW_LIGHTS;</p><p>		<font class="Comments">// 都给开灯</font></p><p>		<font class="keyword">break</font>;</p><p>	<font class="keyword">default</font>:</p><p>		<font class="keyword">break</font>;</p><p>	}</p><p>}</p><p></pre></p><p>具体的实现就如代码那样子了，注释也很清楚了，其中SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(mAppContext);</p><p>这个不多做解释，就是获取软件的配置信息。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

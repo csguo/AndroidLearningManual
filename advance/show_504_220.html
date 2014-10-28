@@ -1,0 +1,58 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>16位Alpha混合的简单算法_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li class="navcurrentLink"><A href="index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Android基础之运行原理和机制" href="index_215.html">Android基础之运行原理和机制</A></h2>
+
+  <h2><A title="Android高级篇之Android优化" href="index_216.html">Android高级篇之Android优化</A></h2>
+
+  <h2><A title="Android高级篇之编译及反编译" href="index_217.html">Android高级篇之编译及反编译</A></h2>
+
+  <h2><A title="Android高级篇之加密解密" href="index_218.html">Android高级篇之加密解密</A></h2>
+
+  <h2><A title="Android高级篇之Android 安全" href="index_219.html">Android高级篇之Android 安全</A></h2>
+
+  <h2><A title="Android高级篇之算法" href="index_220.html">Android高级篇之算法</A></h2>
+<UL><li ><A title=Android 快速排序算法 href="show_501_220.html">Android 快速排序算法</A> </li><li ><A title=Android 连连看算法 href="show_502_220.html">Android 连连看算法</A> </li><li ><A title=Android五子棋算法简单实现 href="show_503_220.html">Android五子棋算法简单实现</A> </li><li class="currentLink"><A title=16位Alpha混合的简单算法 href="show_504_220.html">16位Alpha混合的简单算法</A> </li><li ><A title=颜色半透明混色算法 href="show_505_220.html">颜色半透明混色算法</A> </li><li ><A title=Gallery3D 各个界面范围算法 href="show_506_220.html">Gallery3D 各个界面范围算法</A> </li><li ><A title=计算几何常用算法 href="show_507_220.html">计算几何常用算法</A> </li></UL>
+  <h2><A title="Android高级篇之解锁教程" href="index_221.html">Android高级篇之解锁教程</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>16位Alpha混合的简单算法</H2>
+<div style="line-height:20px; font-size:14px;"><p style="color:#3333FF;">16位Alpha混合的简单算法</p><p>游戏中，我们常常可以看到一些半透明的图像，那么这些图像是怎么生成的呢？是简单的贴位图做的吗？当然不是，要不美工不就惨死了。这其实是利用程序将两张图片进行混合后的效果，也就是图形的Alpha混合，要得到混合图片，就必须对每个点分别进行处理。让我们来看看如何进行Alpha混合。这里以16位色彩位例子。</p><p>16位色彩下，每个像素都用一个WORD来表示，有16位二进制。这16位，分成三段分别表示像素的R、G、B值。现在的显示卡有两种：555格式的RGB分别各占5位最高位空、565格式G的值占6位，其他两个分量各占5位。所以首先，我们要得到像素的RGB。</p><p>在DirectDraw下，可以通过锁定表面，得到表面的像素，将他保存到一个WORD*的变量里。当我们得到资源表面和目的表面的像素后，我们就可以开始进行Alpha混合了。16bit的Alpha混合首先必须分别对原和目的表面的像素分色。这可以通过位操作来实现，用像素值分别与RGB对应的特定值进行与操作将多余的其他色去掉，最后通过移位去掉后面的0。这里要注意555显示卡和565显示卡的区别。分色后，混合正式开始，我们将分色得到的R、G、B的各分色分别混合。下面先看一个公式：A=目的颜色、B=资源颜色、Alpha=混色深度（0 &lt; alpha &lt; 1）。</p><p>混合后的颜色= A * Alpha + B * ( 1-Alpha )</p><p>当Alpha=0，混合后的颜色=A。当Alpha=1，混合后的颜色=B。当Alpha介于0与1之间，混合后的颜色包含了资源和目的表面的两种颜色。调整Alpha的值，混合后的颜色就会跟着有规律的变化。但是，颜色是整数，所以，我们必须对公式进行一点简单的变化。</p><p>混合后的颜色= ( A * Alpha + B * ( 32-Alpha ) ) / 32　　　1 &lt; 32</p><p>这样的等价变化后所有的元素都变成了整数，混合颜色的调整级数为32（更高当然也是可以的，把公式中的32换成其他数，Alpha区值范围也变化），但是计算机处理乘法和除法是很慢的，而Alpha混合是对很多的点进行计算，上面的公式显然是不适合的，我们再来点变化。</p><p>混合后的颜色=( ( A-B ) * Alpha ) &gt;&gt; 5 + B</p><p>除以32等于右移5位，这就是调整级数取32的原因。计算机处理移位是很快的。至于那个乘以Alpha，我也不知道有什么简单的方法改成效率更高的算法。分别混合好R、G、B的色后，最后还需要将他们合成，这是个简单的步骤，与分色相反的移位，然后将三个色值按位或操作就可以了。处理了所有需要混色的像素后，记得将表面解锁。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

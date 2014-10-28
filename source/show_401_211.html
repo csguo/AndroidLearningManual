@@ -1,0 +1,61 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 来说说Surface系统(一)_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li class="navcurrentLink"><A href="index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Launcher" href="index_207.html">Launcher</A></h2>
+
+  <h2><A title="电话系统RIL" href="index_208.html">电话系统RIL</A></h2>
+
+  <h2><A title="进程间通信" href="index_209.html">进程间通信</A></h2>
+
+  <h2><A title="内部sensor系统" href="index_210.html">内部sensor系统</A></h2>
+
+  <h2><A title="内部surface系统" href="index_211.html">内部surface系统</A></h2>
+<UL><li class="currentLink"><A title=Android 来说说Surface系统(一) href="show_401_211.html">Android 来说说Surface系统(一)</A> </li><li ><A title=Android 来说说Surface系统(二) href="show_402_211.html">Android 来说说Surface系统(二)</A> </li><li ><A title=Android 来说说Surface系统(三) href="show_403_211.html">Android 来说说Surface系统(三)</A> </li><li ><A title=Android 来说说Surface系统(四) href="show_404_211.html">Android 来说说Surface系统(四)</A> </li><li ><A title=SurfaceFlinger中的Layer,LayerDim,LayerBlur,LayerBuffer href="show_405_211.html">SurfaceFlinger中的Layer,LayerDim,LayerBlur,LayerBuffer</A> </li><li ><A title=SharedClient href="show_406_211.html">SharedClient</A> </li></UL>
+  <h2><A title="启动流程" href="index_212.html">启动流程</A></h2>
+
+  <h2><A title="源码编译" href="index_213.html">源码编译</A></h2>
+
+  <h2><A title="状态栏" href="index_214.html">状态栏</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 来说说Surface系统(一)</H2>
+<div style="line-height:20px; font-size:14px;"><p style="color:#3333FF;">一 目的</p><p>目的就是为了讲清楚Android中的Surface系统，大家耳熟能详的SurfaceFlinger到底是个什么东西，它的工作流程又是怎样的。当然，鉴于SurfaceFlinger的复杂性，我们依然将采用情景分析的办法，找到合适的切入点。</p><p>一个Activity是怎么在屏幕上显示出来的呢?我将首先把这个说清楚。</p><p>接着我们把其中的关键调用抽象在Native层，以这些函数调用为切入点来研究SurfaceFlinger。好了，开始我们的征途吧。</p><p style="color:#3333FF;">二 Activity是如何显示的</p><p>最初的想法就是，Activity获得一块显存，然后在上面绘图，最后交给设备去显示。这个道理是没错，但是Android的SurfaceFlinger是在System Server进程中创建的，Activity一般另有线程，这之间是如何...如何挂上关系的呢?我可以先提前告诉大家，这个过程还比较复杂。</p><p>这里有个函数叫handleLaunchActivity。</p><p><pre><font class="keyword">private </font><font class="keyword">final </font><font class="keyword">void </font>handleLaunchActivity(ActivityRecord r,</p><p>		Intent customIntent) {</p><p>	Activity a = performLaunchActivity(r, customIntent);</p><p>	<font class="keyword">if </font>(a != </font><font class="keyword">null</font>) {</p><p>		</font>r.createdConfig = <font class="keyword">new </font>Configuration(mConfiguration);</p><p>		Bundle oldState = r.state;</p><p>		</font>handleResumeActivity(r.token, <font class="keyword">false</font>, r.isForward);</p><p>		----&gt;调用handleResumeActivity</p><p>	}</p><p>}</p><p></pre></p><p>handleLaunchActivity中会调用handleResumeActivity。</p><p><pre><font class="keyword">final </font><font class="keyword">void </font>handleResumeActivity(IBinder token, </font><font class="keyword">boolean </font>clearHide,</p><p>		<font class="keyword">boolean </font>isForward) {</p><p>	<font class="keyword">boolean </font>willBeVisible = !a.mStartedActivity;</p><p>	<font class="keyword">if </font>(r.window == </font><font class="keyword">null</font> && !a.mFinished && willBeVisible) {</p><p>		r.window = r.activity.getWindow();</p><p>
+		View decor = r.window.getDecorView();</p><p>		decor.setVisibility(View.INVISIBLE);</p><p>		ViewManager wm = a.getWindowManager();</p><p>		WindowManager.LayoutParams l = r.window.getAttributes();</p><p>		a.mDecor = decor;</p><p>		l.type = WindowManager.LayoutParams.TYPE_BASE_APPLICATION;</p><p>		<font class="keyword">if </font>(a.mVisibleFromClient) {</p><p>			</font>a.mWindowAdded = <font class="keyword">true</font>;</p><p>			wm.addView(decor, l); <font class="Comments">// 这个很关键。</font></p><p>		}</p><p>	}</p><p>}</p><p></pre></p><p>上面addView那几行非常关键，它关系到咱们在Activity中setContentView后，整个Window到底都包含了些什么。我先告诉大家。所有你创建的View之上，还有一个DecorView，这是一个FrameLayout，另外还有一个PhoneWindow。上面这些东西的代码在framework/Policies/Base/Phone/com/android/Internal/policy/impl。这些隐藏的View的创建都是由你在Acitivty的onCreate中调用setContentView导致的。</p><p><pre><font class="keyword">public </font><font class="keyword">void </font>addContentView(View view, ViewGroup.LayoutParams params) {</p><p>	<font class="keyword">if </font>(mContentParent == </font><font class="keyword">null</font>) { <font class="Comments">// 刚创建的时候mContentParent为空</font></p><p>		installDecor();</p><p>	}</p><p>	mContentParent.addView(view, params);</p><p>	<font class="keyword">final </font>Callback cb = getCallback();</p><p>	<font class="keyword">if </font>(cb != </font><font class="keyword">null</font>) {</p><p>		cb.onContentChanged();</p><p>	}</p><p>}</p><p></pre></p><p>installDecor将创建mDecor和mContentParent。mDecor是DecorView类型，ContentParent是ViewGroup类型</p><p><pre><font class="keyword">private </font><font class="keyword">void </font>installDecor() {</p><p>	<font class="keyword">if </font>(mDecor == </font><font class="keyword">null</font>) {</p><p>		mDecor = generateDecor();</p><p>		mDecor.setDescendantFocusability(ViewGroup.FOCUS_AFTER_DESCENDANTS);</p><p>		</font>mDecor.setIsRootNamespace(<font class="keyword">true</font>);</p><p>	}</p><p>	<font class="keyword">if </font>(mContentParent == </font><font class="keyword">null</font>) {</p><p>		mContentParent = generateLayout(mDecor);</p><p>	}</p><p>}	</p><p></pre></p><p>那么，ViewManager wm = a.getWindowManager()又返回什么呢?PhoneWindow从Window中派生，Acitivity创建的时候会调用它的setWindowManager。而这个函数由Window类实现。代码在framework/base/core/java/android/view/Window.java中：</p><p><pre><font class="keyword">public </font><font class="keyword">void </font>setWindowManager(WindowManager wm, IBinder appToken,</p><p>		String appName) {</p><p>	mAppToken = appToken;</p><p>	mAppName = appName;</p><p>	<font class="keyword">if </font>(wm == </font><font class="keyword">null</font>) {</p><p>		wm = WindowManagerImpl.getDefault();</p><p>	}</p><p>	</font>mWindowManager = <font class="keyword">new </font>LocalWindowManager(wm);</p><p>} 	</p><p></pre></p><p>分析JAVA代码这个东西真的很复杂。mWindowManager的实现是LocalWindowManager，但由通过Bridge模式把功能交给WindowManagerImpl去实现了。真的很复杂!好了，我们回到wm.addView(decor, l)。最终会由WindowManagerImpl来完成addView操作，我们直接看它的实现好了。代码在framework/base/core/java/android/view/WindowManagerImpl.java：</p><p><pre><font class="keyword">private </font><font class="keyword">void </font>addView(View view, ViewGroup.LayoutParams params, </font><font class="keyword">boolean </font>nest) {</p><p>	ViewRoot root; <font class="Comments">// ViewRoot，我们的主人公终于登场!</font></p><p>	<font class="keyword">synchronized </font>(</font><font class="keyword">this</font>) {</p><p>		</font>root = <font class="keyword">new </font>ViewRoot(view.getContext());</p><p>		root.mAddNesting = 1;</p><p>		view.setLayoutParams(wparams);</p><p>		<font class="keyword">if </font>(mViews == </font><font class="keyword">null</font>) {</p><p>			index = 1;</p><p>			</font>mViews = <font class="keyword">new </font>View[1];</p><p>			</font>mRoots = <font class="keyword">new </font>ViewRoot[1];</p><p>			</font>mParams = <font class="keyword">new </font>WindowManager.LayoutParams[1];</p><p>		</font>} <font class="keyword">else </font>{</p><p>		}</p><p>		index--;</p><p>		mViews[index] = view;</p><p>		mRoots[index] = root;</p><p>		mParams[index] = wparams;</p><p>	}</p><p>	root.setView(view, wparams, panelParentView);</p><p>}</p><p></pre></p><p>/base/core/java/android/view/ViewRoot.java中：</p><p><pre><font class="keyword">public </font><font class="keyword">final </font><font class="keyword">class </font>ViewRoot </font><font class="keyword">extends </font>Handler </font><font class="keyword">implements </font>ViewParent, View.AttachInfo.Callbacks </p><p>{ </p><p>	<font class="keyword">private </font><font class="keyword">final </font>Surface mSurface = </font><font class="keyword">new </font>Surface(); </p><p>}	</p><p></pre></p><p>它竟然从handler派生，而ViewParent不过定义了一些接口函数罢了。看到Surface直觉上感到它和SurfaceFlinger有点关系。Surface代码在framework/base/core/java/android/view/Surface.java中，我们调用的是无参构造函数。</p><p><pre><font class="keyword">public </font>Surface() { </p><p>	</font>mCanvas = <font class="keyword">new </font>CompatibleCanvas(); <font class="Comments">//就是创建一个Canvas!</font></p><p>}</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

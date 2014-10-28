@@ -1,0 +1,64 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android+webservice的连接_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li class="navcurrentLink"><A href="index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="3G" href="index_177.html">3G</A></h2>
+
+  <h2><A title="WIFI" href="index_178.html">WIFI</A></h2>
+
+  <h2><A title="蓝牙" href="index_179.html">蓝牙</A></h2>
+
+  <h2><A title="HTTP协议" href="index_180.html">HTTP协议</A></h2>
+
+  <h2><A title="Socket" href="index_181.html">Socket</A></h2>
+
+  <h2><A title="HTML与HTML5" href="index_182.html">HTML与HTML5</A></h2>
+
+  <h2><A title="JavaScript" href="index_183.html">JavaScript</A></h2>
+
+  <h2><A title="Email" href="index_184.html">Email</A></h2>
+
+  <h2><A title="NFC" href="index_185.html">NFC</A></h2>
+
+  <h2><A title="Web Service" href="index_186.html">Web Service</A></h2>
+<UL><li ><A title=Android说说WebService href="show_901_186.html">Android说说WebService</A> </li><li ><A title=Android webservice 理论 href="show_902_186.html">Android webservice 理论</A> </li><li ><A title=Android中调用webservice href="show_903_186.html">Android中调用webservice</A> </li><li ><A title=Android webservice通信之ksoap href="show_904_186.html">Android webservice通信之ksoap</A> </li><li class="currentLink"><A title=Android+webservice的连接 href="show_905_186.html">Android+webservice的连接</A> </li><li ><A title=调用webservice查询手机号归属地信息 href="show_906_186.html">调用webservice查询手机号归属地信息</A> </li><li ><A title=自己真实开发的中调用webservice方法总结（带请求头SoapHeader） href="show_907_186.html">自己真实开发的中调用webservice方法总结（带请求头SoapHeader）</A> </li></UL>
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android+webservice的连接</H2>
+<div style="line-height:20px; font-size:14px;"><p>最近初步在搞android怎么去跟webservice的连接，调用参数返回。在这里发下我运行的源码。已测试，已成功！贴上我的代码！</p><p><pre><font class="keyword">import </font>java.io.IOException;</p><p><font class="keyword">import </font>org.xmlpull.v1.XmlPullParserException;</p><p><font class="keyword">import </font>android.R;</p><p><font class="keyword">import </font>android.app.Activity;</p><p><font class="keyword">import </font>android.os.Bundle;</p><p><font class="keyword">import </font>android.view.View;</p><p><font class="keyword">import </font>android.view.View.OnClickListener;</p><p><font class="keyword">import </font>android.widget.Button;</p><p><font class="keyword">import </font>android.widget.EditText;</p><p><font class="keyword">public </font><font class="keyword">class </font>LQserviceActivity </font><font class="keyword">extends </font>Activity {</p><p>	<font class="Comments">/** Called when the activity is first created. */</font></p><p>	<font class="keyword">private </font>Button button;</p><p>	<font class="keyword">private </font>EditText editText;</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onCreate(Bundle savedInstanceState) {</p><p>		<font class="keyword">super</font>.onCreate(savedInstanceState);</p><p>		setContentView(R.layout.main);</p><p>		button = (Button) findViewById(R.id.button);</p><p>		editText = (EditText) findViewById(R.id.edit);</p><p>		</font>button.setOnClickListener(<font class="keyword">new </font>OnClickListener() {</p><p>			@Override</p><p>			<font class="keyword">public </font><font class="keyword">void </font>onClick(View v) {</p><p>				String show = editText.getText().toString();</p><p>				</font>String showMessage = <font class="Fields">""</font>;</p><p>				<font class="keyword">try </font>{</p><p>					showMessage = getPhoneInfo(show);</p><p>					editText.setText(showMessage);</p><p>				</font>} <font class="keyword">catch </font>(XmlPullParserException e) {</p><p>				</font>} <font class="keyword">catch </font>(IOException e) {</p><p>					e.printStackTrace();</p><p>				}</p><p>			}</p><p></p><p>		});</p><p>	}</p><p>	<font class="keyword">public </font>String getPhoneInfo(String phoneName) </font><font class="keyword">throws </font>IOException,</p><p>			XmlPullParserException {</p><p>		<font class="Comments">// 获取URL</font></p><p>		</font>String URL = <font class="Fields">"http:<font class="Comments">//61.143.165.38/wlss.asmx"</font>;</font></p><p>		<font class="Comments">// 返回的查询结果</font></p><p>		</font>String result = <font class="keyword">null</font>;</p><p>		<font class="Comments">// 调用webservice接口的命名空间</font></p><p>		</font>String namespace = <font class="Fields">"http:<font class="Comments">//61.143.165.38/"</font>;</font></p><p>		<font class="Comments">// 调用的方法名</font></p><p>		</font>String methodName = <font class="Fields">"HelloWorld"</font>;</p><p>		<font class="Comments">// webservice中SOAPAction的地址</font></p><p>		</font>String SOAP_ACTION = <font class="Fields">"http:<font class="Comments">//www.1008656.com/HelloWorld"</font>;</font></p><p>		<font class="Comments">// 获得返回请求对象</font></p><p>		</font>SoapObject request = <font class="keyword">new </font>SoapObject(namespace, methodName);</p><p>		<font class="Comments">// 设置需要返回请求对象方法的参数</font></p><p>		<font class="Comments">// request.addProperty("moblieCode",phoneName);</font></p><p>		<font class="Comments">// request.addProperty("userId","");</font></p><p>		<font class="Comments">// 设置soap的版本</font></p><p>		</font>SoapSerializationEnvelope envelope = <font class="keyword">new </font>SoapSerializationEnvelope(</p><p>				SoapEnvelope.VER11);</p><p>		<font class="Comments">// 设置是否调用的是dotNet开发的,这里如果设置为TRUE,那么在服务器端将获取不到参数值(如:将这些数据插入到数据库中的话)</font></p><p>		</font>envelope.dotNet = <font class="keyword">true</font>;</p><p>		envelope.bodyOut = request;</p><p>		</font>AndroidHttpTransport hts = <font class="keyword">new </font>AndroidHttpTransport(URL);</p><p>		<font class="Comments">// web service请求</font></p><p>		hts.call(SOAP_ACTION, envelope);</p><p>		<font class="Comments">// hts.call(null,envelope);</font></p><p>		<font class="Comments">// 得到返回结果</font></p><p>		Object o = envelope.getResponse();</p><p>		result = o.toString();</p><p>		<font class="keyword">return </font>result;</p><p>	}</p><p>}</p><p></pre></p><p>以下是main.xml源码</p><p><pre>&lt;?xml version=<font class="Fields">"1.0"</font> encoding=</font><font class="Fields">"utf-8"</font>?&gt;</p><p>&lt;LinearLayout xmlns:android=<font class="Fields">"http:<font class="Comments">//schemas.android.com/apk/res/android</font></p><p>    </font>android:layout_width=<font class="Fields">"fill_parent</p><p>    </font>android:layout_height=<font class="Fields">"fill_parent</p><p>    </font>android:orientation=<font class="Fields">"vertical"</font> &gt;</p><p>    </font>&lt;!-- android:text=<font class="Fields">"webservice的调用"</font> --&gt;</p><p>    &lt;Button</p><p>        </font>android:id=<font class="Fields">"@+id/button</p><p>        </font>android:layout_width=<font class="Fields">"fill_parent</p><p>        </font>android:layout_height=<font class="Fields">"wrap_content</p><p>        </font>android:text=<font class="Fields">"点击"</font> /&gt;</p><p>    &lt;EditText</p><p>        </font>android:id=<font class="Fields">"@+id/edit</p><p>        </font>android:layout_width=<font class="Fields">"fill_parent</p><p>        </font>android:layout_height=<font class="Fields">"wrap_content"</font> /&gt;</p><p>&lt;/LinearLayout&gt;</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

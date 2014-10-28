@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 深入研究adb（一）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li class="navcurrentLink"><A href="index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="开发基础" href="index_100.html">开发基础</A></h2>
+
+  <h2><A title="开发环境搭建" href="index_101.html">开发环境搭建</A></h2>
+
+  <h2><A title="模拟器" href="index_102.html">模拟器</A></h2>
+
+  <h2><A title="Resource" href="index_103.html">Resource</A></h2>
+
+  <h2><A title="Manifest" href="index_104.html">Manifest</A></h2>
+
+  <h2><A title="ADB" href="index_105.html">ADB</A></h2>
+<UL><li ><A title=Android ADB介绍 href="show_501_105.html">Android ADB介绍</A> </li><li ><A title=ADB 指令大全 href="show_502_105.html">ADB 指令大全</A> </li><li class="currentLink"><A title=Android 深入研究adb（一） href="show_503_105.html">Android 深入研究adb（一）</A> </li><li ><A title=Android 深入研究adb（二） href="show_504_105.html">Android 深入研究adb（二）</A> </li><li ><A title=Android 深入研究adb（三） href="show_505_105.html">Android 深入研究adb（三）</A> </li><li ><A title=Android 深入研究adb（四） href="show_506_105.html">Android 深入研究adb（四）</A> </li><li ><A title=Android Debug Bridge操作命令详解 href="show_507_105.html">Android Debug Bridge操作命令详解</A> </li></UL>
+  <h2><A title="DDMS" href="index_106.html">DDMS</A></h2>
+
+  <h2><A title="Logcat(日志)" href="index_107.html">Logcat(日志)</A></h2>
+
+  <h2><A title="打包" href="index_108.html">打包</A></h2>
+
+  <h2><A title="文件处理" href="index_109.html">文件处理</A></h2>
+
+  <h2><A title="底层基础" href="index_111.html">底层基础</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 深入研究adb（一）</H2>
+<div style="line-height:20px; font-size:14px;"><p>Android 调试桥(adb)是多种用途的工具，该工具可以帮助你你管理设备或模拟器的状态。</p><p>可以通过下列几种方法加入adb:</p><p><pre>* 在设备上运行shell命令</p><p>* 通过端口转发来管理模拟器或设备</p><p>* 从模拟器或设备上拷贝来或拷贝走文件</p><p></pre></p><p>下面对adb进行了介绍并描述了常见的使用</p><p><pre>1、发出adb命令</p><p>2、查询模拟器/设备实例</p><p>3、给特定的模拟器/设备实例发送命令</p><p>4、安装软件</p><p>5、转发端口</p><p>6、从模拟器/设备中拷入或拷出文件</p><p>7、Adb命令列表</p><p>8、启动shell命令</p><p>9、通过远程shell端运行sqllite3连接数据库</p><p>10、UI/软件 试验程序 Monkey</p><p>11、其它的shell命令</p><p>12、启用logcat日志</p><p>13、使用logcat命令</p><p>14、过滤日志输出</p><p>15、控制日志输出格式</p><p>16、查看可用日志缓冲区</p><p>17、查看stdout 和stderr</p><p>18、Logcat命令列表</p><p>19、停止adb服务</p><p></pre></p><p style="color:#3333FF;">概要</p><p>Android 调试系统是一个面对客户服务系统，包括三个组成部分:</p><p>* 一个在你用于开发程序的电脑上运行的客户端。你可以通过shell端使用adb命令启动客户端。 其他Android工具比如说ADT插件和DDMS同样可以产生adb客户端。</p><p>* 在你用于发的机器上作为后台进程运行的服务器。该服务器负责管理客户端与运行于模拟器或设备上的adb守护程序(daemon)之间的通信。</p><p>* 一个以后台进程的形式运行于模拟器或设备上的守护程序(daemon)。</p><p>当你启动一个adb客户端，客户端首先确认是否已有一个adb服务进程在运行。如果没有，则启动服务进程。当服务器运行，adb服务器就会绑定本地的TCP端口5037并监听adb客户端发来的命令，—所有的adb客户端都是用端口 5037与adb服务器对话的。</p><p>接着服务器将所有运行中的模拟器或设备实例建立连接。它通过扫描所有5555到5585范围内的奇数端口来定位所有的模拟器或设备。一旦服务器找到了adb守护程序，它将建立一个到该端口的连接。请注意任何模拟器或设备实例会取得两个连续的端口——一个偶数端口用来相应控制台的连接，和一个奇数端口 用来响应adb连接。比如说:</p><p><pre>模拟器1，控制台：端口5554</p><p>模拟器1，Adb端口5555</p><p>控制台：端口 5556</p><p>		Adb端口5557...</p><p></pre></p><p>如上所示，模拟器实例通过5555端口连接adb，就如同使用5554端口连接控制台一样。</p><p>一旦服务器与所有模拟器实例建立连接，就可以使用adb命令控制和访问该实例。因为服务器管理模拟器/设备实例的连接，和控制处理从来自多个adb客户端来的命令，你可以通过任何客户端(或脚本)来控制任何模拟器或设备实例.</p><p>以下的部分描述通过命令使用adb和管理模拟器/设备的状态。要注意的是如果你用，装有ADT插件的Eclipse开发Android程序，你就不需要通过命令行使用adb。ADT插件已经透明的把adb集成到Eclipse中了，当然，如果必要的话你也可以仍然直接使用adb，比如说调试。</p><p style="color:#3333FF;">发出adb命令</p><p>发出Android命令： 你可以在你的开发机上的命令行或脚本上发布Android命令，使用方法:</p><p>adb [-d|-e|-s &lt; serialNumber&gt;] &lt; command&gt;</p><p>当你发出一个命令，系统启用Android客户端。客户端并不与模拟器实例相关，所以如果双服务器/设备是运行中的，你需要用-d选项去为应被控制的命令确定目标实例。关于使用这个选项的更多信息，可以查看模拟器/设备实例术语控制命令。</p><p style="color:#3333FF;">查询模拟器/设备实例</p><p>在发布adb命令之前，有必要知道什么样的模拟器/设备实例与adb服务器是相连的。可以通过使用devices 命令来得到一系列相关联的模拟器/设备:</p><p><pre>adb devices</p><p></pre></p><p>1、作为回应，adb为每个实例都制定了相应的状态信息:</p><p>2、序列号——由adb创建的一个字符串，这个字符串通过自己的控制端口&lt; type&gt;-&lt; consolePort&gt;唯一地识别一个模拟器/设备实例。</p><p>下面是一个序列号的例子： emulator-5554</p><p>实例的连接状态有三种状态:</p><p>offline — 此实例没有与adb相连接或者无法响应.</p><p>device — 此实例正与adb服务器连接。注意这个状态并不能百分之百地表示在运行和操作Android系统，因此这个实例是当系统正在运行的时候与adb连接的。然而，在系统启动之后，就是一个模拟器/设备状态的正常运行状态了.</p><p>每个实例的输出都有如下固定的格式:</p><p>[serialNumber] [state]</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

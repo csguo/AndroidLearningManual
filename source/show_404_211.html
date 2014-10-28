@@ -1,0 +1,60 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 来说说Surface系统(四)_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li class="navcurrentLink"><A href="index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Launcher" href="index_207.html">Launcher</A></h2>
+
+  <h2><A title="电话系统RIL" href="index_208.html">电话系统RIL</A></h2>
+
+  <h2><A title="进程间通信" href="index_209.html">进程间通信</A></h2>
+
+  <h2><A title="内部sensor系统" href="index_210.html">内部sensor系统</A></h2>
+
+  <h2><A title="内部surface系统" href="index_211.html">内部surface系统</A></h2>
+<UL><li ><A title=Android 来说说Surface系统(一) href="show_401_211.html">Android 来说说Surface系统(一)</A> </li><li ><A title=Android 来说说Surface系统(二) href="show_402_211.html">Android 来说说Surface系统(二)</A> </li><li ><A title=Android 来说说Surface系统(三) href="show_403_211.html">Android 来说说Surface系统(三)</A> </li><li class="currentLink"><A title=Android 来说说Surface系统(四) href="show_404_211.html">Android 来说说Surface系统(四)</A> </li><li ><A title=SurfaceFlinger中的Layer,LayerDim,LayerBlur,LayerBuffer href="show_405_211.html">SurfaceFlinger中的Layer,LayerDim,LayerBlur,LayerBuffer</A> </li><li ><A title=SharedClient href="show_406_211.html">SharedClient</A> </li></UL>
+  <h2><A title="启动流程" href="index_212.html">启动流程</A></h2>
+
+  <h2><A title="源码编译" href="index_213.html">源码编译</A></h2>
+
+  <h2><A title="状态栏" href="index_214.html">状态栏</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 来说说Surface系统(四)</H2>
+<div style="line-height:20px; font-size:14px;"><p>真奇怪啊，Binder客户端这头竟然没有把outSurface的信息发过去。我们赶紧看看服务端。服务端这边处理是在onTranscat函数中。</p><p><pre>@Override</p><p><font class="keyword">public </font><font class="keyword">boolean </font>onTransact(</font><font class="keyword">int </font>code, android.os.Parcel data,</p><p>		</font>android.os.Parcel reply, <font class="keyword">int </font>flags)</p><p>		<font class="keyword">throws </font>android.os.RemoteException {</p><p>	<font class="keyword">switch </font>(code) {</p><p>	<font class="keyword">case </font>TRANSACTION_relayout: {</p><p>		data.enforceInterface(DESCRIPTOR);</p><p>		android.view.IWindow _arg0;</p><p>		android.view.Surface _arg10;</p><p>		<font class="Comments">// 刚才说了，Surface信息并没有传过来，那么我们在relayOut中看到的outSurface是怎么</font></p><p>		<font class="Comments">// 出来的呢?看下面这句，原来在服务端这边竟然new了一个新的Surface!!!</font></p><p>		</font>_arg10 = <font class="keyword">new </font>android.view.Surface();</p><p>		<font class="keyword">int </font>_result = </font><font class="keyword">this</font>.relayout(_arg0, _arg1, _arg2, _arg3, _arg4,</p><p>				_arg5, _arg6, _arg7, _arg8, _arg9, _arg10);</p><p>		reply.writeNoException();</p><p>		reply.writeInt(_result);</p><p>		<font class="Comments">// _arg10是copyFrom了，那怎么传到客户端呢?</font></p><p>		<font class="keyword">if </font>((_arg10 != </font><font class="keyword">null</font>)) {</p><p>			reply.writeInt(1);<font class="Comments">// 调用Surface的writeToParcel，把信息加入reply</font></p><p>			_arg10.writeToParcel(reply,</p><p>					android.os.Parcelable.PARCELABLE_WRITE_RETURN_VALUE);</p><p>		}</p><p>		<font class="keyword">return </font><font class="keyword">true</font>;</p><p>	}</p><p>	}</p><p>}</p><p></pre></p><p>客户端虽然传了一个surface，但其实没传递给服务端。服务端调用writeToParcel，把信息写到Parcel中，然后数据传回客户端。客户端调用Surface的readFromParcel，获得surface信息。那就去看看writeToParcel吧。</p><p><pre><font class="keyword">static </font><font class="keyword">void </font>Surface_writeToParcel( </p><p>JNIEnv* env, jobject clazz, jobject argParcel, j<font class="keyword">int </font>flags) { </p><p>	Parcel* parcel = (Parcel*)env-&gt;GetIntField(argParcel, no.native_parcel);</p><p>	const sp& control(getSurfaceControl(env, clazz));</p><p>	<font class="Comments">//还好，只是把数据序列化到Parcel中 </font></p><p>	SurfaceControl::writeSurfaceToParcel(control, parcel);</p><p>	<font class="keyword">if </font>(flags & PARCELABLE_WRITE_RETURN_VALUE) { </p><p>		setSurfaceControl(env, clazz, 0);</p><p>	} </p><p>}</p><p></pre></p><p>那看看客户端的Surface_readFromParcel吧。</p><p><pre><font class="keyword">static </font><font class="keyword">void </font>Surface_readFromParcel( </p><p>JNIEnv* env, jobject clazz, jobject argParcel) </p><p>{ </p><p>	Parcel* parcel = (Parcel*)env-&gt;GetIntField( argParcel, no.native_parcel);</p><p>	<font class="Comments">//客户端这边还没有surface呢 </font></p><p>	const sp& control(getSurface(env, clazz));</p><p>	<font class="Comments">//不过我们看到希望了，根据服务端那边Parcel信息来构造一个新的surface </font></p><p>	</font>sp rhs = <font class="keyword">new </font>Surface(*parcel);</p><p>	<font class="keyword">if </font>(!Surface::isSameSurface(control, rhs)) { </p><p>		setSurface(env, clazz, rhs); <font class="Comments">//把这个新surface赋给客户端。终于我们有了surface!</font></p><p>	} </p><p>}</p><p></pre></p><p>到此，我们终于七拐八绕的得到了surface，这其中经历太多曲折了。下一节，我们将精简这其中复杂的操作，统一归到Native层，以这样为切入点来了解Surface的工作流程和原理。</p><p>反正你知道ViewRoot调用了relayout后，Surface就真正从WindowManagerService那得到了。继续回到ViewRoot，其中还有一个重要地方是我们知道却不了解的。</p><p><pre><font class="keyword">private </font><font class="keyword">void </font>performTraversals() {</p><p>	<font class="keyword">final </font>View host = mView;</p><p>	<font class="keyword">boolean </font>initialized = </font><font class="keyword">false</font>;</p><p>	<font class="keyword">boolean </font>contentInsetsChanged = </font><font class="keyword">false</font>;</p><p>	<font class="keyword">boolean </font>visibleInsetsChanged;</p><p>	<font class="keyword">try </font>{</p><p>		relayoutResult = relayoutWindow(params, viewVisibility,</p><p>				insetsPending);</p><p>		<font class="Comments">// relayoutWindow完后，我们得到了一个无比宝贵的Surface</font></p><p>		<font class="Comments">// 那我们画界面的地方在哪里?就在这个函数中，离relayoutWindow不远处。</font></p><p>		<font class="keyword">boolean </font>cancelDraw = attachInfo.mTreeObserver.dispatchOnPreDraw();</p><p>		<font class="keyword">if </font>(!cancelDraw && !newSurface) {</p><p>			</font>mFullRedrawNeeded = <font class="keyword">false</font>;</p><p>			draw(fullRedrawNeeded);</p><p>		}</p><p>	</font>} <font class="keyword">catch </font>(Exception e) {</p><p>	}</p><p>}</p><p><font class="keyword">private </font><font class="keyword">void </font>draw(</font><font class="keyword">boolean </font>fullRedrawNeeded) {</p><p>	Surface surface = mSurface; <font class="Comments">// 嘿嘿，不担心了，surface资源都齐全了</font></p><p>	<font class="keyword">if </font>(surface == </font><font class="keyword">null</font> || !surface.isValid()) {</p><p>		<font class="keyword">return</font>;</font></p><p>	}</p><p>	<font class="keyword">if </font>(mAttachInfo.mViewScrollChanged) {</p><p>		</font>mAttachInfo.mViewScrollChanged = <font class="keyword">false</font>;</p><p>		mAttachInfo.mTreeObserver.dispatchOnScrollChanged();</p><p>	}</p><p>	<font class="keyword">int </font>yoff;</p><p>	<font class="keyword">final </font><font class="keyword">boolean </font>scrolling = mScroller != </font><font class="keyword">null</font></p><p>			&& mScroller.computeScrollOffset();</p><p>	<font class="keyword">if </font>(scrolling) {</p><p>		yoff = mScroller.getCurrY();</p><p>	</font>} <font class="keyword">else </font>{</p><p>		yoff = mScrollY;</p><p>	}</p><p>	<font class="keyword">if </font>(mCurScrollY != yoff) {</p><p>		mCurScrollY = yoff;</p><p>		</font>fullRedrawNeeded = <font class="keyword">true</font>;</p><p>	}</p><p>	<font class="keyword">float </font>appScale = mAttachInfo.mApplicationScale;</p><p>	<font class="keyword">boolean </font>scalingRequired = mAttachInfo.mScalingRequired;</p><p>	Rect dirty = mDirty;</p><p>	<font class="keyword">if </font>(mUseGL) { <font class="Comments">// 我们不用OPENGL</font></p><p>	}</p><p>	Canvas canvas;</p><p>	<font class="keyword">try </font>{</p><p>		<font class="keyword">int </font>left = dirty.left;</p><p>		<font class="keyword">int </font>top = dirty.top;</p><p>		<font class="keyword">int </font>right = dirty.right;</p><p>		<font class="keyword">int </font>bottom = dirty.bottom;</p><p>		<font class="Comments">// 从Surface中锁定一块区域，这块区域是我们认为的需要重绘的区域</font></p><p>		canvas = surface.lockCanvas(dirty);</p><p>		canvas.setDensity(mDensity);</p><p>	</font>} <font class="keyword">catch </font>(Exception e) {</p><p>	}</p><p>	<font class="keyword">try </font>{</p><p>		<font class="keyword">if </font>(!dirty.isEmpty() || mIsAnimating) {</p><p>			<font class="keyword">long </font>startTime = 0L;</p><p>			<font class="keyword">try </font>{</p><p>				canvas.translate(0, -yoff);</p><p>				<font class="keyword">if </font>(mTranslator != </font><font class="keyword">null</font>) {</p><p>					mTranslator.translateCanvas(canvas);</p><p>				}</p><p>				canvas.setScreenDensity(scalingRequired);</p><p>				<font class="Comments">// mView就是之前的decoreView,</font></p><p>				mView.draw(canvas);</p><p>			} finally {</p><p>				<font class="Comments">// 我们的图画完了，告诉surface释放这块区域</font></p><p>				surface.unlockCanvasAndPost(canvas);</p><p>			}</p><p>			<font class="keyword">if </font>(scrolling) {</p><p>				</font>mFullRedrawNeeded = <font class="keyword">true</font>;</p><p>				scheduleTraversals();</p><p>			}</p><p>		}</p><p>	} finally {</p><p>	}</p><p>}</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

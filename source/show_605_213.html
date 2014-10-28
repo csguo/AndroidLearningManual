@@ -1,0 +1,60 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 编辑模块_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li class="navcurrentLink"><A href="index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Launcher" href="index_207.html">Launcher</A></h2>
+
+  <h2><A title="电话系统RIL" href="index_208.html">电话系统RIL</A></h2>
+
+  <h2><A title="进程间通信" href="index_209.html">进程间通信</A></h2>
+
+  <h2><A title="内部sensor系统" href="index_210.html">内部sensor系统</A></h2>
+
+  <h2><A title="内部surface系统" href="index_211.html">内部surface系统</A></h2>
+
+  <h2><A title="启动流程" href="index_212.html">启动流程</A></h2>
+
+  <h2><A title="源码编译" href="index_213.html">源码编译</A></h2>
+<UL><li ><A title=详解Android源码的编译 href="show_601_213.html">详解Android源码的编译</A> </li><li ><A title=windows下下载Android源码 href="show_602_213.html">windows下下载Android源码</A> </li><li ><A title=Android 源码编译 href="show_603_213.html">Android 源码编译</A> </li><li ><A title=Android2.3源码下载编译全过程 href="show_604_213.html">Android2.3源码下载编译全过程</A> </li><li class="currentLink"><A title=Android 编辑模块 href="show_605_213.html">Android 编辑模块</A> </li></UL>
+  <h2><A title="状态栏" href="index_214.html">状态栏</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 编辑模块</H2>
+<div style="line-height:20px; font-size:14px;"><p>使用模块编译，只需要在你所在的模块的目录或者其子目录，执行mm，便可以编译出一个单独的apk，这样岂不快哉！</p><p>具体步骤：</p><p>1）打开~/.baserc文件，加入source ～/I850/build/envsetup.sh. 加入你自己该文件所在的路径，这样就免去了每次启动新的终端执行mm命令之前，需要引用此文件。</p><p>2）完成步骤1之后，就可以在你的模块里面随意执行mm了，要想使用其他快速命令，可以查看envsetup.sh文件，比如cgrep，jgrep，resgrep在不同类型的文件里面进行相应的查询.还有m，mmm等等。</p><p>3）还可以使用adb push 将你的apk push到模拟器或者手机终端，也可以在工程根目录通过make －snod生成新的system.img</p><p>编译模块</p><p>Android中的一个应用程序可以单独编译，编译后需要重新生成system.img。</p><p>在Android目录下运行</p><p><pre>$ .build/envsetup.sh </p><p></pre></p><p>或者</p><p><pre>$ source build/envsetup.sh</p><p></pre></p><p>然后就会多出几个可用的命令：</p><p><pre>- croot：   Changes directory to the top of the tree.</p><p>- m：       Makes from the top of the tree.</p><p>- mm：      Builds all of the modules in the current directory.</p><p>- mmm：     Builds all of the modules in the supplied directories.</p><p>- cgrep：   Greps on all local C/C++ files.</p><p>- jgrep：   Greps on all local Java files.</p><p>- resgrep： Greps on all local res/*.xml files.</p><p>- godir：   Go to the directory containing a file.</p><p>- printconfig： 当前build的配置情况。</p><p></pre></p><p>可以使用 --help查看用法。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

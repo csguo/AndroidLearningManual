@@ -1,0 +1,60 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android的binder机制研究（C++部分）（二）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li class="navcurrentLink"><A href="index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Launcher" href="index_207.html">Launcher</A></h2>
+
+  <h2><A title="电话系统RIL" href="index_208.html">电话系统RIL</A></h2>
+
+  <h2><A title="进程间通信" href="index_209.html">进程间通信</A></h2>
+<UL><li ><A title=Android Framework研究之IPC（一） href="show_201_209.html">Android Framework研究之IPC（一）</A> </li><li ><A title=Android Framework研究之IPC（二） href="show_202_209.html">Android Framework研究之IPC（二）</A> </li><li ><A title=Android Binder与进程间通信（一） href="show_203_209.html">Android Binder与进程间通信（一）</A> </li><li ><A title=Android Binder与进程间通信（二） href="show_204_209.html">Android Binder与进程间通信（二）</A> </li><li ><A title=Android 创建AIDL href="show_205_209.html">Android 创建AIDL</A> </li><li ><A title=来学习Android的IPC href="show_206_209.html">来学习Android的IPC</A> </li><li ><A title=在linux下谈谈Android的IPC href="show_207_209.html">在linux下谈谈Android的IPC</A> </li><li ><A title=Android的binder机制研究（C++部分）（一） href="show_208_209.html">Android的binder机制研究（C++部分）（一）</A> </li><li class="currentLink"><A title=Android的binder机制研究（C++部分）（二） href="show_209_209.html">Android的binder机制研究（C++部分）（二）</A> </li><li ><A title=Android的binder机制研究（C++部分）（三） href="show_210_209.html">Android的binder机制研究（C++部分）（三）</A> </li><li ><A title=Android的binder机制研究（C++部分）（四） href="show_211_209.html">Android的binder机制研究（C++部分）（四）</A> </li><li ><A title=Android的binder机制研究（C++部分）（五） href="show_212_209.html">Android的binder机制研究（C++部分）（五）</A> </li></UL>
+  <h2><A title="内部sensor系统" href="index_210.html">内部sensor系统</A></h2>
+
+  <h2><A title="内部surface系统" href="index_211.html">内部surface系统</A></h2>
+
+  <h2><A title="启动流程" href="index_212.html">启动流程</A></h2>
+
+  <h2><A title="源码编译" href="index_213.html">源码编译</A></h2>
+
+  <h2><A title="状态栏" href="index_214.html">状态栏</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android的binder机制研究（C++部分）（二）</H2>
+<div style="line-height:20px; font-size:14px;"><p style="color:#3333FF;">(2)定义和实现binder类</p><p>binder类包括两个，一个是接口实现类，一个接口代理类。接口代理类继承自BpInterface，接口实现类继承自BnInterface。这两个基类都是模板类，封装了binder的进程间通信机制，这样使用者无需关注底层通信实现细节。</p><p>对于IMediaPlayerService接口，其binder接口实现类为BnMediaPlayerService，接口代理类为BpMediaPlayerService。需注意这两个类的名称有严格要求，必须以Bn和Bp开头，并且后面的部分必须是前面所定义的接口类的名称去除字母'I’。比如前面所定义的接口类为IMediaPlayerService，去除字母I后是MediaPlayerService，所以两个binder类的名称分别是BnMediaPlayerService和BpMediaPlayerService。为什么有这样的要求？原因就在前面提到的宏定义DECLARE_META_INTERFACE()和另一个宏定义IMPLEMENT_META_INTERFACE()里面。有兴趣的话可以去看一下，这两个宏定义都在文件frameworks\base\include\utils\IInterface.h里。</p><p>BpMediaPlayerService是一个最终实现类。定义并且实现在在文件frameworks\base\media\libmidia\IMediaPlayerService.cpp中。在看BpMediaPlayerService的代码之前，先看一下在IMediaPlayerService.cpp文件的开始部分的一个枚举定义：</p><p><pre>enum {</p><p>	CREATE_URL = IBinder::FIRST_CALL_TRANSACTION,</p><p>	CREATE_FD,</p><p>	DECODE_URL,</p><p>	DECODE_FD,</p><p>	CREATE_MEDIA_RECORDER,</p><p>	CREATE_METADATA_RETRIEVER,</p><p>};	</p><p></pre></p><p>这些6个枚举定义对应于IMediaPlayerService接口所提供的6个功能函数，可以称为这些功能函数的功能代码，用于在进程之间进行RPC是标识需要调用哪个函数。如果不想定义这些枚举值，在后面需要用到这些值的地方直接写上1，2，3，4，5，6也是可以的，不过……一个合适的程序员会这么干吗？</p><p>下面看一下BpMediaPlayerService的代码。</p><p style="color:#3333FF;">(3) BpMediaPlayerService代码分析</p><p><pre>class BpMediaPlayerService: public BpInterface&lt;IMediaPlayerService&gt;</p><p>{</p><p>public:</p><p>BpMediaPlayerService(const sp&lt;IBinder&gt;& impl) : BpInterface&lt;IMediaPlayerService&gt;(impl)</p><p>virtual sp&lt;IMediaMetadataRetriever&gt; createMetadataRetriever(pid_t pid)</p><p>{</p><p>	Parcel data, reply;</p><p>	data.writeInterfaceToken(IMediaPlayerService::getInterfaceDescriptor());</p><p>	data.writeInt32(pid);</p><p>	remote()-&gt;transact(CREATE_METADATA_RETRIEVER, data, &reply);</p><p>	return interface_cast&lt;IMediaMetadataRetriever&gt;(reply.readStrongBinder());</p><p>}</p><p>virtual sp&lt;IMediaPlayer&gt; create(pid_t pid, const sp&lt;IMediaPlayerClient&gt;& client, const char* url)</p><p>{</p><p>	Parcel data, reply;</p><p>	data.writeInterfaceToken(IMediaPlayerService::getInterfaceDescriptor());</p><p>	data.writeInt32(pid);</p><p>	data.writeStrongBinder(client-&gt;asBinder());</p><p>	data.writeCString(url);</p><p>	remote()-&gt;transact(CREATE_URL, data, &reply);</p><p>	return interface_cast&lt;IMediaPlayer&gt;(reply.readStrongBinder());</p><p>}</p><p>virtual sp&lt;IMediaRecorder&gt; createMediaRecorder(pid_t pid)</p><p>{</p><p>	Parcel data, reply;</p><p>	data.writeInterfaceToken(IMediaPlayerService::getInterfaceDescriptor());</p><p>	data.writeInt32(pid);</p><p>	remote()-&gt;transact(CREATE_MEDIA_RECORDER, data, &reply);</p><p>	return interface_cast&lt;IMediaRecorder&gt;(reply.readStrongBinder());</p><p>}</p><p>virtual sp&lt;IMediaPlayer&gt; create(pid_t pid, const sp&lt;IMediaPlayerClient&gt;& client, int fd, int64_t offset, int64_t length)</p><p>{</p><p>	Parcel data, reply;</p><p>	data.writeInterfaceToken(IMediaPlayerService::getInterfaceDescriptor());</p><p>	data.writeInt32(pid);</p><p>	data.writeStrongBinder(client-&gt;asBinder());</p><p>	data.writeFileDescriptor(fd);</p><p>	data.writeInt64(offset);</p><p>	data.writeInt64(length);</p><p>	remote()-&gt;transact(CREATE_FD, data, &reply);</p><p>	return interface_cast&lt;IMediaPlayer&gt;(reply.readStrongBinder());</p><p>}</p><p>virtual sp&lt;IMemory&gt; decode(const char* url, uint32_t *pSampleRate, int* pNumChannels, int* pFormat)</p><p>{</p><p>	Parcel data, reply;</p><p>	data.writeInterfaceToken(IMediaPlayerService::getInterfaceDescriptor());</p><p>	data.writeCString(url);</p><p>	remote()-&gt;transact(DECODE_URL, data, &reply);</p><p>	*pSampleRate = uint32_t(reply.readInt32());</p><p>	*pNumChannels = reply.readInt32();</p><p>	*pFormat = reply.readInt32();</p><p>	return interface_cast&lt;IMemory&gt;(reply.readStrongBinder());</p><p>}</p><p>virtual sp&lt;IMemory&gt; decode(int fd, int64_t offset, int64_t length, uint32_t *pSampleRate, int* pNumChannels, int* pFormat)</p><p>{</p><p>	Parcel data, reply;</p><p>	data.writeInterfaceToken(IMediaPlayerService::getInterfaceDescriptor());</p><p>	data.writeFileDescriptor(fd);</p><p>	data.writeInt64(offset);</p><p>	data.writeInt64(length);</p><p>	remote()-&gt;transact(DECODE_FD, data, &reply);</p><p>	*pSampleRate = uint32_t(reply.readInt32());</p><p>	*pNumChannels = reply.readInt32();</p><p>	*pFormat = reply.readInt32();</p><p>	return interface_cast&lt;IMemory&gt;(reply.readStrongBinder());</p><p>}</p><p>};	</p><p></pre></p><p>首先可以看到，这个类继承自模板类BpInterface，指定类型为接口类IMediaPlayerService。BpInterface模板类定义在文件IInterface.h。看一下BpInterface的定义就可以发现，BpMediaPlayerService这样定义了以后，事实上间接继承了IMediaPlayerService，从而可以提供IMediaPlayerService接口所定义的接口函数。BpMediaPlayerService需要实现这些接口函数。在一个简单的构造函数之后，就是这些接口函数的实现。可以看到，所有的接口函数的实现方法都是一致的，都是通过binder所提供的机制将参数仍给binder的实现类，并获取返回值。这也就是这个类之所以成为代理类的原因。下面具体看一下一个接口函数。这里选的是函数create(url)。</p><p><pre>virtual sp&lt;IMediaPlayer&gt; create(pid_t pid, const sp&lt;IMediaPlayerClient&gt;& client, const char* url)</p><p>{</p><p>	Parcel data, reply;</p><p>	data.writeInterfaceToken(IMediaPlayerService::getInterfaceDescriptor());</p><p>	data.writeInt32(pid);</p><p>	data.writeStrongBinder(client-&gt;asBinder());</p><p>	data.writeCString(url);</p><p>	remote()-&gt;transact(CREATE_URL, data, &reply);</p><p>	return interface_cast&lt;IMediaPlayer&gt;(reply.readStrongBinder());</p><p>}	</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

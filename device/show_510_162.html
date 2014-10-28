@@ -1,0 +1,70 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>温度传感器SensorTemperature功能源码_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li class="navcurrentLink"><A href="index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="设备信息" href="index_157.html">设备信息</A></h2>
+
+  <h2><A title="摄像头" href="index_158.html">摄像头</A></h2>
+
+  <h2><A title="通讯录" href="index_159.html">通讯录</A></h2>
+
+  <h2><A title="电话" href="index_160.html">电话</A></h2>
+
+  <h2><A title="短信" href="index_161.html">短信</A></h2>
+
+  <h2><A title="传感器" href="index_162.html">传感器</A></h2>
+<UL><li ><A title=Android的传感器 href="show_501_162.html">Android的传感器</A> </li><li ><A title=关于传感器的使用 href="show_502_162.html">关于传感器的使用</A> </li><li ><A title=方向SensorOrientation传感器功能实现 href="show_503_162.html">方向SensorOrientation传感器功能实现</A> </li><li ><A title=加速度Accelerometer功能源码 href="show_504_162.html">加速度Accelerometer功能源码</A> </li><li ><A title=Android 光传感器 href="show_505_162.html">Android 光传感器</A> </li><li ><A title=Android 磁场传感器 href="show_506_162.html">Android 磁场传感器</A> </li><li ><A title=磁场Magnetic Field源码与示例 href="show_507_162.html">磁场Magnetic Field源码与示例</A> </li><li ><A title=近距离感应Proximity功能源码 href="show_508_162.html">近距离感应Proximity功能源码</A> </li><li ><A title=Android 温度传感器 href="show_509_162.html">Android 温度传感器</A> </li><li class="currentLink"><A title=温度传感器SensorTemperature功能源码 href="show_510_162.html">温度传感器SensorTemperature功能源码</A> </li><li ><A title=Sensor传感器源码的阅读与应用开发简单实例 href="show_511_162.html">Sensor传感器源码的阅读与应用开发简单实例</A> </li><li ><A title=Android 开发中传感器使用实例 href="show_512_162.html">Android 开发中传感器使用实例</A> </li><li ><A title=Android 游戏中的传感器 href="show_513_162.html">Android 游戏中的传感器</A> </li><li ><A title=利用SensorSimulator进行传感器的模拟 href="show_514_162.html">利用SensorSimulator进行传感器的模拟</A> </li></UL>
+  <h2><A title="定位" href="index_163.html">定位</A></h2>
+
+  <h2><A title="视频系统" href="index_164.html">视频系统</A></h2>
+
+  <h2><A title="音频系统" href="index_165.html">音频系统</A></h2>
+
+  <h2><A title="铃声" href="index_166.html">铃声</A></h2>
+
+  <h2><A title="音量" href="index_167.html">音量</A></h2>
+
+  <h2><A title="录音" href="index_168.html">录音</A></h2>
+
+  <h2><A title="输入法" href="index_169.html">输入法</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>温度传感器SensorTemperature功能源码</H2>
+<div style="line-height:20px; font-size:14px;"><p>个人觉得温度传感器的应用频率应该不会太高，这也是部分Android手机直接将这个功能屏蔽掉的原因所在。不过从创意角度出发，基于这个传感器可以开发出一些有意思的应用，比如手机温度计、室温监测等等。</p><p>个性化的应用就不说了，具体的说实话我也没做，只是把Rexsee的功能源码分享出来，回头要是有应用了再分享。和之前的帖子里提到的一样，Android平台带有大量的传感器功能，相关的原生源码可以在Rexsee的开源社区找到：http://www.rexsee.com/</p><p>SensorTemperature功能源码如下：</p><p><pre>/* </p><p> <font class="Comments">* Copyright (C) 2011 The Rexsee Open Source Project </font></p><p> <font class="Comments">* </font></p><p> <font class="Comments">* Licensed under the Rexsee License, Version 1.0 (the "License"); </font></p><p> <font class="Comments">* you may not use this file except in compliance with the License. </font></p><p> <font class="Comments">* You may obtain a copy of the License at </font></p><p> <font class="Comments">* </font></p><p> <font class="Comments">*      http://www.rexsee.com/CN/legal/license.html </font></p><p> <font class="Comments">* </font></p><p> <font class="Comments">* Unless required by applicable law or agreed to in writing, software </font></p><p> <font class="Comments">* distributed under the License is distributed on an "AS IS" BASIS, </font></p><p> <font class="Comments">* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. </font></p><p> <font class="Comments">* See the License for the specific language governing permissions and </font></p><p> <font class="Comments">* limitations under the License. </font></p><p> <font class="Comments">*/</font></p><p><font class="keyword">import </font>android.content.Context;</p><p><font class="keyword">import </font>android.hardware.Sensor;</p><p><font class="keyword">import </font>android.hardware.SensorEvent;</p><p><font class="keyword">import </font>android.hardware.SensorEventListener;</p><p><font class="keyword">import </font>android.hardware.SensorManager;</p><p><font class="keyword">public </font><font class="keyword">class </font>RexseeSensorTemperature </font><font class="keyword">implements </font>JavascriptInterface {</p><p>	<font class="keyword">private </font><font class="keyword">static </font><font class="keyword">final </font>String INTERFACE_NAME = <font class="Fields">"Temperature"</font>;</p><p>	@Override</p><p>	<font class="keyword">public </font>String getInterfaceName() {</p><p>		<font class="keyword">return </font>mBrowser.application.resources.prefix + INTERFACE_NAME;</p><p>	}</p><p>	@Override</p><p>	<font class="keyword">public </font>JavascriptInterface getInheritInterface(RexseeBrowser childBrowser) {</p><p>		<font class="keyword">return </font><font class="keyword">this</font>;</p><p>	}</p><p>	@Override</p><p>	<font class="keyword">public </font>JavascriptInterface getNewInterface(RexseeBrowser childBrowser) {</p><p>		<font class="keyword">return </font><font class="keyword">new </font>RexseeSensorTemperature(childBrowser);</p><p>	}</p><p>	<font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font>String EVENT_ONTEMPERATURECHANGED = <font class="Fields">"onTemperatureChanged"</font>;</p><p>	<font class="keyword">private </font><font class="keyword">final </font>Context mContext;</p><p>	<font class="keyword">private </font><font class="keyword">final </font>RexseeBrowser mBrowser;</p><p>	<font class="keyword">private </font><font class="keyword">final </font>SensorManager mSensorManager;</p><p>	<font class="keyword">private </font><font class="keyword">final </font>SensorEventListener mSensorListener;</p><p>	<font class="keyword">private </font><font class="keyword">final </font>Sensor mSensor;</p><p>	<font class="keyword">private </font><font class="keyword">int </font>mRate = SensorManager.SENSOR_DELAY_NORMAL;</p><p>	<font class="keyword">private </font><font class="keyword">int </font>mCycle = 100; <font class="Comments">// milliseconds</font></p><p>	<font class="keyword">private </font><font class="keyword">int </font>mEventCycle = 100; <font class="Comments">// milliseconds</font></p><p>	<font class="keyword">private </font><font class="keyword">float </font>mAccuracy = 0;</p><p>	<font class="keyword">private </font><font class="keyword">long </font>lastUpdate = -1;</p><p>	<font class="keyword">private </font><font class="keyword">long </font>lastEvent = -1;</p><p>	<font class="keyword">private </font><font class="keyword">float </font>value = -999f;</p><p>	<font class="keyword">public </font>RexseeSensorTemperature(RexseeBrowser browser) {</p><p>		mContext = browser.getContext();</p><p>		mBrowser = browser;</p><p>		browser.eventList.add(EVENT_ONTEMPERATURECHANGED);</p><p>		mSensorManager = (SensorManager) mContext</p><p>				.getSystemService(Context.SENSOR_SERVICE);</p><p>		mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_TEMPERATURE);</p><p>		</font>mSensorListener = <font class="keyword">new </font>SensorEventListener() {</p><p>			@Override</p><p>			<font class="keyword">public </font><font class="keyword">void </font>onAccuracyChanged(Sensor sensor, </font><font class="keyword">int </font>accuracy) {</p><p>			}</p><p>			@Override</p><p>			<font class="keyword">public </font><font class="keyword">void </font>onSensorChanged(SensorEvent event) {</p><p>				<font class="keyword">if </font>(event.sensor.getType() != Sensor.TYPE_TEMPERATURE)</p><p>					<font class="keyword">return</font>;</font></p><p>				<font class="keyword">long </font>curTime = System.currentTimeMillis();</p><p>				<font class="keyword">if </font>(lastUpdate == -1 || (curTime - lastUpdate) &gt; mCycle) {</p><p>					lastUpdate = curTime;</p><p>					<font class="keyword">float </font>lastValue = value;</p><p>					value = event.values[SensorManager.DATA_X];</p><p>					<font class="keyword">if </font>(lastEvent == -1 || (curTime - lastEvent) &gt; mEventCycle) {</p><p>						<font class="keyword">if </font>(Math.abs(value - lastValue) &gt; mAccuracy) {</p><p>							lastEvent = curTime;</p><p>							mBrowser.eventList.run(EVENT_ONTEMPERATURECHANGED);</p><p>						}</p><p>					}</p><p>				}</p><p>			}</p><p>		};</p><p>	}</p><p>	<font class="keyword">public </font>String getLastKnownValue() {</p><p>		<font class="keyword">return </font>(value == -999) ? <font class="Fields">"</font><font class="keyword">null</font>"</font> : String.valueOf(value);</p><p>	}</p><p>	<font class="keyword">public </font><font class="keyword">void </font>setRate(String rate) {</p><p>		mRate = SensorRate.getInt(rate);</p><p>	}</p><p>	<font class="keyword">public </font>String getRate() {</p><p>		<font class="keyword">return </font>SensorRate.getString(mRate);</p><p>	}</p><p>	<font class="keyword">public </font><font class="keyword">void </font>setCycle(</font><font class="keyword">int </font>milliseconds) {</p><p>		mCycle = milliseconds;</p><p>	}</p><p>	<font class="keyword">public </font><font class="keyword">int </font>getCycle() {</p><p>		<font class="keyword">return </font>mCycle;</p><p>	}</p><p>	<font class="keyword">public </font><font class="keyword">void </font>setEventCycle(</font><font class="keyword">int </font>milliseconds) {</p><p>		mEventCycle = milliseconds;</p><p>	}</p><p>	<font class="keyword">public </font><font class="keyword">int </font>getEventCycle() {</p><p>		<font class="keyword">return </font>mEventCycle;</p><p>	}</p><p>	<font class="keyword">public </font><font class="keyword">void </font>setAccuracy(</font><font class="keyword">float </font>value) {</p><p>		mAccuracy = Math.abs(value);</p><p>	}</p><p>	<font class="keyword">public </font><font class="keyword">float </font>getAccuracy() {</p><p>		<font class="keyword">return </font>mAccuracy;</p><p>	}</p><p>	<font class="keyword">public </font><font class="keyword">boolean </font>isReady() {</p><p>		<font class="keyword">return </font>(mSensor == </font><font class="keyword">null</font>) ? </font><font class="keyword">false</font> : </font><font class="keyword">true</font>;</p><p>	}</p><p>	<font class="keyword">public </font><font class="keyword">void </font>start() {</p><p>		<font class="keyword">if </font>(isReady()) {</p><p>			mSensorManager.registerListener(mSensorListener, mSensor, mRate);</p><p>		</font>} <font class="keyword">else </font>{</p><p>			mBrowser.exception(getInterfaceName(),</p><p>					<font class="Fields">"Temperature sensor is not found."</font>);</p><p>		}</p><p>	}</p><p>	<font class="keyword">public </font><font class="keyword">void </font>stop() {</p><p>		<font class="keyword">if </font>(isReady()) {</p><p>			mSensorManager.unregisterListener(mSensorListener);</p><p>		}</p><p>	}</p><p>}</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

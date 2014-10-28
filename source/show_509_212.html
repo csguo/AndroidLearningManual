@@ -1,0 +1,60 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android arm linux kernel启动流程（四）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li class="navcurrentLink"><A href="index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Launcher" href="index_207.html">Launcher</A></h2>
+
+  <h2><A title="电话系统RIL" href="index_208.html">电话系统RIL</A></h2>
+
+  <h2><A title="进程间通信" href="index_209.html">进程间通信</A></h2>
+
+  <h2><A title="内部sensor系统" href="index_210.html">内部sensor系统</A></h2>
+
+  <h2><A title="内部surface系统" href="index_211.html">内部surface系统</A></h2>
+
+  <h2><A title="启动流程" href="index_212.html">启动流程</A></h2>
+<UL><li ><A title=从开机到android平台启动的学习路线 href="show_501_212.html">从开机到android平台启动的学习路线</A> </li><li ><A title=讲讲Android的启动 href="show_502_212.html">讲讲Android的启动</A> </li><li ><A title=Android 初始化流程 href="show_503_212.html">Android 初始化流程</A> </li><li ><A title=Android 开机动画启动过程详解 href="show_504_212.html">Android 开机动画启动过程详解</A> </li><li ><A title=Android poweroff 流程 href="show_505_212.html">Android poweroff 流程</A> </li><li ><A title=Android arm linux kernel启动流程（一） href="show_506_212.html">Android arm linux kernel启动流程（一）</A> </li><li ><A title=Android arm linux kernel启动流程（二） href="show_507_212.html">Android arm linux kernel启动流程（二）</A> </li><li ><A title=Android arm linux kernel启动流程（三） href="show_508_212.html">Android arm linux kernel启动流程（三）</A> </li><li class="currentLink"><A title=Android arm linux kernel启动流程（四） href="show_509_212.html">Android arm linux kernel启动流程（四）</A> </li><li ><A title=Android arm linux kernel启动流程（五） href="show_510_212.html">Android arm linux kernel启动流程（五）</A> </li></UL>
+  <h2><A title="源码编译" href="index_213.html">源码编译</A></h2>
+
+  <h2><A title="状态栏" href="index_214.html">状态栏</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android arm linux kernel启动流程（四）</H2>
+<div style="line-height:20px; font-size:14px;"><p>前面说过解压以后，代码会跳到解压完成以后的vmlinux开始执行，具体从什么地方开始执行我们可以看看生成的vmlinux.lds(arch/arm/kernel/)这个文件：</p><p><pre>OUTPUT_ARCH(arm) </p><p>ENTRY(stext) </p><p>jiffies = jiffies_64; </p><p>SECTIONS </p><p>{ </p><p>. = 0x80000000 + 0x00008000; </p><p>.text.head : { </p><p>_stext = .; </p><p>_sinittext = .; </p><p>*(.text.h </p><p></pre></p><p>很明显我们的vmlinx最开头的section是.text.head，这里我们不能看ENTRY的内容，以为这时候我们没有操作系统，根本不知道如何来解析这里的入口地址，我们只能来分析他的section(不过一般来说这里的ENTRY和我们从seciton分析的结果是一样的)，这里的.text.head section我们很容易就能在arch/arm/kernel/head.S里面找到，而且它里面的第一个符号就是我们的stext：</p><p><pre>.section ".text.head", "ax" </p><p>Y(stext) </p><p>msr cpsr_c, PSR_F_BIT | PSR_I_BIT | SVC_MODE @ ensure svc mode </p><p>@ and irqs disabled </p><p>mrc p15, 0, r9, c0, c0 @ get processor id </p><p>bl __lookup_processor_type @ r5=procinfo r9=cpuid </p><p></pre></p><p>这里的ENTRY这个宏实际我们可以在include/linux/linkage.h里面找到，可以看到他实际上就是声明一个GLOBAL Symbol，后面的ENDPROC和END唯一的区别是前面的声明了一个函数，可以在c里面被调用。</p><p><pre>ifndef ENTRY </p><p>define ENTRY(name) / </p><p>.globl name; / </p><p>ALIGN; / </p><p>name: </p><p>endif </p><p>ifndef WEAK </p><p>define WEAK(name) / </p><p>.weak name; / </p><p>name: </p><p>endif </p><p>ifndef END </p><p>define END(name) / </p><p>.size name, .-name </p><p>endif </p><p><font class="Comments">/* If symbol <font class="Fields">'name'</font> is treated as a subroutine (gets called, and returns) </font></p><p><font class="Comments">* then please use ENDPROC to mark 'name' as STT_FUNC for the benefit of </font></p><p><font class="Comments">* static analysis tools such as stack depth analyzer. </font></p><p><font class="Comments">*/ </font></p><p>ifndef ENDPROC </p><p>define ENDPROC(name) / </p><p>.type name, @function; / </p><p>END(name) </p><p>endif </p><p></pre></p><p>找到了vmlinux的起始代码我们就来进行分析了，先总体概括一下这部分代码所完成的功能，head.S会首先检查proc和arch以及atag的有效性，然后会建立初始化页表，并进行CPU必要的处理以后打开MMU，并跳转到start_kernel这个symbol开始执行后面的C代码。这里有很多变量都是我们进行kernel移植时需要特别注意的，下面会一一讲到。</p><p>在这里我们首先看看这段汇编开始跑的时候的寄存器信息，这里的寄存器内容实际上是同bootloader跳转到解压代码是一样的，就是r1=arch  r2=atag addr。下面我们就具体来看看这个head.S跑的过程：</p><p><pre>msr cpsr_c, PSR_F_BIT | PSR_I_BIT | SVC_MODE @ ensure svc mode </p><p>@ and irqs disabled </p><p>mrc p15, 0, r9, c0, c0 @ get processor id </p><p></pre></p><p>首先进入SVC模式并关闭所有中断，并从arm协处理器里面读到CPU ID，这里的CPU主要是指arm架构相关的CPU型号，比如ARM9，ARM11等等。</p><p>然后跳转到__lookup_processor_type，这个函数定义在head-common.S里面，这里的bl指令会保存当前的pc在lr里面，最后__lookup_processor_type会从这个函数返回，我们具体看看这个函数：</p><p><pre>__lookup_processor_type: </p><p>adr r3, 3f</p><p>ldmda r3, {r5 - r7} </p><p>sub r3, r3, r7 @ get offset between virt&phys </p><p>add r5, r5, r3 @ convert virt addresses to </p><p>add r6, r6, r3 @ physical address space </p><p>1: ldmia r5, {r3, r4} @ value, mask </p><p>and r4, r4, r9 @ mask wanted bits </p><p>teq r3, r4 </p><p>beq 2f</p><p>add r5, r5, PROC_INFO_SZ @ sizeof(proc_info_list) </p><p>cmp r5, r6 </p><p>blo 1b </p><p>mov r5, 0 @ unknown processor </p><p>2: mov pc, lr </p><p>ENDPROC(__lookup_processor_type) </p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

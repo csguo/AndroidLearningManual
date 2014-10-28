@@ -1,0 +1,70 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 个人铃声设置代码_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li class="navcurrentLink"><A href="index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="设备信息" href="index_157.html">设备信息</A></h2>
+
+  <h2><A title="摄像头" href="index_158.html">摄像头</A></h2>
+
+  <h2><A title="通讯录" href="index_159.html">通讯录</A></h2>
+
+  <h2><A title="电话" href="index_160.html">电话</A></h2>
+
+  <h2><A title="短信" href="index_161.html">短信</A></h2>
+
+  <h2><A title="传感器" href="index_162.html">传感器</A></h2>
+
+  <h2><A title="定位" href="index_163.html">定位</A></h2>
+
+  <h2><A title="视频系统" href="index_164.html">视频系统</A></h2>
+
+  <h2><A title="音频系统" href="index_165.html">音频系统</A></h2>
+
+  <h2><A title="铃声" href="index_166.html">铃声</A></h2>
+<UL><li ><A title=Android 获取、设置铃声、音量、静音、扬声器 href="show_901_166.html">Android 获取、设置铃声、音量、静音、扬声器</A> </li><li ><A title=Android 设置铃声+震动 href="show_902_166.html">Android 设置铃声+震动</A> </li><li class="currentLink"><A title=Android 个人铃声设置代码 href="show_903_166.html">Android 个人铃声设置代码</A> </li><li ><A title=Media开发之铃声设置(RingtoneManager) href="show_904_166.html">Media开发之铃声设置(RingtoneManager)</A> </li></UL>
+  <h2><A title="音量" href="index_167.html">音量</A></h2>
+
+  <h2><A title="录音" href="index_168.html">录音</A></h2>
+
+  <h2><A title="输入法" href="index_169.html">输入法</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 个人铃声设置代码</H2>
+<div style="line-height:20px; font-size:14px;"><p>我们大家都知道，当来电时，你的手机又一个很酷的铃音会有很多人看你，那我们怎么在android中设置自己想要的铃音那，我们今天就来看看在设置自己的铃音都需要那些步骤。我们首先要找到选中列表的铃声，第二步我们在把数据库给修改了。有了这样的思路我们就能来设置自己个性的铃音了。</p><p><pre><font class="keyword">private </font><font class="keyword">void </font>doPickRingtone() {</p><p>	</font>Intent intent = <font class="keyword">new </font>Intent(RingtoneManager.ACTION_RINGTONE_PICKER);</p><p>	<font class="Comments">// 允许用户去检验 'Default'</font></p><p>	</font>intent.putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_DEFAULT, <font class="keyword">true</font>);</p><p>	<font class="Comments">// 只显示铃声</font></p><p>	intent.putExtra(RingtoneManager.EXTRA_RINGTONE_TYPE,</p><p>			RingtoneManager.TYPE_RINGTONE);</p><p>	</font>intent.putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_SILENT, <font class="keyword">false</font>);</p><p>	Uri ringtoneUri;</p><p>	<font class="keyword">if </font>(mCustomRingtone != </font><font class="keyword">null</font>) {</p><p>		ringtoneUri = Uri.parse(mCustomRingtone);</p><p>	</font>} <font class="keyword">else </font>{</p><p>		<font class="Comments">// 设置默认铃音的Uri.</font></p><p>		ringtoneUri = RingtoneManager</p><p>				.getDefaultUri(RingtoneManager.TYPE_RINGTONE);</p><p>	}</p><p>	intent.putExtra(RingtoneManager.EXTRA_RINGTONE_EXISTING_URI,</p><p>			ringtoneUri);</p><p>	<font class="Comments">// 发送</font></p><p>	startActivityForResult(intent, RINGTONE_PICKED);</p><p>}</p><p><font class="Comments">// 选中之后修改数据库</font></p><p>@Override</p><p><font class="keyword">protected </font><font class="keyword">void </font>onActivityResult(</font><font class="keyword">int </font>requestCode, </font><font class="keyword">int </font>resultCode, Intent data) {</p><p>	<font class="keyword">if </font>(resultCode != RESULT_OK) {</p><p>		<font class="keyword">return</font>;</font></p><p>	}</p><p>	<font class="keyword">switch </font>(requestCode) {</p><p>	<font class="keyword">case </font>RINGTONE_PICKED: {</p><p>		<font class="Comments">// 选择完铃声之后获得选中铃音的URI,将其值存入数据库</font></p><p>		Uri pickedUri = data</p><p>				.getParcelableExtra(RingtoneManager.EXTRA_RINGTONE_PICKED_URI);</p><p>		handleRingtonePicked(pickedUri);</p><p>		<font class="keyword">break</font>;</p><p>	}</p><p>	}</p><p>}</p><p><font class="keyword">private </font><font class="keyword">void </font>handleRingtonePicked(Uri pickedUri) {</p><p>	<font class="keyword">if </font>(pickedUri == </font><font class="keyword">null</font> || RingtoneManager.isDefault(pickedUri)) {</p><p>		</font>mCustomRingtone = <font class="keyword">null</font>;</p><p>	</font>} <font class="keyword">else </font>{</p><p>		mCustomRingtone = pickedUri.toString();</p><p>	}</p><p>	saveData();</p><p>}</p><p><font class="Comments">/**</font></p><p> <font class="Comments">* 保存数据</font></p><p> <font class="Comments">*/</font></p><p><font class="keyword">private </font><font class="keyword">void </font>saveData() {</p><p>	</font>ContentValues values = <font class="keyword">new </font>ContentValues();</p><p>	values.put(Contacts.CUSTOM_RINGTONE, mCustomRingtone);</p><p>	<font class="Comments">// 这里的mContactId是当前联系人的Id</font></p><p>	getContentResolver().update(Contacts.CONTENT_URI, values,</p><p>			</font>Contacts._ID + <font class="Fields">" = "</font> + mContactId, <font class="keyword">null</font>);</p><p>}</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>删除文件里的内容_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li class="navcurrentLink"><A href="index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="开发基础" href="index_100.html">开发基础</A></h2>
+
+  <h2><A title="开发环境搭建" href="index_101.html">开发环境搭建</A></h2>
+
+  <h2><A title="模拟器" href="index_102.html">模拟器</A></h2>
+
+  <h2><A title="Resource" href="index_103.html">Resource</A></h2>
+
+  <h2><A title="Manifest" href="index_104.html">Manifest</A></h2>
+
+  <h2><A title="ADB" href="index_105.html">ADB</A></h2>
+
+  <h2><A title="DDMS" href="index_106.html">DDMS</A></h2>
+
+  <h2><A title="Logcat(日志)" href="index_107.html">Logcat(日志)</A></h2>
+
+  <h2><A title="打包" href="index_108.html">打包</A></h2>
+
+  <h2><A title="文件处理" href="index_109.html">文件处理</A></h2>
+<UL><li ><A title=Android私有文件夹文件的写入与读取 href="show_901_109.html">Android私有文件夹文件的写入与读取</A> </li><li ><A title=Android中asset文件夹和raw文件夹区别 href="show_902_109.html">Android中asset文件夹和raw文件夹区别</A> </li><li ><A title=文件创建 href="show_903_109.html">文件创建</A> </li><li class="currentLink"><A title=删除文件里的内容 href="show_904_109.html">删除文件里的内容</A> </li></UL>
+  <h2><A title="底层基础" href="index_111.html">底层基础</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>删除文件里的内容</H2>
+<div style="line-height:20px; font-size:14px;"><p>代码如下：</p><p><pre><font class="Comments">/**</font></p><p> <font class="Comments">* 删除文件夹</font></p><p> <font class="Comments">* </font></p><p> <font class="Comments">* @param filePathAndName</font></p><p> <font class="Comments">*            String 文件夹路径及名称 如c:/fqf</font></p><p> <font class="Comments">* @param fileContent</font></p><p> <font class="Comments">*            String</font></p><p> <font class="Comments">* @return boolean</font></p><p> <font class="Comments">*/</font></p><p><font class="keyword">public </font><font class="keyword">void </font>delFolder(String folderPath) {</p><p>	<font class="keyword">try </font>{</p><p>		delAllFile(folderPath); <font class="Comments">// 删除完里面所有内容</font></p><p>		String filePath = folderPath;</p><p>		filePath = filePath.toString();</p><p>		</font>java.io.File myFilePath = <font class="keyword">new </font>java.io.File(filePath);</p><p>		myFilePath.delete(); <font class="Comments">// 删除空文件夹</font></p><p>	</font>} <font class="keyword">catch </font>(Exception e) {</p><p>		</font>System.<font class="Fields">out</font>.println(</font><font class="Fields">"删除文件夹操作出错"</font>);</p><p>		e.printStackTrace();</p><p>	}</p><p>}</p><p><font class="Comments">/**</font></p><p> <font class="Comments">* 删除文件夹里面的所有文件</font></p><p> <font class="Comments">* </font></p><p> <font class="Comments">* @param path</font></p><p> <font class="Comments">*            String 文件夹路径 如 c:/fqf</font></p><p> <font class="Comments">*/</font></p><p><font class="keyword">public </font><font class="keyword">void </font>delAllFile(String path) {</p><p>	</font>File file = <font class="keyword">new </font>File(path);</p><p>	<font class="keyword">if </font>(!file.exists()) {</p><p>		<font class="keyword">return</font>;</font></p><p>	}</p><p>	<font class="keyword">if </font>(!file.isDirectory()) {</p><p>		<font class="keyword">return</font>;</font></p><p>	}</p><p>	String[] tempList = file.list();</p><p>	</font>File temp = <font class="keyword">null</font>;</p><p>	<font class="keyword">for </font>(</font><font class="keyword">int </font>i = 0; i &lt; tempList.length; i++) {</p><p>		<font class="keyword">if </font>(path.endsWith(File.separator)) {</p><p>			</font>temp = <font class="keyword">new </font>File(path + tempList[i]);</p><p>		</font>} <font class="keyword">else </font>{</p><p>			</font>temp = <font class="keyword">new </font>File(path + File.separator + tempList[i]);</p><p>		}</p><p>		<font class="keyword">if </font>(temp.isFile()) {</p><p>			temp.delete();</p><p>		}</p><p>		<font class="keyword">if </font>(temp.isDirectory()) {</p><p>			</font>delAllFile(path + <font class="Fields">"/"</font> + tempList[i]);<font class="Comments">// 先删除文件夹里面的文件</font></p><p>			</font>delFolder(path + <font class="Fields">"/"</font> + tempList[i]);<font class="Comments">// 再删除空文件夹</font></p><p>		}</p><p>	}</p><p>}</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

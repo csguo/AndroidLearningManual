@@ -1,0 +1,111 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>说说WindowManager.LayoutParams类（二）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li class="navcurrentLink"><A href="index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="用户界面之view(视图)" href="index_123.html">用户界面之view(视图)</A></h2>
+
+  <h2><A title="用户界面之Layout(布局)" href="index_124.html">用户界面之Layout(布局)</A></h2>
+<UL><li ><A title=Android 基础布局介绍 href="show_101_124.html">Android 基础布局介绍</A> </li><li ><A title=Android 开发之旅：view的几种布局方式及实践 href="show_102_124.html">Android 开发之旅：view的几种布局方式及实践</A> </li><li ><A title=Android Layout各种布局 href="show_103_124.html">Android Layout各种布局</A> </li><li ><A title=Android 布局浅析 href="show_104_124.html">Android 布局浅析</A> </li><li ><A title=Android FrameLayou和布局优化（一） href="show_105_124.html">Android FrameLayou和布局优化（一）</A> </li><li ><A title=Android FrameLayou和布局优化（二） href="show_106_124.html">Android FrameLayou和布局优化（二）</A> </li><li ><A title=Android之Android布局管理：LinerLayout线性布局 href="show_107_124.html">Android之Android布局管理：LinerLayout线性布局</A> </li><li ><A title=Android布局之LinearLayout,layout_weight很有用 href="show_108_124.html">Android布局之LinearLayout,layout_weight很有用</A> </li><li ><A title=Android 很炫的线性布局 href="show_109_124.html">Android 很炫的线性布局</A> </li><li ><A title=Android 坐标布局AbsoluteLayout href="show_110_124.html">Android 坐标布局AbsoluteLayout</A> </li><li ><A title=Android-UI篇RelativeLayout(相对布局) href="show_111_124.html">Android-UI篇RelativeLayout(相对布局)</A> </li><li ><A title=Relative Layout 中用到的一些属性 href="show_112_124.html">Relative Layout 中用到的一些属性</A> </li><li ><A title=Android 表格布局（Table Layout） href="show_113_124.html">Android 表格布局（Table Layout）</A> </li><li ><A title=Android Tab Layout（选项卡布局）（一） href="show_114_124.html">Android Tab Layout（选项卡布局）（一）</A> </li><li ><A title=Android Tab Layout（选项卡布局）（二） href="show_115_124.html">Android Tab Layout（选项卡布局）（二）</A> </li><li ><A title=Android 深入研究Layout机制 href="show_116_124.html">Android 深入研究Layout机制</A> </li><li ><A title=说说WindowManager.LayoutParams类（一） href="show_117_124.html">说说WindowManager.LayoutParams类（一）</A> </li><li class="currentLink"><A title=说说WindowManager.LayoutParams类（二） href="show_118_124.html">说说WindowManager.LayoutParams类（二）</A> </li><li ><A title=说说WindowManager.LayoutParams类（三） href="show_119_124.html">说说WindowManager.LayoutParams类（三）</A> </li><li ><A title=一些xml layout组件的说明 href="show_120_124.html">一些xml layout组件的说明</A> </li><li ><A title=Android学习笔记：Layout.xml属性 href="show_121_124.html">Android学习笔记：Layout.xml属性</A> </li><li ><A title=Android 谈谈个人观点的布局设计 href="show_122_124.html">Android 谈谈个人观点的布局设计</A> </li><li ><A title=Android布局优化的要点 href="show_123_124.html">Android布局优化的要点</A> </li><li ><A title=讨论一下android的自适应屏幕的布局（layout)选择问题 href="show_124_124.html">讨论一下android的自适应屏幕的布局（layout)选择问题</A> </li></UL>
+  <h2><A title="用户界面之TextView(文本视图)" href="index_125.html">用户界面之TextView(文本视图)</A></h2>
+
+  <h2><A title="用户界面之EditText(编辑视图)" href="index_126.html">用户界面之EditText(编辑视图)</A></h2>
+
+  <h2><A title="用户界面之Button(按钮)" href="index_127.html">用户界面之Button(按钮)</A></h2>
+
+  <h2><A title="用户界面之Dialog(对话框)" href="index_128.html">用户界面之Dialog(对话框)</A></h2>
+
+  <h2><A title="用户界面之ListView(列表视图)" href="index_129.html">用户界面之ListView(列表视图)</A></h2>
+
+  <h2><A title="用户界面之Adapter(适配器)" href="index_130.html">用户界面之Adapter(适配器)</A></h2>
+
+  <h2><A title="用户界面之Menu(菜单)" href="index_131.html">用户界面之Menu(菜单)</A></h2>
+
+  <h2><A title="用户界面之Notification(通知栏)" href="index_132.html">用户界面之Notification(通知栏)</A></h2>
+
+  <h2><A title="NotificationImageView(图像视图)" href="index_133.html">NotificationImageView(图像视图)</A></h2>
+
+  <h2><A title="用户界面之GridView(格视图)" href="index_134.html">用户界面之GridView(格视图)</A></h2>
+
+  <h2><A title="用户界面之ProgressBar(进度条)" href="index_135.html">用户界面之ProgressBar(进度条)</A></h2>
+
+  <h2><A title="用户界面之Checkbox(复选框)" href="index_136.html">用户界面之Checkbox(复选框)</A></h2>
+
+  <h2><A title="用户界面之ScrollView(滚动视图)" href="index_137.html">用户界面之ScrollView(滚动视图)</A></h2>
+
+  <h2><A title="用户界面之Gallery(长廊视图)" href="index_138.html">用户界面之Gallery(长廊视图)</A></h2>
+
+  <h2><A title="用户界面之ActionBar(导航栏)" href="index_139.html">用户界面之ActionBar(导航栏)</A></h2>
+
+  <h2><A title="用户界面之PopupWindow(弹出窗口)" href="index_140.html">用户界面之PopupWindow(弹出窗口)</A></h2>
+
+  <h2><A title="用户界面之RatingBar(评分栏)" href="index_141.html">用户界面之RatingBar(评分栏)</A></h2>
+
+  <h2><A title="用户界面之Spinner" href="index_142.html">用户界面之Spinner</A></h2>
+
+  <h2><A title="用户界面之SeekBar(搜索bar)" href="index_143.html">用户界面之SeekBar(搜索bar)</A></h2>
+
+  <h2><A title="用户界面之TabHost(分割栏)" href="index_144.html">用户界面之TabHost(分割栏)</A></h2>
+
+  <h2><A title="用户界面之SlidingDrawer(抽屉)" href="index_145.html">用户界面之SlidingDrawer(抽屉)</A></h2>
+
+  <h2><A title="用户界面之ViewFlipper" href="index_146.html">用户界面之ViewFlipper</A></h2>
+
+  <h2><A title="用户界面之SurfaceView" href="index_147.html">用户界面之SurfaceView</A></h2>
+
+  <h2><A title="用户界面之Splash" href="index_148.html">用户界面之Splash</A></h2>
+
+  <h2><A title="用户界面之Toast" href="index_149.html">用户界面之Toast</A></h2>
+
+  <h2><A title="用户界面之AlarmManager" href="index_150.html">用户界面之AlarmManager</A></h2>
+
+  <h2><A title="用户界面之Fragment" href="index_151.html">用户界面之Fragment</A></h2>
+
+  <h2><A title="用户界面之WebView(网络视图)" href="index_152.html">用户界面之WebView(网络视图)</A></h2>
+
+  <h2><A title="Android用户界面之Widget(小组件)" href="index_153.html">Android用户界面之Widget(小组件)</A></h2>
+
+  <h2><A title="Android用户界面之theme和style" href="index_154.html">Android用户界面之theme和style</A></h2>
+
+  <h2><A title="Android用户界面之多语言" href="index_155.html">Android用户界面之多语言</A></h2>
+
+  <h2><A title="Android用户界面之界面特效" href="index_156.html">Android用户界面之界面特效</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>说说WindowManager.LayoutParams类（二）</H2>
+<div style="line-height:20px; font-size:14px;"><p>5. public int memoryType;</p><p>指出窗口所使用的内存缓冲类型。默认为 NORMAL 。</p><p>下面定义了 memoryType 的取值：</p><p><pre>窗口缓冲位于主内存。</p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>MEMORY_TYPE_NORMAL = 0;</p><p>窗口缓冲位于可以被DMA访问，或者硬件加速的内存区域。</p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>MEMORY_TYPE_HARDWARE = 1;</p><p>窗口缓冲位于可被图形加速器访问的区域。</p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>MEMORY_TYPE_GPU = 2;</p><p>窗口缓冲不拥有自己的缓冲区，不能被锁定。缓冲区由本地方法提供。</p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>MEMORY_TYPE_PUSH_BUFFERS = 3;</p><p></pre></p><p>6.  public int flags;</p><p>行为选项/旗标，默认为 none .下面定义了 flags 的取值：</p><p><pre><font class="Comments">//窗口之后的内容变暗。</font></p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>FLAG_DIM_BEHIND = 0x00000002;</p><p><font class="Comments">//窗口之后的内容变模糊。</font></p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>FLAG_BLUR_BEHIND = 0x00000004; </p><p>不许获得焦点。</p><p>不能获得按键输入焦点，所以不能向它发送按键或按钮事件。那些时间将发送给它后面的可以获得焦点的窗口。此选项还会设置FLAG_NOT_TOUCH_MODAL选项。设置此选项，意味着窗口不能与软输入法进行交互，所以它的Z序独立于任何活动的输入法（换句话说，它可以全屏显示，如果需要的话，可覆盖输入法窗口）。要修改这一行为，可参考FLAG_ALT_FOCUSALBE_IM选项。</p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>FLAG_NOT_FOCUSABLE = 0x00000008;</p><p><font class="Comments">//不接受触摸屏事件。</font></p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>FLAG_NOT_TOUCHABLE = 0x00000010;</p><p>当窗口可以获得焦点（没有设置 FLAG_NOT_FOCUSALBE 选项）时，仍然将窗口范围之外的点设备事件（鼠标、触摸屏）发送给后面的窗口处理。否则它将独占所有的点设备事件，而不管它们是不是发生在窗口范围内。</p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>FLAG_NOT_TOUCH_MODAL = 0x00000020;</p><p>如果设置了这个标志，当设备休眠时，点击触摸屏，设备将收到这个第一触摸事件。</p><p>通常第一触摸事件被系统所消耗，用户不会看到他们点击屏幕有什么反应。</p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>FLAG_TOUCHABLE_WHEN_WAKING = 0x00000040;</p><p>当此窗口为用户可见时，保持设备常开，并保持亮度不变。</p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>FLAG_KEEP_SCREEN_ON = 0x00000080;</p><p>窗口占满整个屏幕，忽略周围的装饰边框（例如状态栏）。此窗口需考虑到装饰边框的内容。</p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>FLAG_LAYOUT_IN_SCREEN =0x00000100;</p><p>允许窗口扩展到屏幕之外。</p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>FLAG_LAYOUT_NO_LIMITS =0x00000200;</p><p>窗口显示时，隐藏所有的屏幕装饰（例如状态条）。使窗口占用整个显示区域。</p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>FLAG_FULLSCREEN = 0x00000400;</p><p>此选项将覆盖FLAG_FULLSCREEN选项，并强制屏幕装饰（如状态条）弹出。</p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>FLAG_FORCE_NOT_FULLSCREEN =0x00000800;</p><p>抖动。指 对半透明的显示方法。又称“点透”。图形处理较差的设备往往用“点透”替代Alpha混合。</p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>FLAG_DITHER = 0x00001000;</p><p><font class="Comments">//不允许屏幕截图。</font></p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>FLAG_SECURE = 0x00002000;</p><p><font class="Comments">//一种特殊模式，布局参数用于指示显示比例。</font></p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>FLAG_SCALED = 0x00004000;</p><p><font class="Comments">//当屏幕有可能贴着脸时，这一选项可防止面颊对屏幕造成误操作。</font></p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>FLAG_IGNORE_CHEEK_PRESSES = 0x00008000;</p><p><font class="Comments">//当请求布局时，你的窗口可能出现在状态栏的上面或下面，从而造成遮挡。当设置这一选项后，窗口管理器将确保窗口内容不会被装饰条（状态栏）盖住。</font></p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>FLAG_LAYOUT_INSET_DECOR = 0x00010000;</p><p><font class="Comments">//反转FLAG_NOT_FOCUSABLE选项。</font></p><p><font class="Comments">//如果同时设置了FLAG_NOT_FOCUSABLE选项和本选项，窗口将能够与输入法交互，允许输入法窗口覆盖；</font></p><p>如果FLAG_NOT_FOCUSABLE没有设置而设置了本选项，窗口不能与输入法交互，可以覆盖输入法窗口。</p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>FLAG_ALT_FOCUSABLE_IM = 0x00020000;</p><p><font class="Comments">//如果你设置了FLAG_NOT_TOUCH_MODAL，那么当触屏事件发生在窗口之外事，可以通过设置此标志接收到一个MotionEvent.ACTION_OUTSIDE事件。注意，你不会收到完整的down/move/up事件，只有第一次down事件时可以收到ACTION_OUTSIDE。</font></p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>FLAG_WATCH_OUTSIDE_TOUCH = 0x00040000;</p><p><font class="Comments">//当屏幕锁定时，窗口可以被看到。这使得应用程序窗口优先于锁屏界面。可配合FLAG_KEEP_SCREEN_ON选项点亮屏幕并直接显示在锁屏界面之前。可使用FLAG_DISMISS_KEYGUARD选项直接解除非加锁的锁屏状态。此选项只用于最顶层的全屏幕窗口。</font></p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>FLAG_SHOW_WHEN_LOCKED = 0x00080000;</p><p><font class="Comments">//请求系统墙纸显示在你的窗口后面。窗口必须是半透明的。</font></p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>FLAG_SHOW_WALLPAPER = 0x00100000;</p><p><font class="Comments">//窗口一旦显示出来，系统将点亮屏幕，正如用户唤醒设备那样。</font></p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>FLAG_TURN_SCREEN_ON = 0x00200000;</p><p><font class="Comments">//解除锁屏。只有锁屏界面不是加密的才能解锁。如果锁屏界面是加密的，那么用户解锁之后才能看到此窗口，除非设置了FLAG_SHOW_WHEN_LOCKED选项。</font></p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>FLAG_DISMISS_KEYGUARD = 0x00400000;</p><p><font class="Comments">//锁屏界面淡出时，继续运行它的动画。</font></p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>FLAG_KEEP_SURFACE_WHILE_ANIMATING =0x10000000;</p><p><font class="Comments">//以原始尺寸显示窗口。用于在兼容模式下运行程序。</font></p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>FLAG_COMPATIBLE_WINDOW = 0x20000000;</p><p><font class="Comments">//用于系统对话框。设置此选项的窗口将无条件获得焦点。</font></p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>FLAG_SYSTEM_ERROR = 0x40000000;</p><p></pre></p><p>7. public int softInputMode;</p><p>软输入法模式选项：以下选项与 softInputMode 有关：</p><p><pre><font class="Comments">// 软输入区域是否可见。</font></p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>SOFT_INPUT_MASK_STATE = 0x0f;</p><p><font class="Comments">// 未指定状态。</font></p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>SOFT_INPUT_STATE_UNSPECIFIED = 0;</p><p><font class="Comments">// 不要修改软输入法区域的状态。</font></p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>SOFT_INPUT_STATE_UNCHANGED = 1;</p><p><font class="Comments">// 隐藏输入法区域（当用户进入窗口时）。</font></p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>SOFT_INPUT_STATE_HIDDEN = 2;</p><p><font class="Comments">// 当窗口获得焦点时，隐藏输入法区域。</font></p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>SOFT_INPUT_STATE_ALWAYS_HIDDEN = 3;</p><p><font class="Comments">// 显示输入法区域（当用户进入窗口时）。</font></p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>SOFT_INPUT_STATE_VISIBLE = 4;</p><p><font class="Comments">// 当窗口获得焦点时，显示输入法区域。</font></p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>SOFT_INPUT_STATE_ALWAYS_VISIBLE = 5;</p><p><font class="Comments">// 窗口应当主动调整，以适应软输入窗口。</font></p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>SOFT_INPUT_MASK_ADJUST = 0xf0;</p><p><font class="Comments">// 未指定状态，系统将根据窗口内容尝试选择一个输入法样式。</font></p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>SOFT_INPUT_ADJUST_UNSPECIFIED = 0x00;</p><p><font class="Comments">// 当输入法显示时，允许窗口重新计算尺寸，使内容不被输入法所覆盖。</font></p><p><font class="Comments">// 不可与SOFT_INPUT_ADJUSP_PAN混合使用,如果两个都没有设置，系统将根据窗口内容自动设置一个选项。</font></p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>SOFT_INPUT_ADJUST_RESIZE = 0x10;</p><p><font class="Comments">// 输入法显示时平移窗口。它不需要处理尺寸变化，框架能够移动窗口以确保输入焦点可见。</font></p><p><font class="Comments">// 不可与SOFT_INPUT_ADJUST_RESIZE混合使用;如果两个都没设置,系统将根据窗口内容自动设置一个选项。</font></p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>SOFT_INPUT_ADJUST_PAN = 0x20;</p><p><font class="Comments">// 当用户转至此窗口时，由系统自动设置，所以你不要设置它。</font></p><p><font class="Comments">// 当窗口显示之后该标志自动清除。</font></p><p><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font><font class="keyword">int </font>SOFT_INPUT_IS_FORWARD_NAVIGATION = 0x100;</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+  
+   </P>
+</DIV></BODY></HTML>
+

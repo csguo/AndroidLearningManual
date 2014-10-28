@@ -1,0 +1,118 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android学习手册_设备功能</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li class="navcurrentLink"><A href="index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">设备功能</div>
+
+  <h2 ><A title="设备信息" href="index_157.html">设备信息</A></h2>
+
+  <h2 class="currentLink"><A title="摄像头" href="index_158.html">摄像头</A></h2>
+<UL><li class="currentLink"><A title=Android Camera 模块分析（一） href="show_101_158.html">Android Camera 模块分析（一）</A> </li><li ><A title=Android Camera 模块分析（二） href="show_102_158.html">Android Camera 模块分析（二）</A> </li><li ><A title=Android Camera 模块分析（三） href="show_103_158.html">Android Camera 模块分析（三）</A> </li><li ><A title=Android Camera 模块分析（四） href="show_104_158.html">Android Camera 模块分析（四）</A> </li><li ><A title=Android 浅谈相机研发（一） href="show_105_158.html">Android 浅谈相机研发（一）</A> </li><li ><A title=Android 浅谈相机研发（二） href="show_106_158.html">Android 浅谈相机研发（二）</A> </li><li ><A title=Android 浅谈相机研发（三） href="show_107_158.html">Android 浅谈相机研发（三）</A> </li><li ><A title=Android 浅谈相机研发（四） href="show_108_158.html">Android 浅谈相机研发（四）</A> </li><li ><A title=Android 浅谈相机研发（五） href="show_109_158.html">Android 浅谈相机研发（五）</A> </li><li ><A title=Android获取摄像头的详细介绍 href="show_110_158.html">Android获取摄像头的详细介绍</A> </li><li ><A title=开机启动摄像头的原理 href="show_111_158.html">开机启动摄像头的原理</A> </li></UL>
+  <h2 ><A title="通讯录" href="index_159.html">通讯录</A></h2>
+
+  <h2 ><A title="电话" href="index_160.html">电话</A></h2>
+
+  <h2 ><A title="短信" href="index_161.html">短信</A></h2>
+
+  <h2 ><A title="传感器" href="index_162.html">传感器</A></h2>
+
+  <h2 ><A title="定位" href="index_163.html">定位</A></h2>
+
+  <h2 ><A title="视频系统" href="index_164.html">视频系统</A></h2>
+
+  <h2 ><A title="音频系统" href="index_165.html">音频系统</A></h2>
+
+  <h2 ><A title="铃声" href="index_166.html">铃声</A></h2>
+
+  <h2 ><A title="音量" href="index_167.html">音量</A></h2>
+
+  <h2 ><A title="录音" href="index_168.html">录音</A></h2>
+
+  <h2 ><A title="输入法" href="index_169.html">输入法</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1>摄像头</H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android Camera 模块分析（一）</H2>
+<P>　　Camera主要的头文件有以下几个：[code=java]ICameraClient.hCamera.h ICamera.hICameraService.hCameraHardwareInterface.h[/code]在这些头文件Camera.h提供了对上层的接口，而其他的几个头文件都是提供一些接口类（</P>
+<P><A title="Android Camera 模块分析（一）" href="show_101_158.html">进入 Android Camera 模块分析（一）</A> </P></DIV>
+
+<DIV>
+<H2>Android Camera 模块分析（二）</H2>
+<P>　　2.4 头文件ICamera.hICamera.h描述的内容是一个实现Camera功能的接口，其定义如下所示：[code=java]#[Keywords]class #ICamera: #[Keywords]public #IInterface { 	#public:	#DECLARE_META_INTERFACE(Camera);	#virt</P>
+<P><A title="Android Camera 模块分析（二）" href="show_102_158.html">进入 Android Camera 模块分析（二）</A> </P></DIV>
+
+<DIV>
+<H2>Android Camera 模块分析（三）</H2>
+<P>　　第三部分 Camera的主要实现分析3.1 JAVA程序部分在packages/apps/Camera/src/com/android/camera/ 目录的Camera。java文件中，包含了对Camera的调用。在Camera.java中包含对包的引用：[code=java]#[Keywords]import </P>
+<P><A title="Android Camera 模块分析（三）" href="show_103_158.html">进入 Android Camera 模块分析（三）</A> </P></DIV>
+
+<DIV>
+<H2>Android Camera 模块分析（四）</H2>
+<P>　　3.3 Camera本地库libui.soframeworks/base/libs/ui/中的Camera.cpp文件用于实现Camera.h提供的接口，其中一个重要的片段如下所示：[code=java]#const sp Camera::getCameraService()#{	#Mutex::Autolock _l(mLock);	</P>
+<P><A title="Android Camera 模块分析（四）" href="show_104_158.html">进入 Android Camera 模块分析（四）</A> </P></DIV>
+
+<DIV>
+<H2>Android 浅谈相机研发（一）</H2>
+<P>　　在android中应用相机功能，一般有两种：一种是直接调用系统相机，一种自己写的相机。我将分别演示两种方式的使用：第一种：是使用Intent跳转到系统相机,action为:android.media.action.STILL_IMAGE_CAMERA[code=java</P>
+<P><A title="Android 浅谈相机研发（一）" href="show_105_158.html">进入 Android 浅谈相机研发（一）</A> </P></DIV>
+
+<DIV>
+<H2>Android 浅谈相机研发（二）</H2>
+<P>　　java代码：[code=java]#[Keywords]import #android.app.Activity;#[Keywords]import #android.os.Bundle;#[Keywords]public #[Keywords]class #CameraTest_3 #[Keywords]extends #Activity {	#[Tags]/** Called when</P>
+<P><A title="Android 浅谈相机研发（二）" href="show_106_158.html">进入 Android 浅谈相机研发（二）</A> </P></DIV>
+
+<DIV>
+<H2>Android 浅谈相机研发（三）</H2>
+<P>　　java代码：[code=java]#[Keywords]import #android.app.Activity;#[Keywords]import #android.os.Bundle;#[Keywords]import #android.view.View;#[Keywords]import #android.view.View.OnClickListener;#[Keywords]p</P>
+<P><A title="Android 浅谈相机研发（三）" href="show_107_158.html">进入 Android 浅谈相机研发（三）</A> </P></DIV>
+
+<DIV>
+<H2>Android 浅谈相机研发（四）</H2>
+<P>　　注意，这是必须添加在sd卡上写数据的权限[code=java][/code](7)能够拍照了，这下子要考虑如何让图片更好看了，这显然是专业人士的强项，但是我们在程序上，也可以做一些处理，向上面的那些，因为我直接把surfaceView</P>
+<P><A title="Android 浅谈相机研发（四）" href="show_108_158.html">进入 Android 浅谈相机研发（四）</A> </P></DIV>
+
+<DIV>
+<H2>Android 浅谈相机研发（五）</H2>
+<P>　　mail代码：[code=java]    #    #[/code]AndroidManifest.xml[code=java]    #    #    #    #    #    #        #            #                #                #            #        #    #[/code]</P>
+<P><A title="Android 浅谈相机研发（五）" href="show_109_158.html">进入 Android 浅谈相机研发（五）</A> </P></DIV>
+
+<DIV>
+<H2>Android获取摄像头的详细介绍</H2>
+<P>　　如何获取Android设备上的详细的摄像头信息呢？ 目前Samsung的Galaxy Tab和Nexus S均有前置摄像头，获取Android摄像头的详细信息，在Android 2.3 SDK中得到了增强：在android.hardware.Camera类中，API Level 9的SDK</P>
+<P><A title="Android获取摄像头的详细介绍" href="show_110_158.html">进入 Android获取摄像头的详细介绍</A> </P></DIV>
+
+<DIV>
+<H2>开机启动摄像头的原理</H2>
+<P>　　主要看cpu的lcd控制器支不支持多图层的显示，我调试过telechips 8902，8902的lcd控制器有三个通道，系统ui只会占用其中的一个通道，其他两个通道是屏蔽的，如果你想开机启动摄像头，那么就得开放剩下的两个通道中的</P>
+<P><A title="开机启动摄像头的原理" href="show_111_158.html">进入 开机启动摄像头的原理</A> </P></DIV>
+
+</DIV>
+
+<DIV id=footer style="display:none">
+<P align="center"> 
+ 
+ 
+ 
+  </P>
+</DIV></DIV></BODY></HTML>
+

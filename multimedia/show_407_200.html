@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android Bitmap和Canvas实例（二）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li class="navcurrentLink"><A href="index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Android多媒体功能" href="index_196.html">Android多媒体功能</A></h2>
+
+  <h2><A title="Android多媒体之2D" href="index_197.html">Android多媒体之2D</A></h2>
+
+  <h2><A title="Android多媒体之3D" href="index_198.html">Android多媒体之3D</A></h2>
+
+  <h2><A title="Android多媒体之Bitmap" href="index_199.html">Android多媒体之Bitmap</A></h2>
+
+  <h2><A title="Android多媒体之Canvas" href="index_200.html">Android多媒体之Canvas</A></h2>
+<UL><li ><A title=Android中的Canvas（一） href="show_401_200.html">Android中的Canvas（一）</A> </li><li ><A title=Android中的Canvas（二） href="show_402_200.html">Android中的Canvas（二）</A> </li><li ><A title=Canvas建立欢迎界面 href="show_403_200.html">Canvas建立欢迎界面</A> </li><li ><A title=Android Bitmap与Canvas href="show_405_200.html">Android Bitmap与Canvas</A> </li><li ><A title=Android Bitmap和Canvas实例（一） href="show_406_200.html">Android Bitmap和Canvas实例（一）</A> </li><li class="currentLink"><A title=Android Bitmap和Canvas实例（二） href="show_407_200.html">Android Bitmap和Canvas实例（二）</A> </li><li ><A title=canvas的save()和restore()用法 href="show_408_200.html">canvas的save()和restore()用法</A> </li><li ><A title=canvas 之save,与restore href="show_409_200.html">canvas 之save,与restore</A> </li><li ><A title=Gridview控件自定义,canvas绘制view,gridview拖动时canvas重绘 href="show_411_200.html">Gridview控件自定义,canvas绘制view,gridview拖动时canvas重绘</A> </li><li ><A title=Canvas、Matrix倒影实例教程 href="show_412_200.html">Canvas、Matrix倒影实例教程</A> </li></UL>
+  <h2><A title="Android多媒体之Drawable" href="index_201.html">Android多媒体之Drawable</A></h2>
+
+  <h2><A title="Android多媒体之gif" href="index_202.html">Android多媒体之gif</A></h2>
+
+  <h2><A title="Android多媒体之MediaStore" href="index_203.html">Android多媒体之MediaStore</A></h2>
+
+  <h2><A title="Android多媒体之动画" href="index_204.html">Android多媒体之动画</A></h2>
+
+  <h2><A title="Android多媒体之分辨率" href="index_205.html">Android多媒体之分辨率</A></h2>
+
+  <h2><A title="Android多媒体之分屏幕" href="index_206.html">Android多媒体之分屏幕</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android Bitmap和Canvas实例（二）</H2>
+<div style="line-height:20px; font-size:14px;"><p>代码如下：</p><p><pre><font class="keyword">public </font><font class="keyword">void </font>setValues(</font><font class="keyword">double</font>[] values, </font><font class="keyword">double </font>maxValue) { <font class="Comments">// 设置显示范围，下文提到</font></p><p>	mValues = values.clone();</p><p>	<font class="keyword">for </font>(</font><font class="keyword">int </font>i = 0; i &lt; values.length; i++) {</p><p>		mValues = maxValue;</p><p>	}</p><p>}</p><p>@Override</p><p><font class="keyword">public </font><font class="keyword">void </font>onDraw(Canvas canvas) { <font class="Comments">// 重写onDraw直接绘制</font></p><p>	</font>Log.i(TAG, <font class="Fields">"onDraw: w = "</font> + getWidth() + </font><font class="Fields">", h = "</font> + getHeight());</p><p>	<font class="keyword">int </font>xmin = getPaddingLeft();</p><p>	<font class="keyword">int </font>xmax = getWidth() - getPaddingRight();</p><p>	<font class="keyword">int </font>ymin = getPaddingTop();</p><p>	<font class="keyword">int </font>ymax = getHeight() - getPaddingBottom();</p><p>	<font class="keyword">int </font>startx = xmin;</p><p>	<font class="keyword">for </font>(</font><font class="keyword">int </font>i = 0; i &lt; mValues.length; i++) {</p><p>		<font class="keyword">int </font>endx = xmin + (</font><font class="keyword">int</font>) (mValues * (xmax - xmin));</p><p>		</font>canvas.drawRect(startx, ymin, endx, ymax, sPa<font class="keyword">int</font>); <font class="Comments">// 通过canvas绘制范围</font></p><p>		<font class="Comments">// 该方法原型 drawRect(float left, float top, float right, float bottom,</font></p><p>		<font class="Comments">// Paint paint)</font></p><p>		startx = endx;</p><p>	}</p><p>	<font class="keyword">super</font>.onDraw(canvas);</p><p>}</p><p></pre></p><p>调用方法很简单，和普通的Button没有什么区别，这里我们仅仅多定义了setValues方法，eoeAndroid提醒网哟注意布局文件xml中如何定义，在最下文</p><p><pre><font class="keyword">private </font>GraphableButton mButtons;</p><p>mButtons = (GraphableButton) findViewById(R.id.button0);</p><p>mButtons.setOnClickListener(<font class="keyword">this</font>); <font class="Comments">//设置一个按下事件监听</font></p><p>mButtons.setVisibility(View.INVISIBLE); <font class="Comments">//设置当前按钮不可见</font></p><p>mButtons.setText(<font class="Fields">"android123.com欢迎您"</font>);</p><p>mButtons.setValues(0,100);</p><p>mButtons.setVisibility(View.VISIBLE); <font class="Comments">//设置按钮可见</font></p><p></pre></p><p>下面在layout.xml中如何写呢，这里要写上自己程序完整的package name才能正确被adt识别，相关的具体定义如下:</p><p><pre>android:id=<font class="Fields">"@+id/button7"</font></p><p>android:layout_width=<font class="Fields">"fill_parent"</font></p><p>android:layout_height=<font class="Fields">"0dp"</font></p><p>android:layout_marginLeft=<font class="Fields">"4dp"</font></p><p>android:layout_marginRight=<font class="Fields">"4dp"</font></p><p>android:layout_marginBottom=<font class="Fields">"4dp"</font></p><p>android:layout_weight=<font class="Fields">"1"</font></p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

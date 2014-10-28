@@ -1,0 +1,64 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 本地联络人并向其发邮件（一）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li class="navcurrentLink"><A href="index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="3G" href="index_177.html">3G</A></h2>
+
+  <h2><A title="WIFI" href="index_178.html">WIFI</A></h2>
+
+  <h2><A title="蓝牙" href="index_179.html">蓝牙</A></h2>
+
+  <h2><A title="HTTP协议" href="index_180.html">HTTP协议</A></h2>
+
+  <h2><A title="Socket" href="index_181.html">Socket</A></h2>
+
+  <h2><A title="HTML与HTML5" href="index_182.html">HTML与HTML5</A></h2>
+
+  <h2><A title="JavaScript" href="index_183.html">JavaScript</A></h2>
+
+  <h2><A title="Email" href="index_184.html">Email</A></h2>
+<UL><li class="currentLink"><A title=Android 本地联络人并向其发邮件（一） href="show_701_184.html">Android 本地联络人并向其发邮件（一）</A> </li><li ><A title=Android 本地联络人并向其发邮件（二） href="show_702_184.html">Android 本地联络人并向其发邮件（二）</A> </li><li ><A title=Android Email程序 href="show_703_184.html">Android Email程序</A> </li><li ><A title=调用系统程序发送带附件的彩信和email href="show_704_184.html">调用系统程序发送带附件的彩信和email</A> </li></UL>
+  <h2><A title="NFC" href="index_185.html">NFC</A></h2>
+
+  <h2><A title="Web Service" href="index_186.html">Web Service</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 本地联络人并向其发邮件（一）</H2>
+<div style="line-height:20px; font-size:14px;"><p>发送邮件中使用的Intent行为为android.content.Intent.ACTION_SEND。实际上在Android上使用的邮件发送服务是调用Gmail程序，而非直接使用SMTP的Protocol 。现在介绍本篇需要使用到的功能清单：</p><p>验证用户输入是否为正确的邮箱格式；</p><p>用户可以先把手动输入邮箱，也可以长按邮箱文本框跳到联系人那里找到联系人，得到联系人的邮箱，后返回；</p><p>发送邮件。</p><p>程序运行的效果图：</p><p><img src="../img/network_email/01_email.png"></p><p>我们现在就来看看项目里的布局代码：</p><p><pre>&lt;?xml version=<font class="Fields">"1.0"</font> encoding=</font><font class="Fields">"utf-8"</font>?&gt;</p><p>&lt;AbsoluteLayout xmlns:android=<font class="Fields">"http:<font class="Comments">//schemas.android.com/apk/res/android</font></p><p>    </font>android:id=<font class="Fields">"@+id/widget34</p><p>    </font>android:layout_width=<font class="Fields">"fill_parent</p><p>    </font>android:layout_height=<font class="Fields">"fill_parent</p><p>    </font>android:background=<font class="Fields">"@drawable/white"</font> &gt;</p><p>    &lt;TextView</p><p>        </font>android:id=<font class="Fields">"@+id/myTextView1</p><p>        </font>android:layout_width=<font class="Fields">"wrap_content</p><p>        </font>android:layout_height=<font class="Fields">"wrap_content</p><p>        </font>android:layout_x=<font class="Fields">"60px</p><p>        </font>android:layout_y=<font class="Fields">"22px</p><p>        </font>android:text=<font class="Fields">"@string/str_receive"</font> &gt;</p><p>    &lt;/TextView&gt;</p><p>    &lt;TextView</p><p>        </font>android:id=<font class="Fields">"@+id/myTextView2</p><p>        </font>android:layout_width=<font class="Fields">"wrap_content</p><p>        </font>android:layout_height=<font class="Fields">"wrap_content</p><p>        </font>android:layout_x=<font class="Fields">"60px</p><p>        </font>android:layout_y=<font class="Fields">"82px</p><p>        </font>android:text=<font class="Fields">"@string/str_cc"</font> &gt;</p><p>    &lt;/TextView&gt;</p><p>    &lt;EditText</p><p>        </font>android:id=<font class="Fields">"@+id/myEditText1</p><p>        </font>android:layout_width=<font class="Fields">"fill_parent</p><p>        </font>android:layout_height=<font class="Fields">"wrap_content</p><p>        </font>android:layout_x=<font class="Fields">"120px</p><p>        </font>android:layout_y=<font class="Fields">"12px</p><p>        </font>android:textSize=<font class="Fields">"18sp"</font> &gt;</p><p>    &lt;/EditText&gt;</p><p>    &lt;EditText</p><p>        </font>android:id=<font class="Fields">"@+id/myEditText2</p><p>        </font>android:layout_width=<font class="Fields">"fill_parent</p><p>        </font>android:layout_height=<font class="Fields">"wrap_content</p><p>        </font>android:layout_x=<font class="Fields">"120px</p><p>        </font>android:layout_y=<font class="Fields">"72px</p><p>        </font>android:textSize=<font class="Fields">"18sp"</font> &gt;</p><p>    &lt;/EditText&gt;</p><p>    &lt;Button</p><p>        </font>android:id=<font class="Fields">"@+id/myButton1</p><p>        </font>android:layout_width=<font class="Fields">"wrap_content</p><p>        </font>android:layout_height=<font class="Fields">"124px</p><p>        </font>android:layout_x=<font class="Fields">"0px</p><p>        </font>android:layout_y=<font class="Fields">"2px</p><p>        </font>android:text=<font class="Fields">"@string/str_button"</font> &gt;</p><p>    &lt;/Button&gt;</p><p>    &lt;TextView</p><p>        </font>android:id=<font class="Fields">"@+id/myTextView3</p><p>        </font>android:layout_width=<font class="Fields">"wrap_content</p><p>        </font>android:layout_height=<font class="Fields">"wrap_content</p><p>        </font>android:layout_x=<font class="Fields">"60px</p><p>        </font>android:layout_y=<font class="Fields">"142px</p><p>        </font>android:text=<font class="Fields">"@string/str_subject"</font> &gt;</p><p>    &lt;/TextView&gt;</p><p>    &lt;EditText</p><p>        </font>android:id=<font class="Fields">"@+id/myEditText3</p><p>        </font>android:layout_width=<font class="Fields">"fill_parent</p><p>        </font>android:layout_height=<font class="Fields">"wrap_content</p><p>        </font>android:layout_x=<font class="Fields">"120px</p><p>        </font>android:layout_y=<font class="Fields">"132px</p><p>        </font>android:textSize=<font class="Fields">"18sp"</font> &gt;</p><p>    &lt;/EditText&gt;</p><p>    &lt;EditText</p><p>        </font>android:id=<font class="Fields">"@+id/myEditText4</p><p>        </font>android:layout_width=<font class="Fields">"fill_parent</p><p>        </font>android:layout_height=<font class="Fields">"209px</p><p>        </font>android:layout_x=<font class="Fields">"0px</p><p>        </font>android:layout_y=<font class="Fields">"202px</p><p>        </font>android:textSize=<font class="Fields">"18sp"</font> &gt;</p><p>    &lt;/EditText&gt;</p><p>&lt;/AbsoluteLayout&gt;</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>通过线程改变界面button的内容_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li class="navcurrentLink"><A href="index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Activity" href="index_112.html">Activity</A></h2>
+
+  <h2><A title="Intent" href="index_113.html">Intent</A></h2>
+
+  <h2><A title="Service" href="index_114.html">Service</A></h2>
+
+  <h2><A title="Content Provider" href="index_115.html">Content Provider</A></h2>
+
+  <h2><A title="BroadcastReceiver" href="index_116.html">BroadcastReceiver</A></h2>
+
+  <h2><A title="AsyncTask" href="index_117.html">AsyncTask</A></h2>
+
+  <h2><A title="Handler" href="index_118.html">Handler</A></h2>
+<UL><li ><A title=Handler 基础认识 href="show_601_118.html">Handler 基础认识</A> </li><li ><A title=Android Handler的使用(一) href="show_602_118.html">Android Handler的使用(一)</A> </li><li ><A title=Android Handler的使用(二) href="show_603_118.html">Android Handler的使用(二)</A> </li><li ><A title=Android GWES之Android消息系统 href="show_604_118.html">Android GWES之Android消息系统</A> </li><li ><A title=用Handler更新进度条ProgressBar href="show_605_118.html">用Handler更新进度条ProgressBar</A> </li><li ><A title=在Android的Notification中显示进度条 href="show_606_118.html">在Android的Notification中显示进度条</A> </li><li class="currentLink"><A title=通过线程改变界面button的内容 href="show_607_118.html">通过线程改变界面button的内容</A> </li><li ><A title=5秒钟自动更新Title href="show_608_118.html">5秒钟自动更新Title</A> </li></UL>
+  <h2><A title="Thread" href="index_119.html">Thread</A></h2>
+
+  <h2><A title="Permission" href="index_120.html">Permission</A></h2>
+
+  <h2><A title="AIDL" href="index_121.html">AIDL</A></h2>
+
+  <h2><A title="Json" href="index_122.html">Json</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>通过线程改变界面button的内容</H2>
+<div style="line-height:20px; font-size:14px;"><p>代码如下：</p><p><pre><font class="keyword">public </font><font class="keyword">class </font>MyHandlerActivity </font><font class="keyword">extends </font>Activity {</p><p>	Button button;</p><p>	MyHandler myHandler;</p><p>	<font class="keyword">protected </font><font class="keyword">void </font>onCreate(Bundle savedInstanceState) {</p><p>		<font class="keyword">super</font>.onCreate(savedInstanceState);</p><p>		setContentView(R.layout.handlertest);</p><p>		button = (Button) findViewById(R.id.button);</p><p>		</font>myHandler = <font class="keyword">new </font>MyHandler();</p><p>		<font class="Comments">// 当创建一个新的Handler实例时, 它会绑定到当前线程和消息的队列中,开始分发数据</font></p><p>		<font class="Comments">// Handler有两个作用, (1) : 定时执行Message和Runnalbe 对象</font></p><p>		<font class="Comments">// (2): 让一个动作,在不同的线程中执行.</font></p><p>		<font class="Comments">// 它安排消息,用以下方法</font></p><p>		<font class="Comments">// post(Runnable)</font></p><p>		<font class="Comments">// postAtTime(Runnable,long)</font></p><p>		<font class="Comments">// postDelayed(Runnable,long)</font></p><p>		<font class="Comments">// sendEmptyMessage(int)</font></p><p>		<font class="Comments">// sendMessage(Message);</font></p><p>		<font class="Comments">// sendMessageAtTime(Message,long)</font></p><p>		<font class="Comments">// sendMessageDelayed(Message,long)</font></p><p>		<font class="Comments">// 以上方法以 post开头的允许你处理Runnable对象</font></p><p>		<font class="Comments">// sendMessage()允许你处理Message对象(Message里可以包含数据,)</font></p><p>		</font>MyThread m = <font class="keyword">new </font>MyThread();</p><p>		<font class="keyword">new </font>Thread(m).start();</p><p>	}</p><p>	<font class="Comments">/**</font></p><p>	 <font class="Comments">* 接受消息,处理消息 ,此Handler会与当前主线程一块运行</font></p><p>	 <font class="Comments">* <font class="Comments">*/</font></p><p>	<font class="keyword">class </font>MyHandler </font><font class="keyword">extends </font>Handler {</p><p>		<font class="keyword">public </font>MyHandler() {</p><p>		}</p><p>		<font class="keyword">public </font>MyHandler(Looper L) {</p><p>			<font class="keyword">super</font>(L);</p><p>		}</p><p>		<font class="Comments">// 子类必须重写此方法,接受数据</font></p><p>		@Override</p><p>		<font class="keyword">public </font><font class="keyword">void </font>handleMessage(Message msg) {</p><p>			<font class="Comments">// TODO Auto-generated method stub</font></p><p>			</font>Log.d(<font class="Fields">"MyHandler"</font>, </font><font class="Fields">"handleMessage......"</font>);</p><p>			<font class="keyword">super</font>.handleMessage(msg);</p><p>			<font class="Comments">// 此处可以更新UI</font></p><p>			Bundle b = msg.getData();</p><p>			</font>String color = b.getString(<font class="Fields">"color"</font>);</p><p>			</font>MyHandlerActivity.<font class="keyword">this</font>.button.append(color);</p><p>		}</p><p>	}</p><p>	<font class="keyword">class </font>MyThread </font><font class="keyword">implements </font>Runnable {</p><p>		<font class="keyword">public </font><font class="keyword">void </font>run() {</p><p>			<font class="keyword">try </font>{</p><p>				Thread.sleep(10000);</p><p>			</font>} <font class="keyword">catch </font>(InterruptedException e) {</p><p>				<font class="Comments">// TODO Auto-generated catch block</font></p><p>				e.printStackTrace();</p><p>			}</p><p>			</font>Log.d(<font class="Fields">"thread......."</font>, </font><font class="Fields">"mThread........"</font>);</p><p>			</font>Message msg = <font class="keyword">new </font>Message();</p><p>			</font>Bundle b = <font class="keyword">new </font>Bundle();<font class="Comments">// 存放数据</font></p><p>			</font>b.putString(<font class="Fields">"color"</font>, </font><font class="Fields">"我的"</font>);</p><p>			msg.setData(b);</p><p>			</font>MyHandlerActivity.<font class="keyword">this</font>.myHandler.sendMessage(msg); <font class="Comments">// 向Handler发送消息,更新UI</font></p><p>		}</p><p>	}</p><p>}</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

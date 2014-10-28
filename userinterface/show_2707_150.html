@@ -1,0 +1,111 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>实战Service BroadcastReceiver与AlarmManager_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li class="navcurrentLink"><A href="index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="用户界面之view(视图)" href="index_123.html">用户界面之view(视图)</A></h2>
+
+  <h2><A title="用户界面之Layout(布局)" href="index_124.html">用户界面之Layout(布局)</A></h2>
+
+  <h2><A title="用户界面之TextView(文本视图)" href="index_125.html">用户界面之TextView(文本视图)</A></h2>
+
+  <h2><A title="用户界面之EditText(编辑视图)" href="index_126.html">用户界面之EditText(编辑视图)</A></h2>
+
+  <h2><A title="用户界面之Button(按钮)" href="index_127.html">用户界面之Button(按钮)</A></h2>
+
+  <h2><A title="用户界面之Dialog(对话框)" href="index_128.html">用户界面之Dialog(对话框)</A></h2>
+
+  <h2><A title="用户界面之ListView(列表视图)" href="index_129.html">用户界面之ListView(列表视图)</A></h2>
+
+  <h2><A title="用户界面之Adapter(适配器)" href="index_130.html">用户界面之Adapter(适配器)</A></h2>
+
+  <h2><A title="用户界面之Menu(菜单)" href="index_131.html">用户界面之Menu(菜单)</A></h2>
+
+  <h2><A title="用户界面之Notification(通知栏)" href="index_132.html">用户界面之Notification(通知栏)</A></h2>
+
+  <h2><A title="NotificationImageView(图像视图)" href="index_133.html">NotificationImageView(图像视图)</A></h2>
+
+  <h2><A title="用户界面之GridView(格视图)" href="index_134.html">用户界面之GridView(格视图)</A></h2>
+
+  <h2><A title="用户界面之ProgressBar(进度条)" href="index_135.html">用户界面之ProgressBar(进度条)</A></h2>
+
+  <h2><A title="用户界面之Checkbox(复选框)" href="index_136.html">用户界面之Checkbox(复选框)</A></h2>
+
+  <h2><A title="用户界面之ScrollView(滚动视图)" href="index_137.html">用户界面之ScrollView(滚动视图)</A></h2>
+
+  <h2><A title="用户界面之Gallery(长廊视图)" href="index_138.html">用户界面之Gallery(长廊视图)</A></h2>
+
+  <h2><A title="用户界面之ActionBar(导航栏)" href="index_139.html">用户界面之ActionBar(导航栏)</A></h2>
+
+  <h2><A title="用户界面之PopupWindow(弹出窗口)" href="index_140.html">用户界面之PopupWindow(弹出窗口)</A></h2>
+
+  <h2><A title="用户界面之RatingBar(评分栏)" href="index_141.html">用户界面之RatingBar(评分栏)</A></h2>
+
+  <h2><A title="用户界面之Spinner" href="index_142.html">用户界面之Spinner</A></h2>
+
+  <h2><A title="用户界面之SeekBar(搜索bar)" href="index_143.html">用户界面之SeekBar(搜索bar)</A></h2>
+
+  <h2><A title="用户界面之TabHost(分割栏)" href="index_144.html">用户界面之TabHost(分割栏)</A></h2>
+
+  <h2><A title="用户界面之SlidingDrawer(抽屉)" href="index_145.html">用户界面之SlidingDrawer(抽屉)</A></h2>
+
+  <h2><A title="用户界面之ViewFlipper" href="index_146.html">用户界面之ViewFlipper</A></h2>
+
+  <h2><A title="用户界面之SurfaceView" href="index_147.html">用户界面之SurfaceView</A></h2>
+
+  <h2><A title="用户界面之Splash" href="index_148.html">用户界面之Splash</A></h2>
+
+  <h2><A title="用户界面之Toast" href="index_149.html">用户界面之Toast</A></h2>
+
+  <h2><A title="用户界面之AlarmManager" href="index_150.html">用户界面之AlarmManager</A></h2>
+<UL><li ><A title=AlarmManager的使用 href="show_2701_150.html">AlarmManager的使用</A> </li><li ><A title=深入学习Android之AlarmManager href="show_2702_150.html">深入学习Android之AlarmManager</A> </li><li ><A title=Android 使用Alarm href="show_2703_150.html">Android 使用Alarm</A> </li><li ><A title=Android 定时器的实现 href="show_2704_150.html">Android 定时器的实现</A> </li><li ><A title=Android 闹钟机制实现定时任务 href="show_2705_150.html">Android 闹钟机制实现定时任务</A> </li><li ><A title=Android-AlarmManager(全局定时器闹钟） href="show_2706_150.html">Android-AlarmManager(全局定时器闹钟）</A> </li><li class="currentLink"><A title=实战Service BroadcastReceiver与AlarmManager href="show_2707_150.html">实战Service BroadcastReceiver与AlarmManager</A> </li></UL>
+  <h2><A title="用户界面之Fragment" href="index_151.html">用户界面之Fragment</A></h2>
+
+  <h2><A title="用户界面之WebView(网络视图)" href="index_152.html">用户界面之WebView(网络视图)</A></h2>
+
+  <h2><A title="Android用户界面之Widget(小组件)" href="index_153.html">Android用户界面之Widget(小组件)</A></h2>
+
+  <h2><A title="Android用户界面之theme和style" href="index_154.html">Android用户界面之theme和style</A></h2>
+
+  <h2><A title="Android用户界面之多语言" href="index_155.html">Android用户界面之多语言</A></h2>
+
+  <h2><A title="Android用户界面之界面特效" href="index_156.html">Android用户界面之界面特效</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>实战Service BroadcastReceiver与AlarmManager</H2>
+<div style="line-height:20px; font-size:14px;"><p>接触Android也有半年了，小作品也发布了几个，但是其中都没有用到Servcie，在这一点觉得自己还是有所不足的。目前正在做的这个应用要使用到Service，所以就当是补补课了。</p><p>应用的目标很简单，用户设定一个时间，到时后停止音乐的播放。所以我们需要使用Service来保持在Activity结束后继续维持计时。当用户设定某一时间后启动一个Service，之后所有操作由Service驱动，Activity界面就可以关闭了，在Service中我们要使用 AlarmService来实现计时，当时间到时AlarmManager会发送一个广播，你需要一个BroadcastReceiver来处理这个广播完成时间到时时要完成的操作。</p><p>如果说正在看这篇文章的你还不知道什么是Service或BroadcastReceiver的话，您需要自己另找资料学习一下了，我只能简单说 Service是一个后台的应用程序，它没有显示的界面所以也就不能与用户交互，但是它还是能够通信的。Service有两种启动的方式一个使用 Context.startService()启动，另一个则是使用Context.bindService()来启动，两者存在这区别。而BroadCastReceiver就是一个收音机，这个BroadCastReceiver会响应一个有特定标识的消息。我也只能简单的说这一点，更多的内容你可以自己在Google上搜索一些关于Service和BroadcastReceiver的资料吧。</p><p>首先是要做的是一个Service，你需要继承Service类并实现它的onCreate(),onStart(),onDestroy(),onBind()方法，其中onBind()方法是必须实现的。</p><p>实例代码如下</p><p><pre><font class="keyword">import </font>java.util.Calendar;</p><p><font class="Comments">//......</font></p><p><font class="keyword">import </font>com.shinestudio.sleepMusic.AlarmReceiver;</p><p><font class="keyword">import </font>com.shinestudio.sleepMusic.StartActivity;</p><p><font class="keyword">public </font><font class="keyword">class </font>SleepMusicService </font><font class="keyword">extends </font>Service {</p><p>	<font class="keyword">private </font><font class="keyword">static </font>String TAG = <font class="Fields">"sleepMusicService"</font>;</p><p>	<font class="keyword">private </font><font class="keyword">static </font>SleepMusicService sms = </font><font class="keyword">null</font>;</p><p>	<font class="keyword">private </font><font class="keyword">static </font><font class="keyword">int </font>NOTIFICATION_ID = 0x1209;</p><p>	<font class="keyword">private </font>String settingTime;</p><p>	<font class="keyword">public </font><font class="keyword">static </font>Service getService() {</p><p>		<font class="keyword">return </font>sms;</p><p>	}</p><p>	/*</p><p>	 <font class="Comments">* 这里有个小方法有必要说一下，在Service或Activity中我们可以写一个静态的方法来保留自己的实体。这样在其他的地方就可以获取到了。</font></p><p>	 <font class="Comments">* private static SleepMusicService sms = null; 用来存储自己的实体 在onCreate()中 使用sms</font></p><p>	 <font class="Comments">* = this;来存储实体 编写一个静态的getService()来返回实体就行了。</font></p><p>	 <font class="Comments">*/</font></p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onCreate() {</p><p>		<font class="keyword">super</font>.onCreate();</p><p>		</font>sms = <font class="keyword">this</font>;</p><p>	}</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onStart(Intent intent, </font><font class="keyword">int </font>startId) {</p><p>		<font class="keyword">super</font>.onStart(intent, startId);</p><p>		</font>Log.d(TAG, <font class="Fields">"Service onStart"</font>);</p><p>		<font class="Comments">// 获取AlarmManager</font></p><p>		AlarmManager am = (AlarmManager) getSystemService(Service.ALARM_SERVICE);</p><p>		<font class="Comments">// 获取当前的时间</font></p><p>		Calendar c = Calendar.getInstance();</p><p>		c.setTimeInMillis(System.currentTimeMillis());</p><p>		<font class="Comments">// 只对秒 做修改</font></p><p>		<font class="Comments">// c.set(Calendar.HOUR_OF_DAY, hourOfDay);</font></p><p>		<font class="Comments">// c.set(Calendar.MINUTE, c.get(Calendar.MINUTE));</font></p><p>		c.set(Calendar.SECOND, c.get(Calendar.SECOND) + 5); <font class="Comments">// 定时5秒</font></p><p>		<font class="Comments">// c.set(Calendar.MILLISECOND, 0);</font></p><p>		<font class="Comments">// 设置消息的响应</font></p><p>		</font>Intent ii = <font class="keyword">new </font>Intent(</font><font class="keyword">this</font>, AlarmReceiver.</font><font class="keyword">class</font>);</p><p>		</font>PendingIntent pii = PendingIntent.getBroadcast(<font class="keyword">this</font>, 0, ii, 0);</p><p>		am.set(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pii);</p><p>		<font class="Comments">// 使用Toast提示用户</font></p><p>		</font>Toast.makeText(<font class="keyword">this</font>, <font class="Fields">"AlarmSet Finish"</font>, Toast.LENGTH_SHORT).show();</p><p>	}</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onDestroy() {</p><p>		AlarmManager am = (AlarmManager) getSystemService(Service.ALARM_SERVICE);</p><p>		</font>Intent i = <font class="keyword">new </font>Intent(</font><font class="keyword">this</font>, StartActivity.</font><font class="keyword">class</font>);</p><p>		</font>PendingIntent pi = PendingIntent.getActivity(<font class="keyword">this</font>, 0, i, 0);</p><p>		am.cancel(pi);</p><p>		<font class="keyword">super</font>.onDestroy();</p><p>	}</p><p>	@Override</p><p>	<font class="keyword">public </font>IBinder onBind(Intent intent) {</p><p>		<font class="keyword">return </font><font class="keyword">null</font>;</p><p>	}</p><p>}</p><p></pre></p><p>完成了Service，之后就是写一个Activity来启动这个Service，其中为了保证在应用退出后Servcie继续运行，所以要使用startService()来启动Service。一般关于Service的资料上都是有的。</p><p><pre><font class="keyword">import </font>java.util.Iterator;</p><p><font class="keyword">import </font>java.util.List;</p><p><font class="keyword">import </font>com.shinestudio.sleepMusic.service.ISleepMusicService;</p><p><font class="keyword">import </font>com.shinestudio.sleepMusic.service.SleepMusicService;</p><p><font class="keyword">import </font>com.shinestudio.sleepMusic.unit.TimerPickerUIStruct;</p><p><font class="keyword">public </font><font class="keyword">class </font>StartActivity </font><font class="keyword">extends </font>Activity {</p><p>	<font class="keyword">private </font><font class="keyword">static </font>String TAG = <font class="Fields">"sleepMusic - StartActivity"</font>;</p><p>	<font class="keyword">private </font>ListView timerlist;</p><p>	<font class="keyword">private </font>TimerPicker timerPicker;</p><p>	<font class="keyword">private </font>TimerPickerUIStruct tpui;</p><p>	<font class="keyword">private </font>Button cancelButton;</p><p>	<font class="keyword">private </font>Button restartButton;</p><p>	<font class="Comments">// 当点击开始按钮</font></p><p>	<font class="keyword">private </font>OnClickListener startButtonClickListener = </font><font class="keyword">new </font>OnClickListener() {</p><p>		@Override</p><p>		<font class="keyword">public </font><font class="keyword">void </font>onClick(View v) {</p><p>			</font>Intent isleepMusicService = <font class="keyword">new </font>Intent(StartActivity.</font><font class="keyword">this</font>,</p><p>					</font>SleepMusicService.<font class="keyword">class</font>);</p><p>			/*</p><p>			 <font class="Comments">* 在Service启动之前可以使用Intent来传递参数给Service ，方法如下 目前的代码只是演示，与功能无关</font></p><p>			 <font class="Comments">*/</font></p><p>			</font>Bundle setting = <font class="keyword">new </font>Bundle();</p><p>			</font>setting.putString(<font class="Fields">"TIME_SETTING"</font>, </font><font class="Fields">"5s"</font>);</p><p>			<font class="Comments">// 在Service中使用“TIME_SETTING”这个标签就可以从Intent取出5s 这个字符串了</font></p><p>			isleepMusicService.putExtras(setting);</p><p>			startService(isleepMusicService);</p><p>		}</p><p>	};</p><p>	<font class="Comments">// 点击取消按钮</font></p><p>	<font class="keyword">private </font>OnClickListener cancelButtonClickListener = </font><font class="keyword">new </font>OnClickListener() {</p><p>		@Override</p><p>		<font class="keyword">public </font><font class="keyword">void </font>onClick(View v) {</p><p>			</font>Intent sleepMusicService = <font class="keyword">new </font>Intent(StartActivity.</font><font class="keyword">this</font>,</p><p>					</font>SleepMusicService.<font class="keyword">class</font>);</p><p>			<font class="Comments">// 停止服务</font></p><p>			stopService(sleepMusicService);</p><p>		}</p><p>	};</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onCreate(Bundle savedInstanceState) {</p><p>		<font class="keyword">super</font>.onCreate(savedInstanceState);</p><p>		setContentView(R.layout.main);</p><p>		<font class="Comments">// ...... 代码省略</font></p><p>		<font class="Comments">// 获取Layout中的按钮</font></p><p>		startButton = (Button) findViewById(R.id.b_start);</p><p>		cancelButton = (Button) findViewById(R.id.b_cancel);</p><p>		startButton.setOnClickListener(startButtonClickListener);</p><p>		cancelButton.setOnClickListener(cancelButtonClickListener);</p><p>		restartButton = (Button) findViewById(R.id.b_restart);</p><p>		restartButton.setOnClickListener(restartButtonClickListener);</p><p>	}</p><p>}</p><p></pre></p><p>完成了这个Activity之后，就容易的多了，剩下的就是BroadcastReceiver了，新建一个类继承BroadcastReceiver</p><p>并且实现onReceive()方法</p><p><pre><font class="keyword">import </font>android.content.BroadcastReceiver;</p><p><font class="keyword">import </font>android.content.Context;</p><p><font class="keyword">import </font>android.content.Intent;</p><p><font class="keyword">import </font>android.widget.Toast;</p><p><font class="keyword">public </font><font class="keyword">class </font>AlarmReceiver </font><font class="keyword">extends </font>BroadcastReceiver {</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>onReceive(Context context, Intent intent) {</p><p>		</font>Toast.makeText(context, <font class="Fields">"时间到"</font>, Toast.LENGTH_SHORT).show();</p><p>	}</p><p>}</p><p></pre></p><p>当Service中的AlarmManager完成计时后将广播消息给AlarmReceiver，这样就会显示Toast给用户了。</p><p>在AndroidManifest.xml中添加activity、service、和receiver的设置</p><p><pre>&lt;?xml version=<font class="Fields">"1.0"</font> encoding=</font><font class="Fields">"utf-8"</font>?&gt;</p><p>&lt;manifest xmlns:android=<font class="Fields">"http:<font class="Comments">//schemas.android.com/apk/res/android</font></p><p>    </font>package=<font class="Fields">"com.shinestudio.sleepMusic</p><p>    </font>android:versionCode=<font class="Fields">"1</p><p>    </font>android:versionName=<font class="Fields">"1.0"</font> &gt;</p><p>    &lt;application</p><p>        </font>android:icon=<font class="Fields">"@drawable/icon</p><p>        </font>android:label=<font class="Fields">"@string/app_name"</font> &gt;</p><p>        &lt;activity</p><p>            </font>android:name=<font class="Fields">".StartActivity</p><p>            </font>android:label=<font class="Fields">"@string/app_name</p><p>            </font>android:theme=<font class="Fields">"@android:style/Theme.Black.NoTitleBar"</font> &gt;</p><p>            &lt;intent-filter&gt;</p><p>                </font>&lt;action android:name=<font class="Fields">"android.intent.action.MAIN"</font> /&gt;</p><p>                </font>&lt;category android:name=<font class="Fields">"android.intent.category.LAUNCHER"</font> /&gt;</p><p>            &lt;/intent-filter&gt;</p><p>        &lt;/activity&gt;</p><p>        </font>&lt;service android:name=<font class="Fields">".service.SleepMusicService"</font> &gt;</p><p>        &lt;/service&gt;</p><p>        </font>&lt;receiver android:name=<font class="Fields">"AlarmReceiver"</font> &gt;</p><p>        &lt;/receiver&gt;</p><p>    &lt;/application&gt;</p><p>&lt;/manifest&gt;</p><p></pre></p><p>附加提供的一点点代码片</p><p>打开HTC HERO 自带的HTC Music Player</p><p><pre><font class="keyword">public </font><font class="keyword">void </font>openMusicPlayer() {</p><p>	</font>Intent musicPlayer = <font class="keyword">new </font>Intent();</p><p>	musicPlayer.setAction(Intent.ACTION_MAIN);</p><p>	</font>musicPlayer.setPackage(<font class="Fields">"com.htc.music"</font>);</p><p>	</font>StartActivity.<font class="keyword">this</font>.startActivity(musicPlayer);</p><p>}</p><p><font class="Comments">// 获得所有运行的service</font></p><p><font class="keyword">public </font><font class="keyword">static </font>String getRunningServicesInfo(Context context) {</p><p>	</font>StringBuffer serviceInfo = <font class="keyword">new </font>StringBuffer();</p><p>	<font class="keyword">final </font>ActivityManager activityManager = (ActivityManager) context</p><p>			.getSystemService(Context.ACTIVITY_SERVICE);</p><p>	List&lt;RunningServiceInfo&gt; services = activityManager</p><p>			.getRunningServices(100);</p><p>	Iterator&lt;RunningServiceInfo&gt; l = services.iterator();</p><p>	<font class="keyword">while </font>(l.hasNext()) {</p><p>		RunningServiceInfo si = (RunningServiceInfo) l.next();</p><p>		</font>serviceInfo.append(<font class="Fields">"pid: "</font>).append(si.pid);</p><p>		</font>serviceInfo.append(<font class="Fields">"\nprocess: "</font>).append(si.process);</p><p>		</font>serviceInfo.append(<font class="Fields">"\nservice: "</font>).append(si.service);</p><p>		</font>serviceInfo.append(<font class="Fields">"\ncrashCount: "</font>).append(si.crashCount);</p><p>		</font>serviceInfo.append(<font class="Fields">"\nclientCount: "</font>).append(si.clientCount);</p><p>		</font>serviceInfo.append(<font class="Fields">"\n\n"</font>);</p><p>	}</p><p>	<font class="keyword">return </font>serviceInfo.toString();</p><p>}</p><p></pre></p><p>在看完这堆代码之后，请您看看这个，这些是Android所提供给用户的的一下系统的Service</p><p>像NotificationManager Vebrator AlarmManager 都是比较常用的。</p><p><pre>WINDOW_SERVICE                      WindowManager                    管理打开的窗口程序</p><p>LAYOUT_INFLATER_SERVICE             LayoutInflater                   取得xml里定义的view</p><p>ACTIVITY_SERVICE                    ActivityManager                  管理应用程序的系统状态</p><p>POWER_SERVICE                       PowerManger                      电源的服务</p><p>ALARM_SERVICE                       AlarmManager                     闹钟的服务</p><p>NOTIFICATION_SERVICE                NotificationManager              状态栏的服务</p><p>KEYGUARD_SERVICE                    KeyguardManager                  键盘锁的服务</p><p>LOCATION_SERVICE                    LocationManager                  位置的服务，如GPS</p><p>SEARCH_SERVICE                      SearchManager                    搜索的服务</p><p>VEBRATOR_SERVICE                    Vebrator                         手机震动的服务</p><p>CONNECTIVITY_SERVICE                Connectivity                     网络连接的服务</p><p>WIFI_SERVICE                        WifiManager                      Wi-Fi服务</p><p>TELEPHONY_SERVICE                   TeleponyManager                  电话服务</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+  
+   </P>
+</DIV></BODY></HTML>
+

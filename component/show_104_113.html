@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android Intent和Intent Filter详解（二）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li class="navcurrentLink"><A href="index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Activity" href="index_112.html">Activity</A></h2>
+
+  <h2><A title="Intent" href="index_113.html">Intent</A></h2>
+<UL><li ><A title=Intents和Intent Filters（理论部分） href="show_101_113.html">Intents和Intent Filters（理论部分）</A> </li><li ><A title=Intents和Intent Filters（实例部分） href="show_102_113.html">Intents和Intent Filters（实例部分）</A> </li><li ><A title=Android Intent和Intent Filter详解（一） href="show_103_113.html">Android Intent和Intent Filter详解（一）</A> </li><li class="currentLink"><A title=Android Intent和Intent Filter详解（二） href="show_104_113.html">Android Intent和Intent Filter详解（二）</A> </li><li ><A title=Android Intent和Intent Filter详解（三） href="show_105_113.html">Android Intent和Intent Filter详解（三）</A> </li><li ><A title=Android Intent和Intent Filter详解（四） href="show_106_113.html">Android Intent和Intent Filter详解（四）</A> </li><li ><A title=Android Intent和Intent Filter详解（五） href="show_107_113.html">Android Intent和Intent Filter详解（五）</A> </li><li ><A title=Android Intent和Bundle机制实例详解 href="show_108_113.html">Android Intent和Bundle机制实例详解</A> </li><li ><A title=Android Intent的几种用法全面总结 href="show_109_113.html">Android Intent的几种用法全面总结</A> </li><li ><A title=Android中Intent中如何传递对象 href="show_110_113.html">Android中Intent中如何传递对象</A> </li><li ><A title=如何调用Google Web Search？ href="show_111_113.html">如何调用Google Web Search？</A> </li></UL>
+  <h2><A title="Service" href="index_114.html">Service</A></h2>
+
+  <h2><A title="Content Provider" href="index_115.html">Content Provider</A></h2>
+
+  <h2><A title="BroadcastReceiver" href="index_116.html">BroadcastReceiver</A></h2>
+
+  <h2><A title="AsyncTask" href="index_117.html">AsyncTask</A></h2>
+
+  <h2><A title="Handler" href="index_118.html">Handler</A></h2>
+
+  <h2><A title="Thread" href="index_119.html">Thread</A></h2>
+
+  <h2><A title="Permission" href="index_120.html">Permission</A></h2>
+
+  <h2><A title="AIDL" href="index_121.html">AIDL</A></h2>
+
+  <h2><A title="Json" href="index_122.html">Json</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android Intent和Intent Filter详解（二）</H2>
+<div style="line-height:20px; font-size:14px;"><p style="color:#3333FF;">Data</p><p>需要操作的数据的URI和它的MIME(多用途互联网邮件扩展，Multipurpose Internet Mail Extensions)类型。 例如，如果action为ACTION_EDIT，那么Data将包含待编辑的数据URI。如果action为ACTION_CALL，Data将为tel:电话号码的URI。如果action为ACTION_VIEW，则Data为http:网络地址的URI。</p><p>当将一个intent和一个组件相匹配时，除了URI外数据类型也很重要. 例如，一个显示图片的程序不应该用来处理声音文件。</p><p>数据类型常常可以从URI推断，特别是content:URI，它表示该数据属于一个content provider。但数据类型也可以被intent对象显示声明。setData()方法设置URI，而setType()方法指定MIME类型，setDataAndType()设置数据URI和MIME类型。它们可以使用getData()和getType()来读取.</p><p style="color:#3333FF;">Category</p><p>一个字符串，包含了关于处理该intent的组件的种类的信息。一个intent对象可以有任意个category.。intent类定义了许多category常数，例如:</p><p><pre>常量	含义</p><p>CATEGORY_BROWSABLE	目标activity可以使用浏览器来显示-例如图片或电子邮件消息。</p><p>CATEGORY_GADGET	该activity可以被包含在另外一个装载小工具的activity中。</p><p>CATEGORY_HOME	该activity显示主屏幕，也就是用户按下Home键看到的界面。</p><p>CATEGORY_LAUNCHER	该activity可以作为一个任务的第一个activity，并且列在应用程序启动器中。</p><p>CATEGORY_PREFERENCE	该activity是一个选项面板。</p><p></pre></p><p>addCategory()方法为一个intent对象增加一个category，removeCategory删除一个category，getCategories()获取intent所有的category。</p><p style="color:#3333FF;">Extras</p><p>为键值对形式的附加信息。 例如ACTION_TIMEZONE_CHANGED的intent有一个"time-zone"附加信息来指明新的时区，而ACTION_HEADSET_PLUG有一个"state"附加信息来指示耳机是被插入还是被拔出。</p><p>intent对象有一系列put...()和set...()方法来设定和获取附加信息. 这些方法和Bundle对象很像。 事实上附加信息可以使用putExtras()和getExtras()作为Bundle来读和写。</p><p style="color:#3333FF;">Flags</p><p>各种标志。很多标志指示android系统如何启动一个activity(例如该activity属于哪个任务)和启动后如何处理它(例如, 它是否属于最近activity列表中)。</p><p>android系统和应用程序使用intent对象来送出系统广播和激活系统定义的组件.</p><p style="color:#3333FF;">Intent Resolution Intent解析</p><p>intent有两种:</p><p>1、显式intent使用名字来指定目标组件。由于组件名称一般不会被其它开发者所熟知，这种intent一般用于应用程序内部消息-- 例如一个activity启动一个附属的service或者另一个activity。</p><p>2、隐式intent不指定目标的名称. 一般用于启动其它应用程序的组件。</p><p>Android将显式intent发送给指定的类。intent对象中名字唯一决定接受intent的对象.对于隐式intent，android系统必须找到最合适的组件来处理它。它比较intent的内容和intent filter。intent filter是组件的一个相关结构, 表示其接受intent的能力，android系统根据intent filter打开可以接受intent的组件。如果一个组件没有intent filter，那么它只能接受显式intent。如果有，则能同时接受二者。当一个intent和intent filter比较时，只考虑三个属性: action，data，category.extra和flag在intent解析中没有用。</p><p style="color:#3333FF;">Intent filters</p><p>activity, service和broadcast receiver可以有多个intent filter来告知系统它们能接受什么样的隐式intent。intent filter的名字很形象: 它过滤掉不想接受的intent，留下想接受的intent。显式intent无视intent filter。一个组件对能做的每件事有单独的filter。例如，记事本程序的NoteEditor activity有两个filter -- 一个启动并显示一个特定的记录给用户查看或编辑，另一个启动一个空的记录给用户编辑。</p><p style="color:#3333FF;">Filters and security Filter和安全</p><p>一个intent filter不一定安全可靠。一个应用程序可以让它的某个组件去接受隐式intent, 但是它没法防止这个组件接受显示intent。 其它的程序总是可以使用自定义的数据加上显式的程序名称来调用该组件。</p><p>一个intent filter是IntentFilter类的实例，但是它一般不出现在代码中，而是出现在android Manifest文件中，以&lt;intent-filter&gt;的形式。(有一个例外是broadcast receiver的intent filter是使用 Context.registerReceiver()来动态设定的, 其intent filter也是在代码中创建的。)</p><p>一个filter有action, data, category等字段。一个隐式intent为了能被某个intent filter接受，必须通过3个测试。一个intent为了被某个组件接受，则必须通过它所有的intent filter中的一个。</p><p style="color:#3333FF;">Action 测试</p><p><pre>&lt;intent-filter &gt;</p><p>	&lt;action android:name="com.example.project.SHOW_CURRENT" /&gt;</p><p>	&lt;action android:name="com.example.project.SHOW_RECENT" /&gt;</p><p>	&lt;action android:name="com.example.project.SHOW_PENDING" /&gt;</p><p>	. . .</p><p>&lt;/intent-filter&gt;</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

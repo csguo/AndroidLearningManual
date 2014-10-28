@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 动态关闭Manifest中的Receiver的方法_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li class="navcurrentLink"><A href="index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="开发基础" href="index_100.html">开发基础</A></h2>
+
+  <h2><A title="开发环境搭建" href="index_101.html">开发环境搭建</A></h2>
+
+  <h2><A title="模拟器" href="index_102.html">模拟器</A></h2>
+
+  <h2><A title="Resource" href="index_103.html">Resource</A></h2>
+
+  <h2><A title="Manifest" href="index_104.html">Manifest</A></h2>
+<UL><li ><A title=Android的AndroidManifest.xml文件介绍 href="show_401_104.html">Android的AndroidManifest.xml文件介绍</A> </li><li ><A title=AndroidManifest.xml元素含义介绍 href="show_402_104.html">AndroidManifest.xml元素含义介绍</A> </li><li ><A title=AndroidManifest.xml文件综合详解 href="show_403_104.html">AndroidManifest.xml文件综合详解</A> </li><li ><A title=Manifest权限大全 href="show_404_104.html">Manifest权限大全</A> </li><li ><A title=Manifest文件和Intent相关 href="show_405_104.html">Manifest文件和Intent相关</A> </li><li class="currentLink"><A title=Android 动态关闭Manifest中的Receiver的方法 href="show_406_104.html">Android 动态关闭Manifest中的Receiver的方法</A> </li><li ><A title=Android manifest.xml 中元素含义 href="show_407_104.html">Android manifest.xml 中元素含义</A> </li></UL>
+  <h2><A title="ADB" href="index_105.html">ADB</A></h2>
+
+  <h2><A title="DDMS" href="index_106.html">DDMS</A></h2>
+
+  <h2><A title="Logcat(日志)" href="index_107.html">Logcat(日志)</A></h2>
+
+  <h2><A title="打包" href="index_108.html">打包</A></h2>
+
+  <h2><A title="文件处理" href="index_109.html">文件处理</A></h2>
+
+  <h2><A title="底层基础" href="index_111.html">底层基础</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 动态关闭Manifest中的Receiver的方法</H2>
+<div style="line-height:20px; font-size:14px;"><p style="color:#3333FF;">为什么要关闭组件?</p><p>在用到组件时，有时候我们可能暂时性的不使用组件，但又不想把组件kill 掉，比如创建了一个broadcastReceiver广播监听器，用来想监听第一次开机启动后获得系统的许多相关信息，并保存在文件中，这样以后每次开机启动就不需要再去启动该服务了，也就是说如果没有把receiver关闭掉，就算是不做数据处理，但程序却还一直在后台运行会消耗电量和内存，这时候就需要把这个receiver给关闭掉。</p><p style="color:#3333FF;">如何关闭组件?</p><p>关闭组件其实并不难，只要创建packageManager对象和ComponentName对象，并调用packageManager对象的setComponentEnabledSetting方法。方法描述如下：</p><p><pre>setComponentEnabledSetting(ComponentName componentName, <font class="keyword">int </font>newState, </font><font class="keyword">int </font>flags)</p><p></pre></p><p>componentName：组件名称</p><p>newState：组件新的状态，可以设置三个值，分别是如下：</p><p><pre>不可用状态：COMPONENT_ENABLED_STATE_DISABLED</p><p>可用状态：COMPONENT_ENABLED_STATE_ENABLED</p><p>默认状态：COMPONENT_ENABLED_STATE_DEFAULT</p><p>flags:行为标签，值可以是DONT_KILL_APP或者0。</p><p></pre></p><p>上个小例子。manifest文件中的配置：</p><p><pre>&lt; receiver android:name=".ToggleReceiver"&gt;</p><p>&lt; intent-filter&gt;</p><p>	&lt; action android:name="android.intent.action.BOOT_COMPLETED"/&gt;</p><p>&lt; /intent-filter&gt;</p><p></pre></p><p>在对应的Receiver中的处理：</p><p><pre><font class="keyword">final </font>ComponentName receiver = </font><font class="keyword">new </font>ComponentName(context,ToggleReceiver.</font><font class="keyword">class</font>);</p><p><font class="keyword">final </font>PackageManager pm = context.getPackageManager();</p><p>count++;</p><p><font class="keyword">if </font>(count &gt; 1) {</p><p>	pm.setComponentEnabledSetting(receiver,</p><p>	PackageManager.COMPONENT_ENABLED_STATE_DISABLED,</p><p>	PackageManager.DONT_KILL_APP);</p><p>}</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

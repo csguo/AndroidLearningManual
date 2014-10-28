@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 音乐资源管理与播放（一）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li class="navcurrentLink"><A href="index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Android多媒体功能" href="index_196.html">Android多媒体功能</A></h2>
+
+  <h2><A title="Android多媒体之2D" href="index_197.html">Android多媒体之2D</A></h2>
+
+  <h2><A title="Android多媒体之3D" href="index_198.html">Android多媒体之3D</A></h2>
+
+  <h2><A title="Android多媒体之Bitmap" href="index_199.html">Android多媒体之Bitmap</A></h2>
+
+  <h2><A title="Android多媒体之Canvas" href="index_200.html">Android多媒体之Canvas</A></h2>
+
+  <h2><A title="Android多媒体之Drawable" href="index_201.html">Android多媒体之Drawable</A></h2>
+
+  <h2><A title="Android多媒体之gif" href="index_202.html">Android多媒体之gif</A></h2>
+
+  <h2><A title="Android多媒体之MediaStore" href="index_203.html">Android多媒体之MediaStore</A></h2>
+<UL><li ><A title=Android多媒体分析（一）MediaScanner href="show_701_203.html">Android多媒体分析（一）MediaScanner</A> </li><li ><A title=Android多媒体分析（二）MediaStore href="show_702_203.html">Android多媒体分析（二）MediaStore</A> </li><li ><A title=Android多媒体分析（三）通过MediaStore获取Audio信息 href="show_703_203.html">Android多媒体分析（三）通过MediaStore获取Audio信息</A> </li><li ><A title=Android多媒体分析（四）AudioManager href="show_704_203.html">Android多媒体分析（四）AudioManager</A> </li><li ><A title=Android多媒体分析（五）音乐播放器实例 href="show_705_203.html">Android多媒体分析（五）音乐播放器实例</A> </li><li class="currentLink"><A title=Android 音乐资源管理与播放（一） href="show_706_203.html">Android 音乐资源管理与播放（一）</A> </li><li ><A title=07_Android音乐资源管理与播放（二） href="show_707_203.html">07_Android音乐资源管理与播放（二）</A> </li></UL>
+  <h2><A title="Android多媒体之动画" href="index_204.html">Android多媒体之动画</A></h2>
+
+  <h2><A title="Android多媒体之分辨率" href="index_205.html">Android多媒体之分辨率</A></h2>
+
+  <h2><A title="Android多媒体之分屏幕" href="index_206.html">Android多媒体之分屏幕</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 音乐资源管理与播放（一）</H2>
+<div style="line-height:20px; font-size:14px;"><p>MediaScanner与音乐信息扫描</p><p>Android系统在SD卡插入后，MediaScanner服务会在后台自动扫描SD上的文件资源，将SD上的音乐媒体信息加入到MediaStore数据库中。程序可以直接从MediaStore中读取相应的媒体信息。通过注册监听MediaScanner广播的Intent，可以获知MediaScanner服务是否在进行后台的扫描工作：</p><p><pre>Intent.ACTION_MEDIA_SCANNER_STARTED 表示MeidaScanner开始扫描；</p><p>Intent.ACTION_MEDIA_SCANNER_FINISHED 表示MediaScanner扫描结束；</p><p></pre></p><p>当程序从网络下载媒体文件到终端后，MediaScanner服务并不会自动扫描刚刚下载的文件，需要程序主动去扫描这些新添加的媒体文件信息到MediaStore数据库中。在Android系统中有两种方式去主动扫描音乐媒体文件信息到</p><p>MediaStore数据库：</p><p>1．启动MediaScanner服务，扫描媒体文件：</p><p>程序通过发送下面的Intent启动MediaScanner服务扫描指定的文件或目录：</p><p>Intent.ACTION_MEDIA_SCANNER_SCAN_FILE：扫描指定文件</p><p><pre><font class="keyword">public </font><font class="keyword">void </font>scanFileAsync(Context ctx, String filePath) {</p><p>	</font>Intent scanIntent = <font class="keyword">new </font>Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);</p><p>	</font>scanIntent.setData(Uri.fromFile(<font class="keyword">new </font>File(filePath)));</p><p>	ctx.sendBroadcast(scanIntent);</p><p>}</p><p></pre></p><p>"android.intent.action.MEDIA_SCANNER_SCAN_DIR"：扫描指定目录</p><p><pre><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font>String ACTION_MEDIA_SCANNER_SCAN_DIR = <font class="Fields">"android.intent.action.MEDIA_SCANNER_SCAN_DIR"</font>;</p><p><font class="keyword">public </font><font class="keyword">void </font>scanDirAsync(Context ctx, String dir) {</p><p>	</font>Intent scanIntent = <font class="keyword">new </font>Intent(ACTION_MEDIA_SCANNER_SCAN_DIR);</p><p>	</font>scanIntent.setData(Uri.fromFile(<font class="keyword">new </font>File(dir)));</p><p>	ctx.sendBroadcast(scanIntent);</p><p>}</p><p></pre></p><p>这种扫描方式中，由于扫描工作是在MediaScanner服务中进行的，因此不会阻塞当前程序进程。当扫描大量媒体文件且实时性要求不高的情况下，适合使用该扫描方式。</p><p>2．通过MediaScanner提供的API接口，扫描媒体文件。</p><p>这种扫描媒体文件的方式是同步的，扫描工作将会阻塞当前的程序进程。当扫描少量文件，且要求立即获取扫描结果的情况下，适合使用该扫描方式。</p><p>在扫描媒体文件前，程序应该根据终端当前的语言环境正确设置MediaScanner的语言环境设置, 避免产生编解码的错误:</p><p><pre>MediaScanner scanner = <font class="keyword">new </font>MediaScanner(ctx);</p><p>Locale locale = ctx.getResources().getConfiguration().locale;</p><p>String language = locale.getLanguage();</p><p>String coun<font class="keyword">try </font>= locale.getCountry();</p><p>scanner.setLocale(language + \<font class="Fields">"_\"</font> + country); </p><p></pre></p><p>媒体文件可以存储在手机终端的内存中，也可以存储在SD卡中，Android平台中称手机终端内存为内部存储空间，称SD卡为外部存储空间。针对内部和外部存储空间中的媒体文件信息是分开管理的，各自有独立的数据库管理。因此在扫描媒体文件时，要明确指明扫描的媒体文件是位于内部存储空间还是外部存储空间。外部存储空间和内部存储空间对应的卷标为”external”和”internal”。</p><p><pre>scanner.scanSingleFile(filePath, volumeName, mimeType);</p><p>scanner.scanDirectories(directories, volumeName); </p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

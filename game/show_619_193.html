@@ -1,0 +1,60 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 深入了解SQLite存储方式（一）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li class="navcurrentLink"><A href="index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="游戏开发须知" href="index_187.html">游戏开发须知</A></h2>
+
+  <h2><A title="游戏策划、设计分析" href="index_188.html">游戏策划、设计分析</A></h2>
+
+  <h2><A title="Android OpenGL学习" href="index_190.html">Android OpenGL学习</A></h2>
+
+  <h2><A title="Android游戏开发之旅" href="index_191.html">Android游戏开发之旅</A></h2>
+
+  <h2><A title="Android2D游戏开发" href="index_192.html">Android2D游戏开发</A></h2>
+
+  <h2><A title="Android经典实例教程解析" href="index_193.html">Android经典实例教程解析</A></h2>
+<UL><li ><A title=Android 我们来细细的介绍游戏（一） href="show_601_193.html">Android 我们来细细的介绍游戏（一）</A> </li><li ><A title=Android 我们来细细的介绍游戏（二） href="show_602_193.html">Android 我们来细细的介绍游戏（二）</A> </li><li ><A title=Android 我们来细细的介绍游戏（三） href="show_603_193.html">Android 我们来细细的介绍游戏（三）</A> </li><li ><A title=Android 我们来细细的介绍游戏（四） href="show_604_193.html">Android 我们来细细的介绍游戏（四）</A> </li><li ><A title=Android 我们来细细的介绍游戏（五） href="show_605_193.html">Android 我们来细细的介绍游戏（五）</A> </li><li ><A title=Android 我们来细细的介绍游戏（六） href="show_606_193.html">Android 我们来细细的介绍游戏（六）</A> </li><li ><A title=Android 3D游戏开发（一） href="show_607_193.html">Android 3D游戏开发（一）</A> </li><li ><A title=Android 3D游戏开发（二） href="show_608_193.html">Android 3D游戏开发（二）</A> </li><li ><A title=Android 3D游戏开发（三） href="show_609_193.html">Android 3D游戏开发（三）</A> </li><li ><A title=Android Sensor2D感应实例 href="show_610_193.html">Android Sensor2D感应实例</A> </li><li ><A title=Android 小球重力感应实现(一) href="show_611_193.html">Android 小球重力感应实现(一)</A> </li><li ><A title=Android 小球重力感应实现（二） href="show_612_193.html">Android 小球重力感应实现（二）</A> </li><li ><A title=Android 小球重力感应实现（三） href="show_613_193.html">Android 小球重力感应实现（三）</A> </li><li ><A title=Android平台上的感应器 href="show_614_193.html">Android平台上的感应器</A> </li><li ><A title=Android 游戏场景特效（一） href="show_615_193.html">Android 游戏场景特效（一）</A> </li><li ><A title=Android 游戏场景特效（二） href="show_616_193.html">Android 游戏场景特效（二）</A> </li><li ><A title=Android 游戏场景特效（三） href="show_617_193.html">Android 游戏场景特效（三）</A> </li><li ><A title=Android 游戏场景特效（四） href="show_618_193.html">Android 游戏场景特效（四）</A> </li><li class="currentLink"><A title=Android 深入了解SQLite存储方式（一） href="show_619_193.html">Android 深入了解SQLite存储方式（一）</A> </li><li ><A title=Android 深入了解SQLite存储方式（二） href="show_620_193.html">Android 深入了解SQLite存储方式（二）</A> </li><li ><A title=Android 深入了解SQLite存储方式（三） href="show_621_193.html">Android 深入了解SQLite存储方式（三）</A> </li><li ><A title=Android 给游戏添加音乐 href="show_622_193.html">Android 给游戏添加音乐</A> </li><li ><A title=使用SoundPool播放音效 href="show_623_193.html">使用SoundPool播放音效</A> </li><li ><A title=五子棋算法分析【算法1】 href="show_624_193.html">五子棋算法分析【算法1】</A> </li><li ><A title=五子棋算法分析【算法2】 href="show_625_193.html">五子棋算法分析【算法2】</A> </li></UL>
+  <h2><A title="Android游戏开发实例" href="index_194.html">Android游戏开发实例</A></h2>
+
+  <h2><A title="Libgdx游戏引擎" href="index_195.html">Libgdx游戏引擎</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 深入了解SQLite存储方式（一）</H2>
+<div style="line-height:20px; font-size:14px;"><p style="color:#3333FF;">什么是SQLite：</p><p>SQLite是一款轻量级数据库，它的设计目的是嵌入式，而且它占用的资源非常少，在嵌入式设备中，只需要几百KB!</p><p>SQLite的特性：</p><p style="color:#3333FF;">轻量级</p><p>使用 SQLite 只需要带一个动态库，就可以享受它的全部功能，而且那个动态库的尺寸想当小。</p><p style="color:#3333FF;">独立性</p><p>SQLite 数据库的核心引擎不需要依赖第三方软件，也不需要所谓的“安装”。</p><p style="color:#3333FF;">隔离性</p><p>SQLite 数据库中所有的信息（比如表、视图、触发器等）都包含在一个文件夹内，方便管理和维护。</p><p style="color:#3333FF;">跨平台</p><p>SQLite 目前支持大部分操作系统，不至电脑操作系统更在众多的手机系统也是能够运行，比如：Android。</p><p style="color:#3333FF;">多语言接口</p><p>SQLite 数据库支持多语言编程接口。</p><p style="color:#3333FF;">安全性</p><p>SQLite数据库通过数据库级上的独占性和共享锁来实现独立事务处理。这意味着多个进程可以在同一时间从同一数据库读取数据，但只能有一个可以写入数据。</p><p style="color:#3333FF;">优点：</p><p>1.能存储较多的数据。</p><p>2.能将数据库文件存放到SD卡中！</p><p style="color:#3333FF;">什么是 SQLiteDatabase？ </p><p>一个SQLiteDatabase的实例代表了一个SQLite的数据库，通过SQLiteDatabase实例的一些方法，我们可以执行SQL语句，对数据库进行增、删、查、改的操作。需要注意的是，数据库对于一个应用来说是私有的，并且在一个应用当中，数据库的名字也是惟一的。</p><p style="color:#3333FF;">什么是SQLiteOpenHelper？</p><p>根据这名字，我们可以看出这个类是一个辅助类。这个类主要生成一个数据库，并对数据库的版本进行管理。当在程序当中调用这个类的方法getWritableDatabase()，或者getReadableDatabase()方法的时候，如果当时没有数据，那么Android系统就会自动生成一个数据库。SQLiteOpenHelper 是一个抽象类，我们通常需要继承它，并且实现里边的3个函数。</p><p style="color:#3333FF;">什么是ContentValues类？</p><p>ContentValues类和Hashmap/Hashtable比较类似，它也是负责存储一些名值对，但是它存储的名值对当中的名是一个String类型，而值都是基本类型。</p><p style="color:#3333FF;">什么是Cursor？</p><p>Cursor在Android 当中是一个非常有用的接口，通过Cursor 我们可以对从数据库查询出来的结果集进行随机的读写访问。</p><p>OK，基本知识就介绍到这里，下面开始上代码：还是按照我的一贯风格，代码中该解释的地方都已经在代码中及时注释和讲解了！</p><p>顺便来张项目截图：</p><p><img src="../img/games_instance/19_instance.jpg"></p><p>我们先来看看xml的代码：</p><p><pre>&lt;?xml version=<font class="Fields">"1.0"</font> encoding=</font><font class="Fields">"utf-8"</font>?&gt;</p><p>&lt;LinearLayout xmlns:android=<font class="Fields">"http:<font class="Comments">//schemas.android.com/apk/res/android</font></p><p>    </font>android:layout_width=<font class="Fields">"fill_parent</p><p>    </font>android:layout_height=<font class="Fields">"fill_parent</p><p>    </font>android:orientation=<font class="Fields">"vertical"</font> &gt;</p><p>    &lt;TextView</p><p>        </font>android:id=<font class="Fields">"@+id/tv_title</p><p>        </font>android:layout_width=<font class="Fields">"fill_parent</p><p>        </font>android:layout_height=<font class="Fields">"wrap_content</p><p>        </font>android:text=<font class="Fields">"SQL 练习！（如果你使用的SD卡存储数据方式，为了保证正常操作，请你先点击创建一张表然后再操作）</p><p>        </font>android:textColor=<font class="Fields">"</font>ff0000</p><p>        </font>android:textSize=<font class="Fields">"20sp"</font> /&gt;</p><p>    &lt;Button</p><p>        </font>android:id=<font class="Fields">"@+id/sql_addOne</p><p>        </font>android:layout_width=<font class="Fields">"fill_parent</p><p>        </font>android:layout_height=<font class="Fields">"wrap_content</p><p>        </font>android:text=<font class="Fields">"插入一条记录"</font> &gt;</p><p>    &lt;/Button&gt;</p><p>    &lt;Button</p><p>        </font>android:id=<font class="Fields">"@+id/sql_check</p><p>        </font>android:layout_width=<font class="Fields">"fill_parent</p><p>        </font>android:layout_height=<font class="Fields">"wrap_content</p><p>        </font>android:text=<font class="Fields">"查询数据库"</font> &gt;</p><p>    &lt;/Button&gt;</p><p>    &lt;Button</p><p>        </font>android:id=<font class="Fields">"@+id/sql_edit</p><p>        </font>android:layout_width=<font class="Fields">"fill_parent</p><p>        </font>android:layout_height=<font class="Fields">"wrap_content</p><p>        </font>android:text=<font class="Fields">"修改一条记录"</font> &gt;</p><p>    &lt;/Button&gt;</p><p>    &lt;Button</p><p>        </font>android:id=<font class="Fields">"@+id/sql_deleteOne</p><p>        </font>android:layout_width=<font class="Fields">"fill_parent</p><p>        </font>android:layout_height=<font class="Fields">"wrap_content</p><p>        </font>android:text=<font class="Fields">"删除一条记录"</font> &gt;</p><p>    &lt;/Button&gt;</p><p>    &lt;Button</p><p>        </font>android:id=<font class="Fields">"@+id/sql_deleteTable</p><p>        </font>android:layout_width=<font class="Fields">"fill_parent</p><p>        </font>android:layout_height=<font class="Fields">"wrap_content</p><p>        </font>android:text=<font class="Fields">"删除数据表单"</font> &gt;</p><p>    &lt;/Button&gt;</p><p>    &lt;Button</p><p>        </font>android:id=<font class="Fields">"@+id/sql_newTable</p><p>        </font>android:layout_width=<font class="Fields">"fill_parent</p><p>        </font>android:layout_height=<font class="Fields">"wrap_content</p><p>        </font>android:text=<font class="Fields">"新建数据表单"</font> &gt;</p><p>    &lt;/Button&gt;</p><p>&lt;/LinearLayout&gt;</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

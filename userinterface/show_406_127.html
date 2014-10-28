@@ -1,0 +1,111 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>利用Java反射技术阻止通过按钮关闭对话框（三）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li class="navcurrentLink"><A href="index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="用户界面之view(视图)" href="index_123.html">用户界面之view(视图)</A></h2>
+
+  <h2><A title="用户界面之Layout(布局)" href="index_124.html">用户界面之Layout(布局)</A></h2>
+
+  <h2><A title="用户界面之TextView(文本视图)" href="index_125.html">用户界面之TextView(文本视图)</A></h2>
+
+  <h2><A title="用户界面之EditText(编辑视图)" href="index_126.html">用户界面之EditText(编辑视图)</A></h2>
+
+  <h2><A title="用户界面之Button(按钮)" href="index_127.html">用户界面之Button(按钮)</A></h2>
+<UL><li ><A title=Android 基本按钮 href="show_401_127.html">Android 基本按钮</A> </li><li ><A title=Android ImageButton(带图标的按钮) href="show_402_127.html">Android ImageButton(带图标的按钮)</A> </li><li ><A title=Android 长按button事件 href="show_403_127.html">Android 长按button事件</A> </li><li ><A title=利用Java反射技术阻止通过按钮关闭对话框（一） href="show_404_127.html">利用Java反射技术阻止通过按钮关闭对话框（一）</A> </li><li ><A title=利用Java反射技术阻止通过按钮关闭对话框（二） href="show_405_127.html">利用Java反射技术阻止通过按钮关闭对话框（二）</A> </li><li class="currentLink"><A title=利用Java反射技术阻止通过按钮关闭对话框（三） href="show_406_127.html">利用Java反射技术阻止通过按钮关闭对话框（三）</A> </li><li ><A title=制作自定义背景Button按钮、自定义形状Button的全攻略 href="show_407_127.html">制作自定义背景Button按钮、自定义形状Button的全攻略</A> </li><li ><A title=Android Button有按下效果 href="show_408_127.html">Android Button有按下效果</A> </li><li ><A title=拖动Button显示效果（完善版） href="show_409_127.html">拖动Button显示效果（完善版）</A> </li><li ><A title=自制含滚动和左右按钮的导航控件 href="show_410_127.html">自制含滚动和左右按钮的导航控件</A> </li><li ><A title=Android 矩形按钮 href="show_411_127.html">Android 矩形按钮</A> </li><li ><A title=Android控件之ZoomButton缩放按钮 href="show_412_127.html">Android控件之ZoomButton缩放按钮</A> </li><li ><A title=Android Button美化实例 href="show_413_127.html">Android Button美化实例</A> </li></UL>
+  <h2><A title="用户界面之Dialog(对话框)" href="index_128.html">用户界面之Dialog(对话框)</A></h2>
+
+  <h2><A title="用户界面之ListView(列表视图)" href="index_129.html">用户界面之ListView(列表视图)</A></h2>
+
+  <h2><A title="用户界面之Adapter(适配器)" href="index_130.html">用户界面之Adapter(适配器)</A></h2>
+
+  <h2><A title="用户界面之Menu(菜单)" href="index_131.html">用户界面之Menu(菜单)</A></h2>
+
+  <h2><A title="用户界面之Notification(通知栏)" href="index_132.html">用户界面之Notification(通知栏)</A></h2>
+
+  <h2><A title="NotificationImageView(图像视图)" href="index_133.html">NotificationImageView(图像视图)</A></h2>
+
+  <h2><A title="用户界面之GridView(格视图)" href="index_134.html">用户界面之GridView(格视图)</A></h2>
+
+  <h2><A title="用户界面之ProgressBar(进度条)" href="index_135.html">用户界面之ProgressBar(进度条)</A></h2>
+
+  <h2><A title="用户界面之Checkbox(复选框)" href="index_136.html">用户界面之Checkbox(复选框)</A></h2>
+
+  <h2><A title="用户界面之ScrollView(滚动视图)" href="index_137.html">用户界面之ScrollView(滚动视图)</A></h2>
+
+  <h2><A title="用户界面之Gallery(长廊视图)" href="index_138.html">用户界面之Gallery(长廊视图)</A></h2>
+
+  <h2><A title="用户界面之ActionBar(导航栏)" href="index_139.html">用户界面之ActionBar(导航栏)</A></h2>
+
+  <h2><A title="用户界面之PopupWindow(弹出窗口)" href="index_140.html">用户界面之PopupWindow(弹出窗口)</A></h2>
+
+  <h2><A title="用户界面之RatingBar(评分栏)" href="index_141.html">用户界面之RatingBar(评分栏)</A></h2>
+
+  <h2><A title="用户界面之Spinner" href="index_142.html">用户界面之Spinner</A></h2>
+
+  <h2><A title="用户界面之SeekBar(搜索bar)" href="index_143.html">用户界面之SeekBar(搜索bar)</A></h2>
+
+  <h2><A title="用户界面之TabHost(分割栏)" href="index_144.html">用户界面之TabHost(分割栏)</A></h2>
+
+  <h2><A title="用户界面之SlidingDrawer(抽屉)" href="index_145.html">用户界面之SlidingDrawer(抽屉)</A></h2>
+
+  <h2><A title="用户界面之ViewFlipper" href="index_146.html">用户界面之ViewFlipper</A></h2>
+
+  <h2><A title="用户界面之SurfaceView" href="index_147.html">用户界面之SurfaceView</A></h2>
+
+  <h2><A title="用户界面之Splash" href="index_148.html">用户界面之Splash</A></h2>
+
+  <h2><A title="用户界面之Toast" href="index_149.html">用户界面之Toast</A></h2>
+
+  <h2><A title="用户界面之AlarmManager" href="index_150.html">用户界面之AlarmManager</A></h2>
+
+  <h2><A title="用户界面之Fragment" href="index_151.html">用户界面之Fragment</A></h2>
+
+  <h2><A title="用户界面之WebView(网络视图)" href="index_152.html">用户界面之WebView(网络视图)</A></h2>
+
+  <h2><A title="Android用户界面之Widget(小组件)" href="index_153.html">Android用户界面之Widget(小组件)</A></h2>
+
+  <h2><A title="Android用户界面之theme和style" href="index_154.html">Android用户界面之theme和style</A></h2>
+
+  <h2><A title="Android用户界面之多语言" href="index_155.html">Android用户界面之多语言</A></h2>
+
+  <h2><A title="Android用户界面之界面特效" href="index_156.html">Android用户界面之界面特效</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>利用Java反射技术阻止通过按钮关闭对话框（三）</H2>
+<div style="line-height:20px; font-size:14px;"><p>我们发现，如果加上try   catch语句，单击对话框中的确定按钮不会关闭对话框（除非在代码中调用dismiss方法），单击取消按钮则会关闭对话框（因为调用了dismiss方法）。如果去了try…catch代码段，对话框又会恢复正常了。</p><p>虽然上面的代码已经解决了问题，但需要编写的代码仍然比较多，为此，我们也可采用另外一种方法来阻止关闭对话框。这种方法不需要定义任何的类。</p><p>这种方法需要用点技巧。由于系统通过调用dismiss来关闭对话框，那么我们可以在dismiss方法上做点文章。在系统调用dismiss方法时会首先判断对话框是否已经关闭，如果对话框已经关闭了，就会退出dismiss方法而不再继续关闭对话框了。因此，我们可以欺骗一下系统，当调用dismiss方法时我们可以让系统以为对话框已经关闭（虽然对话框还没有关闭），这样dismiss方法就失效了，这样即使系统调用了dismiss方法也无法关闭对话框了。</p><p>下面让我们回到AlertDialog的源代码中，再继续跟踪到AlertDialog的父类Dialog的源代码中。找到dismissDialog方法。实际上，dismiss方法是通过dismissDialog方法来关闭对话框的，dismissDialog方法的代码如下：</p><p><pre><font class="keyword">private </font><font class="keyword">void </font>dismissDialog() {</p><p>	<font class="keyword">if </font>(mDecor == </font><font class="keyword">null</font>) {</p><p>		<font class="keyword">if </font>(Config.LOGV)</p><p>			</font>Log.v(LOG_TAG, <font class="Fields">" [Dialog] dismiss: already dismissed, ignore "</font>);</p><p>		<font class="keyword">return</font>;</font></p><p>	}</p><p>	<font class="keyword">if </font>(!mShowing) {</p><p>		<font class="keyword">if </font>(Config.LOGV)</p><p>			</font>Log.v(LOG_TAG, <font class="Fields">" [Dialog] dismiss: not showing, ignore "</font>);</p><p>		<font class="keyword">return</font>;</font></p><p>	}</p><p>	mWindowManager.removeView(mDecor);</p><p>	</font>mDecor = <font class="keyword">null</font>;</p><p>	mWindow.closeAllPanels();</p><p>	onStop();</p><p>	</font>mShowing = <font class="keyword">false</font>;</p><p>	sendDismissMessage();</p><p>}</p><p></pre></p><p>该方法后面的代码不用管它，先看if(!mShowing){…}这段代码。这个mShowing变量就是判断对话框是否已关闭的。因此，我们在代码中通过设置这个变量就可以使系统认为对话框已经关闭，就不再继续关闭对话框了。由于mShowing也是private变量，因此，也需要反射技术来设置这个变量。我们可以在对话框按钮的单击事件中设置mShowing，代码如下：</p><p><pre><font class="keyword">try </font>{</p><p>	Field field = dialog.getClass().getSuperclass()</p><p>			</font>.getDeclaredField(<font class="Fields">" mShowing "</font>);</p><p>	</font>field.setAccessible(<font class="keyword">true</font>);</p><p>	<font class="Comments">// 将mShowing变量设为false，表示对话框已关闭</font></p><p>	</font>field.set(dialog, <font class="keyword">false</font>);</p><p>	dialog.dismiss();</p><p></font>} <font class="keyword">catch </font>(Exception e) {</p><p>}</p><p></pre></p><p>将上面的代码加到哪个按钮的单击事件代码中，哪个按钮就再也无法关闭对话框了。如果要关闭对话框，只需再将mShowing设为true即可。要注意的是，在一个按钮里设置了mShowing变量，也会影响另一个按钮的关闭对话框功能，因此，需要在每一个按钮的单击事件里都设置mShowing变量的值。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+  
+   </P>
+</DIV></BODY></HTML>
+

@@ -1,0 +1,111 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>在SurfaceView中照样使用Animation(中)_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li class="navcurrentLink"><A href="index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="用户界面之view(视图)" href="index_123.html">用户界面之view(视图)</A></h2>
+
+  <h2><A title="用户界面之Layout(布局)" href="index_124.html">用户界面之Layout(布局)</A></h2>
+
+  <h2><A title="用户界面之TextView(文本视图)" href="index_125.html">用户界面之TextView(文本视图)</A></h2>
+
+  <h2><A title="用户界面之EditText(编辑视图)" href="index_126.html">用户界面之EditText(编辑视图)</A></h2>
+
+  <h2><A title="用户界面之Button(按钮)" href="index_127.html">用户界面之Button(按钮)</A></h2>
+
+  <h2><A title="用户界面之Dialog(对话框)" href="index_128.html">用户界面之Dialog(对话框)</A></h2>
+
+  <h2><A title="用户界面之ListView(列表视图)" href="index_129.html">用户界面之ListView(列表视图)</A></h2>
+
+  <h2><A title="用户界面之Adapter(适配器)" href="index_130.html">用户界面之Adapter(适配器)</A></h2>
+
+  <h2><A title="用户界面之Menu(菜单)" href="index_131.html">用户界面之Menu(菜单)</A></h2>
+
+  <h2><A title="用户界面之Notification(通知栏)" href="index_132.html">用户界面之Notification(通知栏)</A></h2>
+
+  <h2><A title="NotificationImageView(图像视图)" href="index_133.html">NotificationImageView(图像视图)</A></h2>
+
+  <h2><A title="用户界面之GridView(格视图)" href="index_134.html">用户界面之GridView(格视图)</A></h2>
+
+  <h2><A title="用户界面之ProgressBar(进度条)" href="index_135.html">用户界面之ProgressBar(进度条)</A></h2>
+
+  <h2><A title="用户界面之Checkbox(复选框)" href="index_136.html">用户界面之Checkbox(复选框)</A></h2>
+
+  <h2><A title="用户界面之ScrollView(滚动视图)" href="index_137.html">用户界面之ScrollView(滚动视图)</A></h2>
+
+  <h2><A title="用户界面之Gallery(长廊视图)" href="index_138.html">用户界面之Gallery(长廊视图)</A></h2>
+
+  <h2><A title="用户界面之ActionBar(导航栏)" href="index_139.html">用户界面之ActionBar(导航栏)</A></h2>
+
+  <h2><A title="用户界面之PopupWindow(弹出窗口)" href="index_140.html">用户界面之PopupWindow(弹出窗口)</A></h2>
+
+  <h2><A title="用户界面之RatingBar(评分栏)" href="index_141.html">用户界面之RatingBar(评分栏)</A></h2>
+
+  <h2><A title="用户界面之Spinner" href="index_142.html">用户界面之Spinner</A></h2>
+
+  <h2><A title="用户界面之SeekBar(搜索bar)" href="index_143.html">用户界面之SeekBar(搜索bar)</A></h2>
+
+  <h2><A title="用户界面之TabHost(分割栏)" href="index_144.html">用户界面之TabHost(分割栏)</A></h2>
+
+  <h2><A title="用户界面之SlidingDrawer(抽屉)" href="index_145.html">用户界面之SlidingDrawer(抽屉)</A></h2>
+
+  <h2><A title="用户界面之ViewFlipper" href="index_146.html">用户界面之ViewFlipper</A></h2>
+
+  <h2><A title="用户界面之SurfaceView" href="index_147.html">用户界面之SurfaceView</A></h2>
+<UL><li ><A title=SurfaceView的基本应用 href="show_2401_147.html">SurfaceView的基本应用</A> </li><li ><A title=SurfaceView使用示例（一） href="show_2402_147.html">SurfaceView使用示例（一）</A> </li><li ><A title=SurfaceView使用示例（二） href="show_2403_147.html">SurfaceView使用示例（二）</A> </li><li ><A title=SurfaceView双缓冲应用 href="show_2404_147.html">SurfaceView双缓冲应用</A> </li><li ><A title=SurfaceView运行机制详解 href="show_2405_147.html">SurfaceView运行机制详解</A> </li><li ><A title=剖析SurfaceView！Callback以及SurfaceHolder href="show_2406_147.html">剖析SurfaceView！Callback以及SurfaceHolder</A> </li><li ><A title=Android surfaceView与View的区别 href="show_2407_147.html">Android surfaceView与View的区别</A> </li><li ><A title=自定义SurfaceView href="show_2408_147.html">自定义SurfaceView</A> </li><li ><A title=在SurfaceView中照样使用Animation(上) href="show_2409_147.html">在SurfaceView中照样使用Animation(上)</A> </li><li class="currentLink"><A title=在SurfaceView中照样使用Animation(中) href="show_2410_147.html">在SurfaceView中照样使用Animation(中)</A> </li><li ><A title=在SurfaceView中照样使用Animation(下) href="show_2411_147.html">在SurfaceView中照样使用Animation(下)</A> </li><li ><A title=在SurfaceView中添加组件！并交互数据 href="show_2412_147.html">在SurfaceView中添加组件！并交互数据</A> </li><li ><A title=SurfaceView设置透明背景 href="show_2413_147.html">SurfaceView设置透明背景</A> </li></UL>
+  <h2><A title="用户界面之Splash" href="index_148.html">用户界面之Splash</A></h2>
+
+  <h2><A title="用户界面之Toast" href="index_149.html">用户界面之Toast</A></h2>
+
+  <h2><A title="用户界面之AlarmManager" href="index_150.html">用户界面之AlarmManager</A></h2>
+
+  <h2><A title="用户界面之Fragment" href="index_151.html">用户界面之Fragment</A></h2>
+
+  <h2><A title="用户界面之WebView(网络视图)" href="index_152.html">用户界面之WebView(网络视图)</A></h2>
+
+  <h2><A title="Android用户界面之Widget(小组件)" href="index_153.html">Android用户界面之Widget(小组件)</A></h2>
+
+  <h2><A title="Android用户界面之theme和style" href="index_154.html">Android用户界面之theme和style</A></h2>
+
+  <h2><A title="Android用户界面之多语言" href="index_155.html">Android用户界面之多语言</A></h2>
+
+  <h2><A title="Android用户界面之界面特效" href="index_156.html">Android用户界面之界面特效</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>在SurfaceView中照样使用Animation(中)</H2>
+<div style="line-height:20px; font-size:14px;"><p>MySurfaceViewAnimation.java</p><p><pre><font class="keyword">import </font>android.content.Context;</p><p><font class="keyword">import </font>android.graphics.Bitmap;</p><p><font class="keyword">import </font>android.graphics.BitmapFactory;</p><p><font class="keyword">import </font>android.graphics.Canvas;</p><p><font class="keyword">import </font>android.graphics.Color;</p><p><font class="keyword">import </font>android.graphics.Paint;</p><p><font class="keyword">import </font>android.util.Log;</p><p><font class="keyword">import </font>android.view.KeyEvent;</p><p><font class="keyword">import </font>android.view.SurfaceHolder;</p><p><font class="keyword">import </font>android.view.SurfaceView;</p><p><font class="keyword">import </font>android.view.SurfaceHolder.Callback;</p><p><font class="keyword">import </font>android.view.animation.AlphaAnimation;</p><p><font class="keyword">import </font>android.view.animation.Animation;</p><p><font class="keyword">import </font>android.view.animation.RotateAnimation;</p><p><font class="keyword">import </font>android.view.animation.ScaleAnimation;</p><p><font class="keyword">import </font>android.view.animation.TranslateAnimation;</p><p><font class="keyword">public </font><font class="keyword">class </font>MySurfaceViewAnimation </font><font class="keyword">extends </font>SurfaceView </font><font class="keyword">implements </font>Callback,</p><p>		Runnable {</p><p>	<font class="keyword">private </font>Thread th = </font><font class="keyword">new </font>Thread(</font><font class="keyword">this</font>);</p><p>	<font class="keyword">private </font>SurfaceHolder sfh;</p><p>	<font class="keyword">private </font>Canvas canvas;</p><p>	<font class="keyword">private </font>Pa</font><font class="keyword">int </font>paint;</p><p>	<font class="keyword">private </font>Bitmap bmp;</p><p>	<font class="keyword">private </font>Animation mAlphaAnimation;</p><p>	<font class="keyword">private </font>Animation mScaleAnimation;</p><p>	<font class="keyword">private </font>Animation mTranslateAnimation;</p><p>	<font class="keyword">private </font>Animation mRotateAnimation;</p><p>	<font class="keyword">public </font>MySurfaceViewAnimation(Context context) {</p><p>		<font class="keyword">super</font>(context);</p><p>		</font>Log.v(<font class="Fields">"Android"</font>, </font><font class="Fields">"MySurfaceView"</font>);</p><p>		<font class="keyword">this</font>.setKeepScreenOn(</font><font class="keyword">true</font>);</p><p>		bmp = BitmapFactory.decodeResource(getResources(), R.drawable.icon);</p><p>		</font>sfh = <font class="keyword">this</font>.getHolder();</p><p>		</font>sfh.addCallback(<font class="keyword">this</font>);</p><p>		</font>pa<font class="keyword">int </font>= </font><font class="keyword">new </font>Paint();</p><p>		</font>paint.setAntiAlias(<font class="keyword">true</font>);</p><p>		</font>setFocusable(<font class="keyword">true</font>);</p><p>		</font>setFocusableInTouchMode(<font class="keyword">true</font>);</p><p>		<font class="Comments">// this.setBackgroundResource(R.drawable.icon);<font class="Comments">//备注2</font></p><p>	}</p><p>	<font class="keyword">public </font><font class="keyword">void </font>surfaceCreated(SurfaceHolder holder) {</p><p>		</font>Log.v(<font class="Fields">"Android"</font>, </font><font class="Fields">"surfaceCreated"</font>);</p><p>		th.start();</p><p>	}</p><p>	<font class="keyword">public </font><font class="keyword">void </font>draw() {</p><p>		<font class="keyword">try </font>{</p><p>			canvas = sfh.lockCanvas();</p><p>			<font class="keyword">if </font>(canvas != </font><font class="keyword">null</font>) {</p><p>				canvas.drawColor(Color.BLACK);</p><p>				paint.setColor(Color.WHITE);</p><p>				</font>canvas.drawText(<font class="Fields">"方向键↑ 渐变透明度动画效果"</font>, 80, <font class="keyword">this</font>.getHeight() - 80,</p><p>						</font>pa<font class="keyword">int</font>);</p><p>				</font>canvas.drawText(<font class="Fields">"方向键↓ 渐变尺寸伸缩动画效果"</font>, 80, <font class="keyword">this</font>.getHeight() - 60,</p><p>						</font>pa<font class="keyword">int</font>);</p><p>				</font>canvas.drawText(<font class="Fields">"方向键← 画面转换位置移动动画效果"</font>, 80, <font class="keyword">this</font>.getHeight() - 40,</p><p>						</font>pa<font class="keyword">int</font>);</p><p>				</font>canvas.drawText(<font class="Fields">"方向键→ 画面转移旋转动画效果"</font>, 80, <font class="keyword">this</font>.getHeight() - 20,</p><p>						</font>pa<font class="keyword">int</font>);</p><p>				canvas.drawBitmap(bmp,</p><p>						<font class="keyword">this</font>.getWidth() / 2 - bmp.getWidth() / 2,</p><p>						<font class="keyword">this</font>.getHeight() / 2 - bmp.getHeight() / 2, pa</font><font class="keyword">int</font>);</p><p>			}</p><p>		</font>} <font class="keyword">catch </font>(Exception e) {</p><p>			</font>Log.v(<font class="Fields">"Android"</font>, </font><font class="Fields">"draw is Error!"</font>);</p><p>		} finally {</p><p>			sfh.unlockCanvasAndPost(canvas);</p><p>		}</p><p>	}</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">boolean </font>onKeyDown(</font><font class="keyword">int </font>keyCode, KeyEvent event) {</p><p>		<font class="keyword">if </font>(keyCode == KeyEvent.KEYCODE_DPAD_UP) {<font class="Comments">// 渐变透明度动画效果</font></p><p>			</font>mAlphaAnimation = <font class="keyword">new </font>AlphaAnimation(0.1f, 1.0f);</p><p>			mAlphaAnimation.setDuration(3000);</p><p>			<font class="keyword">this</font>.startAnimation(mAlphaAnimation);</p><p>		</font>} <font class="keyword">else </font><font class="keyword">if </font>(keyCode == KeyEvent.KEYCODE_DPAD_DOWN) {<font class="Comments">// 渐变尺寸伸缩动画效果</font></p><p>			</font>mScaleAnimation = <font class="keyword">new </font>ScaleAnimation(0.0f, 2.0f, 1.5f, 1.5f,</p><p>					Animation.RELATIVE_TO_PARENT, 0.5f,</p><p>					Animation.RELATIVE_TO_PARENT, 0.0f);</p><p>			mScaleAnimation.setDuration(2000);</p><p>			<font class="keyword">this</font>.startAnimation(mScaleAnimation);</p><p>		</font>} <font class="keyword">else </font><font class="keyword">if </font>(keyCode == KeyEvent.KEYCODE_DPAD_LEFT) {<font class="Comments">// 画面转换位置移动动画效果</font></p><p>			</font>mTranslateAnimation = <font class="keyword">new </font>TranslateAnimation(0, 100, 0, 100);</p><p>			mTranslateAnimation.setDuration(2000);</p><p>			<font class="keyword">this</font>.startAnimation(mTranslateAnimation);</p><p>		</font>} <font class="keyword">else </font><font class="keyword">if </font>(keyCode == KeyEvent.KEYCODE_DPAD_RIGHT) {<font class="Comments">// 画面转移旋转动画效果</font></p><p>			</font>mRotateAnimation = <font class="keyword">new </font>RotateAnimation(0.0f, 360.0f,</p><p>					Animation.RELATIVE_TO_SELF, 0.5f,</p><p>					Animation.RELATIVE_TO_SELF, 0.5f);</p><p>			mRotateAnimation.setDuration(3000);</p><p>			<font class="keyword">this</font>.startAnimation(mRotateAnimation);</p><p>		}</p><p>		<font class="keyword">return </font><font class="keyword">super</font>.onKeyDown(keyCode, event);</p><p>	}</p><p>	<font class="keyword">public </font><font class="keyword">void </font>run() {</p><p>		<font class="keyword">while </font>(</font><font class="keyword">true</font>) {</p><p>			draw();</p><p>			<font class="keyword">try </font>{</p><p>				Thread.sleep(100);</p><p>			</font>} <font class="keyword">catch </font>(Exception ex) {</p><p>			}</p><p>		}</p><p>	}</p><p>	<font class="keyword">public </font><font class="keyword">void </font>surfaceChanged(SurfaceHolder holder, </font><font class="keyword">int </font>format, </font><font class="keyword">int </font>width,</p><p>			<font class="keyword">int </font>height) {</p><p>		</font>Log.v(<font class="Fields">"Android"</font>, </font><font class="Fields">"surfaceChanged"</font>);</p><p>	}</p><p>	<font class="keyword">public </font><font class="keyword">void </font>surfaceDestroyed(SurfaceHolder holder) {</p><p>		</font>Log.v(<font class="Fields">"Android"</font>, </font><font class="Fields">"surfaceDestroyed"</font>);</p><p>	}</p><p>}</p><p></pre></p><p>动画代码实现跟View中的做法一样，运行模拟器发现按键没效果，不是按键没触发是本来就存在问题， - -。但是！大家可以把此类里有一行，也就是(备注2)的注释打开,我们给设置背景图,然后在模拟器上的运行效果如下图：</p><p>很明显的看到，我们的动画正常运行了，虽然效果并不是我们想到的！但是这里可以说明一点问题：</p><p>SurfaceView 本身具备双缓冲机制!!!!!</p><p>有些文章里说“给SurfaceView添加双缓冲”，其实是在画蛇添足,而且介绍的时候拿着单线程与双线程例子来解释双缓冲更高效的实现方法；我想弱弱的问什么是双缓冲？？？如果SurfaceView不具备双缓冲，那敢问上面这张截图如何解释？？？？</p><p>其实要实现双缓冲，只需要是新建一个Bitmap和Canvas，用这个新建的Canvas把正弦波画到新建的Bitmap，画完再通过sfh.lockCanvas获取SurfaceView对应的Canvas，用这个Canvas把新建的Bitmap画到SurfaceView上去，这才叫双缓冲; 还有双缓存和多线程没关系!</p><p>那么View中动画的实现机制是在不断的刷屏不断的重复调用重写的onDraw()方法、而在Surfaceview的那张截图确实也正常的动画操作了，原因又何在?而且我们设置的背景图覆盖我们draw出来的字体！！效果很不理想；那么经过考虑我决定利用布局把View和SurfaceView都一并显示,用View主要去完成动画部分，(那么关于如何一并显示，或者说同时在SurfaceView中添加组件，在之前的【Android 2D开发之六】 和 【Android 2D开发之七】都有了详细讲解，那么在这里)，当然一并显示也会有问题，比如我们存在了view和Surfaceiew，那么按键的时候触发的哪个？或者说如何去控制这两个View？放心，我下面就跟大家一一来讲解！</p><p>下面先让我们把我们的view 和 Surfaceview 先同时显示出来：【黑色的是MyView (View)，白色是MySurfaceView(SurfaceView)】</p><p>先上张运行截图：</p><p><img src="../img/view_surfaceview/10_surfaceview.jpg"></p><p>main.xml中的代码</p><p><pre>&lt;?xml version="1.0" encoding="utf-8"?&gt;</p><p>&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"</p><p>    android:layout_width="fill_parent"</p><p>    android:layout_height="fill_parent"</p><p>    android:orientation="vertical" &gt;</p><p>    &lt;RelativeLayout</p><p>        android:layout_width="fill_parent"</p><p>        android:layout_height="wrap_content"</p><p>        android:layout_weight="1" &gt;</p><p>        &lt;com.Android.MySurfaceView</p><p>            android:id="@+id/view3d"</p><p>            android:layout_width="fill_parent"</p><p>            android:layout_height="fill_parent" /&gt;</p><p>        &lt;com.Android.MyView</p><p>            android:id="@+id/myview"</p><p>            android:layout_width="fill_parent"</p><p>            android:layout_height="fill_parent" /&gt;</p><p>    &lt;/RelativeLayout&gt;</p><p>&lt;/LinearLayout&gt;</p><p></pre></p><p>xml中我们注册了我们自定义的view-MyView和SurfaceView-MySurfaceView;</p><p>需要强调的有两点：</p><p>1:当我们xml中注册我们的View时，我们View类中的构造函数必须要用</p><p>public MyView(Context context, AttributeSet attrs) {} 两个参数的形式，以前的文章有讲解。</p><p>2:当我们在Xml中注册两个View的时候，它们显示的次序就是根据xml注册的顺序来显示，比如上面我们先注册了MySurfaceView,然后注册的MyView，那么显示的时候会把后添加进去的MyView显示在最上层!</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+  
+   </P>
+</DIV></BODY></HTML>
+

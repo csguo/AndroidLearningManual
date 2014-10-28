@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android Content Provider详解（三）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li class="navcurrentLink"><A href="index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Activity" href="index_112.html">Activity</A></h2>
+
+  <h2><A title="Intent" href="index_113.html">Intent</A></h2>
+
+  <h2><A title="Service" href="index_114.html">Service</A></h2>
+
+  <h2><A title="Content Provider" href="index_115.html">Content Provider</A></h2>
+<UL><li ><A title=Content Provider的了解 href="show_301_115.html">Content Provider的了解</A> </li><li ><A title=Android Content Provider入门 href="show_302_115.html">Android Content Provider入门</A> </li><li ><A title=Content Provider 用法和理解 href="show_303_115.html">Content Provider 用法和理解</A> </li><li ><A title=Android Content Provider详解（一） href="show_304_115.html">Android Content Provider详解（一）</A> </li><li ><A title=Android Content Provider详解（二） href="show_305_115.html">Android Content Provider详解（二）</A> </li><li class="currentLink"><A title=Android Content Provider详解（三） href="show_306_115.html">Android Content Provider详解（三）</A> </li><li ><A title=Android 利用现成的Content Provider href="show_307_115.html">Android 利用现成的Content Provider</A> </li><li ><A title=Android中的ContentResolver应用 href="show_308_115.html">Android中的ContentResolver应用</A> </li><li ><A title=ContentResolver解析 href="show_309_115.html">ContentResolver解析</A> </li><li ><A title=ContentResolver与ContentProvider如何关联在一起的 href="show_310_115.html">ContentResolver与ContentProvider如何关联在一起的</A> </li><li ><A title=Android API 获取通讯录中电话号码的例子 href="show_311_115.html">Android API 获取通讯录中电话号码的例子</A> </li><li ><A title=Android短信功能实现源码 href="show_312_115.html">Android短信功能实现源码</A> </li></UL>
+  <h2><A title="BroadcastReceiver" href="index_116.html">BroadcastReceiver</A></h2>
+
+  <h2><A title="AsyncTask" href="index_117.html">AsyncTask</A></h2>
+
+  <h2><A title="Handler" href="index_118.html">Handler</A></h2>
+
+  <h2><A title="Thread" href="index_119.html">Thread</A></h2>
+
+  <h2><A title="Permission" href="index_120.html">Permission</A></h2>
+
+  <h2><A title="AIDL" href="index_121.html">AIDL</A></h2>
+
+  <h2><A title="Json" href="index_122.html">Json</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android Content Provider详解（三）</H2>
+<div style="line-height:20px; font-size:14px;"><p>query()方法，返回值是Cursor实例，用于迭代请求的数据。Cursor是一个接口。android为该接口提供了一些只读的（和JDBC的ResultSet不一样，后者还提供可写入的可选特性）Cursor实现。比如SQLiteCursor，可迭代SQLite数据库中的数据。可以通过SQLiteDatabase类的query()方法获取到该Cursor实例。还有其他的Cursor实现，比如 MatrixCursor，用于数据不是存储在数据库的情况下。</p><p>因为Contentprovider可能被多个ContentResolver对象在不同的进程和线程中调用，因此实现Contentprovider必须考虑线程安全问题。</p><p>作为良好的习惯，在实现编辑数据的代码中，要调用ContentResolver.notifyChange()方法，通知那些监听数据变化的监听器。</p><p>在实现子类的时候，还有一些步骤可以简化Contentprovider客户端的使用：</p><p>定义public static final Uri常量，名称为CONTENT_URI：</p><p><pre><font class="keyword">public </font><font class="keyword">static </font><font class="keyword">final </font>UriCONTENT_URI =</p><p>Uri.parse(<font class="Fields">"content:<font class="Comments">//com.example.codelab.transportationprovider"</font>);</font></p><p></pre></p><p>如果有多个表，它们也是使用相同的CONTENT_URI，只是它们的路径部分不同。</p><p><img src="../img/component_provider/06_provider.jpg"></p><p>也就是说红色框部分是一致的。</p><p>定义返回的列名，public static final，列名的值，比如使用SQLite数据库作为存储，对应表的列名。</p><p>在文档中要写出各个列的数据类型，便于使用者读取。</p><p>如果需要处理新的MIME数据类型，比如通过Intent的方式，并且带data的mimeType（参见总结一下Intent概念），那么需要在ContentProvider.getType()方法中进行处理，参见编写完整的Contentprovider示例编写一个getType方法部分。</p><p>如果处理数据库表中超大的数据，比如很大的位图文件，一般存在文件系统中，可以参照在contentprovider中使用大型二进制文件，这样第三方的contentprovider使用者，可以访问不属于它权限的文件，通过contentprovider做代理。</p><p style="color:#3333FF;">声明ContentProvider </p><p>创建ContentProvider后，需要在manifest文件中声明，android系统才能知道它，当其他应用需要调用该ContentProvider时才能创建或者调用它。</p><p style="color:#3333FF;">语法类似：</p><p><pre>&lt;provider android:name=<font class="Fields">"com.easymorse.cp.MyContentProvider</p><p>    </font>android:authorities=<font class="Fields">"com.easymorse.cp.mycp"</font>&gt;</p><p>&lt;/provider&gt;</p><p></pre></p><p>android:name要写ContentProvider继承类的全名。</p><p>android:authorities要写和CONTENT_URI常量的B部分。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

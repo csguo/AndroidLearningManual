@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>AndroidManifest.xml元素含义介绍_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li class="navcurrentLink"><A href="index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="开发基础" href="index_100.html">开发基础</A></h2>
+
+  <h2><A title="开发环境搭建" href="index_101.html">开发环境搭建</A></h2>
+
+  <h2><A title="模拟器" href="index_102.html">模拟器</A></h2>
+
+  <h2><A title="Resource" href="index_103.html">Resource</A></h2>
+
+  <h2><A title="Manifest" href="index_104.html">Manifest</A></h2>
+<UL><li ><A title=Android的AndroidManifest.xml文件介绍 href="show_401_104.html">Android的AndroidManifest.xml文件介绍</A> </li><li class="currentLink"><A title=AndroidManifest.xml元素含义介绍 href="show_402_104.html">AndroidManifest.xml元素含义介绍</A> </li><li ><A title=AndroidManifest.xml文件综合详解 href="show_403_104.html">AndroidManifest.xml文件综合详解</A> </li><li ><A title=Manifest权限大全 href="show_404_104.html">Manifest权限大全</A> </li><li ><A title=Manifest文件和Intent相关 href="show_405_104.html">Manifest文件和Intent相关</A> </li><li ><A title=Android 动态关闭Manifest中的Receiver的方法 href="show_406_104.html">Android 动态关闭Manifest中的Receiver的方法</A> </li><li ><A title=Android manifest.xml 中元素含义 href="show_407_104.html">Android manifest.xml 中元素含义</A> </li></UL>
+  <h2><A title="ADB" href="index_105.html">ADB</A></h2>
+
+  <h2><A title="DDMS" href="index_106.html">DDMS</A></h2>
+
+  <h2><A title="Logcat(日志)" href="index_107.html">Logcat(日志)</A></h2>
+
+  <h2><A title="打包" href="index_108.html">打包</A></h2>
+
+  <h2><A title="文件处理" href="index_109.html">文件处理</A></h2>
+
+  <h2><A title="底层基础" href="index_111.html">底层基础</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>AndroidManifest.xml元素含义介绍</H2>
+<div style="line-height:20px; font-size:14px;"><p>每一个Android项目都包含一个清单(Manifest)文件--AndroidManifest.xml，它存储在项目层次中的最底层。清单可以定义应用程序及其组件的结构和元数据。</p><p>它包含了组成应用程序的每一个组件(活动、服务、内容提供器和广播接收器)的节点，并使用Intent过滤器和权限来确定这些组件之间以及这些组件和其他应用程序是如何交互的。</p><p>它还提供了各种属性来详细地说明应用程序的元数据(如它的图标或者主题)以及额外的可用来进行安全设置和单元测试顶级节点，如下所述。</p><p>清单由一个根manifest标签构成，该标签带有一个设置项目包的package属性。它通常包含一个xmlns:android属性来提供文件内使用的某些系统属性。下面的XML代码段展示了一个典型的声明节点：</p><p><pre>&lt;manifest xmlns:android=http://schemas.android.com/apk/res/android </p><p>	package="com.my_domain.my_app"&gt; [ ... manifest nodes ... ]</p><p>&lt;/manifest&gt;</p><p></pre></p><p>manifest标签包含了一些节点(node)，它们定义了应用程序组件、安全设置和组成应用程序的测试类。下面列出了一些常用的manifest节点标签，并用一些XML代码段说明了它们是如何使用的。</p><p style="color:#3333FF;">application  </p><p>一个清单只能包含一个application节点。它使用各种属性来指定应用程序的各种元数据(包括标题、图标和主题)。它还可以作为一个包含了活动、服务、内容提供器和广播接收器标签的容器，用来指定应用程序组件。</p><p><pre>&lt;application android:icon="@drawable/icon" </p><p>	android:theme="@style/my_theme"&gt; </p><p>	[ ... application nodes ... ] </p><p>&lt;/application&gt;</p><p></pre></p><p>Activity应用程序显示的每一个Activity都要求有一个activity标签，并使用android:name属性来指定类的名称。这必须包含核心的启动Activity和其他所有可以显示的屏幕或者对话框。启动任何一个没有在清单中定义的Activity时都会抛出一个运行时异常。每一个Activity节点都允许使用intent-filter子标签来指定哪个Intent启动该活动。</p><p><pre>&lt;activity android:name=".MyActivity" </p><p>	android:label="@string/app_name"&gt; </p><p>	&lt;intent-filter&gt; </p><p>		&lt;action android:name="android.intent.action.MAIN" /&gt; </p><p>		&lt;category android:name="android.intent.category.LAUNCHER" /&gt; </p><p>	&lt;/intent-filter&gt; </p><p>&lt;/activity&gt;</p><p></pre></p><p>service和activity标签一样，应用程序中使用的每一个Service类都要创建一个新的service标签。(Service标签也支持使用intent-filter子标签来允许后面的运行时绑定。</p><p><pre>&lt;service androidandroid:enabled="true"android:name=".MyService"&gt;&lt;/service&gt;</p><p></pre></p><p style="color:#3333FF;">provider  </p><p>provider标签用来说明应用程序中的每一个内容提供器。内容提供器是用来管理数据库访问以及程序内和程序间共享的。</p><p><pre>&lt;provider </p><p>	android:permission="com.paad.MY_PERMISSION" </p><p>	android:name=".MyContentProvider" </p><p>	android:enabled="true" </p><p>	android:authorities="com.paad.myapp.MyContentProvider"&gt; </p><p>&lt;/provider&gt;</p><p></pre></p><p style="color:#3333FF;">receiver  </p><p>通过添加receiver标签，可以注册一个广播接收器(Broadcast Receiver)，而不用事先启动应用程序。广播接收器就像全局事件监听器一样，一旦注册了之后，无论何时，只要与它相匹配的intent被应用程序广播出来，它就会立即执行。通过在声明中注册一个广播接收器，可以使这个进程实现完全自动化。如果一个匹配的Intent被广播了，则应用程序就会自动启动，并且你注册的广播接收器也会开始运行。</p><p><pre>&lt;receiver </p><p>	android:enabled="true" android:label="My Broadcast Receiver" android:name=".MyBroadcastReceiver"&gt; </p><p>&lt;/receiver&gt;</p><p></pre></p><p style="color:#3333FF;">uses-permission  </p><p>作为安全模型的一部分，uses-permission标签声明了那些由你定义的权限，而这些权限是应用程序正常执行所必需的。在安装程序的时候，你设定的所有权限将会告诉给用户，由他们来决定同意与否。对很多本地Android服务来说，权限都是必需的，特别是那些需要付费或者有安全问题的服务(例如，拨号、接收SMS或者使用基于位置的服务)。如下所示，第三方应用程序，包括你自己的应用程序，也可以在提供对共享的程序组件进行访问之前指定权限。</p><p><pre>&lt;uses-permission android:name="android.permission.ACCESS_LOCATION"&gt; &lt;/uses-permission&gt;</p><p></pre></p><p style="color:#3333FF;">permission  </p><p>在可以限制访问某个应用程序组件之前，需要在清单中定义一个permission。可以使用permission标签来创建这些权限定义。然后，应用程序组件就可以通过添加android:permission属性来要求这些权限。再后，其他的应用程序就需要在它们的清单中包含uses-permission标签(并且通过授权)，之后才能使用这些受保护的组件。</p><p>在permission标签内，可以详细指定允许的访问权限的级别(normal、dangerous、signature，signatureOrSystem)、一个 label属性和一个外部资源，这个外部资源应该包含了对授予这种权限的风险的描述。</p><p><pre>&lt;permission </p><p>	android:name="com.paad.DETONATE_DEVICE" </p><p>	android:protectionLevel="dangerous" </p><p>	android:label="Self Destruct" </p><p>	android:description="@string/detonate_description"&gt; </p><p>&lt;/permission&gt;</p><p></pre></p><p style="color:#3333FF;">instrumentation  </p><p>instrumentation类提供一个框架，用来在应用程序运行时在活动或者服务上运行测试。它们提供了一些方法来监控应用程序及其与系统资源的交互。对于为自己的应用程序所创建的每一个测试类，都需要创建一个新的节点。</p><p><pre>&lt;instrumentation </p><p>	android:label="My Test" </p><p>	android:name=".MyTestClass" </p><p>	android:targetPackage="com.paad.aPackage"&gt; </p><p>&lt;/instrumentation&gt;</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

@@ -1,0 +1,58 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>URIs的结构_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li class="navcurrentLink"><A href="index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="ContentProvider" href="index_170.html">ContentProvider</A></h2>
+
+  <h2><A title="Preferences" href="index_171.html">Preferences</A></h2>
+
+  <h2><A title="SQLite" href="index_172.html">SQLite</A></h2>
+
+  <h2><A title="SD卡" href="index_173.html">SD卡</A></h2>
+
+  <h2><A title="数据库" href="index_174.html">数据库</A></h2>
+
+  <h2><A title="URI" href="index_175.html">URI</A></h2>
+<UL><li ><A title=Content Provider 基础之URI href="show_501_175.html">Content Provider 基础之URI</A> </li><li class="currentLink"><A title=URIs的结构 href="show_502_175.html">URIs的结构</A> </li><li ><A title=用URIs读取数据 href="show_503_175.html">用URIs读取数据</A> </li><li ><A title=常用的Intent的URI及示例 href="show_504_175.html">常用的Intent的URI及示例</A> </li><li ><A title=SMS Media查询常用Uri href="show_505_175.html">SMS Media查询常用Uri</A> </li><li ><A title=Android：软件的安装和卸载源码解析 href="show_506_175.html">Android：软件的安装和卸载源码解析</A> </li><li ><A title=Android 获取一个apk的信息 href="show_507_175.html">Android 获取一个apk的信息</A> </li><li ><A title=Android 用APN来获取手机号 href="show_508_175.html">Android 用APN来获取手机号</A> </li></UL>
+  <h2><A title="MediaStore" href="index_176.html">MediaStore</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>URIs的结构</H2>
+<div style="line-height:20px; font-size:14px;"><p>因为content provider响应到来的URIs，所以我们基于这一点比较了下content provider和web site。所以，想要从一个content provider里面获取数据，你所要做的就是调用一个URI。不过，从content provider返回的数据，是由android指针对象所代表的行和列形式的数据。在下面，我们就要来查看下你可以用来获取数据的URI的结构。</p><p>Android里面的Content URIs看起来像HTTP的URLs，除了它们是以content作为开始的一般形式：</p><p><pre>Content://*/*/*</p><p></pre></p><p>这里有一个URI的示例，在notes的一个数据库里识别号码为23的note：</p><p><pre>Content://com.google.provider.NotePad/notes/23</p><p></pre></p><p>在content:之后，URI包含了对authority的唯一识别，它用来在provider注册里面定位此provider。在这个例子当中，Com.google.provider.NotePad就是URI中authority的部分。</p><p>/notes/23是具体到某一个provider的路径部分。Notes和23部分叫做路径字段。Provider的任务就是来处理和解释这些路径字段。</p><p>Content provider的开发者通常通过在Java类里面或者这个provider部署包的Java接口中声明常量来定义路径。除此之外，路径的第一部分可能指向对象的一个集合。举例来说，/notes指向了notes集合或者目录，而/23指向了具体的note项目。</p><p>有了这个URI，provider就会获取URI所指示的记录。Provider还可以通过URI的可变内容来使用改变状态的方法：insert，updates或者delete。</p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

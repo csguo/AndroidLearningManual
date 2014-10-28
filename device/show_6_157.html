@@ -1,0 +1,70 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 怎样获得手机信息（五）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li class="navcurrentLink"><A href="index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="设备信息" href="index_157.html">设备信息</A></h2>
+<UL><li ><A title=Android 信息类 href="show_1_157.html">Android 信息类</A> </li><li ><A title=Android 怎样获得手机信息（一） href="show_2_157.html">Android 怎样获得手机信息（一）</A> </li><li ><A title=Android 怎样获得手机信息（二） href="show_3_157.html">Android 怎样获得手机信息（二）</A> </li><li ><A title=Android 怎样获得手机信息（三） href="show_4_157.html">Android 怎样获得手机信息（三）</A> </li><li ><A title=Android 怎样获得手机信息（四） href="show_5_157.html">Android 怎样获得手机信息（四）</A> </li><li class="currentLink"><A title=Android 怎样获得手机信息（五） href="show_6_157.html">Android 怎样获得手机信息（五）</A> </li><li ><A title=获取系统和应用程序PackageManager href="show_7_157.html">获取系统和应用程序PackageManager</A> </li><li ><A title=Android手机号码获取问题 href="show_8_157.html">Android手机号码获取问题</A> </li><li ><A title=Android 获取联网信息 href="show_9_157.html">Android 获取联网信息</A> </li></UL>
+  <h2><A title="摄像头" href="index_158.html">摄像头</A></h2>
+
+  <h2><A title="通讯录" href="index_159.html">通讯录</A></h2>
+
+  <h2><A title="电话" href="index_160.html">电话</A></h2>
+
+  <h2><A title="短信" href="index_161.html">短信</A></h2>
+
+  <h2><A title="传感器" href="index_162.html">传感器</A></h2>
+
+  <h2><A title="定位" href="index_163.html">定位</A></h2>
+
+  <h2><A title="视频系统" href="index_164.html">视频系统</A></h2>
+
+  <h2><A title="音频系统" href="index_165.html">音频系统</A></h2>
+
+  <h2><A title="铃声" href="index_166.html">铃声</A></h2>
+
+  <h2><A title="音量" href="index_167.html">音量</A></h2>
+
+  <h2><A title="录音" href="index_168.html">录音</A></h2>
+
+  <h2><A title="输入法" href="index_169.html">输入法</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 怎样获得手机信息（五）</H2>
+<div style="line-height:20px; font-size:14px;"><p>1.2.5 获取运行时信息</p><p>运行时的一些信息，包括后台运行的Service、Task，以及进程信息。</p><p>1.2.5.1 获取正在运行的Service信息</p><p>可以通过调用context.getSystemService(Context.ACTIVITY_SERVICE)获取 ActivityManager，进而通过系统提供的方法getRunningServices(int maxNum)获取正在运行的服务列表(RunningServiceInfo)，再对其结果进一步分析，得到服务对应的进程名及其他信息，实现的关键代码如下：</p><p><pre><font class="Comments">// 正在运行的服务列表</font></p><p><font class="keyword">public </font><font class="keyword">static </font>String getRunningServicesInfo(Context context) {</p><p>	</font>StringBuffer serviceInfo = <font class="keyword">new </font>StringBuffer();</p><p>	<font class="keyword">final </font>ActivityManager activityManager = (ActivityManager) context</p><p>			.getSystemService(Context.ACTIVITY_SERVICE);</p><p>	List&lt;RunningServiceInfo&gt; services = activityManager</p><p>			.getRunningServices(100);</p><p>	Iterator&lt;RunningServiceInfo&gt; l = services.iterator();</p><p>	<font class="keyword">while </font>(l.hasNext()) {</p><p>		RunningServiceInfo si = (RunningServiceInfo) l.next();</p><p>		</font>serviceInfo.append(<font class="Fields">"pid: "</font>).append(si.pid);</p><p>		</font>serviceInfo.append(<font class="Fields">" process: "</font>).append(si.process);</p><p>		</font>serviceInfo.append(<font class="Fields">" service: "</font>).append(si.service);</p><p>		</font>serviceInfo.append(<font class="Fields">" crashCount: "</font>).append(si.crashCount);</p><p>		</font>serviceInfo.append(<font class="Fields">" clicentCount: "</font>).append(si.clientCount);</p><p>		</font>serviceInfo.append(<font class="Fields">" activeSince:"</font>).append(</p><p>				ToolHelper.formatData(si.activeSince));</p><p>		</font>serviceInfo.append(<font class="Fields">" lastActivityTime: "</font>).append(</p><p>				ToolHelper.formatData(si.lastActivityTime));</p><p>		</font>serviceInfo.append(<font class="Fields">" "</font>);</p><p>	}</p><p>	<font class="keyword">return </font>serviceInfo.toString();</p><p>}</p><p></pre></p><p>上述代码调用activityManager.getRunningServices(100)获取正在运行的服务，并依次遍历得到每个服务对应的pid，进程等信息。</p><p>1.2.5.2 获取正在运行的Task信息</p><p>获取正在运行的Task信息调用的是activityManager.getRunningTasks(int maxNum)来获取对应的正在运行的任务信息列表(RunningTaskInfo)，进而分析、显示任务信息，其关键代码如下：</p><p><pre><font class="keyword">public </font><font class="keyword">static </font>String getRunningTaskInfo(Context context) {</p><p>	</font>StringBuffer sInfo = <font class="keyword">new </font>StringBuffer();</p><p>	<font class="keyword">final </font>ActivityManager activityManager = (ActivityManager) context</p><p>			.getSystemService(Context.ACTIVITY_SERVICE);</p><p>	List&lt;RunningTaskInfo&gt; tasks = activityManager.getRunningTasks(100);</p><p>	Iterator&lt;RunningTaskInfo&gt; l = tasks.iterator();</p><p>	<font class="keyword">while </font>(l.hasNext()) {</p><p>		RunningTaskInfo ti = (RunningTaskInfo) l.next();</p><p>		</font>sInfo.append(<font class="Fields">"id: "</font>).append(ti.id);</p><p>		</font>sInfo.append(<font class="Fields">" baseActivity: "</font>).append(</p><p>				ti.baseActivity.flattenToString());</p><p>		</font>sInfo.append(<font class="Fields">" numActivities: "</font>).append(ti.nnumActivities);</p><p>		</font>sInfo.append(<font class="Fields">" numRunning: "</font>).append(ti.numRunning);</p><p>		</font>sInfo.append(<font class="Fields">" description: "</font>).append(ti.description);</p><p>		</font>sInfo.append(<font class="Fields">" "</font>);</p><p>	}</p><p>	<font class="keyword">return </font>sInfo.toString();</p><p>}</p><p></pre></p><p>上述代码调用系统提供的activityManager.getRunningTasks(100)方法获取任务列表，依次获取对应的id等信息，运行效果如图22。从图中显示可以看出，获取手机上正在运行的Task的列表和其对应的进程信息，这对用户了解设备运行情况非常有用。</p><p>1.2.5.3 获取正在运行的进程信息</p><p>该段程序是通过CMD Execute的方式来运行系统命令。关键代码如下：</p><p><pre><font class="keyword">public </font><font class="keyword">static </font>String fetch_process_info() {</p><p>	</font>Log.i(<font class="Fields">"fetch_process_info"</font>, </font><font class="Fields">"start. . . . "</font>);</p><p>	</font>String result = <font class="keyword">null</font>;</p><p>	</font>CMDExecutr cmdexe = <font class="keyword">new </font>CMDExecute();</p><p>	<font class="keyword">try </font>{</p><p>		</font>String[] args = { <font class="Fields">"/system/bin/top"</font>, </font><font class="Fields">"-n"</font>, </font><font class="Fields">"1"</font> </font>};</p><p>		</font>result = cmdexe.run(args, <font class="Fields">"/system/bin/"</font>);</p><p>	</font>} <font class="keyword">catch </font>(IOException ex) {</p><p>		</font>Log.i(<font class="Fields">"fetch_process_info"</font>, </font><font class="Fields">"ex="</font> + ex.toString());</p><p>	}</p><p>	<font class="keyword">return </font>result;</p><p>}</p><p></pre></p><p>通过这个功能可以非常详细地了解到正在运行的进程和各个进程所消耗的资源情况。</p><p>1.2.6 文件浏览器</p><p>文件浏览器的这个功能，用户可以遍历浏览整个文件系统，以便更好地了解手机设备状况。在主界面单击最后一行将执行下列代码：</p><p><pre><font class="keyword">case </font>4:</p><p>intent.setClass(eoeInfosAssistant.<font class="keyword">this</font>, FSExplorer.</font><font class="keyword">class</font>);</p><p>startActivity(intent);</p><p>break;</p><p></pre></p><p>对于如何进入子目录，并获取和显示其内部的文件夹和文件，也就是单击每行时响应的实现，代码如下：</p><p><pre>@Override</p><p><font class="keyword">public </font><font class="keyword">void </font>onItemClick(AdapterView&lt;?&gt; parent, View v, </font><font class="keyword">int </font>position, </font><font class="keyword">long </font>id) {</p><p>	</font>Log.i(TAG, <font class="Fields">"item clicked! ["</font> + position + </font><font class="Fields">"]"</font>);</p><p>	<font class="keyword">if </font>(position == 0) {</p><p>		</font>path = <font class="Fields">"/"</font>;</p><p>		refreshListItems(path);</p><p>	</font>} <font class="keyword">else </font><font class="keyword">if </font>(position == 1) {</p><p>		goToParent();</p><p>	</font>} <font class="keyword">else </font>{</p><p>		</font>path = (String) list.get(position).get(<font class="Fields">"path"</font>);</p><p>		</font>File file = <font class="keyword">new </font>File(path);</p><p>		<font class="keyword">if </font>(file.isDirectory())</p><p>			refreshListItems(path);</p><p>		else</p><p>			</font>Toast.makeText(FSExplorer.<font class="keyword">this</font>, getString(R.string.is_file),</p><p>					Toast.LENGTH_SHORT).show();</p><p>	}</p><p>}</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

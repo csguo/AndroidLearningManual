@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>ApiDemo上面的一个图片3D旋转效果_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li class="navcurrentLink"><A href="index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Android多媒体功能" href="index_196.html">Android多媒体功能</A></h2>
+
+  <h2><A title="Android多媒体之2D" href="index_197.html">Android多媒体之2D</A></h2>
+
+  <h2><A title="Android多媒体之3D" href="index_198.html">Android多媒体之3D</A></h2>
+<UL><li ><A title=Android 3D绘图基本概念（一） href="show_201_198.html">Android 3D绘图基本概念（一）</A> </li><li ><A title=Android 3D绘图基本概念（二） href="show_202_198.html">Android 3D绘图基本概念（二）</A> </li><li ><A title=Android 3D坐标（一） href="show_203_198.html">Android 3D坐标（一）</A> </li><li ><A title=Android 3D坐标（二） href="show_204_198.html">Android 3D坐标（二）</A> </li><li ><A title=Android中3D效果 href="show_205_198.html">Android中3D效果</A> </li><li ><A title=Android3D旋转 href="show_206_198.html">Android3D旋转</A> </li><li ><A title=Android 3d页面跳转（一） href="show_207_198.html">Android 3d页面跳转（一）</A> </li><li ><A title=Android 3d页面跳转（二） href="show_208_198.html">Android 3d页面跳转（二）</A> </li><li ><A title=Android 3d页面跳转（三） href="show_209_198.html">Android 3d页面跳转（三）</A> </li><li class="currentLink"><A title=ApiDemo上面的一个图片3D旋转效果 href="show_210_198.html">ApiDemo上面的一个图片3D旋转效果</A> </li><li ><A title=浅谈Android 3D旋转 href="show_211_198.html">浅谈Android 3D旋转</A> </li><li ><A title=简单实现3d旋转动画 href="show_212_198.html">简单实现3d旋转动画</A> </li><li ><A title=Android 3D相册 href="show_213_198.html">Android 3D相册</A> </li></UL>
+  <h2><A title="Android多媒体之Bitmap" href="index_199.html">Android多媒体之Bitmap</A></h2>
+
+  <h2><A title="Android多媒体之Canvas" href="index_200.html">Android多媒体之Canvas</A></h2>
+
+  <h2><A title="Android多媒体之Drawable" href="index_201.html">Android多媒体之Drawable</A></h2>
+
+  <h2><A title="Android多媒体之gif" href="index_202.html">Android多媒体之gif</A></h2>
+
+  <h2><A title="Android多媒体之MediaStore" href="index_203.html">Android多媒体之MediaStore</A></h2>
+
+  <h2><A title="Android多媒体之动画" href="index_204.html">Android多媒体之动画</A></h2>
+
+  <h2><A title="Android多媒体之分辨率" href="index_205.html">Android多媒体之分辨率</A></h2>
+
+  <h2><A title="Android多媒体之分屏幕" href="index_206.html">Android多媒体之分屏幕</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>ApiDemo上面的一个图片3D旋转效果</H2>
+<div style="line-height:20px; font-size:14px;"><p>源码如下：</p><p><pre>/*</p><p> <font class="Comments">* Copyright (C) 2007 The Android Open Source Project</font></p><p> <font class="Comments">* Licensed under the Apache License, Version 2.0 (the "License");</font></p><p> <font class="Comments">* you may not use this file except in compliance with the License.</font></p><p> <font class="Comments">* You may obtain a copy of the License at</font></p><p> <font class="Comments">*      http://www.apache.org/licenses/LICENSE-2.0</font></p><p> <font class="Comments">* Unless required by applicable law or agreed to in writing, software</font></p><p> <font class="Comments">* distributed under the License is distributed on an "AS IS" BASIS,</font></p><p> <font class="Comments">* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</font></p><p> <font class="Comments">* See the License for the specific language governing permissions and</font></p><p> <font class="Comments">* limitations under the License.</font></p><p> <font class="Comments">*/</font></p><p><font class="keyword">import </font>android.view.animation.Animation;</p><p><font class="keyword">import </font>android.view.animation.Transformation;</p><p><font class="keyword">import </font>android.graphics.Camera;</p><p><font class="keyword">import </font>android.graphics.Matrix;</p><p><font class="Comments">/**</font></p><p> <font class="Comments">* An animation that rotates the view on the Y axis between two specified</font></p><p> <font class="Comments">* angles. This animation also adds a translation on the Z axis (depth) to</font></p><p> <font class="Comments">* improve the effect.</font></p><p> <font class="Comments">*/</font></p><p><font class="keyword">public </font><font class="keyword">class </font>Rotate3dAnimation </font><font class="keyword">extends </font>Animation {</p><p>	<font class="keyword">private </font><font class="keyword">final </font><font class="keyword">float </font>mFromDegrees;</p><p>	<font class="keyword">private </font><font class="keyword">final </font><font class="keyword">float </font>mToDegrees;</p><p>	<font class="keyword">private </font><font class="keyword">final </font><font class="keyword">float </font>mCenterX;</p><p>	<font class="keyword">private </font><font class="keyword">final </font><font class="keyword">float </font>mCenterY;</p><p>	<font class="keyword">private </font><font class="keyword">final </font><font class="keyword">float </font>mDepthZ;</p><p>	<font class="keyword">private </font><font class="keyword">final </font><font class="keyword">boolean </font>mReverse;</p><p>	<font class="keyword">private </font>Camera mCamera;</p><p>	<font class="Comments">/**</font></p><p>	 <font class="Comments">* Creates a new 3D rotation on the Y axis. The rotation is defined by its</font></p><p>	 <font class="Comments">* start angle and its end angle. Both angles are in degrees. The rotation</font></p><p>	 <font class="Comments">* is performed around a center point on the 2D space, definied by a pair of</font></p><p>	 <font class="Comments">* X and Y coordinates, called centerX and centerY. When the animation</font></p><p>	 <font class="Comments">* starts, a translation on the Z axis (depth) is performed. The length of</font></p><p>	 <font class="Comments">* the translation can be specified, as well as whether the translation</font></p><p>	 <font class="Comments">* should be reversed in time.</font></p><p>	 <font class="Comments">* @param fromDegrees</font></p><p>	 <font class="Comments">*            the start angle of the 3D rotation</font></p><p>	 <font class="Comments">* @param toDegrees</font></p><p>	 <font class="Comments">*            the end angle of the 3D rotation</font></p><p>	 <font class="Comments">* @param centerX</font></p><p>	 <font class="Comments">*            the X center of the 3D rotation</font></p><p>	 <font class="Comments">* @param centerY</font></p><p>	 <font class="Comments">*            the Y center of the 3D rotation</font></p><p>	 <font class="Comments">* @param reverse</font></p><p>	 <font class="Comments">*            true if the translation should be reversed, false otherwise</font></p><p>	 <font class="Comments">*/</font></p><p>	<font class="keyword">public </font>Rotate3dAnimation(</font><font class="keyword">float </font>fromDegrees, </font><font class="keyword">float </font>toDegrees, </font><font class="keyword">float </font>centerX,</p><p>			<font class="keyword">float </font>centerY, </font><font class="keyword">float </font>depthZ, </font><font class="keyword">boolean </font>reverse) {</p><p>		mFromDegrees = fromDegrees;</p><p>		mToDegrees = toDegrees;</p><p>		mCenterX = centerX;</p><p>		mCenterY = centerY;</p><p>		mDepthZ = depthZ;</p><p>		mReverse = reverse;</p><p>	}</p><p>	@Override</p><p>	<font class="keyword">public </font><font class="keyword">void </font>initialize(</font><font class="keyword">int </font>width, </font><font class="keyword">int </font>height, </font><font class="keyword">int </font>parentWidth,</p><p>			<font class="keyword">int </font>parentHeight) {</p><p>		<font class="keyword">super</font>.initialize(width, height, parentWidth, parentHeight);</p><p>		</font>mCamera = <font class="keyword">new </font>Camera();</p><p>	}</p><p>	@Override</p><p>	<font class="keyword">protected </font><font class="keyword">void </font>applyTransformation(</font><font class="keyword">float </font>interpolatedTime, Transformation t) {</p><p>		<font class="keyword">final </font><font class="keyword">float </font>fromDegrees = mFromDegrees;</p><p>		<font class="keyword">float </font>degrees = fromDegrees</p><p>				+ ((mToDegrees - fromDegrees) * interpolatedTime);</p><p>		<font class="keyword">final </font><font class="keyword">float </font>centerX = mCenterX;</p><p>		<font class="keyword">final </font><font class="keyword">float </font>centerY = mCenterY;</p><p>		<font class="keyword">final </font>Camera camera = mCamera;</p><p>		<font class="keyword">final </font>Matrix matrix = t.getMatrix();</p><p>		camera.save();</p><p>		<font class="keyword">if </font>(mReverse) {</p><p>			camera.translate(0.0f, 0.0f, mDepthZ * interpolatedTime);</p><p>		</font>} <font class="keyword">else </font>{</p><p>			camera.translate(0.0f, 0.0f, mDepthZ * (1.0f - interpolatedTime));</p><p>		}</p><p>		camera.rotateY(degrees);</p><p>		camera.getMatrix(matrix);</p><p>		camera.restore();</p><p>		matrix.preTranslate(-centerX, -centerY);</p><p>		matrix.postTranslate(centerX, centerY);</p><p>	}</p><p>}</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Canvas建立欢迎界面_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li class="navcurrentLink"><A href="index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Android多媒体功能" href="index_196.html">Android多媒体功能</A></h2>
+
+  <h2><A title="Android多媒体之2D" href="index_197.html">Android多媒体之2D</A></h2>
+
+  <h2><A title="Android多媒体之3D" href="index_198.html">Android多媒体之3D</A></h2>
+
+  <h2><A title="Android多媒体之Bitmap" href="index_199.html">Android多媒体之Bitmap</A></h2>
+
+  <h2><A title="Android多媒体之Canvas" href="index_200.html">Android多媒体之Canvas</A></h2>
+<UL><li ><A title=Android中的Canvas（一） href="show_401_200.html">Android中的Canvas（一）</A> </li><li ><A title=Android中的Canvas（二） href="show_402_200.html">Android中的Canvas（二）</A> </li><li class="currentLink"><A title=Canvas建立欢迎界面 href="show_403_200.html">Canvas建立欢迎界面</A> </li><li ><A title=Android Bitmap与Canvas href="show_405_200.html">Android Bitmap与Canvas</A> </li><li ><A title=Android Bitmap和Canvas实例（一） href="show_406_200.html">Android Bitmap和Canvas实例（一）</A> </li><li ><A title=Android Bitmap和Canvas实例（二） href="show_407_200.html">Android Bitmap和Canvas实例（二）</A> </li><li ><A title=canvas的save()和restore()用法 href="show_408_200.html">canvas的save()和restore()用法</A> </li><li ><A title=canvas 之save,与restore href="show_409_200.html">canvas 之save,与restore</A> </li><li ><A title=Gridview控件自定义,canvas绘制view,gridview拖动时canvas重绘 href="show_411_200.html">Gridview控件自定义,canvas绘制view,gridview拖动时canvas重绘</A> </li><li ><A title=Canvas、Matrix倒影实例教程 href="show_412_200.html">Canvas、Matrix倒影实例教程</A> </li></UL>
+  <h2><A title="Android多媒体之Drawable" href="index_201.html">Android多媒体之Drawable</A></h2>
+
+  <h2><A title="Android多媒体之gif" href="index_202.html">Android多媒体之gif</A></h2>
+
+  <h2><A title="Android多媒体之MediaStore" href="index_203.html">Android多媒体之MediaStore</A></h2>
+
+  <h2><A title="Android多媒体之动画" href="index_204.html">Android多媒体之动画</A></h2>
+
+  <h2><A title="Android多媒体之分辨率" href="index_205.html">Android多媒体之分辨率</A></h2>
+
+  <h2><A title="Android多媒体之分屏幕" href="index_206.html">Android多媒体之分屏幕</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Canvas建立欢迎界面</H2>
+<div style="line-height:20px; font-size:14px;"><p style="color:#3333FF;">1、触摸屏事件</p><p>1）pointerDragged(int x, int y)  触摸屏拖拽事件(暂时还没研究)。</p><p>2）pointerPressed(int x, int y) 触摸屏按压。</p><p>3）pointerReleased(int x, int y) 触摸屏释放。</p><p>pointerPressed(int x, int y)当用户按下触摸屏的时候会自动调用这个方法x,y就是当前压下的坐标。</p><p style="color:#3333FF;">2、按键事件 </p><p>1）keyPressed：按键按下。</p><p>2）keyReleased:按键释放。</p><p>3) keyRepeated:重复按键。</p><p style="color:#3333FF;">3、定时器处理</p><p>1）在Timer 的schedule()方法来设定特定时间或特定时间周期。</p><p>2）在TimerTask的run()方法中定义任务。</p><p><pre><font class="keyword">import </font>java.io.IOException;</p><p><font class="keyword">import </font>java.util.Timer;</p><p><font class="keyword">import </font>java.util.TimerTask;</p><p><font class="keyword">import </font>javax.microedition.lcdui.Canvas;</p><p><font class="keyword">import </font>javax.microedition.lcdui.Display;</p><p><font class="keyword">import </font>javax.microedition.lcdui.Displayable;</p><p><font class="keyword">import </font>javax.microedition.lcdui.Graphics;</p><p><font class="keyword">import </font>javax.microedition.lcdui.Image;</p><p><font class="keyword">public </font><font class="keyword">class </font>WelcomeCanvas </font><font class="keyword">extends </font>Canvas {</p><p>	<font class="keyword">private </font>Display display;</p><p>	<font class="keyword">private </font>Displayable nextUI;</p><p>	<font class="keyword">private </font>Timer timer = </font><font class="keyword">new </font>Timer();</p><p>	<font class="keyword">private </font><font class="keyword">long </font>displayTime = 3000;</p><p>	<font class="keyword">public </font>WelcomeCanvas(Display dis, Displayable disp) {</p><p>		<font class="keyword">this</font>.display = dis;</p><p>		<font class="keyword">this</font>.nextUI = disp;</p><p>	}</p><p>	<font class="keyword">protected </font><font class="keyword">void </font>paint(Graphics arg0) {</p><p>		<font class="keyword">int </font>width = </font><font class="keyword">this</font>.getWidth();</p><p>		<font class="keyword">int </font>height = </font><font class="keyword">this</font>.getHeight();</p><p>		</font>Image displayImage = <font class="keyword">null</font>;</p><p>		<font class="keyword">try </font>{</p><p>			</font>displayImage = Image.createImage(<font class="Fields">"/logo20k.png"</font>);</p><p>		</font>} <font class="keyword">catch </font>(IOException e) {</p><p>			e.printStackTrace();</p><p>		}</p><p>		arg0.drawImage(displayImage, getWidth() / 2, getHeight() / 2,</p><p>				Graphics.HCENTER | Graphics.VCENTER);</p><p>	}</p><p>	<font class="keyword">public </font><font class="keyword">void </font>setDisplayTime(</font><font class="keyword">long </font>dispTime) {</p><p>		<font class="keyword">this</font>.displayTime = dispTime;</p><p>	}</p><p>	<font class="keyword">protected </font><font class="keyword">void </font>keyPressed(</font><font class="keyword">int </font>keyCode) {</p><p>		cancelWelcome();</p><p>	}</p><p>	<font class="keyword">protected </font><font class="keyword">void </font>pointerPressed(</font><font class="keyword">int </font>y, </font><font class="keyword">int </font>x) {</p><p>		cancelWelcome();</p><p>	}</p><p>	<font class="keyword">private </font><font class="keyword">void </font>cancelWelcome() {</p><p>		timer.cancel();</p><p>		display.setCurrent(nextUI);</p><p>	}</p><p>	<font class="keyword">protected </font><font class="keyword">void </font>showNotify() {</p><p>		</font>timer.schedule(<font class="keyword">new </font>TimerTask() {</p><p>			<font class="keyword">public </font><font class="keyword">void </font>run() {</p><p>				cancelWelcome();</p><p>			}</p><p>		}, displayTime);</p><p>	}</p><p>}</p><p></pre></p><p>Thread方式实现自动进入主画面 </p><p><pre><font class="keyword">import </font>java.io.IOException;</p><p><font class="keyword">import </font>java.util.Timer;</p><p><font class="keyword">import </font>java.util.TimerTask;</p><p><font class="keyword">import </font>javax.microedition.lcdui.Canvas;</p><p><font class="keyword">import </font>javax.microedition.lcdui.Display;</p><p><font class="keyword">import </font>javax.microedition.lcdui.Displayable;</p><p><font class="keyword">import </font>javax.microedition.lcdui.Graphics;</p><p><font class="keyword">import </font>javax.microedition.lcdui.Image;</p><p><font class="keyword">public </font><font class="keyword">class </font>WelcomeCanvas2 </font><font class="keyword">extends </font>Canvas </font><font class="keyword">implements </font>Runnable {</p><p>	<font class="keyword">private </font>Display display;</p><p>	<font class="keyword">private </font>Displayable nextUI;</p><p>	<font class="keyword">private </font><font class="keyword">long </font>displayTime = 3000;</p><p>	<font class="keyword">public </font>WelcomeCanvas2(Display dis, Displayable disp) {</p><p>		<font class="keyword">this</font>.display = dis;</p><p>		<font class="keyword">this</font>.nextUI = disp;</p><p>		<font class="Comments">// 启动线程</font></p><p>		</font>Thread thread = <font class="keyword">new </font>Thread(</font><font class="keyword">this</font>);</p><p>		thread.start();</p><p>	}</p><p>	<font class="keyword">protected </font><font class="keyword">void </font>paint(Graphics arg0) {</p><p>		<font class="keyword">int </font>width = </font><font class="keyword">this</font>.getWidth();</p><p>		<font class="keyword">int </font>height = </font><font class="keyword">this</font>.getHeight();</p><p>		</font>Image displayImage = <font class="keyword">null</font>;</p><p>		<font class="keyword">try </font>{</p><p>			</font>displayImage = Image.createImage(<font class="Fields">"/logo20k.png"</font>);</p><p>		</font>} <font class="keyword">catch </font>(IOException e) {</p><p>			e.printStackTrace();</p><p>		}</p><p>		arg0.drawImage(displayImage, getWidth() / 2, getHeight() / 2,</p><p>				Graphics.HCENTER | Graphics.VCENTER);</p><p>	}</p><p>	<font class="keyword">public </font><font class="keyword">void </font>run() {</p><p>		<font class="Comments">// 等待3秒</font></p><p>		<font class="keyword">try </font>{</p><p>			Thread.sleep(displayTime);</p><p>		</font>} <font class="keyword">catch </font>(Exception e) {</p><p>		}</p><p>		<font class="Comments">// 显示需要显示的界面</font></p><p>		display.setCurrent(nextUI);</p><p>	}</p><p>	<font class="keyword">public </font><font class="keyword">void </font>setDisplayTime(</font><font class="keyword">long </font>dispTime) {</p><p>		<font class="keyword">this</font>.displayTime = dispTime;</p><p>	}</p><p>	<font class="keyword">protected </font><font class="keyword">void </font>keyPressed(</font><font class="keyword">int </font>keyCode) {</p><p>		cancelWelcome();</p><p>	}</p><p>	<font class="keyword">protected </font><font class="keyword">void </font>pointerPressed(</font><font class="keyword">int </font>y, </font><font class="keyword">int </font>x) {</p><p>		cancelWelcome();</p><p>	}</p><p>	<font class="keyword">private </font><font class="keyword">void </font>cancelWelcome() {</p><p>		display.setCurrent(nextUI);</p><p>	}</p><p>}</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

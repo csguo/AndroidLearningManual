@@ -1,0 +1,58 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android 用MD5加密算法加密密码（一）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li class="navcurrentLink"><A href="index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Android基础之运行原理和机制" href="index_215.html">Android基础之运行原理和机制</A></h2>
+
+  <h2><A title="Android高级篇之Android优化" href="index_216.html">Android高级篇之Android优化</A></h2>
+
+  <h2><A title="Android高级篇之编译及反编译" href="index_217.html">Android高级篇之编译及反编译</A></h2>
+
+  <h2><A title="Android高级篇之加密解密" href="index_218.html">Android高级篇之加密解密</A></h2>
+<UL><li ><A title=Android 加密解密 href="show_301_218.html">Android 加密解密</A> </li><li class="currentLink"><A title=Android 用MD5加密算法加密密码（一） href="show_302_218.html">Android 用MD5加密算法加密密码（一）</A> </li><li ><A title=Android 用MD5加密算法加密密码（二） href="show_303_218.html">Android 用MD5加密算法加密密码（二）</A> </li><li ><A title=Android下MD5加密 href="show_304_218.html">Android下MD5加密</A> </li><li ><A title=Android 获取自己程序APK包的MD5指纹 href="show_305_218.html">Android 获取自己程序APK包的MD5指纹</A> </li><li ><A title=Android客户端与服务器端通过DES加密认证 href="show_306_218.html">Android客户端与服务器端通过DES加密认证</A> </li><li ><A title=Java加密解密 href="show_307_218.html">Java加密解密</A> </li><li ><A title=给自己的网络数据加密 href="show_308_218.html">给自己的网络数据加密</A> </li></UL>
+  <h2><A title="Android高级篇之Android 安全" href="index_219.html">Android高级篇之Android 安全</A></h2>
+
+  <h2><A title="Android高级篇之算法" href="index_220.html">Android高级篇之算法</A></h2>
+
+  <h2><A title="Android高级篇之解锁教程" href="index_221.html">Android高级篇之解锁教程</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android 用MD5加密算法加密密码（一）</H2>
+<div style="line-height:20px; font-size:14px;"><p>很多的网络相关的软件都需要用户名密码登录，在开发的时候像这些密码都是保存在SharedPreferences中，这些密码保存在/data/data/包名/shared_prefs下，保存在一个XML文件中，如下：</p><p><img src="../img/adv_build/03_MD501.jpg"></p><p>开始说道正题，MD5加密算法虽然现在有些人已经将其解开了，但是它的加密机制依然很强大，我想绝大对数还是不会解开的。MD5加密算法是单向加密，只能用你的密码才能解开，要不就是会解密算法，否则想都别想解开。为了防止这种情况的发生。还可以对加密过的密码进行再次加密。</p><p><pre>&lt;?xml version=<font class="Fields">"1.0"</font> encoding=</font><font class="Fields">"utf-8"</font>?&gt;</p><p>&lt;LinearLayout xmlns:android=<font class="Fields">"http:<font class="Comments">//schemas.android.com/apk/res/android</font></p><p>    </font>android:layout_width=<font class="Fields">"fill_parent</p><p>    </font>android:layout_height=<font class="Fields">"fill_parent</p><p>    </font>android:orientation=<font class="Fields">"vertical"</font> &gt;</p><p>    &lt;EditText</p><p>        </font>android:id=<font class="Fields">"@+id/username</p><p>        </font>android:layout_width=<font class="Fields">"fill_parent</p><p>        </font>android:layout_height=<font class="Fields">"wrap_content</p><p>        </font>android:layout_marginLeft=<font class="Fields">"10dp</p><p>        </font>android:layout_marginRight=<font class="Fields">"10dp</p><p>        </font>android:layout_marginTop=<font class="Fields">"20dp</p><p>        </font>android:hint=<font class="Fields">"帐号"</font> /&gt;</p><p>    &lt;EditText</p><p>        </font>android:id=<font class="Fields">"@+id/password</p><p>        </font>android:layout_width=<font class="Fields">"fill_parent</p><p>        </font>android:layout_height=<font class="Fields">"wrap_content</p><p>        </font>android:layout_marginLeft=<font class="Fields">"10dp</p><p>        </font>android:layout_marginRight=<font class="Fields">"10dp</p><p>        </font>android:layout_marginTop=<font class="Fields">"10dp</p><p>        </font>android:hint=<font class="Fields">"密码</p><p>        </font>android:password=<font class="Fields">"<font class="keyword">true</font>"</font> /&gt;</p><p>    &lt;Button</p><p>        </font>android:id=<font class="Fields">"@+id/save</p><p>        </font>android:layout_width=<font class="Fields">"fill_parent</p><p>        </font>android:layout_height=<font class="Fields">"wrap_content</p><p>        </font>android:layout_marginLeft=<font class="Fields">"10dp</p><p>        </font>android:layout_marginRight=<font class="Fields">"10dp</p><p>        </font>android:layout_marginTop=<font class="Fields">"10dp</p><p>        </font>android:text=<font class="Fields">"保存"</font> /&gt;</p><p>    &lt;Button</p><p>        </font>android:id=<font class="Fields">"@+id/login</p><p>        </font>android:layout_width=<font class="Fields">"fill_parent</p><p>        </font>android:layout_height=<font class="Fields">"wrap_content</p><p>        </font>android:layout_marginLeft=<font class="Fields">"10dp</p><p>        </font>android:layout_marginRight=<font class="Fields">"10dp</p><p>        </font>android:layout_marginTop=<font class="Fields">"10dp</p><p>        </font>android:text=<font class="Fields">"登录"</font> /&gt;</p><p>&lt;/LinearLayout&gt;</p><p></pre></p><p style="color:#3333FF;">login.xml</p><p><pre>&lt;?xml version=<font class="Fields">"1.0"</font> encoding=</font><font class="Fields">"utf-8"</font>?&gt;</p><p>&lt;LinearLayout xmlns:android=<font class="Fields">"http:<font class="Comments">//schemas.android.com/apk/res/android</font></p><p>    </font>android:layout_width=<font class="Fields">"match_parent</p><p>    </font>android:layout_height=<font class="Fields">"match_parent</p><p>    </font>android:orientation=<font class="Fields">"vertical"</font> &gt;</p><p>    &lt;TextView</p><p>        </font>android:layout_width=<font class="Fields">"fill_parent</p><p>        </font>android:layout_height=<font class="Fields">"wrap_content</p><p>        </font>android:text=<font class="Fields">"login successful!"</font> /&gt;</p><p>&lt;/LinearLayout&gt;</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+

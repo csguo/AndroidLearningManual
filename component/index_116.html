@@ -1,0 +1,89 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android学习手册_Android组件</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li class="navcurrentLink"><A href="index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li ><A href="../source/index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">Android组件</div>
+
+  <h2 ><A title="Activity" href="index_112.html">Activity</A></h2>
+
+  <h2 ><A title="Intent" href="index_113.html">Intent</A></h2>
+
+  <h2 ><A title="Service" href="index_114.html">Service</A></h2>
+
+  <h2 ><A title="Content Provider" href="index_115.html">Content Provider</A></h2>
+
+  <h2 class="currentLink"><A title="BroadcastReceiver" href="index_116.html">BroadcastReceiver</A></h2>
+<UL><li class="currentLink"><A title=BroadcastReceiver简介 href="show_401_116.html">BroadcastReceiver简介</A> </li><li ><A title=BroadcastReceiver学习 href="show_402_116.html">BroadcastReceiver学习</A> </li><li ><A title=BroadcastReceiver生命周期及两种应用 href="show_403_116.html">BroadcastReceiver生命周期及两种应用</A> </li><li ><A title=Android中BroadCastReceiver使用 href="show_404_116.html">Android中BroadCastReceiver使用</A> </li><li ><A title=BroadcastReceiver 消息广播详解-简单监控拨打电话 href="show_405_116.html">BroadcastReceiver 消息广播详解-简单监控拨打电话</A> </li><li ><A title=通过BroadcastReceiver拦截短信 href="show_406_116.html">通过BroadcastReceiver拦截短信</A> </li></UL>
+  <h2 ><A title="AsyncTask" href="index_117.html">AsyncTask</A></h2>
+
+  <h2 ><A title="Handler" href="index_118.html">Handler</A></h2>
+
+  <h2 ><A title="Thread" href="index_119.html">Thread</A></h2>
+
+  <h2 ><A title="Permission" href="index_120.html">Permission</A></h2>
+
+  <h2 ><A title="AIDL" href="index_121.html">AIDL</A></h2>
+
+  <h2 ><A title="Json" href="index_122.html">Json</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1>BroadcastReceiver</H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>BroadcastReceiver简介</H2>
+<P>　　在 Android 中使用 Activity, Service, Broadcast, BroadcastReceiver [code=java]活动(Activity) - 用于表现功能  服务(Service) - 相当于后台运行的 Activity 广播(Broadcast) - 用于发送广播  广播接收器(Broadca</P>
+<P><A title="BroadcastReceiver简介" href="show_401_116.html">进入 BroadcastReceiver简介</A> </P></DIV>
+
+<DIV>
+<H2>BroadcastReceiver学习</H2>
+<P>　　在实际应用中，我们常需要等，等待系统抑或其他应用发出一道指令，为自己的应用擦亮明灯指明方向。而这种等待，在很多的平台上，都会需要付出不小的代价。比如，在Symbian中，你要等待一个来电消息，显示归属地之类</P>
+<P><A title="BroadcastReceiver学习" href="show_402_116.html">进入 BroadcastReceiver学习</A> </P></DIV>
+
+<DIV>
+<H2>BroadcastReceiver生命周期及两种应用</H2>
+<P>　　一：Android 广播的生命周期  一个广播接收者有一个回调方法：void onReceive(Context curContext, Intent broadcastMsg)。当一个广播消息到达接收者时，Android调用它的onReceive()方法并传递给它包含消息的Intent</P>
+<P><A title="BroadcastReceiver生命周期及两种应用" href="show_403_116.html">进入 BroadcastReceiver生命周期及两种应用</A> </P></DIV>
+
+<DIV>
+<H2>Android中BroadCastReceiver使用</H2>
+<P>　　在Android中，Broadcast是一种广泛运用的在应用程序之间传输信息的机制。而BroadcastReceiver是对发送出来的 Broadcast进行过滤接受并响应的一类组件。 下面将详细的阐述如何发送Broadcast和使用BroadcastReceiver过</P>
+<P><A title="Android中BroadCastReceiver使用" href="show_404_116.html">进入 Android中BroadCastReceiver使用</A> </P></DIV>
+
+<DIV>
+<H2>BroadcastReceiver 消息广播详解-简单监控拨打电话</H2>
+<P>　　当拨打电话时，拨打电话程序会向系统发生消息，来告诉系统自己在干嘛，这里就是所谓的广播，这样做是为了方便跟其他应用程序或者底层沟通。那么如何才能让其他应用程序拿到这个消息（广播），这里就需要借助广播接收</P>
+<P><A title="BroadcastReceiver 消息广播详解-简单监控拨打电话" href="show_405_116.html">进入 BroadcastReceiver 消息广播详解-简单监控拨打电话</A> </P></DIV>
+
+<DIV>
+<H2>通过BroadcastReceiver拦截短信</H2>
+<P>　　当android系统接收到短信时，会发送一个广播BroadcastReceiver，这个广播是以有序广播的形式发送的。所谓的有序广播就是广播发出后，接收者是按照设置的优先级一个一个接着接收，前面的接收者可以选择是否终止这条广</P>
+<P><A title="通过BroadcastReceiver拦截短信" href="show_406_116.html">进入 通过BroadcastReceiver拦截短信</A> </P></DIV>
+
+</DIV>
+
+<DIV id=footer style="display:none">
+<P align="center"> 
+ 
+ 
+ 
+  </P>
+</DIV></DIV></BODY></HTML>
+

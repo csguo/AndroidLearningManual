@@ -1,0 +1,60 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<TITLE>Android Launcher 分析（二）_Android学习手册</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type><LINK  rel=stylesheet type=text/css href="../css/c5.css">
+<META name=GENERATOR content="MSHTML 8.00.6001.18702">
+<meta name="Description" content=Android基础 Android组件 Android用户界面 Android设备功能 Android数据存储 Android网络应用 Android游戏开发 Android多媒体 Android源码开发 Android高级进阶 Android面试题/>
+<meta name="Keywords" content="android 学习手册">
+
+</HEAD>
+<BODY id=homesecond class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><h1><a href="../index.html">Android学习手册</a></h1> 
+</DIV>
+
+<DIV id=navfirst>
+<div id="indexGuide"><UL><li ><A href="../basic/index.html">Android基础</A> </li><li ><A href="../component/index.html">Android组件</A> </li><li ><A href="../userinterface/index.html">用户界面</A> </li><li ><A href="../device/index.html">设备功能</A> </li><li ><A href="../datastorage/index.html">数据存储</A> </li><li ><A href="../network/index.html">网络应用</A> </li><li ><A href="../game/index.html">游戏开发</A> </li><li ><A href="../multimedia/index.html">多媒体</A> </li><li class="navcurrentLink"><A href="index.html">源码开发</A> </li><li ><A href="../advance/index.html">高级进阶</A> </li><li ><A href="../interview/index.html">Android面试题</A> </li></UL></div>
+</DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<div id="kcTitle">课 程 表</div>
+
+
+  <h2><A title="Launcher" href="index_207.html">Launcher</A></h2>
+<UL><li ><A title=Android Launcher 分析（一） href="show_1_207.html">Android Launcher 分析（一）</A> </li><li class="currentLink"><A title=Android Launcher 分析（二） href="show_2_207.html">Android Launcher 分析（二）</A> </li><li ><A title=Android Launcher 分析（三） href="show_3_207.html">Android Launcher 分析（三）</A> </li><li ><A title=Android 启动唯一的Launcher href="show_4_207.html">Android 启动唯一的Launcher</A> </li><li ><A title=Launcher之文件夹美化 href="show_5_207.html">Launcher之文件夹美化</A> </li><li ><A title=关于使用Eclipse调试Launcher的完美解决方法 href="show_6_207.html">关于使用Eclipse调试Launcher的完美解决方法</A> </li><li ><A title=提取Launcher中的WorkSapce，可以左右滑动切换屏幕页面的类 href="show_7_207.html">提取Launcher中的WorkSapce，可以左右滑动切换屏幕页面的类</A> </li><li ><A title=使用ViewPager实现高仿launcher拖动效果 href="show_8_207.html">使用ViewPager实现高仿launcher拖动效果</A> </li><li ><A title=Android 深入研究拖放功能Launcher（一） href="show_9_207.html">Android 深入研究拖放功能Launcher（一）</A> </li><li ><A title=Android 深入研究拖放功能Launcher（二） href="show_10_207.html">Android 深入研究拖放功能Launcher（二）</A> </li><li ><A title=Android 深入研究拖放功能Launcher（三） href="show_11_207.html">Android 深入研究拖放功能Launcher（三）</A> </li><li ><A title=Android 深入研究拖放功能Launcher（四） href="show_12_207.html">Android 深入研究拖放功能Launcher（四）</A> </li><li ><A title=Android 深入研究拖放功能Launcher（五） href="show_13_207.html">Android 深入研究拖放功能Launcher（五）</A> </li><li ><A title=Android 深入研究拖放功能Launcher（六） href="show_14_207.html">Android 深入研究拖放功能Launcher（六）</A> </li><li ><A title=Android 在launcher 2.1上实现2.2的屏幕标记 href="show_15_207.html">Android 在launcher 2.1上实现2.2的屏幕标记</A> </li></UL>
+  <h2><A title="电话系统RIL" href="index_208.html">电话系统RIL</A></h2>
+
+  <h2><A title="进程间通信" href="index_209.html">进程间通信</A></h2>
+
+  <h2><A title="内部sensor系统" href="index_210.html">内部sensor系统</A></h2>
+
+  <h2><A title="内部surface系统" href="index_211.html">内部surface系统</A></h2>
+
+  <h2><A title="启动流程" href="index_212.html">启动流程</A></h2>
+
+  <h2><A title="源码编译" href="index_213.html">源码编译</A></h2>
+
+  <h2><A title="状态栏" href="index_214.html">状态栏</A></h2>
+
+</DIV></DIV>
+<DIV id=maincontent>
+<DIV id=w3school>
+<H1></H1>
+<P><STRONG></STRONG></P></DIV>
+
+<DIV>
+<H2>Android Launcher 分析（二）</H2>
+<div style="line-height:20px; font-size:14px;"><p style="color:#3333FF;">3.应用程序代码分析</p><p>由Launcher中的AndroidManifest.xml可以看出整个Launcher的代码结构。</p><p><img src="../img/source_launcher/02_Launcher01.jpg"></p><p>首先，是一些权限的声明。例如：</p><p><pre>&lt;uses-permission android:name=<font class="Fields">"android.permission.CALL_PHONE"</font> /&gt; </p><p>&lt;uses-permission android:name=<font class="Fields">"android.permission.EXPAND_STATUS_BAR"</font> /&gt; </p><p></pre></p><p>这部分可以略过；</p><p>其次，Application的构成，如上图：</p><p>(1)Launcher：HomeScreen的Activity。</p><p><pre>&lt;intent-filter&gt; </p><p>	</font>&lt;action android:name=<font class="Fields">"android.intent.action.MAIN"</font> /&gt;</p><p>	</font>&lt;category android:name=<font class="Fields">"android.intent.category.HOME"</font>/&gt;</p><p>	</font>&lt;category android:name=<font class="Fields">"android.intent.category.DEFAULT"</font> /&gt;</p><p>	</font>&lt;category android:name=<font class="Fields">"android.intent.category.MONKEY"</font> /&gt;</p><p>&lt;/intent-filter&gt;</p><p></pre></p><p>上面这段代码就标志着它是开机启动后Home的Activity。通过Launcher.java中onCreat()的分析我们可以大致把握屏幕的主要活动：</p><p><pre><font class="keyword">protected </font><font class="keyword">void </font>onCreate(Bundle savedInstanceState) {</p><p>	<font class="keyword">super</font>.onCreate(savedInstanceState);</p><p>	<font class="Comments">// 把xml文件的内容实例化到View中</font></p><p>	mInflater = getLayoutInflater();</p><p>	<font class="Comments">// 监听应用程序控件改变事件</font></p><p>	</font>mAppWidgetManager = AppWidgetManager.getInstance(<font class="keyword">this</font>);</p><p>	</font>mAppWidgetHost = <font class="keyword">new </font>LauncherAppWidgetHost(</font><font class="keyword">this</font>, APPWIDGET_HOST_ID);</p><p>	mAppWidgetHost.startListening();</p><p>	<font class="Comments">// 用于调试?</font></p><p>	<font class="keyword">if </font>(PROFILE_STARTUP) {</p><p>		</font>android.os.Debug.startMethodTracing(<font class="Fields">"/sdcard/launcher"</font>);</p><p>	}</p><p>	<font class="Comments">// 监听locale，mcc，mnc是否改变，如果改变，则重写新配置</font></p><p>	<font class="Comments">// mcc：mobile country code(国家代码China 460); mnc：mobile network code(网络代码)</font></p><p>	checkForLocaleChange();</p><p>	/*</p><p>	 <font class="Comments">* This allows such applications to have a virtual wallpaper that is</font></p><p>	 <font class="Comments">* larger than the physical screen, matching the size of their</font></p><p>	 <font class="Comments">* workspace.</font></p><p>	 <font class="Comments">*/</font></p><p>	setWallpaperDimension();</p><p>	<font class="Comments">// 显示主屏幕UI元素，workspace,slidingdrawer(handleview and</font></p><p>	<font class="Comments">// appgridview),deletezone</font></p><p>	setContentView(R.layout.launcher);</p><p>	<font class="Comments">// Finds all the views we need and configure them properly.</font></p><p>	<font class="Comments">// 完成workspace，slidingdrawer，deletezone的各种事件操作和监听</font></p><p>	setupViews();</p><p>	<font class="Comments">// Registers various intent receivers.</font></p><p>	<font class="Comments">// 允许其他应用对本应用的操作</font></p><p>	registerIntentReceivers();</p><p>	<font class="Comments">// Registers various content observers.</font></p><p>	<font class="Comments">// 例如，注册一个内容观察者跟踪喜爱的应用程序</font></p><p>	registerContentObservers();</p><p>	<font class="Comments">// 重新保存前一个状态（目的??）</font></p><p>	mSavedState = savedInstanceState;</p><p>	restoreState(mSavedState);</p><p>	<font class="Comments">// 调试?</font></p><p>	<font class="keyword">if </font>(PROFILE_STARTUP) {</p><p>		android.os.Debug.stopMethodTracing();</p><p>	}</p><p>	<font class="Comments">// Loads the list of installed applications in mApplications.</font></p><p>	<font class="keyword">if </font>(!mRestoring) {</p><p>		startLoaders();</p><p>	}</p><p>	<font class="Comments">// For handling default keys??</font></p><p>	</font>mDefaultKeySsb = <font class="keyword">new </font>SpannableStringBuilder();</p><p>	Selection.setSelection(mDefaultKeySsb, 0);</p><p>}</p><p></pre></p><p></p></div>
+
+</DIV></DIV>
+
+<DIV id=footer style="display:none">
+<P align="center">  
+ 
+ 
+ 
+    </P>
+</DIV></BODY></HTML>
+
